@@ -1,0 +1,14 @@
+impl/
+sim/work/
+sim/*.wlf
+sim/wlf*
+sim/*.log
+sim/*.vvp
+sim/transcript*
+sim/modelsim.ini
+*.gprj.user
+# Local credentials and software licenses must never be committed.
+*.lic
+license.dat
+.env
+.env.*

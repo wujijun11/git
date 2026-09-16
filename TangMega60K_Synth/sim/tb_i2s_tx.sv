@@ -27,7 +27,32 @@ module i2s_case #(parameter integer HALF_DIV = 8) (output reg finished = 0);
     wire [63:0] active_mask, held_mask;
     wire full_pulse, ignored_pulse, done_error_pulse;
 
+`ifdef V2_INTERFACE_TEST
+    // Reuse the exact external I2S scoreboard for the V2 integration boundary.
+    // A constant expression producer exercises its parallel control path;
+    // the sample producer below is still a protocol model, not a synth engine.
+    wire [11:0] checked_gain;
+    wire signed [12:0] checked_bend;
+    wire [7:0] checked_vibrato;
+    integer expr_settled=0;
+    always @(negedge clk) begin
+        if(!rst_n) expr_settled=0;
+        else begin
+            expr_settled=expr_settled+1;
+            if(expr_settled>2 && {checked_gain,checked_bend,checked_vibrato} !==
+               {12'd1024,13'sd100,8'd25}) $fatal(1,"V2 integrated expression wiring");
+        end
+    end
+    captain_system_top_v2 #(.BCLK_HALF_DIV(HALF_DIV)) dut (
+        .event_source(6'd0),
+        .expr_valid(1'b1), .expr_ready(), .expr_gain(12'd1024),
+        .expr_bend_cents(13'sd100), .expr_vibrato_cents(8'd25),
+        .engine_sample_begin(1'b1),
+        .active_gain(checked_gain), .active_bend_cents(checked_bend),
+        .active_vibrato_cents(checked_vibrato), .expr_applied(),
+`else
     captain_system_top #(.BCLK_HALF_DIV(HALF_DIV)) dut (
+`endif
         .clk(clk), .rst_n(rst_n),
         .event_valid(event_valid), .event_ready(event_ready),
         .event_on(event_on), .event_note(event_note),
@@ -342,7 +367,11 @@ module tb_i2s_tx;
     i2s_case #(.HALF_DIV(1)) divider_edge_case (fast_finished);
     initial begin
         wait (default_finished && fast_finished);
+`ifdef V2_INTERFACE_TEST
+        $display("ALL V2 I2S TESTS PASSED");
+`else
         $display("ALL I2S TESTS PASSED");
+`endif
         $finish;
     end
     initial begin

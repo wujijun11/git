@@ -1,6 +1,10 @@
 # 弦光：Tang Mega 60K 队长工程
 
-当前里程碑：**02 — 64声部控制接口 + 24位立体声 I2S 输出与缓冲**。
+当前里程碑：**04 — V2来源识别与三维全局表情接口**。原V1工程和测试音源保留，队员可逐步迁移。
+
+新接口及迁移说明：[接口V2与队员迁移](docs/接口V2与队员迁移.md)。新工程为`TangMega60K_Synth_V2.gprj`，顶层`captain_system_top_v2`。已实现表情参数控制与提交，实际幅度/弯音/颤音运算仍由正式音源引擎实现。
+
+第三阶段入口：[测试音源、波形与试听说明](docs/第三阶段-测试音源.md)。独立诊断工程为 `ToneDemo.gprj`，不会替换队友对接顶层。
 
 这是一份可综合、可仿真的控制与音频输出工程，还不是能够直接烧录发声的整机工程。
 目标器件为 GW5AT-60B / GW5AT-LV60PG484AC1/I0；对应 Sipeed Tang Mega 60K。
@@ -8,8 +12,8 @@
 
 ## 从哪里开始
 
-1. GOWIN：打开 `TangMega60K_Synth.gprj`。
-2. 当前总顶层是 `rtl/captain_system_top.v`，其中连接了复音分配器和 I2S 发送器。
+1. 新开发在GOWIN打开`TangMega60K_Synth_V2.gprj`；旧队员代码继续使用`TangMega60K_Synth.gprj`也可以。
+2. V2集成顶层是`rtl/captain_system_top_v2.v`；原`rtl/captain_system_top.v`是V1集成边界。二者都不是物理板级顶层。
 3. 第二阶段先看 `docs/第二阶段-I2S使用说明.md`，再看 `rtl/i2s_tx.v`。
 4. `sim/tb_i2s_tx.sv` 用模拟样本源和独立串行接收器验证第二阶段，不需要板子或队友代码。
 5. 第一阶段继续保留：`rtl/voice_allocator.v`、`sim/tb_voice_allocator.sv` 与 `docs/接口与第一课.md`。
@@ -40,10 +44,10 @@ do waves_i2s.do
 ./scripts/test.ps1
 ```
 
-默认使用已安装的 C 盘 ModelSim。另一个安装路径可以通过 `-ModelSimBin` 指定。
+脚本默认寻找C盘ModelSim，实际安装位置通过`-ModelSimBin`指定。本机另提供`./scripts/test-iverilog.ps1`，默认寻找`C:\iverilog\bin`，也可用`-IcarusBin`指定。
 使用项目自己的 `sim/modelsim_local.ini`，不修改之前配置的共享 GW5A 库。
 RTL没有例化高云原语，因此本阶段不需要GW5AT仿真库。
-脚本依次验证两阶段；成功时两个日志分别包含 `ALL TESTS PASSED` 与 `ALL I2S TESTS PASSED`，且退出码为0。
+脚本依次验证V1分配、V1 I2S、测试音源、V2控制、V2 I2S、V2兼容六组。新增通过标志是`ALL V2 CONTROL TESTS PASSED`、`ALL V2 I2S TESTS PASSED`和`ALL V2 LEGACY TESTS PASSED`。Icarus结果在`sim/iverilog_results/`。原WAV导出脚本读取`sim/tone_samples.csv`，不会自动读取Icarus新目录；不要将旧CSV当作新测试结果。
 
 GOWIN仅综合：
 
@@ -51,10 +55,12 @@ GOWIN仅综合：
 & 'C:/Gowin/Gowin_V1.9.12_x64/IDE/bin/gw_sh.exe' scripts/synth.tcl
 ```
 
+V2使用同目录的`scripts/synth-v2.tcl`，单独生成V2综合报告。
+
 ## 已实现的策略
 
 - 最低编号空闲声部优先。
-- 同一个仍按住的音符重复触发时复用原声部；本版按音符编号识别，没有MIDI通道/独立按键ID。
+- V1按音符编号识别；V2按`(event_source,event_note)`识别。同一来源仍按住的相同音符重触发复用声部，不同来源的同音独立分配和释放。
 - 松键后发送release命令；收到引擎的完成握手才释放槽位。
 - 同音符旧尾音仍在释放时再次按下：另取空闲槽位。
 - 满载的新音符被拒绝，同时输出 `full_pulse`；不硬切尾音。
@@ -67,7 +73,7 @@ GOWIN仅综合：
 三人协作、提交范围与合并步骤见 [团队协作说明](docs/团队协作说明.md)。
 
 1. 队员A按 `sample_valid/ready` 接入实际逐样本合成引擎；当前测试数据仅用于接口验证。
-2. 队员B接入事件FIFO与传感器，继续定义持续表情参数、同音多键及和弦展开规则。
+2. 队员B按V2说明接入来源编号、表情快照、事件FIFO与传感器；队员A接入样本计算边界和active参数，完成真实表情运算。
 3. 核对实际 NEO Dock 版本、原理图和 DAC 要求，建立音频时钟及复位，补齐板级顶层、CST/SDC。
 4. 完成布局布线和时序检查后再上板；测实际发声、64频率谱峰及传感器到音频输出延迟。
 

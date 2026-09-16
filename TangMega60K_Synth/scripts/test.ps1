@@ -7,7 +7,11 @@ Push-Location $simDir
 try {
     $testCases = @(
         @{ Script = 'run.do'; Log = 'test_results.log'; Marker = 'ALL TESTS PASSED' },
-        @{ Script = 'run_i2s.do'; Log = 'test_i2s_results.log'; Marker = 'ALL I2S TESTS PASSED' }
+        @{ Script = 'run_i2s.do'; Log = 'test_i2s_results.log'; Marker = 'ALL I2S TESTS PASSED' },
+        @{ Script = 'run_tone.do'; Log = 'test_tone_results.log'; Marker = 'ALL TONE TESTS PASSED' },
+        @{ Script = 'run_v2.do'; Log = 'test_v2_results.log'; Marker = 'ALL V2 CONTROL TESTS PASSED' },
+        @{ Script = 'run_i2s_v2.do'; Log = 'test_i2s_v2_results.log'; Marker = 'ALL V2 I2S TESTS PASSED' },
+        @{ Script = 'run_legacy_v2.do'; Log = 'test_legacy_v2_results.log'; Marker = 'ALL V2 LEGACY TESTS PASSED' }
     )
     foreach ($testCase in $testCases) {
         # A new transcript cannot accidentally reuse an old success marker.

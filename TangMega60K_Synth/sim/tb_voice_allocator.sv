@@ -14,7 +14,12 @@ module allocator_case #(parameter N=64)(output reg finished=0);
     wire full_pulse, ignored_pulse, done_error_pulse;
     integer k, j, cycles, accepted=0, fulls=0, ignored=0, bad_done=0;
     reg [23:0] held_cmd;
+`ifdef V2_LEGACY_TEST
+    wire [5:0] event_source=6'd0;
+    voice_allocator_v2 #(.VOICE_COUNT(N),.ID_WIDTH(6)) dut(.*);
+`else
     voice_allocator #(.VOICE_COUNT(N),.ID_WIDTH(6)) dut(.*);
+`endif
 
     always @(posedge clk) if(rst_n) begin
         if(cmd_valid && cmd_ready) accepted=accepted+1;
@@ -139,7 +144,11 @@ module tb_voice_allocator;
     allocator_case #(.N(64)) full_case(finished64);
     initial begin
         wait(finished4 && finished64);
+`ifdef V2_LEGACY_TEST
+        $display("ALL V2 LEGACY TESTS PASSED");
+`else
         $display("ALL TESTS PASSED");
+`endif
         $finish;
     end
     initial begin

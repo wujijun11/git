@@ -3,7 +3,12 @@ sim/work/
 sim/*.wlf
 sim/wlf*
 sim/*.log
+sim/tone_samples.csv
+sim/tone_preview.wav
+sim/tone_preview_5s.wav
 sim/*.vvp
+sim/iverilog_results/
+sim/audit_*/
 sim/transcript*
 sim/modelsim.ini
 *.gprj.user

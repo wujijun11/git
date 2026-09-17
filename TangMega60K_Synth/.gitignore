@@ -17,3 +17,7 @@ sim/modelsim.ini
 license.dat
 .env
 .env.*
+sim/audio_work/
+sim/audio_results/
+vsim.wlf
+transcript

@@ -7,14 +7,14 @@ module stereo_mixer #(parameter PAN_SPREAD=1) (
 );
     wire signed [31:0] x={{16{sample_in[15]}},sample_in};
     wire signed [31:0] three_x=x+(x<<<1);
-    wire signed [31:0] strong=(three_x+32'sd2)>>>2;
-    wire signed [31:0] weak=(x+32'sd2)>>>2;
+    wire signed [31:0] pan_strong=(three_x+32'sd2)>>>2;
+    wire signed [31:0] pan_weak=(x+32'sd2)>>>2;
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin left_sum<=0; right_sum<=0; end
         else if (clear) begin left_sum<=0; right_sum<=0; end
         else if (add) begin
-            left_sum<=left_sum+(!PAN_SPREAD ? x : (voice_id[0] ? weak : strong));
-            right_sum<=right_sum+(!PAN_SPREAD ? x : (voice_id[0] ? strong : weak));
+            left_sum<=left_sum+(!PAN_SPREAD ? x : (voice_id[0] ? pan_weak : pan_strong));
+            right_sum<=right_sum+(!PAN_SPREAD ? x : (voice_id[0] ? pan_strong : pan_weak));
         end
     end
 endmodule

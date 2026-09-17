@@ -1,23 +1,25 @@
-# 弦光：Tang Mega 60K 队长工程
+# 弦光：Tang Mega 60K 电子乐器工程
 
-当前里程碑：**04 — V2来源识别与三维全局表情接口**。原V1工程和测试音源保留，队员可逐步迁移。
+当前里程碑：**05 — V2控制、64声部音源与I2S集成**。已合入队员A的DDS、ADSR、两种波表音色、三维表情运算、混音和可选延迟。原V1工程和测试音源保留。
 
-新接口及迁移说明：[接口V2与队员迁移](docs/接口V2与队员迁移.md)。新工程为`TangMega60K_Synth_V2.gprj`，顶层`captain_system_top_v2`。已实现表情参数控制与提交，实际幅度/弯音/颤音运算仍由正式音源引擎实现。
+当前音频工程为 **`AudioEngine_V2.gprj`**，默认使用干声顶层 **`audio_system_v2`**；需要50ms反馈延迟时选择`audio_system_v2_delay`。合并与验证说明见[音源合并记录](docs/音源合并记录-20260918.md)，详细算法见[音频引擎V2实现与接线](docs/音频引擎V2实现与接线.md)。
+
+公共接口沿用[接口V2与队员迁移](docs/接口V2与队员迁移.md)。`TangMega60K_Synth_V2.gprj` / `captain_system_top_v2`继续保留作为队长控制与I2S接口工程，不包含完整音源。
 
 第三阶段入口：[测试音源、波形与试听说明](docs/第三阶段-测试音源.md)。独立诊断工程为 `ToneDemo.gprj`，不会替换队友对接顶层。
 
 这是一份可综合、可仿真的控制与音频输出工程，还不是能够直接烧录发声的整机工程。
 目标器件为 GW5AT-60B / GW5AT-LV60PG484AC1/I0；对应 Sipeed Tang Mega 60K。
-尚未添加实际底板引脚、PLL、SDC及合成引擎。当前顶层有大量内部对接端口，不能直接作为板级引脚顶层烧录。
+尚未添加实际底板引脚、PLL、SDC、键床扫描与踏板管理。当前音频顶层仍接收内部事件/表情接口，不能直接作为板级引脚顶层烧录。
 
 ## 从哪里开始
 
-1. 新开发在GOWIN打开`TangMega60K_Synth_V2.gprj`；旧队员代码继续使用`TangMega60K_Synth.gprj`也可以。
-2. V2集成顶层是`rtl/captain_system_top_v2.v`；原`rtl/captain_system_top.v`是V1集成边界。二者都不是物理板级顶层。
+1. 完整音频开发在GOWIN打开`AudioEngine_V2.gprj`，选择`audio_system_v2`顶层；单独控制接口开发仍可打开`TangMega60K_Synth_V2.gprj`。
+2. 完整音频连接见`rtl/audio/audio_system_v2.v`；其内部实例化原`rtl/captain_system_top_v2.v`及A的`voice_engine`。这些都不是物理板级顶层。
 3. 第二阶段先看 `docs/第二阶段-I2S使用说明.md`，再看 `rtl/i2s_tx.v`。
 4. `sim/tb_i2s_tx.sv` 用模拟样本源和独立串行接收器验证第二阶段，不需要板子或队友代码。
 5. 第一阶段继续保留：`rtl/voice_allocator.v`、`sim/tb_voice_allocator.sv` 与 `docs/接口与第一课.md`。
-6. 请两位队员共同确认这两份接口说明；64个声部在队员A处混成左右两个输出声道。
+6. 队员B按V2接口接入`event_*`和`expr_*`；64个逻辑声部已在音源内混成左右两个输出声道。所有模块共用音频系统时钟，默认要求49.152MHz以输出48kHz音频。
 
 ## ModelSim 显示波形
 
@@ -34,20 +36,24 @@ do waves_i2s.do
 若要回看第一阶段，将最后一行换成 `do waves.do`。
 
 `active_count` 包括按住与释放尾音占用的声部，不等于当前可闻振荡器数量；
-计分必须等完整音频引擎完成后实测。
+计分仍需实际板卡上验证同时可闻的振荡器数量和输出采样率。
 
 ## 自动验证
 
 在项目根目录的 PowerShell 中运行：
 
 ```powershell
-./scripts/test.ps1
+# 原控制/I2S的六组回归
+./scripts/test-iverilog.ps1
+
+# 完整音源单元、4/64声部、I2S和PCM分析（路径改成自己的安装目录）
+./scripts/test-audio.ps1 -ModelSimBin 'D:/msim/modelsim_ase/win32aloem'
 ```
 
 脚本默认寻找C盘ModelSim，实际安装位置通过`-ModelSimBin`指定。本机另提供`./scripts/test-iverilog.ps1`，默认寻找`C:\iverilog\bin`，也可用`-IcarusBin`指定。
 使用项目自己的 `sim/modelsim_local.ini`，不修改之前配置的共享 GW5A 库。
 RTL没有例化高云原语，因此本阶段不需要GW5AT仿真库。
-脚本依次验证V1分配、V1 I2S、测试音源、V2控制、V2 I2S、V2兼容六组。新增通过标志是`ALL V2 CONTROL TESTS PASSED`、`ALL V2 I2S TESTS PASSED`和`ALL V2 LEGACY TESTS PASSED`。Icarus结果在`sim/iverilog_results/`。原WAV导出脚本读取`sim/tone_samples.csv`，不会自动读取Icarus新目录；不要将旧CSV当作新测试结果。
+原控制回归脚本依次验证V1分配、V1 I2S、测试音源、V2控制、V2 I2S、V2兼容六组。V2通过标志是`ALL V2 CONTROL TESTS PASSED`、`ALL V2 I2S TESTS PASSED`和`ALL V2 LEGACY TESTS PASSED`。Icarus结果在`sim/iverilog_results/`。原WAV导出脚本读取`sim/tone_samples.csv`，不会自动读取Icarus新目录；不要将旧CSV当作新测试结果。
 
 GOWIN仅综合：
 
@@ -56,6 +62,16 @@ GOWIN仅综合：
 ```
 
 V2使用同目录的`scripts/synth-v2.tcl`，单独生成V2综合报告。
+
+完整音频工程的综合命令（从工程根目录执行）：
+
+```powershell
+& 'C:/Gowin/Gowin_V1.9.12_x64/IDE/bin/gw_sh.exe' scripts/synth-audio.tcl
+# 可选：开启延迟的顶层；该运行会覆盖同一impl目录内的综合报告
+& 'C:/Gowin/Gowin_V1.9.12_x64/IDE/bin/gw_sh.exe' scripts/synth-audio-fx.tcl
+```
+
+ROM数据已随源码提供；更改采样率时必须同步调整时钟、引擎参数和ROM生成配置。仿真CSV是验证输出，不是板上发声音源。
 
 ## 已实现的策略
 
@@ -72,8 +88,8 @@ V2使用同目录的`scripts/synth-v2.tcl`，单独生成V2综合报告。
 
 三人协作、提交范围与合并步骤见 [团队协作说明](docs/团队协作说明.md)。
 
-1. 队员A按 `sample_valid/ready` 接入实际逐样本合成引擎；当前测试数据仅用于接口验证。
-2. 队员B按V2说明接入来源编号、表情快照、事件FIFO与传感器；队员A接入样本计算边界和active参数，完成真实表情运算。
+1. 队员A的音源已经接入，继续做上板音质、音色切换及64声部频谱验证。
+2. 队员B按V2说明接入25键扫描、力度、来源编号、表情快照和事件FIFO；共同定义延音踏板及全音停止语义。当前同一来源仍按住的同音高重触发会复用声部，不能仅延后note-off就声称支持踏板下同音无限叠加。
 3. 核对实际 NEO Dock 版本、原理图和 DAC 要求，建立音频时钟及复位，补齐板级顶层、CST/SDC。
 4. 完成布局布线和时序检查后再上板；测实际发声、64频率谱峰及传感器到音频输出延迟。
 

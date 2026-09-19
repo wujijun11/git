@@ -21,3 +21,6 @@ sim/audio_work/
 sim/audio_results/
 vsim.wlf
 transcript
+sim/live64_work/
+sim/live64_results/
+scripts/__pycache__/

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5AT-60B" pn="GW5AT-LV60PG484AC1/I0">gw5at60b-002</Device>
+    <FileList>
+        <File path="rtl/voice_allocator_v2.v" type="file.verilog" enable="1"/>
+        <File path="rtl/expression_controls_v2.v" type="file.verilog" enable="1"/>
+        <File path="rtl/captain_control_top_v2.v" type="file.verilog" enable="1"/>
+        <File path="rtl/captain_system_top_v2.v" type="file.verilog" enable="1"/>
+        <File path="rtl/i2s_tx.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio/voice_state_ram.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio/wavetable_rom.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio/dds_lane.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio/adsr.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio/pitch_expression.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio/stereo_mixer.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio/gain_saturator.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio/audio_fx.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio/voice_engine.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio/audio_system_v2.v" type="file.verilog" enable="1"/>
+        <File path="rtl/diagnostics/live64_event_source.v" type="file.verilog" enable="1"/>
+        <File path="rtl/diagnostics/live64_system_top.v" type="file.verilog" enable="1"/>
+    </FileList>
+</Project>

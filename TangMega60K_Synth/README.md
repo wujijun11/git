@@ -34,7 +34,9 @@ cd {C:/Users/asus/Desktop/Git/TangMega60K_Synth}
 do sim/waves_audio_v2.do
 ```
 
-请替换为自己的工程路径。脚本通过后自动保存波形、布局和摘要，每次结果独立放在 `sim/audio_results/gui_时间戳_编号/`。重新测试只需再次执行 `do sim/waves_audio_v2.do`。结果与波形阅读方法见[ModelSim波形检查](docs/ModelSim波形检查-20260918.md)。以下是原第二阶段独立I2S接口测试的查看方式。
+请替换为自己的工程路径。脚本通过后自动保存波形、布局和摘要，每次结果独立放在 `sim/audio_results/gui_时间戳_编号/`。重新测试只需再次执行 `do sim/waves_audio_v2.do`。结果与波形阅读方法见[ModelSim波形检查](docs/ModelSim波形检查-20260918.md)。
+
+查看已有Live64波形时，按[加载说明](docs/Live64合并验证-20260919.md#已保存波形的加载)设置 `live64_project_root`，再执行 `do "$live64_project_root/sim/view_live64_wave.do"`。脚本选择最新的已完成记录，以明确路径加载 `checked.wlf`。波形产物不随Git上传，新克隆须先获得本地仿真结果。以下是原第二阶段独立I2S接口测试的查看方式。
 
 在 ModelSim Transcript 输入（使用当前项目的独立 work 库）：
 

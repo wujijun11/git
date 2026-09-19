@@ -1,6 +1,8 @@
 # 弦光：Tang Mega 60K 电子乐器工程
 
-当前里程碑：**05 — V2控制、64声部音源与I2S集成**。已合入队员A的DDS、ADSR、两种波表音色、三维表情运算、混音和可选延迟。原V1工程和测试音源保留。
+当前里程碑：**06 — 64声部音源与24位标准I2S输出**。内部与默认输出均为24位PCM，采用Philips I2S、每声道32位槽。DDS、ADSR、两种音色、三维表情、混音和延迟保持原设计。
+
+2026-09-19最终选择：工程仅保留24位标准Philips I2S输出，已移除PT8211模式参数、发送分支及专用测试脚本。干声和延迟顶层使用同一标准I2S接口，需连接支持该格式的DAC；不能直接驱动仅支持LSBJ的PT8211。参见[标准I2S恢复记录](docs/恢复24位标准I2S-20260919.md)。
 
 当前音频工程为 **`AudioEngine_V2.gprj`**，默认使用干声顶层 **`audio_system_v2`**；需要50ms反馈延迟时选择`audio_system_v2_delay`。合并与验证说明见[音源合并记录](docs/音源合并记录-20260918.md)，详细算法见[音频引擎V2实现与接线](docs/音频引擎V2实现与接线.md)。
 
@@ -22,6 +24,15 @@
 6. 队员B按V2接口接入`event_*`和`expr_*`；64个逻辑声部已在音源内混成左右两个输出声道。所有模块共用音频系统时钟，默认要求49.152MHz以输出48kHz音频。
 
 ## ModelSim 显示波形
+
+当前64声部标准I2S音源可在Transcript执行以下命令，自动编译、运行自检并打开Wave；结束后保留窗口：
+
+```tcl
+cd {C:/Users/asus/Desktop/Git/TangMega60K_Synth}
+do sim/waves_audio_v2.do
+```
+
+请替换为自己的工程路径。脚本通过后自动保存波形、布局和摘要，每次结果独立放在 `sim/audio_results/gui_时间戳_编号/`。重新测试只需再次执行 `do sim/waves_audio_v2.do`。结果与波形阅读方法见[ModelSim波形检查](docs/ModelSim波形检查-20260918.md)。以下是原第二阶段独立I2S接口测试的查看方式。
 
 在 ModelSim Transcript 输入（使用当前项目的独立 work 库）：
 

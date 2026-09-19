@@ -18,6 +18,7 @@ module tb_audio_i2s;
     wire full_pulse,done_error;
     wire [31:0] underruns;
     // Exercise the delay ENABLED in the real 64-voice I2S integration.
+    // Exercise the default output format so an accidental default change fails.
     audio_system_v2 #(.FX_ENABLE(1)) dut (
         .clk(clk),.rst_n(rst_n),.event_valid(event_valid),.event_ready(event_ready),
         .event_on(event_on),.event_source(source),.event_note(note),.event_velocity(velocity),.event_timbre(timbre),

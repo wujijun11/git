@@ -154,8 +154,11 @@ module expression_case(output reg finished=0);
         .event_on(1'b1), .event_source(6'd3), .event_note(7'd60),
         .event_velocity(7'd100), .event_timbre(2'd0),
         .cmd_valid(cmd_valid), .cmd_ready(cmd_ready),
-        .done_valid(1'b0), .done_voice(6'd0),
-        .active_count(active_count), .held_mask(held_mask),
+        // This expression test intentionally ignores command/status outputs.
+        .cmd_on(), .cmd_voice(), .cmd_note(), .cmd_velocity(), .cmd_timbre(),
+        .done_valid(1'b0), .done_voice(6'd0), .done_ready(),
+        .active_count(active_count), .held_mask(held_mask), .active_mask(),
+        .full_pulse(), .ignored_pulse(), .done_error_pulse(),
         .expr_valid(expr_valid), .expr_ready(expr_ready), .expr_gain(expr_gain),
         .expr_bend_cents(expr_bend_cents), .expr_vibrato_cents(expr_vibrato_cents),
         .engine_sample_begin(engine_sample_begin), .active_gain(active_gain),

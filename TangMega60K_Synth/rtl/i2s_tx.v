@@ -93,7 +93,7 @@ module i2s_tx #(
                 i2s_bclk <= !i2s_bclk;
                 // Change WS/data on falling edges; DAC samples rising edges.
                 if (i2s_bclk) begin
-                    bit_index <= bit_index + 1'b1;
+                    bit_index <= bit_index + 6'd1;
                     if (bit_index == 6'd63) begin
                         i2s_lrclk <= 1'b0;
                         i2s_data <= 1'b0;

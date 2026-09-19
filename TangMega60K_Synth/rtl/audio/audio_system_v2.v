@@ -1,5 +1,7 @@
-// Integration example, NOT a board-pin top. Public captain RTL is unchanged.
+// Integration example, NOT a board-pin top. Event/PCM interfaces unchanged.
 // Externally supply the documented audio clock and coordinated reset.
+// Default: Philips I2S, 24-bit samples in 32-bit slots, WS low=left.
+// At 49.152 MHz: Fs=48 kHz, BCLK=3.072 MHz.
 module audio_system_v2 #(parameter FX_ENABLE=0) (
     input wire clk,rst_n,
     input wire event_valid,

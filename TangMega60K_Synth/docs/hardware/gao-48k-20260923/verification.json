@@ -1,0 +1,118 @@
+[
+  {
+    "file": "docs\\hardware\\gao-48k-20260923\\board_audio_48k_core0.csv",
+    "valid_samples": 4096,
+    "bclk_period_cycles": 16,
+    "audio_clock_hz": 49152000,
+    "sample_rate_if_clock_hz": 48000.0,
+    "completed_runs": [
+      175
+    ],
+    "active_count": [
+      64
+    ],
+    "phases": [
+      3
+    ],
+    "underruns": [
+      0
+    ],
+    "decoded_words": [
+      {
+        "channel": 1,
+        "pcm": -68742
+      },
+      {
+        "channel": 0,
+        "pcm": -9454
+      },
+      {
+        "channel": 1,
+        "pcm": -57262
+      },
+      {
+        "channel": 0,
+        "pcm": -7868
+      },
+      {
+        "channel": 1,
+        "pcm": -42144
+      },
+      {
+        "channel": 0,
+        "pcm": -6882
+      },
+      {
+        "channel": 1,
+        "pcm": -24242
+      }
+    ],
+    "result": "PASS",
+    "clock_monitor": {
+      "expected_cycles": 4915200,
+      "measured_cycles": [
+        4915200
+      ],
+      "tolerance_cycles": 2,
+      "result": "PASS"
+    }
+  },
+  {
+    "file": "docs\\hardware\\gao-48k-20260923\\board_audio_48k_later_core0.csv",
+    "valid_samples": 4096,
+    "bclk_period_cycles": 16,
+    "audio_clock_hz": 49152000,
+    "sample_rate_if_clock_hz": 48000.0,
+    "completed_runs": [
+      467
+    ],
+    "active_count": [
+      64
+    ],
+    "phases": [
+      3
+    ],
+    "underruns": [
+      0
+    ],
+    "decoded_words": [
+      {
+        "channel": 1,
+        "pcm": 85352
+      },
+      {
+        "channel": 0,
+        "pcm": 218518
+      },
+      {
+        "channel": 1,
+        "pcm": 89252
+      },
+      {
+        "channel": 0,
+        "pcm": 207906
+      },
+      {
+        "channel": 1,
+        "pcm": 87806
+      },
+      {
+        "channel": 0,
+        "pcm": 195906
+      },
+      {
+        "channel": 1,
+        "pcm": 80810
+      }
+    ],
+    "result": "PASS",
+    "clock_monitor": {
+      "expected_cycles": 4915200,
+      "measured_cycles": [
+        4915200
+      ],
+      "tolerance_cycles": 2,
+      "result": "PASS"
+    }
+  }
+]

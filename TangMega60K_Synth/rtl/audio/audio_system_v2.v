@@ -2,7 +2,7 @@
 // Externally supply the documented audio clock and coordinated reset.
 // Default: Philips I2S, 24-bit samples in 32-bit slots, WS low=left.
 // At 49.152 MHz: Fs=48 kHz, BCLK=3.072 MHz.
-module audio_system_v2 #(parameter FX_ENABLE=0) (
+module audio_system_v2 #(parameter FX_ENABLE=0, FM_ENABLE=0) (
     input wire clk,rst_n,
     input wire event_valid,
     output wire event_ready,
@@ -48,7 +48,7 @@ module audio_system_v2 #(parameter FX_ENABLE=0) (
         .full_pulse(full_pulse),.ignored_pulse(),.done_error_pulse(done_error_pulse),
         .frame_tick(),.fifo_level(),.underrun_pulse(),.underrun_sticky(),.underrun_count(underrun_count)
     );
-    voice_engine #(.FX_ENABLE(FX_ENABLE)) u_engine (
+    voice_engine #(.FX_ENABLE(FX_ENABLE),.FM_ENABLE(FM_ENABLE)) u_engine (
         .clk(clk),.rst_n(rst_n),
         .cmd_valid(cmd_valid),.cmd_ready(cmd_ready),.cmd_on(cmd_on),.cmd_voice(cmd_voice),
         .cmd_note(cmd_note),.cmd_velocity(cmd_velocity),.cmd_timbre(cmd_timbre),

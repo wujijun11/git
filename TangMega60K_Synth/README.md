@@ -1,6 +1,12 @@
 # 弦光：Tang Mega 60K 电子乐器工程
 
-当前里程碑：**06 — 64声部音源与24位标准I2S输出**。内部与默认输出均为24位PCM，采用Philips I2S、每声道32位槽。DDS、ADSR、两种音色、三维表情、混音和延迟保持原设计。
+当前里程碑：**06 — 64声部音源与24位标准I2S输出**。内部与默认输出均为24位PCM，采用Philips I2S、每声道32位槽。DDS、ADSR、正弦/风琴/八成分钢琴音色、三维表情、混音和延迟均在FPGA内实现；FM电钢琴是可选音色。
+
+2026-09-23：合入队员A的四音区八成分钢琴音色（`event_timbre=2`），保留正弦/风琴及可选FM音色。音源的参数ROM和离线模型、仿真入口见[八成分分区钢琴](docs/八成分分区钢琴.md)，主工程验证见[合并记录](docs/队员A八成分合并记录-20260923.md)。当前板级Live64自检仍固定使用原音色，原有GAO/I2S位流也尚未按新音源重编译；要听到新钢琴音色，需后续加入可选择音色的事件输入、重编译并连接外置DAC验证。主工程保留已修复启动欠载的I2S发送器。
+
+2026-09-23：新增独立 `clock48/BoardAudio48kI2S.gprj`，把既有64声部与49.152MHz时钟接到PMOD1候选引脚，输出标称48kHz、24位标准I2S。启动、停止、再次启动与复位仿真及布局布线已通过；外部DAC已到货但尚未接线，引脚方向和模拟输出尚未实测。原GAO入口和位流保持不变。见[48kHz外置I2S预备工程](docs/hardware/48kHz外置I2S预备工程-20260923.md)。
+
+2026-09-23：新增独立 `clock48/BoardAudio48kGAO.gprj` 板级验证入口，底板50MHz经两级PLLA生成标称49.152MHz音频时钟。实物SRAM下载后，三份4096点GAO采集均通过48kHz频率比与24位标准I2S时序检查，64声部运行时错误、故障及欠载为0。前两次采集之间的配置变化原因尚未查明；已知断电重接后的第三次采集经重新下载恢复。外置DAC尚未接入。见[48kHz板级验证记录](docs/hardware/48kHz时钟与I2S板级验证-20260923.md)。
 
 启动欠载已增加首样本预备状态修复，播放期间仍检测真实缺帧；同时将GAO自检复位改为寄存器输出。新版已SRAM下载，两次实物采集64声部、欠载/错误/故障均为0，自动启停15→80轮。见[启动欠载修复](docs/hardware/启动欠载修复-20260923.md)。
 
@@ -20,11 +26,13 @@
 
 这是一份可综合、可仿真的控制与音频输出工程，还不是能够直接烧录发声的整机工程。
 目标器件为 GW5AT-60B / GW5AT-LV60PG484AC1/I0；对应 Sipeed Tang Mega 60K。
-板级数字自检已有底板引脚约束和SDC；最终音频时钟、外置DAC引脚、键床扫描与踏板管理仍待完成。当前`audio_system_v2`音频顶层仍接收内部事件/表情接口，不能直接作为板级引脚顶层烧录；板级诊断应使用`BoardAudioDiagnostic.gprj`。
+板级数字自检已有底板引脚约束和SDC；标称48kHz音频时钟已在独立GAO工程中完成板内验证。PMOD1外置DAC候选引脚已有独立工程，实物接线与模拟输出尚待验证；键床扫描与踏板管理仍待完成。当前`audio_system_v2`音频顶层仍接收内部事件/表情接口，不能直接作为板级引脚顶层烧录；50MHz诊断使用`BoardAudioDiagnostic.gprj`，48kHz片内数字验证使用`clock48/BoardAudio48kGAO.gprj`，外置I2S入口使用`clock48/BoardAudio48kI2S.gprj`。
 
 ## 从哪里开始
 
 1. 完整音频开发在GOWIN打开`AudioEngine_V2.gprj`，选择`audio_system_v2`顶层；单独控制接口开发仍可打开`TangMega60K_Synth_V2.gprj`。
+   实物48kHz数字验证打开`clock48/BoardAudio48kGAO.gprj`；此入口仅在片内采集I2S，尚无外置DAC引脚。
+   DAC到货后的外置I2S测试打开`clock48/BoardAudio48kI2S.gprj`，先核实J8实物针脚、电平和模块供电，再连接DAC。
 2. 完整音频连接见`rtl/audio/audio_system_v2.v`；其内部实例化原`rtl/captain_system_top_v2.v`及A的`voice_engine`。这些都不是物理板级顶层。
 3. 第二阶段先看 `docs/第二阶段-I2S使用说明.md`，再看 `rtl/i2s_tx.v`。
 4. `sim/tb_i2s_tx.sv` 用模拟样本源和独立串行接收器验证第二阶段，不需要板子或队友代码。
@@ -73,7 +81,7 @@ do waves_i2s.do
 
 脚本默认寻找C盘ModelSim，实际安装位置通过`-ModelSimBin`指定。本机另提供`./scripts/test-iverilog.ps1`，默认寻找`C:\iverilog\bin`，也可用`-IcarusBin`指定。
 使用项目自己的 `sim/modelsim_local.ini`，不修改之前配置的共享 GW5A 库。
-RTL没有例化高云原语，因此本阶段不需要GW5AT仿真库。
+原V2音源RTL没有例化高云原语；独立48kHz板级工程使用Gowin PLLA及其仿真模型，验证方法见[48kHz板级验证记录](docs/hardware/48kHz时钟与I2S板级验证-20260923.md)。
 原控制回归脚本依次验证V1分配、V1 I2S、测试音源、V2控制、V2 I2S、V2兼容六组。V2通过标志是`ALL V2 CONTROL TESTS PASSED`、`ALL V2 I2S TESTS PASSED`和`ALL V2 LEGACY TESTS PASSED`。Icarus结果在`sim/iverilog_results/`。原WAV导出脚本读取`sim/tone_samples.csv`，不会自动读取Icarus新目录；不要将旧CSV当作新测试结果。
 
 GOWIN仅综合：

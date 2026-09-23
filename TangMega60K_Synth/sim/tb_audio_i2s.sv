@@ -1,5 +1,7 @@
 `timescale 1ns/1ps
 module tb_audio_i2s;
+    parameter TIMBRE_OVERRIDE=-1;
+    parameter FM=0;
     reg test_passed=0;
     reg clk=0,rst_n=0;
     always #10.1725 clk=~clk; // 1ps quantization of nominal 49.152 MHz
@@ -19,7 +21,7 @@ module tb_audio_i2s;
     wire [31:0] underruns;
     // Exercise the delay ENABLED in the real 64-voice I2S integration.
     // Exercise the default output format so an accidental default change fails.
-    audio_system_v2 #(.FX_ENABLE(1)) dut (
+    audio_system_v2 #(.FX_ENABLE(1),.FM_ENABLE(FM)) dut (
         .clk(clk),.rst_n(rst_n),.event_valid(event_valid),.event_ready(event_ready),
         .event_on(event_on),.event_source(source),.event_note(note),.event_velocity(velocity),.event_timbre(timbre),
         .expr_valid(expr_valid),.expr_ready(expr_ready),.expr_gain(gain),.expr_bend_cents(bend),.expr_vibrato_cents(depth),
@@ -75,7 +77,7 @@ module tb_audio_i2s;
         begin
             @(negedge clk); event_valid=1; event_on=on_value; source=id;
             // 64 actual independent oscillator frequencies (not just 64 slots).
-            note=36+id; timbre=id%2; velocity=100;
+            note=36+id; timbre=TIMBRE_OVERRIDE<0 ? id%2 : TIMBRE_OVERRIDE; velocity=100;
             do @(posedge clk); while(!event_ready);
             @(negedge clk); event_valid=0;
         end
@@ -87,6 +89,7 @@ module tb_audio_i2s;
         for(i=0;i<64;i=i+1) event_send(1,i);
         wait(active_count==64); wait(checked>=200);
         steady_underruns=underruns;
+        if(steady_underruns!=0) $fatal(1,"startup I2S underrun");
         @(negedge clk); gain=3072; bend=-350; depth=40; expr_valid=1;
         do @(posedge clk); while(!expr_ready);
         @(negedge clk); expr_valid=0;
@@ -97,6 +100,8 @@ module tb_audio_i2s;
         wait(checked>=start_frames+200);
         if(underruns!=steady_underruns || nonzero<6000 || stalls==0) $fatal(1,"I2S coverage/deadline");
         $display("AUDIO I2S INTEGRATION PASSED voices=64 delay=on frames=%0d nonzero=%0d steady_underrun_delta=0 startup_underruns=%0d stalls=%0d",checked,nonzero,steady_underruns,stalls);
+        if(TIMBRE_OVERRIDE==2) $display("PIANO I2S PASSED: 64 piano voices, live gain/bend/vibrato update, release, delay enabled");
+        if(TIMBRE_OVERRIDE==3 && FM) $display("FM I2S PASSED: 64 FM voices, live gain/bend/vibrato update, release, delay enabled");
         test_passed=1; $finish;
     end
     initial begin #500000000; $fatal(1,"I2S integration timeout"); end

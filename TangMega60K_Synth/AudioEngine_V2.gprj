@@ -18,7 +18,10 @@
         <File path="rtl/audio/stereo_mixer.v" type="file.verilog" enable="1"/>
         <File path="rtl/audio/gain_saturator.v" type="file.verilog" enable="1"/>
         <File path="rtl/audio/audio_fx.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio/polar_lane.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio/fm_piano_lane.v" type="file.verilog" enable="1"/>
         <File path="rtl/audio/voice_engine.v" type="file.verilog" enable="1"/>
         <File path="rtl/audio/audio_system_v2.v" type="file.verilog" enable="1"/>
+        <File path="rtl/audio/audio_system_v2_fm.v" type="file.verilog" enable="1"/>
     </FileList>
 </Project>

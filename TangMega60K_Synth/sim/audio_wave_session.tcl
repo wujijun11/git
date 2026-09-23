@@ -24,8 +24,8 @@ proc ::audio_wave::save {} {
 proc ::audio_wave::run {} {
     variable root
     variable result_dir
-    set sources {rtl/audio/voice_state_ram.v rtl/audio/wavetable_rom.v rtl/audio/dds_lane.v rtl/audio/adsr.v rtl/audio/pitch_expression.v rtl/audio/stereo_mixer.v rtl/audio/gain_saturator.v rtl/audio/audio_fx.v rtl/audio/voice_engine.v rtl/audio/audio_system_v2.v rtl/voice_allocator_v2.v rtl/expression_controls_v2.v rtl/captain_control_top_v2.v rtl/captain_system_top_v2.v rtl/i2s_tx.v sim/tb_audio_i2s.sv}
-    foreach relative [concat $sources {sim/modelsim_local.ini rtl/audio/rom/waves.hex rtl/audio/rom/midi.hex rtl/audio/rom/velocity.hex rtl/audio/rom/sine.hex rtl/audio/rom/ratio.hex}] {
+    set sources {rtl/audio/voice_state_ram.v rtl/audio/wavetable_rom.v rtl/audio/dds_lane.v rtl/audio/adsr.v rtl/audio/pitch_expression.v rtl/audio/stereo_mixer.v rtl/audio/gain_saturator.v rtl/audio/audio_fx.v rtl/audio/polar_lane.v rtl/audio/voice_engine.v rtl/audio/audio_system_v2.v rtl/voice_allocator_v2.v rtl/expression_controls_v2.v rtl/captain_control_top_v2.v rtl/captain_system_top_v2.v rtl/i2s_tx.v sim/tb_audio_i2s.sv}
+    foreach relative [concat $sources {sim/modelsim_local.ini rtl/audio/rom/waves.hex rtl/audio/rom/midi.hex rtl/audio/rom/velocity.hex rtl/audio/rom/sine.hex rtl/audio/rom/ratio.hex rtl/audio/rom/piano.hex rtl/audio/rom/polar_lane0.hex rtl/audio/rom/polar_lane1.hex rtl/audio/rom/polar_ratios.hex}] {
         if {![file isfile [file join $root $relative]]} {error "Missing required file: $relative"}
     }
     set result_dir [file join $root sim audio_results gui_[clock format [clock seconds] -format %Y%m%d_%H%M%S]_[clock clicks]]

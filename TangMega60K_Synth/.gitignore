@@ -3,6 +3,7 @@ sim/work/
 sim/*.wlf
 sim/wlf*
 sim/*.log
+clock48/*.log
 sim/tone_samples.csv
 sim/tone_preview.wav
 sim/tone_preview_5s.wav
@@ -24,3 +25,12 @@ transcript
 sim/live64_work/
 sim/live64_results/
 scripts/__pycache__/
+scripts/piano_model/__pycache__/
+sim/eight_work/
+sim/eight_results/
+sim/eight_synthesis/
+sim/fm_keyboard_pcm/
+sim/fm_work/
+sim/fm_results/
+sim/fm_keyboard_work/
+sim/fm_keyboard_results/

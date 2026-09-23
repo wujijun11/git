@@ -2,6 +2,14 @@
 module tb_audio_engine;
     reg test_passed=0;
     parameter N=4;
+    parameter POLAR=0;
+    parameter FM=0;
+    wire [63:0] fm_debug_phase0;
+    generate if(FM) begin: g_probe_fm
+        assign fm_debug_phase0=dut.g_fm.u_fm.phase_ram[0];
+    end else begin: g_probe_no_fm
+        assign fm_debug_phase0=64'd0;
+    end endgenerate
     reg clk=0,rst_n=0;
     always #10 clk=~clk; // Logic test; audio time is accepted sample index / 48000.
     reg event_valid=0,event_on=0;
@@ -45,7 +53,7 @@ module tb_audio_engine;
     reg sample_ready=1;
     wire sample_valid;
     wire signed [23:0] sl,sr;
-    voice_engine #(.VOICE_COUNT(N)) dut (
+    voice_engine #(.VOICE_COUNT(N),.FM_ENABLE(FM)) dut (
         .clk(clk),.rst_n(rst_n),.cmd_valid(cmd_valid),.cmd_ready(cmd_ready),.cmd_on(cmd_on),
         .cmd_voice(cmd_voice),.cmd_note(cmd_note),.cmd_velocity(cmd_velocity),.cmd_timbre(cmd_timbre),
         .done_valid(done_valid),.done_ready(done_ready),.done_voice(done_voice),
@@ -59,7 +67,7 @@ module tb_audio_engine;
     // Explicit no-expression reference path: same core, compile-time neutral.
     // External PCM frequency/RMS and memory independence tests are additional,
     // so equivalence alone is not being used as proof of audio correctness.
-    voice_engine #(.VOICE_COUNT(N),.EXPRESSION_ENABLE(0)) reference_engine (
+    voice_engine #(.VOICE_COUNT(N),.EXPRESSION_ENABLE(0),.FM_ENABLE(FM)) reference_engine (
         .clk(clk),.rst_n(rst_n),.cmd_valid(cmd_valid),.cmd_ready(ref_ready),.cmd_on(cmd_on),
         .cmd_voice(cmd_voice),.cmd_note(cmd_note),.cmd_velocity(cmd_velocity),.cmd_timbre(cmd_timbre),
         .done_valid(ref_done),.done_ready(done_ready),.done_voice(ref_done_voice),
@@ -204,7 +212,127 @@ module tb_audio_engine;
     reg [31:0] stalled_phase;
     reg [5:0] stalled_done;
     real lo_ftw,hi_ftw,expected;
+    task fm_regression;
+        integer n;
+        reg [63:0] saved_fm;
+        begin
+            repeat(5) @(negedge clk); rst_n=1; frames(3);
+            for(n=0;n<N;n=n+1) send_event(1,n,36+n,100,3);
+            frames(300);
+            if(active_count!=N) $fatal(1,"FM full allocation");
+            if(fm_debug_phase0[63:32]===fm_debug_phase0[31:0])
+                $fatal(1,"FM modulator and carrier phase not independent");
+            if(max_latency>=1024) $fatal(1,"FM missed frame deadline");
+            $display("FM NEUTRAL BIT EXACT N=%0d",N);
+            check_neutral=0;
+            expression_set(1024,1200,0); frames(400);
+            if(dut.frame_gain!=1024 || dut.u_expression.bend_smooth!=1200)
+                $fatal(1,"FM gain/bend did not apply");
+            expression_set(2048,0,70); frames(300);
+            if(dut.u_expression.depth_smooth!=70) $fatal(1,"FM vibrato depth");
+            expression_set(2048,0,0); frames(300);
+            before_done=dones;
+            for(n=0;n<3;n=n+1) begin send_event(1,0,36,127,3); frames(10); end
+            frames(110);
+            if(active_count!=N || dones!=before_done || dut.u_state.mem[0][120:101]>130)
+                $fatal(1,"FM held retrigger");
+            @(negedge clk); sample_ready=0; wait(sample_valid); @(negedge clk);
+            saved_fm=fm_debug_phase0; stalled_phase=dut.u_expression.lfo_phase;
+            repeat(2000) @(negedge clk);
+            if(fm_debug_phase0!==saved_fm || dut.u_expression.lfo_phase!==stalled_phase)
+                $fatal(1,"FM advanced under backpressure");
+            sample_ready=1; frames(5);
+            permit_done=0; before_done=dones;
+            for(n=0;n<N;n=n+1) send_event(0,n,36+n,0,3);
+            frames(5000);
+            if(!done_valid || $countones(dut.done_pending)!=N || active_count!=N)
+                $fatal(1,"FM done queue");
+            permit_done=1; wait(active_count==0); frames(5);
+            if(dones-before_done!=N || sl!==0 || sr!==0) $fatal(1,"FM release completion");
+            for(n=0;n<3;n=n+1) begin
+                send_event(1,0,69,100,3); frames(12); send_event(0,0,69,0,3);
+                frames(900); if(active_count!=0) $fatal(1,"FM early release leak");
+            end
+            send_event(1,0,69,100,3); frames(100);
+            sample_ready=0; wait(sample_valid); @(negedge clk); rst_n=0;
+            repeat(3) @(negedge clk); rst_n=1; sample_ready=1; frames(5);
+            if(active_count!=0 || done_valid || sl!==0 || sr!==0) $fatal(1,"FM reset");
+            $display("FM ENGINE PASSED N=%0d max_compute_clocks=%0d samples=%0d done=%0d",N,max_latency,outputs,dones);
+            test_passed=1; $finish;
+        end
+    endtask
+    task polar_regression;
+        integer n,old_age;
+        reg [194:0] held_partial;
+        reg [58:0] expected_product;
+        begin
+            repeat(5) @(negedge clk); rst_n=1; frames(3);
+            for(n=0;n<N;n=n+1) send_event(1,n,36+n,127,2);
+            frames(300);
+            if(active_count!=N) $fatal(1,"polar full allocation");
+            $display("POLAR NEUTRAL BIT EXACT N=%0d",N);
+            // Check all four pairs of both lanes against the current voice's
+            // effective pitch; catches stale frequency at pipeline handoff.
+            repeat(N*16) begin
+                @(negedge clk);
+                if(dut.u_polar0.v[3]) begin
+                    expected_product=dut.effective_ftw*dut.u_polar0.ratios[{dut.u_polar0.ptr3[6:5],dut.u_polar0.pair3,1'b0}];
+                    if(dut.u_polar0.frequency3!==expected_product) $fatal(1,"polar even pitch context");
+                    expected_product=dut.effective_ftw*dut.u_polar1.ratios[{dut.u_polar1.ptr3[6:5],dut.u_polar1.pair3,1'b0}+1];
+                    if(dut.u_polar1.frequency3!==expected_product) $fatal(1,"polar odd pitch context");
+                end
+            end
+            before_done=dones;
+            for(n=0;n<8;n=n+1) begin send_event(1,0,36,127,2); frames(15); end
+            frames(110);
+            if(active_count!=N || dones!=before_done) $fatal(1,"polar held retrigger ownership");
+            if(dut.u_state.mem[0][120:101]>120) $fatal(1,"polar retrigger did not restart age");
+            check_neutral=0;
+            expression_set(1024,1200,0); frames(400);
+            if(dut.frame_gain!=1024 || dut.u_expression.bend_smooth!=1200) $fatal(1,"polar expression gain/bend");
+            expression_set(2048,0,100); frames(700);
+            lo_ftw=1.0e20; hi_ftw=0;
+            repeat(5000) begin
+                wait(dut.state==dut.V_ADDR && dut.voice_id==0); #1;
+                if(dut.effective_ftw<lo_ftw) lo_ftw=dut.effective_ftw;
+                if(dut.effective_ftw>hi_ftw) hi_ftw=dut.effective_ftw;
+                @(negedge clk); wait(dut.state!=dut.V_ADDR);
+            end
+            if(hi_ftw<=lo_ftw*1.03) $fatal(1,"polar vibrato not varying pitch");
+            expression_set(0,0,0); frames(400);
+            repeat(10) begin frames(1); if(sl!==0 || sr!==0) $fatal(1,"polar gain mute"); end
+            if(active_count!=N || dones!=before_done) $fatal(1,"mute released voices");
+            expression_set(2048,0,0); frames(400);
+            @(negedge clk); sample_ready=0; wait(sample_valid); @(negedge clk);
+            held_partial=dut.u_polar0.states[0]; stalled_phase=dut.u_expression.lfo_phase;
+            expression_set(3072,-350,40); repeat(2000) @(negedge clk);
+            if(dut.u_polar0.states[0]!==held_partial || dut.u_expression.lfo_phase!==stalled_phase)
+                $fatal(1,"polar state advanced under PCM backpressure");
+            sample_ready=1; frames(400);
+            permit_done=0; before_done=dones;
+            for(n=0;n<N;n=n+1) send_event(0,n,36+n,0,0);
+            frames(5000);
+            if(!done_valid || $countones(dut.done_pending)!=N || active_count!=N) $fatal(1,"polar done queue");
+            repeat(100) @(negedge clk); permit_done=1;
+            wait(active_count==0); frames(5);
+            if(dones-before_done!=N || sl!==0 || sr!==0) $fatal(1,"polar release completion");
+            // Early release + immediate new press keeps the old tail separate.
+            for(n=0;n<4;n=n+1) begin
+                send_event(1,0,69,100,2); frames(12); send_event(0,0,69,0,0);
+                send_event(1,0,69,100,2); frames(12); send_event(0,0,69,0,0);
+                frames(900); if(active_count!=0) $fatal(1,"polar early release leak");
+            end
+            send_event(1,0,69,100,2); frames(100);
+            sample_ready=0; wait(sample_valid); @(negedge clk); rst_n=0;
+            repeat(3) @(negedge clk); rst_n=1; sample_ready=1; frames(5);
+            if(active_count!=0 || done_valid || sl!==0 || sr!==0) $fatal(1,"polar reset");
+            $display("POLAR ENGINE PASSED N=%0d max_compute_clocks=%0d samples=%0d done=%0d",N,max_latency,outputs,dones);
+            test_passed=1; $finish;
+        end
+    endtask
     initial begin
+        if(FM) fm_regression();
+        if(POLAR) polar_regression();
         csv=$fopen($sformatf("sim/audio_results/pcm_%0d.csv",N),"w");
         if(!csv) $fatal(1,"cannot open samples");
         $fdisplay(csv,"segment,index,left,right");

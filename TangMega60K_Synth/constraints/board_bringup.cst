@@ -1,0 +1,17 @@
+// Selected signals only, from Sipeed Tang Mega 60K official pin map.
+IO_LOC "sys_clk" V22;
+IO_PORT "sys_clk" IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
+// V22 is EMCCLK, not a dedicated GCLK input. PR1014 is an ingress limitation.
+// BUFG constraints or an internal PLL do not eliminate the V22 ingress route.
+// Do not change this pin to an unconnected GCLK pin merely to clear warnings.
+// See docs/hardware/PR1014-clock-investigation-20260922.md.
+IO_LOC "key_n[0]" AA13;
+IO_LOC "key_n[1]" AB13;
+IO_LOC "key_n[2]" Y12;
+IO_PORT "key_n[0]" IO_TYPE=LVCMOS15 PULL_MODE=UP BANK_VCCIO=1.5;
+IO_PORT "key_n[1]" IO_TYPE=LVCMOS15 PULL_MODE=UP BANK_VCCIO=1.5;
+IO_PORT "key_n[2]" IO_TYPE=LVCMOS15 PULL_MODE=UP BANK_VCCIO=1.5;
+IO_LOC "rgb_data" J16;
+IO_PORT "rgb_data" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC "pa_disable" AB16;
+IO_PORT "pa_disable" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;

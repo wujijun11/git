@@ -1,0 +1,100 @@
+[
+  {
+    "file": "docs\\hardware\\gao-20260923\\zero_underrun_run15.csv",
+    "valid_samples": 4096,
+    "bclk_period_cycles": 16,
+    "sample_rate_if_clock_50MHz": 48828.125,
+    "completed_runs": [
+      15
+    ],
+    "active_count": [
+      64
+    ],
+    "phases": [
+      3
+    ],
+    "underruns": [
+      0
+    ],
+    "decoded_words": [
+      {
+        "channel": 1,
+        "pcm": 108446
+      },
+      {
+        "channel": 0,
+        "pcm": 87662
+      },
+      {
+        "channel": 1,
+        "pcm": 119792
+      },
+      {
+        "channel": 0,
+        "pcm": 99948
+      },
+      {
+        "channel": 1,
+        "pcm": 131314
+      },
+      {
+        "channel": 0,
+        "pcm": 111530
+      },
+      {
+        "channel": 1,
+        "pcm": 140620
+      }
+    ],
+    "result": "PASS"
+  },
+  {
+    "file": "docs\\hardware\\gao-20260923\\zero_underrun_later.csv",
+    "valid_samples": 4096,
+    "bclk_period_cycles": 16,
+    "sample_rate_if_clock_50MHz": 48828.125,
+    "completed_runs": [
+      80
+    ],
+    "active_count": [
+      64
+    ],
+    "phases": [
+      3
+    ],
+    "underruns": [
+      0
+    ],
+    "decoded_words": [
+      {
+        "channel": 1,
+        "pcm": 70032
+      },
+      {
+        "channel": 0,
+        "pcm": -97840
+      },
+      {
+        "channel": 1,
+        "pcm": 77130
+      },
+      {
+        "channel": 0,
+        "pcm": -93842
+      },
+      {
+        "channel": 1,
+        "pcm": 80988
+      },
+      {
+        "channel": 0,
+        "pcm": -94840
+      },
+      {
+        "channel": 1,
+        "pcm": 81612
+      }
+    ],
+    "result": "PASS"
+  }
+]

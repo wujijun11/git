@@ -63,7 +63,7 @@ module tb_board_audio;
     initial begin
         wait(dut.board_ready); repeat(100) @(negedge clk);
         keys=6; wait(dut.holding); repeat(150000) @(negedge clk);
-        if(dut.active_count!=64 || !dut.serial_seen || dut.fault || !mute || frame_count<100 || checked<100 || dut.underruns!=1)
+        if(dut.active_count!=64 || !dut.serial_seen || dut.fault || !mute || frame_count<100 || checked<100 || dut.underruns!=0)
             $fatal(1,"64 voice board integration failed active=%d seen=%b fault=%b mute=%b frames=%d underruns=%d error=%b",dut.active_count,dut.serial_seen,dut.fault,mute,frame_count,dut.underruns,dut.error);
         keys=7; repeat(20) @(negedge clk);
         keys=5; wait(!dut.busy); repeat(20) @(negedge clk);

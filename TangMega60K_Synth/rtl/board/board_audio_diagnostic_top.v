@@ -30,9 +30,8 @@ module board_audio_diagnostic_top #(
             else if (start_request || busy || pressed[1]) start_consumed<=1;
             if (!busy) serial_seen<=0;
             else if(serial_data) serial_seen<=1;
-            // The first I2S frame precedes the first engine sample. Exactly
-            // one startup underrun is expected; subsequent ones are faults.
-            if(error || underruns>1) fault<=1;
+            // Priming is silent; any playback underrun is a fault.
+            if(error || underruns!=0) fault<=1;
         end
     end
     // Red=fault; cyan=64 active AND nonzero serial data observed;

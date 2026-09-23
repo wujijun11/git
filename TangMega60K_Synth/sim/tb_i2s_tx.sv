@@ -82,6 +82,7 @@ module i2s_case #(parameter integer HALF_DIV = 8) (output reg finished = 0);
     reg previous_stall = 0;
     reg [47:0] held_sample = 0;
     reg expected_missing = 0;
+    reg expected_started = 0;
 
     // Capture only accepted input transactions. Each pair is one transaction.
     always @(posedge clk or negedge rst_n) begin
@@ -109,6 +110,7 @@ module i2s_case #(parameter integer HALF_DIV = 8) (output reg finished = 0);
     always @(negedge ws or negedge rst_n) begin
         if (!rst_n) begin
             consumed = 0;
+            expected_started = 0;
             expected_underruns = 0;
             expected_missing = 0;
             frames_started = 0;
@@ -116,13 +118,14 @@ module i2s_case #(parameter integer HALF_DIV = 8) (output reg finished = 0);
         end else begin
             #0.001;
             frames_started = frames_started + 1;
-            expected_missing = (consumed == written);
+            expected_missing = expected_started && (consumed == written);
             if (consumed < written) begin
+                expected_started = 1;
                 expected_frame = expected_queue[consumed];
                 consumed = consumed + 1;
             end else begin
                 expected_frame = 0;
-                expected_underruns = expected_underruns + 1;
+                if (expected_started) expected_underruns = expected_underruns + 1;
             end
         end
     end
@@ -295,8 +298,9 @@ module i2s_case #(parameter integer HALF_DIV = 8) (output reg finished = 0);
         // scheduling asynchronous-reset blocks.
         #1 rst_n = 1;
         reset_system();
-        wait_frames(2); // Empty startup -> paired silence and exact counter.
-        if (expected_underruns < 2) $fatal(1, "Missing startup underrun coverage");
+        wait_frames(3); // Delayed producer: clocks and silence continue without underrun.
+        if (underrun_count !== 0 || underrun_sticky || underrun_pulse)
+            $fatal(1, "Priming incorrectly counted as underrun");
 
         // Distinct signed endpoints make channel swaps / sign / bit shifts fail.
         send_sample(24'h7fffff, 24'h800000);
@@ -304,6 +308,8 @@ module i2s_case #(parameter integer HALF_DIV = 8) (output reg finished = 0);
         send_sample(24'h123456, 24'habcdef);
         send_sample(24'h000000, 24'hffffff);
         wait_frames(5);
+        if (underrun_count == 0 || !underrun_sticky)
+            $fatal(1, "Real starvation after playback was not detected");
 
         // Input arrives exactly at an empty frame boundary: direct consumption,
         // no extra frame of delay and no false underrun.
@@ -352,7 +358,8 @@ module i2s_case #(parameter integer HALF_DIV = 8) (output reg finished = 0);
         send_sample(24'h333333, 24'hcccccc);
         repeat (5) @(posedge bclk);
         reset_system();
-        wait_frames(2); // Old queued audio must not leak through reset.
+        wait_frames(2); // Old queued audio and armed state must not leak through reset.
+        if (underrun_count !== 0 || underrun_sticky) $fatal(1, "Reset did not re-prime");
         send_sample(24'h654321, 24'hfedcba);
         wait_frames(3);
         $display("I2S CASE PASSED DIV=%0d frames=%0d nonzero=%0d stalls=%0d full_exchange=%0d",

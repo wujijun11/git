@@ -42,6 +42,9 @@ module i2s_tx #(
     reg read_ptr, write_ptr;
     reg [1:0] level;
     reg [23:0] left_shift, right_shift;
+    // Clock and send silence during priming. Once the first pair is played,
+    // every missing frame is a real underrun until reset (including recovery).
+    reg playback_started;
 
     wire divider_tick = (divider == BCLK_HALF_DIV - 1);
     wire falling_tick = divider_tick && i2s_bclk;
@@ -70,6 +73,7 @@ module i2s_tx #(
             sample_fifo[1] <= 0;
             left_shift <= 0;
             right_shift <= 0;
+            playback_started <= 1'b0;
             underrun_pulse <= 1'b0;
             underrun_sticky <= 1'b0;
             underrun_count <= 0;
@@ -99,19 +103,23 @@ module i2s_tx #(
                         i2s_data <= 1'b0;
                         frame_tick <= 1'b1;
                         if (pop_sample) begin
+                            playback_started <= 1'b1;
                             left_shift <= sample_fifo[read_ptr][47:24];
                             right_shift <= sample_fifo[read_ptr][23:0];
                         end else if (bypass_sample) begin
+                            playback_started <= 1'b1;
                             left_shift <= sample_left;
                             right_shift <= sample_right;
                         end else begin
                             // Never repeat stale audio when the engine is late.
                             left_shift <= 0;
                             right_shift <= 0;
-                            underrun_pulse <= 1'b1;
-                            underrun_sticky <= 1'b1;
-                            if (underrun_count != 32'hffffffff)
-                                underrun_count <= underrun_count + 1'b1;
+                            if (playback_started) begin
+                                underrun_pulse <= 1'b1;
+                                underrun_sticky <= 1'b1;
+                                if (underrun_count != 32'hffffffff)
+                                    underrun_count <= underrun_count + 1'b1;
+                            end
                         end
                     end else if (bit_index == 6'd31) begin
                         i2s_lrclk <= 1'b1;

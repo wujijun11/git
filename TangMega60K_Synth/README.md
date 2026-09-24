@@ -4,6 +4,8 @@
 
 2026-09-24：合入队员B的V2按键/和弦/表情输入与事件FIFO，新增统一逻辑顶层 `instrument_system_v2`，已接入当前含队员A八成分钢琴的音源。在 `AudioEngine_V2.gprj` 选择该顶层即可综合；`key_timbre/chord_timbre=2` 选择钢琴，设置顶层 `FM_ENABLE=1` 后可选音色3。复测入口为 `scripts/test-interaction.ps1`（Icarus）及 `scripts/test.ps1 -ModelSimBin <安装目录>`（ModelSim）。合并范围与验证见[队员B合并记录](docs/队员B合并记录-20260924.md)。统一逻辑顶层尚未接到实物键盘/传感器，不能直接作为板级烧录顶层；既有48kHz板级工程继续使用独立自检事件源。
 
+2026-09-24：新增独立的 `clock48/BoardInstrumentB48kGAO.gprj`，用自动单音、和弦和表情事件验证队员B输入链、队员A钢琴音色与片内I2S。板级仿真和布局布线通过；新位流已下载至实板 SRAM，GAO 两次采集确认完成轮数循环变化、时钟锁定、I2S 非零且故障/欠载为零。实物键盘与DAC仍未接入。状态灯蓝色表示运行、绿色表示完成、红色表示故障。工程和上板状态见[队员B 48kHz板内自检](docs/hardware/队员B-48kHz板内自检-20260924.md)。
+
 2026-09-23：合入队员A的四音区八成分钢琴音色（`event_timbre=2`），保留正弦/风琴及可选FM音色。音源的参数ROM和离线模型、仿真入口见[八成分分区钢琴](docs/八成分分区钢琴.md)，主工程验证见[合并记录](docs/队员A八成分合并记录-20260923.md)。当前板级Live64自检仍固定使用原音色，原有GAO/I2S位流也尚未按新音源重编译；要听到新钢琴音色，需后续加入可选择音色的事件输入、重编译并连接外置DAC验证。主工程保留已修复启动欠载的I2S发送器。
 
 2026-09-23：新增独立 `clock48/BoardAudio48kI2S.gprj`，把既有64声部与49.152MHz时钟接到PMOD1候选引脚，输出标称48kHz、24位标准I2S。启动、停止、再次启动与复位仿真及布局布线已通过；外部DAC已到货但尚未接线，引脚方向和模拟输出尚未实测。原GAO入口和位流保持不变。见[48kHz外置I2S预备工程](docs/hardware/48kHz外置I2S预备工程-20260923.md)。
@@ -28,12 +30,12 @@
 
 这是一份可综合、可仿真的控制与音频输出工程，还不是能够直接烧录发声的整机工程。
 目标器件为 GW5AT-60B / GW5AT-LV60PG484AC1/I0；对应 Sipeed Tang Mega 60K。
-板级数字自检已有底板引脚约束和SDC；标称48kHz音频时钟已在独立GAO工程中完成板内验证。PMOD1外置DAC候选引脚已有独立工程，实物接线与模拟输出尚待验证；键床扫描与踏板管理仍待完成。当前`audio_system_v2`音频顶层仍接收内部事件/表情接口，不能直接作为板级引脚顶层烧录；50MHz诊断使用`BoardAudioDiagnostic.gprj`，48kHz片内数字验证使用`clock48/BoardAudio48kGAO.gprj`，外置I2S入口使用`clock48/BoardAudio48kI2S.gprj`。
+板级数字自检已有底板引脚约束和SDC；标称48kHz音频时钟已在独立GAO工程中完成板内验证。PMOD1外置DAC候选引脚已有独立工程，实物接线与模拟输出尚待验证；键床扫描与踏板管理仍待完成。当前`audio_system_v2`音频顶层仍接收内部事件/表情接口，不能直接作为板级引脚顶层烧录；50MHz诊断使用`BoardAudioDiagnostic.gprj`，48kHz既有64音片内数字验证使用`clock48/BoardAudio48kGAO.gprj`，队员B输入链片内数字验证使用`clock48/BoardInstrumentB48kGAO.gprj`，外置I2S入口使用`clock48/BoardAudio48kI2S.gprj`。
 
 ## 从哪里开始
 
 1. 完整音频开发在GOWIN打开`AudioEngine_V2.gprj`，选择`audio_system_v2`顶层；单独控制接口开发仍可打开`TangMega60K_Synth_V2.gprj`。
-   实物48kHz数字验证打开`clock48/BoardAudio48kGAO.gprj`；此入口仅在片内采集I2S，尚无外置DAC引脚。
+   既有64音48kHz数字验证打开`clock48/BoardAudio48kGAO.gprj`；验证队员B输入链打开`clock48/BoardInstrumentB48kGAO.gprj`。两者仅在片内采集I2S，尚无外置DAC引脚。
    DAC到货后的外置I2S测试打开`clock48/BoardAudio48kI2S.gprj`，先核实J8实物针脚、电平和模块供电，再连接DAC。
 2. 完整音频连接见`rtl/audio/audio_system_v2.v`；其内部实例化原`rtl/captain_system_top_v2.v`及A的`voice_engine`。这些都不是物理板级顶层。
 3. 第二阶段先看 `docs/第二阶段-I2S使用说明.md`，再看 `rtl/i2s_tx.v`。

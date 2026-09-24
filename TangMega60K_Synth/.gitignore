@@ -19,6 +19,8 @@ license.dat
 .env
 .env.*
 sim/audio_work/
+sim/instrument_work/
+sim/b_merge_results/
 sim/audio_results/
 vsim.wlf
 transcript

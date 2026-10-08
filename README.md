@@ -13,6 +13,7 @@ Initial repository.
 - [项目使用说明](TangMega60K_Synth/README.md)
 - [完整音源逻辑工程](TangMega60K_Synth/AudioEngine_V2.gprj)
 - [板载按键演奏工程](TangMega60K_Synth/boardkeys48/BoardInstrumentB48kI2S.gprj)
+- [按键响应优化与数字延迟验证](TangMega60K_Synth/docs/hardware/按键响应优化-20261008.md)
 - [16 音逐个播放与验证](TangMega60K_Synth/docs/hardware/16音逐个播放测试-20261008.md)
 - [V2控制与I2S接口工程](TangMega60K_Synth/TangMega60K_Synth_V2.gprj)
 - [V2接口与队员迁移说明](TangMega60K_Synth/docs/接口V2与队员迁移.md)

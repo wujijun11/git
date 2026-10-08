@@ -2,7 +2,9 @@
 // KEY0: A4; KEY1: C-major triad; KEY2: reset. Key release sends note-off.
 // No CPU or firmware is involved. External I2S pins match the audible self-test.
 module board_instrument_b_48k_i2s_top #(
-    parameter integer DEBOUNCE_CYCLES = 500000
+    // 2 ms of continuous stability at 50 MHz leaves room for audio latency.
+    // Physical switch bounce still needs validation on the actual board.
+    parameter integer DEBOUNCE_CYCLES = 100000
 ) (
     input wire sys_clk,
     input wire [2:0] key_n,

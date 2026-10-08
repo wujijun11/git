@@ -36,3 +36,7 @@ sim/fm_work/
 sim/fm_results/
 sim/fm_keyboard_work/
 sim/fm_keyboard_results/
+board16/*.log
+boardkeys48/*.log
+boardseq16/*.log
+tcl_stacktrace.txt

@@ -2,6 +2,10 @@
 
 当前里程碑：**06 — 64声部音源与24位标准I2S输出**。内部与默认输出均为24位PCM，采用Philips I2S、每声道32位槽。DDS、ADSR、正弦/风琴/八成分钢琴音色、三维表情、混音和延迟均在FPGA内实现；FM电钢琴是可选音色。
 
+2026-10-08：新增两个独立的 48kHz 外置 DAC 测试入口。当前实板 SRAM 下载的是 `boardseq16/BoardSequence16_48kI2S.gprj` / `board_sequence16_48k_i2s_top`：KEY0 启动 MIDI 60～75 的 16 个音逐个循环，每音按住 400ms，释放尾音结束后留出 100ms 静音间隔；KEY1 停止，KEY2 复位静音，同时最多一个声部。事件源及板级 I2S 仿真、布局布线和 SRAM 下载均通过（UserCode `0x0000EAF2`）；本版本实物试听反馈尚待确认，详见[16 音逐个播放测试](docs/hardware/16音逐个播放测试-20261008.md)。另保留 `board16/BoardAudio16_48kI2S.gprj` 的 16 声部同时发声测试，见[16 声部持续发声测试](docs/hardware/16声部持续发声测试-20261008.md)。两个入口均使用 FPGA HDL、同一 PCM5102A → PAM8403 → 无源喇叭链，不改变主音源的 64 声部能力。位流属于本地编译产物，GitHub 提供源码、ROM 和重建脚本；SRAM 配置断电后需重新下载。
+
+2026-10-07：外置 PCM5102A → PAM8403 功放 → 无源喇叭的发声链已由用户完成试听。新增板载演奏工程 `boardkeys48/BoardInstrumentB48kI2S.gprj`，顶层 `board_instrument_b_48k_i2s_top`：KEY0 按住演奏钢琴 A4，KEY1 按住演奏 C 大三和弦，同时按两键为四声部，松开各自释放；KEY2 复位静音。该入口已接入 B 的 V2 输入边界和 A 的八成分钢琴，适配器/板级仿真与布局布线通过，SRAM 下载完成（UserCode `0x0000677B`），用户反馈试听“已完成”。新入口为 FPGA HDL；实体演奏面板及独立表情传感器仍待 B 交付。工程、验证范围与下一阶段交接见[板载按键演奏记录](docs/hardware/板载按键演奏-20261007.md)。下方日期记录保留当时状态。
+
 2026-09-24：合入队员B的V2按键/和弦/表情输入与事件FIFO，新增统一逻辑顶层 `instrument_system_v2`，已接入当前含队员A八成分钢琴的音源。在 `AudioEngine_V2.gprj` 选择该顶层即可综合；`key_timbre/chord_timbre=2` 选择钢琴，设置顶层 `FM_ENABLE=1` 后可选音色3。复测入口为 `scripts/test-interaction.ps1`（Icarus）及 `scripts/test.ps1 -ModelSimBin <安装目录>`（ModelSim）。合并范围与验证见[队员B合并记录](docs/队员B合并记录-20260924.md)。统一逻辑顶层尚未接到实物键盘/传感器，不能直接作为板级烧录顶层；既有48kHz板级工程继续使用独立自检事件源。
 
 2026-09-24：新增独立的 `clock48/BoardInstrumentB48kGAO.gprj`，用自动单音、和弦和表情事件验证队员B输入链、队员A钢琴音色与片内I2S。板级仿真和布局布线通过；新位流已下载至实板 SRAM，GAO 两次采集确认完成轮数循环变化、时钟锁定、I2S 非零且故障/欠载为零。实物键盘与DAC仍未接入。状态灯蓝色表示运行、绿色表示完成、红色表示故障。工程和上板状态见[队员B 48kHz板内自检](docs/hardware/队员B-48kHz板内自检-20260924.md)。
@@ -28,15 +32,17 @@
 
 第三阶段入口：[测试音源、波形与试听说明](docs/第三阶段-测试音源.md)。独立诊断工程为 `ToneDemo.gprj`，不会替换队友对接顶层。
 
-这是一份可综合、可仿真的控制与音频输出工程，还不是能够直接烧录发声的整机工程。
+当前已有可烧录发声的板载按键演奏入口，完整实体演奏面板和独立表情输入仍待集成。
 目标器件为 GW5AT-60B / GW5AT-LV60PG484AC1/I0；对应 Sipeed Tang Mega 60K。
-板级数字自检已有底板引脚约束和SDC；标称48kHz音频时钟已在独立GAO工程中完成板内验证。PMOD1外置DAC候选引脚已有独立工程，实物接线与模拟输出尚待验证；键床扫描与踏板管理仍待完成。当前`audio_system_v2`音频顶层仍接收内部事件/表情接口，不能直接作为板级引脚顶层烧录；50MHz诊断使用`BoardAudioDiagnostic.gprj`，48kHz既有64音片内数字验证使用`clock48/BoardAudio48kGAO.gprj`，队员B输入链片内数字验证使用`clock48/BoardInstrumentB48kGAO.gprj`，外置I2S入口使用`clock48/BoardAudio48kI2S.gprj`。
+板级数字自检已有底板引脚约束和SDC；标称48kHz音频时钟已在独立GAO工程中完成板内验证。PMOD1 外置 DAC 已接线并发声；完整键床扫描、独立表情输入与踏板管理仍待完成。`audio_system_v2` 接收内部事件/表情接口，不能直接作为板级引脚顶层烧录；当前演奏使用 `boardkeys48/BoardInstrumentB48kI2S.gprj`，外置发声自检使用 `clock48/BoardAudio48kI2S.gprj`，片内数字验证入口保留于 `clock48`。
 
 ## 从哪里开始
 
 1. 完整音频开发在GOWIN打开`AudioEngine_V2.gprj`，选择`audio_system_v2`顶层；单独控制接口开发仍可打开`TangMega60K_Synth_V2.gprj`。
+   16 个音逐个播放打开 `boardseq16/BoardSequence16_48kI2S.gprj`，选择 `board_sequence16_48k_i2s_top`；在项目根目录用 GOWIN 的 `gw_sh` 执行 `scripts/build-board-sequence16-48k-i2s.tcl`，生成 `boardseq16/impl/pnr/BoardSequence16_48kI2S.fs` 后下载至 SRAM。事件源和完整板级仿真分别运行 `scripts/test-sequence16-event-source.ps1`、`scripts/test-board-sequence16-48k-i2s.ps1`。
+   当前板载按键演奏打开 `boardkeys48/BoardInstrumentB48kI2S.gprj`，选择 `board_instrument_b_48k_i2s_top`；下载 `boardkeys48/impl/pnr/BoardInstrumentB48kI2S.fs` 到 SRAM，断电后需重新下载。
    既有64音48kHz数字验证打开`clock48/BoardAudio48kGAO.gprj`；验证队员B输入链打开`clock48/BoardInstrumentB48kGAO.gprj`。两者仅在片内采集I2S，尚无外置DAC引脚。
-   DAC到货后的外置I2S测试打开`clock48/BoardAudio48kI2S.gprj`，先核实J8实物针脚、电平和模块供电，再连接DAC。
+   外置 I2S 自检打开 `clock48/BoardAudio48kI2S.gprj`，接线与发声记录见 `docs/hardware/外置I2S下载验证-20261007.md`。
 2. 完整音频连接见`rtl/audio/audio_system_v2.v`；其内部实例化原`rtl/captain_system_top_v2.v`及A的`voice_engine`。这些都不是物理板级顶层。
 3. 第二阶段先看 `docs/第二阶段-I2S使用说明.md`，再看 `rtl/i2s_tx.v`。
 4. `sim/tb_i2s_tx.sv` 用模拟样本源和独立串行接收器验证第二阶段，不需要板子或队友代码。

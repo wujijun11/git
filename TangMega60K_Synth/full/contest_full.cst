@@ -1,0 +1,60 @@
+// Baseboard pins retained from the validated 50 MHz bring-up project.
+IO_LOC "sys_clk" V22;
+IO_PORT "sys_clk" IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;
+IO_LOC "key_n[0]" AA13;
+IO_LOC "key_n[1]" AB13;
+IO_LOC "key_n[2]" Y12;
+IO_PORT "key_n[0]" IO_TYPE=LVCMOS15 PULL_MODE=UP BANK_VCCIO=1.5;
+IO_PORT "key_n[1]" IO_TYPE=LVCMOS15 PULL_MODE=UP BANK_VCCIO=1.5;
+IO_PORT "key_n[2]" IO_TYPE=LVCMOS15 PULL_MODE=UP BANK_VCCIO=1.5;
+IO_LOC "rgb_data" J16;
+IO_PORT "rgb_data" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
+IO_LOC "pa_disable" AB16;
+IO_PORT "pa_disable" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
+
+// PMOD1 J8 on NEO Dock 31004 Rev 1.4; confirm the physical pin-1 mark
+// before connecting a DAC. PMOD1 is shared with DVP and 40P expansion.
+IO_LOC "i2s_bclk" Y21;   // J8-11 / PMOD1_IO0
+IO_LOC "i2s_lrclk" AB21; // J8-9  / PMOD1_IO2
+IO_LOC "i2s_data" AA20;  // J8-7  / PMOD1_IO4
+IO_PORT "i2s_bclk" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
+IO_PORT "i2s_lrclk" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
+IO_PORT "i2s_data" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
+
+// New I/O: Sipeed official 31004 Rev1.4 schematic pages 7/19 and 60K CST.
+// J13 is the fitted SDRAM0 40P GPIO header; do not attach SDRAM there too.
+IO_LOC "mpr_scl[0]" E14;
+IO_LOC "mpr_sda[0]" E13;
+IO_LOC "mpr_scl[1]" C15;
+IO_LOC "mpr_sda[1]" C14;
+IO_LOC "mpr_scl[2]" B13;
+IO_LOC "mpr_sda[2]" C13;
+IO_PORT "mpr_scl[0]" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
+IO_PORT "mpr_sda[0]" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
+IO_PORT "mpr_scl[1]" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
+IO_PORT "mpr_sda[1]" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
+IO_PORT "mpr_scl[2]" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
+IO_PORT "mpr_sda[2]" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
+IO_LOC "uart_rx" A14;
+IO_LOC "uart_tx" A13;
+IO_PORT "uart_rx" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "uart_tx" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
+IO_LOC "mpr_irq_n[0]" B16;
+IO_LOC "mpr_irq_n[1]" B15;
+IO_LOC "mpr_irq_n[2]" A16;
+IO_PORT "mpr_irq_n[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "mpr_irq_n[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_PORT "mpr_irq_n[2]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_LOC "guide_led_data" A15;
+IO_PORT "guide_led_data" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
+// Official true-LVDS positive-port declarations; TLVDS_OBUF binds negatives.
+IO_LOC "tmds_data_p[0]" J14,H14;
+IO_LOC "tmds_data_p[1]" J15,H15;
+IO_LOC "tmds_data_p[2]" K17,J17;
+IO_LOC "tmds_clk_p" G15,G16;
+IO_PORT "tmds_data_p[0]" PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=3.3;
+IO_PORT "tmds_data_p[1]" PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=3.3;
+IO_PORT "tmds_data_p[2]" PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=3.3;
+IO_PORT "tmds_clk_p" PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=3.3;
+IO_LOC "hdmi_enable" K13;
+IO_PORT "hdmi_enable" IO_TYPE=LVCMOS33 PULL_MODE=UP DRIVE=12 BANK_VCCIO=3.3;

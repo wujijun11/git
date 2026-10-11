@@ -1,0 +1,1350 @@
+{
+  "archive": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\hardware\\slider4\\Gerber_Touch25_Slider4_100x20_R1_Release.zip",
+  "archive_sha256": "cc42db0eb285b1beadff57730611564abc13e1622a95892cc32e083ecc9644ef",
+  "manifest": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\hardware\\slider4\\design_manifest.json",
+  "manifest_sha256": "5ec3404b73d4923e3bde95b6c0a2a52eae140cc2090e5fbd4c73b4fbc06fe9b3",
+  "parser": "C:\\Users\\asus\\Desktop\\Git\\tmp\\touch25_rules\\audit_gerber_independent.py",
+  "parser_sha256": "e5e6d069aa0469844e108ec0d2fbe4085e3d8b037ca6b2561efc57209445a7ef",
+  "method": "Actual ZIP Gerber/Excellon parsing; geometry matched to manifest; per-layer overlap graph joined only at plated drill centers.",
+  "files": {
+    "Gerber_TopLayer.GTL": {
+      "size": 5201,
+      "sha256": "a68f1c7cafd661da757acf08e7bb99bce6c7d3be4db32eb36bf61e1d667fc2cf",
+      "category": "top_copper",
+      "shapes": 44,
+      "regions": 30,
+      "flashes": 10,
+      "drawn_segments": 4
+    },
+    "Gerber_BottomLayer.GBL": {
+      "size": 1406,
+      "sha256": "3d13e45f0f39b57832908d88438251be8480620c15503aa02a8af5a87e14352a",
+      "category": "bottom_copper",
+      "shapes": 20,
+      "regions": 0,
+      "flashes": 10,
+      "drawn_segments": 10
+    },
+    "Gerber_TopSilkscreenLayer.GTO": {
+      "size": 13266,
+      "sha256": "3f09b32e7d4907e2047273b33f430de07f782531652d60f1b05ab6a93cedfbb7",
+      "category": "top_silk",
+      "shapes": 436,
+      "regions": 0,
+      "flashes": 0,
+      "drawn_segments": 436
+    },
+    "Gerber_BottomSilkscreenLayer.GBO": {
+      "size": 15281,
+      "sha256": "c8ed5a59aff00d16ea4bd33c4b3fa06fac98268c375a78ab5477bdfc6a344c34",
+      "category": "bottom_silk",
+      "shapes": 492,
+      "regions": 0,
+      "flashes": 0,
+      "drawn_segments": 492
+    },
+    "Gerber_TopSolderMaskLayer.GTS": {
+      "size": 1256,
+      "sha256": "828f1fc6e5de523593ce417de0243b70cb9b33102d4ebea7fd4f046836b467a9",
+      "category": "top_mask",
+      "shapes": 6,
+      "regions": 0,
+      "flashes": 6,
+      "drawn_segments": 0
+    },
+    "Gerber_BottomSolderMaskLayer.GBS": {
+      "size": 1259,
+      "sha256": "28ad931a12739ca8792a3cb7beceb962d9f0f601a5544f921386f4b10d8272cf",
+      "category": "bottom_mask",
+      "shapes": 6,
+      "regions": 0,
+      "flashes": 6,
+      "drawn_segments": 0
+    },
+    "Gerber_BoardOutlineLayer.GKO": {
+      "size": 737,
+      "sha256": "2d61ef60ae4eb3781cf61b345ab2872df65e5e598f9ce8a6c8d4743339d88c40",
+      "category": "outline",
+      "shapes": 4,
+      "regions": 0,
+      "flashes": 0,
+      "drawn_segments": 4
+    },
+    "Gerber_DrillDrawingLayer.GDD": {
+      "size": 79338,
+      "sha256": "89899ac01062669d6c7031c761df29016d7c78e449ff10bf21d3b44505d15731",
+      "category": "informational_drill_drawing",
+      "parse_status": "inventory_only: hollow symbol macros are unsupported; Excellon files audited instead"
+    },
+    "Drill_PTH_Through.DRL": {
+      "size": 341,
+      "sha256": "64f4f84f0995f24cfa9f0d9ccdd7648fadf09121f2f8efca642e5c537045d25a",
+      "category": "PTH",
+      "hole_count": 8
+    },
+    "Drill_NPTH_Through.DRL": {
+      "size": 222,
+      "sha256": "16c224f36ad6ba4b294de996a36ba4ae7de380ecfa4ea701a3291439e6e1e828",
+      "category": "NPTH",
+      "hole_count": 2
+    },
+    "FlyingProbeTesting.json": {
+      "size": 2773,
+      "sha256": "fdec1f61cfd4d56f0a354ea232187bd9eff738a1b63f287aed042253640a95f7"
+    },
+    "PCB下单必读.txt": {
+      "size": 94,
+      "sha256": "dcb3ee1c645c17a009d70726ad9ab708b68a074556fabcf75a4a059d3b43ec59"
+    }
+  },
+  "checks": [
+    {
+      "name": "zip_integrity",
+      "pass": true,
+      "details": {
+        "bad_member": null
+      }
+    },
+    {
+      "name": "all_manufacturing_and_silk_gerber_layers_parse",
+      "pass": true,
+      "details": {
+        "parsed_layers": [
+          "top_copper",
+          "bottom_copper",
+          "top_mask",
+          "bottom_mask",
+          "outline",
+          "top_silk",
+          "bottom_silk"
+        ]
+      }
+    },
+    {
+      "name": "100x20_board_outline",
+      "pass": true,
+      "details": {
+        "width_mm": 100.0,
+        "height_mm": 20.0,
+        "bounds_cartesian_mm": [
+          0.0,
+          -20.0,
+          100.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "name": "closed_rectangle_no_extra_cutout",
+      "pass": true,
+      "details": {
+        "drawn_segments": [
+          [
+            [
+              0.0,
+              0.0
+            ],
+            [
+              100.0,
+              0.0
+            ]
+          ],
+          [
+            [
+              100.0,
+              0.0
+            ],
+            [
+              100.0,
+              -20.0
+            ]
+          ],
+          [
+            [
+              100.0,
+              -20.0
+            ],
+            [
+              0.0,
+              -20.0
+            ]
+          ],
+          [
+            [
+              0.0,
+              -20.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ]
+        ],
+        "perimeter_mm": 240.0
+      }
+    },
+    {
+      "name": "2_npth_3p2mm_mounting_holes",
+      "pass": true,
+      "details": {
+        "actual_holes": [
+          {
+            "center": [
+              3.0,
+              -8.5
+            ],
+            "diameter": 3.2,
+            "file": "Drill_NPTH_Through.DRL",
+            "tool": 1,
+            "plating": "NPTH"
+          },
+          {
+            "center": [
+              97.0,
+              -8.5
+            ],
+            "diameter": 3.2,
+            "file": "Drill_NPTH_Through.DRL",
+            "tool": 1,
+            "plating": "NPTH"
+          }
+        ]
+      }
+    },
+    {
+      "name": "4_pth_0p3mm_transfer_holes",
+      "pass": true,
+      "details": {
+        "actual_holes": [
+          {
+            "center": [
+              8.0,
+              -15.1
+            ],
+            "diameter": 0.3,
+            "file": "Drill_PTH_Through.DRL",
+            "tool": 1,
+            "plating": "PTH"
+          },
+          {
+            "center": [
+              36.0,
+              -15.1
+            ],
+            "diameter": 0.3,
+            "file": "Drill_PTH_Through.DRL",
+            "tool": 1,
+            "plating": "PTH"
+          },
+          {
+            "center": [
+              64.0,
+              -15.1
+            ],
+            "diameter": 0.3,
+            "file": "Drill_PTH_Through.DRL",
+            "tool": 1,
+            "plating": "PTH"
+          },
+          {
+            "center": [
+              92.0,
+              -15.1
+            ],
+            "diameter": 0.3,
+            "file": "Drill_PTH_Through.DRL",
+            "tool": 1,
+            "plating": "PTH"
+          }
+        ]
+      }
+    },
+    {
+      "name": "4_pth_1p0mm_J4_holes",
+      "pass": true,
+      "details": {
+        "actual_holes": [
+          {
+            "center": [
+              46.19,
+              -17.5
+            ],
+            "diameter": 1.0,
+            "file": "Drill_PTH_Through.DRL",
+            "tool": 2,
+            "plating": "PTH"
+          },
+          {
+            "center": [
+              48.73,
+              -17.5
+            ],
+            "diameter": 1.0,
+            "file": "Drill_PTH_Through.DRL",
+            "tool": 2,
+            "plating": "PTH"
+          },
+          {
+            "center": [
+              51.27,
+              -17.5
+            ],
+            "diameter": 1.0,
+            "file": "Drill_PTH_Through.DRL",
+            "tool": 2,
+            "plating": "PTH"
+          },
+          {
+            "center": [
+              53.81,
+              -17.5
+            ],
+            "diameter": 1.0,
+            "file": "Drill_PTH_Through.DRL",
+            "tool": 2,
+            "plating": "PTH"
+          }
+        ]
+      }
+    },
+    {
+      "name": "no_extra_drill_holes",
+      "pass": true,
+      "details": {
+        "total": 10,
+        "PTH": 8,
+        "NPTH": 2
+      }
+    },
+    {
+      "name": "all_drills_inside_board",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "all_30_top_electrode_polygons_match",
+      "pass": true,
+      "details": {
+        "expected_count": 30,
+        "actual_count": 30,
+        "polygon_counts_by_net": {
+          "S0": 6,
+          "S1": 9,
+          "S2": 9,
+          "S3": 6
+        },
+        "coordinate_tolerance_mm": 2e-05
+      }
+    },
+    {
+      "name": "no_bottom_electrode_regions_or_ground_plane",
+      "pass": true,
+      "details": {
+        "bottom_region_count": 0
+      }
+    },
+    {
+      "name": "top_copper_routes_match",
+      "pass": true,
+      "details": {
+        "segments": [
+          [
+            [
+              8.0,
+              -14.5
+            ],
+            [
+              8.0,
+              -15.1
+            ]
+          ],
+          [
+            [
+              36.0,
+              -14.5
+            ],
+            [
+              36.0,
+              -15.1
+            ]
+          ],
+          [
+            [
+              64.0,
+              -14.5
+            ],
+            [
+              64.0,
+              -15.1
+            ]
+          ],
+          [
+            [
+              92.0,
+              -14.5
+            ],
+            [
+              92.0,
+              -15.1
+            ]
+          ]
+        ],
+        "expected_count": 4
+      }
+    },
+    {
+      "name": "top_copper_trace_width_0p2mm",
+      "pass": true,
+      "details": {
+        "widths_mm": [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      }
+    },
+    {
+      "name": "bottom_copper_routes_match",
+      "pass": true,
+      "details": {
+        "segments": [
+          [
+            [
+              8.0,
+              -15.1
+            ],
+            [
+              8.0,
+              -16.2
+            ]
+          ],
+          [
+            [
+              8.0,
+              -16.2
+            ],
+            [
+              46.19,
+              -16.2
+            ]
+          ],
+          [
+            [
+              46.19,
+              -16.2
+            ],
+            [
+              46.19,
+              -17.5
+            ]
+          ],
+          [
+            [
+              36.0,
+              -15.1
+            ],
+            [
+              48.73,
+              -15.1
+            ]
+          ],
+          [
+            [
+              48.73,
+              -15.1
+            ],
+            [
+              48.73,
+              -17.5
+            ]
+          ],
+          [
+            [
+              64.0,
+              -15.1
+            ],
+            [
+              51.27,
+              -15.1
+            ]
+          ],
+          [
+            [
+              51.27,
+              -15.1
+            ],
+            [
+              51.27,
+              -17.5
+            ]
+          ],
+          [
+            [
+              92.0,
+              -15.1
+            ],
+            [
+              92.0,
+              -16.2
+            ]
+          ],
+          [
+            [
+              92.0,
+              -16.2
+            ],
+            [
+              53.81,
+              -16.2
+            ]
+          ],
+          [
+            [
+              53.81,
+              -16.2
+            ],
+            [
+              53.81,
+              -17.5
+            ]
+          ]
+        ],
+        "expected_count": 10
+      }
+    },
+    {
+      "name": "bottom_copper_trace_width_0p2mm",
+      "pass": true,
+      "details": {
+        "widths_mm": [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      }
+    },
+    {
+      "name": "4_npth_coincident_disks_removed_nominally",
+      "pass": true,
+      "details": {
+        "disks": [
+          {
+            "layer": "top_copper",
+            "center": [
+              3.0,
+              -8.5
+            ],
+            "diameter_mm": 3.2,
+            "residual_annulus_mm": 0.0
+          },
+          {
+            "layer": "top_copper",
+            "center": [
+              97.0,
+              -8.5
+            ],
+            "diameter_mm": 3.2,
+            "residual_annulus_mm": 0.0
+          },
+          {
+            "layer": "bottom_copper",
+            "center": [
+              3.0,
+              -8.5
+            ],
+            "diameter_mm": 3.2,
+            "residual_annulus_mm": 0.0
+          },
+          {
+            "layer": "bottom_copper",
+            "center": [
+              97.0,
+              -8.5
+            ],
+            "diameter_mm": 3.2,
+            "residual_annulus_mm": 0.0
+          }
+        ]
+      }
+    },
+    {
+      "name": "PTH_both_layer_copper_(8.0, -15.1)",
+      "pass": true,
+      "details": {
+        "top_shape_count": 2,
+        "bottom_shape_count": 2
+      }
+    },
+    {
+      "name": "PTH_both_layer_copper_(36.0, -15.1)",
+      "pass": true,
+      "details": {
+        "top_shape_count": 2,
+        "bottom_shape_count": 2
+      }
+    },
+    {
+      "name": "PTH_both_layer_copper_(64.0, -15.1)",
+      "pass": true,
+      "details": {
+        "top_shape_count": 2,
+        "bottom_shape_count": 2
+      }
+    },
+    {
+      "name": "PTH_both_layer_copper_(92.0, -15.1)",
+      "pass": true,
+      "details": {
+        "top_shape_count": 2,
+        "bottom_shape_count": 2
+      }
+    },
+    {
+      "name": "PTH_both_layer_copper_(46.19, -17.5)",
+      "pass": true,
+      "details": {
+        "top_shape_count": 1,
+        "bottom_shape_count": 2
+      }
+    },
+    {
+      "name": "PTH_both_layer_copper_(48.73, -17.5)",
+      "pass": true,
+      "details": {
+        "top_shape_count": 1,
+        "bottom_shape_count": 2
+      }
+    },
+    {
+      "name": "PTH_both_layer_copper_(51.27, -17.5)",
+      "pass": true,
+      "details": {
+        "top_shape_count": 1,
+        "bottom_shape_count": 2
+      }
+    },
+    {
+      "name": "PTH_both_layer_copper_(53.81, -17.5)",
+      "pass": true,
+      "details": {
+        "top_shape_count": 1,
+        "bottom_shape_count": 2
+      }
+    },
+    {
+      "name": "transfer_annulus_top_copper",
+      "pass": true,
+      "details": {
+        "matching_pad_counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "outer_mm": 0.8,
+        "nominal_minimum_ring_mm": 0.25
+      }
+    },
+    {
+      "name": "transfer_annulus_bottom_copper",
+      "pass": true,
+      "details": {
+        "matching_pad_counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "outer_mm": 0.8,
+        "nominal_minimum_ring_mm": 0.25
+      }
+    },
+    {
+      "name": "connector_annulus_top_copper",
+      "pass": true,
+      "details": {
+        "matching_pad_counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "outer_mm": 1.8,
+        "nominal_minimum_ring_mm": 0.4
+      }
+    },
+    {
+      "name": "connector_annulus_bottom_copper",
+      "pass": true,
+      "details": {
+        "matching_pad_counts": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "outer_mm": 1.8,
+        "nominal_minimum_ring_mm": 0.4
+      }
+    },
+    {
+      "name": "S0_all_electrode_polygons_to_J4_pin_1",
+      "pass": true,
+      "details": {
+        "electrode_region_count": 6,
+        "roots": [
+          31
+        ],
+        "transfer_mm_preview": [
+          8.0,
+          15.1
+        ],
+        "J4_pin": 1,
+        "J4_pin_mm_preview": [
+          46.19,
+          17.5
+        ]
+      }
+    },
+    {
+      "name": "S1_all_electrode_polygons_to_J4_pin_2",
+      "pass": true,
+      "details": {
+        "electrode_region_count": 9,
+        "roots": [
+          33
+        ],
+        "transfer_mm_preview": [
+          36.0,
+          15.1
+        ],
+        "J4_pin": 2,
+        "J4_pin_mm_preview": [
+          48.73,
+          17.5
+        ]
+      }
+    },
+    {
+      "name": "S2_all_electrode_polygons_to_J4_pin_3",
+      "pass": true,
+      "details": {
+        "electrode_region_count": 9,
+        "roots": [
+          35
+        ],
+        "transfer_mm_preview": [
+          64.0,
+          15.1
+        ],
+        "J4_pin": 3,
+        "J4_pin_mm_preview": [
+          51.27,
+          17.5
+        ]
+      }
+    },
+    {
+      "name": "S3_all_electrode_polygons_to_J4_pin_4",
+      "pass": true,
+      "details": {
+        "electrode_region_count": 6,
+        "roots": [
+          37
+        ],
+        "transfer_mm_preview": [
+          92.0,
+          15.1
+        ],
+        "J4_pin": 4,
+        "J4_pin_mm_preview": [
+          53.81,
+          17.5
+        ]
+      }
+    },
+    {
+      "name": "4_independent_nets_no_shorts",
+      "pass": true,
+      "details": {
+        "net_components": {
+          "S0": 31,
+          "S1": 33,
+          "S2": 35,
+          "S3": 37
+        }
+      }
+    },
+    {
+      "name": "no_extra_copper_components",
+      "pass": true,
+      "details": {
+        "total_components": 4,
+        "unassigned_components": {}
+      }
+    },
+    {
+      "name": "all_remaining_copper_inside_board",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "top_copper_net_clearance_at_least_0p25mm",
+      "pass": true,
+      "details": {
+        "minimum_mm_polygonised": 0.29947485653151285,
+        "closest_shape_indices": [
+          14,
+          19
+        ]
+      }
+    },
+    {
+      "name": "bottom_copper_net_clearance_at_least_0p25mm",
+      "pass": true,
+      "details": {
+        "minimum_mm_polygonised": 0.6002436691923592,
+        "closest_shape_indices": [
+          2,
+          9
+        ]
+      }
+    },
+    {
+      "name": "J4_pin1_square_others_round_top_copper",
+      "pass": true,
+      "details": {
+        "pad_shapes": [
+          {
+            "pin": 1,
+            "kinds": [
+              "R"
+            ]
+          },
+          {
+            "pin": 2,
+            "kinds": [
+              "C"
+            ]
+          },
+          {
+            "pin": 3,
+            "kinds": [
+              "C"
+            ]
+          },
+          {
+            "pin": 4,
+            "kinds": [
+              "C"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "J4_pin1_square_others_round_bottom_copper",
+      "pass": true,
+      "details": {
+        "pad_shapes": [
+          {
+            "pin": 1,
+            "kinds": [
+              "R"
+            ]
+          },
+          {
+            "pin": 2,
+            "kinds": [
+              "C"
+            ]
+          },
+          {
+            "pin": 3,
+            "kinds": [
+              "C"
+            ]
+          },
+          {
+            "pin": 4,
+            "kinds": [
+              "C"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "J4_2p54mm_pitch_pin1_left_front_view",
+      "pass": true,
+      "details": {
+        "front_view_left_to_right": [
+          "S0",
+          "S1",
+          "S2",
+          "S3"
+        ]
+      }
+    },
+    {
+      "name": "S0_no_top_mask_electrode_opening",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "S0_tented_transfer_top_mask",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "S1_no_top_mask_electrode_opening",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "S1_tented_transfer_top_mask",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "S2_no_top_mask_electrode_opening",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "S2_tented_transfer_top_mask",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "S3_no_top_mask_electrode_opening",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "S3_tented_transfer_top_mask",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "top_mask_only_2_mounting_and_4_connector_openings",
+      "pass": true,
+      "details": {
+        "nonzero_opening_count": 6
+      }
+    },
+    {
+      "name": "S0_no_top_mask_top_trace_opening",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "S1_no_top_mask_top_trace_opening",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "S2_no_top_mask_top_trace_opening",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "S3_no_top_mask_top_trace_opening",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "S0_no_bottom_mask_electrode_opening",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "S0_tented_transfer_bottom_mask",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "S1_no_bottom_mask_electrode_opening",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "S1_tented_transfer_bottom_mask",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "S2_no_bottom_mask_electrode_opening",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "S2_tented_transfer_bottom_mask",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "S3_no_bottom_mask_electrode_opening",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "S3_tented_transfer_bottom_mask",
+      "pass": true,
+      "details": {
+        "overlaps": []
+      }
+    },
+    {
+      "name": "bottom_mask_only_2_mounting_and_4_connector_openings",
+      "pass": true,
+      "details": {
+        "nonzero_opening_count": 6
+      }
+    },
+    {
+      "name": "S0_no_bottom_mask_top_trace_opening",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "S1_no_bottom_mask_top_trace_opening",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "S2_no_bottom_mask_top_trace_opening",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "S3_no_bottom_mask_top_trace_opening",
+      "pass": true,
+      "details": {}
+    },
+    {
+      "name": "no_paste_opening_files",
+      "pass": true,
+      "details": {
+        "files": []
+      }
+    },
+    {
+      "name": "probe_J4_pin_1_net_S0",
+      "pass": true,
+      "details": {
+        "records": [
+          {
+            "PIN_NO": 3,
+            "PIN_NAME": "PAD2_1",
+            "PIN_X": 1818.5039,
+            "PIN_Y": -688.9764,
+            "LAYER": "T",
+            "PIN_TYPE": "DIP",
+            "NET_NAME": "S0",
+            "NET_TYPE": "",
+            "PAD_SHAPE": "R",
+            "PAD_SIZEX": 70.8661,
+            "PAD_SIZEY": 70.8661,
+            "HOLE_SIZE": 39.3701,
+            "HOLE_LEN": 39.3701,
+            "PAD_ANGLE": 0
+          },
+          {
+            "PIN_NO": 4,
+            "PIN_NAME": "PAD2_1",
+            "PIN_X": 1818.5039,
+            "PIN_Y": -688.9764,
+            "LAYER": "T",
+            "PIN_TYPE": "DIP",
+            "NET_NAME": "S0",
+            "NET_TYPE": "",
+            "PAD_SHAPE": "R",
+            "PAD_SIZEX": 70.8661,
+            "PAD_SIZEY": 70.8661,
+            "HOLE_SIZE": 39.3701,
+            "HOLE_LEN": 39.3701,
+            "PAD_ANGLE": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "probe_J4_pin_2_net_S1",
+      "pass": true,
+      "details": {
+        "records": [
+          {
+            "PIN_NO": 7,
+            "PIN_NAME": "PAD4_2",
+            "PIN_X": 1918.5039,
+            "PIN_Y": -688.9764,
+            "LAYER": "T",
+            "PIN_TYPE": "DIP",
+            "NET_NAME": "S1",
+            "NET_TYPE": "",
+            "PAD_SHAPE": "C",
+            "PAD_SIZEX": 70.8661,
+            "PAD_SIZEY": 70.8661,
+            "HOLE_SIZE": 39.3701,
+            "HOLE_LEN": 39.3701,
+            "PAD_ANGLE": 0
+          },
+          {
+            "PIN_NO": 8,
+            "PIN_NAME": "PAD4_2",
+            "PIN_X": 1918.5039,
+            "PIN_Y": -688.9764,
+            "LAYER": "T",
+            "PIN_TYPE": "DIP",
+            "NET_NAME": "S1",
+            "NET_TYPE": "",
+            "PAD_SHAPE": "C",
+            "PAD_SIZEX": 70.8661,
+            "PAD_SIZEY": 70.8661,
+            "HOLE_SIZE": 39.3701,
+            "HOLE_LEN": 39.3701,
+            "PAD_ANGLE": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "probe_J4_pin_3_net_S2",
+      "pass": true,
+      "details": {
+        "records": [
+          {
+            "PIN_NO": 11,
+            "PIN_NAME": "PAD6_3",
+            "PIN_X": 2018.5039,
+            "PIN_Y": -688.9764,
+            "LAYER": "T",
+            "PIN_TYPE": "DIP",
+            "NET_NAME": "S2",
+            "NET_TYPE": "",
+            "PAD_SHAPE": "C",
+            "PAD_SIZEX": 70.8661,
+            "PAD_SIZEY": 70.8661,
+            "HOLE_SIZE": 39.3701,
+            "HOLE_LEN": 39.3701,
+            "PAD_ANGLE": 0
+          },
+          {
+            "PIN_NO": 12,
+            "PIN_NAME": "PAD6_3",
+            "PIN_X": 2018.5039,
+            "PIN_Y": -688.9764,
+            "LAYER": "T",
+            "PIN_TYPE": "DIP",
+            "NET_NAME": "S2",
+            "NET_TYPE": "",
+            "PAD_SHAPE": "C",
+            "PAD_SIZEX": 70.8661,
+            "PAD_SIZEY": 70.8661,
+            "HOLE_SIZE": 39.3701,
+            "HOLE_LEN": 39.3701,
+            "PAD_ANGLE": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "probe_J4_pin_4_net_S3",
+      "pass": true,
+      "details": {
+        "records": [
+          {
+            "PIN_NO": 15,
+            "PIN_NAME": "PAD8_4",
+            "PIN_X": 2118.5039,
+            "PIN_Y": -688.9764,
+            "LAYER": "T",
+            "PIN_TYPE": "DIP",
+            "NET_NAME": "S3",
+            "NET_TYPE": "",
+            "PAD_SHAPE": "C",
+            "PAD_SIZEX": 70.8661,
+            "PAD_SIZEY": 70.8661,
+            "HOLE_SIZE": 39.3701,
+            "HOLE_LEN": 39.3701,
+            "PAD_ANGLE": 0
+          },
+          {
+            "PIN_NO": 16,
+            "PIN_NAME": "PAD8_4",
+            "PIN_X": 2118.5039,
+            "PIN_Y": -688.9764,
+            "LAYER": "T",
+            "PIN_TYPE": "DIP",
+            "NET_NAME": "S3",
+            "NET_TYPE": "",
+            "PAD_SHAPE": "C",
+            "PAD_SIZEX": 70.8661,
+            "PAD_SIZEY": 70.8661,
+            "HOLE_SIZE": 39.3701,
+            "HOLE_LEN": 39.3701,
+            "PAD_ANGLE": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "probe_only_S0_S1_S2_S3_nets",
+      "pass": true,
+      "details": {
+        "record_count": 16,
+        "nets": [
+          "S0",
+          "S1",
+          "S2",
+          "S3"
+        ],
+        "note": "Native export duplicates each of 8 physical plated pads in probe records; geometry and drill files contain one physical pad/hole per location."
+      }
+    },
+    {
+      "name": "manufacturing_inputs_unchanged",
+      "pass": true,
+      "details": {
+        "archive_sha256": "cc42db0eb285b1beadff57730611564abc13e1622a95892cc32e083ecc9644ef",
+        "manifest_sha256": "5ec3404b73d4923e3bde95b6c0a2a52eae140cc2090e5fbd4c73b4fbc06fe9b3"
+      }
+    }
+  ],
+  "limitations": [
+    "Circles/arcs polygonised with radial error <=0.001 mm; contact tolerance 0.002 mm.",
+    "Nominal drill geometry only; fabrication registration, drilling tolerance, and CAM clearance processing are not simulated.",
+    "Exact equal-diameter circular NPTH copper disks are removed nominally by drilling; no general Boolean copper subtraction is assumed.",
+    "Gerbers do not encode PCB thickness, material, sensor behavior, soldering instructions, or firmware performance.",
+    "Silkscreen layers are parsed for syntax and inventoried, but lettering semantics are not OCR verified.",
+    "The informational GDD drill drawing is hashed and inventoried only: its hollow IconRect/IconTriangle macros use Boolean clear primitives unsupported by the independent parser. Actual Excellon drill files are fully parsed."
+  ],
+  "route_segment_counts": {
+    "top_copper": 4,
+    "bottom_copper": 10
+  },
+  "npth_nominal_copper_removal": [
+    {
+      "layer": "top_copper",
+      "center": [
+        3.0,
+        -8.5
+      ],
+      "diameter_mm": 3.2,
+      "residual_annulus_mm": 0.0
+    },
+    {
+      "layer": "top_copper",
+      "center": [
+        97.0,
+        -8.5
+      ],
+      "diameter_mm": 3.2,
+      "residual_annulus_mm": 0.0
+    },
+    {
+      "layer": "bottom_copper",
+      "center": [
+        3.0,
+        -8.5
+      ],
+      "diameter_mm": 3.2,
+      "residual_annulus_mm": 0.0
+    },
+    {
+      "layer": "bottom_copper",
+      "center": [
+        97.0,
+        -8.5
+      ],
+      "diameter_mm": 3.2,
+      "residual_annulus_mm": 0.0
+    }
+  ],
+  "J4_pin_mapping": [
+    {
+      "pin": 1,
+      "net": "S0",
+      "MPR121_board": 1,
+      "ELE": 8,
+      "preview_center_mm": [
+        46.19,
+        17.5
+      ]
+    },
+    {
+      "pin": 2,
+      "net": "S1",
+      "MPR121_board": 1,
+      "ELE": 9,
+      "preview_center_mm": [
+        48.73,
+        17.5
+      ]
+    },
+    {
+      "pin": 3,
+      "net": "S2",
+      "MPR121_board": 1,
+      "ELE": 10,
+      "preview_center_mm": [
+        51.27,
+        17.5
+      ]
+    },
+    {
+      "pin": 4,
+      "net": "S3",
+      "MPR121_board": 1,
+      "ELE": 11,
+      "preview_center_mm": [
+        53.81,
+        17.5
+      ]
+    }
+  ],
+  "summary": {
+    "pass": true,
+    "check_count": 73,
+    "failed_checks": []
+  }
+}

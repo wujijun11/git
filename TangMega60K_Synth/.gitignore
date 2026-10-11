@@ -40,3 +40,23 @@ board16/*.log
 boardkeys48/*.log
 boardseq16/*.log
 tcl_stacktrace.txt
+sim/full_results/
+sim/video_results/
+sim/remote_results/
+sim/mpr121_results/
+sim/panic_results/
+full/rtl/
+full/*.log
+release/
+firmware/ble_bridge/output/
+firmware/ble_bridge/build/
+# Generated Python and simulation caches.
+__pycache__/
+*.py[cod]
+sim/**/*.vvp
+# Local EDA recovery, account database, UI state and private order evidence.
+hardware/**/_recovery/
+hardware/**/*_backup/
+hardware/**/*.eprj2
+hardware/**/*.epru
+hardware/**/verification/jlc_*

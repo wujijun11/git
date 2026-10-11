@@ -1,0 +1,107 @@
+{
+  "zip": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\hardware\\touch25\\Gerber_Touch25_C4_C6_18mm_R1_2026-10-09.zip",
+  "zip_sha256": "796ccb39e2b18cb72ef80832254a5d7d71be6fff0c74f9dee4a8960d6979c42c",
+  "entries": [
+    {
+      "name": "Gerber_TopLayer.GTL",
+      "size": 27877,
+      "sha256": "43b97b1faefd05ec5626db1b916567e0ef7bc4996500ae86eb9262bf3114c16d",
+      "extracted_copy_matches": true
+    },
+    {
+      "name": "Gerber_BottomLayer.GBL",
+      "size": 5153,
+      "sha256": "d037e26382c06c7473a799e504524ef4b9a95f3b30bb56b46da7dadd5e899a02",
+      "extracted_copy_matches": true
+    },
+    {
+      "name": "Gerber_TopSilkscreenLayer.GTO",
+      "size": 110904,
+      "sha256": "fd185cca0a8c30c4ac0305b75c81bf3272a55b31961bbc470928a5709d8d5208",
+      "extracted_copy_matches": true
+    },
+    {
+      "name": "Gerber_BottomSilkscreenLayer.GBO",
+      "size": 27362,
+      "sha256": "01d6968868784510bfa2ede2f8476885d42d5374272c627364e4f588b78e2f82",
+      "extracted_copy_matches": true
+    },
+    {
+      "name": "Gerber_TopSolderMaskLayer.GTS",
+      "size": 2782,
+      "sha256": "6ee03f665c1c668fdc93953bb4aefdb57aca5fed571e75e5be9a89bfc42b2030",
+      "extracted_copy_matches": true
+    },
+    {
+      "name": "Gerber_BottomSolderMaskLayer.GBS",
+      "size": 2785,
+      "sha256": "16f3dc5c37808451fb2d372a61492f43815b2d2e065ac62e846c70c46ff506ed",
+      "extracted_copy_matches": true
+    },
+    {
+      "name": "Gerber_BoardOutlineLayer.GKO",
+      "size": 739,
+      "sha256": "c638ebbe2fc5f0ccbd074b16f2a7a24f4f3b22de2a97a6b8c57beb8559bd6bed",
+      "extracted_copy_matches": true
+    },
+    {
+      "name": "Gerber_DrillDrawingLayer.GDD",
+      "size": 82105,
+      "sha256": "e1e409f15f37286c5fd1746c06558a42f7d5dea841587486bed4897395a3d0f4",
+      "extracted_copy_matches": true
+    },
+    {
+      "name": "Drill_PTH_Through.DRL",
+      "size": 900,
+      "sha256": "7a9aec2990d5d2e88b4f1226e1108fe690c89959218f5fb2b3494b0a073a9317",
+      "extracted_copy_matches": true
+    },
+    {
+      "name": "Drill_NPTH_Through.DRL",
+      "size": 275,
+      "sha256": "9a5f9b35f54e1413f71a68cf7154349051672190544865b09f0d3937c963c0b2",
+      "extracted_copy_matches": true
+    },
+    {
+      "name": "FlyingProbeTesting.json",
+      "size": 15995,
+      "sha256": "6315f9c065eca1fbf6ea5f20ec8b3e4bae328301dad5130fc27e197fcb7ae011",
+      "extracted_copy_matches": true
+    },
+    {
+      "name": "PCB下单必读.txt",
+      "size": 94,
+      "sha256": "dcb3ee1c645c17a009d70726ad9ab708b68a074556fabcf75a4a059d3b43ec59",
+      "extracted_copy_matches": true
+    }
+  ],
+  "midi_sequence": [
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84
+  ],
+  "mapping_matches_manifest": true,
+  "pass": true
+}

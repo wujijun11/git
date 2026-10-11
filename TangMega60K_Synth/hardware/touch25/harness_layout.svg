@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="1125" viewBox="0 0 1300 1125">
+<title>Touch25 R1 harness assembly schematic</title>
+<desc>R1 board, electrode polygons, connector pin coordinates and mounting holes are read from design_manifest.json. MPR121 modules are placeholders, not valid carrier machining dimensions. No copper, PCB source or Gerber is changed.</desc>
+<metadata>{&quot;kind&quot;: &quot;assembly schematic only; no manufacturing dimensions for modules or carrier&quot;, &quot;coordinate_convention&quot;: &quot;R1 front-view x right / y down, not mirrored; board geometry scaled 4 px per mm&quot;, &quot;board_mm&quot;: [290, 105], &quot;mounting_holes_mm&quot;: [[5, 5], [145, 5], [285, 5], [5, 100], [170, 100], [285, 100]], &quot;mounting_hole_diameter_mm&quot;: 3.2, &quot;connector_centers_mm&quot;: {&quot;J1&quot;: [55.0, 95.0], &quot;J2&quot;: [136.0, 95.0], &quot;J3&quot;: [226.0, 95.0]}, &quot;pin_pitch_mm&quot;: 2.54, &quot;electrode_wire_length_goal_mm&quot;: 50, &quot;module_dimensions_verified&quot;: false, &quot;back_side_installation&quot;: true}</metadata>
+<rect width="1300" height="1125" fill="#f3f6fa"/>
+<text x="65" y="42" fill="#233247" font-size="28" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">Touch25 R1｜三组短线束与模块固定示意</text>
+<text x="65" y="77" fill="#233247" font-size="20" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">25键 C4–C6 · 290 × 105 mm · 面板侧 8 / 8 / 9 × 2.54 mm 母壳</text>
+<text x="65" y="107" fill="#9b4f0d" font-size="17" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">正面坐标透视，未镜像；排针装背面。模块为占位，不能据图加工底托。</text>
+<polyline points="70.000,135.000 1230.000,135.000" fill="none" stroke="#718096" stroke-width="1"/>
+<circle cx="70" cy="135" r="2.5" fill="#718096" stroke="none" stroke-width="1"/>
+<circle cx="1230.0" cy="135" r="2.5" fill="#718096" stroke="none" stroke-width="1"/>
+<text x="650.0" y="130" fill="#526278" font-size="15" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">290 mm</text>
+<polyline points="42.000,150.000 42.000,570.000" fill="none" stroke="#718096" stroke-width="1"/>
+<circle cx="42" cy="150" r="2.5" fill="#718096" stroke="none" stroke-width="1"/>
+<circle cx="42" cy="570.0" r="2.5" fill="#718096" stroke="none" stroke-width="1"/>
+<text x="23" y="345" fill="#526278" font-size="15" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">105</text>
+<text x="23" y="367" fill="#526278" font-size="14" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">mm</text>
+<rect x="70" y="150" width="1160.0" height="420.0" fill="#1d2633" stroke="#5c6c80" stroke-width="2" id="r1-panel" rx="0"/>
+<text x="650.0" y="206.0" fill="#dce5f1" font-size="16" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">电极投影区域：外部线束与模块避开有效触摸区</text>
+<polygon points="110.000,222.000 158.000,222.000 158.000,350.000 182.000,350.000 182.000,478.000 110.000,478.000 110.000,350.000 110.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="172.000,358.000 173.171,358.115 174.296,358.457 175.333,359.011 176.243,359.757 176.989,360.667 177.543,361.704 177.885,362.829 178.000,364.000 178.000,464.000 177.885,465.171 177.543,466.296 176.989,467.333 176.243,468.243 175.333,468.989 174.296,469.543 173.171,469.885 172.000,470.000 120.000,470.000 118.829,469.885 117.704,469.543 116.667,468.989 115.757,468.243 115.011,467.333 114.457,466.296 114.115,465.171 114.000,464.000 114.000,364.000 114.115,362.829 114.457,361.704 115.011,360.667 115.757,359.757 116.667,359.011 117.704,358.457 118.829,358.115 120.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E00"/>
+<text x="146.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">C4</text>
+<polygon points="198.000,242.000 199.171,242.115 200.296,242.457 201.333,243.011 202.243,243.757 202.989,244.667 203.543,245.704 203.885,246.829 204.000,248.000 204.000,336.000 203.885,337.171 203.543,338.296 202.989,339.333 202.243,340.243 201.333,340.989 200.296,341.543 199.171,341.885 198.000,342.000 166.000,342.000 164.829,341.885 163.704,341.543 162.667,340.989 161.757,340.243 161.011,339.333 160.457,338.296 160.115,337.171 160.000,336.000 160.000,248.000 160.115,246.829 160.457,245.704 161.011,244.667 161.757,243.757 162.667,243.011 163.704,242.457 164.829,242.115 166.000,242.000" fill="#47606f" stroke="#a4b7ca" stroke-width="1" id="electrode-E01"/>
+<text x="182.0" y="295.0" fill="#f3f6fa" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">C#4</text>
+<polygon points="206.000,222.000 230.000,222.000 230.000,350.000 254.000,350.000 254.000,478.000 182.000,478.000 182.000,350.000 206.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="244.000,358.000 245.171,358.115 246.296,358.457 247.333,359.011 248.243,359.757 248.989,360.667 249.543,361.704 249.885,362.829 250.000,364.000 250.000,464.000 249.885,465.171 249.543,466.296 248.989,467.333 248.243,468.243 247.333,468.989 246.296,469.543 245.171,469.885 244.000,470.000 192.000,470.000 190.829,469.885 189.704,469.543 188.667,468.989 187.757,468.243 187.011,467.333 186.457,466.296 186.115,465.171 186.000,464.000 186.000,364.000 186.115,362.829 186.457,361.704 187.011,360.667 187.757,359.757 188.667,359.011 189.704,358.457 190.829,358.115 192.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E02"/>
+<text x="218.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">D4</text>
+<polygon points="270.000,242.000 271.171,242.115 272.296,242.457 273.333,243.011 274.243,243.757 274.989,244.667 275.543,245.704 275.885,246.829 276.000,248.000 276.000,336.000 275.885,337.171 275.543,338.296 274.989,339.333 274.243,340.243 273.333,340.989 272.296,341.543 271.171,341.885 270.000,342.000 238.000,342.000 236.829,341.885 235.704,341.543 234.667,340.989 233.757,340.243 233.011,339.333 232.457,338.296 232.115,337.171 232.000,336.000 232.000,248.000 232.115,246.829 232.457,245.704 233.011,244.667 233.757,243.757 234.667,243.011 235.704,242.457 236.829,242.115 238.000,242.000" fill="#47606f" stroke="#a4b7ca" stroke-width="1" id="electrode-E03"/>
+<text x="254.0" y="295.0" fill="#f3f6fa" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">D#4</text>
+<polygon points="278.000,222.000 326.000,222.000 326.000,350.000 326.000,350.000 326.000,478.000 254.000,478.000 254.000,350.000 278.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="316.000,358.000 317.171,358.115 318.296,358.457 319.333,359.011 320.243,359.757 320.989,360.667 321.543,361.704 321.885,362.829 322.000,364.000 322.000,464.000 321.885,465.171 321.543,466.296 320.989,467.333 320.243,468.243 319.333,468.989 318.296,469.543 317.171,469.885 316.000,470.000 264.000,470.000 262.829,469.885 261.704,469.543 260.667,468.989 259.757,468.243 259.011,467.333 258.457,466.296 258.115,465.171 258.000,464.000 258.000,364.000 258.115,362.829 258.457,361.704 259.011,360.667 259.757,359.757 260.667,359.011 261.704,358.457 262.829,358.115 264.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E04"/>
+<text x="290.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">E4</text>
+<polygon points="326.000,222.000 374.000,222.000 374.000,350.000 398.000,350.000 398.000,478.000 326.000,478.000 326.000,350.000 326.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="388.000,358.000 389.171,358.115 390.296,358.457 391.333,359.011 392.243,359.757 392.989,360.667 393.543,361.704 393.885,362.829 394.000,364.000 394.000,464.000 393.885,465.171 393.543,466.296 392.989,467.333 392.243,468.243 391.333,468.989 390.296,469.543 389.171,469.885 388.000,470.000 336.000,470.000 334.829,469.885 333.704,469.543 332.667,468.989 331.757,468.243 331.011,467.333 330.457,466.296 330.115,465.171 330.000,464.000 330.000,364.000 330.115,362.829 330.457,361.704 331.011,360.667 331.757,359.757 332.667,359.011 333.704,358.457 334.829,358.115 336.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E05"/>
+<text x="362.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">F4</text>
+<polygon points="414.000,242.000 415.171,242.115 416.296,242.457 417.333,243.011 418.243,243.757 418.989,244.667 419.543,245.704 419.885,246.829 420.000,248.000 420.000,336.000 419.885,337.171 419.543,338.296 418.989,339.333 418.243,340.243 417.333,340.989 416.296,341.543 415.171,341.885 414.000,342.000 382.000,342.000 380.829,341.885 379.704,341.543 378.667,340.989 377.757,340.243 377.011,339.333 376.457,338.296 376.115,337.171 376.000,336.000 376.000,248.000 376.115,246.829 376.457,245.704 377.011,244.667 377.757,243.757 378.667,243.011 379.704,242.457 380.829,242.115 382.000,242.000" fill="#47606f" stroke="#a4b7ca" stroke-width="1" id="electrode-E06"/>
+<text x="398.0" y="295.0" fill="#f3f6fa" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">F#4</text>
+<polygon points="422.000,222.000 446.000,222.000 446.000,350.000 470.000,350.000 470.000,478.000 398.000,478.000 398.000,350.000 422.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="460.000,358.000 461.171,358.115 462.296,358.457 463.333,359.011 464.243,359.757 464.989,360.667 465.543,361.704 465.885,362.829 466.000,364.000 466.000,464.000 465.885,465.171 465.543,466.296 464.989,467.333 464.243,468.243 463.333,468.989 462.296,469.543 461.171,469.885 460.000,470.000 408.000,470.000 406.829,469.885 405.704,469.543 404.667,468.989 403.757,468.243 403.011,467.333 402.457,466.296 402.115,465.171 402.000,464.000 402.000,364.000 402.115,362.829 402.457,361.704 403.011,360.667 403.757,359.757 404.667,359.011 405.704,358.457 406.829,358.115 408.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E07"/>
+<text x="434.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">G4</text>
+<polygon points="486.000,242.000 487.171,242.115 488.296,242.457 489.333,243.011 490.243,243.757 490.989,244.667 491.543,245.704 491.885,246.829 492.000,248.000 492.000,336.000 491.885,337.171 491.543,338.296 490.989,339.333 490.243,340.243 489.333,340.989 488.296,341.543 487.171,341.885 486.000,342.000 454.000,342.000 452.829,341.885 451.704,341.543 450.667,340.989 449.757,340.243 449.011,339.333 448.457,338.296 448.115,337.171 448.000,336.000 448.000,248.000 448.115,246.829 448.457,245.704 449.011,244.667 449.757,243.757 450.667,243.011 451.704,242.457 452.829,242.115 454.000,242.000" fill="#47606f" stroke="#a4b7ca" stroke-width="1" id="electrode-E08"/>
+<text x="470.0" y="295.0" fill="#f3f6fa" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">G#4</text>
+<polygon points="494.000,222.000 518.000,222.000 518.000,350.000 542.000,350.000 542.000,478.000 470.000,478.000 470.000,350.000 494.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="532.000,358.000 533.171,358.115 534.296,358.457 535.333,359.011 536.243,359.757 536.989,360.667 537.543,361.704 537.885,362.829 538.000,364.000 538.000,464.000 537.885,465.171 537.543,466.296 536.989,467.333 536.243,468.243 535.333,468.989 534.296,469.543 533.171,469.885 532.000,470.000 480.000,470.000 478.829,469.885 477.704,469.543 476.667,468.989 475.757,468.243 475.011,467.333 474.457,466.296 474.115,465.171 474.000,464.000 474.000,364.000 474.115,362.829 474.457,361.704 475.011,360.667 475.757,359.757 476.667,359.011 477.704,358.457 478.829,358.115 480.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E09"/>
+<text x="506.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">A4</text>
+<polygon points="558.000,242.000 559.171,242.115 560.296,242.457 561.333,243.011 562.243,243.757 562.989,244.667 563.543,245.704 563.885,246.829 564.000,248.000 564.000,336.000 563.885,337.171 563.543,338.296 562.989,339.333 562.243,340.243 561.333,340.989 560.296,341.543 559.171,341.885 558.000,342.000 526.000,342.000 524.829,341.885 523.704,341.543 522.667,340.989 521.757,340.243 521.011,339.333 520.457,338.296 520.115,337.171 520.000,336.000 520.000,248.000 520.115,246.829 520.457,245.704 521.011,244.667 521.757,243.757 522.667,243.011 523.704,242.457 524.829,242.115 526.000,242.000" fill="#47606f" stroke="#a4b7ca" stroke-width="1" id="electrode-E10"/>
+<text x="542.0" y="295.0" fill="#f3f6fa" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">A#4</text>
+<polygon points="566.000,222.000 614.000,222.000 614.000,350.000 614.000,350.000 614.000,478.000 542.000,478.000 542.000,350.000 566.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="604.000,358.000 605.171,358.115 606.296,358.457 607.333,359.011 608.243,359.757 608.989,360.667 609.543,361.704 609.885,362.829 610.000,364.000 610.000,464.000 609.885,465.171 609.543,466.296 608.989,467.333 608.243,468.243 607.333,468.989 606.296,469.543 605.171,469.885 604.000,470.000 552.000,470.000 550.829,469.885 549.704,469.543 548.667,468.989 547.757,468.243 547.011,467.333 546.457,466.296 546.115,465.171 546.000,464.000 546.000,364.000 546.115,362.829 546.457,361.704 547.011,360.667 547.757,359.757 548.667,359.011 549.704,358.457 550.829,358.115 552.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E11"/>
+<text x="578.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">B4</text>
+<polygon points="614.000,222.000 662.000,222.000 662.000,350.000 686.000,350.000 686.000,478.000 614.000,478.000 614.000,350.000 614.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="676.000,358.000 677.171,358.115 678.296,358.457 679.333,359.011 680.243,359.757 680.989,360.667 681.543,361.704 681.885,362.829 682.000,364.000 682.000,464.000 681.885,465.171 681.543,466.296 680.989,467.333 680.243,468.243 679.333,468.989 678.296,469.543 677.171,469.885 676.000,470.000 624.000,470.000 622.829,469.885 621.704,469.543 620.667,468.989 619.757,468.243 619.011,467.333 618.457,466.296 618.115,465.171 618.000,464.000 618.000,364.000 618.115,362.829 618.457,361.704 619.011,360.667 619.757,359.757 620.667,359.011 621.704,358.457 622.829,358.115 624.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E12"/>
+<text x="650.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">C5</text>
+<polygon points="702.000,242.000 703.171,242.115 704.296,242.457 705.333,243.011 706.243,243.757 706.989,244.667 707.543,245.704 707.885,246.829 708.000,248.000 708.000,336.000 707.885,337.171 707.543,338.296 706.989,339.333 706.243,340.243 705.333,340.989 704.296,341.543 703.171,341.885 702.000,342.000 670.000,342.000 668.829,341.885 667.704,341.543 666.667,340.989 665.757,340.243 665.011,339.333 664.457,338.296 664.115,337.171 664.000,336.000 664.000,248.000 664.115,246.829 664.457,245.704 665.011,244.667 665.757,243.757 666.667,243.011 667.704,242.457 668.829,242.115 670.000,242.000" fill="#47606f" stroke="#a4b7ca" stroke-width="1" id="electrode-E13"/>
+<text x="686.0" y="295.0" fill="#f3f6fa" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">C#5</text>
+<polygon points="710.000,222.000 734.000,222.000 734.000,350.000 758.000,350.000 758.000,478.000 686.000,478.000 686.000,350.000 710.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="748.000,358.000 749.171,358.115 750.296,358.457 751.333,359.011 752.243,359.757 752.989,360.667 753.543,361.704 753.885,362.829 754.000,364.000 754.000,464.000 753.885,465.171 753.543,466.296 752.989,467.333 752.243,468.243 751.333,468.989 750.296,469.543 749.171,469.885 748.000,470.000 696.000,470.000 694.829,469.885 693.704,469.543 692.667,468.989 691.757,468.243 691.011,467.333 690.457,466.296 690.115,465.171 690.000,464.000 690.000,364.000 690.115,362.829 690.457,361.704 691.011,360.667 691.757,359.757 692.667,359.011 693.704,358.457 694.829,358.115 696.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E14"/>
+<text x="722.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">D5</text>
+<polygon points="774.000,242.000 775.171,242.115 776.296,242.457 777.333,243.011 778.243,243.757 778.989,244.667 779.543,245.704 779.885,246.829 780.000,248.000 780.000,336.000 779.885,337.171 779.543,338.296 778.989,339.333 778.243,340.243 777.333,340.989 776.296,341.543 775.171,341.885 774.000,342.000 742.000,342.000 740.829,341.885 739.704,341.543 738.667,340.989 737.757,340.243 737.011,339.333 736.457,338.296 736.115,337.171 736.000,336.000 736.000,248.000 736.115,246.829 736.457,245.704 737.011,244.667 737.757,243.757 738.667,243.011 739.704,242.457 740.829,242.115 742.000,242.000" fill="#47606f" stroke="#a4b7ca" stroke-width="1" id="electrode-E15"/>
+<text x="758.0" y="295.0" fill="#f3f6fa" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">D#5</text>
+<polygon points="782.000,222.000 830.000,222.000 830.000,350.000 830.000,350.000 830.000,478.000 758.000,478.000 758.000,350.000 782.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="820.000,358.000 821.171,358.115 822.296,358.457 823.333,359.011 824.243,359.757 824.989,360.667 825.543,361.704 825.885,362.829 826.000,364.000 826.000,464.000 825.885,465.171 825.543,466.296 824.989,467.333 824.243,468.243 823.333,468.989 822.296,469.543 821.171,469.885 820.000,470.000 768.000,470.000 766.829,469.885 765.704,469.543 764.667,468.989 763.757,468.243 763.011,467.333 762.457,466.296 762.115,465.171 762.000,464.000 762.000,364.000 762.115,362.829 762.457,361.704 763.011,360.667 763.757,359.757 764.667,359.011 765.704,358.457 766.829,358.115 768.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E16"/>
+<text x="794.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">E5</text>
+<polygon points="830.000,222.000 878.000,222.000 878.000,350.000 902.000,350.000 902.000,478.000 830.000,478.000 830.000,350.000 830.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="892.000,358.000 893.171,358.115 894.296,358.457 895.333,359.011 896.243,359.757 896.989,360.667 897.543,361.704 897.885,362.829 898.000,364.000 898.000,464.000 897.885,465.171 897.543,466.296 896.989,467.333 896.243,468.243 895.333,468.989 894.296,469.543 893.171,469.885 892.000,470.000 840.000,470.000 838.829,469.885 837.704,469.543 836.667,468.989 835.757,468.243 835.011,467.333 834.457,466.296 834.115,465.171 834.000,464.000 834.000,364.000 834.115,362.829 834.457,361.704 835.011,360.667 835.757,359.757 836.667,359.011 837.704,358.457 838.829,358.115 840.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E17"/>
+<text x="866.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">F5</text>
+<polygon points="918.000,242.000 919.171,242.115 920.296,242.457 921.333,243.011 922.243,243.757 922.989,244.667 923.543,245.704 923.885,246.829 924.000,248.000 924.000,336.000 923.885,337.171 923.543,338.296 922.989,339.333 922.243,340.243 921.333,340.989 920.296,341.543 919.171,341.885 918.000,342.000 886.000,342.000 884.829,341.885 883.704,341.543 882.667,340.989 881.757,340.243 881.011,339.333 880.457,338.296 880.115,337.171 880.000,336.000 880.000,248.000 880.115,246.829 880.457,245.704 881.011,244.667 881.757,243.757 882.667,243.011 883.704,242.457 884.829,242.115 886.000,242.000" fill="#47606f" stroke="#a4b7ca" stroke-width="1" id="electrode-E18"/>
+<text x="902.0" y="295.0" fill="#f3f6fa" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">F#5</text>
+<polygon points="926.000,222.000 950.000,222.000 950.000,350.000 974.000,350.000 974.000,478.000 902.000,478.000 902.000,350.000 926.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="964.000,358.000 965.171,358.115 966.296,358.457 967.333,359.011 968.243,359.757 968.989,360.667 969.543,361.704 969.885,362.829 970.000,364.000 970.000,464.000 969.885,465.171 969.543,466.296 968.989,467.333 968.243,468.243 967.333,468.989 966.296,469.543 965.171,469.885 964.000,470.000 912.000,470.000 910.829,469.885 909.704,469.543 908.667,468.989 907.757,468.243 907.011,467.333 906.457,466.296 906.115,465.171 906.000,464.000 906.000,364.000 906.115,362.829 906.457,361.704 907.011,360.667 907.757,359.757 908.667,359.011 909.704,358.457 910.829,358.115 912.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E19"/>
+<text x="938.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">G5</text>
+<polygon points="990.000,242.000 991.171,242.115 992.296,242.457 993.333,243.011 994.243,243.757 994.989,244.667 995.543,245.704 995.885,246.829 996.000,248.000 996.000,336.000 995.885,337.171 995.543,338.296 994.989,339.333 994.243,340.243 993.333,340.989 992.296,341.543 991.171,341.885 990.000,342.000 958.000,342.000 956.829,341.885 955.704,341.543 954.667,340.989 953.757,340.243 953.011,339.333 952.457,338.296 952.115,337.171 952.000,336.000 952.000,248.000 952.115,246.829 952.457,245.704 953.011,244.667 953.757,243.757 954.667,243.011 955.704,242.457 956.829,242.115 958.000,242.000" fill="#47606f" stroke="#a4b7ca" stroke-width="1" id="electrode-E20"/>
+<text x="974.0" y="295.0" fill="#f3f6fa" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">G#5</text>
+<polygon points="998.000,222.000 1022.000,222.000 1022.000,350.000 1046.000,350.000 1046.000,478.000 974.000,478.000 974.000,350.000 998.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="1036.000,358.000 1037.171,358.115 1038.296,358.457 1039.333,359.011 1040.243,359.757 1040.989,360.667 1041.543,361.704 1041.885,362.829 1042.000,364.000 1042.000,464.000 1041.885,465.171 1041.543,466.296 1040.989,467.333 1040.243,468.243 1039.333,468.989 1038.296,469.543 1037.171,469.885 1036.000,470.000 984.000,470.000 982.829,469.885 981.704,469.543 980.667,468.989 979.757,468.243 979.011,467.333 978.457,466.296 978.115,465.171 978.000,464.000 978.000,364.000 978.115,362.829 978.457,361.704 979.011,360.667 979.757,359.757 980.667,359.011 981.704,358.457 982.829,358.115 984.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E21"/>
+<text x="1010.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">A5</text>
+<polygon points="1062.000,242.000 1063.171,242.115 1064.296,242.457 1065.333,243.011 1066.243,243.757 1066.989,244.667 1067.543,245.704 1067.885,246.829 1068.000,248.000 1068.000,336.000 1067.885,337.171 1067.543,338.296 1066.989,339.333 1066.243,340.243 1065.333,340.989 1064.296,341.543 1063.171,341.885 1062.000,342.000 1030.000,342.000 1028.829,341.885 1027.704,341.543 1026.667,340.989 1025.757,340.243 1025.011,339.333 1024.457,338.296 1024.115,337.171 1024.000,336.000 1024.000,248.000 1024.115,246.829 1024.457,245.704 1025.011,244.667 1025.757,243.757 1026.667,243.011 1027.704,242.457 1028.829,242.115 1030.000,242.000" fill="#47606f" stroke="#a4b7ca" stroke-width="1" id="electrode-E22"/>
+<text x="1046.0" y="295.0" fill="#f3f6fa" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">A#5</text>
+<polygon points="1070.000,222.000 1118.000,222.000 1118.000,350.000 1118.000,350.000 1118.000,478.000 1046.000,478.000 1046.000,350.000 1070.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="1108.000,358.000 1109.171,358.115 1110.296,358.457 1111.333,359.011 1112.243,359.757 1112.989,360.667 1113.543,361.704 1113.885,362.829 1114.000,364.000 1114.000,464.000 1113.885,465.171 1113.543,466.296 1112.989,467.333 1112.243,468.243 1111.333,468.989 1110.296,469.543 1109.171,469.885 1108.000,470.000 1056.000,470.000 1054.829,469.885 1053.704,469.543 1052.667,468.989 1051.757,468.243 1051.011,467.333 1050.457,466.296 1050.115,465.171 1050.000,464.000 1050.000,364.000 1050.115,362.829 1050.457,361.704 1051.011,360.667 1051.757,359.757 1052.667,359.011 1053.704,358.457 1054.829,358.115 1056.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E23"/>
+<text x="1082.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">B5</text>
+<polygon points="1118.000,222.000 1190.000,222.000 1190.000,350.000 1190.000,350.000 1190.000,478.000 1118.000,478.000 1118.000,350.000 1118.000,350.000" fill="none" stroke="#8798ae" stroke-width="1"/>
+<polygon points="1180.000,358.000 1181.171,358.115 1182.296,358.457 1183.333,359.011 1184.243,359.757 1184.989,360.667 1185.543,361.704 1185.885,362.829 1186.000,364.000 1186.000,464.000 1185.885,465.171 1185.543,466.296 1184.989,467.333 1184.243,468.243 1183.333,468.989 1182.296,469.543 1181.171,469.885 1180.000,470.000 1128.000,470.000 1126.829,469.885 1125.704,469.543 1124.667,468.989 1123.757,468.243 1123.011,467.333 1122.457,466.296 1122.115,465.171 1122.000,464.000 1122.000,364.000 1122.115,362.829 1122.457,361.704 1123.011,360.667 1123.757,359.757 1124.667,359.011 1125.704,358.457 1126.829,358.115 1128.000,358.000" fill="#e3e9f2" stroke="#a4b7ca" stroke-width="1" id="electrode-E24"/>
+<text x="1154.0" y="417.0" fill="#263c51" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">C6</text>
+<rect x="246.44" y="519.2" width="87.12" height="21.6" fill="#253447" stroke="#b07804" stroke-width="2" id="female-housing-schematic-J1" rx="0"/>
+<text x="290.0" y="498.0" fill="#e6edf7" font-size="17" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">J1 · 1×8 / 2.54 mm</text>
+<rect x="250.84" y="526.4" width="7.2" height="7.2" fill="#ffdc75" stroke="none" stroke-width="1" id="pin-J1-1" rx="0"/>
+<circle cx="254.44" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="254.44" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">1</text>
+<circle cx="264.6" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J1-2"/>
+<circle cx="264.6" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="264.6" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">2</text>
+<circle cx="274.76" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J1-3"/>
+<circle cx="274.76" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="274.76" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">3</text>
+<circle cx="284.91999999999996" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J1-4"/>
+<circle cx="284.91999999999996" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="284.91999999999996" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">4</text>
+<circle cx="295.08000000000004" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J1-5"/>
+<circle cx="295.08000000000004" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="295.08000000000004" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">5</text>
+<circle cx="305.24" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J1-6"/>
+<circle cx="305.24" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="305.24" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">6</text>
+<circle cx="315.4" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J1-7"/>
+<circle cx="315.4" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="315.4" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">7</text>
+<circle cx="325.56" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J1-8"/>
+<circle cx="325.56" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="325.56" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">8</text>
+<polygon points="241.440,525.000 241.440,535.000 248.440,530.000" fill="#ffdc75" stroke="none" stroke-width="1"/>
+<text x="290.0" y="601" fill="#b07804" font-size="16" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">J1 → MPR1  |  pin1 已标记</text>
+<polyline points="290.000,562.000 290.000,698.000" fill="none" stroke="#b07804" stroke-width="3"/>
+<polygon points="284.000,697.000 296.000,697.000 290.000,707.000" fill="#b07804" stroke="none" stroke-width="1"/>
+<circle cx="290.0" cy="652" r="7" fill="#f3f6fa" stroke="#b07804" stroke-width="2"/>
+<text x="307.0" y="644" fill="#b07804" font-size="15" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">每根实际总长 ≤50 mm 目标</text>
+<text x="307.0" y="668" fill="#526278" font-size="14" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">在绝缘托架处固定拉力</text>
+<rect x="189.0" y="708" width="202" height="113" fill="#e8edf4" stroke="#b07804" stroke-width="2" id="module-placeholder-J1" rx="9"/>
+<text x="290.0" y="735" fill="#263c51" font-size="20" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">MPR121 #1</text>
+<text x="290.0" y="762" fill="#263c51" font-size="15" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">ELE0–ELE7：按实物接线</text>
+<text x="290.0" y="789" fill="#9b4f0d" font-size="14" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">占位：外形 / 孔距待实测</text>
+<text x="290.0" y="810" fill="#526278" font-size="13" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">下沿外绝缘固定 · 可拆可换</text>
+<rect x="570.44" y="519.2" width="87.11999999999995" height="21.6" fill="#253447" stroke="#8552b4" stroke-width="2" id="female-housing-schematic-J2" rx="0"/>
+<text x="614.0" y="498.0" fill="#e6edf7" font-size="17" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">J2 · 1×8 / 2.54 mm</text>
+<rect x="574.84" y="526.4" width="7.2" height="7.2" fill="#ffdc75" stroke="none" stroke-width="1" id="pin-J2-1" rx="0"/>
+<circle cx="578.44" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="578.44" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">1</text>
+<circle cx="588.6" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J2-2"/>
+<circle cx="588.6" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="588.6" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">2</text>
+<circle cx="598.76" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J2-3"/>
+<circle cx="598.76" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="598.76" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">3</text>
+<circle cx="608.92" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J2-4"/>
+<circle cx="608.92" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="608.92" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">4</text>
+<circle cx="619.08" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J2-5"/>
+<circle cx="619.08" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="619.08" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">5</text>
+<circle cx="629.24" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J2-6"/>
+<circle cx="629.24" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="629.24" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">6</text>
+<circle cx="639.4" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J2-7"/>
+<circle cx="639.4" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="639.4" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">7</text>
+<circle cx="649.56" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J2-8"/>
+<circle cx="649.56" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="649.56" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">8</text>
+<polygon points="565.440,525.000 565.440,535.000 572.440,530.000" fill="#ffdc75" stroke="none" stroke-width="1"/>
+<text x="614.0" y="601" fill="#8552b4" font-size="16" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">J2 → MPR2  |  pin1 已标记</text>
+<polyline points="614.000,562.000 614.000,698.000" fill="none" stroke="#8552b4" stroke-width="3"/>
+<polygon points="608.000,697.000 620.000,697.000 614.000,707.000" fill="#8552b4" stroke="none" stroke-width="1"/>
+<circle cx="614.0" cy="652" r="7" fill="#f3f6fa" stroke="#8552b4" stroke-width="2"/>
+<text x="631.0" y="644" fill="#8552b4" font-size="15" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">每根实际总长 ≤50 mm 目标</text>
+<text x="631.0" y="668" fill="#526278" font-size="14" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">在绝缘托架处固定拉力</text>
+<rect x="513.0" y="708" width="202" height="113" fill="#e8edf4" stroke="#8552b4" stroke-width="2" id="module-placeholder-J2" rx="9"/>
+<text x="614.0" y="735" fill="#263c51" font-size="20" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">MPR121 #2</text>
+<text x="614.0" y="762" fill="#263c51" font-size="15" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">ELE0–ELE7：按实物接线</text>
+<text x="614.0" y="789" fill="#9b4f0d" font-size="14" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">占位：外形 / 孔距待实测</text>
+<text x="614.0" y="810" fill="#526278" font-size="13" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">下沿外绝缘固定 · 可拆可换</text>
+<rect x="925.36" y="519.2" width="97.27999999999997" height="21.6" fill="#253447" stroke="#2273ae" stroke-width="2" id="female-housing-schematic-J3" rx="0"/>
+<text x="974.0" y="498.0" fill="#e6edf7" font-size="17" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">J3 · 1×9 / 2.54 mm</text>
+<rect x="929.76" y="526.4" width="7.2" height="7.2" fill="#ffdc75" stroke="none" stroke-width="1" id="pin-J3-1" rx="0"/>
+<circle cx="933.36" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="933.36" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">1</text>
+<circle cx="943.52" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J3-2"/>
+<circle cx="943.52" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="943.52" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">2</text>
+<circle cx="953.68" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J3-3"/>
+<circle cx="953.68" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="953.68" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">3</text>
+<circle cx="963.84" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J3-4"/>
+<circle cx="963.84" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="963.84" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">4</text>
+<circle cx="974.0" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J3-5"/>
+<circle cx="974.0" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="974.0" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">5</text>
+<circle cx="984.16" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J3-6"/>
+<circle cx="984.16" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="984.16" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">6</text>
+<circle cx="994.32" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J3-7"/>
+<circle cx="994.32" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="994.32" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">7</text>
+<circle cx="1004.48" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J3-8"/>
+<circle cx="1004.48" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="1004.48" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">8</text>
+<circle cx="1014.64" cy="530.0" r="3.6" fill="#dbb768" stroke="none" stroke-width="1" id="pin-J3-9"/>
+<circle cx="1014.64" cy="530.0" r="2.0" fill="#1d2633" stroke="none" stroke-width="1"/>
+<text x="1014.64" y="553.2" fill="#edf1f6" font-size="10" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">9</text>
+<polygon points="920.360,525.000 920.360,535.000 927.360,530.000" fill="#ffdc75" stroke="none" stroke-width="1"/>
+<text x="974.0" y="601" fill="#2273ae" font-size="16" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">J3 → MPR3  |  pin1 已标记</text>
+<polyline points="974.000,562.000 974.000,698.000" fill="none" stroke="#2273ae" stroke-width="3"/>
+<polygon points="968.000,697.000 980.000,697.000 974.000,707.000" fill="#2273ae" stroke="none" stroke-width="1"/>
+<circle cx="974.0" cy="652" r="7" fill="#f3f6fa" stroke="#2273ae" stroke-width="2"/>
+<text x="991.0" y="644" fill="#2273ae" font-size="15" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">每根实际总长 ≤50 mm 目标</text>
+<text x="991.0" y="668" fill="#526278" font-size="14" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">在绝缘托架处固定拉力</text>
+<rect x="873.0" y="708" width="202" height="113" fill="#e8edf4" stroke="#2273ae" stroke-width="2" id="module-placeholder-J3" rx="9"/>
+<text x="974.0" y="735" fill="#263c51" font-size="20" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">MPR121 #3</text>
+<text x="974.0" y="762" fill="#263c51" font-size="15" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">ELE0–ELE8：按实物接线</text>
+<text x="974.0" y="789" fill="#9b4f0d" font-size="14" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">占位：外形 / 孔距待实测</text>
+<text x="974.0" y="810" fill="#526278" font-size="13" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">下沿外绝缘固定 · 可拆可换</text>
+<circle cx="90.0" cy="170.0" r="6.4" fill="#f3f6fa" stroke="#adbbc9" stroke-width="1" id="mounting-hole-1"/>
+<text x="102.0" y="194.0" fill="#dce5f1" font-size="12" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">(5,5)</text>
+<circle cx="650.0" cy="170.0" r="6.4" fill="#f3f6fa" stroke="#adbbc9" stroke-width="1" id="mounting-hole-2"/>
+<text x="650.0" y="194.0" fill="#dce5f1" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">(145,5)</text>
+<circle cx="1210.0" cy="170.0" r="6.4" fill="#f3f6fa" stroke="#adbbc9" stroke-width="1" id="mounting-hole-3"/>
+<text x="1198.0" y="194.0" fill="#dce5f1" font-size="12" text-anchor="end" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">(285,5)</text>
+<circle cx="90.0" cy="550.0" r="6.4" fill="#f3f6fa" stroke="#adbbc9" stroke-width="1" id="mounting-hole-4"/>
+<text x="102.0" y="582.0" fill="#526278" font-size="12" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">(5,100)</text>
+<circle cx="750.0" cy="550.0" r="6.4" fill="#f3f6fa" stroke="#adbbc9" stroke-width="1" id="mounting-hole-5"/>
+<text x="750.0" y="582.0" fill="#526278" font-size="12" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">(170,100)</text>
+<circle cx="1210.0" cy="550.0" r="6.4" fill="#f3f6fa" stroke="#adbbc9" stroke-width="1" id="mounting-hole-6"/>
+<text x="1198.0" y="582.0" fill="#526278" font-size="12" text-anchor="end" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">(285,100)</text>
+<text x="650" y="855" fill="#263c51" font-size="20" text-anchor="middle" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">模块端不默认直通：先逐针确认 ELE 标注，再决定是否装成组母壳。</text>
+<rect x="65" y="881" width="1170" height="210" fill="#ffffff" stroke="#d2dce7" stroke-width="1" rx="10"/>
+<text x="87" y="916" fill="#233247" font-size="19" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">底托加工前：量模块外形、安装孔距、ELE针排、插头高度和拔出空间。</text>
+<text x="87" y="949" fill="#233247" font-size="18" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">面板25根线只接ELE；模块3.3V / GND / SCL / SDA / IRQ另走线束。</text>
+<text x="87" y="982" fill="#233247" font-size="18" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">2.50 mm 不替代 2.54 mm；8针累计差0.28 mm，9针差0.32 mm。</text>
+<text x="87" y="1015" fill="#233247" font-size="17" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">六个孔保持R1原坐标、φ3.2 NPTH；下中孔为(170,100)，不是(145,100)。</text>
+<text x="87" y="1048" fill="#233247" font-size="17" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">下沿y82–105仅23 mm且有走线；不视作模块空区，支柱高度按实物确定。</text>
+<text x="87" y="1078" fill="#9b4f0d" font-size="16" text-anchor="start" font-family="Microsoft YaHei, Noto Sans CJK SC, Arial, sans-serif">此图不修改制造文件，也不表示触摸效果或延迟已经实测。</text>
+</svg>

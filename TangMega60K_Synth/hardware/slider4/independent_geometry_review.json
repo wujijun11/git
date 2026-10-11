@@ -1,0 +1,52 @@
+{
+  "status": "PASS: independent geometry and native-record preflight only",
+  "audited_archive": "Touch25_Slider4_100x20_R1.epro2",
+  "audited_archive_sha256": "0515d285f2551b4613bb403d3c86f862c926cacf06a606c03d34e615b1a88eb6",
+  "audited_manifest_sha256": "408535998dd66646792dac131706709a19c1bb453cc20212b74ded51aa721070",
+  "audited_generator_sha256": "f4dd26a9a109487578e9c1f7639c4f2582e41952562b36e6286f14553298a5ae",
+  "native_drc": "NOT RUN BY THIS REVIEWER",
+  "native_gerber": "NOT EXPORTED BY THIS REVIEWER",
+  "minimum_required_spacing_mm": 0.25,
+  "minimum_clearances": {
+    "different_net_trace_trace": {"clearance_mm": 0.9, "refs": ["S2", "S3", 2]},
+    "different_net_trace_pad": {"clearance_mm": 0.6, "refs": ["S3", "S2", 2, "transfer"]},
+    "different_net_trace_electrode": {"clearance_mm": 0.45, "refs": ["S3", "S2", 8]},
+    "different_net_pad_pad": {"clearance_mm": 0.74, "refs": ["S2", "S3", "connector", "connector"]},
+    "different_net_pad_electrode": {"clearance_mm": 0.829837388, "refs": ["S3", "S2", "transfer", 8]},
+    "different_net_electrode_electrode": {"clearance_mm": 0.299477607, "refs": ["S0", "S1", 2, 1]},
+    "npth_to_pad": {"clearance_mm": 6.280096618, "refs": [[97.0, 8.5], "S3", "transfer"]},
+    "npth_to_trace": {"clearance_mm": 5.586288493, "refs": [[97.0, 8.5], "S3", 1]},
+    "npth_to_electrode": {"clearance_mm": 1.4, "refs": [[3.0, 8.5], "S0", 1]}
+  },
+  "checked_counts": {
+    "different_net_trace_trace": 43, "different_net_trace_pad": 84,
+    "different_net_trace_electrode": 90, "different_net_pad_pad": 24,
+    "different_net_pad_electrode": 180, "different_net_electrode_electrode": 333,
+    "npth_to_pad": 16, "npth_to_trace": 28, "npth_to_electrode": 60
+  },
+  "checks": {
+    "minimum_spacing_pass": true,
+    "same_net_connections": {"S0": true, "S1": true, "S2": true, "S3": true},
+    "native_fills_match_manifest": true, "native_lines_match_manifest": true,
+    "native_pads_match_manifest": true, "npth_native_matches_manifest": true,
+    "native_archive_crc_pass": true, "native_archive_matches_sidecar": true,
+    "native_archive_sha256_matches_manifest": true, "channel_mapping_pass": true,
+    "no_power_ground_nets": true, "no_mask_or_paste_fills": true
+  },
+  "native_relevant_record_counts": {"DOCHEAD": 2, "NET": 5, "PAD": 10, "FILL": 30, "LINE": 14, "STRING": 15, "POLY": 4},
+  "same_net_connected_polygon_counts": {"S0": 6, "S1": 9, "S2": 9, "S3": 6},
+  "minimum_wedge_tip_height_mm": 0.317727273, "wedge_count": 24,
+  "minimum_native_text_height_mm": 1.000000007,
+  "minimum_native_text_stroke_mm": 0.150000005,
+  "front_pin_order": [1, 2, 3, 4], "back_pin_order": [4, 3, 2, 1],
+  "module1_electrodes": [8, 9, 10, 11],
+  "firmware_status_documented_unimplemented": true,
+  "hdl_expression_port_and_board_tieoff_verified": true,
+  "review_method": "Read-only independent Euclidean geometry using touch25/validate_geometry.py helpers; native FILL, LINE, PAD checked with mm-to-mil and y inversion; native CRC and content checked",
+  "notes": [
+    "Review is tied to the stated hashes, not to a later regeneration.",
+    "All spacing values are copper-edge or NPTH-edge distances.",
+    "Original straight routes were replaced by orthogonal routes before this PASS.",
+    "Native DRC/export/mask tenting and measured touch response, linearity and latency are separate checks."
+  ]
+}

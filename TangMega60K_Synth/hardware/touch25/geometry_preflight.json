@@ -1,0 +1,125 @@
+{
+  "status": "PASS: independent geometry preflight only",
+  "native_drc": "NOT RUN",
+  "native_gerber": "NOT EXPORTED",
+  "key_mapping": "PASS",
+  "continuous_connections": "PASS",
+  "minimum_required_spacing_mm": 0.1524,
+  "checked_counts": {
+    "different_net_trace_trace": 3000,
+    "different_net_trace_pad": 4800,
+    "different_net_trace_electrode": 600,
+    "different_net_pad_pad": 1200,
+    "different_net_pad_electrode": 1200,
+    "different_net_electrode_electrode": 300,
+    "npth_to_pad": 300,
+    "npth_to_trace": 600,
+    "npth_to_electrode": 150
+  },
+  "minimum_clearances": {
+    "different_net_trace_trace": {
+      "clearance_mm": 0.786818,
+      "refs": [
+        "E00",
+        "E01",
+        2
+      ]
+    },
+    "different_net_trace_pad": {
+      "clearance_mm": 1.55,
+      "refs": [
+        "E24",
+        "E23",
+        2
+      ]
+    },
+    "different_net_trace_electrode": {
+      "clearance_mm": 2.712284,
+      "refs": [
+        "E22",
+        "E23"
+      ]
+    },
+    "different_net_pad_pad": {
+      "clearance_mm": 0.74,
+      "refs": [
+        "E23",
+        "E24"
+      ]
+    },
+    "different_net_pad_electrode": {
+      "clearance_mm": 2.402284,
+      "refs": [
+        "E22",
+        "E23"
+      ]
+    },
+    "different_net_electrode_electrode": {
+      "clearance_mm": 2.0,
+      "refs": [
+        "E00",
+        "E02"
+      ]
+    },
+    "npth_to_pad": {
+      "clearance_mm": 17.313208,
+      "refs": [
+        [
+          170,
+          100
+        ],
+        "E14"
+      ]
+    },
+    "npth_to_trace": {
+      "clearance_mm": 12.97881,
+      "refs": [
+        [
+          170,
+          100
+        ],
+        "E15",
+        2
+      ]
+    },
+    "npth_to_electrode": {
+      "clearance_mm": 17.033242,
+      "refs": [
+        [
+          145,
+          5
+        ],
+        "E13"
+      ]
+    }
+  },
+  "native_record_counts": {
+    "DOCHEAD": 2,
+    "META": 2,
+    "CANVAS": 1,
+    "PRIMITIVE": 57,
+    "LAYER": 60,
+    "LAYER_PHYS": 9,
+    "ACTIVE_LAYER": 1,
+    "RULE_TEMPLATE": 1,
+    "RULE": 15,
+    "SILK_OPTS": 2,
+    "D3_ATTRIBUTE": 1,
+    "PREFERENCE": 1,
+    "PANELIZE": 1,
+    "NET": 26,
+    "RULE_SELECTOR": 26,
+    "POLY": 47,
+    "PAD": 56,
+    "FILL": 25,
+    "LINE": 100,
+    "STRING": 113
+  },
+  "notes": [
+    "Checks use manifest geometry and closed electrode polygons, not native editor connectivity results.",
+    "Round electrode polygon corners approximate 1.5 mm radius with 8 chords per quadrant.",
+    "No claim of measured MPR121 touch response, EMC performance or complete-system latency.",
+    "The 0.8/0.3 mm transfer pads require native mask-tenting validation.",
+    "Native STRING minimum height is 1.0 mm and minimum stroke is 0.15 mm."
+  ]
+}

@@ -1,0 +1,5 @@
+﻿connector,pin,net,mpr121_module,mpr121_electrode
+J4,1,S0,1,ELE8
+J4,2,S1,1,ELE9
+J4,3,S2,1,ELE10
+J4,4,S3,1,ELE11

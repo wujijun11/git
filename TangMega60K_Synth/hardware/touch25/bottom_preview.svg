@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1450" height="585" viewBox="-3 -3 296 117">
+<title>Touch25 bottom routing engineering preview</title><desc>Engineering preview generated from design_manifest.json. Native DRC and Gerber validation are pending.</desc>
+<rect x="-3" y="-3" width="296" height="117" fill="#eef0f2"/>
+<rect x="0" y="0" width="290" height="105" rx="0" fill="#191c22" stroke="#5a6370" stroke-width=".25"/>
+<circle cx="5" cy="5" r="1.6" fill="#eef0f2" stroke="#808791" stroke-width=".18"/>
+<circle cx="145" cy="5" r="1.6" fill="#eef0f2" stroke="#808791" stroke-width=".18"/>
+<circle cx="285" cy="5" r="1.6" fill="#eef0f2" stroke="#808791" stroke-width=".18"/>
+<circle cx="5" cy="100" r="1.6" fill="#eef0f2" stroke="#808791" stroke-width=".18"/>
+<circle cx="170" cy="100" r="1.6" fill="#eef0f2" stroke="#808791" stroke-width=".18"/>
+<circle cx="285" cy="100" r="1.6" fill="#eef0f2" stroke="#808791" stroke-width=".18"/>
+<polyline points="19.0000,82.0000 19.0000,84.0000 46.1100,92.5000 46.1100,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="19" cy="82" r=".4" fill="#91b9f4"/>
+<text x="19.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E00</text>
+<rect x="45.2100" y="94.1" width="1.8" height="1.8" fill="#c1a366"/><circle cx="46.1100" cy="95" r=".5" fill="#181b20"/>
+<text x="46.1100" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">0</text>
+<polyline points="28.0000,50.0000 28.0000,84.0000 48.6500,92.5000 48.6500,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="28" cy="50" r=".4" fill="#91b9f4"/>
+<text x="28.0000" y="49.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E01</text>
+<circle cx="48.6500" cy="95" r=".9" fill="#c1a366"/><circle cx="48.6500" cy="95" r=".5" fill="#181b20"/>
+<text x="48.6500" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">1</text>
+<polyline points="37.0000,82.0000 37.0000,84.0000 51.1900,92.5000 51.1900,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="37" cy="82" r=".4" fill="#91b9f4"/>
+<text x="37.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E02</text>
+<circle cx="51.1900" cy="95" r=".9" fill="#c1a366"/><circle cx="51.1900" cy="95" r=".5" fill="#181b20"/>
+<text x="51.1900" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">2</text>
+<polyline points="46.0000,50.0000 46.0000,84.0000 53.7300,92.5000 53.7300,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="46" cy="50" r=".4" fill="#91b9f4"/>
+<text x="46.0000" y="49.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E03</text>
+<circle cx="53.7300" cy="95" r=".9" fill="#c1a366"/><circle cx="53.7300" cy="95" r=".5" fill="#181b20"/>
+<text x="53.7300" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">3</text>
+<polyline points="55.0000,82.0000 55.0000,84.0000 56.2700,92.5000 56.2700,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="55" cy="82" r=".4" fill="#91b9f4"/>
+<text x="55.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E04</text>
+<circle cx="56.2700" cy="95" r=".9" fill="#c1a366"/><circle cx="56.2700" cy="95" r=".5" fill="#181b20"/>
+<text x="56.2700" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">4</text>
+<polyline points="73.0000,82.0000 73.0000,84.0000 58.8100,92.5000 58.8100,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="73" cy="82" r=".4" fill="#91b9f4"/>
+<text x="73.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E05</text>
+<circle cx="58.8100" cy="95" r=".9" fill="#c1a366"/><circle cx="58.8100" cy="95" r=".5" fill="#181b20"/>
+<text x="58.8100" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">5</text>
+<polyline points="82.0000,50.0000 82.0000,84.0000 61.3500,92.5000 61.3500,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="82" cy="50" r=".4" fill="#91b9f4"/>
+<text x="82.0000" y="49.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E06</text>
+<circle cx="61.3500" cy="95" r=".9" fill="#c1a366"/><circle cx="61.3500" cy="95" r=".5" fill="#181b20"/>
+<text x="61.3500" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">6</text>
+<polyline points="91.0000,82.0000 91.0000,84.0000 63.8900,92.5000 63.8900,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="91" cy="82" r=".4" fill="#91b9f4"/>
+<text x="91.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E07</text>
+<circle cx="63.8900" cy="95" r=".9" fill="#c1a366"/><circle cx="63.8900" cy="95" r=".5" fill="#181b20"/>
+<text x="63.8900" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">7</text>
+<polyline points="100.0000,50.0000 100.0000,84.0000 127.1100,92.5000 127.1100,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="100" cy="50" r=".4" fill="#91b9f4"/>
+<text x="100.0000" y="49.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E08</text>
+<rect x="126.2100" y="94.1" width="1.8" height="1.8" fill="#c1a366"/><circle cx="127.1100" cy="95" r=".5" fill="#181b20"/>
+<text x="127.1100" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">0</text>
+<polyline points="109.0000,82.0000 109.0000,84.0000 129.6500,92.5000 129.6500,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="109" cy="82" r=".4" fill="#91b9f4"/>
+<text x="109.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E09</text>
+<circle cx="129.6500" cy="95" r=".9" fill="#c1a366"/><circle cx="129.6500" cy="95" r=".5" fill="#181b20"/>
+<text x="129.6500" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">1</text>
+<polyline points="118.0000,50.0000 118.0000,84.0000 132.1900,92.5000 132.1900,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="118" cy="50" r=".4" fill="#91b9f4"/>
+<text x="118.0000" y="49.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E10</text>
+<circle cx="132.1900" cy="95" r=".9" fill="#c1a366"/><circle cx="132.1900" cy="95" r=".5" fill="#181b20"/>
+<text x="132.1900" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">2</text>
+<polyline points="127.0000,82.0000 127.0000,84.0000 134.7300,92.5000 134.7300,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="127" cy="82" r=".4" fill="#91b9f4"/>
+<text x="127.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E11</text>
+<circle cx="134.7300" cy="95" r=".9" fill="#c1a366"/><circle cx="134.7300" cy="95" r=".5" fill="#181b20"/>
+<text x="134.7300" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">3</text>
+<polyline points="145.0000,82.0000 145.0000,84.0000 137.2700,92.5000 137.2700,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="145" cy="82" r=".4" fill="#91b9f4"/>
+<text x="145.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E12</text>
+<circle cx="137.2700" cy="95" r=".9" fill="#c1a366"/><circle cx="137.2700" cy="95" r=".5" fill="#181b20"/>
+<text x="137.2700" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">4</text>
+<polyline points="154.0000,50.0000 154.0000,84.0000 139.8100,92.5000 139.8100,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="154" cy="50" r=".4" fill="#91b9f4"/>
+<text x="154.0000" y="49.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E13</text>
+<circle cx="139.8100" cy="95" r=".9" fill="#c1a366"/><circle cx="139.8100" cy="95" r=".5" fill="#181b20"/>
+<text x="139.8100" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">5</text>
+<polyline points="163.0000,82.0000 163.0000,84.0000 142.3500,92.5000 142.3500,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="163" cy="82" r=".4" fill="#91b9f4"/>
+<text x="163.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E14</text>
+<circle cx="142.3500" cy="95" r=".9" fill="#c1a366"/><circle cx="142.3500" cy="95" r=".5" fill="#181b20"/>
+<text x="142.3500" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">6</text>
+<polyline points="172.0000,50.0000 172.0000,84.0000 144.8900,92.5000 144.8900,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="172" cy="50" r=".4" fill="#91b9f4"/>
+<text x="172.0000" y="49.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E15</text>
+<circle cx="144.8900" cy="95" r=".9" fill="#c1a366"/><circle cx="144.8900" cy="95" r=".5" fill="#181b20"/>
+<text x="144.8900" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">7</text>
+<polyline points="181.0000,82.0000 181.0000,84.0000 215.8400,92.5000 215.8400,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="181" cy="82" r=".4" fill="#91b9f4"/>
+<text x="181.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E16</text>
+<rect x="214.9400" y="94.1" width="1.8" height="1.8" fill="#c1a366"/><circle cx="215.8400" cy="95" r=".5" fill="#181b20"/>
+<text x="215.8400" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">0</text>
+<polyline points="199.0000,82.0000 199.0000,84.0000 218.3800,92.5000 218.3800,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="199" cy="82" r=".4" fill="#91b9f4"/>
+<text x="199.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E17</text>
+<circle cx="218.3800" cy="95" r=".9" fill="#c1a366"/><circle cx="218.3800" cy="95" r=".5" fill="#181b20"/>
+<text x="218.3800" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">1</text>
+<polyline points="208.0000,50.0000 208.0000,84.0000 220.9200,92.5000 220.9200,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="208" cy="50" r=".4" fill="#91b9f4"/>
+<text x="208.0000" y="49.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E18</text>
+<circle cx="220.9200" cy="95" r=".9" fill="#c1a366"/><circle cx="220.9200" cy="95" r=".5" fill="#181b20"/>
+<text x="220.9200" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">2</text>
+<polyline points="217.0000,82.0000 217.0000,84.0000 223.4600,92.5000 223.4600,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="217" cy="82" r=".4" fill="#91b9f4"/>
+<text x="217.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E19</text>
+<circle cx="223.4600" cy="95" r=".9" fill="#c1a366"/><circle cx="223.4600" cy="95" r=".5" fill="#181b20"/>
+<text x="223.4600" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">3</text>
+<polyline points="226.0000,50.0000 226.0000,84.0000 226.0000,92.5000 226.0000,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="226" cy="50" r=".4" fill="#91b9f4"/>
+<text x="226.0000" y="49.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E20</text>
+<circle cx="226.0000" cy="95" r=".9" fill="#c1a366"/><circle cx="226.0000" cy="95" r=".5" fill="#181b20"/>
+<text x="226.0000" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">4</text>
+<polyline points="235.0000,82.0000 235.0000,84.0000 228.5400,92.5000 228.5400,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="235" cy="82" r=".4" fill="#91b9f4"/>
+<text x="235.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E21</text>
+<circle cx="228.5400" cy="95" r=".9" fill="#c1a366"/><circle cx="228.5400" cy="95" r=".5" fill="#181b20"/>
+<text x="228.5400" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">5</text>
+<polyline points="244.0000,50.0000 244.0000,84.0000 231.0800,92.5000 231.0800,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="244" cy="50" r=".4" fill="#91b9f4"/>
+<text x="244.0000" y="49.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E22</text>
+<circle cx="231.0800" cy="95" r=".9" fill="#c1a366"/><circle cx="231.0800" cy="95" r=".5" fill="#181b20"/>
+<text x="231.0800" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">6</text>
+<polyline points="253.0000,82.0000 253.0000,84.0000 233.6200,92.5000 233.6200,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="253" cy="82" r=".4" fill="#91b9f4"/>
+<text x="253.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E23</text>
+<circle cx="233.6200" cy="95" r=".9" fill="#c1a366"/><circle cx="233.6200" cy="95" r=".5" fill="#181b20"/>
+<text x="233.6200" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">7</text>
+<polyline points="271.0000,82.0000 271.0000,84.0000 236.1600,92.5000 236.1600,95.0000" fill="none" stroke="#4f9aff" stroke-width=".18"/>
+<circle cx="271" cy="82" r=".4" fill="#91b9f4"/>
+<text x="271.0000" y="81.0000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.05" fill="#b8cfee">E24</text>
+<circle cx="236.1600" cy="95" r=".9" fill="#c1a366"/><circle cx="236.1600" cy="95" r=".5" fill="#181b20"/>
+<text x="236.1600" y="99.1000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.0" fill="#f5f5f5">8</text>
+<text x="10.0000" y="12.0000" text-anchor="start" font-family="Arial,sans-serif" font-size="2.1" fill="#f5f5f5">PASSIVE ELECTRODES: NO VCC / NO GND</text>
+<text x="55.0000" y="90.3000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.2" fill="#f5f5f5">J1 -&gt; MPR1 ELE0-7</text>
+<text x="136.0000" y="90.3000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.2" fill="#f5f5f5">J2 -&gt; MPR2 ELE0-7</text>
+<text x="226.0000" y="90.3000" text-anchor="middle" font-family="Arial,sans-serif" font-size="1.2" fill="#f5f5f5">J3 -&gt; MPR3 ELE0-8</text>
+<text x="2" y="111" font-family="sans-serif" font-size="2.1" fill="#333">Bottom copper shown through the board from top, not mirrored | numbers below pins are MPR121 ELE channels.</text></svg>

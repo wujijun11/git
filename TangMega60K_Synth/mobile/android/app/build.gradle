@@ -1,0 +1,13 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'cn.tangsynth.remote'
+    compileSdk 35
+    buildToolsVersion '35.0.0'
+    defaultConfig { applicationId 'cn.tangsynth.remote'; minSdk 23; targetSdk 35; versionCode 1; versionName '1.0' }
+    sourceSets { main.assets.srcDirs = ['../../web'] }
+    compileOptions { sourceCompatibility JavaVersion.VERSION_1_8; targetCompatibility JavaVersion.VERSION_1_8 }
+    // The portable build keeps its development signing key in the workspace.
+    if (project.hasProperty('tangDebugKeystore')) {
+        signingConfigs.debug.storeFile file(project.property('tangDebugKeystore'))
+    }
+}

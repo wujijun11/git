@@ -13,7 +13,7 @@ module tb_full_control;
         .rsp_seq(rs),.rsp_opcode(ro),.rsp_payload(rp),.event_valid(ev),.event_ready(er),
         .event_on(eon),.event_source(es),.event_note(en),.event_velocity(evel),.event_timbre(et),
         .expr_valid(xv),.expr_ready(xr),.expr_mask(xm),.expr_gain(xg),.expr_bend(xb),.expr_vibrato(xvib),
-        .performance_valid(pv),.performance_ready(pr),.performance_opcode(po),.performance_payload(pp),
+        .performance_valid(pv),.performance_pending(),.performance_ready(pr),.performance_opcode(po),.performance_payload(pp),
         .performance_status(ps),.key_map_flat(km),.current_timbre(ct),.effect_mode(fx),.panic_pulse(pan),
         .active_count(7'd32),.playing(1'b1),.recording(1'b0),.guide_active(1'b1),.overflow_sticky(1'b0),
         .record_count(16'd1024),.score_position(16'd12),.underrun_count(32'd0),

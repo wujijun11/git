@@ -1,8 +1,10 @@
 [CmdletBinding()]
-param([string]$OutputDir='')
+param([string]$OutputDir='', [string]$EvidenceDir='')
 $ErrorActionPreference='Stop'
 $projectDir=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-if (!$OutputDir) { $OutputDir=Join-Path $projectDir 'release/contest-full-20261011' }
+if (!$OutputDir) { $OutputDir=Join-Path $projectDir 'release/contest-full-matrix-c3-20261013' }
+if (!$EvidenceDir) { $EvidenceDir=Join-Path $projectDir 'verification/contest-full-matrix-c3-20261013' }
+$EvidenceDir=[IO.Path]::GetFullPath($EvidenceDir)
 $OutputDir=[IO.Path]::GetFullPath($OutputDir)
 $pnr=Join-Path $projectDir 'full/impl/pnr'
 $timingPath=Join-Path $pnr 'ContestFull.tr'
@@ -51,6 +53,8 @@ $documentationFiles=@(
     'docs/全功能工程与官网验收-20261011.md',
     'docs/全功能首次上板步骤-20261011.md',
     'docs/工程复查与优化-20261011.md',
+    'docs/时序与块RAM优化-20261011.md',
+    'docs/发声异常与单音诊断-20261011.md',
     'docs/mpr121-implementation.md',
     'docs/performance-implementation.md',
     'docs/remote-implementation.md',
@@ -65,6 +69,13 @@ $documentationFiles=@(
     'hardware/touch25/mapping.csv',
     'hardware/slider4/README.md',
     'hardware/slider4/design_overview.svg',
+    'hardware/led25/README.md',
+    'hardware/led25/calibration-25.json',
+    'hardware/led25/identity.csv',
+    'hardware/led25/serpentine.csv',
+    'scripts/configure-led25.py',
+    'scripts/build-ble-bridge.ps1',
+    'scripts/build-ble-bridge.cmd',
     'firmware/ble_bridge/ble_bridge.ino',
     'firmware/ble_bridge/README.md'
 )
@@ -74,6 +85,40 @@ foreach ($relativePath in $documentationFiles) {
     New-Item -ItemType Directory -Force -Path (Split-Path $destinationPath) | Out-Null
     Copy-Item -LiteralPath $sourcePath -Destination $destinationPath -Force
     $inputs+=$sourcePath
+}
+$evidenceRelative='verification/'+(Split-Path $EvidenceDir -Leaf)
+$buildResults=$null
+$hardwareTests=$null
+if (Test-Path -LiteralPath (Join-Path $evidenceDir 'build-results.json')) {
+    $buildResults=Get-Content -LiteralPath (Join-Path $evidenceDir 'build-results.json') -Raw | ConvertFrom-Json
+    $currentFsHash=(Get-FileHash -LiteralPath (Join-Path $pnr 'ContestFull.fs') -Algorithm SHA256).Hash.ToLower()
+    $evidenceFs=@($buildResults.current.artifacts | Where-Object name -eq 'ContestFull.fs')
+    if ($evidenceFs.Count -ne 1 -or $evidenceFs[0].sha256 -ne $currentFsHash) {
+        throw 'Build evidence does not match the current FPGA bitstream. Regenerate report-contest-build.py output.'
+    }
+    if (Test-Path -LiteralPath (Join-Path $evidenceDir 'hardware-tests.json')) {
+        $hardwareTests=Get-Content -LiteralPath (Join-Path $evidenceDir 'hardware-tests.json') -Raw | ConvertFrom-Json
+        if ($hardwareTests.bitstreamSha256 -ne $currentFsHash) {
+            throw 'Hardware test record refers to a different FPGA bitstream.'
+        }
+    }
+    foreach ($evidence in Get-ChildItem -LiteralPath $evidenceDir -File) {
+        $destination=Join-Path $OutputDir ($evidenceRelative+'/'+$evidence.Name)
+        New-Item -ItemType Directory -Force -Path (Split-Path $destination) | Out-Null
+        Copy-Item -LiteralPath $evidence.FullName -Destination $destination -Force
+        $inputs+=$evidence.FullName
+    }
+}
+# Include the recording analysis referenced by the hardware test record, but
+# never distribute the user's private video or decoded microphone audio.
+$audioEvidenceDir=Join-Path $projectDir 'verification/audio-diagnostic-20261011'
+if (Test-Path -LiteralPath $audioEvidenceDir) {
+    foreach ($evidence in Get-ChildItem -LiteralPath $audioEvidenceDir -File -Filter '*.json') {
+        $destination=Join-Path $OutputDir ('verification/audio-diagnostic-20261011/'+$evidence.Name)
+        New-Item -ItemType Directory -Force -Path (Split-Path $destination) | Out-Null
+        Copy-Item -LiteralPath $evidence.FullName -Destination $destination -Force
+        $inputs+=$evidence.FullName
+    }
 }
 # Retain the old delivery entry link while keeping relative document links
 # under the same docs/hardware layout as the source project.
@@ -86,7 +131,17 @@ if (Test-Path -LiteralPath $bleManifestPath) {
     if ($ble.sourceSha256 -ne (Get-FileHash -LiteralPath $bleSource -Algorithm SHA256).Hash.ToLower()) {
         throw 'BLE source changed after its binary was compiled. Rebuild before export.'
     }
-    if ($ble.core -ne 'esp32:esp32@3.3.5' -or $ble.fqbn -ne 'esp32:esp32:esp32c3:CDCOnBoot=cdc') {
+    if ($ble.exitCode -ne 0 -or !$ble.sourceFiles -or $ble.sourceFiles.Count -ne @(Get-ChildItem -LiteralPath (Split-Path $bleSource) -File | Where-Object Extension -in '.ino','.h','.hpp','.cpp','.c').Count) {
+        throw 'BLE manifest is missing successful build or complete source evidence.'
+    }
+    foreach ($sourceFile in $ble.sourceFiles) {
+        if ([IO.Path]::GetFileName($sourceFile.name) -ne $sourceFile.name) { throw 'BLE manifest has an invalid source name.' }
+        $sourcePath=Join-Path (Split-Path $bleSource) $sourceFile.name
+        if ((Get-FileHash -LiteralPath $sourcePath -Algorithm SHA256).Hash.ToLower() -ne $sourceFile.sha256) {
+            throw "BLE source changed after compilation: $($sourceFile.name)"
+        }
+    }
+    if ($ble.core -ne 'esp32:esp32@3.3.5' -or $ble.fqbn -ne 'esp32:esp32:waveshare_esp32_c3_zero:CDCOnBoot=default,FlashSize=4M') {
         throw 'BLE build target does not match the supported C3 bridge.'
     }
     $bleDestination=Join-Path $OutputDir 'firmware/ble_bridge/output'
@@ -108,8 +163,13 @@ $manifest=[ordered]@{
     device='GW5AT-60B / GW5AT-LV60PG484AC1/I0'
     setupViolations=0;holdViolations=0
     hardwareValidated=$false
+    fpgaSramProgrammed=($null -ne $hardwareTests -and $hardwareTests.sramProgrammed -eq $true)
+    currentBoardConfiguration=if($hardwareTests){$hardwareTests.currentBoardConfiguration}else{$null}
+    basicPlaybackControlsUserReportedPass=($null -ne $hardwareTests -and $hardwareTests.audioTest.status -eq 'controls_user_reported_pass')
+    minimumSlackNs=if($buildResults){$buildResults.current.minimumSlackNs}else{$null}
+    resources=if($buildResults){$buildResults.current.resources}else{$null}
     bleBinaryIncluded=$bleIncluded
-    note='Check actual dock revision and new pins before downloading. No BLE/LED/HDMI hardware acceptance yet.'
+    note='This delivery is a fresh software build. Old SRAM/control test records apply only to their recorded bitstream hashes. Check actual 31005 dock physical pin mapping before attaching peripherals. New build programming, BLE/LED/HDMI acceptance and whole-instrument latency remain pending.'
     inputs=@($inputs | Sort-Object -Unique | ForEach-Object {
         [ordered]@{path=[IO.Path]::GetRelativePath($projectDir,$_).Replace('\','/');sha256=(Get-FileHash -LiteralPath $_ -Algorithm SHA256).Hash.ToLower()}
     })

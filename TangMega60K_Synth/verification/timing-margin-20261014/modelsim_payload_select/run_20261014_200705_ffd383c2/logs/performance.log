@@ -1,0 +1,14 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/performance.wlf -l logs/performance.log -do "do cases/performance.do" work.tb_performance_controller 
+# Start time: 20:09:40 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_performance_controller
+# Loading work.performance_controller
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'fractional'.  Expected 33, found 32.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_performance_controller/fractional File: sim/tb_performance_controller.sv Line: 28
+# ** Warning: (vsim-3722) sim/tb_performance_controller.sv(28): [TFMPC] - Missing connection for port 'action_busy'.
+# do cases/performance.do
+# PASS performance: 60 ordered events; timer, 25-key guide, commit, map, stalls, stop/panic, recorder/readback/replay/overflow/reset
+# ** Note: $finish    : sim/tb_performance_controller.sv(265)
+#    Time: 541230 ns  Iteration: 1  Instance: /tb_performance_controller
+# End time: 20:09:41 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 2

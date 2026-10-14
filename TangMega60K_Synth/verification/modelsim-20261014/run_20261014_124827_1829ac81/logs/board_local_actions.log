@@ -1,0 +1,12 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/board_local_actions.wlf -l logs/board_local_actions.log -do "do cases/board_local_actions.do" work.tb_board_local_actions 
+# Start time: 12:51:00 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_board_local_actions
+# Loading work.board_local_actions
+# Loading work.performance_controller
+# do cases/board_local_actions.do
+# BOARD LOCAL ACTIONS PASS 16 commands: constant/pulsed ready, busy releases, UART, inhibition, KEY1 priority, reset, no added latency
+# ** Note: $finish    : sim/tb_board_local_actions.sv(150)
+#    Time: 2060 ns  Iteration: 1  Instance: /tb_board_local_actions
+# End time: 12:51:00 on Oct 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

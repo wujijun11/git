@@ -1,0 +1,882 @@
+﻿[
+    {
+        "Kind":  "Project",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\full\\ContestFull.gprj",
+        "StagedPath":  "full/ContestFull.gprj",
+        "Sha256Before":  "309afe0bbd1a5ac8e36ea90ceeb8a883d1a78af880182981895c3d0c1485a5ed",
+        "Sha256After":  "309afe0bbd1a5ac8e36ea90ceeb8a883d1a78af880182981895c3d0c1485a5ed",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\adsr.v",
+        "StagedPath":  "rtl/audio/adsr.v",
+        "Sha256Before":  "4681934c77a0148f295cf5ab8590a4c59952948ed7e615a010191c7691d0194e",
+        "Sha256After":  "4681934c77a0148f295cf5ab8590a4c59952948ed7e615a010191c7691d0194e",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\audio_fx.v",
+        "StagedPath":  "rtl/audio/audio_fx.v",
+        "Sha256Before":  "d987fbeb0419ebabac66a2ef26d8440a554b7662764ae69616af048d28be912d",
+        "Sha256After":  "d987fbeb0419ebabac66a2ef26d8440a554b7662764ae69616af048d28be912d",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\audio_system_v2_fm.v",
+        "StagedPath":  "rtl/audio/audio_system_v2_fm.v",
+        "Sha256Before":  "7619181d0e405c6a428fc5e4577d3a55d8bad376e02ee9d48d10f98cf21c6c15",
+        "Sha256After":  "7619181d0e405c6a428fc5e4577d3a55d8bad376e02ee9d48d10f98cf21c6c15",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\audio_system_v2.v",
+        "StagedPath":  "rtl/audio/audio_system_v2.v",
+        "Sha256Before":  "2dc326de168b92fa260adc6ea747c5755ad3a951c1b7a2f6e3cd476c6e4cc98b",
+        "Sha256After":  "2dc326de168b92fa260adc6ea747c5755ad3a951c1b7a2f6e3cd476c6e4cc98b",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\dds_lane.v",
+        "StagedPath":  "rtl/audio/dds_lane.v",
+        "Sha256Before":  "6b4e97a82f37c24baa6b7d3e189a630a1a0cf557aec39dfd4f2ca2183d55a192",
+        "Sha256After":  "6b4e97a82f37c24baa6b7d3e189a630a1a0cf557aec39dfd4f2ca2183d55a192",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\fm_piano_lane.v",
+        "StagedPath":  "rtl/audio/fm_piano_lane.v",
+        "Sha256Before":  "0a59404a8c1b5e1be88d8cd115be8d4596cd5e8c37e51308eb7873644463287a",
+        "Sha256After":  "0a59404a8c1b5e1be88d8cd115be8d4596cd5e8c37e51308eb7873644463287a",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\gain_saturator.v",
+        "StagedPath":  "rtl/audio/gain_saturator.v",
+        "Sha256Before":  "2930b65486daa51f8941311cc983254bb9ffcaf7ae7203006f307480435f8e0a",
+        "Sha256After":  "2930b65486daa51f8941311cc983254bb9ffcaf7ae7203006f307480435f8e0a",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\pitch_expression.v",
+        "StagedPath":  "rtl/audio/pitch_expression.v",
+        "Sha256Before":  "56a092bc8f5f9568b0f595b0a45c5024464000fda2bbfed08aa4d58f32fb191f",
+        "Sha256After":  "56a092bc8f5f9568b0f595b0a45c5024464000fda2bbfed08aa4d58f32fb191f",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\polar_lane.v",
+        "StagedPath":  "rtl/audio/polar_lane.v",
+        "Sha256Before":  "eb1ad0f4d0a60e2af3cdf599875f23b5c4a34db8bd34587a58afb82eced6038c",
+        "Sha256After":  "eb1ad0f4d0a60e2af3cdf599875f23b5c4a34db8bd34587a58afb82eced6038c",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\runtime_audio_fx.v",
+        "StagedPath":  "rtl/audio/runtime_audio_fx.v",
+        "Sha256Before":  "94b238b4d30c74703ad2f7f43cc3228d0e9770eb71e1d2e44ffcbc88657596e9",
+        "Sha256After":  "94b238b4d30c74703ad2f7f43cc3228d0e9770eb71e1d2e44ffcbc88657596e9",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\stereo_mixer.v",
+        "StagedPath":  "rtl/audio/stereo_mixer.v",
+        "Sha256Before":  "56955d73d27f4d6dbb5778c33ef5779fefe6dd90dde6eac373b9694186710188",
+        "Sha256After":  "56955d73d27f4d6dbb5778c33ef5779fefe6dd90dde6eac373b9694186710188",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\voice_engine.v",
+        "StagedPath":  "rtl/audio/voice_engine.v",
+        "Sha256Before":  "206e9bd3eb5d1127d243c44d8804940a7731533c0528ceaf291915da858f8afe",
+        "Sha256After":  "206e9bd3eb5d1127d243c44d8804940a7731533c0528ceaf291915da858f8afe",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\voice_state_ram.v",
+        "StagedPath":  "rtl/audio/voice_state_ram.v",
+        "Sha256Before":  "7b62a9d2600d7a58434e996a5985773a6538c28b96232ca30849ba9207edc7fd",
+        "Sha256After":  "7b62a9d2600d7a58434e996a5985773a6538c28b96232ca30849ba9207edc7fd",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\wavetable_rom.v",
+        "StagedPath":  "rtl/audio/wavetable_rom.v",
+        "Sha256Before":  "1c162cc98d743a01f1a24ec000c96088b4594c750399154519405477c6dd37fa",
+        "Sha256After":  "1c162cc98d743a01f1a24ec000c96088b4594c750399154519405477c6dd37fa",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\board\\board_audio_16_48k_i2s_top.v",
+        "StagedPath":  "rtl/board/board_audio_16_48k_i2s_top.v",
+        "Sha256Before":  "52fd587b0d2c459da788153d029437f092ca463bc58c8c0885b347b3d49d4a38",
+        "Sha256After":  "52fd587b0d2c459da788153d029437f092ca463bc58c8c0885b347b3d49d4a38",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\board\\board_audio_48k_gao_top.v",
+        "StagedPath":  "rtl/board/board_audio_48k_gao_top.v",
+        "Sha256Before":  "7d6a1b5ab389b400a0f3012820cd44a03ab7e8a5a47c9497c86f7a115880b676",
+        "Sha256After":  "7d6a1b5ab389b400a0f3012820cd44a03ab7e8a5a47c9497c86f7a115880b676",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\board\\board_audio_48k_i2s_top.v",
+        "StagedPath":  "rtl/board/board_audio_48k_i2s_top.v",
+        "Sha256Before":  "8b664d20b3b56fe87c19412cd46103006ea8d68ced0789f0ff2af1256e4bc0aa",
+        "Sha256After":  "8b664d20b3b56fe87c19412cd46103006ea8d68ced0789f0ff2af1256e4bc0aa",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\board\\board_audio_diagnostic_top.v",
+        "StagedPath":  "rtl/board/board_audio_diagnostic_top.v",
+        "Sha256Before":  "851ae9aeb5e922f9efbf1ae7dcc5e4e3ead965b9d3ba78b0acf4570e011ec651",
+        "Sha256After":  "851ae9aeb5e922f9efbf1ae7dcc5e4e3ead965b9d3ba78b0acf4570e011ec651",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\board\\board_audio_gao_top.v",
+        "StagedPath":  "rtl/board/board_audio_gao_top.v",
+        "Sha256Before":  "3129e781a0bf5e5d31a1d3d78ab3a7dc6b6271d2dd54e43ab7a8874fa02476ef",
+        "Sha256After":  "3129e781a0bf5e5d31a1d3d78ab3a7dc6b6271d2dd54e43ab7a8874fa02476ef",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\board\\board_bringup_top.v",
+        "StagedPath":  "rtl/board/board_bringup_top.v",
+        "Sha256Before":  "b1b964fa086512d759dc50d5400fe1c9cf5df95753f8718553aa4be6587276f1",
+        "Sha256After":  "b1b964fa086512d759dc50d5400fe1c9cf5df95753f8718553aa4be6587276f1",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\board\\board_contest_full_top.v",
+        "StagedPath":  "rtl/board/board_contest_full_top.v",
+        "Sha256Before":  "74fc684ad62dd791a8515c88d110aef35dbd59745f363888c5e23ae6a3720b52",
+        "Sha256After":  "74fc684ad62dd791a8515c88d110aef35dbd59745f363888c5e23ae6a3720b52",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\board\\board_instrument_b_48k_gao_top.v",
+        "StagedPath":  "rtl/board/board_instrument_b_48k_gao_top.v",
+        "Sha256Before":  "98f0a26a17edac4ee49457453720b5903d08cc0f5bc9e3f17a8afde45bafef6f",
+        "Sha256After":  "98f0a26a17edac4ee49457453720b5903d08cc0f5bc9e3f17a8afde45bafef6f",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\board\\board_instrument_b_48k_i2s_top.v",
+        "StagedPath":  "rtl/board/board_instrument_b_48k_i2s_top.v",
+        "Sha256Before":  "6b23d46cd3daa221fa23d504e9c561c699f05b68bd2b206fbf22af6d7a3dfa6b",
+        "Sha256After":  "6b23d46cd3daa221fa23d504e9c561c699f05b68bd2b206fbf22af6d7a3dfa6b",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\board\\board_key_event_adapter.v",
+        "StagedPath":  "rtl/board/board_key_event_adapter.v",
+        "Sha256Before":  "972e0d2b61f7a6b640c3f1ddabcf2e9907118592c3ff3000bc60478ccccfcddd",
+        "Sha256After":  "972e0d2b61f7a6b640c3f1ddabcf2e9907118592c3ff3000bc60478ccccfcddd",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\board\\board_sequence16_48k_i2s_top.v",
+        "StagedPath":  "rtl/board/board_sequence16_48k_i2s_top.v",
+        "Sha256Before":  "92d831c606100c73cba463d3619ef9865b63aa10c220d84291adfbfffc96f38f",
+        "Sha256After":  "92d831c606100c73cba463d3619ef9865b63aa10c220d84291adfbfffc96f38f",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\captain_control_top_v2.v",
+        "StagedPath":  "rtl/captain_control_top_v2.v",
+        "Sha256Before":  "73a178a24e73fe7e39b307d9b5407cc209f936a63beacc53a28892a2a5dad2b2",
+        "Sha256After":  "73a178a24e73fe7e39b307d9b5407cc209f936a63beacc53a28892a2a5dad2b2",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\captain_control_top.v",
+        "StagedPath":  "rtl/captain_control_top.v",
+        "Sha256Before":  "58051c5483eeb97a700765442f5eb26f454bc3ca1303dc079dcdcc39451a76ba",
+        "Sha256After":  "58051c5483eeb97a700765442f5eb26f454bc3ca1303dc079dcdcc39451a76ba",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\captain_system_top_v2.v",
+        "StagedPath":  "rtl/captain_system_top_v2.v",
+        "Sha256Before":  "6cb353e564b599481eaefd8973ea7c149d8d6ab111775e3333678ce005716815",
+        "Sha256After":  "6cb353e564b599481eaefd8973ea7c149d8d6ab111775e3333678ce005716815",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\captain_system_top.v",
+        "StagedPath":  "rtl/captain_system_top.v",
+        "Sha256Before":  "416ed87045c1338d4dcc467fa9ea7e2335f7119f6e798f0942f95ebfe224eb6e",
+        "Sha256After":  "416ed87045c1338d4dcc467fa9ea7e2335f7119f6e798f0942f95ebfe224eb6e",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\clock\\audio_clock_48k.v",
+        "StagedPath":  "rtl/clock/audio_clock_48k.v",
+        "Sha256Before":  "a1e2821fec64f8de6f693373362f319d6db684434b97a76816e365c5a3e81fc6",
+        "Sha256After":  "a1e2821fec64f8de6f693373362f319d6db684434b97a76816e365c5a3e81fc6",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\clock\\pll_init.v",
+        "StagedPath":  "rtl/clock/pll_init.v",
+        "Sha256Before":  "3fc6bef9a7086f0920bfa47265b1766854a53f6ca1c0f75084eaf6b6ef4d6258",
+        "Sha256After":  "3fc6bef9a7086f0920bfa47265b1766854a53f6ca1c0f75084eaf6b6ef4d6258",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\control\\expression_merge.v",
+        "StagedPath":  "rtl/control/expression_merge.v",
+        "Sha256Before":  "6845ee307831f819c501328fe59db2a0d2d5621750aff8d413832d9a65f08f58",
+        "Sha256After":  "6845ee307831f819c501328fe59db2a0d2d5621750aff8d413832d9a65f08f58",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\control\\note_arbiter.v",
+        "StagedPath":  "rtl/control/note_arbiter.v",
+        "Sha256Before":  "e348f41ba5d6c01d189f83edb74baff2cd91ca5ddc61907a878878c6164587c3",
+        "Sha256After":  "e348f41ba5d6c01d189f83edb74baff2cd91ca5ddc61907a878878c6164587c3",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\control\\remote_command_router.v",
+        "StagedPath":  "rtl/control/remote_command_router.v",
+        "Sha256Before":  "4f73a24b85b8755bc456a7398997492f56b136e74419c93c9963bcd4e93e6a86",
+        "Sha256After":  "4f73a24b85b8755bc456a7398997492f56b136e74419c93c9963bcd4e93e6a86",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\control\\remote_note_watchdog.v",
+        "StagedPath":  "rtl/control/remote_note_watchdog.v",
+        "Sha256Before":  "7bb684532e012bd450adddc3b1a97e59073b8d80ea9a8c52cce4bb84b7be16d7",
+        "Sha256After":  "7bb684532e012bd450adddc3b1a97e59073b8d80ea9a8c52cce4bb84b7be16d7",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\diagnostics\\live64_event_source.v",
+        "StagedPath":  "rtl/diagnostics/live64_event_source.v",
+        "Sha256Before":  "c0041578a949bc4990b90dd0f9997c855e960db927129d00421fd9b100edb679",
+        "Sha256After":  "c0041578a949bc4990b90dd0f9997c855e960db927129d00421fd9b100edb679",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\diagnostics\\live64_system_top.v",
+        "StagedPath":  "rtl/diagnostics/live64_system_top.v",
+        "Sha256Before":  "659e063860a9a2c6d04507a42ab82db71963965bd5d23d1718367d448b3c4c1d",
+        "Sha256After":  "659e063860a9a2c6d04507a42ab82db71963965bd5d23d1718367d448b3c4c1d",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\diagnostics\\poly16_event_source.v",
+        "StagedPath":  "rtl/diagnostics/poly16_event_source.v",
+        "Sha256Before":  "425b2a6f25ee49fdcb5e511d7e1b58ccea807f1c6bdb46a00fb8710b85a0cd96",
+        "Sha256After":  "425b2a6f25ee49fdcb5e511d7e1b58ccea807f1c6bdb46a00fb8710b85a0cd96",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\diagnostics\\sequence16_event_source.v",
+        "StagedPath":  "rtl/diagnostics/sequence16_event_source.v",
+        "Sha256Before":  "fbb58aeefe2e1b1051ae46d8d23a2b36bf30e950d0b57ff13707edc54c58202a",
+        "Sha256After":  "fbb58aeefe2e1b1051ae46d8d23a2b36bf30e950d0b57ff13707edc54c58202a",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\event_fifo_v2.v",
+        "StagedPath":  "rtl/event_fifo_v2.v",
+        "Sha256Before":  "d2ba29dd7a07483f1d9a7270cf36da6ae5165af7b47058b9da1a658ae0407b41",
+        "Sha256After":  "d2ba29dd7a07483f1d9a7270cf36da6ae5165af7b47058b9da1a658ae0407b41",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\event_fifo.v",
+        "StagedPath":  "rtl/event_fifo.v",
+        "Sha256Before":  "0bae0e372fa20687efa27def24032463336490613b27b71b6427d160efc3aaa7",
+        "Sha256After":  "0bae0e372fa20687efa27def24032463336490613b27b71b6427d160efc3aaa7",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\expression_controls_v2.v",
+        "StagedPath":  "rtl/expression_controls_v2.v",
+        "Sha256Before":  "1e5999906661197f9aadf1318c2680028258c6353fb9afd970c0e45bb5d0fcd2",
+        "Sha256After":  "1e5999906661197f9aadf1318c2680028258c6353fb9afd970c0e45bb5d0fcd2",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\i2s_tx.v",
+        "StagedPath":  "rtl/i2s_tx.v",
+        "Sha256Before":  "95c36d7db8234d21dcfb8d0acd4eae330ac229bc08591a6d66c14425a6a3f147",
+        "Sha256After":  "95c36d7db8234d21dcfb8d0acd4eae330ac229bc08591a6d66c14425a6a3f147",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\instrument_full_system.v",
+        "StagedPath":  "rtl/instrument_full_system.v",
+        "Sha256Before":  "e8cb47f46ddd104fd10a1be093da70007a892e7ad8a1a806cb35e7135e2ddc13",
+        "Sha256After":  "e8cb47f46ddd104fd10a1be093da70007a892e7ad8a1a806cb35e7135e2ddc13",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\instrument_system_v2.v",
+        "StagedPath":  "rtl/instrument_system_v2.v",
+        "Sha256Before":  "2fe1d96bd7850c473f95867ab1d80472d7b0950e5c0f697d7ee813af9c8b1176",
+        "Sha256After":  "2fe1d96bd7850c473f95867ab1d80472d7b0950e5c0f697d7ee813af9c8b1176",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\interaction_top_v2.v",
+        "StagedPath":  "rtl/interaction_top_v2.v",
+        "Sha256Before":  "37396f29d885891a8bbda5545e8fdea17880297ad9294ecbcb7a1f0dac93b954",
+        "Sha256After":  "37396f29d885891a8bbda5545e8fdea17880297ad9294ecbcb7a1f0dac93b954",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\interaction_top.v",
+        "StagedPath":  "rtl/interaction_top.v",
+        "Sha256Before":  "156dd2ad23ed14c05ea12b8e34d279df406b32ab37f84681d40535ed94a71b4c",
+        "Sha256After":  "156dd2ad23ed14c05ea12b8e34d279df406b32ab37f84681d40535ed94a71b4c",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\performance\\performance_controller.v",
+        "StagedPath":  "rtl/performance/performance_controller.v",
+        "Sha256Before":  "e82ff37dce81cd52a138d8aa5fc7e3ca229b1f7d3c915e2cc1b9ba226e5e7af7",
+        "Sha256After":  "e82ff37dce81cd52a138d8aa5fc7e3ca229b1f7d3c915e2cc1b9ba226e5e7af7",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\performance\\ws2812_guide.v",
+        "StagedPath":  "rtl/performance/ws2812_guide.v",
+        "Sha256Before":  "249594b10cbd6aa7dcf8299ea4e6b14e958410bede8a1ddfc76ca4c0e60578ee",
+        "Sha256After":  "249594b10cbd6aa7dcf8299ea4e6b14e958410bede8a1ddfc76ca4c0e60578ee",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\remote\\remote_uart_transport.sv",
+        "StagedPath":  "rtl/remote/remote_uart_transport.sv",
+        "Sha256Before":  "0155098b90f7aec2e67dad4517ab386b6df63d0ad7e7ad1bcb961e915d7fb824",
+        "Sha256After":  "0155098b90f7aec2e67dad4517ab386b6df63d0ad7e7ad1bcb961e915d7fb824",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\sensors\\i2c_register_master.v",
+        "StagedPath":  "rtl/sensors/i2c_register_master.v",
+        "Sha256Before":  "21713fcdd00e76627fea4dbffcf796f21ea080a0fde22fae156aa03397e03906",
+        "Sha256After":  "21713fcdd00e76627fea4dbffcf796f21ea080a0fde22fae156aa03397e03906",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\sensors\\mpr121_input_frontend.v",
+        "StagedPath":  "rtl/sensors/mpr121_input_frontend.v",
+        "Sha256Before":  "d53b382d6150d54a60c7492f9443b30f44dbe8638b2a4e5aecf154410901c5a4",
+        "Sha256After":  "d53b382d6150d54a60c7492f9443b30f44dbe8638b2a4e5aecf154410901c5a4",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\sensors\\mpr121_key_eventizer.v",
+        "StagedPath":  "rtl/sensors/mpr121_key_eventizer.v",
+        "Sha256Before":  "ce612b7b3b62d683499caa133964c4742ab4918af921c13d9a2c54afea5afa6a",
+        "Sha256After":  "ce612b7b3b62d683499caa133964c4742ab4918af921c13d9a2c54afea5afa6a",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\sensors\\mpr121_sampler.v",
+        "StagedPath":  "rtl/sensors/mpr121_sampler.v",
+        "Sha256Before":  "faf9c16d3483c9509bac590cde9722eff1b5551dd9c9010a4662eccb93208778",
+        "Sha256After":  "faf9c16d3483c9509bac590cde9722eff1b5551dd9c9010a4662eccb93208778",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\sensors\\mpr121_slider.v",
+        "StagedPath":  "rtl/sensors/mpr121_slider.v",
+        "Sha256Before":  "1336c6c4e328c244cacef95f35857c41e4fbce09f0632e6b5ce25e70829e25a6",
+        "Sha256After":  "1336c6c4e328c244cacef95f35857c41e4fbce09f0632e6b5ce25e70829e25a6",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\test_tone_source.v",
+        "StagedPath":  "rtl/test_tone_source.v",
+        "Sha256Before":  "b36a3949079c6f9abf066d1d4ebe92e816d2e34001bee50441ae038f1f69ae20",
+        "Sha256After":  "b36a3949079c6f9abf066d1d4ebe92e816d2e34001bee50441ae038f1f69ae20",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\tone_demo_top.v",
+        "StagedPath":  "rtl/tone_demo_top.v",
+        "Sha256Before":  "701fd58fed96ad12579041a66a295eb07710bc85e89516fec2b4a41ff2151aa8",
+        "Sha256After":  "701fd58fed96ad12579041a66a295eb07710bc85e89516fec2b4a41ff2151aa8",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\visual\\audio_monitor_cdc.v",
+        "StagedPath":  "rtl/visual/audio_monitor_cdc.v",
+        "Sha256Before":  "5dd36ede663ca346aae5abf9701c960754cfe8258631e63a90c11090d50bad7f",
+        "Sha256After":  "5dd36ede663ca346aae5abf9701c960754cfe8258631e63a90c11090d50bad7f",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\visual\\audio_visualizer.v",
+        "StagedPath":  "rtl/visual/audio_visualizer.v",
+        "Sha256Before":  "4c50b63aba7d57a5559c67c82ca84460dbd352e8b176e53b210445e5f2e116e9",
+        "Sha256After":  "4c50b63aba7d57a5559c67c82ca84460dbd352e8b176e53b210445e5f2e116e9",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\visual\\scope_renderer.v",
+        "StagedPath":  "rtl/visual/scope_renderer.v",
+        "Sha256Before":  "31c2033bd0e147aed019b2fb61e75c13ef4bc632434646c12551040ed1d27410",
+        "Sha256After":  "31c2033bd0e147aed019b2fb61e75c13ef4bc632434646c12551040ed1d27410",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\visual\\video_clocking.v",
+        "StagedPath":  "rtl/visual/video_clocking.v",
+        "Sha256Before":  "ee8aabd62f8d7df09a391ea26e751e2f733551bb808083fd801fd2b87cc29baf",
+        "Sha256After":  "ee8aabd62f8d7df09a391ea26e751e2f733551bb808083fd801fd2b87cc29baf",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\visual\\video_timing_640x480.v",
+        "StagedPath":  "rtl/visual/video_timing_640x480.v",
+        "Sha256Before":  "2b3ebc87bee4851bf02db2df6fcff78e98ca9eea581bb56f23b99b4438c1e3bb",
+        "Sha256After":  "2b3ebc87bee4851bf02db2df6fcff78e98ca9eea581bb56f23b99b4438c1e3bb",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\visual\\video_tmds_encoder.v",
+        "StagedPath":  "rtl/visual/video_tmds_encoder.v",
+        "Sha256Before":  "a66cbc3b60bc3d9f720f13167a91295f7b1c498dd083adbd65c3e44e29362079",
+        "Sha256After":  "a66cbc3b60bc3d9f720f13167a91295f7b1c498dd083adbd65c3e44e29362079",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\visual\\video_tmds_tx.v",
+        "StagedPath":  "rtl/visual/video_tmds_tx.v",
+        "Sha256Before":  "f34d47f35f335c793db1d625cca3cd016909556ab44e70339ebb594942f518ba",
+        "Sha256After":  "f34d47f35f335c793db1d625cca3cd016909556ab44e70339ebb594942f518ba",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\voice_allocator_v2.v",
+        "StagedPath":  "rtl/voice_allocator_v2.v",
+        "Sha256Before":  "5b4a7ce1bf419a8bfcb1307632436fb5f26e98786082d782d9f5cda63a33174d",
+        "Sha256After":  "5b4a7ce1bf419a8bfcb1307632436fb5f26e98786082d782d9f5cda63a33174d",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "RTL",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\voice_allocator.v",
+        "StagedPath":  "rtl/voice_allocator.v",
+        "Sha256Before":  "bbecaeedcfac74c9d252414715c57fdbd929e31b9540fd3f2ecf2b8c2e9c487a",
+        "Sha256After":  "bbecaeedcfac74c9d252414715c57fdbd929e31b9540fd3f2ecf2b8c2e9c487a",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_instrument_full_system.sv",
+        "StagedPath":  "sim/tb_instrument_full_system.sv",
+        "Sha256Before":  "be6e666300051888868fec37c1188a07b941d20a595a08fbc7101931ba7c28f4",
+        "Sha256After":  "be6e666300051888868fec37c1188a07b941d20a595a08fbc7101931ba7c28f4",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_global_panic.sv",
+        "StagedPath":  "sim/tb_global_panic.sv",
+        "Sha256Before":  "6f654ea9bb170c6f98cb790cf086032a99fdcf42eeca045b59958ef70978c8e0",
+        "Sha256After":  "6f654ea9bb170c6f98cb790cf086032a99fdcf42eeca045b59958ef70978c8e0",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_full_control.sv",
+        "StagedPath":  "sim/tb_full_control.sv",
+        "Sha256Before":  "b2dbbe2d9841614e89063e103963dbf106fd30cacb884ef240f425df20466bfb",
+        "Sha256After":  "b2dbbe2d9841614e89063e103963dbf106fd30cacb884ef240f425df20466bfb",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_runtime_audio_fx.sv",
+        "StagedPath":  "sim/tb_runtime_audio_fx.sv",
+        "Sha256Before":  "f39dd456a78d61626a60ec513eabd6066221f7a05a311c41721af4a10eb432de",
+        "Sha256After":  "f39dd456a78d61626a60ec513eabd6066221f7a05a311c41721af4a10eb432de",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_runtime_audio_fx_storage.sv",
+        "StagedPath":  "sim/tb_runtime_audio_fx_storage.sv",
+        "Sha256Before":  "78cdeccc812932c8a207bbc285b6505bc2c9b575cf6f34ee5419053d604ffab8",
+        "Sha256After":  "78cdeccc812932c8a207bbc285b6505bc2c9b575cf6f34ee5419053d604ffab8",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_remote_note_watchdog.sv",
+        "StagedPath":  "sim/tb_remote_note_watchdog.sv",
+        "Sha256Before":  "0041ea15d93b20e3cb3fcc8d8ee982f3f84eb1afb870b8d4717f81886efadfd5",
+        "Sha256After":  "0041ea15d93b20e3cb3fcc8d8ee982f3f84eb1afb870b8d4717f81886efadfd5",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_audio_visualizer.sv",
+        "StagedPath":  "sim/tb_audio_visualizer.sv",
+        "Sha256Before":  "34c084a3436d3c0e9d282bb5007d948b0b8caefe8711bba7cad3b8b0dd53393b",
+        "Sha256After":  "34c084a3436d3c0e9d282bb5007d948b0b8caefe8711bba7cad3b8b0dd53393b",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_audio_monitor_cdc.sv",
+        "StagedPath":  "sim/tb_audio_monitor_cdc.sv",
+        "Sha256Before":  "2934162d00103b94f622f1135a0dbce8d280803a982ce136a3ca028bae97b13d",
+        "Sha256After":  "2934162d00103b94f622f1135a0dbce8d280803a982ce136a3ca028bae97b13d",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_watchdog_arbiter_integration.sv",
+        "StagedPath":  "sim/tb_watchdog_arbiter_integration.sv",
+        "Sha256Before":  "6fa185bd87d3fbdfe04a82241794331533153ef46edcd3c3fe7d1d860ff80210",
+        "Sha256After":  "6fa185bd87d3fbdfe04a82241794331533153ef46edcd3c3fe7d1d860ff80210",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_mpr121_i2c.sv",
+        "StagedPath":  "sim/tb_mpr121_i2c.sv",
+        "Sha256Before":  "15a9bc725523792618368039cd9a99f0a712b1d799eb4773cbda9630958192f1",
+        "Sha256After":  "15a9bc725523792618368039cd9a99f0a712b1d799eb4773cbda9630958192f1",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_mpr121_frontend.sv",
+        "StagedPath":  "sim/tb_mpr121_frontend.sv",
+        "Sha256Before":  "c1c3e59d92d17703f1051c42946c2795bc0f13d6a34ec08a30535a79a19ac55d",
+        "Sha256After":  "c1c3e59d92d17703f1051c42946c2795bc0f13d6a34ec08a30535a79a19ac55d",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_mpr121_backpressure.sv",
+        "StagedPath":  "sim/tb_mpr121_backpressure.sv",
+        "Sha256Before":  "01489ce55f61316a0d184b385c6cbbaa97aafab6a97c6ceb51c77477588df2fe",
+        "Sha256After":  "01489ce55f61316a0d184b385c6cbbaa97aafab6a97c6ceb51c77477588df2fe",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_mpr121_timing.sv",
+        "StagedPath":  "sim/tb_mpr121_timing.sv",
+        "Sha256Before":  "a4f0f228ef0686965ce465247e39422e135c4b2e67ce20b2e4fdc70d80e53c80",
+        "Sha256After":  "a4f0f228ef0686965ce465247e39422e135c4b2e67ce20b2e4fdc70d80e53c80",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_mpr121_eventizer_capacity.sv",
+        "StagedPath":  "sim/tb_mpr121_eventizer_capacity.sv",
+        "Sha256Before":  "465a3d12becd30ff701825eab9ad8b203ce6823c0f427646da8f8faf62a9ccbb",
+        "Sha256After":  "465a3d12becd30ff701825eab9ad8b203ce6823c0f427646da8f8faf62a9ccbb",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_performance_controller.sv",
+        "StagedPath":  "sim/tb_performance_controller.sv",
+        "Sha256Before":  "fbb3732d45e1c7eb552ce8d8e8fc687698069be0b2090e9f054a1070dc1a386f",
+        "Sha256After":  "fbb3732d45e1c7eb552ce8d8e8fc687698069be0b2090e9f054a1070dc1a386f",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_performance_retrigger.sv",
+        "StagedPath":  "sim/tb_performance_retrigger.sv",
+        "Sha256Before":  "e25d64932bedeaab6f4f3ae64329eb94ad945b3312595111c84fe5c0b12a0f71",
+        "Sha256After":  "e25d64932bedeaab6f4f3ae64329eb94ad945b3312595111c84fe5c0b12a0f71",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_performance_commit_pipeline.sv",
+        "StagedPath":  "sim/tb_performance_commit_pipeline.sv",
+        "Sha256Before":  "40dd5a467bc2a6986fd133bd78020d79cdd85038b15d2e850ddb33626363e277",
+        "Sha256After":  "40dd5a467bc2a6986fd133bd78020d79cdd85038b15d2e850ddb33626363e277",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_board_local_actions.sv",
+        "StagedPath":  "sim/tb_board_local_actions.sv",
+        "Sha256Before":  "3e8601cc37e4f07de71f1cdb0d0ce85f5f7ff24f9fcdf2a0ab8b150decb97862",
+        "Sha256After":  "3e8601cc37e4f07de71f1cdb0d0ce85f5f7ff24f9fcdf2a0ab8b150decb97862",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_performance_ws2812.sv",
+        "StagedPath":  "sim/tb_performance_ws2812.sv",
+        "Sha256Before":  "ff1c5ed27d4d1a05e79be20002a55dce4f6dc66ddb8af896108ce744617225e9",
+        "Sha256After":  "ff1c5ed27d4d1a05e79be20002a55dce4f6dc66ddb8af896108ce744617225e9",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_ws2812_matrix.sv",
+        "StagedPath":  "sim/tb_ws2812_matrix.sv",
+        "Sha256Before":  "2eb924dbefe4e7ab43a6ed512180c73ac259ad3e0d00cf62e7348b12b5a8dae3",
+        "Sha256After":  "2eb924dbefe4e7ab43a6ed512180c73ac259ad3e0d00cf62e7348b12b5a8dae3",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_remote_uart_transport.sv",
+        "StagedPath":  "sim/tb_remote_uart_transport.sv",
+        "Sha256Before":  "e42f6b9bd055672fa59f513562bb47a79d2a22e6d5b73303f99da8d5669886c4",
+        "Sha256After":  "e42f6b9bd055672fa59f513562bb47a79d2a22e6d5b73303f99da8d5669886c4",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_video_encoder.sv",
+        "StagedPath":  "sim/tb_video_encoder.sv",
+        "Sha256Before":  "3f3fd97b8b6c3b5a2658df4a39493b65489cdbdb3eec223db7e8198036de1fa0",
+        "Sha256After":  "3f3fd97b8b6c3b5a2658df4a39493b65489cdbdb3eec223db7e8198036de1fa0",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_video_timing.sv",
+        "StagedPath":  "sim/tb_video_timing.sv",
+        "Sha256Before":  "24a5c129a19bdb74b3ae21a21f39157d234062763aa6a9fc42503c3ae9ebbdeb",
+        "Sha256After":  "24a5c129a19bdb74b3ae21a21f39157d234062763aa6a9fc42503c3ae9ebbdeb",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_video_vendor.sv",
+        "StagedPath":  "sim/tb_video_vendor.sv",
+        "Sha256Before":  "fd9b00a028ce953a2f00d7f4775b541eb9f30a2538185eadc124cb945754cf8e",
+        "Sha256After":  "fd9b00a028ce953a2f00d7f4775b541eb9f30a2538185eadc124cb945754cf8e",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_audio_units.sv",
+        "StagedPath":  "sim/tb_audio_units.sv",
+        "Sha256Before":  "eb0010b568bb780a73bdb0e2251605b400c5aa4452db117c7fa8c379171806d9",
+        "Sha256After":  "eb0010b568bb780a73bdb0e2251605b400c5aa4452db117c7fa8c379171806d9",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_audio_engine.sv",
+        "StagedPath":  "sim/tb_audio_engine.sv",
+        "Sha256Before":  "cbfd227ba290416d174a9bb013fae05511bd14dc2f113560867d71f2cbe09617",
+        "Sha256After":  "cbfd227ba290416d174a9bb013fae05511bd14dc2f113560867d71f2cbe09617",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_audio_i2s.sv",
+        "StagedPath":  "sim/tb_audio_i2s.sv",
+        "Sha256Before":  "06fca2bcaae4b1f2cdcf84b1265969368e18ac60902cac53d4a909d3fab62010",
+        "Sha256After":  "06fca2bcaae4b1f2cdcf84b1265969368e18ac60902cac53d4a909d3fab62010",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\tb_mpr121_model.sv",
+        "StagedPath":  "sim/tb_mpr121_model.sv",
+        "Sha256Before":  "036940e11be339a269149a323f3a75054f8ff0ff2929c8c8623ce312f82aa04c",
+        "Sha256After":  "036940e11be339a269149a323f3a75054f8ff0ff2929c8c8623ce312f82aa04c",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Testbench",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\runtime_audio_fx_reference.sv",
+        "StagedPath":  "sim/runtime_audio_fx_reference.sv",
+        "Sha256Before":  "7f04e64e249288e5f227cfb068302b0da201129fce92b07e2857388e4bc47c4b",
+        "Sha256After":  "7f04e64e249288e5f227cfb068302b0da201129fce92b07e2857388e4bc47c4b",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "ROM",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\rom\\midi.hex",
+        "StagedPath":  "rtl/audio/rom/midi.hex",
+        "Sha256Before":  "025dc926a55e048d3c03da49e1f0ab7c2315f2e33c53ff7c8c865d0e1546de4c",
+        "Sha256After":  "025dc926a55e048d3c03da49e1f0ab7c2315f2e33c53ff7c8c865d0e1546de4c",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "ROM",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\rom\\piano.hex",
+        "StagedPath":  "rtl/audio/rom/piano.hex",
+        "Sha256Before":  "00b5d0759ebfa5a44285f326297f70271447802d9efaaa7938df653f6f0214e3",
+        "Sha256After":  "00b5d0759ebfa5a44285f326297f70271447802d9efaaa7938df653f6f0214e3",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "ROM",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\rom\\polar_lane0.hex",
+        "StagedPath":  "rtl/audio/rom/polar_lane0.hex",
+        "Sha256Before":  "d5163af00aa2f50c6968288ef931c2bc09cf173fbef42f3b5bff6ab9318b5f91",
+        "Sha256After":  "d5163af00aa2f50c6968288ef931c2bc09cf173fbef42f3b5bff6ab9318b5f91",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "ROM",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\rom\\polar_lane1.hex",
+        "StagedPath":  "rtl/audio/rom/polar_lane1.hex",
+        "Sha256Before":  "51d162a4d6f4da7fdaa5a3ff5bd7e975dd7ec5da749cd735ce77249c9cde45ac",
+        "Sha256After":  "51d162a4d6f4da7fdaa5a3ff5bd7e975dd7ec5da749cd735ce77249c9cde45ac",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "ROM",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\rom\\polar_ratios.hex",
+        "StagedPath":  "rtl/audio/rom/polar_ratios.hex",
+        "Sha256Before":  "02c874830bf48598df323af3b1dba1f9cff3c7e03f64394ab7e42326403e7c38",
+        "Sha256After":  "02c874830bf48598df323af3b1dba1f9cff3c7e03f64394ab7e42326403e7c38",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "ROM",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\rom\\ratio.hex",
+        "StagedPath":  "rtl/audio/rom/ratio.hex",
+        "Sha256Before":  "d56e8aae3d44582e16aebe622d28c2bee4d41d9d8b80b73fdb0a3d9b37988c8d",
+        "Sha256After":  "d56e8aae3d44582e16aebe622d28c2bee4d41d9d8b80b73fdb0a3d9b37988c8d",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "ROM",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\rom\\sine.hex",
+        "StagedPath":  "rtl/audio/rom/sine.hex",
+        "Sha256Before":  "39d6e76e2dcf7f8337257c5948d6f525a94ffe09f5cf481e9e75a1300082b3c5",
+        "Sha256After":  "39d6e76e2dcf7f8337257c5948d6f525a94ffe09f5cf481e9e75a1300082b3c5",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "ROM",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\rom\\velocity.hex",
+        "StagedPath":  "rtl/audio/rom/velocity.hex",
+        "Sha256Before":  "962fa489ed5acae7209fcc6c447d9cc8a478ebc882d941ac4b6904fdd5b4371d",
+        "Sha256After":  "962fa489ed5acae7209fcc6c447d9cc8a478ebc882d941ac4b6904fdd5b4371d",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "ROM",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\audio\\rom\\waves.hex",
+        "StagedPath":  "rtl/audio/rom/waves.hex",
+        "Sha256Before":  "2c78e04753b9912ca8a3daacb203250d91ea54b62d9c59e1ecde2ee1d4db88dd",
+        "Sha256After":  "2c78e04753b9912ca8a3daacb203250d91ea54b62d9c59e1ecde2ee1d4db88dd",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "ROM",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\visual\\goertzel_1024_64.hex",
+        "StagedPath":  "rtl/visual/goertzel_1024_64.hex",
+        "Sha256Before":  "27f293b17f757724735ca73ab6cfb4e7775353726a0fce55a23a9c6f92cd6078",
+        "Sha256After":  "27f293b17f757724735ca73ab6cfb4e7775353726a0fce55a23a9c6f92cd6078",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Vendor",
+        "Source":  "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\simlib\\gw5a\\prim_sim.v",
+        "StagedPath":  "vendor/gw5a_prim_sim.v",
+        "Sha256Before":  "2ec53fec48601d2d491299bc3a28b4b199d3a79708f1dd38f72555a5c688ebd5",
+        "Sha256After":  "2ec53fec48601d2d491299bc3a28b4b199d3a79708f1dd38f72555a5c688ebd5",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Runner",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\scripts\\test-modelsim-full.ps1",
+        "StagedPath":  "scripts/test-modelsim-full.ps1",
+        "Sha256Before":  "a1e74a2c4c97c7a4e1088a2f1d54492a970b617120318c209c075b285fb34b54",
+        "Sha256After":  "a1e74a2c4c97c7a4e1088a2f1d54492a970b617120318c209c075b285fb34b54",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Runner",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\scripts\\test-modelsim-full.cmd",
+        "StagedPath":  "scripts/test-modelsim-full.cmd",
+        "Sha256Before":  "0fb8793aa582fc2c12ef32a34b1217c5eba04a2dc826a05dbddb480c57530e32",
+        "Sha256After":  "0fb8793aa582fc2c12ef32a34b1217c5eba04a2dc826a05dbddb480c57530e32",
+        "Unchanged":  true
+    },
+    {
+        "Kind":  "Viewer",
+        "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\sim\\view_full_modelsim.do",
+        "StagedPath":  "sim/view_full_modelsim.do",
+        "Sha256Before":  "4bf1f06421f66c03c01e2ba988356e761d4425667897177055724ca22b2c4060",
+        "Sha256After":  "4bf1f06421f66c03c01e2ba988356e761d4425667897177055724ca22b2c4060",
+        "Unchanged":  true
+    }
+]

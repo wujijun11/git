@@ -1,0 +1,11 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/expression_merge.wlf -l logs/expression_merge.log -do "do cases/expression_merge.do" work.tb_expression_merge 
+# Start time: 12:49:25 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_expression_merge
+# Loading work.expression_merge
+# do cases/expression_merge.do
+# EXPRESSION MERGE PASS
+# ** Note: $finish    : sim/tb_full_control.sv(87)
+#    Time: 90 ns  Iteration: 1  Instance: /tb_expression_merge
+# End time: 12:49:26 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

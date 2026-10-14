@@ -27,7 +27,11 @@ module mpr121_key_eventizer #(
     reg [1:0] round_robin;
     reg [1:0] choice;
     wire pop=key_valid && key_ready;
-    wire push=scanning && (target[scan_key]!=committed[scan_key]);
+    wire scan_changed=scanning && (target[scan_key]!=committed[scan_key]);
+    // A complete batch reserves capacity before scanning. Keep the write path
+    // independent of downstream ready: pop can traverse the entire arbiter.
+    // If capacity is ever exhausted, retain this transition until count drops.
+    wire push=scan_changed && (count<FIFO_DEPTH);
     wire [22:0] head=fifo[rdptr];
     wire [5:0] event_source=SOURCE_BASE+scan_key;
     assign key_valid=(count!=0);
@@ -57,27 +61,27 @@ module mpr121_key_eventizer #(
             fault_seen<=fault;
             release_pending<=release_pending | (fault & ~fault_seen);
             if(pop) rdptr<=(rdptr==FIFO_DEPTH-1)?0:rdptr+1;
+            if(scan_changed && count==FIFO_DEPTH && !pop) overflow<=1;
             if(push) begin
-                if(count==FIFO_DEPTH && !pop) overflow<=1;
-                else begin
-                    fifo[wrptr]<={target[scan_key],event_source,
-                        target[scan_key]?batch_map[scan_key*7 +:7]:held_note[scan_key],
-                        7'd100,target[scan_key]?batch_timbre:held_timbre[scan_key]};
-                    wrptr<=(wrptr==FIFO_DEPTH-1)?0:wrptr+1;
-                    committed[scan_key]<=target[scan_key];
-                    if(target[scan_key]) begin
-                        held_note[scan_key]<=batch_map[scan_key*7 +:7];held_timbre[scan_key]<=batch_timbre;
-                    end
+                fifo[wrptr]<={target[scan_key],event_source,
+                    target[scan_key]?batch_map[scan_key*7 +:7]:held_note[scan_key],
+                    7'd100,target[scan_key]?batch_timbre:held_timbre[scan_key]};
+                wrptr<=(wrptr==FIFO_DEPTH-1)?0:wrptr+1;
+                committed[scan_key]<=target[scan_key];
+                if(target[scan_key]) begin
+                    held_note[scan_key]<=batch_map[scan_key*7 +:7];held_timbre[scan_key]<=batch_timbre;
                 end
             end
             case({push,pop})
-                2'b10:if(count<FIFO_DEPTH) count<=count+1;
+                2'b10:count<=count+1;
                 2'b01:count<=count-1;
                 default:count<=count;
             endcase
             if(scanning) begin
-                if(scan_key==24) scanning<=0;
-                else scan_key<=scan_key+1;
+                if(!scan_changed || count<FIFO_DEPTH) begin
+                    if(scan_key==24) scanning<=0;
+                    else scan_key<=scan_key+1;
+                end
             end else begin
                 if(release_pending!=0 && count<=FIFO_DEPTH-25) begin
                     if(release_pending[0]) begin target[7:0]<=0;touch_mask[7:0]<=0;end

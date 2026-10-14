@@ -18,6 +18,8 @@ module board_instrument_b_48k_gao_top #(
     reg [2:0] pressed_meta = 0, pressed_sync = 0;
     reg fault_meta_50 = 0, fault_sync_50 = 0;
     reg complete_meta_50 = 0, complete_sync_50 = 0;
+    reg complete_sticky = 0;
+    reg fault = 0;
     wire [23:0] status_grb = fault_sync_50 ? 24'h002000 :
                              complete_sync_50 ? 24'h200000 : 24'h000020;
 
@@ -60,8 +62,7 @@ module board_instrument_b_48k_gao_top #(
     reg [3:0] phase = RESET;
     reg [31:0] timer = 0;
     reg [15:0] completed_runs = 0;
-    reg complete_sticky = 0;
-    reg fault = 0, serial_seen = 0;
+    reg serial_seen = 0;
     // Registered reset avoids asynchronous-reset glitches from FSM decoding.
     reg rst_n = 0;
 

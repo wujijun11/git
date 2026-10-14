@@ -17,12 +17,12 @@ module board_bringup_top #(
     reg [15:0] power_count = 0;
     wire ready = &power_count;
     assign board_ready = ready;
-    assign keys_pressed = ~key_stable;
     always @(posedge sys_clk)
         if (!ready) power_count <= power_count + 1'b1;
 
     reg [2:0] key_meta = 3'b111, key_sync = 3'b111;
     reg [2:0] key_stable = 3'b111;
+    assign keys_pressed = ~key_stable;
     reg [19:0] debounce [0:2];
     integer k;
     always @(posedge sys_clk) begin

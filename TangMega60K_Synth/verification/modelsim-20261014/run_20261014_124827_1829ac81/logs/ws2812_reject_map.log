@@ -1,0 +1,12 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/ws2812_reject_map.wlf -l logs/ws2812_reject_map.log -do "do cases/ws2812_reject_map.do" work.tb_ws2812_invalid_key_map 
+# Start time: 13:14:00 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_ws2812_invalid_key_map
+# Loading work.ws2812_guide
+# do cases/ws2812_reject_map.do
+# ** Fatal: WS2812 map key out of range
+#    Time: 0 ps  Scope: tb_ws2812_invalid_key_map.dut File: rtl/performance/ws2812_guide.v Line: 52
+# ** Note: $finish    : rtl/performance/ws2812_guide.v(52)
+#    Time: 0 ps  Iteration: 0  Instance: /tb_ws2812_invalid_key_map/dut
+# End time: 13:14:01 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0

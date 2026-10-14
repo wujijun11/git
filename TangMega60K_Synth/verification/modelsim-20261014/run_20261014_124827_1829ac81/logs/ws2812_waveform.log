@@ -1,0 +1,14 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/ws2812_waveform.wlf -l logs/ws2812_waveform.log -do "do cases/ws2812_waveform.do" work.tb_performance_ws2812 
+# Start time: 12:51:05 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_performance_ws2812
+# Loading work.ws2812_waveform_check
+# Loading work.ws2812_guide
+# do cases/ws2812_waveform.do
+# PASS WS2812 20000000Hz: 3 frames, GRB order, 0/1 high AND low widths, snapshot, 300us latch, reset
+# PASS WS2812 49152000Hz: 3 frames, GRB order, 0/1 high AND low widths, snapshot, 300us latch, reset
+# ALL WS2812 WAVEFORM TESTS PASSED
+# ** Note: $finish    : sim/tb_performance_ws2812.sv(80)
+#    Time: 3771895075 ps  Iteration: 1  Instance: /tb_performance_ws2812
+# End time: 12:51:07 on Oct 14,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0

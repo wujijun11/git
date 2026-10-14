@@ -1,0 +1,16 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/mpr121_frontend.wlf -l logs/mpr121_frontend.log -do "do cases/mpr121_frontend.do" work.tb_mpr121_frontend 
+# Start time: 12:50:21 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_mpr121_frontend
+# Loading work.mpr121_input_frontend
+# Loading work.mpr121_key_eventizer
+# Loading work.mpr121_slider
+# Loading work.mpr121_bus_model
+# Loading work.mpr121_sampler
+# Loading work.i2c_register_master
+# do cases/mpr121_frontend.do
+# PASS tb_mpr121_frontend: verified init, mismatch/NACK isolation, 25 keys, retained releases/map, slider signed deltas, module fault recovery and OVCF lock
+# ** Note: $finish    : sim/tb_mpr121_frontend.sv(139)
+#    Time: 3238520 ns  Iteration: 1  Instance: /tb_mpr121_frontend
+# End time: 12:50:23 on Oct 14,2026, Elapsed time: 0:00:02
+# Errors: 0, Warnings: 0

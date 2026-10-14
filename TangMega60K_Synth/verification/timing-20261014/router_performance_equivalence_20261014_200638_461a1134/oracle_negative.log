@@ -1,0 +1,15 @@
+# do {C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\timing-20261014\router_performance_equivalence_20261014_200638_461a1134\oracle_negative.do}
+# vsim -onfinish exit -wlf C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/router_performance_equivalence_20261014_200638_461a1134/oracle_negative.wlf work.tb_router_performance_equivalence "+SEED=471833" "+RANDOM_CYCLES=10000" "+ORACLE_NEGATIVE" 
+# Start time: 20:06:45 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_router_performance_equivalence
+# Loading work.router_performance_equivalence_lane
+# Loading work.performance_controller
+# Loading work.remote_command_router
+# Loading work.remote_command_router_reference
+# ** Fatal: router/performance output mismatch cycle=10
+#    Time: 96 ns  Scope: tb_router_performance_equivalence.compare_state File: C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/router_performance_equivalence_20261014_200638_461a1134/tb_router_performance_equivalence.sv Line: 134
+# ** Note: $finish    : C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/router_performance_equivalence_20261014_200638_461a1134/tb_router_performance_equivalence.sv(134)
+#    Time: 96 ns  Iteration: 0  Instance: /tb_router_performance_equivalence
+# End time: 20:06:46 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0

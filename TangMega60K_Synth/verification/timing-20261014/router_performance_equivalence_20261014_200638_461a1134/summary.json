@@ -1,0 +1,92 @@
+﻿{
+    "Passed":  true,
+    "ReferenceSourceSHA256":  "70da11f8430ff9176a1ffb77cf0aa20a1242de2cc6177a6cb66aec31eea65dc0",
+    "EffectiveRouterSHA256":  "4F73A24B85B8755BC456A7398997492F56B136E74419C93C9963BCD4E93E6A86",
+    "InputsUnchanged":  true,
+    "RunnerSHA256":  "C4A0BA6949A9BC859F1CCF1F3E4270A758EA67991D1C756430C96AB3D0E8EE8C",
+    "RunnerAfterSHA256":  "C4A0BA6949A9BC859F1CCF1F3E4270A758EA67991D1C756430C96AB3D0E8EE8C",
+    "RunnerSnapshotSHA256":  "C4A0BA6949A9BC859F1CCF1F3E4270A758EA67991D1C756430C96AB3D0E8EE8C",
+    "RunnerUnchanged":  true,
+    "ElapsedSeconds":  19.0360965,
+    "RandomCyclesPerSeed":  10000,
+    "Cases":  [
+                  {
+                      "Name":  "oracle_negative",
+                      "Seed":  471833,
+                      "ExpectedFatal":  true,
+                      "Matched":  true,
+                      "ExitCode":  0,
+                      "Marker":  "",
+                      "Log":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\router_performance_equivalence_20261014_200638_461a1134\\oracle_negative.log",
+                      "Console":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\router_performance_equivalence_20261014_200638_461a1134\\oracle_negative.console.log"
+                  },
+                  {
+                      "Name":  "seed_471833",
+                      "Seed":  471833,
+                      "ExpectedFatal":  false,
+                      "Matched":  true,
+                      "ExitCode":  0,
+                      "Marker":  "ROUTER PERFORMANCE EQUIVALENCE PASS cycles=10348 random_cycles=10000 seed=471833 remote=1906 local=3239 acks=1898 perf=944 stalled_acks=1833 reset_in_perf=1 adjacent_writes=11 adjacent_commits=8 contention=477 record_edges=911",
+                      "Log":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\router_performance_equivalence_20261014_200638_461a1134\\seed_471833.log",
+                      "Console":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\router_performance_equivalence_20261014_200638_461a1134\\seed_471833.console.log"
+                  },
+                  {
+                      "Name":  "seed_94177",
+                      "Seed":  94177,
+                      "ExpectedFatal":  false,
+                      "Matched":  true,
+                      "ExitCode":  0,
+                      "Marker":  "ROUTER PERFORMANCE EQUIVALENCE PASS cycles=10348 random_cycles=10000 seed=94177 remote=1904 local=3257 acks=1896 perf=916 stalled_acks=1821 reset_in_perf=1 adjacent_writes=11 adjacent_commits=8 contention=442 record_edges=965",
+                      "Log":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\router_performance_equivalence_20261014_200638_461a1134\\seed_94177.log",
+                      "Console":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\router_performance_equivalence_20261014_200638_461a1134\\seed_94177.console.log"
+                  },
+                  {
+                      "Name":  "seed_123456789",
+                      "Seed":  123456789,
+                      "ExpectedFatal":  false,
+                      "Matched":  true,
+                      "ExitCode":  0,
+                      "Marker":  "ROUTER PERFORMANCE EQUIVALENCE PASS cycles=10348 random_cycles=10000 seed=123456789 remote=1909 local=3147 acks=1902 perf=959 stalled_acks=1963 reset_in_perf=1 adjacent_writes=11 adjacent_commits=8 contention=511 record_edges=908",
+                      "Log":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\router_performance_equivalence_20261014_200638_461a1134\\seed_123456789.log",
+                      "Console":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\router_performance_equivalence_20261014_200638_461a1134\\seed_123456789.console.log"
+                  }
+              ],
+    "Inputs":  [
+                   {
+                       "Label":  "candidate router",
+                       "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8\\rtl\\control\\remote_command_router.v",
+                       "SnapshotPath":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\router_performance_equivalence_20261014_200638_461a1134\\remote_command_router.v",
+                       "Before":  "4F73A24B85B8755BC456A7398997492F56B136E74419C93C9963BCD4E93E6A86",
+                       "Snapshot":  "4F73A24B85B8755BC456A7398997492F56B136E74419C93C9963BCD4E93E6A86",
+                       "After":  "4F73A24B85B8755BC456A7398997492F56B136E74419C93C9963BCD4E93E6A86",
+                       "SnapshotAfter":  "4F73A24B85B8755BC456A7398997492F56B136E74419C93C9963BCD4E93E6A86"
+                   },
+                   {
+                       "Label":  "shared production controller",
+                       "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\rtl\\performance\\performance_controller.v",
+                       "SnapshotPath":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\router_performance_equivalence_20261014_200638_461a1134\\performance_controller.v",
+                       "Before":  "E82FF37DCE81CD52A138D8AA5FC7E3CA229B1F7D3C915E2CC1B9BA226E5E7AF7",
+                       "Snapshot":  "E82FF37DCE81CD52A138D8AA5FC7E3CA229B1F7D3C915E2CC1B9BA226E5E7AF7",
+                       "After":  "E82FF37DCE81CD52A138D8AA5FC7E3CA229B1F7D3C915E2CC1B9BA226E5E7AF7",
+                       "SnapshotAfter":  "E82FF37DCE81CD52A138D8AA5FC7E3CA229B1F7D3C915E2CC1B9BA226E5E7AF7"
+                   },
+                   {
+                       "Label":  "frozen router reference",
+                       "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\sim\\remote_command_router_reference.v",
+                       "SnapshotPath":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\router_performance_equivalence_20261014_200638_461a1134\\remote_command_router_reference.v",
+                       "Before":  "62A47CB34E95F401AB0C313924A48347A708F0CC6ABD78C5EBE9581671383CF1",
+                       "Snapshot":  "62A47CB34E95F401AB0C313924A48347A708F0CC6ABD78C5EBE9581671383CF1",
+                       "After":  "62A47CB34E95F401AB0C313924A48347A708F0CC6ABD78C5EBE9581671383CF1",
+                       "SnapshotAfter":  "62A47CB34E95F401AB0C313924A48347A708F0CC6ABD78C5EBE9581671383CF1"
+                   },
+                   {
+                       "Label":  "integration equivalence TB",
+                       "Source":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\sim\\tb_router_performance_equivalence.sv",
+                       "SnapshotPath":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\router_performance_equivalence_20261014_200638_461a1134\\tb_router_performance_equivalence.sv",
+                       "Before":  "32AF2655511F757A8FCD025D9B5C1CE464D8EB1A0C2A3524A7CF694F15508629",
+                       "Snapshot":  "32AF2655511F757A8FCD025D9B5C1CE464D8EB1A0C2A3524A7CF694F15508629",
+                       "After":  "32AF2655511F757A8FCD025D9B5C1CE464D8EB1A0C2A3524A7CF694F15508629",
+                       "SnapshotAfter":  "32AF2655511F757A8FCD025D9B5C1CE464D8EB1A0C2A3524A7CF694F15508629"
+                   }
+               ]
+}

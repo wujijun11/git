@@ -1,0 +1,32 @@
+{
+  "Candidate": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8",
+  "Project": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth",
+  "Backup": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\promotion_before_20261014_202336",
+  "CopiedExactly": true,
+  "Files": [
+    {
+      "Path": "rtl/control/remote_command_router.v",
+      "Before": "70da11f8430ff9176a1ffb77cf0aa20a1242de2cc6177a6cb66aec31eea65dc0",
+      "Selected": "4f73a24b85b8755bc456a7398997492f56b136e74419c93c9963bcd4e93e6a86",
+      "After": "4f73a24b85b8755bc456a7398997492f56b136e74419c93c9963bcd4e93e6a86"
+    },
+    {
+      "Path": "rtl/instrument_full_system.v",
+      "Before": "6130634b6d8950b2324de766bf974f578f9d2cbb061c7928945577904ca7004b",
+      "Selected": "e8cb47f46ddd104fd10a1be093da70007a892e7ad8a1a806cb35e7135e2ddc13",
+      "After": "e8cb47f46ddd104fd10a1be093da70007a892e7ad8a1a806cb35e7135e2ddc13"
+    },
+    {
+      "Path": "sim/tb_full_control.sv",
+      "Before": "ba7e995821955d28cb00c5ba90f2622b2e3f35cada454e99900ab2d9fd11d334",
+      "Selected": "b2dbbe2d9841614e89063e103963dbf106fd30cacb884ef240f425df20466bfb",
+      "After": "b2dbbe2d9841614e89063e103963dbf106fd30cacb884ef240f425df20466bfb"
+    },
+    {
+      "Path": "sim/tb_watchdog_arbiter_integration.sv",
+      "Before": "999dde1940b2586d12acd6dfbb3edc51074e32d70fdd2ae39024303b9d15f8f0",
+      "Selected": "6fa185bd87d3fbdfe04a82241794331533153ef46edcd3c3fe7d1d860ff80210",
+      "After": "6fa185bd87d3fbdfe04a82241794331533153ef46edcd3c3fe7d1d860ff80210"
+    }
+  ]
+}

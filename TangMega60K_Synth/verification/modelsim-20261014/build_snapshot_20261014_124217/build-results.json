@@ -1,0 +1,247 @@
+{
+  "snapshot": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\modelsim-20261014\\build_snapshot_20261014_124217",
+  "run": {
+    "startedAt": "2026-10-14T12:56:09.3352387+08:00",
+    "endedAt": "2026-10-14T13:07:56.9152717+08:00",
+    "durationSeconds": 707.580033,
+    "exitCode": 0,
+    "sourceRevision": "current_declaration_order"
+  },
+  "current": {
+    "createdTime": "Wed Oct 14 13:07:55 2026",
+    "part": "GW5AT-LV60PG484AC1/I0",
+    "pathsAnalyzed": 92317,
+    "endpointsAnalyzed": 50300,
+    "violations": {
+      "setup": 0,
+      "hold": 0
+    },
+    "minimumSlackNs": {
+      "setup": 0.051,
+      "hold": 0.065,
+      "recovery": 6.957,
+      "removal": 0.669
+    },
+    "worstPaths": {
+      "setup": {
+        "from": "system/sensors/eventizer/fifo_fifo_0_0_s/DO[14]",
+        "to": "system/watchdog/scan_2_s1/CE"
+      },
+      "hold": {
+        "from": "system/synth/u_polar1/tL3_14_s0/Q",
+        "to": "system/synth/u_polar1/states_states_0_2_s/DI[6]"
+      },
+      "recovery": {
+        "from": "ready_sync_s0/Q",
+        "to": "system/synth/u_polar1/n25821_0_s/RESET[0]"
+      },
+      "removal": {
+        "from": "audio_clock/first_lock_stable_s0/Q",
+        "to": "audio_clock/pll_49m152/init/rEnable_1_s0/CLEAR"
+      }
+    },
+    "resources": {
+      "Logic": {
+        "used": 22346.0,
+        "capacity": 59904.0,
+        "reportedPercent": 38,
+        "free": 37558.0
+      },
+      "Register": {
+        "used": 15322.0,
+        "capacity": 60780.0,
+        "reportedPercent": 26,
+        "free": 45458.0
+      },
+      "BSRAM": {
+        "used": 106.0,
+        "capacity": 118.0,
+        "reportedPercent": 90,
+        "free": 12.0
+      },
+      "DSP": {
+        "used": 50.5,
+        "capacity": 118.0,
+        "reportedPercent": 43,
+        "free": 67.5
+      }
+    },
+    "clocks": [
+      {
+        "name": "sys_clk",
+        "constraintMHz": 50.0,
+        "fmaxMHz": 159.474,
+        "logicLevel": 10
+      },
+      {
+        "name": "video_clock/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 125.0,
+        "fmaxMHz": 196.295,
+        "logicLevel": 1
+      },
+      {
+        "name": "video_clock/pll/CLKOUT1.default_gen_clk",
+        "constraintMHz": 25.0,
+        "fmaxMHz": 68.871,
+        "logicLevel": 16
+      },
+      {
+        "name": "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 49.152,
+        "fmaxMHz": 49.276,
+        "logicLevel": 23
+      }
+    ],
+    "artifacts": [
+      {
+        "name": "ContestFull.fs",
+        "size": 20418836,
+        "sha256": "a431aa6f0e1027f52489cede424c52df311e29d4aaf94035ab0ea6472b762396"
+      },
+      {
+        "name": "ContestFull.tr",
+        "size": 415786,
+        "sha256": "69c0343b315fa83bdf857f03f854e0b325540c8ae69c2b7257af95a66f80df9d"
+      },
+      {
+        "name": "ContestFull.rpt.txt",
+        "size": 92200,
+        "sha256": "3c66aec312e4cd9b67e98f0815e038b9612a62fed179f8f9b72afcf277701a4d"
+      }
+    ],
+    "hardwareValidated": false,
+    "timingPass": true,
+    "reportPaths": {
+      "ContestFull.tr": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\modelsim-20261014\\build_snapshot_20261014_124217\\full\\impl\\pnr\\ContestFull.tr",
+      "ContestFull.rpt.txt": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\modelsim-20261014\\build_snapshot_20261014_124217\\full\\impl\\pnr\\ContestFull.rpt.txt",
+      "ContestFull.fs": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\modelsim-20261014\\build_snapshot_20261014_124217\\full\\impl\\pnr\\ContestFull.fs"
+    }
+  },
+  "baselineReport": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\contest-full-matrix-c3-20261013\\build-results.json",
+  "baseline": {
+    "createdTime": "Tue Oct 13 19:11:28 2026",
+    "part": "GW5AT-LV60PG484AC1/I0",
+    "pathsAnalyzed": 92546,
+    "endpointsAnalyzed": 50300,
+    "violations": {
+      "setup": 0,
+      "hold": 0
+    },
+    "minimumSlackNs": {
+      "setup": 0.039,
+      "hold": 0.022,
+      "recovery": 7.369,
+      "removal": 0.535
+    },
+    "worstPaths": {
+      "setup": {
+        "from": "system/performance/record_ram_record_ram_0_2_s/DO[1]",
+        "to": "system/performance/event_velocity_3_s0/D"
+      },
+      "hold": {
+        "from": "system/synth/g_fm.u_fm/car_addr5_6_s0/Q",
+        "to": "system/synth/g_fm.u_fm/sine_sine_0_0_s0/AD[10]"
+      },
+      "recovery": {
+        "from": "system/router/panic_pulse_s0/Q",
+        "to": "system/synth/u_expression/n746_s/RESET[0]"
+      },
+      "removal": {
+        "from": "audio_clock/first_lock_stable_s0/Q",
+        "to": "audio_clock/pll_49m152/init/rEnable_1_s0/CLEAR"
+      }
+    },
+    "resources": {
+      "Logic": {
+        "used": 21986.0,
+        "capacity": 59904.0,
+        "reportedPercent": 37,
+        "free": 37918.0
+      },
+      "Register": {
+        "used": 15322.0,
+        "capacity": 60780.0,
+        "reportedPercent": 26,
+        "free": 45458.0
+      },
+      "BSRAM": {
+        "used": 106.0,
+        "capacity": 118.0,
+        "reportedPercent": 90,
+        "free": 12.0
+      },
+      "DSP": {
+        "used": 50.5,
+        "capacity": 118.0,
+        "reportedPercent": 43,
+        "free": 67.5
+      }
+    },
+    "clocks": [
+      {
+        "name": "sys_clk",
+        "constraintMHz": 50.0,
+        "fmaxMHz": 140.203,
+        "logicLevel": 9
+      },
+      {
+        "name": "video_clock/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 125.0,
+        "fmaxMHz": 208.85,
+        "logicLevel": 1
+      },
+      {
+        "name": "video_clock/pll/CLKOUT1.default_gen_clk",
+        "constraintMHz": 25.0,
+        "fmaxMHz": 68.291,
+        "logicLevel": 15
+      },
+      {
+        "name": "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 49.152,
+        "fmaxMHz": 49.246,
+        "logicLevel": 16
+      }
+    ],
+    "artifacts": [
+      {
+        "name": "ContestFull.fs",
+        "size": 20562564,
+        "sha256": "1f0e5e9348da8a4034f83872588bf8031896281d4148fea26a5b0e2b1822a474"
+      },
+      {
+        "name": "ContestFull.tr",
+        "size": 419010,
+        "sha256": "71f8caca1f27579cdb8653e964f46f3014c1b60bf3ae0e799ef32085fd289b53"
+      },
+      {
+        "name": "ContestFull.rpt.txt",
+        "size": 92037,
+        "sha256": "cbb4acb386099ece533e346fee274f840b031801571a302a164ff94f3c42f79f"
+      }
+    ],
+    "hardwareValidated": false,
+    "timingPass": true
+  },
+  "change": {
+    "slackDeltaNs": {
+      "setup": 0.012,
+      "hold": 0.043,
+      "recovery": -0.412,
+      "removal": 0.134
+    },
+    "bsramBlocksDelta": 0.0
+  },
+  "timingPassMarker": true,
+  "protectedImplFileCount": 25,
+  "protectedImplAddedPaths": [],
+  "protectedImplMissingPaths": [],
+  "protectedImplUnchanged": true,
+  "sourceInputFileCount": 80,
+  "sourceInputsMatch": true,
+  "sourceInputMismatches": [],
+  "timingParserNote": "3.1.1 through 3.1.4 bounded independently; pulse-width rows excluded from removal.",
+  "violationCountNote": "Setup/Hold totals are the vendor endpoint totals; Recovery/Removal have no separate total counts in this report.",
+  "hardwareValidated": false,
+  "buildAccepted": true
+}

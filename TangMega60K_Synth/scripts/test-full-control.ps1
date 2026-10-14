@@ -9,6 +9,7 @@ try {
         @('tb_expression_merge','sim/tb_full_control.sv','rtl/control/expression_merge.v'),
         @('tb_note_arbiter','sim/tb_full_control.sv','rtl/control/note_arbiter.v'),
         @('tb_runtime_audio_fx','sim/tb_runtime_audio_fx.sv','rtl/audio/runtime_audio_fx.v'),
+        @('tb_runtime_audio_fx_storage','sim/tb_runtime_audio_fx_storage.sv','rtl/audio/runtime_audio_fx.v','sim/runtime_audio_fx_reference.sv'),
         @('tb_remote_note_watchdog','sim/tb_remote_note_watchdog.sv','rtl/control/remote_note_watchdog.v'),
         @('tb_audio_visualizer','sim/tb_audio_visualizer.sv','rtl/visual/audio_visualizer.v'),
         @('tb_audio_monitor_cdc','sim/tb_audio_monitor_cdc.sv','rtl/visual/audio_monitor_cdc.v'),

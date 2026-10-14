@@ -60,3 +60,22 @@ hardware/**/*_backup/
 hardware/**/*.eprj2
 hardware/**/*.epru
 hardware/**/verification/jlc_*
+# Local build/simulation snapshots; curated reports are staged explicitly.
+verification/**/work/
+verification/**/vendor/
+verification/**/waves/
+verification/**/rtl/
+verification/**/sim/
+verification/**/scripts/
+verification/**/candidate_*/
+verification/**/promotion_before_*/
+verification/**/*.wlf
+verification/**/*.vcd
+verification/**/*.fs
+verification/**/*.bin
+verification/**/*.binx
+verification/**/*.pr
+verification/**/*.db
+verification/**/*.vg
+verification/**/*.qpg
+tmp/

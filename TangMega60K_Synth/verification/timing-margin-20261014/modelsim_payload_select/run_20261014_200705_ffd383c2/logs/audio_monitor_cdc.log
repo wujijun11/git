@@ -1,0 +1,11 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/audio_monitor_cdc.wlf -l logs/audio_monitor_cdc.log -do "do cases/audio_monitor_cdc.do" work.tb_audio_monitor_cdc 
+# Start time: 20:09:02 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_audio_monitor_cdc
+# Loading work.audio_monitor_cdc
+# do cases/audio_monitor_cdc.do
+# AUDIO MONITOR CDC PASS coherent stereo, asynchronous clocks, paused display, drops, reset
+# ** Note: $finish    : sim/tb_audio_monitor_cdc.sv(35)
+#    Time: 47380 ns  Iteration: 1  Instance: /tb_audio_monitor_cdc
+# End time: 20:09:03 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

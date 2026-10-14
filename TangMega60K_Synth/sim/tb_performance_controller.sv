@@ -2,7 +2,7 @@
 module tb_performance_controller;
     reg clk=0; always #5 clk=!clk;
     reg rst_n=0, command_valid=0;
-    wire command_ready;
+    wire command_ready,action_busy;
     reg [7:0] command_opcode=0;
     reg [79:0] command_payload=0;
     wire [7:0] command_status;

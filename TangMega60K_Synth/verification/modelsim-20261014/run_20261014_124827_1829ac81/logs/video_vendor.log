@@ -1,0 +1,18 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/video_vendor.wlf -l logs/video_vendor.log -do "do cases/video_vendor.do" work.tb_video_vendor 
+# Start time: 12:51:44 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_video_vendor
+# Loading work.video_clocking
+# Loading work.PLLA
+# Loading work.GSR
+# Loading work.video_tmds_tx
+# Loading work.video_tmds_encoder
+# Loading work.video_serializer10
+# Loading work.ODDR
+# Loading work.TLVDS_OBUF
+# do cases/video_vendor.do
+# ALL VIDEO VENDOR TESTS PASSED (actual Gowin PLLA25/125MHz,ODDR bit order,TLVDS polarity,reset)
+# ** Note: $finish    : sim/tb_video_vendor.sv(75)
+#    Time: 4113739 ns  Iteration: 0  Instance: /tb_video_vendor
+# End time: 12:52:07 on Oct 14,2026, Elapsed time: 0:00:23
+# Errors: 0, Warnings: 0

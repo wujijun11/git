@@ -1,0 +1,19 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/audio_engine_n64.wlf -l logs/audio_engine_n64.log -do "do cases/audio_engine_n64.do" work.tb_audio_engine -gN=64 
+# Start time: 12:56:49 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_audio_engine
+# Loading work.voice_allocator_v2
+# Loading work.expression_controls_v2
+# Loading work.voice_engine
+# Loading work.voice_state_ram
+# Loading work.adsr
+# Loading work.pitch_expression
+# Loading work.dds_lane
+# Loading work.polar_lane
+# Loading work.wavetable_rom
+# Loading work.stereo_mixer
+# Loading work.gain_saturator
+# Loading work.audio_fx
+# do cases/audio_engine_n64.do
+# MEASURE N=64 tag=0 samples=4800 rms=26065.96200 f=440.001905
+# NEUTRAL BIT EXACT N=64 frames=9804

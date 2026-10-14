@@ -1,0 +1,506 @@
+﻿[
+    {
+        "Name":  "full_system",
+        "Top":  "tb_instrument_full_system",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "FULL SYSTEM PASS",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  53.888,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/full_system.log",
+        "Wave":  "waves/full_system.wlf",
+        "Failure":  null
+    },
+    {
+        "Name":  "global_panic",
+        "Top":  "tb_global_panic",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "GLOBAL PANIC PASS",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  5.578,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/global_panic.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "control_router",
+        "Top":  "tb_full_control",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "FULL CONTROL ROUTER PASS",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.385,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/control_router.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "expression_merge",
+        "Top":  "tb_expression_merge",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "EXPRESSION MERGE PASS",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.569,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/expression_merge.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "note_arbiter",
+        "Top":  "tb_note_arbiter",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "NOTE ARBITER PASS",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.534,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/note_arbiter.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "runtime_fx",
+        "Top":  "tb_runtime_audio_fx",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "RUNTIME AUDIO FX PASS",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  5.092,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/runtime_fx.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "runtime_fx_storage",
+        "Top":  "tb_runtime_audio_fx_storage",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "RUNTIME AUDIO FX STORAGE PASS bit-exact shared/separate histories",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  10.666,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/runtime_fx_storage.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "remote_note_watchdog",
+        "Top":  "tb_remote_note_watchdog",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "REMOTE NOTE WATCHDOG PASS",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.611,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/remote_note_watchdog.log",
+        "Wave":  "waves/remote_note_watchdog.wlf",
+        "Failure":  null
+    },
+    {
+        "Name":  "audio_visualizer",
+        "Top":  "tb_audio_visualizer",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "AUDIO VISUALIZER PASS",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  11.613,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/audio_visualizer.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "audio_monitor_cdc",
+        "Top":  "tb_audio_monitor_cdc",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "AUDIO MONITOR CDC PASS",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.725,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/audio_monitor_cdc.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "watchdog_arbiter",
+        "Top":  "tb_watchdog_arbiter_integration",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "PASS watchdog/arbiter integration:",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.807,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/watchdog_arbiter.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "mpr121_i2c",
+        "Top":  "tb_mpr121_i2c",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "PASS tb_mpr121_i2c",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  5.086,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/mpr121_i2c.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "mpr121_frontend",
+        "Top":  "tb_mpr121_frontend",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "PASS tb_mpr121_frontend",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  6.515,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/mpr121_frontend.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "mpr121_backpressure",
+        "Top":  "tb_mpr121_backpressure",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "PASS tb_mpr121_backpressure",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.959,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/mpr121_backpressure.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "mpr121_timing",
+        "Top":  "tb_mpr121_timing",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "PASS tb_mpr121_timing",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.915,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/mpr121_timing.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "mpr121_capacity",
+        "Top":  "tb_mpr121_eventizer_capacity",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "PASS tb_mpr121_eventizer_capacity",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.613,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/mpr121_capacity.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "performance",
+        "Top":  "tb_performance_controller",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "PASS performance:",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.844,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/performance.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "performance_retrigger",
+        "Top":  "tb_performance_retrigger",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "PASS performance retrigger:",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.66,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/performance_retrigger.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "performance_commit",
+        "Top":  "tb_performance_commit_pipeline",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "PASS performance consecutive commands:",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.705,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/performance_commit.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "board_local_actions",
+        "Top":  "tb_board_local_actions",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "BOARD LOCAL ACTIONS PASS",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.759,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/board_local_actions.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "ws2812_waveform",
+        "Top":  "tb_performance_ws2812",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "ALL WS2812 WAVEFORM TESTS PASSED",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  5.081,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/ws2812_waveform.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "ws2812_matrix",
+        "Top":  "tb_ws2812_matrix",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "ALL WS2812 MATRIX TESTS PASSED",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  13.534,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/ws2812_matrix.log",
+        "Wave":  "waves/ws2812_matrix.wlf",
+        "Failure":  null
+    },
+    {
+        "Name":  "remote_uart",
+        "Top":  "tb_remote_uart_transport",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "ALL REMOTE UART TESTS PASSED",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  6.358,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/remote_uart.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "video_encoder",
+        "Top":  "tb_video_encoder",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "ALL VIDEO TMDS ENCODER TESTS PASSED",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.661,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/video_encoder.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "video_timing",
+        "Top":  "tb_video_timing",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "ALL VIDEO TIMING TESTS PASSED",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  5.52,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/video_timing.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "video_vendor",
+        "Top":  "tb_video_vendor",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "ALL VIDEO VENDOR TESTS PASSED",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  42.282,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/video_vendor.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "audio_units",
+        "Top":  "tb_audio_units",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "AUDIO DSP UNITS PASSED",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  4.929,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/audio_units.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "audio_engine_n4",
+        "Top":  "tb_audio_engine",
+        "Generics":  [
+                         "-gN=4"
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "AUDIO ENGINE PASSED N=4",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  552.506,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/audio_engine_n4.log",
+        "Wave":  null,
+        "Failure":  null
+    }
+]

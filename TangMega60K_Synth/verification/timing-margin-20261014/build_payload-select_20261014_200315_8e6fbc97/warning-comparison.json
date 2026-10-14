@@ -1,0 +1,10 @@
+{
+  "baseline": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\modelsim-20261014\\build_snapshot_20261014_124217",
+  "candidate": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\build_payload-select_20261014_200315_8e6fbc97",
+  "baselineCount": 71,
+  "candidateCount": 71,
+  "unchangedAfterRootNormalization": true,
+  "added": [],
+  "removed": [],
+  "normalization": "Snapshot directory roots only; text, codes and source line numbers retained."
+}

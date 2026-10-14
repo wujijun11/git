@@ -1,0 +1,100 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/global_panic.wlf -l logs/global_panic.log -do "do cases/global_panic.do" work.tb_global_panic 
+# Start time: 12:49:11 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_global_panic
+# Loading work.instrument_full_system
+# Loading work.remote_uart_transport
+# Loading work.remote_uart_rx
+# Loading work.remote_uart_tx
+# Loading work.remote_command_router
+# Loading work.mpr121_input_frontend
+# Loading work.mpr121_key_eventizer
+# Loading work.mpr121_slider
+# Loading work.performance_controller
+# Loading work.ws2812_guide
+# Loading work.remote_note_watchdog
+# Loading work.note_arbiter
+# Loading work.event_fifo_v2
+# Loading work.expression_merge
+# Loading work.captain_control_top_v2
+# Loading work.voice_allocator_v2
+# Loading work.expression_controls_v2
+# Loading work.voice_engine
+# Loading work.voice_state_ram
+# Loading work.adsr
+# Loading work.pitch_expression
+# Loading work.dds_lane
+# Loading work.polar_lane
+# Loading work.wavetable_rom
+# Loading work.stereo_mixer
+# Loading work.gain_saturator
+# Loading work.audio_fx
+# Loading work.runtime_audio_fx
+# Loading work.i2s_tx
+# Loading work.audio_monitor_cdc
+# Loading work.audio_visualizer
+# Loading work.scope_renderer
+# Loading work.mpr121_sampler
+# Loading work.i2c_register_master
+# Loading work.fm_piano_lane
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 32, found 18.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_global_panic/dut File: sim/tb_global_panic.sv Line: 10
+# ** Warning: (vsim-3722) sim/tb_global_panic.sv(10): [TFMPC] - Missing connection for port 'i2s_bclk'.
+# ** Warning: (vsim-3722) sim/tb_global_panic.sv(10): [TFMPC] - Missing connection for port 'i2s_lrclk'.
+# ** Warning: (vsim-3722) sim/tb_global_panic.sv(10): [TFMPC] - Missing connection for port 'i2s_data'.
+# ** Warning: (vsim-3722) sim/tb_global_panic.sv(10): [TFMPC] - Missing connection for port 'guide_led_data'.
+# ** Warning: (vsim-3722) sim/tb_global_panic.sv(10): [TFMPC] - Missing connection for port 'guide_mask'.
+# ** Warning: (vsim-3722) sim/tb_global_panic.sv(10): [TFMPC] - Missing connection for port 'sensor_ready'.
+# ** Warning: (vsim-3722) sim/tb_global_panic.sv(10): [TFMPC] - Missing connection for port 'sensor_fault'.
+# ** Warning: (vsim-3722) sim/tb_global_panic.sv(10): [TFMPC] - Missing connection for port 'underrun_count'.
+# ** Warning: (vsim-3722) sim/tb_global_panic.sv(10): [TFMPC] - Missing connection for port 'overflow_sticky'.
+# ** Warning: (vsim-3722) sim/tb_global_panic.sv(10): [TFMPC] - Missing connection for port 'recording'.
+# ** Warning: (vsim-3722) sim/tb_global_panic.sv(10): [TFMPC] - Missing connection for port 'video_rgb'.
+# ** Warning: (vsim-3722) sim/tb_global_panic.sv(10): [TFMPC] - Missing connection for port 'monitor_left'.
+# ** Warning: (vsim-3722) sim/tb_global_panic.sv(10): [TFMPC] - Missing connection for port 'monitor_right'.
+# ** Warning: (vsim-3722) sim/tb_global_panic.sv(10): [TFMPC] - Missing connection for port 'monitor_valid'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'sensors'.  Expected 32, found 25.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_global_panic/dut/sensors File: rtl/instrument_full_system.v Line: 73
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(73): [TFMPC] - Missing connection for port 'last_error'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(73): [TFMPC] - Missing connection for port 'error_count'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(73): [TFMPC] - Missing connection for port 'last_success_age'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(73): [TFMPC] - Missing connection for port 'init_stage'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(73): [TFMPC] - Missing connection for port 'oor_status'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(73): [TFMPC] - Missing connection for port 'slider_active'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(73): [TFMPC] - Missing connection for port 'slider_position'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'guide'.  Expected 7, found 5.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_global_panic/dut/guide File: rtl/instrument_full_system.v Line: 111
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(111): [TFMPC] - Missing connection for port 'busy'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(111): [TFMPC] - Missing connection for port 'frame_done'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'watchdog'.  Expected 16, found 15.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_global_panic/dut/watchdog File: rtl/instrument_full_system.v Line: 116
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(116): [TFMPC] - Missing connection for port 'timeout_count'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'events'.  Expected 19, found 16.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_global_panic/dut/events File: rtl/instrument_full_system.v Line: 158
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(158): [TFMPC] - Missing connection for port 'level'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(158): [TFMPC] - Missing connection for port 'full'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(158): [TFMPC] - Missing connection for port 'empty'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'control'.  Expected 35, found 29.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_global_panic/dut/control File: rtl/instrument_full_system.v Line: 171
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(171): [TFMPC] - Missing connection for port 'expr_applied'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(171): [TFMPC] - Missing connection for port 'active_mask'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(171): [TFMPC] - Missing connection for port 'held_mask'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(171): [TFMPC] - Missing connection for port 'full_pulse'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(171): [TFMPC] - Missing connection for port 'ignored_pulse'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(171): [TFMPC] - Missing connection for port 'done_error_pulse'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'audio'.  Expected 14, found 10.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_global_panic/dut/audio File: rtl/instrument_full_system.v Line: 186
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(186): [TFMPC] - Missing connection for port 'frame_tick'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(186): [TFMPC] - Missing connection for port 'fifo_level'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(186): [TFMPC] - Missing connection for port 'underrun_pulse'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(186): [TFMPC] - Missing connection for port 'underrun_sticky'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'visual'.  Expected 13, found 11.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_global_panic/dut/visual File: rtl/instrument_full_system.v Line: 198
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(198): [TFMPC] - Missing connection for port 'spectrum_valid'.
+# ** Warning: (vsim-3722) rtl/instrument_full_system.v(198): [TFMPC] - Missing connection for port 'dropped_samples'.
+# do cases/global_panic.do
+# GLOBAL PANIC PASS old MPR=25 perf=2 watchdog=2 sink_cycles=326; UART ACK/FIFO and fresh notes preserved
+# ** Note: $finish    : sim/tb_global_panic.sv(158)
+#    Time: 780228408 ps  Iteration: 1  Instance: /tb_global_panic
+# End time: 12:49:14 on Oct 14,2026, Elapsed time: 0:00:03
+# Errors: 0, Warnings: 47

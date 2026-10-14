@@ -1,0 +1,45 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/ws2812_matrix.wlf -l logs/ws2812_matrix.log -do "do cases/ws2812_matrix.do" work.tb_ws2812_matrix 
+# Start time: 12:51:11 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_ws2812_matrix
+# Loading work.ws2812_matrix_check
+# Loading work.ws2812_guide
+# do cases/ws2812_matrix.do
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# PASS WS2812 matrix layout 0: 31 decoded frames, 25 guide/touch keys, GRB colors, cap, snapshot, reset
+# PASS WS2812 matrix layout 1: 31 decoded frames, 25 guide/touch keys, GRB colors, cap, snapshot, reset
+# PASS WS2812 matrix layout 2: 31 decoded frames, 25 guide/touch keys, GRB colors, cap, snapshot, reset
+# ALL WS2812 MATRIX TESTS PASSED
+# ** Note: $finish    : sim/tb_ws2812_matrix.sv(189)
+#    Time: 32852376 ns  Iteration: 1  Instance: /tb_ws2812_matrix
+# End time: 12:51:19 on Oct 14,2026, Elapsed time: 0:00:08
+# Errors: 0, Warnings: 0

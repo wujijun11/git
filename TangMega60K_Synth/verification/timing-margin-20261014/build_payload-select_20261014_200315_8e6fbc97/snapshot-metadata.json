@@ -1,0 +1,14 @@
+{
+  "snapshot": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\build_payload-select_20261014_200315_8e6fbc97",
+  "project": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth",
+  "sourceRoot": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-margin-20261014\\candidate_payload_select_20261014_200303_4e91cfd8",
+  "variant": "payload-select",
+  "createdAt": "2026-10-14T20:03:16.198287+08:00",
+  "gowin": "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+  "baselineReport": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\modelsim-20261014\\build_snapshot_20261014_124217\\build-results.json",
+  "gprjDependencies": 68,
+  "inputFiles": 80,
+  "preparedOnly": false,
+  "driverSha256": "F8B7AE1DE05B518A588E0A5793914A1894EA245F5237A67049F818A27524CB02",
+  "buildStartedAt": "2026-10-14T20:03:16.302838+08:00"
+}

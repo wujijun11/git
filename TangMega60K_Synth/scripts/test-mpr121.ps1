@@ -5,7 +5,7 @@ $taskOutput = Join-Path $taskRoot 'sim/mpr121-tests'
 New-Item -ItemType Directory -Path $taskOutput -Force | Out-Null
 $taskRtl = @('i2c_register_master.v','mpr121_sampler.v','mpr121_key_eventizer.v','mpr121_slider.v','mpr121_input_frontend.v') | ForEach-Object { Join-Path $taskRoot "rtl/sensors/$_" }
 $taskLog = [System.Collections.Generic.List[string]]::new()
-foreach ($taskTop in @('tb_mpr121_i2c','tb_mpr121_frontend','tb_mpr121_backpressure','tb_mpr121_timing')) {
+foreach ($taskTop in @('tb_mpr121_i2c','tb_mpr121_frontend','tb_mpr121_backpressure','tb_mpr121_timing','tb_mpr121_eventizer_capacity')) {
     $taskBinary = Join-Path $taskOutput "$taskTop.vvp"
     $taskBench = Join-Path $taskRoot "sim/$taskTop.sv"
     $taskModel = Join-Path $taskRoot 'sim/tb_mpr121_model.sv'

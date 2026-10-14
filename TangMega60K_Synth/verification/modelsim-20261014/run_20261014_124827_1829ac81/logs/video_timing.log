@@ -1,0 +1,12 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/video_timing.wlf -l logs/video_timing.log -do "do cases/video_timing.do" work.tb_video_timing 
+# Start time: 12:51:38 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_video_timing
+# Loading work.video_timing_640x480
+# Loading work.video_sync_align
+# do cases/video_timing.do
+# ALL VIDEO TIMING TESTS PASSED (800x525 total,640x480 active,negative sync,2-clock alignment)
+# ** Note: $finish    : sim/tb_video_timing.sv(25)
+#    Time: 16800103 ns  Iteration: 0  Instance: /tb_video_timing
+# End time: 12:51:39 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

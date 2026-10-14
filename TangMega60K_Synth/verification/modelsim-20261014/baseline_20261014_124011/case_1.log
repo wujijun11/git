@@ -1,0 +1,12 @@
+# do {C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\modelsim-20261014\baseline_20261014_124011\case_1.do}
+# vsim -onfinish exit work.tb_remote_note_watchdog "+WATCHDOG_CASE=1" 
+# Start time: 12:40:16 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_remote_note_watchdog
+# Loading work.remote_note_watchdog
+# ** Fatal: same-cycle first NoteOn+expire did not start release
+#    Time: 60 ns  Scope: tb_remote_note_watchdog.first_on_expire File: C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/modelsim-20261014/baseline_20261014_124011/tb_remote_note_watchdog.sv Line: 57
+# ** Note: $finish    : C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/modelsim-20261014/baseline_20261014_124011/tb_remote_note_watchdog.sv(57)
+#    Time: 60 ns  Iteration: 1  Instance: /tb_remote_note_watchdog
+# End time: 12:40:17 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0

@@ -19,7 +19,7 @@ module tb_watchdog_arbiter_integration;
         .event_valid(remote_valid),.event_ready(remote_ready),.event_on(remote_on),
         .event_source(remote_source),.event_note(remote_note),.event_velocity(remote_velocity),.event_timbre(remote_timbre),
         .expr_valid(),.expr_ready(1'b1),.expr_mask(),.expr_gain(),.expr_bend(),.expr_vibrato(),
-        .performance_valid(),.performance_ready(1'b1),.performance_opcode(),.performance_payload(),.performance_status(8'd0),
+        .performance_valid(),.performance_pending(),.performance_ready(1'b1),.performance_opcode(),.performance_payload(),.performance_status(8'd0),
         .key_map_flat(),.current_timbre(),.effect_mode(),.panic_pulse(),
         .active_count(7'd0),.playing(1'b0),.recording(1'b0),.guide_active(1'b0),
         .overflow_sticky(1'b0),.record_count(16'd0),.score_position(16'd0),.underrun_count(32'd0),

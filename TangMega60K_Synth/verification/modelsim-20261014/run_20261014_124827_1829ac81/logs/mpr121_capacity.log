@@ -1,0 +1,11 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/mpr121_capacity.wlf -l logs/mpr121_capacity.log -do "do cases/mpr121_capacity.do" work.tb_mpr121_eventizer_capacity 
+# Start time: 12:50:38 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_mpr121_eventizer_capacity
+# Loading work.mpr121_key_eventizer
+# do cases/mpr121_capacity.do
+# PASS tb_mpr121_eventizer_capacity: exact-full FIFO, retained fault releases, original pitch/timbre, batch map capture, 300 random snapshots, wraparound and reset
+# ** Note: $finish    : sim/tb_mpr121_eventizer_capacity.sv(172)
+#    Time: 92710 ns  Iteration: 1  Instance: /tb_mpr121_eventizer_capacity
+# End time: 12:50:39 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

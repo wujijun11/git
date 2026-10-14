@@ -12,7 +12,7 @@ module remote_command_router (
     output wire expr_valid, input wire expr_ready, output wire [2:0] expr_mask,
     output wire [11:0] expr_gain, output wire signed [12:0] expr_bend,
     output wire [7:0] expr_vibrato,
-    output wire performance_valid, input wire performance_ready,
+    output wire performance_valid, output wire performance_pending, input wire performance_ready,
     output wire [7:0] performance_opcode, output wire [79:0] performance_payload,
     input wire [7:0] performance_status,
     output reg [174:0] key_map_flat, output reg [1:0] current_timbre, effect_mode,
@@ -46,7 +46,8 @@ module remote_command_router (
     assign expr_gain=p[19:8];
     assign expr_bend=p[36:24];
     assign expr_vibrato=p[47:40];
-    assign performance_valid=rst_n && state==PERF_WAIT;
+    assign performance_pending=state==PERF_WAIT;
+    assign performance_valid=rst_n && performance_pending;
     assign performance_opcode=op_q;
     assign performance_payload=p;
     assign record_read_index=p[23:8];

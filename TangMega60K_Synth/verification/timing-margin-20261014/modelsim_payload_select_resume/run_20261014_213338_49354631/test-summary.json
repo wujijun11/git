@@ -1,0 +1,92 @@
+﻿[
+    {
+        "Name":  "audio_i2s",
+        "Top":  "tb_audio_i2s",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  false,
+        "ExpectedMarker":  "AUDIO I2S INTEGRATION PASSED",
+        "ExpectedFatal":  "",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  693.99,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/audio_i2s.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "ws2812_reject_zero",
+        "Top":  "tb_ws2812_invalid_zero_count",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  true,
+        "ExpectedMarker":  "",
+        "ExpectedFatal":  "WS2812 LED_COUNT must be 1..25",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  5.582,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/ws2812_reject_zero.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "ws2812_reject_large",
+        "Top":  "tb_ws2812_invalid_large_count",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  true,
+        "ExpectedMarker":  "",
+        "ExpectedFatal":  "WS2812 LED_COUNT must be 1..25",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  5.603,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/ws2812_reject_large.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "ws2812_reject_map",
+        "Top":  "tb_ws2812_invalid_key_map",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  true,
+        "ExpectedMarker":  "",
+        "ExpectedFatal":  "WS2812 map key out of range",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  5.28,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/ws2812_reject_map.log",
+        "Wave":  null,
+        "Failure":  null
+    },
+    {
+        "Name":  "ws2812_reject_duplicate",
+        "Top":  "tb_ws2812_duplicate_key_map",
+        "Generics":  [
+
+                     ],
+        "ExpectedRejection":  true,
+        "ExpectedMarker":  "",
+        "ExpectedFatal":  "WS2812 map must be a permutation of 0..24",
+        "Passed":  true,
+        "ExitCode":  0,
+        "TimedOut":  false,
+        "ElapsedSeconds":  5.501,
+        "TimeoutSeconds":  1200,
+        "Log":  "logs/ws2812_reject_duplicate.log",
+        "Wave":  null,
+        "Failure":  null
+    }
+]

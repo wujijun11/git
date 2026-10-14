@@ -3,7 +3,11 @@
 module instrument_full_system #(
     parameter CLK_HZ=49152000, UART_BAUD=115200,
     parameter SENSOR_SETTLE_CYCLES=CLK_HZ/20,
-    parameter ROM_DIR="rtl/audio/rom/"
+    parameter ROM_DIR="rtl/audio/rom/",
+    parameter [7:0] GUIDE_BRIGHTNESS=8'd32, GUIDE_TOUCH_BRIGHTNESS=8'd16,
+    parameter [124:0] GUIDE_PIXEL_KEY_MAP={5'd24,5'd23,5'd22,5'd21,5'd20,
+        5'd19,5'd18,5'd17,5'd16,5'd15,5'd14,5'd13,5'd12,5'd11,5'd10,
+        5'd9,5'd8,5'd7,5'd6,5'd5,5'd4,5'd3,5'd2,5'd1,5'd0}
 ) (
     input wire clk,rst_n,input wire uart_rx,output wire uart_tx,
     inout wire [2:0] mpr_scl,mpr_sda,input wire [2:0] mpr_irq_n,
@@ -30,7 +34,7 @@ module instrument_full_system #(
     wire [6:0] remote_note,remote_velocity;wire [1:0] remote_timbre;
     wire phone_xv,phone_xr;wire [2:0] phone_xm;wire [11:0] phone_gain;
     wire signed [12:0] phone_bend;wire [7:0] phone_vib;
-    wire perf_cv,perf_cr;wire [7:0] perf_co,perf_status;wire [79:0] perf_cp;
+    wire perf_cv,perf_cr,perf_pending;wire [7:0] perf_co,perf_status;wire [79:0] perf_cp;
     wire [174:0] mapping;wire [1:0] timbre,fx;wire panic;
     wire [15:0] record_count,score_position,read_index;wire read_valid;wire [79:0] read_row;
     wire phone_releasing,local_panic,panic_request,panic_discard;
@@ -48,7 +52,7 @@ module instrument_full_system #(
         .event_note(remote_note),.event_velocity(remote_velocity),.event_timbre(remote_timbre),
         .expr_valid(phone_xv),.expr_ready(phone_xr),.expr_mask(phone_xm),.expr_gain(phone_gain),
         .expr_bend(phone_bend),.expr_vibrato(phone_vib),
-        .performance_valid(perf_cv),.performance_ready(perf_cr),.performance_opcode(perf_co),
+        .performance_valid(perf_cv),.performance_pending(perf_pending),.performance_ready(perf_cr),.performance_opcode(perf_co),
         .performance_payload(perf_cp),.performance_status(perf_status),
         .key_map_flat(mapping),.current_timbre(timbre),.effect_mode(fx),.panic_pulse(panic),
         .active_count(active_count),.playing(playing),.recording(recording),.guide_active(guide_active),
@@ -78,11 +82,11 @@ module instrument_full_system #(
 
     wire perf_ev,perf_er,perf_on;wire [5:0] perf_source;
     wire [6:0] perf_note,perf_velocity;wire [1:0] perf_timbre;
-    wire record_overflow,perf_ready;
+    wire record_overflow,perf_ready,perf_action_busy;
     wire [3:0] arb_ready;wire [1:0] arb_selected;wire push_valid,push_ready;
     wire [22:0] push_payload;
     assign perf_cr=perf_ready;
-    assign local_action_ready=rst_n && !perf_cv && perf_ready && perf_status!=2 && !panic_quiescing && !panic;
+    assign local_action_ready=rst_n && !perf_cv && perf_ready && !perf_action_busy && !panic_quiescing && !panic;
     assign local_panic=local_action_valid && local_action_ready && local_action==8'd5;
     assign panic_request=panic || local_panic;
     assign panic_discard=panic_quiescing || panic_request;
@@ -91,8 +95,9 @@ module instrument_full_system #(
         // itself consumes only valid && ready with status==0. Feeding ready
         // back into valid created a long command-decode/record-enable path.
         .clk(clk),.rst_n(rst_n),.command_valid(perf_cv || (local_action_valid && !panic_quiescing && !panic)),.command_ready(perf_ready),
-        .command_opcode(perf_cv ? perf_co : 8'h04),
-        .command_payload(perf_cv ? perf_cp : {72'd0,local_action}),.command_status(perf_status),
+        .command_opcode(perf_pending ? perf_co : 8'h04),
+        .command_payload(perf_pending ? perf_cp : {72'd0,local_action}),.command_status(perf_status),
+        .action_busy(perf_action_busy),
         .record_valid(push_valid && push_ready && arb_selected!=2),
         .record_on(push_payload[22]),.record_source(push_payload[21:16]),.record_note(push_payload[15:9]),
         .record_velocity(push_payload[8:2]),.record_timbre(push_payload[1:0]),
@@ -102,7 +107,9 @@ module instrument_full_system #(
         .recording(recording),.guide_active(guide_active),.overflow_sticky(record_overflow),
         .record_count(record_count),.score_position(score_position),.record_read_index(read_index),
         .record_read_valid(read_valid),.row_payload(read_row));
-    ws2812_guide #(.CLK_HZ(CLK_HZ)) guide(.clk(clk),.rst_n(rst_n),.guide_mask(guide_mask),.led_data(guide_led_data));
+    ws2812_guide #(.CLK_HZ(CLK_HZ),.BRIGHTNESS(GUIDE_BRIGHTNESS),
+        .TOUCH_BRIGHTNESS(GUIDE_TOUCH_BRIGHTNESS),.PIXEL_KEY_MAP(GUIDE_PIXEL_KEY_MAP)) guide(
+        .clk(clk),.rst_n(rst_n),.guide_mask(guide_mask),.touch_mask(touch_mask),.led_data(guide_led_data));
 
     wire watchdog_ev,watchdog_er,watchdog_on;
     wire [5:0] watchdog_source;wire [6:0] watchdog_note,watchdog_velocity;wire [1:0] watchdog_timbre;

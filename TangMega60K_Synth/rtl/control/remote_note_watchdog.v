@@ -14,6 +14,12 @@ module remote_note_watchdog #(
     reg [127:0] held;
     reg [31:0] silence;
     reg [7:0] scan;
+    wire any_held=|held;
+    // Compute the mask reduction before the late arbiter acceptance signal.
+    // Expiry still owns a first NoteOn on this edge; a final NoteOff leaves
+    // the set empty. Only the final scalar mux depends on accepted.
+    wire other_held=|(held & ~(128'd1 << accepted_note));
+    wire held_after_accept_any=accepted ? (accepted_on || other_held) : any_held;
     assign event_on=0;assign event_source=63;assign event_velocity=0;assign event_timbre=0;
     always @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
@@ -23,7 +29,7 @@ module remote_note_watchdog #(
             else if(|held && !releasing) silence<=silence+1'b1;
             else silence<=0;
             if(accepted)held[accepted_note]<=accepted_on;
-            if(!releasing && |held && (expire || (!heartbeat && silence==CLK_HZ*TIMEOUT_SECONDS-1))) begin
+            if(!releasing && held_after_accept_any && (expire || (!heartbeat && silence==CLK_HZ*TIMEOUT_SECONDS-1))) begin
                 releasing<=1;scan<=0;silence<=0;timeout_count<=timeout_count+1'b1;
             end
             if(releasing) begin

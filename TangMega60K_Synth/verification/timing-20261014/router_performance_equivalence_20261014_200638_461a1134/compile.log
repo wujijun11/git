@@ -1,0 +1,14 @@
+# do {C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\timing-20261014\router_performance_equivalence_20261014_200638_461a1134\compile.do}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 20:06:42 on Oct 14,2026
+# vlog -sv -work C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/router_performance_equivalence_20261014_200638_461a1134/work C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/router_performance_equivalence_20261014_200638_461a1134/remote_command_router.v C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/router_performance_equivalence_20261014_200638_461a1134/performance_controller.v C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/router_performance_equivalence_20261014_200638_461a1134/remote_command_router_reference.v C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/router_performance_equivalence_20261014_200638_461a1134/tb_router_performance_equivalence.sv 
+# -- Compiling module remote_command_router
+# -- Compiling module performance_controller
+# -- Compiling module remote_command_router_reference
+# -- Compiling module router_performance_equivalence_lane
+# -- Compiling module tb_router_performance_equivalence
+# 
+# Top level modules:
+# 	tb_router_performance_equivalence
+# End time: 20:06:42 on Oct 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

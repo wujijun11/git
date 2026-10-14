@@ -1,0 +1,71 @@
+﻿{
+    "Passed":  true,
+    "Baseline":  true,
+    "ReferenceSourceSHA256":  "ae4c4a74e39d60b036c928b2813a6813cb2406f568fb4debe85b1cfb20ed4b13",
+    "EffectiveDutSHA256":  "ae4c4a74e39d60b036c928b2813a6813cb2406f568fb4debe85b1cfb20ed4b13",
+    "InputsUnchanged":  true,
+    "ElapsedSeconds":  21.7870219,
+    "RandomCyclesPerSeed":  20000,
+    "Cases":  [
+                  {
+                      "Name":  "oracle_negative",
+                      "Seed":  734921,
+                      "ExpectedFatal":  true,
+                      "Matched":  true,
+                      "ExitCode":  0,
+                      "Marker":  "",
+                      "Log":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\watchdog_equivalence_20261014_194640_7ea7700c\\oracle_negative.log",
+                      "Console":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\watchdog_equivalence_20261014_194640_7ea7700c\\oracle_negative.console.log"
+                  },
+                  {
+                      "Name":  "seed_734921",
+                      "Seed":  734921,
+                      "ExpectedFatal":  false,
+                      "Matched":  true,
+                      "ExitCode":  0,
+                      "Marker":  "WATCHDOG EQUIVALENCE PASS cycles=22832 random_cycles=20000 seed=734921 notes=128 same_note_ack=128 accepted=18186 release_acks=5121 stalls=2173 heartbeats=5662 expiry=1256 resets=31",
+                      "Log":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\watchdog_equivalence_20261014_194640_7ea7700c\\seed_734921.log",
+                      "Console":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\watchdog_equivalence_20261014_194640_7ea7700c\\seed_734921.console.log"
+                  },
+                  {
+                      "Name":  "seed_94177",
+                      "Seed":  94177,
+                      "ExpectedFatal":  false,
+                      "Matched":  true,
+                      "ExitCode":  0,
+                      "Marker":  "WATCHDOG EQUIVALENCE PASS cycles=22785 random_cycles=20000 seed=94177 notes=128 same_note_ack=128 accepted=18097 release_acks=5139 stalls=2122 heartbeats=5671 expiry=1220 resets=31",
+                      "Log":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\watchdog_equivalence_20261014_194640_7ea7700c\\seed_94177.log",
+                      "Console":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\watchdog_equivalence_20261014_194640_7ea7700c\\seed_94177.console.log"
+                  },
+                  {
+                      "Name":  "seed_123456789",
+                      "Seed":  123456789,
+                      "ExpectedFatal":  false,
+                      "Matched":  true,
+                      "ExitCode":  0,
+                      "Marker":  "WATCHDOG EQUIVALENCE PASS cycles=22554 random_cycles=20000 seed=123456789 notes=128 same_note_ack=128 accepted=18063 release_acks=5132 stalls=2099 heartbeats=5728 expiry=1202 resets=31",
+                      "Log":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\watchdog_equivalence_20261014_194640_7ea7700c\\seed_123456789.log",
+                      "Console":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\timing-20261014\\watchdog_equivalence_20261014_194640_7ea7700c\\seed_123456789.console.log"
+                  }
+              ],
+    "Inputs":  [
+                   {
+                       "Path":  "rtl/control/remote_note_watchdog.v",
+                       "CurrentBefore":  "7BB684532E012BD450ADDDC3B1A97E59073B8D80EA9A8C52CCE4BB84B7BE16D7",
+                       "Snapshot":  "7BB684532E012BD450ADDDC3B1A97E59073B8D80EA9A8C52CCE4BB84B7BE16D7",
+                       "CurrentAfter":  "7BB684532E012BD450ADDDC3B1A97E59073B8D80EA9A8C52CCE4BB84B7BE16D7"
+                   },
+                   {
+                       "Path":  "sim/remote_note_watchdog_reference.v",
+                       "CurrentBefore":  "D00E763FAFAC418D5C6A0713C72C8255D8BEACA98B3F629AC219E438A31819C5",
+                       "Snapshot":  "D00E763FAFAC418D5C6A0713C72C8255D8BEACA98B3F629AC219E438A31819C5",
+                       "CurrentAfter":  "D00E763FAFAC418D5C6A0713C72C8255D8BEACA98B3F629AC219E438A31819C5"
+                   },
+                   {
+                       "Path":  "sim/tb_remote_watchdog_equivalence.sv",
+                       "CurrentBefore":  "9477B442ACD83B564333C42204A211707704536063652983B97E041A87C3BDEF",
+                       "Snapshot":  "9477B442ACD83B564333C42204A211707704536063652983B97E041A87C3BDEF",
+                       "CurrentAfter":  "9477B442ACD83B564333C42204A211707704536063652983B97E041A87C3BDEF"
+                   }
+               ]
+}

@@ -1,0 +1,14 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/performance_commit.wlf -l logs/performance_commit.log -do "do cases/performance_commit.do" work.tb_performance_commit_pipeline 
+# Start time: 20:09:50 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_performance_commit_pipeline
+# Loading work.performance_controller
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 33, found 32.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_performance_commit_pipeline/dut File: sim/tb_performance_commit_pipeline.sv Line: 14
+# ** Warning: (vsim-3722) sim/tb_performance_commit_pipeline.sv(14): [TFMPC] - Missing connection for port 'action_busy'.
+# do cases/performance_commit.do
+# PASS performance consecutive commands: 256-row commit, missing rows, upload epochs, immediate start, capture Stop/Panic
+# ** Note: $finish    : sim/tb_performance_commit_pipeline.sv(74)
+#    Time: 2780 ns  Iteration: 1  Instance: /tb_performance_commit_pipeline
+# End time: 20:09:51 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 2

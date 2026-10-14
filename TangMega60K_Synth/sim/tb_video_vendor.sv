@@ -74,5 +74,5 @@ module tb_video_vendor;
         if(words[0]!==10'b1010101011)$fatal(1,"serializer did not recover after reset");
         $display("ALL VIDEO VENDOR TESTS PASSED (actual Gowin PLLA25/125MHz,ODDR bit order,TLVDS polarity,reset)");$finish;
     end
-    initial begin #10000000000;$fatal(1,"video PLL/serializer timeout");end
+    initial begin #(64'd10000000000);$fatal(1,"video PLL/serializer timeout");end
 endmodule

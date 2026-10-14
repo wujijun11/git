@@ -1,0 +1,12 @@
+# do {C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\timing-20261014\watchdog_equivalence_20261014_194715_03d4ed52\compile.do}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 19:47:19 on Oct 14,2026
+# vlog -sv -work C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/watchdog_equivalence_20261014_194715_03d4ed52/work C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/watchdog_equivalence_20261014_194715_03d4ed52/remote_note_watchdog.v C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/watchdog_equivalence_20261014_194715_03d4ed52/remote_note_watchdog_reference.v C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/watchdog_equivalence_20261014_194715_03d4ed52/tb_remote_watchdog_equivalence.sv 
+# -- Compiling module remote_note_watchdog
+# -- Compiling module remote_note_watchdog_reference
+# -- Compiling module tb_remote_watchdog_equivalence
+# 
+# Top level modules:
+# 	tb_remote_watchdog_equivalence
+# End time: 19:47:19 on Oct 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

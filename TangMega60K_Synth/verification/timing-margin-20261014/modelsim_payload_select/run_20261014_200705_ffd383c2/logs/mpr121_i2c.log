@@ -1,0 +1,12 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/mpr121_i2c.wlf -l logs/mpr121_i2c.log -do "do cases/mpr121_i2c.do" work.tb_mpr121_i2c 
+# Start time: 20:09:13 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_mpr121_i2c
+# Loading work.i2c_register_master
+# Loading work.mpr121_bus_model
+# do cases/mpr121_i2c.do
+# PASS tb_mpr121_i2c: write/read, 43 bytes, final NACK, address/register/data NACK, stretch and bounded timeout
+# ** Note: $finish    : sim/tb_mpr121_i2c.sv(56)
+#    Time: 276850 ns  Iteration: 1  Instance: /tb_mpr121_i2c
+# End time: 20:09:14 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

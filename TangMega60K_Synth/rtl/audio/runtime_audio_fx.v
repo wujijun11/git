@@ -16,8 +16,23 @@ module runtime_audio_fx #(
 );
     reg [2:0] state;
     reg [1:0] active_mode;
-    reg signed [23:0] dry_l,dry_r,delay_l,delay_r;
-    reg signed [23:0] hist_l[0:HIST_SIZE-1],hist_r[0:HIST_SIZE-1];
+    reg signed [23:0] dry_l,dry_r;
+    // Delay/chorus and reverb never retain live histories across a mode change.
+    // Pack the full 48-bit stereo history into three 16-bit banks. Reverb uses
+    // the same banks for its four combs, with each allpass after its comb.
+    // One synchronous read and one write per bank preserve block-RAM inference.
+    localparam BANK0_SIZE=(HIST_SIZE>COMB0+AP0) ? HIST_SIZE : COMB0+AP0;
+    localparam BANK1_SIZE=(HIST_SIZE>COMB1+AP1) ? HIST_SIZE : COMB1+AP1;
+    localparam BANK2_SIZE=(HIST_SIZE>COMB2) ? HIST_SIZE : COMB2;
+    localparam BANK0_AW=(BANK0_SIZE>1) ? $clog2(BANK0_SIZE) : 1;
+    localparam BANK1_AW=(BANK1_SIZE>1) ? $clog2(BANK1_SIZE) : 1;
+    localparam BANK2_AW=(BANK2_SIZE>1) ? $clog2(BANK2_SIZE) : 1;
+    localparam BANK3_AW=(COMB3>1) ? $clog2(COMB3) : 1;
+    reg [15:0] bank0[0:BANK0_SIZE-1],bank1[0:BANK1_SIZE-1];
+    reg [15:0] bank2[0:BANK2_SIZE-1],bank3[0:COMB3-1];
+    reg [15:0] bank_q0,bank_q1,bank_q2,bank_q3;
+    wire signed [23:0] delay_l={bank_q1[7:0],bank_q0};
+    wire signed [23:0] delay_r={bank_q2,bank_q1[15:8]};
     reg [HIST_AW-1:0] ptr,read_ptr;
     reg [HIST_AW:0] filled;
     reg [15:0] phase;
@@ -26,12 +41,11 @@ module runtime_audio_fx #(
         CHORUS_BASE+(triangle*CHORUS_DEPTH)/128;
     wire [HIST_AW-1:0] raddr=ptr-lag;
     reg lag_valid;
-    reg signed [15:0] comb_mem0[0:COMB0-1],comb_mem1[0:COMB1-1];
-    reg signed [15:0] comb_mem2[0:COMB2-1],comb_mem3[0:COMB3-1];
-    reg signed [15:0] ap_mem0[0:AP0-1],ap_mem1[0:AP1-1];
     reg [11:0] cptr0,cptr1,cptr2,cptr3,aptr0,aptr1;
     reg [12:0] cfill0,cfill1,cfill2,cfill3,afill0,afill1;
-    reg signed [15:0] tap0,tap1,tap2,tap3,at0,at1,mono,comb_average;
+    wire signed [15:0] tap0=bank_q0,tap1=bank_q1,tap2=bank_q2,tap3=bank_q3;
+    wire signed [15:0] at0=bank_q0,at1=bank_q1;
+    reg signed [15:0] mono,comb_average;
     reg signed [19:0] aout0,aout1;
     wire accept=in_valid && in_ready;
     wire change=mode!=active_mode;
@@ -63,31 +77,49 @@ module runtime_audio_fx #(
     wire signed [31:0] dl={{8{dry_l[23]}},dry_l},dr={{8{dry_r[23]}},dry_r};
     wire signed [31:0] el=lag_valid ? {{8{delay_l[23]}},delay_l} : 32'sd0;
     wire signed [31:0] er=lag_valid ? {{8{delay_r[23]}},delay_r} : 32'sd0;
+    wire history_read=accept && !change && (mode==1 || mode==3);
+    wire comb_read=accept && !change && mode==2;
+    wire allpass_read=state==1 && active_mode==2;
+    wire history_write=state==1 && (active_mode==1 || active_mode==3);
+    wire comb_write=state==1 && active_mode==2;
+    wire allpass_write=state==3;
+    wire [BANK0_AW-1:0] bank_raddr0=allpass_read ? COMB0+aptr0 :
+        (comb_read ? cptr0 : raddr);
+    wire [BANK1_AW-1:0] bank_raddr1=allpass_read ? COMB1+aptr1 :
+        (comb_read ? cptr1 : raddr);
+    wire [BANK2_AW-1:0] bank_raddr2=comb_read ? cptr2 : raddr;
+    wire [BANK3_AW-1:0] bank_raddr3=cptr3;
+    wire [BANK0_AW-1:0] bank_waddr0=allpass_write ? COMB0+aptr0 :
+        (comb_write ? cptr0 : ptr);
+    wire [BANK1_AW-1:0] bank_waddr1=allpass_write ? COMB1+aptr1 :
+        (comb_write ? cptr1 : ptr);
+    wire [BANK2_AW-1:0] bank_waddr2=comb_write ? cptr2 : ptr;
+    wire [BANK3_AW-1:0] bank_waddr3=cptr3;
+    wire [23:0] history_l=sat24(dl+((active_mode==1) ? (el>>>1) : 32'sd0));
+    wire [23:0] history_r=sat24(dr+((active_mode==1) ? (er>>>1) : 32'sd0));
+    wire [15:0] bank_wdata0=history_write ? history_l[15:0] :
+        (comb_write ? sat16(m+(t0>>>1)+(t0>>>2)) : sat16(cav+(aout0>>>1)));
+    wire [15:0] bank_wdata1=history_write ? {history_r[7:0],history_l[23:16]} :
+        (comb_write ? sat16(m+(t1>>>1)+(t1>>>2)) : sat16(cav+(aout1>>>1)));
+    wire [15:0] bank_wdata2=history_write ? history_r[23:8] :
+        sat16(m+(t2>>>1)+(t2>>>2));
     assign in_ready=rst_n && state==0 && (!out_valid || out_ready);
     // Separate synchronous memory processes permit block RAM inference.
     always @(posedge clk) begin
-        if(accept && !change && (mode==1 || mode==3)) begin
-            delay_l<=hist_l[raddr]; delay_r<=hist_r[raddr];
-        end
-        if(state==1 && (active_mode==1 || active_mode==3)) begin
-            hist_l[ptr]<=sat24(dl+((active_mode==1) ? (el>>>1) : 32'sd0));
-            hist_r[ptr]<=sat24(dr+((active_mode==1) ? (er>>>1) : 32'sd0));
-        end
-        if(accept && !change && mode==2) begin
-            tap0<=comb_mem0[cptr0]; tap1<=comb_mem1[cptr1];
-            tap2<=comb_mem2[cptr2]; tap3<=comb_mem3[cptr3];
-        end
-        if(state==1 && active_mode==2) begin
-            comb_mem0[cptr0]<=sat16(m+(t0>>>1)+(t0>>>2));
-            comb_mem1[cptr1]<=sat16(m+(t1>>>1)+(t1>>>2));
-            comb_mem2[cptr2]<=sat16(m+(t2>>>1)+(t2>>>2));
-            comb_mem3[cptr3]<=sat16(m+(t3>>>1)+(t3>>>2));
-            at0<=ap_mem0[aptr0]; at1<=ap_mem1[aptr1];
-        end
-        if(state==3) begin
-            ap_mem0[aptr0]<=sat16(cav+(aout0>>>1));
-            ap_mem1[aptr1]<=sat16(cav+(aout1>>>1));
-        end
+        if(history_read || comb_read || allpass_read) bank_q0<=bank0[bank_raddr0];
+        if(history_write || comb_write || allpass_write) bank0[bank_waddr0]<=bank_wdata0;
+    end
+    always @(posedge clk) begin
+        if(history_read || comb_read || allpass_read) bank_q1<=bank1[bank_raddr1];
+        if(history_write || comb_write || allpass_write) bank1[bank_waddr1]<=bank_wdata1;
+    end
+    always @(posedge clk) begin
+        if(history_read || comb_read) bank_q2<=bank2[bank_raddr2];
+        if(history_write || comb_write) bank2[bank_waddr2]<=bank_wdata2;
+    end
+    always @(posedge clk) begin
+        if(comb_read) bank_q3<=bank3[bank_raddr3];
+        if(comb_write) bank3[bank_waddr3]<=sat16(m+(t3>>>1)+(t3>>>2));
     end
     always @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin

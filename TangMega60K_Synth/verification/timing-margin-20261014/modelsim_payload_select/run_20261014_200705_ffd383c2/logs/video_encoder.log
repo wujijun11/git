@@ -1,0 +1,11 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/video_encoder.wlf -l logs/video_encoder.log -do "do cases/video_encoder.do" work.tb_video_encoder 
+# Start time: 20:10:26 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_video_encoder
+# Loading work.video_tmds_encoder
+# do cases/video_encoder.do
+# ALL VIDEO TMDS ENCODER TESTS PASSED (16384 symbols, decode, balance, transitions, controls)
+# ** Note: $finish    : sim/tb_video_encoder.sv(36)
+#    Time: 660221 ns  Iteration: 0  Instance: /tb_video_encoder
+# End time: 20:10:27 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

@@ -1,0 +1,15 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/performance_retrigger.wlf -l logs/performance_retrigger.log -do "do cases/performance_retrigger.do" work.tb_performance_retrigger 
+# Start time: 12:50:48 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_performance_retrigger
+# Loading work.performance_controller
+# Loading work.voice_allocator_v2
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 33, found 32.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_performance_retrigger/dut File: sim/tb_performance_retrigger.sv Line: 26
+# ** Warning: (vsim-3722) sim/tb_performance_retrigger.sv(26): [TFMPC] - Missing connection for port 'action_busy'.
+# do cases/performance_retrigger.do
+# PASS performance retrigger: remap/replay release ordering, same-note full allocation, timbre ownership, zero velocity, backpressure, Stop/Panic
+# ** Note: $finish    : sim/tb_performance_retrigger.sv(175)
+#    Time: 9306 ns  Iteration: 0  Instance: /tb_performance_retrigger
+# End time: 12:50:49 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 2

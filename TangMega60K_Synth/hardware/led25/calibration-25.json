@@ -1,0 +1,306 @@
+{
+  "version": 1,
+  "title": "25灯逐键校准：800ms亮/200ms间隔",
+  "rows": [
+    {
+      "deltaMs": 0,
+      "key": 0,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 0,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 1,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 1,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 2,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 2,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 3,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 3,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 4,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 4,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 5,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 5,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 6,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 6,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 7,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 7,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 8,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 8,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 9,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 9,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 10,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 10,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 11,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 11,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 12,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 12,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 13,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 13,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 14,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 14,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 15,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 15,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 16,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 16,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 17,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 17,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 18,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 18,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 19,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 19,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 20,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 20,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 21,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 21,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 22,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 22,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 23,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 23,
+      "velocity": 0,
+      "on": 0
+    },
+    {
+      "deltaMs": 200,
+      "key": 24,
+      "velocity": 100,
+      "on": 1
+    },
+    {
+      "deltaMs": 800,
+      "key": 24,
+      "velocity": 0,
+      "on": 0
+    }
+  ]
+}

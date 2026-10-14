@@ -1,0 +1,342 @@
+[
+  {
+    "path": "rtl\\audio\\adsr.v",
+    "type": "file.verilog",
+    "sha256": "4681934C77A0148F295CF5AB8590A4C59952948ED7E615A010191C7691D0194E"
+  },
+  {
+    "path": "rtl\\audio\\audio_fx.v",
+    "type": "file.verilog",
+    "sha256": "D987FBEB0419EBABAC66A2EF26D8440A554B7662764AE69616AF048D28BE912D"
+  },
+  {
+    "path": "rtl\\audio\\audio_system_v2_fm.v",
+    "type": "file.verilog",
+    "sha256": "7619181D0E405C6A428FC5E4577D3A55D8BAD376E02EE9D48D10F98CF21C6C15"
+  },
+  {
+    "path": "rtl\\audio\\audio_system_v2.v",
+    "type": "file.verilog",
+    "sha256": "2DC326DE168B92FA260ADC6EA747C5755AD3A951C1B7A2F6E3CD476C6E4CC98B"
+  },
+  {
+    "path": "rtl\\audio\\dds_lane.v",
+    "type": "file.verilog",
+    "sha256": "6B4E97A82F37C24BAA6B7D3E189A630A1A0CF557AEC39DFD4F2CA2183D55A192"
+  },
+  {
+    "path": "rtl\\audio\\fm_piano_lane.v",
+    "type": "file.verilog",
+    "sha256": "0A59404A8C1B5E1BE88D8CD115BE8D4596CD5E8C37E51308EB7873644463287A"
+  },
+  {
+    "path": "rtl\\audio\\gain_saturator.v",
+    "type": "file.verilog",
+    "sha256": "2930B65486DAA51F8941311CC983254BB9FFCAF7AE7203006F307480435F8E0A"
+  },
+  {
+    "path": "rtl\\audio\\pitch_expression.v",
+    "type": "file.verilog",
+    "sha256": "56A092BC8F5F9568B0F595B0A45C5024464000FDA2BBFED08AA4D58F32FB191F"
+  },
+  {
+    "path": "rtl\\audio\\polar_lane.v",
+    "type": "file.verilog",
+    "sha256": "EB1AD0F4D0A60E2AF3CDF599875F23B5C4A34DB8BD34587A58AFB82ECED6038C"
+  },
+  {
+    "path": "rtl\\audio\\runtime_audio_fx.v",
+    "type": "file.verilog",
+    "sha256": "94B238B4D30C74703AD2F7F43CC3228D0E9770EB71E1D2E44FFCBC88657596E9"
+  },
+  {
+    "path": "rtl\\audio\\stereo_mixer.v",
+    "type": "file.verilog",
+    "sha256": "56955D73D27F4D6DBB5778C33EF5779FEFE6DD90DDE6EAC373B9694186710188"
+  },
+  {
+    "path": "rtl\\audio\\voice_engine.v",
+    "type": "file.verilog",
+    "sha256": "206E9BD3EB5D1127D243C44D8804940A7731533C0528CEAF291915DA858F8AFE"
+  },
+  {
+    "path": "rtl\\audio\\voice_state_ram.v",
+    "type": "file.verilog",
+    "sha256": "7B62A9D2600D7A58434E996A5985773A6538C28B96232CA30849BA9207EDC7FD"
+  },
+  {
+    "path": "rtl\\audio\\wavetable_rom.v",
+    "type": "file.verilog",
+    "sha256": "1C162CC98D743A01F1A24EC000C96088B4594C750399154519405477C6DD37FA"
+  },
+  {
+    "path": "rtl\\board\\board_audio_16_48k_i2s_top.v",
+    "type": "file.verilog",
+    "sha256": "52FD587B0D2C459DA788153D029437F092CA463BC58C8C0885B347B3D49D4A38"
+  },
+  {
+    "path": "rtl\\board\\board_audio_48k_gao_top.v",
+    "type": "file.verilog",
+    "sha256": "7D6A1B5AB389B400A0F3012820CD44A03AB7E8A5A47C9497C86F7A115880B676"
+  },
+  {
+    "path": "rtl\\board\\board_audio_48k_i2s_top.v",
+    "type": "file.verilog",
+    "sha256": "8B664D20B3B56FE87C19412CD46103006EA8D68CED0789F0FF2AF1256E4BC0AA"
+  },
+  {
+    "path": "rtl\\board\\board_audio_diagnostic_top.v",
+    "type": "file.verilog",
+    "sha256": "851AE9AEB5E922F9EFBF1AE7DCC5E4E3EAD965B9D3BA78B0ACF4570E011EC651"
+  },
+  {
+    "path": "rtl\\board\\board_audio_gao_top.v",
+    "type": "file.verilog",
+    "sha256": "3129E781A0BF5E5D31A1D3D78AB3A7DC6B6271D2DD54E43AB7A8874FA02476EF"
+  },
+  {
+    "path": "rtl\\board\\board_bringup_top.v",
+    "type": "file.verilog",
+    "sha256": "B1B964FA086512D759DC50D5400FE1C9CF5DF95753F8718553AA4BE6587276F1"
+  },
+  {
+    "path": "rtl\\board\\board_contest_full_top.v",
+    "type": "file.verilog",
+    "sha256": "74FC684AD62DD791A8515C88D110AEF35DBD59745F363888C5E23AE6A3720B52"
+  },
+  {
+    "path": "rtl\\board\\board_instrument_b_48k_gao_top.v",
+    "type": "file.verilog",
+    "sha256": "98F0A26A17EDAC4EE49457453720B5903D08CC0F5BC9E3F17A8AFDE45BAFEF6F"
+  },
+  {
+    "path": "rtl\\board\\board_instrument_b_48k_i2s_top.v",
+    "type": "file.verilog",
+    "sha256": "6B23D46CD3DAA221FA23D504E9C561C699F05B68BD2B206FBF22AF6D7A3DFA6B"
+  },
+  {
+    "path": "rtl\\board\\board_key_event_adapter.v",
+    "type": "file.verilog",
+    "sha256": "972E0D2B61F7A6B640C3F1DDABCF2E9907118592C3FF3000BC60478CCCCFCDDD"
+  },
+  {
+    "path": "rtl\\board\\board_sequence16_48k_i2s_top.v",
+    "type": "file.verilog",
+    "sha256": "92D831C606100C73CBA463D3619EF9865B63AA10C220D84291ADFBFFFC96F38F"
+  },
+  {
+    "path": "rtl\\captain_control_top_v2.v",
+    "type": "file.verilog",
+    "sha256": "73A178A24E73FE7E39B307D9B5407CC209F936A63BEACC53A28892A2A5DAD2B2"
+  },
+  {
+    "path": "rtl\\captain_control_top.v",
+    "type": "file.verilog",
+    "sha256": "58051C5483EEB97A700765442F5EB26F454BC3CA1303DC079DCDCC39451A76BA"
+  },
+  {
+    "path": "rtl\\captain_system_top_v2.v",
+    "type": "file.verilog",
+    "sha256": "6CB353E564B599481EAEFD8973EA7C149D8D6AB111775E3333678CE005716815"
+  },
+  {
+    "path": "rtl\\captain_system_top.v",
+    "type": "file.verilog",
+    "sha256": "416ED87045C1338D4DCC467FA9EA7E2335F7119F6E798F0942F95EBFE224EB6E"
+  },
+  {
+    "path": "rtl\\clock\\audio_clock_48k.v",
+    "type": "file.verilog",
+    "sha256": "A1E2821FEC64F8DE6F693373362F319D6DB684434B97A76816E365C5A3E81FC6"
+  },
+  {
+    "path": "rtl\\clock\\pll_init.v",
+    "type": "file.verilog",
+    "sha256": "3FC6BEF9A7086F0920BFA47265B1766854A53F6CA1C0F75084EAF6B6EF4D6258"
+  },
+  {
+    "path": "rtl\\control\\expression_merge.v",
+    "type": "file.verilog",
+    "sha256": "6845EE307831F819C501328FE59DB2A0D2D5621750AFF8D413832D9A65F08F58"
+  },
+  {
+    "path": "rtl\\control\\note_arbiter.v",
+    "type": "file.verilog",
+    "sha256": "E348F41BA5D6C01D189F83EDB74BAFF2CD91CA5DDC61907A878878C6164587C3"
+  },
+  {
+    "path": "rtl\\control\\remote_command_router.v",
+    "type": "file.verilog",
+    "sha256": "70DA11F8430FF9176A1FFB77CF0AA20A1242DE2CC6177A6CB66AEC31EEA65DC0"
+  },
+  {
+    "path": "rtl\\control\\remote_note_watchdog.v",
+    "type": "file.verilog",
+    "sha256": "7BB684532E012BD450ADDDC3B1A97E59073B8D80EA9A8C52CCE4BB84B7BE16D7"
+  },
+  {
+    "path": "rtl\\diagnostics\\live64_event_source.v",
+    "type": "file.verilog",
+    "sha256": "C0041578A949BC4990B90DD0F9997C855E960DB927129D00421FD9B100EDB679"
+  },
+  {
+    "path": "rtl\\diagnostics\\live64_system_top.v",
+    "type": "file.verilog",
+    "sha256": "659E063860A9A2C6D04507A42AB82DB71963965BD5D23D1718367D448B3C4C1D"
+  },
+  {
+    "path": "rtl\\diagnostics\\poly16_event_source.v",
+    "type": "file.verilog",
+    "sha256": "425B2A6F25EE49FDCB5E511D7E1B58CCEA807F1C6BDB46A00FB8710B85A0CD96"
+  },
+  {
+    "path": "rtl\\diagnostics\\sequence16_event_source.v",
+    "type": "file.verilog",
+    "sha256": "FBB58AEEFE2E1B1051AE46D8D23A2B36BF30E950D0B57FF13707EDC54C58202A"
+  },
+  {
+    "path": "rtl\\event_fifo_v2.v",
+    "type": "file.verilog",
+    "sha256": "D2BA29DD7A07483F1D9A7270CF36DA6AE5165AF7B47058B9DA1A658AE0407B41"
+  },
+  {
+    "path": "rtl\\event_fifo.v",
+    "type": "file.verilog",
+    "sha256": "0BAE0E372FA20687EFA27DEF24032463336490613B27B71B6427D160EFC3AAA7"
+  },
+  {
+    "path": "rtl\\expression_controls_v2.v",
+    "type": "file.verilog",
+    "sha256": "1E5999906661197F9AADF1318C2680028258C6353FB9AFD970C0E45BB5D0FCD2"
+  },
+  {
+    "path": "rtl\\i2s_tx.v",
+    "type": "file.verilog",
+    "sha256": "95C36D7DB8234D21DCFB8D0ACD4EAE330AC229BC08591A6D66C14425A6A3F147"
+  },
+  {
+    "path": "rtl\\instrument_full_system.v",
+    "type": "file.verilog",
+    "sha256": "6130634B6D8950B2324DE766BF974F578F9D2CBB061C7928945577904CA7004B"
+  },
+  {
+    "path": "rtl\\instrument_system_v2.v",
+    "type": "file.verilog",
+    "sha256": "2FE1D96BD7850C473F95867AB1D80472D7B0950E5C0F697D7EE813AF9C8B1176"
+  },
+  {
+    "path": "rtl\\interaction_top_v2.v",
+    "type": "file.verilog",
+    "sha256": "37396F29D885891A8BBDA5545E8FDEA17880297AD9294ECBCB7A1F0DAC93B954"
+  },
+  {
+    "path": "rtl\\interaction_top.v",
+    "type": "file.verilog",
+    "sha256": "156DD2AD23ED14C05EA12B8E34D279DF406B32AB37F84681D40535ED94A71B4C"
+  },
+  {
+    "path": "rtl\\performance\\performance_controller.v",
+    "type": "file.verilog",
+    "sha256": "E82FF37DCE81CD52A138D8AA5FC7E3CA229B1F7D3C915E2CC1B9BA226E5E7AF7"
+  },
+  {
+    "path": "rtl\\performance\\ws2812_guide.v",
+    "type": "file.verilog",
+    "sha256": "249594B10CBD6AA7DCF8299EA4E6B14E958410BEDE8A1DDFC76CA4C0E60578EE"
+  },
+  {
+    "path": "rtl\\remote\\remote_uart_transport.sv",
+    "type": "file.verilog",
+    "sha256": "0155098B90F7AEC2E67DAD4517AB386B6DF63D0AD7E7AD1BCB961E915D7FB824"
+  },
+  {
+    "path": "rtl\\sensors\\i2c_register_master.v",
+    "type": "file.verilog",
+    "sha256": "21713FCDD00E76627FEA4DBFFCF796F21EA080A0FDE22FAE156AA03397E03906"
+  },
+  {
+    "path": "rtl\\sensors\\mpr121_input_frontend.v",
+    "type": "file.verilog",
+    "sha256": "D53B382D6150D54A60C7492F9443B30F44DBE8638B2A4E5AECF154410901C5A4"
+  },
+  {
+    "path": "rtl\\sensors\\mpr121_key_eventizer.v",
+    "type": "file.verilog",
+    "sha256": "CE612B7B3B62D683499CAA133964C4742AB4918AF921C13D9A2C54AFEA5AFA6A"
+  },
+  {
+    "path": "rtl\\sensors\\mpr121_sampler.v",
+    "type": "file.verilog",
+    "sha256": "FAF9C16D3483C9509BAC590CDE9722EFF1B5551DD9C9010A4662ECCB93208778"
+  },
+  {
+    "path": "rtl\\sensors\\mpr121_slider.v",
+    "type": "file.verilog",
+    "sha256": "1336C6C4E328C244CACEF95F35857C41E4FBCE09F0632E6B5CE25E70829E25A6"
+  },
+  {
+    "path": "rtl\\test_tone_source.v",
+    "type": "file.verilog",
+    "sha256": "B36A3949079C6F9ABF066D1D4EBE92E816D2E34001BEE50441AE038F1F69AE20"
+  },
+  {
+    "path": "rtl\\tone_demo_top.v",
+    "type": "file.verilog",
+    "sha256": "701FD58FED96AD12579041A66A295EB07710BC85E89516FEC2B4A41FF2151AA8"
+  },
+  {
+    "path": "rtl\\visual\\audio_monitor_cdc.v",
+    "type": "file.verilog",
+    "sha256": "5DD36EDE663CA346AAE5ABF9701C960754CFE8258631E63A90C11090D50BAD7F"
+  },
+  {
+    "path": "rtl\\visual\\audio_visualizer.v",
+    "type": "file.verilog",
+    "sha256": "4C50B63ABA7D57A5559C67C82CA84460DBD352E8B176E53B210445E5F2E116E9"
+  },
+  {
+    "path": "rtl\\visual\\scope_renderer.v",
+    "type": "file.verilog",
+    "sha256": "31C2033BD0E147AED019B2FB61E75C13EF4BC632434646C12551040ED1D27410"
+  },
+  {
+    "path": "rtl\\visual\\video_clocking.v",
+    "type": "file.verilog",
+    "sha256": "EE8AABD62F8D7DF09A391EA26E751E2F733551BB808083FD801FD2B87CC29BAF"
+  },
+  {
+    "path": "rtl\\visual\\video_timing_640x480.v",
+    "type": "file.verilog",
+    "sha256": "2B3EBC87BEE4851BF02DB2DF6FCFF78E98CA9EEA581BB56F23B99B4438C1E3BB"
+  },
+  {
+    "path": "rtl\\visual\\video_tmds_encoder.v",
+    "type": "file.verilog",
+    "sha256": "A66CBC3B60BC3D9F720F13167A91295F7B1C498DD083ADBD65C3E44E29362079"
+  },
+  {
+    "path": "rtl\\visual\\video_tmds_tx.v",
+    "type": "file.verilog",
+    "sha256": "F34D47F35F335C793DB1D625CCA3CD016909556AB44E70339EBB594942F518BA"
+  },
+  {
+    "path": "rtl\\voice_allocator_v2.v",
+    "type": "file.verilog",
+    "sha256": "5B4A7CE1BF419A8BFCB1307632436FB5F26E98786082D782D9F5CDA63A33174D"
+  },
+  {
+    "path": "rtl\\voice_allocator.v",
+    "type": "file.verilog",
+    "sha256": "BBECAEEDCFAC74C9D252414715C57FDBD929E31B9540FD3F2ECF2B8C2E9C487A"
+  },
+  {
+    "path": "full\\contest_full.cst",
+    "type": "file.cst",
+    "sha256": "57F9E07E34F38C81E6F1D1B4E9B44EEBDDAE7481F28AFD06942076C44FA8DD6C"
+  },
+  {
+    "path": "full\\contest_full.sdc",
+    "type": "file.sdc",
+    "sha256": "91804F0AB1F4DBAFCB5267AA096C79E78D67211615DB1113F1BED17D98242D97"
+  }
+]

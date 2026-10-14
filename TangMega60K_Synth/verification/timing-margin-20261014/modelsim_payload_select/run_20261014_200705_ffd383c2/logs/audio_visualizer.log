@@ -1,0 +1,11 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/audio_visualizer.wlf -l logs/audio_visualizer.log -do "do cases/audio_visualizer.do" work.tb_audio_visualizer 
+# Start time: 20:08:51 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_audio_visualizer
+# Loading work.audio_visualizer
+# do cases/audio_visualizer.do
+# AUDIO VISUALIZER PASS 64 bins, frequency change, silence, circular waveform, overload
+# ** Note: $finish    : sim/tb_audio_visualizer.sv(39)
+#    Time: 31880640 ns  Iteration: 1  Instance: /tb_audio_visualizer
+# End time: 20:08:58 on Oct 14,2026, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 0

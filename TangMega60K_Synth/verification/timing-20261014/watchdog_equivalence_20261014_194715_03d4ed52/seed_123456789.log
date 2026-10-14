@@ -1,0 +1,12 @@
+# do {C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\timing-20261014\watchdog_equivalence_20261014_194715_03d4ed52\seed_123456789.do}
+# vsim -onfinish exit -wlf C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/watchdog_equivalence_20261014_194715_03d4ed52/seed_123456789.wlf work.tb_remote_watchdog_equivalence "+SEED=123456789" "+RANDOM_CYCLES=20000" 
+# Start time: 19:47:36 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_remote_watchdog_equivalence
+# Loading work.remote_note_watchdog
+# Loading work.remote_note_watchdog_reference
+# WATCHDOG EQUIVALENCE PASS cycles=22554 random_cycles=20000 seed=123456789 notes=128 same_note_ack=128 accepted=18063 release_acks=5132 stalls=2099 heartbeats=5728 expiry=1202 resets=31
+# ** Note: $finish    : C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/watchdog_equivalence_20261014_194715_03d4ed52/tb_remote_watchdog_equivalence.sv(208)
+#    Time: 225537 ns  Iteration: 0  Instance: /tb_remote_watchdog_equivalence
+# End time: 19:47:37 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

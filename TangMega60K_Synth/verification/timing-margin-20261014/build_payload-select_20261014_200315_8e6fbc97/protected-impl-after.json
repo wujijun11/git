@@ -1,0 +1,127 @@
+[
+  {
+    "path": "ContestFull_process_config.json",
+    "size": 2679,
+    "sha256": "7012B3B44445337AE226216CFBC9123C38F540AA384E1E354779631E82295BDC"
+  },
+  {
+    "path": "gwsynthesis\\ContestFull.log",
+    "size": 29685,
+    "sha256": "1C1030ED9355B07D8D4D1D1B31196E12D02393F77512222657F027C0ED48ED11"
+  },
+  {
+    "path": "gwsynthesis\\ContestFull.prj",
+    "size": 8319,
+    "sha256": "B12471825F2442191B4C6070596676E795B26DAA7FDCEB0EF1A1471B5D3E9F61"
+  },
+  {
+    "path": "gwsynthesis\\ContestFull.vg",
+    "size": 7395944,
+    "sha256": "41DCC5D3E99D2CEE3B62C56774944B55E25A1CE6CA838D94C9EAA849460CDFBA"
+  },
+  {
+    "path": "gwsynthesis\\ContestFull_syn.rpt.html",
+    "size": 55074,
+    "sha256": "CA4271A20EC754F4B17FE0FF8BDFC7581321A768040A24C8003D24710BDAE9B7"
+  },
+  {
+    "path": "gwsynthesis\\ContestFull_syn_resource.html",
+    "size": 23980,
+    "sha256": "B4B32346F790D4BA7D411D134B38B16E84F52C0ED7864A72453216A6BB89676D"
+  },
+  {
+    "path": "gwsynthesis\\ContestFull_syn_rsc.xml",
+    "size": 7557,
+    "sha256": "691A8FD5B8F264512A7051CDFE7147DEF7731BE175B98280A526E91F760EBD5E"
+  },
+  {
+    "path": "pnr\\ContestFull.bin",
+    "size": 2562959,
+    "sha256": "08E7B842485AC5A586DCC229FC898FA6CCDF54417FE294CE2AFB2A0438DA5EF5"
+  },
+  {
+    "path": "pnr\\ContestFull.binx",
+    "size": 2563572,
+    "sha256": "14CE0071117AF5AA3717B6D3FD30D61226D6B585EE0C0BC4279F27F899987C2C"
+  },
+  {
+    "path": "pnr\\ContestFull.db",
+    "size": 817204,
+    "sha256": "8F4291FFA707A29E1545385D20DCA844CB6A8354B940E420972A3850CDD17601"
+  },
+  {
+    "path": "pnr\\ContestFull.fs",
+    "size": 20562564,
+    "sha256": "1F0E5E9348DA8A4034F83872588BF8031896281D4148FEA26A5B0E2B1822A474"
+  },
+  {
+    "path": "pnr\\ContestFull.log",
+    "size": 1758,
+    "sha256": "64F2B06F8C84826172DF80291AAB8841A140356F5FD23E3B39DD90E970433844"
+  },
+  {
+    "path": "pnr\\ContestFull.p",
+    "size": 3287189,
+    "sha256": "780B80F0D5C8EFDB368F58AD61076D1F0D243F13F9CFEA7E0C444BC22B97B653"
+  },
+  {
+    "path": "pnr\\ContestFull.pin.html",
+    "size": 107916,
+    "sha256": "274022DD821259772D29785D6FA4AB9F76999209BECEE8282BC12476A967DD7A"
+  },
+  {
+    "path": "pnr\\ContestFull.power.html",
+    "size": 13809,
+    "sha256": "9F21852F80B5B1942E995CDF414045C5166435DC1F26397C588FDFE287FBAB60"
+  },
+  {
+    "path": "pnr\\ContestFull.pr",
+    "size": 103930096,
+    "sha256": "EEFCF987D2C8751638182CF3CC207C2625F728020DAF733589740B3BDE1E58DC"
+  },
+  {
+    "path": "pnr\\ContestFull.rpt.html",
+    "size": 114723,
+    "sha256": "35ABF21B0A263F38B2C63BAC65DE4D64629CB8A2B684B96D4FB3FAB7532DAB30"
+  },
+  {
+    "path": "pnr\\ContestFull.rpt.txt",
+    "size": 92037,
+    "sha256": "CBB4ACB386099ECE533E346FEE274F840B031801571A302A164FF94F3C42F79F"
+  },
+  {
+    "path": "pnr\\ContestFull.timing_paths",
+    "size": 24484,
+    "sha256": "6168141026C58070947EA768B1E29E75FBE1D68508D9EBE303D983705E0F4FAC"
+  },
+  {
+    "path": "pnr\\ContestFull.tr",
+    "size": 419010,
+    "sha256": "71F8CACA1F27579CDB8653E964F46F3014C1B60BF3AE0E799EF32085FD289B53"
+  },
+  {
+    "path": "pnr\\ContestFull.tr.html",
+    "size": 357,
+    "sha256": "5D98EF9E0212969EE2DC371047A01E058F7CB790BBEA6DE46D94618FACA4B8B2"
+  },
+  {
+    "path": "pnr\\ContestFull_tr_cata.html",
+    "size": 7892,
+    "sha256": "61DE984B4C2AD5B1A887E09644AF7FAA169C9E67D43462F89FB8E9B1BB4B1477"
+  },
+  {
+    "path": "pnr\\ContestFull_tr_content.html",
+    "size": 592402,
+    "sha256": "E2A767C3909362EC8A810AC9AC343A074F589AA42E0307700DA1A61D86C5DC4D"
+  },
+  {
+    "path": "pnr\\cmd.do",
+    "size": 538,
+    "sha256": "042B82FBDD332DCD05D7A9053A3F05B6B2C23CB02D1F66D4C5D0CDDABB9A00B1"
+  },
+  {
+    "path": "pnr\\device.cfg",
+    "size": 605,
+    "sha256": "79BA1B7ED107B7E76BD3E27DBC482C595C63451857AE30252A0207364397112C"
+  }
+]

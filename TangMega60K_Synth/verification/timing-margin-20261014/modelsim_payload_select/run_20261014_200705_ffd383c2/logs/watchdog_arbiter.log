@@ -1,0 +1,14 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/watchdog_arbiter.wlf -l logs/watchdog_arbiter.log -do "do cases/watchdog_arbiter.do" work.tb_watchdog_arbiter_integration 
+# Start time: 20:09:08 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_watchdog_arbiter_integration
+# Loading work.remote_command_router
+# Loading work.remote_note_watchdog
+# Loading work.note_arbiter
+# Loading work.event_fifo_v2
+# do cases/watchdog_arbiter.do
+# PASS watchdog/arbiter integration: locked grant + full FIFO + expiry; late note rescanned; healthy sources retained; heartbeat/duplicate/timer/stable/reset (10 events)
+# ** Note: $finish    : sim/tb_watchdog_arbiter_integration.sv(168)
+#    Time: 50590 ns  Iteration: 1  Instance: /tb_watchdog_arbiter_integration
+# End time: 20:09:08 on Oct 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

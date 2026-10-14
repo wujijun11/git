@@ -9,7 +9,7 @@ module performance_controller #(
     input wire clk, input wire rst_n,
     input wire command_valid, output wire command_ready,
     input wire [7:0] command_opcode, input wire [79:0] command_payload,
-    output reg [7:0] command_status,
+    output reg [7:0] command_status, output wire action_busy,
     input wire record_valid, input wire record_on,
     input wire [5:0] record_source, input wire [6:0] record_note,
     input wire [6:0] record_velocity, input wire [1:0] record_timbre,
@@ -31,6 +31,7 @@ module performance_controller #(
     localparam integer RECORD_AW=(RECORD_CAPACITY>1) ? $clog2(RECORD_CAPACITY) : 1;
     reg [44:0] score_ram [0:SCORE_CAPACITY-1];
     reg [SCORE_CAPACITY-1:0] row_written;
+    reg clear_written;
     reg [63:0] record_ram [0:RECORD_CAPACITY-1];
     reg [44:0] score_row_q;
     reg [63:0] record_play_q, record_read_q;
@@ -51,7 +52,9 @@ module performance_controller #(
     reg [4:0] event_key;
     reg event_release;
     integer i, n, first_held;
-    reg all_written;
+    wire [SCORE_CAPACITY-1:0] written_or_unused;
+    wire all_written=!clear_written && &written_or_unused;
+    reg [7:0] action_status, score_write_status, score_commit_status;
     wire replay_supported=(record_count!=0) && !unsupported_record_source;
     wire [15:0] arg_count = command_payload[15:0];
     wire [7:0] action = command_payload[7:0];
@@ -59,10 +62,23 @@ module performance_controller #(
     assign command_ready = 1'b1;
     assign record_read_valid = record_read_q_valid;
     assign row_payload = record_read_valid ? {record_read_q,record_read_q_index} : 80'd0;
-    wire suppress_record=command_valid && command_opcode==8'h04 && command_status==0 &&
-        (action==3 || action==5);
+    // Keep each command's acceptance cone local to its affected state. In
+    // particular, the score commit's full row-valid reduction must not gate
+    // ordinary start/stop commands, playback, guide bits or recorder capture.
+    wire action_command=command_valid && command_opcode==8'h04 && action_status==0;
+    // A board action has no dependency on score upload/commit validation.
+    // Expose its busy status before the opcode-selected response mux so the
+    // local source's ready path cannot inherit the full row-valid reduction.
+    assign action_busy=action_status==2;
+    wire suppress_record=action_command && (action==3 || action==5);
     wire record_capture=recording && record_valid && !suppress_record && record_count<RECORD_CAPACITY;
-    wire score_write=command_valid && command_ready && command_status==0 && command_opcode==8'h06;
+    wire score_write=command_valid && command_opcode==8'h06 && score_write_status==0;
+    wire score_commit=command_valid && command_opcode==8'h07 && score_commit_status==0;
+
+    genvar row;
+    generate for (row=0;row<SCORE_CAPACITY;row=row+1) begin: uploaded_rows
+        assign written_or_unused[row]=row_written[row] || arg_count<=row;
+    end endgenerate
 
     // Synchronous RAM ports: score has one write and one read port; recorder
     // has one write/playback-read port and one independent readback port.
@@ -124,47 +140,43 @@ module performance_controller #(
                  3'd0,score_row_q[36:32],score_row_q[31:0],playback_q_index};
             active_key=active_row[55:48];
         end
-        all_written=1;
-        for (n=0;n<SCORE_CAPACITY;n=n+1)
-            if (n<arg_count && !row_written[n]) all_written=0;
         first_held=0;
         for (n=24;n>=0;n=n-1) if (held[n]) first_held=n;
-        command_status=0;
+        action_status=0;
+        if (command_payload[79:8]!=0 || action>8) action_status=1;
+        else case (action)
+            1,6: if (!idle || recording) action_status=2;
+                 else if (committed_count==0) action_status=1;
+            2: if (!idle || recording) action_status=2;
+            4: if (!idle || recording) action_status=2;
+            8: if (!idle || recording) action_status=2;
+               else if (!replay_supported) action_status=1;
+            default: action_status=0;
+        endcase
+        score_write_status=0;
+        if (!idle || recording) score_write_status=2;
+        else if (arg_count>=SCORE_CAPACITY || command_payload[79:72]!=0 ||
+            command_payload[55:48]>24 || command_payload[63:56]>127 ||
+            command_payload[71:64]>1) score_write_status=1;
+        score_commit_status=0;
+        if (!idle || recording) score_commit_status=2;
+        else if (command_payload[79:24]!=0 || command_payload[23:16]>1)
+            score_commit_status=1;
+        else if (command_payload[23:16]==1) begin
+            if (arg_count!=0 && arg_count!=BUILTIN_ROWS) score_commit_status=1;
+        end else if (arg_count==0 || arg_count>SCORE_CAPACITY || !all_written)
+            score_commit_status=1;
         case (command_opcode)
-            8'h04: begin
-                if (command_payload[79:8]!=0 || action>8) command_status=1;
-                else case (action)
-                    1,6: if (!idle || recording) command_status=2;
-                         else if (committed_count==0) command_status=1;
-                    2: if (!idle || recording) command_status=2;
-                    4: if (!idle || recording) command_status=2;
-                    8: if (!idle || recording) command_status=2;
-                       else if (!replay_supported) command_status=1;
-                    default: command_status=0;
-                endcase
-            end
-            8'h06: begin
-                if (!idle || recording) command_status=2;
-                else if (arg_count>=SCORE_CAPACITY || command_payload[79:72]!=0 ||
-                    command_payload[55:48]>24 || command_payload[63:56]>127 ||
-                    command_payload[71:64]>1) command_status=1;
-            end
-            8'h07: begin
-                if (!idle || recording) command_status=2;
-                else if (command_payload[79:24]!=0 || command_payload[23:16]>1)
-                    command_status=1;
-                else if (command_payload[23:16]==1) begin
-                    if (arg_count!=0 && arg_count!=BUILTIN_ROWS) command_status=1;
-                end else if (arg_count==0 || arg_count>SCORE_CAPACITY || !all_written)
-                    command_status=1;
-            end
+            8'h04: command_status=action_status;
+            8'h06: command_status=score_write_status;
+            8'h07: command_status=score_commit_status;
             default: command_status=3;
         endcase
     end
 
     always @(posedge clk) begin
         if (!rst_n) begin
-            row_written<=0; selected_builtin<=1; committed_count<=BUILTIN_ROWS;
+            row_written<=0; clear_written<=0; selected_builtin<=1; committed_count<=BUILTIN_ROWS;
             run_count<=0; mode<=MODE_SCORE; tick_accumulator<=0; time_ms<=0;
             due_ms<=0; last_record_ms<=0; stopping<=0; held<=0;
             unsupported_record_source<=0;
@@ -196,18 +208,23 @@ module performance_controller #(
                     end else due_ms<=due_ms+active_row[47:16];
                 end
             end
-            if (command_valid && command_ready && command_status==0) begin
-                case (command_opcode)
-                    8'h06: begin
-                        row_written[arg_count]<=1;
-                        committed_count<=0;
-                    end
-                    8'h07: begin
-                        selected_builtin<=command_payload[16];
-                        committed_count<=command_payload[16] ? BUILTIN_ROWS : arg_count;
-                        row_written<=0;
-                    end
-                    8'h04: case (action)
+            // Register the commit's bulk bitmap clear so the row-valid
+            // reduction drives only local metadata registers. all_written
+            // treats the pending clear as empty immediately, and a write on
+            // the following cycle overrides its own bit after the clear.
+            clear_written<=score_commit;
+            if (clear_written) row_written<=0;
+            // Upload/commit are accepted only while idle, so they cannot
+            // overlap an event transaction or the playback scheduler.
+            if (score_write) begin
+                row_written[arg_count]<=1;
+                committed_count<=0;
+            end else if (score_commit) begin
+                selected_builtin<=command_payload[16];
+                committed_count<=command_payload[16] ? BUILTIN_ROWS : arg_count;
+            end
+            if (action_command) begin
+                case (action)
                         0,5: begin
                             playing<=0; guide_active<=0; guide_mask<=0; stopping<=1;
                             if (action==5) recording<=0;
@@ -229,8 +246,6 @@ module performance_controller #(
                             due_ms<=time_ms;
                         end
                         default: ;
-                    endcase
-                    default: ;
                 endcase
             end else if (!event_valid) begin
                 if (stopping) begin

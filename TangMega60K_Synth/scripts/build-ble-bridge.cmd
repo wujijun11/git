@@ -10,12 +10,7 @@ if not exist "%BLE_TOOL_DIR%\arduino-cli.yaml" (
     echo Local Arduino configuration is missing.
     exit /b 2
 )
-echo Compiling the ESP32-C3 bridge. This does not upload firmware.
-echo Build log: %BLE_TOOL_DIR%\compile-local.log
-if not exist "%BLE_PROJECT_DIR%\firmware\ble_bridge\build\esp32.esp32.esp32c3" mkdir "%BLE_PROJECT_DIR%\firmware\ble_bridge\build\esp32.esp32.esp32c3"
-"%BLE_TOOL_DIR%\arduino-cli.exe" --config-file "%BLE_TOOL_DIR%\arduino-cli.yaml" compile --fqbn esp32:esp32:esp32c3:CDCOnBoot=cdc --jobs 4 --warnings more --build-path "%BLE_TOOL_DIR%\build" --output-dir "%BLE_PROJECT_DIR%\firmware\ble_bridge\output" "%BLE_PROJECT_DIR%\firmware\ble_bridge" > "%BLE_TOOL_DIR%\compile-local.log" 2>&1
-set "BLE_RESULT=%ERRORLEVEL%"
-> "%BLE_TOOL_DIR%\compile-local.exit.txt" echo %BLE_RESULT%
-type "%BLE_TOOL_DIR%\compile-local.log"
-echo Compile exit code: %BLE_RESULT%
-exit /b %BLE_RESULT%
+rem Bypass applies only to this child process; no machine/user policy is changed.
+rem Reuse the checked builder so cmd and PowerShell emit the same fresh manifest.
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%BLE_PROJECT_DIR%\scripts\build-ble-bridge.ps1" -ArduinoCli "%BLE_TOOL_DIR%\arduino-cli.exe" -ConfigFile "%BLE_TOOL_DIR%\arduino-cli.yaml"
+exit /b %ERRORLEVEL%

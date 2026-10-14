@@ -1,6 +1,12 @@
 # 弦光：Tang Mega 60K 电子乐器工程
 
-2026-10-11：新增完整竞赛整合入口 **`full/ContestFull.gprj` / `board_contest_full_top`**，接入25键MPR121、四电极滑条、64声部四音色、运行时延迟/混响/合唱、脱机LED曲谱、演奏事件记录、手机控制和HDMI波形/频谱/XY显示。整机仿真和完整布局布线通过，建立/保持/复位相关时序违规均为0；原生Android APK已编译、lint零错误零警告并验证签名；ESP32-C3蓝牙桥固件已实际编译、退出码0、无警告。交付产物可用 `scripts/export-contest-full.ps1` 导出，记录源码与产物哈希。新入口尚未上板，官网延迟及手机/传感/LED/视频实物验收仍需完成。使用方法、接线和逐项证据见[全功能工程与官网验收](docs/全功能工程与官网验收-20261011.md)。下方为原发声里程碑与历史记录。
+2026-10-14（时序再优化）：采用两轮等价逻辑简化，Setup最小余量由0.051ns提高至0.272ns，Logic由22346减少至21968；Hold为0.035ns，仍偏紧。完整Gowin构建时序违规0，BSRAM仍106/118（约90%），时钟/引脚/约束与音源功能不变。核心33项由中断前28项与随后5项补跑的完整原始日志证明；watchdog和曲谱命令新增两组逐拍等价专项，共99,215拍通过。新源码已采用，原 `full/impl` 产物保留旧版；本次新位流、SHA256及全部证据见[时序余量优化](verification/timing-margin-20261014/README.md)。新位流尚未下载。重新跑Core可执行 `scripts/test-modelsim-full.cmd -Suite Core -TimeoutSeconds 1200`。
+
+2026-10-14：修复手机首个NoteOn/最后NoteOff与断连释放同拍的边界问题，调整两份板级变量声明顺序与视频测试超时常量以兼容ModelSim。实际ModelSim核心33项全部通过，整机64声部和64声部I2S、MPR121、25灯点阵、控制/音效/视频均有日志与波形。当前输入哈希复核一致；额外双音源N64逐样本长测按用户选择暂缓，不能声明Full34项通过。最终源码完整Gowin构建通过，Setup/Hold违规0，最小余量0.051/0.065ns，BSRAM106/118（约90%），时序余量仍紧张。新位流在独立快照中，未下载；原实现产物保留。证据、位流及重跑步骤见[ModelSim核心回归与构建记录](verification/modelsim-20261014/README.md)。默认核心回归入口为 `scripts/test-modelsim-full.cmd`。
+
+2026-10-13：按所选25灯WS2812B点阵和微雪ESP32-C3-Zero适配。点阵支持常量灯号映射和每通道亮度上限，绿色提示曲谱目标、蓝色显示实体触摸、重合为青色；映射默认保持DIN链序，实际空间顺序需到货校准。新增25键逐灯校准事件曲谱、映射生成工具和外部波形解码回归。C3使用微雪专用4MB/USB CDC目标，蓝牙桥会话隔离修正避免丢失连接后的首条指令。接线、校准和验证入口见[点阵与C3适配](hardware/led25/README.md)。新构建尚需单独完成下载和到货联调；下方2026-10-11实板记录对应旧位流。
+
+2026-10-11：新增完整竞赛整合入口 **`full/ContestFull.gprj` / `board_contest_full_top`**，接入25键MPR121、四电极滑条、64声部四音色、运行时延迟/混响/合唱、脱机LED曲谱、演奏事件记录、手机控制和HDMI波形/频谱/XY显示。整机仿真和完整布局布线通过，建立/保持/复位相关时序违规均为0；原生Android APK已编译、lint零错误零警告并验证签名；ESP32-C3蓝牙桥固件已实际编译、退出码0、无警告。交付产物可用 `scripts/export-contest-full.ps1` 导出，记录源码与产物哈希。完整主工程已下载SRAM，用户码再次读回 `0x0000F0A6`；用户报告KEY0播放/停止/重播、KEY2复位恢复、KEY1停止及退出后重播通过，声音有音高变化但偏轻。记录见[主工程板上复测](docs/hardware/主工程板上复测-20261011.md)。官网延迟及手机/传感/LED/视频实物验收仍需完成。使用方法、接线和逐项证据见[全功能工程与官网验收](docs/全功能工程与官网验收-20261011.md)。下方为原发声里程碑与历史记录。
 
 当前里程碑：**06 — 64声部音源与24位标准I2S输出**。内部与默认输出均为24位PCM，采用Philips I2S、每声道32位槽。DDS、ADSR、正弦/风琴/八成分钢琴音色、三维表情、混音和延迟均在FPGA内实现；FM电钢琴是可选音色。
 
@@ -40,11 +46,11 @@
 
 当前已有可烧录发声的板载按键演奏入口，完整实体演奏面板和独立表情输入仍待集成。
 目标器件为 GW5AT-60B / GW5AT-LV60PG484AC1/I0；对应 Sipeed Tang Mega 60K。
-板级数字自检已有底板引脚约束和SDC；标称48kHz音频时钟已在独立GAO工程中完成板内验证。PMOD1 外置 DAC 已接线并发声；完整键床扫描、独立表情输入与踏板管理仍待完成。`audio_system_v2` 接收内部事件/表情接口，不能直接作为板级引脚顶层烧录；当前演奏使用 `boardkeys48/BoardInstrumentB48kI2S.gprj`，外置发声自检使用 `clock48/BoardAudio48kI2S.gprj`，片内数字验证入口保留于 `clock48`。
+板级数字自检已有底板引脚约束和SDC；标称48kHz音频时钟已在独立GAO工程中完成板内验证。PMOD1 外置 DAC 已接线并发声；实体键床和独立表情输入仍待到货联调，踏板尚未接入。`audio_system_v2` 接收内部事件/表情接口，不能直接作为板级引脚顶层烧录；当前整机演示使用 `full/ContestFull.gprj`，旧按键演奏入口保留于 `boardkeys48`，外置发声自检保留于 `clock48/BoardAudio48kI2S.gprj`，片内数字验证入口保留于 `clock48`。
 
 ## 从哪里开始
 
-1. 完整音频开发在GOWIN打开`AudioEngine_V2.gprj`，选择`audio_system_v2`顶层；单独控制接口开发仍可打开`TangMega60K_Synth_V2.gprj`。
+1. 当前整机工程在GOWIN打开 `full/ContestFull.gprj`，顶层 `board_contest_full_top`；2026-10-14优化版已生成的位流使用[时序余量优化记录中的新路径](verification/timing-margin-20261014/README.md#新位流和复现)，原 `full/impl/pnr/ContestFull.fs` 保留为旧版本。本次未下载。板上操作见[首次上板与到货验收](docs/全功能首次上板步骤-20261011.md)。独立音源开发打开`AudioEngine_V2.gprj`，选择`audio_system_v2`顶层；单独控制接口开发仍可打开`TangMega60K_Synth_V2.gprj`。
    16 个音逐个播放打开 `boardseq16/BoardSequence16_48kI2S.gprj`，选择 `board_sequence16_48k_i2s_top`；在项目根目录用 GOWIN 的 `gw_sh` 执行 `scripts/build-board-sequence16-48k-i2s.tcl`，生成 `boardseq16/impl/pnr/BoardSequence16_48kI2S.fs` 后下载至 SRAM。事件源和完整板级仿真分别运行 `scripts/test-sequence16-event-source.ps1`、`scripts/test-board-sequence16-48k-i2s.ps1`。
    当前板载按键演奏打开 `boardkeys48/BoardInstrumentB48kI2S.gprj`，选择 `board_instrument_b_48k_i2s_top`；下载 `boardkeys48/impl/pnr/BoardInstrumentB48kI2S.fs` 到 SRAM，断电后需重新下载。
    既有64音48kHz数字验证打开`clock48/BoardAudio48kGAO.gprj`；验证队员B输入链打开`clock48/BoardInstrumentB48kGAO.gprj`。两者仅在片内采集I2S，尚无外置DAC引脚。
@@ -56,6 +62,8 @@
 6. 队员B按V2接口接入`event_*`和`expr_*`；64个逻辑声部已在音源内混成左右两个输出声道。所有模块共用音频系统时钟，默认要求49.152MHz以输出48kHz音频。
 
 ## ModelSim 显示波形
+
+2026-10-14整机核心回归已保存的波形及默认33项验证入口见[本次记录](verification/modelsim-20261014/README.md#重跑与查看)。下面保留原独立音源与I2S的波形入口。
 
 当前64声部标准I2S音源可在Transcript执行以下命令，自动编译、运行自检并打开Wave；结束后保留窗口：
 

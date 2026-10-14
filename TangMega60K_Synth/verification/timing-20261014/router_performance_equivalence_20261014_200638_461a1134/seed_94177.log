@@ -1,0 +1,14 @@
+# do {C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\timing-20261014\router_performance_equivalence_20261014_200638_461a1134\seed_94177.do}
+# vsim -onfinish exit -wlf C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/router_performance_equivalence_20261014_200638_461a1134/seed_94177.wlf work.tb_router_performance_equivalence "+SEED=94177" "+RANDOM_CYCLES=10000" 
+# Start time: 20:06:52 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_router_performance_equivalence
+# Loading work.router_performance_equivalence_lane
+# Loading work.performance_controller
+# Loading work.remote_command_router
+# Loading work.remote_command_router_reference
+# ROUTER PERFORMANCE EQUIVALENCE PASS cycles=10348 random_cycles=10000 seed=94177 remote=1904 local=3257 acks=1896 perf=916 stalled_acks=1821 reset_in_perf=1 adjacent_writes=11 adjacent_commits=8 contention=442 record_edges=965
+# ** Note: $finish    : C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/timing-20261014/router_performance_equivalence_20261014_200638_461a1134/tb_router_performance_equivalence.sv(316)
+#    Time: 103477 ns  Iteration: 0  Instance: /tb_router_performance_equivalence
+# End time: 20:06:53 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

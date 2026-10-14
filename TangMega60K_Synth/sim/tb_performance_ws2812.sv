@@ -8,8 +8,9 @@ module ws2812_waveform_check #(
     reg clk=0; always #(PERIOD_NS/2.0) clk=!clk;
     reg rst_n=0;
     reg [24:0] guide_mask=25'h1000001;
+    wire [24:0] touch_mask=25'd0;
     wire led_data,busy,frame_done;
-    ws2812_guide #(.CLK_HZ(CLK_HZ),.BRIGHTNESS(8'h81)) dut(.*);
+    ws2812_guide #(.CLK_HZ(CLK_HZ),.BRIGHTNESS(8'h81),.MAX_BRIGHTNESS(8'd255)) dut(.*);
     // This decoder observes the external signal; no internal serializer state is used.
     integer frames=0, zeros=0, ones=0;
     task check_latch;

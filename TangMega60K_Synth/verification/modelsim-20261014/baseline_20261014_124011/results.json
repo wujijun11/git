@@ -1,0 +1,26 @@
+﻿{
+    "results":  [
+                    {
+                        "log":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\modelsim-20261014\\baseline_20261014_124011\\case_1.log",
+                        "case":  1,
+                        "expected_failure":  "same-cycle first NoteOn+expire did not start release",
+                        "matched":  true,
+                        "exit":  0
+                    },
+                    {
+                        "log":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\modelsim-20261014\\baseline_20261014_124011\\case_2.log",
+                        "case":  2,
+                        "expected_failure":  "same-cycle last NoteOff+expire started an empty release",
+                        "matched":  true,
+                        "exit":  0
+                    },
+                    {
+                        "log":  "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\modelsim-20261014\\baseline_20261014_124011\\case_3.log",
+                        "case":  3,
+                        "expected_failure":  null,
+                        "matched":  true,
+                        "exit":  0
+                    }
+                ],
+    "source":  "C0B10B9C248EB721E268B9F532EF78AF653533DA71130A0241D26433D00E09F1"
+}

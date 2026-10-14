@@ -1,0 +1,14 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/audio_units.wlf -l logs/audio_units.log -do "do cases/audio_units.do" work.tb_audio_units 
+# Start time: 20:11:20 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_audio_units
+# Loading work.gain_saturator
+# Loading work.adsr
+# Loading work.audio_fx
+# Loading work.stereo_mixer
+# do cases/audio_units.do
+# AUDIO DSP UNITS PASSED: gain/negative/64-coherent-fullscale/saturation/ADSR/impulse/bypass/reset
+# ** Note: $finish    : sim/tb_audio_units.sv(90)
+#    Time: 9700 ns  Iteration: 1  Instance: /tb_audio_units
+# End time: 20:11:21 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

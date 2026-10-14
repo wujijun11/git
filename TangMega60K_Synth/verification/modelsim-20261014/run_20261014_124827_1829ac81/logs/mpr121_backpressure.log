@@ -1,0 +1,11 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/mpr121_backpressure.wlf -l logs/mpr121_backpressure.log -do "do cases/mpr121_backpressure.do" work.tb_mpr121_backpressure 
+# Start time: 12:50:28 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_mpr121_backpressure
+# Loading work.mpr121_key_eventizer
+# do cases/mpr121_backpressure.do
+# PASS tb_mpr121_backpressure: 50 retained transitions, capacity reservation, stable payload and deferred fault releases
+# ** Note: $finish    : sim/tb_mpr121_backpressure.sv(67)
+#    Time: 13390 ns  Iteration: 1  Instance: /tb_mpr121_backpressure
+# End time: 12:50:28 on Oct 14,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

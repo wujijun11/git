@@ -1,0 +1,40 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/remote_note_watchdog.wlf -l logs/remote_note_watchdog.log -do "do cases/remote_note_watchdog.do" work.tb_remote_note_watchdog 
+# Start time: 12:49:50 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_remote_note_watchdog
+# Loading work.remote_note_watchdog
+# do cases/remote_note_watchdog.do
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# 0
+# WATCHDOG heartbeat/timeout/backpressure PASS
+# WATCHDOG first NoteOn+expire PASS
+# WATCHDOG last NoteOff+expire PASS
+# WATCHDOG remaining note+expire PASS
+# REMOTE NOTE WATCHDOG PASS
+# ** Note: $finish    : sim/tb_remote_note_watchdog.sv(110)
+#    Time: 10800 ns  Iteration: 1  Instance: /tb_remote_note_watchdog
+# End time: 12:49:51 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

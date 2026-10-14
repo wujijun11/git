@@ -1,0 +1,11 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/runtime_fx.wlf -l logs/runtime_fx.log -do "do cases/runtime_fx.do" work.tb_runtime_audio_fx 
+# Start time: 20:08:30 on Oct 14,2026
+# Loading sv_std.std
+# Loading work.tb_runtime_audio_fx
+# Loading work.runtime_audio_fx
+# do cases/runtime_fx.do
+# RUNTIME AUDIO FX PASS tail_frames=60
+# ** Note: $finish    : sim/tb_runtime_audio_fx.sv(52)
+#    Time: 367300 ns  Iteration: 1  Instance: /tb_runtime_audio_fx
+# End time: 20:08:31 on Oct 14,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

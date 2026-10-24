@@ -1,0 +1,10 @@
+item,quantity,description,preferred_footprint,assembly_note
+J_FPGA_J13,1,2x20 2.54 mm female socket header,HDR-F-2x20P-2.54,Must match the Tang Mega 60K J13 pin-1 orientation
+J_PWR_3V3,1,1x2 2.54 mm header,HDR-1x2P-2.54,3V3 and GND input from FPGA J9
+J_MPR1,1,1x6 2.54 mm header,HDR-1x6P-2.54,3V3 GND ADD SCL SDA IRQ
+J_MPR2,1,1x6 2.54 mm header,HDR-1x6P-2.54,3V3 GND ADD SCL SDA IRQ
+J_MPR3,1,1x6 2.54 mm header,HDR-1x6P-2.54,3V3 GND ADD SCL SDA IRQ
+J_C3,1,1x3 2.54 mm header,HDR-1x3P-2.54,TX7 RX6 GND; verify C3 board silk orientation
+J_AHCT,1,1x3 2.54 mm header,HDR-1x3P-2.54,DATA GND 5V_AUX
+J_LED_PWR,1,2-pin 5.08 mm screw terminal,TERM-2P-5.08,External regulated 5V only for AHCT/LED
+H1-H4,4,M3 plated or NPTH mounting holes,HOLE-M3,Mechanical choice; confirm enclosure before PCB release

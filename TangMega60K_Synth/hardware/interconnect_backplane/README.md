@@ -48,3 +48,15 @@ J_MPR*.3 ADD 全部接公共 GND，使三个独立总线都使用 MPR121 地址 
 - J13、J_PWR_3V3、J_LED_PWR 使用防呆丝印和 1 脚方形焊盘。若要真正防反插，需要改用带防呆的连接器，不能只依赖丝印。
 
 本目录的 connector_map.csv、backplane_spec.json 和 layout_preview.svg 是第一版接口定义与布局草图。它们已经按当前工程引脚表生成，但**还不是可直接下单的 Gerber**；在生成生产文件前仍需确认 J13/J9 的实物连接器方向、C3 模块安装方向、底板外形和安装孔位置，并在嘉立创EDA中完成原生 DRC、BOM/CPL 与 Gerber 检查。
+
+## 交给嘉立创EDA前的文件
+
+- `bom.csv`：只列被动转接板所需的连接器和安装孔，不把 FPGA、C3、MPR121 或 AHCT125 重复做进板上。
+- `connector_map.csv`：逐针网络表，适合录入原理图网络标签。
+- `validate_backplane.py`：在生成原生工程前检查 J13-11、C3 串口交叉、三路 MPR 总线隔离和 5V_AUX 边界：
+
+  ```text
+  python validate_backplane.py
+  ```
+
+通过这个检查只代表接口定义一致；仍要在 EDA 里确认实际连接器的针脚方向、孔位和 DRC。

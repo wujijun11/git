@@ -1,26 +1,44 @@
 {
-  "revision": "INTERCONNECT-BACKPLANE-R0",
+  "revision": "INTERCONNECT-BACKPLANE-R0.1",
   "purpose": "便捷转接底板：FPGA J13/J9、ESP32-C3、三块 MPR121、AHCT125/WS2812 接口",
   "status": "interface-defined-layout-not-yet-fabrication-ready",
   "boardMm": [100, 60],
   "layers": 2,
   "pitchMm": 2.54,
   "connectors": {
-    "J_FPGA_J13": {"type": "2x20 female header", "pitchMm": 2.54, "purpose": "directly mate FPGA dock J13"},
-    "J_PWR_3V3": {"type": "1x2", "purpose": "J9 3V3/GND input for MPR power"},
-    "J_MPR1": {"type": "1x6", "order": ["3V3", "GND", "ADD", "SCL", "SDA", "IRQ"]},
-    "J_MPR2": {"type": "1x6", "order": ["3V3", "GND", "ADD", "SCL", "SDA", "IRQ"]},
-    "J_MPR3": {"type": "1x6", "order": ["3V3", "GND", "ADD", "SCL", "SDA", "IRQ"]},
-    "J_C3": {"type": "1x3", "order": ["TX7", "RX6", "GND"]},
-    "J_AHCT": {"type": "1x3", "order": ["DATA", "GND", "5V_AUX"]},
+    "J_FPGA_J13": {"type": "2x20 female header", "pitchMm": 2.54, "purpose": "FPGA dock J13; mating orientation and clearance pending"},
+    "J_PWR_3V3": {"type": "1x2", "order": ["3V3", "GND"], "purpose": "J9 3V3/GND input for MPR power"},
+    "J_MPR1": {"type": "1x6 harness interface", "order": ["3V3", "GND", "ADD", "SCL", "SDA", "IRQ"], "moduleDirectMateVerified": false},
+    "J_MPR2": {"type": "1x6 harness interface", "order": ["3V3", "GND", "ADD", "SCL", "SDA", "IRQ"], "moduleDirectMateVerified": false},
+    "J_MPR3": {"type": "1x6 harness interface", "order": ["3V3", "GND", "ADD", "SCL", "SDA", "IRQ"], "moduleDirectMateVerified": false},
+    "J_C3": {"type": "1x3 harness interface", "order": ["TX7", "RX6", "GND"], "moduleDirectMateVerified": false},
+    "J_AHCT": {"type": "1x2 signal harness interface", "order": ["DATA", "GND"], "mate": "AHCT125-LED-R1 J1 IN/GND"},
+    "J_AHCT_PWR": {"type": "2-pin 5.08 mm screw terminal", "order": ["+5V_AUX", "GND"], "mate": "AHCT125-LED-R1 J3 +5V/GND"},
     "J_LED_PWR": {"type": "2-pin screw terminal", "order": ["+5V_AUX", "GND"]}
   },
-  "doNotConnect": ["J_FPGA_J13.11"],
+  "doNotConnect": [
+    "J_FPGA_J13.11",
+    "J_FPGA_J13.15", "J_FPGA_J13.16", "J_FPGA_J13.17", "J_FPGA_J13.18",
+    "J_FPGA_J13.19", "J_FPGA_J13.20", "J_FPGA_J13.21", "J_FPGA_J13.22",
+    "J_FPGA_J13.23", "J_FPGA_J13.24", "J_FPGA_J13.25", "J_FPGA_J13.26",
+    "J_FPGA_J13.27", "J_FPGA_J13.28", "J_FPGA_J13.29", "J_FPGA_J13.30",
+    "J_FPGA_J13.31", "J_FPGA_J13.32", "J_FPGA_J13.33", "J_FPGA_J13.34",
+    "J_FPGA_J13.35", "J_FPGA_J13.36", "J_FPGA_J13.37", "J_FPGA_J13.38",
+    "J_FPGA_J13.39", "J_FPGA_J13.40"
+  ],
+  "physicalVerification": {
+    "status": "not-verified-not-for-production",
+    "mprModulePinOrder": "Unverified; do not mate modules directly using logical harness order. Generated annotation images are not manufacturing evidence.",
+    "c3": "GPIO7/GPIO6/GND are separate board locations; J_C3 is a harness interface, not a direct C3 socket.",
+    "fpga": "J13 is 2x20 2.54mm; connector pin-1 view, socket mounting side and component clearance still need verification.",
+    "ahct": "Existing board uses separate 2P J1 signal and 2P J3 power connectors."
+  },
   "rules": [
     "MPR1/2/3 SCL and SDA remain three separate buses",
     "MPR ADD pins all connect to GND for address 0x5A",
     "5V_AUX never connects to FPGA J13/J9 logic power",
-    "J13-11 remains NC",
+    "J13-11 and J13-15 through J13-40 remain NC",
+    "AHCT DATA/GND go only to existing J1; auxiliary 5V/GND go separately to J3",
     "C3 uses GPIO7 TX and GPIO6 RX, not the C3 silk TX/RX pins"
   ],
   "sourceDocs": [

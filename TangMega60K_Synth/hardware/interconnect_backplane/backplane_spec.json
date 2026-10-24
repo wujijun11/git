@@ -1,0 +1,32 @@
+{
+  "revision": "INTERCONNECT-BACKPLANE-R0",
+  "purpose": "便捷转接底板：FPGA J13/J9、ESP32-C3、三块 MPR121、AHCT125/WS2812 接口",
+  "status": "interface-defined-layout-not-yet-fabrication-ready",
+  "boardMm": [100, 60],
+  "layers": 2,
+  "pitchMm": 2.54,
+  "connectors": {
+    "J_FPGA_J13": {"type": "2x20 female header", "pitchMm": 2.54, "purpose": "directly mate FPGA dock J13"},
+    "J_PWR_3V3": {"type": "1x2", "purpose": "J9 3V3/GND input for MPR power"},
+    "J_MPR1": {"type": "1x6", "order": ["3V3", "GND", "ADD", "SCL", "SDA", "IRQ"]},
+    "J_MPR2": {"type": "1x6", "order": ["3V3", "GND", "ADD", "SCL", "SDA", "IRQ"]},
+    "J_MPR3": {"type": "1x6", "order": ["3V3", "GND", "ADD", "SCL", "SDA", "IRQ"]},
+    "J_C3": {"type": "1x3", "order": ["TX7", "RX6", "GND"]},
+    "J_AHCT": {"type": "1x3", "order": ["DATA", "GND", "5V_AUX"]},
+    "J_LED_PWR": {"type": "2-pin screw terminal", "order": ["+5V_AUX", "GND"]}
+  },
+  "doNotConnect": ["J_FPGA_J13.11"],
+  "rules": [
+    "MPR1/2/3 SCL and SDA remain three separate buses",
+    "MPR ADD pins all connect to GND for address 0x5A",
+    "5V_AUX never connects to FPGA J13/J9 logic power",
+    "J13-11 remains NC",
+    "C3 uses GPIO7 TX and GPIO6 RX, not the C3 silk TX/RX pins"
+  ],
+  "sourceDocs": [
+    "docs/整机连线方案-20261017.md",
+    "docs/到货装配与联调-20261017.md",
+    "firmware/ble_bridge/README.md",
+    "hardware/ahct125/release/README.md"
+  ]
+}

@@ -1,9 +1,15 @@
 create_clock -name sys_clk -period 20.000 [get_ports {sys_clk}]
+// Status GAO now uses sys_clk; it must remain readable if LRCLK stops.
 // PLLA outputs are derived by Gowin. No broad false path hides audio/video logic.
 set_false_path -from [get_ports {key_n[*]}] -to [get_cells {board/key_meta*}]
 set_false_path -to [get_cells {ready_meta*}]
 set_false_path -to [get_cells {pressed_meta*}]
 set_false_path -to [get_cells {status_meta*}]
+// Only first-stage registers, including any synchronous RESET data control.
+// The broad debug_status_meta* also matches a functional PLL reset inverter.
+// All matched cells must be audited as DFFs in the actual generated netlist.
+// Second-stage and GAO paths remain timed.
+set_false_path -to [get_cells {debug_status_meta_*_s0}]
 set_false_path -to [get_cells {system/irq_meta*}]
 set_false_path -to [get_cells {system/uart/receiver/rx_meta*}]
 set_false_path -to [get_cells {system/monitor/ack_meta*}]

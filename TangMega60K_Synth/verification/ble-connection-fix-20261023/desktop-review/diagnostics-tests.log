@@ -1,0 +1,24 @@
+test_after_read_failure_does_not_prevent_cleanup (__main__.DiagnosticTests.test_after_read_failure_does_not_prevent_cleanup) ... ok
+test_already_failed_link_returns_same_generation_cached_baseline (__main__.DiagnosticTests.test_already_failed_link_returns_same_generation_cached_baseline) ... ok
+test_baseline_precedes_first_write_and_disconnect_returns_delta (__main__.DiagnosticTests.test_baseline_precedes_first_write_and_disconnect_returns_delta) ... ok
+test_counter_wrap_is_uint32 (__main__.DiagnosticTests.test_counter_wrap_is_uint32) ... ok
+test_diagnostic_timeouts_are_bounded_and_optional (__main__.DiagnosticTests.test_diagnostic_timeouts_are_bounded_and_optional) ... ok
+test_format_change_never_constructs_traffic_delta (__main__.DiagnosticTests.test_format_change_never_constructs_traffic_delta) ... ok
+test_missing_baseline_exposes_only_cumulative_values (__main__.DiagnosticTests.test_missing_baseline_exposes_only_cumulative_values) ... ok
+test_missing_characteristic_preserves_legacy_connection (__main__.DiagnosticTests.test_missing_characteristic_preserves_legacy_connection) ... ok
+test_old_generation_disconnect_does_not_read_current_device (__main__.DiagnosticTests.test_old_generation_disconnect_does_not_read_current_device) ... ok
+test_serial_never_reads_ble_diagnostics (__main__.DiagnosticTests.test_serial_never_reads_ble_diagnostics) ... ok
+test_strict_legacy_and_unknown_formats (__main__.DiagnosticTests.test_strict_legacy_and_unknown_formats) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.197s
+
+OK
+{
+  "passed": 11,
+  "failed": 0,
+  "hardwareAccessed": false,
+  "nativeSourceSha256": "7ba8da24037e58603122f8a136a21094180b94077912116ace37bc23b3ec2b88",
+  "sourceUnchanged": true,
+  "diagnosticReadTimeoutSeconds": 0.75
+}

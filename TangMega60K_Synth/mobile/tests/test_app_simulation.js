@@ -8,8 +8,10 @@ class Element{
 }
 const elements=new Map(),defaults={timbre:'2',effect:'0',velocity:'100',gain:'2048',bend:'0',vibrato:'0',mapKey:'0',mapNote:'60'};
 for(const id of fs.readFileSync(path.join(__dirname,'../web/index.html'),'utf8').matchAll(/id="([^"]+)"/g))elements.set(id[1],new Element(defaults[id[1]]||''));
-const storage=new Map(),windowEvents=new Map(),documentEvents=new Map(),context={console,setTimeout,clearTimeout,setInterval:()=>0,performance,Blob,URL,navigator:{},isSecureContext:true,addEventListener:(name,fn)=>windowEvents.set(name,fn),localStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v)},document:{hidden:false,getElementById:id=>elements.get(id),createElement:()=>new Element(),addEventListener:(name,fn)=>documentEvents.set(name,fn)}};context.window=context;context.globalThis=context;vm.createContext(context);
+const storage=new Map(),windowEvents=new Map(),documentEvents=new Map(),intervals=[],context={console,setTimeout,clearTimeout,setInterval:fn=>{intervals.push(fn);return intervals.length;},performance,Blob,URL,navigator:{},isSecureContext:true,addEventListener:(name,fn)=>windowEvents.set(name,fn),localStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v)},document:{hidden:false,getElementById:id=>elements.get(id),createElement:()=>new Element(),addEventListener:(name,fn)=>documentEvents.set(name,fn)}};context.window=context;context.globalThis=context;vm.createContext(context);
 for(const file of ['protocol.js','app.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../web',file),'utf8'),context,{filename:file});
+// Low-level fixtures exercise post-handshake workflows without repeating setup.
+vm.runInContext('function createReadySession(...args){const owner=createSession(...args);setControlReady(true);return owner;}',context);
 const run=code=>vm.runInContext(code,context),delay=ms=>new Promise(r=>setTimeout(r,ms));
 async function until(fn){for(let i=0;i<100;i++){if(fn())return;await delay(10);}throw new Error('workflow timed out');}
 class BleEvents{
@@ -52,7 +54,7 @@ async function main(){
   // Slow GATT writes: hundreds of drag events must coalesce, while still
   // transmitting before onchange and preserving the final slider snapshot.
   await run(`disconnect();`);
-  run(`globalThis.uiWrites=[];globalThis.uiMock=new Simulator();createSession(b=>{
+  run(`globalThis.uiWrites=[];globalThis.uiMock=new Simulator();createReadySession(b=>{
     uiWrites.push({packet:P.decode(b),time:performance.now()});
     return new Promise(resolve=>setTimeout(()=>{uiMock.write(b).then(resolve);},100));
   },true);uiMock.deliver=b=>decoder&&decoder.push(b);`);
@@ -74,7 +76,7 @@ async function main(){
   assert.equal(run('uiWrites[uiWrites.length-1].packet.payload[0]'),5);
   assert.equal(run('uiWrites[uiWrites.length-1].packet.payload[5]'),30);
   // Changing the loaded score midway must not mix two documents in one upload.
-  run(`globalThis.scoreWrites=[];globalThis.scoreMock=new Simulator();createSession(b=>{
+  run(`globalThis.scoreWrites=[];globalThis.scoreMock=new Simulator();createReadySession(b=>{
     scoreWrites.push(P.decode(b));return scoreMock.write(b);
   },true);scoreMock.deliver=b=>decoder&&decoder.push(b);setScore(scoreFixture);`);
   const snapshotUpload=run('upload()');
@@ -85,17 +87,17 @@ async function main(){
   assert.equal(uploaded.at(-1).op,7);assert.equal(uploaded.at(-1).payload[0],8);
   // Replace the session immediately after STOP ACK, before upload's awaited
   // continuation. No old SCORE_WRITE may enter the new session.
-  run(`globalThis.newSessionWrites=[];setScore(scoreFixture);createSession(b=>{
+  run(`globalThis.newSessionWrites=[];setScore(scoreFixture);createReadySession(b=>{
     const q=P.decode(b),old=session;
     setTimeout(()=>{old.receive(P.decode(P.encode(q.seq,128,[q.op,0])));
-      createSession(bytes=>{newSessionWrites.push(P.decode(bytes));return Promise.resolve();});
+      createReadySession(bytes=>{newSessionWrites.push(P.decode(bytes));return Promise.resolve();});
     },10);return Promise.resolve();
   });`);
   await assert.rejects(run('upload()'),/连接已变化/);
   assert.equal(run('newSessionWrites.length'),0);
-  run(`createSession(b=>{const q=P.decode(b),old=session;
+  run(`createReadySession(b=>{const q=P.decode(b),old=session;
     setTimeout(()=>{old.receive(P.decode(P.encode(q.seq,128,[q.op,0])));
-      createSession(bytes=>{newSessionWrites.push(P.decode(bytes));return Promise.resolve();});
+      createReadySession(bytes=>{newSessionWrites.push(P.decode(bytes));return Promise.resolve();});
     },10);return Promise.resolve();
   });`);
   await assert.rejects(run('readRecording()'),/连接已变化/);
@@ -103,9 +105,9 @@ async function main(){
   // An old ACK may resolve immediately before replacement. Old map, Panic and
   // clear-record continuations must not commit UI state into the new session.
   for(const action of ['mapApply','panic','recordClear']){
-    run(`createSession(b=>{const q=P.decode(b),old=session;
+    run(`createReadySession(b=>{const q=P.decode(b),old=session;
       setTimeout(()=>{old.receive(P.decode(P.encode(q.seq,128,[q.op,0])));
-        createSession(()=>Promise.resolve());held.set(0,{midi:88,owner:session});recorded=[{midi:88}];
+        createReadySession(()=>Promise.resolve());held.set(0,{midi:88,owner:session});recorded=[{midi:88}];
       },10);return Promise.resolve();
     });`);
     const oldMap=run('map[0]');elements.get('mapKey').value='0';elements.get('mapNote').value='90';
@@ -113,24 +115,24 @@ async function main(){
     assert.equal(run('map[0]'),oldMap);assert.equal(run('held.size'),1);assert.equal(run('recorded[0].midi'),88);
   }
   // A scheduled trailing expression is cancelled on connection loss.
-  run(`globalThis.dragOwner=session;globalThis.dragWrites=[];createSession(b=>{
+  run(`globalThis.dragOwner=session;globalThis.dragWrites=[];createReadySession(b=>{
     dragWrites.push(P.decode(b));const q=P.decode(b),owner=session;
     setTimeout(()=>owner.receive(P.decode(P.encode(q.seq,128,[q.op,0]))),100);
     return Promise.resolve();
   });`);
   elements.get('bend').value='100';elements.get('bend').oninput();
   elements.get('bend').value='200';elements.get('bend').oninput();
-  run('lost("test disconnect");createSession(b=>{newSessionWrites.push(P.decode(b));return Promise.resolve();});');
+  run('lost("test disconnect");createReadySession(b=>{newSessionWrites.push(P.decode(b));return Promise.resolve();});');
   await delay(160);assert.equal(run('newSessionWrites.length'),0);
   // Losing window focus releases a held phone note even without visibilitychange.
-  run(`globalThis.blurMock=new Simulator();createSession(b=>blurMock.write(b),true);blurMock.deliver=b=>decoder&&decoder.push(b);`);
+  run(`globalThis.blurMock=new Simulator();createReadySession(b=>blurMock.write(b),true);blurMock.deliver=b=>decoder&&decoder.push(b);`);
   key.onpointerdown(e);await until(()=>run('session.pending')===null);windowEvents.get('blur')();
   await until(()=>run('session.pending')===null);await run('readback(0)');
   assert.equal(run('held.size'),0);assert.equal(run('telemetryState.activeVoices'),0);
   // Duplicate mappings share one source/pitch in the FPGA. Release only when
   // the last pointer holding that pitch is released; unrelated pointers cannot
   // lift another finger's key, and remapping preserves the original OFF pitch.
-  run(`globalThis.duplicateWrites=[];globalThis.duplicateMock=new Simulator();createSession(b=>{
+  run(`globalThis.duplicateWrites=[];globalThis.duplicateMock=new Simulator();createReadySession(b=>{
     duplicateWrites.push(P.decode(b));return duplicateMock.write(b);
   },true);duplicateMock.deliver=b=>decoder&&decoder.push(b);map[23]=map[24];`);
   const otherKey=elements.get('keys').children[23],e2={preventDefault(){},pointerId:2};
@@ -143,7 +145,7 @@ async function main(){
   assert.equal(run('duplicateWrites.filter(q=>q.op===1&&!q.payload[4]).length'),1);
   assert.equal(run('duplicateWrites.find(q=>q.op===1&&!q.payload[4]).payload[1]'),100);
   // A failed initial Panic must leave the diagnostic idle, without any NOTE.
-  run(`globalThis.failedTestWrites=[];createSession(b=>{const q=P.decode(b),owner=session;
+  run(`globalThis.failedTestWrites=[];createReadySession(b=>{const q=P.decode(b),owner=session;
     failedTestWrites.push(q);setTimeout(()=>owner.receive(P.decode(P.encode(q.seq,128,[q.op,1]))),5);
     return Promise.resolve();});`);
   await assert.rejects(run('test64()'),/NACK status=1/);
@@ -161,6 +163,26 @@ async function main(){
   oldNotify({target:{value:new DataView(Uint8Array.from(stalePacket).buffer)}});oldDisconnect();
   assert.equal(run('session'),ownerB);assert.equal(run('JSON.stringify(telemetryState)'),beforeTelemetry);
   await run('readback(0)');assert.equal(run('telemetryState.activeVoices'),0);
+  // A fast RF reconnect can precede the hardware source-63 expiry. Retained
+  // voices must be cleared by setup Panic before keys or heartbeat can send.
+  run('lost("RF dropped")');bleB.mock.notes.add(61);bleB.writes.length=0;
+  const reconnect=run('connectWeb()');await until(()=>run('session')!==null);
+  assert.equal(run('controlReady'),false);
+  for(const id of ['timbre','effect','gain','bend','vibrato','mapKey','mapNote','mapApply'])assert.equal(elements.get(id).disabled,true);
+  assert.equal(key.disabled,true);
+  key.onpointerdown(e);elements.get('gain').oninput();for(const tick of intervals)tick();
+  await assert.rejects(run('command(1,P.note(72,100,0,1))'),/握手尚未完成/);
+  assert.equal(run('held.size'),0);await reconnect;
+  const setupPackets=bleB.writes.map(b=>run('P.decode')(Uint8Array.from(b)));
+  assert.equal(setupPackets[0].op,8);assert.equal(setupPackets[1].op,4);assert.equal(setupPackets[1].payload[0],5);
+  assert.equal(setupPackets.some(p=>p.op===1),false);
+  assert.equal(setupPackets.filter(p=>p.op===8).length,2); // probe + final state, no heartbeat
+  assert.equal(bleB.mock.notes.size,0);assert.equal(run('controlReady'),true);
+  for(const id of ['timbre','effect','gain','bend','vibrato','mapKey','mapNote','mapApply'])assert.equal(elements.get(id).disabled,false);
+  assert.equal(key.disabled,false);
+  key.onpointerdown(e);await until(()=>run('session.pending')===null);
+  assert.equal(bleB.mock.notes.size,1);key.onpointerup(e);await until(()=>run('session.pending')===null);
+  assert.equal(bleB.mock.notes.size,0);
   // Cancelling an unresolved chooser must not create a session on late resolve.
   await run('disconnect()');let resolveChooser;
   context.navigator.bluetooth.requestDevice=()=>new Promise(resolve=>resolveChooser=resolve);
@@ -177,6 +199,6 @@ async function main(){
   delete context.navigator.bluetooth;
   await assert.rejects(run('connectWeb()'),/不提供 Web Bluetooth/);assert.equal(run('session'),null);
   await assert.rejects(run('test64()'),/请先连接/);assert.equal(run('testActive'),false);
-  console.log('ALL MOBILE UI SIMULATION TESTS PASSED (25 maps, duplicate pitch/pointer release, score snapshot/session isolation, expression coalescing/continuous/final value, disconnect/chooser/discovery cancellation, stale browser callbacks, blur release, record readback/export, replay limits,64voice test/cancel/failure,guide, capability)');
+  console.log('ALL MOBILE UI SIMULATION TESTS PASSED (25 maps, duplicate pitch/pointer release, score snapshot/session isolation, expression coalescing/continuous/final value, disconnect/chooser/discovery cancellation, stale browser callbacks, fast reconnect Panic before key/slider/heartbeat, blur release, record readback/export, replay limits,64voice test/cancel/failure,guide, capability)');
 }
 main().catch(e=>{console.error(e);process.exitCode=1;});

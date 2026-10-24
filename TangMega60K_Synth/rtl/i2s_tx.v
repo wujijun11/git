@@ -18,7 +18,10 @@ module i2s_tx #(
     output wire [1:0] fifo_level,
     output reg underrun_pulse,
     output reg underrun_sticky,
-    output reg [31:0] underrun_count
+    output reg [31:0] underrun_count,
+    // Hold the PCM actually selected for transmission, including silence on
+    // priming/underrun. Unlike left_shift this is not changed by serialization.
+    output reg signed [23:0] debug_frame_left
 );
     function integer counter_width;
         input integer value;
@@ -77,6 +80,7 @@ module i2s_tx #(
             underrun_pulse <= 1'b0;
             underrun_sticky <= 1'b0;
             underrun_count <= 0;
+            debug_frame_left <= 0;
         end else begin
             frame_tick <= 1'b0;
             underrun_pulse <= 1'b0;
@@ -105,14 +109,17 @@ module i2s_tx #(
                         if (pop_sample) begin
                             playback_started <= 1'b1;
                             left_shift <= sample_fifo[read_ptr][47:24];
+                            debug_frame_left <= sample_fifo[read_ptr][47:24];
                             right_shift <= sample_fifo[read_ptr][23:0];
                         end else if (bypass_sample) begin
                             playback_started <= 1'b1;
                             left_shift <= sample_left;
+                            debug_frame_left <= sample_left;
                             right_shift <= sample_right;
                         end else begin
                             // Never repeat stale audio when the engine is late.
                             left_shift <= 0;
+                            debug_frame_left <= 0;
                             right_shift <= 0;
                             if (playback_started) begin
                                 underrun_pulse <= 1'b1;

@@ -69,6 +69,13 @@ verification/**/sim/
 verification/**/scripts/
 verification/**/candidate_*/
 verification/**/promotion_before_*/
+verification/**/source_snapshot/
+verification/**/candidate/
+verification/**/previous-output/
+verification/**/previous-apk/
+verification/**/*.exe
+verification/**/*.o
+verification/**/*.vvp
 verification/**/*.wlf
 verification/**/*.vcd
 verification/**/*.fs
@@ -79,3 +86,10 @@ verification/**/*.db
 verification/**/*.vg
 verification/**/*.qpg
 tmp/
+desktop/dist/
+desktop/reference/
+# Generated implementations, portable installers and private local evidence.
+**/impl/
+desktop/dist*/
+desktop/TangNeonStudio-Windows-*.zip
+verification/

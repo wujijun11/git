@@ -1,0 +1,14 @@
+{
+  "passed": 5,
+  "failed": 0,
+  "newDefectReproduced": false,
+  "sourceHashes": {
+    "desktop/native_host.py": "cafa720075bd4226e3293400ec646ab3635987a2c69754c738a396a299bed81c",
+    "desktop/web/app.js": "321f6c26706d096f1388d38ac35a9cdbb07a0474debb403c1ac9c65137215902",
+    "desktop/web/controller.js": "3c3a77300613214c37e58aad88933b95ef26e231a3f5a290fc796ae004ce33ad",
+    "desktop/web/protocol.js": "31cb31c9ca47eb65f0cb0d2f4a4684ca394269af17c1a19415d38d8f89c3cbea"
+  },
+  "productionUnchanged": true,
+  "hardwareAccessed": false,
+  "scope": "Actual NativeHost with a controlled BLE client and callback window; COM initialization only, no adapters/devices opened."
+}

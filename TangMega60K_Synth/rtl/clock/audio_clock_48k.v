@@ -6,7 +6,9 @@
 module audio_clock_48k (
     input wire clk_50,
     output wire clk_audio,
-    output wire locked
+    output wire locked,
+    // Observation only: raw primitive lock/reset, qualified lock and dwell.
+    output wire [7:0] debug_pll_status
 );
     wire clk_38m4;
     wire lock_38m4;
@@ -15,6 +17,10 @@ module audio_clock_48k (
     reg first_lock_stable = 0;
     reg [16:0] second_lock_count = 0;
     reg second_lock_stable = 0;
+    wire raw_lock_first,raw_reset_first,raw_lock_second,raw_reset_second;
+    assign debug_pll_status={raw_reset_second,raw_lock_second,
+        raw_reset_first,raw_lock_first,second_lock_stable,first_lock_stable,
+        lock_49m152,lock_38m4};
 
     // Gowin advises observing LOCK continuously for at least 2 ms.
     // Both counters run from the independent 50 MHz reference (100000 cycles).
@@ -46,14 +52,16 @@ module audio_clock_48k (
         .INPUT_MHZ("50"), .MDIV(24), .ODIV(31), .ODIV_FRAC(2)
     ) pll_38m4 (
         .clkin(clk_50), .mdclk(clk_50), .reset(1'b0),
-        .clkout(clk_38m4), .locked(lock_38m4)
+        .clkout(clk_38m4), .locked(lock_38m4),
+        .debug_raw_lock(raw_lock_first),.debug_raw_reset(raw_reset_first)
     );
 
     audio_plla_stage #(
         .INPUT_MHZ("38.4"), .MDIV(32), .ODIV(25), .ODIV_FRAC(0)
     ) pll_49m152 (
         .clkin(clk_38m4), .mdclk(clk_50), .reset(!first_lock_stable),
-        .clkout(clk_audio), .locked(lock_49m152)
+        .clkout(clk_audio), .locked(lock_49m152),
+        .debug_raw_lock(raw_lock_second),.debug_raw_reset(raw_reset_second)
     );
 endmodule
 
@@ -67,10 +75,13 @@ module audio_plla_stage #(
     input wire mdclk,
     input wire reset,
     output wire clkout,
-    output wire locked
+    output wire locked,
+    output wire debug_raw_lock,debug_raw_reset
 );
     wire primitive_lock;
     wire primitive_reset;
+    assign debug_raw_lock=primitive_lock;
+    assign debug_raw_reset=primitive_reset;
     wire [7:0] md_read;
     wire [7:0] md_write;
     wire [1:0] md_op;

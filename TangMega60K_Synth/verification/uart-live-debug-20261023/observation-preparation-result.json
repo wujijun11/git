@@ -1,0 +1,25 @@
+{
+  "sourceInputs": 81,
+  "frozenSourceUnchanged": true,
+  "productionUnchanged": true,
+  "changedCopyInputs": [
+    "full/main_status.rao",
+    "rtl/board/board_contest_full_top.v",
+    "rtl/instrument_full_system.v",
+    "rtl/remote/remote_uart_transport.sv"
+  ],
+  "passiveSimulation": {
+    "tool": "Icarus Verilog",
+    "result": "PASS",
+    "log": "passive-equivalence.log",
+    "comparison": "All functional UART ports cycle-by-cycle against untouched current main transport",
+    "fpgaBuildRunByThisAgent": false,
+    "hardwareAccessByThisAgent": false
+  },
+  "decoderTests": {
+    "passed": 10,
+    "log": "decoder-tests.log"
+  },
+  "analyzerIdHex": "5544",
+  "buildAcceptance": "Root agent must independently complete Gowin GAO/STA acceptance and hardware capture"
+}

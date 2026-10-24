@@ -1,5 +1,20 @@
 # 弦光：Tang Mega 60K 实时多音色电子乐器
 
+[工程源码](TangMega60K_Synth/) · [当前状态与接线](TangMega60K_Synth/docs/当前工程状态-20261023.md) · [Windows 电脑软件](TangMega60K_Synth/desktop/README.md) · [ESP32-C3 固件](TangMega60K_Synth/firmware/ble_bridge/README.md)
+
+2026-10-23 更新：25 键电容琴键、三块 MPR121、64 声部 FPGA 合成、24 位 I2S、曲谱与 LED、Android 控制源码及 Windows Tang Neon Studio **1.0.4**。音频在 FPGA 内实时合成，蓝牙桥传递控制事件。
+
+完整入口为 `TangMega60K_Synth/full/ContestFull.gprj`，顶层 `board_contest_full_top`。当前主源对应完整构建 `8FE0`；另保存只增加 UART 被动观察的完整工程副本 `3B9F`，已完成 SRAM 下载与编号读回，两版构建时序违规均为 0。
+
+**实机 BLE → FPGA ACK 尚未验收通过，FPGA 尚未完成本轮 Flash 固化。** 最近 C3 USB 与广播离线，尚缺发送查询后的片内对照。编译、软件回归、蓝牙配对或 SRAM 下载都不代表整机验收完成。详细验证范围及未完成事项见[当前工程状态](TangMega60K_Synth/docs/当前工程状态-20261023.md)。
+
+源码、ROM、约束、测试、重建脚本、本地 BLE 修补库及许可证、精选验证报告和已脱敏的硬件设计随仓库提供。安装器、构建缓存、设备 Flash/NVS 备份、私人订单和账号恢复资料保留在本机。
+
+- [被动 UART 观测与解码](TangMega60K_Synth/verification/uart-live-debug-20261023/README-observation.md)
+- [74AHCT125 制造资料](TangMega60K_Synth/hardware/ahct125/release/README.md)
+
+## 历史记录：2026-10-14
+
 [项目说明](TangMega60K_Synth/README.md) · [完整工程与验收状态](TangMega60K_Synth/docs/全功能工程与官网验收-20261011.md) · [首次上板步骤](TangMega60K_Synth/docs/全功能首次上板步骤-20261011.md)
 
 2026-10-14更新：完整竞赛入口为 `TangMega60K_Synth/full/ContestFull.gprj`，顶层 `board_contest_full_top`。音频由 FPGA HDL 逐样本实时合成，不使用预录 PCM/WAV 音源；蓝牙桥只传送控制事件。已合入25灯点阵/微雪ESP32-C3适配、块RAM优化及两轮时序优化。

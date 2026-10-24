@@ -1,0 +1,16 @@
+test_asset_url_policy_and_path_escape (__main__.LocalOnlyTests.test_asset_url_policy_and_path_escape) ... ok
+test_webview_guards_cancel_remote_navigation_resources_and_popup (__main__.LocalOnlyTests.test_webview_guards_cancel_remote_navigation_resources_and_popup) ... ok
+test_ble_failed_write_closes_link_and_timeout_is_bounded (__main__.NativeTests.test_ble_failed_write_closes_link_and_timeout_is_bounded) ... ok
+test_ble_subscribe_before_return_single_loop_serial_writes (__main__.NativeTests.test_ble_subscribe_before_return_single_loop_serial_writes) ... ok
+test_ble_unfiltered_discovery_still_rejects_incompatible_peripherals (__main__.NativeTests.test_ble_unfiltered_discovery_still_rejects_incompatible_peripherals) ... ok
+test_close_cancels_pending_connect (__main__.NativeTests.test_close_cancels_pending_connect) ... ok
+test_crc_length_and_generation_validation (__main__.NativeTests.test_crc_length_and_generation_validation) ... ok
+test_discovery_only_does_not_write_or_connect (__main__.NativeTests.test_discovery_only_does_not_write_or_connect) ... ok
+test_native_file_dialogs_validation_and_atomic_save (__main__.NativeTests.test_native_file_dialogs_validation_and_atomic_save) ... ok
+test_reconnect_rejects_stale_write_disconnect_notify (__main__.NativeTests.test_reconnect_rejects_stale_write_disconnect_notify) ... ok
+test_serial_options_receive_and_short_write_disconnect (__main__.NativeTests.test_serial_options_receive_and_short_write_disconnect) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.655s
+
+OK

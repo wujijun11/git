@@ -2,7 +2,16 @@
 const P=RemoteProtocol, $=id=>document.getElementById(id);
 let session=null,device=null,writeCharacteristic=null,decoder=null,score=null,recorded=[],isMock=false,telemetryState=null;
 let map=Array.from({length:25},(_,i)=>60+i),held=new Map(),dataPackets=new Map(),waiters=new Map(),nativeWrite=null,testGeneration=0,testActive=false;
-let expressionControl=null,connectionGeneration=0,webConnection=null;
+let expressionControl=null,connectionGeneration=0,webConnection=null,controlReady=false;
+let scoreLoadGeneration=0,scoreDownload=null,dataOperation=null;
+function beginScoreLoad(){const id=++scoreLoadGeneration;if(scoreDownload)scoreDownload.abort();scoreDownload=null;if(window.AndroidBle)AndroidBle.cancelScoreLoad();return id;}
+function dataIdle(){if(dataOperation)throw new Error('正在'+dataOperation.name+'，请先完成或停止此操作');if(testActive)throw new Error('64声部测试正在运行，请先全部停止');}
+function beginDataOperation(name){dataIdle();const op={name,owner:session,cancelled:false};dataOperation=op;return op;}
+function checkDataOperation(op){checkSession(op.owner);if(op.cancelled||op!==dataOperation)throw new Error(op.name+'已取消');}
+function endDataOperation(op){if(dataOperation===op)dataOperation=null;}
+function cancelDataOperation(){if(dataOperation)dataOperation.cancelled=true;}
+function idleCommand(op,payload){dataIdle();return command(op,payload);}
+function setControlReady(ready){controlReady=ready;for(const id of ['timbre','effect','velocity','gain','bend','vibrato','mapKey','mapNote','mapApply'])$(id).disabled=!ready;for(const key of $('keys').children)key.disabled=!ready;}
 function cancelExpression(){if(expressionControl)clearTimeout(expressionControl.timer);expressionControl=null;}
 function checkSession(owner){if(!owner||owner!==session||owner.closed)throw new Error('连接已变化，请重新开始此操作');}
 function log(s){$('log').textContent=(new Date().toLocaleTimeString()+' '+s+'\n'+$('log').textContent).slice(0,9000);}
@@ -12,22 +21,23 @@ function saveSeq(n){try{localStorage.setItem('tang-next-seq',String(n));}catch(e
 function clearHeld(){for(const b of $('keys').children)b.classList.remove('pressed');held.clear();}
 function disposeWebConnection(c){if(!c)return;if(c.notify&&c.onNotify)c.notify.removeEventListener('characteristicvaluechanged',c.onNotify);c.device.removeEventListener('gattserverdisconnected',c.onDisconnect);if(c.device.gatt.connected&&(!webConnection||webConnection.device!==c.device))c.device.gatt.disconnect();}
 function closeWebConnection(){const c=webConnection;webConnection=null;device=null;writeCharacteristic=null;disposeWebConnection(c);}
-function lost(s){connectionGeneration++;closeWebConnection();testGeneration++;testActive=false;cancelExpression();if(session)session.close(new Error(s));session=null;decoder=null;if(nativeWrite){nativeWrite.reject(new Error(s));nativeWrite=null;}clearHeld();for(const w of waiters.values()){clearTimeout(w.timer);w.reject(new Error(s));}waiters.clear();dataPackets.clear();status(s);}
+function lost(s){setControlReady(false);connectionGeneration++;closeWebConnection();testGeneration++;testActive=false;cancelExpression();cancelDataOperation();dataOperation=null;if(session)session.close(new Error(s));session=null;decoder=null;if(nativeWrite){nativeWrite.reject(new Error(s));nativeWrite=null;}clearHeld();for(const w of waiters.values()){clearTimeout(w.timer);w.reject(new Error(s));}waiters.clear();dataPackets.clear();status(s);}
 function receive(p){if(p.op===P.OP.TELEMETRY||p.op===P.OP.EVENT){const key=p.seq+':'+p.op;dataPackets.set(key,p);if(dataPackets.size>64)dataPackets.delete(dataPackets.keys().next().value);const w=waiters.get(key);if(w){clearTimeout(w.timer);waiters.delete(key);w.resolve(p);}if(p.op===P.OP.TELEMETRY){telemetryState=P.telemetry(p.payload);$('telemetry').textContent=JSON.stringify(telemetryState,null,2);if(telemetryState.overflow)log('FPGA 报告资源溢出；请检查状态并全部停止');}}
 }
-function createSession(write,mock=false){if(session)lost('旧连接已关闭');cancelExpression();isMock=mock;dataPackets.clear();const owner=new P.Session(write,{startSeq:nextSeq(),onSequence:n=>{saveSeq(n);const sent=(n-1)&255;dataPackets.delete(sent+':129');dataPackets.delete(sent+':130');},onPacket:receive,onFatal:e=>{if(session!==owner)return;lost(e.message);if(window.AndroidBle)AndroidBle.disconnect();}});session=owner;decoder=new P.StreamDecoder(p=>session===owner&&owner.receive(p));return owner;}
+function createSession(write,mock=false){if(session)lost('旧连接已关闭');setControlReady(false);cancelExpression();isMock=mock;dataPackets.clear();const owner=new P.Session(write,{startSeq:nextSeq(),onSequence:n=>{saveSeq(n);const sent=(n-1)&255;dataPackets.delete(sent+':129');dataPackets.delete(sent+':130');},onPacket:receive,onFatal:e=>{if(session!==owner)return;lost(e.message);if(window.AndroidBle)AndroidBle.disconnect();}});session=owner;decoder=new P.StreamDecoder(p=>session===owner&&owner.receive(p));return owner;}
 function getData(seq,op){const key=seq+':'+op;if(dataPackets.has(key))return Promise.resolve(dataPackets.get(key));return new Promise((resolve,reject)=>{const timer=setTimeout(()=>{waiters.delete(key);reject(new Error('FPGA 数据响应超时'));},2000);waiters.set(key,{resolve,reject,timer});});}
-async function command(op,p=[],owner=session){if(!owner)throw new Error('请先连接或进入协议模拟');checkSession(owner);return owner.send(op,p);}
-async function readback(selector,index=0,owner=session){const ack=await command(P.OP.READBACK,[selector,...P.le16(index)],owner);checkSession(owner);return getData(ack.seq,selector===0?P.OP.TELEMETRY:P.OP.EVENT);}
+async function command(op,p=[],owner=session,setup=false){if(!owner)throw new Error('请先连接或进入协议模拟');checkSession(owner);if(!setup&&!controlReady)throw new Error('FPGA 握手尚未完成，请稍候');return owner.send(op,p);}
+async function readback(selector,index=0,owner=session,setup=false){const ack=await command(P.OP.READBACK,[selector,...P.le16(index)],owner,setup);checkSession(owner);return getData(ack.seq,selector===0?P.OP.TELEMETRY:P.OP.EVENT);}
 async function handshake(owner=session){// Read-only probe is safe if a new app happens to reuse the router's last seq.
-  try{await readback(0,0,owner);}catch(e){if(!e.message.includes('NACK status=1'))throw e;await readback(0,0,owner);}
-  await command(P.OP.TRANSPORT,[5],owner);
+  const generation=connectionGeneration;
+  try{await readback(0,0,owner,true);}catch(e){if(!e.message.includes('NACK status=1'))throw e;await readback(0,0,owner,true);}
+  await command(P.OP.TRANSPORT,[5],owner,true);
   // Reapply the visible settings after FPGA reset or reconnect so physical
   // keys and the controller do not silently disagree about mapping/timbre.
-  for(let i=0;i<25;i++)await command(P.OP.MAP,[i,map[i]],owner);
-  await command(P.OP.CONFIG,[0,Number($('timbre').value)],owner);
-  await command(P.OP.CONFIG,[1,Number($('effect').value)],owner);
-  await expression(owner);await readback(0,0,owner);checkSession(owner);status(isMock?'协议模拟已连接（无 BLE / FPGA 硬件）':'蓝牙已连接，FPGA 握手通过');
+  for(let i=0;i<25;i++)await command(P.OP.MAP,[i,map[i]],owner,true);
+  await command(P.OP.CONFIG,[0,Number($('timbre').value)],owner,true);
+  await command(P.OP.CONFIG,[1,Number($('effect').value)],owner,true);
+  await expression(owner,true);await readback(0,0,owner,true);checkSession(owner);if(generation!==connectionGeneration)throw new Error('蓝牙连接已取消');setControlReady(true);status(isMock?'协议模拟已连接（无 BLE / FPGA 硬件）':'蓝牙已连接，FPGA 握手通过');
 }
 async function connectWeb(){
   // Cancel pending device prompts/discovery as well as an established session.
@@ -61,24 +71,27 @@ async function connectWeb(){
 window.nativeBleState=function(state,message){if(state==='ready'){createSession(b=>new Promise((resolve,reject)=>{nativeWrite={resolve,reject};AndroidBle.writeHex(Array.from(b,x=>x.toString(16).padStart(2,'0')).join(''));}));const owner=session;handshake(owner).catch(e=>{if(session!==owner)return;lost(e.message);AndroidBle.disconnect();});}else if(state==='disconnected'||state==='error')lost(message);else status(message);};
 window.nativeBleWriteComplete=function(ok,message){if(nativeWrite){const n=nativeWrite;nativeWrite=null;ok?n.resolve():n.reject(new Error(message));}};
 window.nativeBleReceive=function(hex){if(decoder)decoder.push(Uint8Array.from(hex.match(/../g)||[],s=>parseInt(s,16)));};
-window.nativeScoreLoaded=function(json,error){try{if(error)throw new Error(error);setScore(JSON.parse(json));}catch(e){status(e.message);}};
-async function disconnect(){connectionGeneration++;testGeneration++;testActive=false;cancelExpression();const owner=session;if(owner){try{await command(P.OP.TRANSPORT,[5],owner);}catch(e){log(e.message);}if(session!==owner)return;}lost('已断开');if(window.AndroidBle)AndroidBle.disconnect();}
-async function test64(){const generation=++testGeneration,owner=session;testActive=true;clearHeld();
+window.nativeScoreLoaded=function(json,error,id){if(id!==scoreLoadGeneration)return;try{if(error)throw new Error(error);setScore(JSON.parse(json));}catch(e){status(e.message);}};
+async function disconnect(){setControlReady(false);connectionGeneration++;testGeneration++;testActive=false;cancelExpression();const owner=session;if(owner){try{await command(P.OP.TRANSPORT,[5],owner,true);}catch(e){log(e.message);}if(session!==owner)return;}lost('已断开');if(window.AndroidBle)AndroidBle.disconnect();}
+async function test64(){dataIdle();const generation=++testGeneration,owner=session;testActive=true;clearHeld();
   try{await command(4,[5],owner);for(let i=0;i<64;i++){if(generation!==testGeneration)return;await command(P.OP.NOTE,P.note(36+i,64,0,1),owner);}
     const response=await readback(0,0,owner);if(generation!==testGeneration)return;const state=P.telemetry(response.payload);
     if(state.activeVoices!==64)throw new Error('测试未达到64声部，请查看状态');
     status(isMock?'协议模拟：已发送64个不同音高（未验证硬件）':'64个不同音高已发送；请测量频谱与采样率，按全部停止结束');
   }catch(e){if(generation===testGeneration){testActive=false;testGeneration++;if(owner&&session===owner)await command(4,[5],owner).catch(log);}throw e;}}
 function setScore(doc){score=P.validateScore(doc,256);$('scoreInfo').textContent=score.title+' · '+score.rows.length+' 个事件，尚未上传';log('曲谱格式校验通过');}
-async function upload(){if(!score)throw new Error('请先加载曲谱');const owner=session,uploadScore=score;await command(P.OP.TRANSPORT,[0],owner);for(let i=0;i<uploadScore.rows.length;i++){await command(P.OP.SCORE_WRITE,P.scoreRow(i,uploadScore.rows[i]),owner);checkSession(owner);$('scoreInfo').textContent='上传 '+(i+1)+' / '+uploadScore.rows.length;}await command(P.OP.SCORE_COMMIT,[...P.le16(uploadScore.rows.length),0],owner);checkSession(owner);$('scoreInfo').textContent=uploadScore.title+' · 已提交 '+uploadScore.rows.length+' 个事件';}
-async function readRecording(){const owner=session;await command(P.OP.TRANSPORT,[3],owner);const p=await readback(0,0,owner),t=P.telemetry(p.payload);checkSession(owner);if(t.recordCount>1024)throw new Error('FPGA 录音数量越界');const rows=[];for(let i=0;i<t.recordCount;i++){const row=P.event((await readback(1,i,owner)).payload);checkSession(owner);if(row.index!==i)throw new Error('录音索引不匹配');rows.push(row);$('recordInfo').textContent=rows.length+' / '+t.recordCount+' 条已回传';}recorded=rows;log('录音事件回传完成；声音仍由 FPGA 合成');}
-function exportRecording(){const data={version:1,type:'tang-synth-event-recording',title:'FPGA 演奏录音',rows:recorded};const json=JSON.stringify(data,null,2);if(window.AndroidBle){AndroidBle.exportJson(json);return;}const a=document.createElement('a'),url=URL.createObjectURL(new Blob([json],{type:'application/json'}));a.href=url;a.download='tang-recording.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+async function upload(){if(!score)throw new Error('请先加载曲谱');const op=beginDataOperation('上传曲谱'),owner=op.owner,uploadScore=score;try{await command(P.OP.TRANSPORT,[0],owner);checkDataOperation(op);for(let i=0;i<uploadScore.rows.length;i++){await command(P.OP.SCORE_WRITE,P.scoreRow(i,uploadScore.rows[i]),owner);checkDataOperation(op);if(score===uploadScore)$('scoreInfo').textContent='上传 '+(i+1)+' / '+uploadScore.rows.length;}await command(P.OP.SCORE_COMMIT,[...P.le16(uploadScore.rows.length),0],owner);checkDataOperation(op);if(score===uploadScore)$('scoreInfo').textContent=uploadScore.title+' · 已提交 '+uploadScore.rows.length+' 个事件';else log(uploadScore.title+' 已上传；当前显示的新曲谱尚未上传');}finally{endDataOperation(op);}}
+async function readRecording(){const op=beginDataOperation('回传录音'),owner=op.owner;try{await command(P.OP.TRANSPORT,[3],owner);checkDataOperation(op);const p=await readback(0,0,owner),t=P.telemetry(p.payload);checkDataOperation(op);if(t.recordCount>1024)throw new Error('FPGA 录音数量越界');const rows=[];for(let i=0;i<t.recordCount;i++){const row=P.event((await readback(1,i,owner)).payload);checkDataOperation(op);if(row.index!==i)throw new Error('录音索引不匹配');rows.push(row);$('recordInfo').textContent=rows.length+' / '+t.recordCount+' 条已回传';}recorded=rows;log('录音事件回传完成；声音仍由 FPGA 合成');}finally{endDataOperation(op);}}
+function exportRecording(){dataIdle();const data={version:1,type:'tang-synth-event-recording',title:'FPGA 演奏录音',rows:recorded};const json=JSON.stringify(data,null,2);if(window.AndroidBle){AndroidBle.exportJson(json);return;}const a=document.createElement('a'),url=URL.createObjectURL(new Blob([json],{type:'application/json'}));a.href=url;a.download='tang-recording.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+async function clearRecording(){const op=beginDataOperation('清空录音');try{await command(4,[4],op.owner);checkDataOperation(op);recorded=[];$('recordInfo').textContent='0 条已回传';}finally{endDataOperation(op);}}
+async function loadScoreUrl(){const id=beginScoreLoad();try{const url=new URL($('scoreUrl').value);if(url.protocol!=='https:')throw new Error('在线曲谱只允许 HTTPS');if(window.AndroidBle){AndroidBle.loadScoreUrl(url.href,id);return;}const controller=new AbortController();scoreDownload=controller;const response=await fetch(url.href,{credentials:'omit',signal:controller.signal});if(id!==scoreLoadGeneration)return;if(!response.ok)throw new Error('HTTP '+response.status);const text=await response.text();if(id!==scoreLoadGeneration)return;if(new TextEncoder().encode(text).length>262144)throw new Error('曲谱 JSON 超过 256KiB');setScore(JSON.parse(text));}catch(e){if(id===scoreLoadGeneration)status(e.message);}finally{if(id===scoreLoadGeneration)scoreDownload=null;}}
+async function loadScoreFile(){const id=beginScoreLoad();try{const f=$('scoreFile').files[0];if(!f)return;if(f.size>262144)throw new Error('JSON 超过 256KiB');const text=await f.text();if(id!==scoreLoadGeneration)return;setScore(JSON.parse(text));}catch(e){if(id===scoreLoadGeneration)status(e.message);}}
 function bind(id,fn){$(id).onclick=()=>Promise.resolve().then(fn).catch(e=>status(e.message));}
-function expression(owner=session){return command(P.OP.EXPRESSION,P.expression(Number($('gain').value),Number($('bend').value),Number($('vibrato').value)),owner);}
+function expression(owner=session,setup=false){return command(P.OP.EXPRESSION,P.expression(Number($('gain').value),Number($('bend').value),Number($('vibrato').value)),owner,setup);}
 // Keep one expression request in flight and only the latest unsent snapshot.
 // At most 25 updates/s; slow ACKs cannot accumulate a slider command backlog.
 function scheduleExpression(id){
-  if(!session||session.closed)return;
+  if(!session||session.closed||!controlReady)return;
   if(!expressionControl||expressionControl.owner!==session)expressionControl={owner:session,pending:null,sending:false,timer:null,lastSent:-Infinity};
   const c=expressionControl,mask={gain:1,bend:2,vibrato:4}[id];
   if(!mask)return;
@@ -98,7 +111,7 @@ for(let i=0;i<25;i++){
   const opt=document.createElement('option');opt.value=i;opt.textContent='键 '+i;$('mapKey').append(opt);
   const b=document.createElement('button');b.textContent=i+' · MIDI '+map[i];
   b.onpointerdown=e=>{
-    e.preventDefault();if(held.has(i))return;
+    e.preventDefault();if(held.has(i))return;if(!controlReady){status(session?'FPGA 握手尚未完成，请稍候':'请先连接或进入协议模拟');return;}
     const owner=session,same=Array.from(held.values()).find(n=>n.owner===owner&&n.midi===map[i]);
     const n={midi:map[i],timbre:same?same.timbre:Number($('timbre').value),owner,pointerId:e.pointerId};
     held.set(i,n);b.classList.add('pressed');if(b.setPointerCapture)b.setPointerCapture(e.pointerId);
@@ -117,19 +130,19 @@ for(let i=0;i<25;i++){
 }
 bind('connect',connectWeb);bind('disconnect',disconnect);bind('simulate',async()=>{await disconnect();const mock=new Simulator(),owner=createSession(b=>mock.write(b),true),ownDecoder=decoder;mock.deliver=b=>{if(session===owner)ownDecoder.push(b);};await handshake(owner);});
 bind('test64',test64);
-bind('panic',async()=>{const owner=session;testGeneration++;testActive=false;await command(4,[5],owner);checkSession(owner);clearHeld();});
+bind('panic',async()=>{const owner=session;testGeneration++;testActive=false;cancelDataOperation();await command(4,[5],owner);checkSession(owner);clearHeld();});
 $('timbre').onchange=()=>command(3,[0,Number($('timbre').value)]).catch(e=>status(e.message));$('effect').onchange=()=>command(3,[1,Number($('effect').value)]).catch(e=>status(e.message));
 for(const id of ['gain','bend','vibrato']){$(id).oninput=()=>{$(id+'Value').textContent=$(id).value;scheduleExpression(id);};$(id).onchange=()=>scheduleExpression(id);}
 $('mapKey').onchange=()=>$('mapNote').value=map[Number($('mapKey').value)];bind('mapApply',async()=>{const owner=session,i=Number($('mapKey').value),n=Number($('mapNote').value);if(!Number.isInteger(n)||n<0||n>127)throw new Error('MIDI 必须为 0..127');await command(5,[i,n],owner);checkSession(owner);map[i]=n;$('keys').children[i].textContent=i+' · MIDI '+n;});
-bind('loadUrl',async()=>{const url=new URL($('scoreUrl').value);if(url.protocol!=='https:')throw new Error('在线曲谱只允许 HTTPS');if(window.AndroidBle){AndroidBle.loadScoreUrl(url.href);return;}const response=await fetch(url.href,{credentials:'omit'});if(!response.ok)throw new Error('HTTP '+response.status);const text=await response.text();if(text.length>262144)throw new Error('曲谱 JSON 超过 256KiB');setScore(JSON.parse(text));});
-$('scoreFile').onchange=async()=>{try{const f=$('scoreFile').files[0];if(f.size>262144)throw new Error('JSON 超过 256KiB');setScore(JSON.parse(await f.text()));}catch(e){status(e.message);}};
-bind('upload',upload);bind('play',()=>command(4,[1]));bind('builtin',()=>command(7,[0,0,1]));bind('guideStart',()=>command(4,[6]));bind('guideStop',()=>command(4,[7]));bind('stop',()=>command(4,[0]));bind('recordStart',()=>command(4,[2]));bind('recordStop',()=>command(4,[3]));bind('recordRead',readRecording);bind('recordExport',exportRecording);bind('recordReplay',()=>command(4,[8]));bind('recordClear',async()=>{const owner=session;await command(4,[4],owner);checkSession(owner);recorded=[];$('recordInfo').textContent='0 条已回传';});bind('readStatus',()=>readback(0));
+bind('loadUrl',loadScoreUrl);$('scoreFile').onchange=loadScoreFile;
+bind('upload',upload);bind('play',()=>idleCommand(4,[1]));bind('builtin',()=>idleCommand(7,[0,0,1]));bind('guideStart',()=>idleCommand(4,[6]));bind('guideStop',()=>command(4,[7]));bind('stop',()=>{cancelDataOperation();return command(4,[0]);});bind('recordStart',()=>idleCommand(4,[2]));bind('recordStop',()=>command(4,[3]));bind('recordRead',readRecording);bind('recordExport',exportRecording);bind('recordReplay',()=>idleCommand(4,[8]));bind('recordClear',clearRecording);bind('readStatus',()=>readback(0));
 function releasePhoneNotes(){cancelExpression();if(held.size||testActive){testGeneration++;testActive=false;clearHeld();if(session)command(4,[5]).catch(e=>log(e.message));}}
 document.addEventListener('visibilitychange',()=>{if(document.hidden)releasePhoneNotes();});
 window.addEventListener('blur',releasePhoneNotes);
 $('capability').textContent=window.AndroidBle?'原生 Android BLE 通道可用':navigator.bluetooth?(window.isSecureContext?'Web Bluetooth 可用':'请使用 HTTPS / localhost 启用蓝牙'):'此浏览器不支持 Web Bluetooth；请用 Android APK，或进入协议模拟';
+setControlReady(false);
 let heartbeatPending=false;
-setInterval(()=>{if(!session||heartbeatPending||document.hidden)return;heartbeatPending=true;readback(0).catch(e=>log(e.message)).finally(()=>heartbeatPending=false);},1000);
+setInterval(()=>{if(!session||!controlReady||heartbeatPending||document.hidden)return;heartbeatPending=true;readback(0).catch(e=>log(e.message)).finally(()=>heartbeatPending=false);},1000);
 // Explicit software protocol simulator. It never claims a hardware connection.
 class Simulator{
   constructor(){this.rows=[];this.events=[];this.recording=false;this.playing=false;this.guide=false;this.notes=new Set();this.last=null;this.lastTime=performance.now();}

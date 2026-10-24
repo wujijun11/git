@@ -1,0 +1,248 @@
+{
+  "createdAtUtc": "2026-10-23T15:14:03.818384+00:00",
+  "state": "normal ISR IRAM/DRAM placement verified; no device operations",
+  "hardwareValidated": false,
+  "elf": {
+    "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\uart-live-debug-20261023\\c3-tx-observation-build\\ble_bridge.ino.elf",
+    "sha256": "4221fbe1cad416a10c3afd1be554eae2b9f6af1823c3b2312ca9fb50fb2dd678"
+  },
+  "app": {
+    "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\uart-live-debug-20261023\\c3-tx-observation-output\\ble_bridge.ino.bin",
+    "sha256": "a85c139ac1918cdd935712579eb0931369d84cc0adf4b19426da7c491bcb22b3",
+    "bytes": 670880
+  },
+  "sourceFrozenHashes": {
+    "ble_bridge.ino": "bd3550f405e5c07b4ac7b7518938e1c19d24cb26df6450190ed0c21dce41c4fd",
+    "bridge_uart_io.h": "a32f2053e96794befa05bb8437595a16080c67bbc446e45b664987f5c6fef5f6"
+  },
+  "compileCommands": {
+    "sha256": "8c34ddb20561997017737ba3dd131496ff48a0ae9439cc59d78624cd08cab0c7",
+    "entries": 86,
+    "localBridgeBleCppCount": 30,
+    "sdkBleCppCount": 0,
+    "sources": [
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLE2901.cpp",
+        "sha256": "5dd1d9810a3e716f8a415cd554b5dc1d94b536cab3c15a2c395928a8c0a57d7c"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLE2902.cpp",
+        "sha256": "048f95fccfdafd5d9721c969d1218c24244583eb399e31d34f39d2c6196d4336"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEAddress.cpp",
+        "sha256": "fbd458270bd3d092a7d8a57051b98d665413574a673cf19514275be044645e71"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLE2904.cpp",
+        "sha256": "361f8d9a4a70f7bebe34eb8eadc356c2df0cc892b7fe612f55fdb63d2dc12f25"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEAdvertisedDevice.cpp",
+        "sha256": "a92c60cc279713f700b705da161eac04e637e6064f6fc276893e6110526432ee"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEAdvertising.cpp",
+        "sha256": "b2b003f87440c4e2d2543ad396132758487dd81a0652ea128bef24d4800adae9"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEBeacon.cpp",
+        "sha256": "541fb942ccf486d5cbfad1d6548c2f4f66559ca172d25d444ea28053593a8965"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLECharacteristic.cpp",
+        "sha256": "940e9bdc6b77b0c21611ffcd54e53f4c726cb9f4492499cb2f934c2f6162c33a"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLECharacteristicMap.cpp",
+        "sha256": "ff9acb370cdbe39ef2c12bda1ff14e32be82dca11015ab09b98d63bf4169e846"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEClient.cpp",
+        "sha256": "46c62c943cb476e5bcdcbb697e516d01316dfa36996091187553bf13334d645d"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEDescriptor.cpp",
+        "sha256": "d7ee09a797c20b035dca93f27d61024e42a64f51dcd9003e5cabed016dec091a"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEDescriptorMap.cpp",
+        "sha256": "35899a9950203c1c88d827de4e1c7c2c0480e9ab8949e3718b10226a5a8e8719"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEDevice.cpp",
+        "sha256": "a5289f36d0ebc995ab5bd093ef2c448cb97fe1e3ac5023c767cfa79337a828d9"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEEddystoneTLM.cpp",
+        "sha256": "7f3f6f2f43cdabdbfb0990b0e297f6ba6448240fb552238a811dcf3f21c1e3d1"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEEddystoneURL.cpp",
+        "sha256": "8bbda180e3c16ad1110c6e8da54be284e20bd35948375d683949a38deabb099b"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEExceptions.cpp",
+        "sha256": "fdcdcc42dd6cad2e947b5ffb1852cf242743a796fd08be6725f7c187106c54af"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEHIDDevice.cpp",
+        "sha256": "4012c8e1e93e86a015dc349f0e7df8846ff603ec41a5bea8392f3a5b2c11eb6e"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLERemoteCharacteristic.cpp",
+        "sha256": "7561cfabb9937718d765bb6dc5f15930451682ebbfeb4a8f9246602504a57729"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLERemoteDescriptor.cpp",
+        "sha256": "ffa14357673a844da72ea797fd2f7f904c675551cfb3b54a1cee2b27d80c2f20"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLERemoteService.cpp",
+        "sha256": "8e99ac0cebc8129b1f41cd826d0cc04dae91a69bcce0814fd9593e10dc258962"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEScan.cpp",
+        "sha256": "3c4fae9c25d43b53f316a819ce1f70e72d1554f20c57f25390dbb6683e7d8dcc"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLESecurity.cpp",
+        "sha256": "fbfca4f97ef0eeb55695297981b5cb57ede1e64a4217b360f3ad0f2ea54331bd"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEServer.cpp",
+        "sha256": "e4fa31486d47f578fc7263997238d0fa3c94d313c8eb78d5ea78910d20dc7b61"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEService.cpp",
+        "sha256": "6c95afceec18f161575c4d682571d05bc03e5ca26976e066213e2234ae220124"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEServiceMap.cpp",
+        "sha256": "d09af2602e11d267256bb4be7564c9092361b9af176a307cdf66d3ec41ec79cf"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEUUID.cpp",
+        "sha256": "fdd99afd886d3931363496f821c26f0c554f3bc548255e9f715d80f46823bf8e"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEUtils.cpp",
+        "sha256": "fdb124d5d2efe6c7a34869f8cd3d991868bdad8998500fd074b157d4962580b4"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\BLEValue.cpp",
+        "sha256": "c2f85529d9c7ce3005641b61c30babb5e5153122c15ec46dff39680c08297053"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\FreeRTOS.cpp",
+        "sha256": "a277e5dd3dcfd624d15fb91eace306813471b532c1e72f063d3053907bb958dd"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\libraries\\BridgeBLE\\src\\GeneralUtils.cpp",
+        "sha256": "36d8761a646ce7dea6df55d57831502f79bfde82299c01f33234efa31b585173"
+      }
+    ]
+  },
+  "libraryFilesChecked": 64,
+  "libraryFileMismatches": [],
+  "symbolSections": {
+    "BridgeTxObserver::edgeIsr(void*)": {
+      "address": 1077412574,
+      "size": 32,
+      "kind": "W",
+      "addressHex": "0x403802de",
+      "section": ".iram0.text"
+    },
+    "gpio_intr_service": {
+      "address": 1077412606,
+      "size": 182,
+      "kind": "t",
+      "addressHex": "0x403802fe",
+      "section": ".iram0.text"
+    },
+    "vPortEnterCritical": {
+      "address": 1077464898,
+      "size": 46,
+      "kind": "T",
+      "addressHex": "0x4038cf42",
+      "section": ".iram0.text"
+    },
+    "vPortExitCritical": {
+      "address": 1077464944,
+      "size": 82,
+      "kind": "T",
+      "addressHex": "0x4038cf70",
+      "section": ".iram0.text"
+    },
+    "xPortSetInterruptMaskFromISR": {
+      "address": 1077464856,
+      "size": 26,
+      "kind": "T",
+      "addressHex": "0x4038cf18",
+      "section": ".iram0.text"
+    },
+    "vPortClearInterruptMaskFromISR": {
+      "address": 1077464882,
+      "size": 16,
+      "kind": "T",
+      "addressHex": "0x4038cf32",
+      "section": ".iram0.text"
+    },
+    "txObserver": {
+      "address": 1070157064,
+      "size": 132,
+      "kind": "D",
+      "addressHex": "0x3fc94d08",
+      "section": ".dram0.data"
+    },
+    "port_uxCriticalNesting": {
+      "address": 1070173784,
+      "size": 4,
+      "kind": "B",
+      "addressHex": "0x3fc98e58",
+      "section": ".dram0.bss"
+    },
+    "port_uxOldInterruptState": {
+      "address": 1070173780,
+      "size": 4,
+      "kind": "B",
+      "addressHex": "0x3fc98e54",
+      "section": ".dram0.bss"
+    },
+    "gpio_context": {
+      "address": 1070157272,
+      "size": 32,
+      "kind": "d",
+      "addressHex": "0x3fc94dd8",
+      "section": ".dram0.data"
+    }
+  },
+  "observerCounter": {
+    "offset": 128,
+    "addressHex": "0x3fc94d88",
+    "section": ".dram0.data"
+  },
+  "normalIsrCallPath": "IRAM gpio_intr_service -> IRAM edgeIsr -> IRAM vPortEnterCritical/vPortExitCritical -> IRAM mask helpers; dispatcher helpers __ffssi2 at 0x400007d4 and __lshrdi3 at 0x40000830 are ROM",
+  "limitations": [
+    "ELF does not establish runtime handler-table allocation, existing ISR service allocation flags or physical GPIO7 activity.",
+    "vPortExitCritical underflow assert branch references flash strings. Balanced normal observer critical path is IRAM/DRAM; not every fatal path is cache independent.",
+    "volatile ++ warning is present; disassembly uses load/add/store under critical with no atomic helper."
+  ],
+  "buildLogTail": [
+    "In file included from C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\uart-live-debug-20261023\\c3-tx-observation-source\\ble_bridge\\ble_bridge.ino:15:",
+    "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\uart-live-debug-20261023\\c3-tx-observation-source\\ble_bridge\\bridge_uart_io.h: In static member function 'static void BridgeTxObserver::edgeIsr(void*)':",
+    "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\uart-live-debug-20261023\\c3-tx-observation-source\\ble_bridge\\bridge_uart_io.h:99:19: warning: '++' expression of 'volatile'-qualified type is deprecated [-Wvolatile]",
+    "   99 |         observer->edges_++;",
+    "      |         ~~~~~~~~~~^~~~~~",
+    "Sketch uses 670728 bytes (51%) of program storage space. Maximum is 1310720 bytes.",
+    "Global variables use 24156 bytes (7%) of dynamic memory, leaving 303524 bytes for local variables. Maximum is 327680 bytes."
+  ],
+  "copiedHeaderExactRawBytes": false,
+  "copiedHeaderTextExactAfterNewlineNormalization": false,
+  "copiedHeaderSha256": "340fa42ce44978db2838a60f8d3051c7a38a9f77262bf0fe62e3dd91ee36f001",
+  "copiedHeaderLineEndings": {
+    "sourceCrlf": 0,
+    "buildCrlf": 0
+  },
+  "copiedHeaderExactAfterRemovingArduinoLineDirective": true
+}

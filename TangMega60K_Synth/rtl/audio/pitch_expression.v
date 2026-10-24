@@ -42,11 +42,13 @@ module pitch_expression #(
     always @(*) begin
         g_next=gain_smooth;
         if (gain_target>gain_smooth) begin
-            g_next=gain_smooth+GAIN_STEP;
-            if (g_next>gain_target) g_next=gain_target;
+            if (gain_target-gain_smooth<=GAIN_STEP) g_next=gain_target;
+            else g_next=gain_smooth+GAIN_STEP;
         end else if (gain_target<gain_smooth) begin
-            g_next=gain_smooth-GAIN_STEP;
-            if (g_next<gain_target) g_next=gain_target;
+            // Clamp before subtraction. Comparing a negative signed integer
+            // with the unsigned target made 7-8 wrap to 4095 at mute.
+            if (gain_smooth-gain_target<=GAIN_STEP) g_next=gain_target;
+            else g_next=gain_smooth-GAIN_STEP;
         end
         b_next=$signed(bend_smooth);
         if ($signed(safe_bend)>$signed(bend_smooth)) begin
@@ -58,11 +60,11 @@ module pitch_expression #(
         end
         d_next=depth_smooth;
         if (safe_depth>depth_smooth) begin
-            d_next=depth_smooth+DEPTH_STEP;
-            if (d_next>safe_depth) d_next=safe_depth;
+            if (safe_depth-depth_smooth<=DEPTH_STEP) d_next=safe_depth;
+            else d_next=depth_smooth+DEPTH_STEP;
         end else if (safe_depth<depth_smooth) begin
-            d_next=depth_smooth-DEPTH_STEP;
-            if (d_next<safe_depth) d_next=safe_depth;
+            if (depth_smooth-safe_depth<=DEPTH_STEP) d_next=safe_depth;
+            else d_next=depth_smooth-DEPTH_STEP;
         end
     end
     always @(posedge clk) begin

@@ -16,9 +16,17 @@ module mpr121_key_eventizer #(
     output reg overflow,output wire [15:0] pending_events
 );
     localparam integer PW=$clog2(FIFO_DEPTH);
-    reg [22:0] fifo [0:FIFO_DEPTH-1];
+    // Keep the whole packed event on an explicit synchronous RAM read.
+    // An inferred asynchronous head became a synchronous SDPB read in the
+    // full main netlist, where an empty-to-one enqueue could pop stale data.
+    // The bypass supplies that first word without reading a just-written RAM
+    // address; subsequent queued words are prefetched when the head is free.
+    reg [22:0] fifo [0:FIFO_DEPTH-1] /* synthesis syn_ramstyle = "block_ram" */;
+    reg [22:0] ram_head /* synthesis syn_preserve = 1 */;
+    reg [22:0] bypass_head;
+    reg head_valid,head_from_ram;
     reg [PW-1:0] wrptr,rdptr;
-    reg [PW:0] count;
+    reg [PW:0] count,ram_count;
     reg [24:0] committed,target;
     reg [6:0] held_note[0:24];reg [1:0] held_timbre[0:24];
     reg [174:0] batch_map;reg [1:0] batch_timbre;
@@ -31,12 +39,25 @@ module mpr121_key_eventizer #(
     // A complete batch reserves capacity before scanning. Keep the write path
     // independent of downstream ready: pop can traverse the entire arbiter.
     // If capacity is ever exhausted, retain this transition until count drops.
-    wire push=scan_changed && (count<FIFO_DEPTH);
-    wire [22:0] head=fifo[rdptr];
+    wire push=resetn && scan_changed && (count<FIFO_DEPTH);
     wire [5:0] event_source=SOURCE_BASE+scan_key;
-    assign key_valid=(count!=0);
+    wire [22:0] push_payload={target[scan_key],event_source,
+        target[scan_key]?batch_map[scan_key*7 +:7]:held_note[scan_key],
+        7'd100,target[scan_key]?batch_timbre:held_timbre[scan_key]};
+    wire head_free=!head_valid || key_ready;
+    wire read_ram=resetn && head_free && (ram_count!=0);
+    wire bypass=push && head_free && (ram_count==0);
+    wire write_ram=push && !bypass;
+    wire [22:0] head=!head_valid?23'd0:(head_from_ram?ram_head:bypass_head);
+    assign key_valid=resetn && head_valid;
     assign {key_on,key_source,key_note,key_velocity,key_timbre}=head;
     assign pending_events=count;
+    // Simultaneous read/write addresses differ: a prefetched word was queued
+    // in RAM before this clock. RAM contents and its read register need no reset.
+    always @(posedge clk) begin
+        if(write_ram) fifo[wrptr]<=push_payload;
+        if(read_ram) ram_head<=fifo[rdptr];
+    end
     integer k;
     always @* begin
         choice=3; snapshot_ready=0;
@@ -53,20 +74,29 @@ module mpr121_key_eventizer #(
     end
     always @(posedge clk) begin
         if(!resetn) begin
-            wrptr<=0;rdptr<=0;count<=0;committed<=0;target<=0;touch_mask<=0;
+            wrptr<=0;rdptr<=0;count<=0;ram_count<=0;
+            head_valid<=0;head_from_ram<=0;bypass_head<=0;
+            committed<=0;target<=0;touch_mask<=0;
             scanning<=0;scan_key<=0;fault_seen<=0;release_pending<=0;
             round_robin<=0;overflow<=0;batch_map<=0;batch_timbre<=0;
             for(k=0;k<25;k=k+1) begin held_note[k]<=0;held_timbre[k]<=0;end
         end else begin
             fault_seen<=fault;
             release_pending<=release_pending | (fault & ~fault_seen);
-            if(pop) rdptr<=(rdptr==FIFO_DEPTH-1)?0:rdptr+1;
+            if(head_free) begin
+                head_valid<=read_ram || bypass;
+                head_from_ram<=read_ram;
+            end
+            if(bypass) bypass_head<=push_payload;
+            if(write_ram) wrptr<=(wrptr==FIFO_DEPTH-1)?0:wrptr+1;
+            if(read_ram) rdptr<=(rdptr==FIFO_DEPTH-1)?0:rdptr+1;
+            case({write_ram,read_ram})
+                2'b10:ram_count<=ram_count+1;
+                2'b01:ram_count<=ram_count-1;
+                default:ram_count<=ram_count;
+            endcase
             if(scan_changed && count==FIFO_DEPTH && !pop) overflow<=1;
             if(push) begin
-                fifo[wrptr]<={target[scan_key],event_source,
-                    target[scan_key]?batch_map[scan_key*7 +:7]:held_note[scan_key],
-                    7'd100,target[scan_key]?batch_timbre:held_timbre[scan_key]};
-                wrptr<=(wrptr==FIFO_DEPTH-1)?0:wrptr+1;
                 committed[scan_key]<=target[scan_key];
                 if(target[scan_key]) begin
                     held_note[scan_key]<=batch_map[scan_key*7 +:7];held_timbre[scan_key]<=batch_timbre;

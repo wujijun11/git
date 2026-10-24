@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-10-23T23:12:47.856761+08:00",
+  "taskComplete": false,
+  "fpgaHandshakeVerified": false,
+  "fpgaSramProgrammed": true,
+  "fpgaUserCode": "0x3B9F",
+  "gaoConfigurationId": "0x5544",
+  "fpgaFlashWritten": false,
+  "buildAccepted": true,
+  "timingViolations": {
+    "setup": 0,
+    "hold": 0
+  },
+  "mainSourceAdopted": false,
+  "observationSourceInputs": 81,
+  "bitstreamSha256": "c0024c8269b36d9029c1ff4d00b832b09de21499008d3aea8c229fff747431f0",
+  "c3CandidateBuilt": true,
+  "c3CandidateFlashed": false,
+  "c3CandidateAppSha256": "a85c139ac1918cdd935712579eb0931369d84cc0adf4b19426da7c491bcb22b3",
+  "baselineCapture": "capture-before/main_status_core0.csv",
+  "readbackActuallySent": false,
+  "blockedBy": "C3 USB VID303A and COM3 absent; target not advertising in two bounded BLE scans. User asked to reconnect C3 USB cable while FPGA remains powered.",
+  "notEstablished": "Idle zero counters do not prove an UART wiring or parser failure. No after-request GAO capture exists.",
+  "evidence": [
+    "fpga-before.log",
+    "fpga-sram-program.log",
+    "fpga-after.log",
+    "capture-before/result.json",
+    "ble-readback/result.json",
+    "ble-readback-retry/result.json",
+    "c3-tx-observation-build.log"
+  ]
+}

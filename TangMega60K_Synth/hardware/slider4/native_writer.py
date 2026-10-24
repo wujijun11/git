@@ -74,3 +74,4 @@ class NativePCB:
             z.writestr(self.title+'.epru',native)
         path.with_suffix('.epru').write_text(native,encoding='utf-8')
         return path
+

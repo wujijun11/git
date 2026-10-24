@@ -1,0 +1,324 @@
+*** GOWIN Tcl Command Line Console  *** 
+Open project C:/Users/asus/Desktop/Git/TangMega60K_Synth/verification/uart-live-debug-20261023/fpga-build/build_uart-gao-passive_20261023_225737_4569e195/full/ContestFull.gprj finished
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\adsr.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\audio_fx.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\audio_system_v2_fm.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\audio_system_v2.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\dds_lane.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\fm_piano_lane.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\gain_saturator.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\pitch_expression.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\polar_lane.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\stereo_mixer.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\voice_engine.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\voice_state_ram.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\wavetable_rom.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_audio_16_48k_i2s_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_audio_48k_gao_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_audio_48k_i2s_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_audio_diagnostic_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_audio_gao_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_bringup_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_contest_full_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_instrument_b_48k_gao_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_instrument_b_48k_i2s_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_key_event_adapter.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_sequence16_48k_i2s_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\captain_control_top_v2.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\captain_control_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\captain_system_top_v2.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\captain_system_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\clock\audio_clock_48k.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\clock\pll_init.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\control\expression_merge.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\control\note_arbiter.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\control\remote_command_router.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\control\remote_note_watchdog.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\diagnostics\live64_event_source.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\diagnostics\live64_system_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\diagnostics\poly16_event_source.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\diagnostics\sequence16_event_source.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\event_fifo_v2.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\event_fifo.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\expression_controls_v2.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\i2s_tx.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\instrument_full_system.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\instrument_system_v2.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\interaction_top_v2.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\interaction_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\performance\performance_controller.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\performance\ws2812_guide.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\remote\remote_uart_transport.sv'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\i2c_register_master.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_input_frontend.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_key_eventizer.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_slider.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\test_tone_source.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\tone_demo_top.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\audio_monitor_cdc.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\audio_visualizer.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\scope_renderer.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\video_clocking.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\video_timing_640x480.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\video_tmds_encoder.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\video_tmds_tx.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\voice_allocator_v2.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\voice_allocator.v'
+Analyzing Verilog file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_crc32.v'
+Analyzing Verilog file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v'
+Analyzing included file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_define.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
+Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
+Analyzing included file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_top_define.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
+Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
+Analyzing included file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_init.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
+Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
+Analyzing Verilog file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v'
+Analyzing included file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_top_define.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v":1256)
+Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v":1256)
+Analyzing Verilog file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'
+Analyzing included file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_define.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Analyzing included file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_top_define.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Analyzing included file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_expression.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Analyzing included file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_parameter.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Analyzing included file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\RTL_GAO\ao_0\gw_ao_init.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Analyzing Verilog file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top.v'
+Analyzing included file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\RTL_GAO\ao_control\gw_con_top_define.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top.v":377)
+Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top.v":377)
+Analyzing included file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\RTL_GAO\ao_control\gw_con_parameter.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top.v":377)
+Back to file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top.v'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top.v":377)
+Analyzing Verilog file 'C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\gw_jtag.v'
+Analyzing Verilog file 'C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\RTL_GAO\gw_gao_top.v'
+WARN  (EX3073) : Port 'guide_mask' remains unconnected for this instance("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_contest_full_top.v":88)
+Compiling module 'board_contest_full_top'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_contest_full_top.v":4)
+Compiling module 'board_bringup_top(DEBOUNCE_CYCLES=100000,STATUS_MODE=1)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_bringup_top.v":3)
+Extracting RAM for identifier 'debounce'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_bringup_top.v":26)
+Compiling module 'audio_clock_48k'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\clock\audio_clock_48k.v":6)
+Compiling module 'audio_plla_stage(ODIV=31,ODIV_FRAC=2)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\clock\audio_clock_48k.v":68)
+Compiling module 'PLL_INIT'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\clock\pll_init.v":4)
+Compiling module 'audio_plla_stage(INPUT_MHZ="38.4",MDIV=32,ODIV=25)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\clock\audio_clock_48k.v":68)
+Compiling module 'PLL_INIT(MULTI_FAC=32)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\clock\pll_init.v":4)
+Compiling module 'video_clocking'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\video_clocking.v":6)
+Compiling module 'PLL_INIT(MULTI_FAC=20)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\clock\pll_init.v":4)
+Compiling module 'board_local_actions'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\board\board_contest_full_top.v":98)
+Compiling module 'video_timing_640x480'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\video_timing_640x480.v":4)
+WARN  (EX3791) : Expression size 11 truncated to fit in target size 10("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\video_timing_640x480.v":15)
+WARN  (EX3073) : Port 'last_error' remains unconnected for this instance("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\instrument_full_system.v":87)
+WARN  (EX3073) : Port 'busy' remains unconnected for this instance("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\instrument_full_system.v":118)
+WARN  (EX3073) : Port 'timeout_count' remains unconnected for this instance("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\instrument_full_system.v":126)
+WARN  (EX3073) : Port 'level' remains unconnected for this instance("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\instrument_full_system.v":177)
+WARN  (EX3073) : Port 'expr_applied' remains unconnected for this instance("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\instrument_full_system.v":195)
+WARN  (EX3073) : Port 'frame_tick' remains unconnected for this instance("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\instrument_full_system.v":207)
+WARN  (EX3073) : Port 'spectrum_valid' remains unconnected for this instance("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\instrument_full_system.v":219)
+Compiling module 'instrument_full_system(GUIDE_BRIGHTNESS=8'b00100000,GUIDE_TOUCH_BRIGHTNESS=8'b00010000,GUIDE_PIXEL_KEY_MAP=125'b11000101111011010101101001001110010100011000001111011100110101100010110101001001010000011100110001010010000011000100000100000)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\instrument_full_system.v":3)
+Compiling module 'remote_uart_transport'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\remote\remote_uart_transport.sv":75)
+Extracting RAM for identifier 'fifo'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\remote\remote_uart_transport.sv":122)
+Compiling module 'remote_uart_rx'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\remote\remote_uart_transport.sv":4)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\remote\remote_uart_transport.sv":35)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\remote\remote_uart_transport.sv":139)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 3("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\remote\remote_uart_transport.sv":140)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\remote\remote_uart_transport.sv":143)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\remote\remote_uart_transport.sv":146)
+WARN  (EX3791) : Expression size 6 truncated to fit in target size 5("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\remote\remote_uart_transport.sv":173)
+Compiling module 'remote_uart_tx'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\remote\remote_uart_transport.sv":50)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 4("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\remote\remote_uart_transport.sv":69)
+WARN  (EX3791) : Expression size 6 truncated to fit in target size 5("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\remote\remote_uart_transport.sv":235)
+Compiling module 'remote_command_router'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\control\remote_command_router.v":3)
+Compiling module 'mpr121_input_frontend(SETTLE_CYCLES=2457600)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_input_frontend.v":3)
+Compiling module 'mpr121_sampler(TIMEOUT_CYCLES=245760,POLL_CYCLES=24576,RESET_CYCLES=49152,SETTLE_CYCLES=2457600,RETRY_CYCLES=4915200,I2C_ADDR=7'b1011010,TOUCH_THRESHOLD=8'b00001100,RELEASE_THRESHOLD=8'b00000110,FILTER_CDC=8'b00010000,FILTER_CDT=8'b00100000)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":3)
+Compiling module 'i2c_register_master(TIMEOUT_CYCLES=245760)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\i2c_register_master.v":3)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 3("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\i2c_register_master.v":87)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 3("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\i2c_register_master.v":120)
+WARN  (EX3791) : Expression size 7 truncated to fit in target size 6("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\i2c_register_master.v":129)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\i2c_register_master.v":150)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 8("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":44)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 8("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":45)
+WARN  (EX3791) : Expression size 7 truncated to fit in target size 6("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":118)
+WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":128)
+WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":140)
+Compiling module 'mpr121_sampler(TIMEOUT_CYCLES=245760,POLL_CYCLES=24576,RESET_CYCLES=49152,SETTLE_CYCLES=2457600,RETRY_CYCLES=4915200,ELECTRODES=8,I2C_ADDR=7'b1011010,TOUCH_THRESHOLD=8'b00001100,RELEASE_THRESHOLD=8'b00000110,FILTER_CDC=8'b00010000,FILTER_CDT=8'b00100000)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":3)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 8("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":44)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 8("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":45)
+WARN  (EX3791) : Expression size 7 truncated to fit in target size 6("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":118)
+WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":128)
+WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":140)
+Compiling module 'mpr121_sampler(TIMEOUT_CYCLES=245760,POLL_CYCLES=24576,RESET_CYCLES=49152,SETTLE_CYCLES=2457600,RETRY_CYCLES=4915200,ELECTRODES=9,I2C_ADDR=7'b1011010,TOUCH_THRESHOLD=8'b00001100,RELEASE_THRESHOLD=8'b00000110,FILTER_CDC=8'b00010000,FILTER_CDT=8'b00100000)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":3)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 8("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":44)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 8("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":45)
+WARN  (EX3791) : Expression size 7 truncated to fit in target size 6("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":118)
+WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":128)
+WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_sampler.v":140)
+Compiling module 'mpr121_key_eventizer'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_key_eventizer.v":3)
+Extracting RAM for identifier 'fifo'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_key_eventizer.v":24)
+Extracting RAM for identifier 'held_note'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_key_eventizer.v":31)
+Extracting RAM for identifier 'held_timbre'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_key_eventizer.v":31)
+WARN  (EX3791) : Expression size 7 truncated to fit in target size 6("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_key_eventizer.v":91)
+WARN  (EX3791) : Expression size 7 truncated to fit in target size 6("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_key_eventizer.v":92)
+WARN  (EX3791) : Expression size 8 truncated to fit in target size 7("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_key_eventizer.v":94)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 7("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_key_eventizer.v":95)
+WARN  (EX3791) : Expression size 8 truncated to fit in target size 7("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_key_eventizer.v":106)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 7("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_key_eventizer.v":107)
+WARN  (EX3791) : Expression size 6 truncated to fit in target size 5("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_key_eventizer.v":113)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_key_eventizer.v":129)
+Compiling module 'mpr121_slider'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_slider.v":3)
+WARN  (EX3791) : Expression size 7 truncated to fit in target size 6("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\sensors\mpr121_slider.v":71)
+Compiling module 'performance_controller'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\performance\performance_controller.v":2)
+Extracting RAM for identifier 'score_ram'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\performance\performance_controller.v":32)
+Extracting RAM for identifier 'record_ram'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\performance\performance_controller.v":35)
+Extracting RAM for identifier 'held_note'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\performance\performance_controller.v":50)
+Extracting RAM for identifier 'held_timbre'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\performance\performance_controller.v":51)
+Compiling module 'ws2812_guide(BRIGHTNESS=8'b00100000,TOUCH_BRIGHTNESS=8'b00010000,PIXEL_KEY_MAP=125'b11000101111011010101101001001110010100011000001111011100110101100010110101001001010000011100110001010010000011000100000100000)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\performance\ws2812_guide.v":4)
+Compiling module 'remote_note_watchdog'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\control\remote_note_watchdog.v":3)
+Compiling module 'note_arbiter'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\control\note_arbiter.v":3)
+Compiling module 'event_fifo_v2(DEPTH=64,AWIDTH=6)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\event_fifo_v2.v":8)
+Extracting RAM for identifier 'mem'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\event_fifo_v2.v":41)
+Compiling module 'expression_merge'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\control\expression_merge.v":3)
+Compiling module 'captain_control_top_v2'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\captain_control_top_v2.v":4)
+Compiling module 'voice_allocator_v2'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\voice_allocator_v2.v":6)
+Compiling module 'expression_controls_v2'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\expression_controls_v2.v":5)
+Compiling module 'voice_engine(AUTO_HEADROOM=1,FM_ENABLE=1)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\voice_engine.v":5)
+Compiling module 'voice_state_ram(WIDTH=125)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\voice_state_ram.v":3)
+Extracting RAM for identifier 'mem'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\voice_state_ram.v":11)
+Compiling module 'adsr(FM_ENABLE=1)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\adsr.v":3)
+Compiling module 'pitch_expression'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\pitch_expression.v":3)
+Extracting RAM for identifier 'sine'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\pitch_expression.v":20)
+Extracting RAM for identifier 'ratios'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\pitch_expression.v":21)
+Compiling module 'dds_lane'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\dds_lane.v":2)
+Compiling module 'polar_lane'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\polar_lane.v":6)
+Extracting RAM for identifier 'states'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\polar_lane.v":23)
+Extracting RAM for identifier 'params'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\polar_lane.v":24)
+Extracting RAM for identifier 'ratios'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\polar_lane.v":25)
+Extracting RAM for identifier 'sine'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\polar_lane.v":26)
+WARN  (EX2526) : Entry size 28 at rtl/audio/rom/polar_ratios.hex:0 does not match memory width 27("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\polar_lane.v":30)
+Compiling module 'polar_lane(LANE=1)'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\polar_lane.v":6)
+Extracting RAM for identifier 'states'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\polar_lane.v":23)
+Extracting RAM for identifier 'params'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\polar_lane.v":24)
+Extracting RAM for identifier 'ratios'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\polar_lane.v":25)
+Extracting RAM for identifier 'sine'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\polar_lane.v":26)
+WARN  (EX2526) : Entry size 28 at rtl/audio/rom/polar_ratios.hex:0 does not match memory width 27("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\polar_lane.v":30)
+Compiling module 'fm_piano_lane'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\fm_piano_lane.v":4)
+Extracting RAM for identifier 'phase_ram'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\fm_piano_lane.v":18)
+Extracting RAM for identifier 'sine'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\fm_piano_lane.v":19)
+Compiling module 'wavetable_rom'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\wavetable_rom.v":1)
+Extracting RAM for identifier 'waves'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\wavetable_rom.v":17)
+Extracting RAM for identifier 'notes'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\wavetable_rom.v":18)
+Extracting RAM for identifier 'velocities'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\wavetable_rom.v":19)
+Extracting RAM for identifier 'piano'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\wavetable_rom.v":21)
+Compiling module 'stereo_mixer'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\stereo_mixer.v":2)
+Compiling module 'gain_saturator'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\gain_saturator.v":2)
+Compiling module 'audio_fx'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\audio_fx.v":4)
+Compiling module 'runtime_audio_fx'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":4)
+Extracting RAM for identifier 'bank0'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":31)
+Extracting RAM for identifier 'bank1'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":31)
+Extracting RAM for identifier 'bank2'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":32)
+Extracting RAM for identifier 'bank3'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":32)
+WARN  (EX3791) : Expression size 12 truncated to fit in target size 11("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":42)
+WARN  (EX3791) : Expression size 13 truncated to fit in target size 11("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":86)
+WARN  (EX3791) : Expression size 13 truncated to fit in target size 11("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":88)
+WARN  (EX3791) : Expression size 12 truncated to fit in target size 11("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":90)
+WARN  (EX3791) : Expression size 12 truncated to fit in target size 11("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":91)
+WARN  (EX3791) : Expression size 13 truncated to fit in target size 11("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":92)
+WARN  (EX3791) : Expression size 13 truncated to fit in target size 11("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":94)
+WARN  (EX3791) : Expression size 12 truncated to fit in target size 11("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":96)
+WARN  (EX3791) : Expression size 12 truncated to fit in target size 11("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":97)
+WARN  (EX3791) : Expression size 13 truncated to fit in target size 12("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":150)
+WARN  (EX3791) : Expression size 13 truncated to fit in target size 12("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":151)
+WARN  (EX3791) : Expression size 13 truncated to fit in target size 12("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":152)
+WARN  (EX3791) : Expression size 13 truncated to fit in target size 12("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":153)
+WARN  (EX3791) : Expression size 13 truncated to fit in target size 12("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":170)
+WARN  (EX3791) : Expression size 13 truncated to fit in target size 12("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\audio\runtime_audio_fx.v":171)
+Compiling module 'i2s_tx'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\i2s_tx.v":5)
+Compiling module 'audio_monitor_cdc'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\audio_monitor_cdc.v":3)
+Compiling module 'audio_visualizer'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\audio_visualizer.v":5)
+Extracting RAM for identifier 'coeff'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\audio_visualizer.v":15)
+Extracting RAM for identifier 'wave_mem'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\audio_visualizer.v":18)
+Extracting RAM for identifier 'xy0'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\audio_visualizer.v":19)
+Extracting RAM for identifier 'xy1'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\audio_visualizer.v":19)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 8("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\audio_visualizer.v":51)
+Compiling module 'scope_renderer'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\scope_renderer.v":4)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 10("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\scope_renderer.v":12)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 10("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\scope_renderer.v":12)
+Compiling module 'video_sync_align'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\video_timing_640x480.v":20)
+Compiling module 'video_tmds_tx'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\video_tmds_tx.v":6)
+Compiling module 'video_tmds_encoder'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\video_tmds_encoder.v":3)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 6("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\video_tmds_encoder.v":33)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 6("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\video_tmds_encoder.v":36)
+WARN  (EX3791) : Expression size 32 truncated to fit in target size 6("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\video_tmds_encoder.v":39)
+Compiling module 'video_serializer10'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\visual\video_tmds_tx.v":29)
+Compiling module 'gw_gao'("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\RTL_GAO\gw_gao_top.v":1)
+Compiling module 'GW_JTAG'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\gw_jtag.v":1)
+Compiling module '**'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_CON\gw_con_top.v":377)
+Compiling module '**'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_top.v":3042)
+Compiling module '**'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v":1256)
+Extracting RAM for identifier '**'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_mem_ctrl.v":1256)
+Compiling module '**'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_crc32.v":74)
+Compiling module '**'("C:\Gowin\Gowin_V1.9.12_x64\IDE\data\ipcores\GAO\GW_AO_0\gw_ao_match.v":374)
+Trying to combine GAO to RTL design
+NOTE  (EX0101) : Current top module is "board_contest_full_top"
+[5%] Running netlist conversion ...
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+WARN  (IF0007) : Attribute value of 'syn_ramstyle/syn_romstyle' is not applicable("C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\rtl\event_fifo_v2.v":74)
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+[95%] Generate netlist file "C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\ContestFull.vg" completed
+WARN  (CK3000) : Can't calculate clocks' relationship between: "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk" and "sys_clk"
+WARN  (CK3000) : Can't calculate clocks' relationship between: "sys_clk" and "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk"
+WARN  (CK3000) : Can't calculate clocks' relationship between: "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk" and "video_clock/pll/CLKOUT1.default_gen_clk"
+WARN  (CK3000) : Can't calculate clocks' relationship between: "video_clock/pll/CLKOUT1.default_gen_clk" and "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk"
+[100%] Generate report file "C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\ContestFull_syn.rpt.html" completed
+GowinSynthesis finish
+Reading netlist file: "C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\ContestFull.vg"
+Parsing netlist file "C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\gwsynthesis\ContestFull.vg" completed
+Processing netlist completed
+Reading constraint file: "C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\contest_full.cst"
+Physical Constraint parsed completed
+Running placement......
+[10%] Placement Phase 0 completed
+[20%] Placement Phase 1 completed
+[30%] Placement Phase 2 completed
+WARN  (TA1132) :  'tck_pad_i' was determined to be a clock but was not created.
+[50%] Placement Phase 3 completed
+Running routing......
+[60%] Routing Phase 0 completed
+[70%] Routing Phase 1 completed
+[80%] Routing Phase 2 completed
+WARN  (PR1014) : Generic routing resource will be used to clock signal 'sys_clk_d' by the specified constraint. And then it may lead to the excessive delay or skew
+[90%] Routing Phase 3 completed
+Running timing analysis......
+[95%] Timing analysis completed
+Placement and routing completed
+Bitstream generation in progress......
+Bitstream generation completed
+Running power analysis......
+[100%] Power analysis completed
+Generate file "C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\pnr\ContestFull.power.html" completed
+Generate file "C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\pnr\ContestFull.pin.html" completed
+Generate file "C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\pnr\ContestFull.rpt.html" completed
+Generate file "C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\pnr\ContestFull.rpt.txt" completed
+Generate file "C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\pnr\ContestFull.tr.html" completed
+Generate file "C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\fpga-build\build_uart-gao-passive_20261023_225737_4569e195\full\impl\pnr\ContestFull.tr" completed
+Fri Oct 23 23:05:58 2026
+
+FULL BUILD GAO EVIDENCE PASS: CRC=0101010101000100 bits=48 depth=2048 clock=sys_clk
+FULL BUILD IMPLEMENTATION: bitstream=ao_0.fs reports=ContestFull (rtl-gao-in-main; GAO expected: 1)
+FULL BUILD TIMING PASS: zero setup/recovery and hold/removal violations

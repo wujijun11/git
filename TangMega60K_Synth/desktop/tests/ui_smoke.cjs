@@ -1,0 +1,48 @@
+'use strict';
+const {chromium}=require('C:/Users/asus/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const assert=require('node:assert/strict');const fs=require('node:fs');const path=require('node:path');
+(async()=>{
+ const out=path.resolve(__dirname,'../../verification/desktop-app-20261021');fs.mkdirSync(out,{recursive:true});
+ const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,args:['--no-sandbox','--autoplay-policy=no-user-gesture-required']});
+ const page=await browser.newPage({viewport:{width:1440,height:1040},deviceScaleFactor:1});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('http://127.0.0.1:8766',{waitUntil:'networkidle'});await page.screenshot({path:path.join(out,'studio-offline.png'),fullPage:true});
+ assert.equal(await page.locator('.piano-key').count(),25);assert.equal(await page.locator('.piano-key.black').count(),10);
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+ await page.click('#connectButton');await page.click('[data-transport=demo]');await page.click('#startDemo');await page.waitForFunction(()=>neonApp.controller.ready);
+ assert.equal(await page.evaluate(()=>neonApp.controller.mode),'demo');assert.match(await page.locator('#connectionStatus').innerText(),/演示/);
+ await page.keyboard.down('z');await page.waitForTimeout(50);assert.equal(await page.locator('.piano-key.pressed').count(),1);assert.match(await page.locator('#activeNote').innerText(),/C4/);await page.keyboard.up('z');
+ await page.keyboard.down('i');await page.waitForTimeout(70);assert.match(await page.locator('#activeNote').innerText(),/C6/);await page.keyboard.up('i');
+ await page.click('[data-timbre="3"]');await page.waitForFunction(()=>neonApp.controller.timbre===3);
+ await page.locator('#gain').fill('2500');await page.locator('#gain').dispatchEvent('input');await page.waitForTimeout(100);assert.equal(await page.evaluate(()=>neonApp.controller.gain),2500);
+ await page.click('[data-page=recordings]');await page.click('#recordStart');await page.waitForFunction(()=>neonApp.controller.telemetry?.recording===true);
+ await page.keyboard.down('x');await page.waitForTimeout(60);await page.keyboard.up('x');await page.click('#recordStop');await page.click('#readRecording');await page.waitForFunction(()=>neonApp.recordCache.length===2);
+ assert.equal(await page.evaluate(()=>neonApp.recordCache[0].midi),62);assert.equal(await page.evaluate(()=>neonApp.recordCache[0].source),63);
+ await page.screenshot({path:path.join(out,'recorder-demo.png'),fullPage:true});
+ await page.click('#recordStart');await page.waitForFunction(()=>neonApp.recordCache.length===0);await page.click('#recordStop');
+ await page.click('[data-page=scores]');await page.click('[data-score=night]');await page.click('#uploadScore');await page.waitForFunction(()=>document.getElementById('scoreState').textContent==='已上传');
+ await page.screenshot({path:path.join(out,'scores-demo.png'),fullPage:true});
+ await page.click('#scorePlay');await page.waitForFunction(()=>neonApp.controller.telemetry?.playing===true);await page.keyboard.press('Escape');await page.waitForFunction(()=>neonApp.controller.telemetry?.playing===false);
+ await page.evaluate(()=>{window.wireOps=[];const t=neonApp.controller._ctx.transport,w=t.write;t.write=async b=>{wireOps.push(RemoteProtocol.decode(b));return w(b);};});
+ await page.click('[data-score=builtin]');await page.click('#scorePlay');await page.waitForFunction(()=>neonApp.controller.telemetry?.playing===true);await page.keyboard.press('Escape');await page.waitForFunction(()=>neonApp.controller.telemetry?.playing===false);
+ await page.evaluate(()=>wireOps.length=0);await page.click('[data-score=night]');await page.click('#scorePlay');await page.waitForFunction(()=>neonApp.controller.telemetry?.playing===true);
+ assert.equal(await page.evaluate(()=>wireOps.filter(q=>q.op===6).length),32);await page.keyboard.press('Escape');await page.waitForFunction(()=>neonApp.controller.telemetry?.playing===false);
+ await page.evaluate(()=>{wireOps.length=0;const t=neonApp.controller._ctx.transport,w=t.write;t.write=async b=>{if(RemoteProtocol.decode(b).op===7)await new Promise(r=>setTimeout(r,150));return w(b);};});
+ await page.click('[data-score=builtin]');await page.click('#scorePlay');await page.waitForTimeout(20);await page.evaluate(()=>document.getElementById('stopButton').click());await page.waitForTimeout(400);
+ assert.equal(await page.evaluate(()=>wireOps.some(q=>q.op===4&&q.payload[0]===1)),false);
+ // Partial upload invalidates the one physical user-score RAM. A previously
+ // committed score needs uploading again after another score was cancelled.
+ await page.click('[data-score=night]');await page.click('#uploadScore');await page.waitForFunction(()=>document.getElementById('scoreState').textContent==='已上传');
+ await page.evaluate(()=>wireOps.length=0);await page.click('[data-score=twinkle]');await page.click('#uploadScore');await page.waitForFunction(()=>wireOps.some(q=>q.op===6));await page.evaluate(()=>document.getElementById('stopButton').click());await page.waitForFunction(()=>!document.getElementById('uploadScore').disabled);
+ await page.evaluate(()=>wireOps.length=0);await page.click('[data-score=night]');await page.click('#scorePlay');await page.waitForFunction(()=>neonApp.controller.telemetry?.playing===true);assert.equal(await page.evaluate(()=>wireOps.filter(q=>q.op===6).length),32);await page.keyboard.press('Escape');await page.waitForFunction(()=>neonApp.controller.telemetry?.playing===false);
+ await page.click('[data-page=settings]');await page.locator('#map-24').fill('90');await page.locator('#map-24').dispatchEvent('change');await page.waitForFunction(()=>neonApp.controller.mapping[24]===90);
+ await page.click('#resetMapping');await page.waitForFunction(()=>neonApp.controller.mapping[24]===84);
+ await page.click('[data-page=studio]');await page.click('[data-timbre="2"]');await page.waitForFunction(()=>neonApp.controller.timbre===2);
+ await page.locator('#gain').fill('2048');await page.locator('#gain').dispatchEvent('input');
+ await page.keyboard.down('z');await page.keyboard.down('c');await page.keyboard.down('b');await page.waitForTimeout(350);await page.screenshot({path:path.join(out,'studio-demo.png'),fullPage:true});await page.keyboard.up('z');await page.keyboard.up('c');await page.keyboard.up('b');
+ await page.click('#connectButton');await page.screenshot({path:path.join(out,'connect-dialog.png'),fullPage:true});await page.click('#disconnectButton');await page.waitForFunction(()=>!neonApp.controller.ready);await page.click('#closeDialog');
+ assert.equal(await page.locator('.piano-key.pressed').count(),0);assert.deepEqual(errors,[]);
+ await page.setViewportSize({width:1428,height:904});await page.screenshot({path:path.join(out,'studio-laptop.png'),fullPage:true});assert.equal(await page.locator('.app-footer').evaluate(el=>el.getBoundingClientRect().bottom<=innerHeight+1),true,'Laptop layout should show all-stop footer without scrolling');
+ await page.setViewportSize({width:1100,height:830});await page.screenshot({path:path.join(out,'studio-1100.png'),fullPage:true});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
+ fs.writeFileSync(path.join(out,'ui-smoke-result.json'),JSON.stringify({result:'PASS',source:'actual Chromium DOM + protocol demo, not BLE hardware',checks:['25 keys / 10 black','C4 and C6 keyboard input','real controller handshake in demo','configuration','expression','source63 event recording / readback','new recording invalidates old snapshot','score upload / play / panic','custom-builtin-custom active score cache','stop cancels pending play commit','key remapping','disconnect cleanup','1440 and 1100 layout'],pageErrors:errors},null,2));
+ await browser.close();console.log('UI SMOKE PASS');
+})().catch(e=>{console.error(e);process.exit(1)});

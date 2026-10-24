@@ -1,0 +1,33 @@
+{
+  "softwareAccepted": true,
+  "fpgaAckReceived": false,
+  "c3ApplicationUploaded": true,
+  "c3FlashVerified": true,
+  "fpgaSramProgrammed": true,
+  "fpgaUserCode": "0x8FE0",
+  "gaoConfigurationId": "0x6D50",
+  "fpgaNonvolatileFlashWritten": false,
+  "c3ApplicationSha256": "a4d215aadbf5bbc93f7a5ef0bf33a38e42301b31b30932c60cd651001943b388",
+  "desktopVersion": "1.0.4",
+  "lifecycleCases": 62,
+  "sdkReceiveCases": 60,
+  "nativeCases": 11,
+  "nativeDiagnosticCases": 11,
+  "diagnosticUiCases": 3,
+  "fullUiAccepted": true,
+  "mobileApkBuilt": false,
+  "hardwareFinding": "C3 reports request received and UART driver completed; zero UART return bytes. Same-sequence ACK/telemetry not observed.",
+  "knownLimitation": "SDK UART error events carry no session origin; existing fail-close strategy retained.",
+  "desktopZip": {
+    "path": "desktop\\TangNeonStudio-Windows-1.0.4.zip",
+    "sha256": "30e21e1085983edc04cfd40488cb76d443502154412484a9ebacb108a692da2f",
+    "bytes": 15483087
+  },
+  "backupNotIncluded": "Full pre-update flash backup stays in local verification/c3-backup-segmented-20261023_220901; segmented reads are not an atomic NVS snapshot.",
+  "codePackage": {
+    "path": "release\\piano-ble-connection-20261023.zip",
+    "sha256": "f2ae041564410ea3fcf99a11b0f083e8b8f81f3e25819e4822756f00e72b258f",
+    "bytes": 10011212,
+    "filesVerified": 532
+  }
+}

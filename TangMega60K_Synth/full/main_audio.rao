@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<GAO_CONFIG>
+  <Version>3.0</Version>
+  <Mode>Standard</Mode>
+  <AoCore index="0" sample_clock="i2s_lrclk" trig_type="0" storage_depth="2048" window_num="1" capture_amount="2048" trigger_pos="128" module_name="board_contest_full_top" force_trigger_by_falling_edge="false">
+    <SignalList>
+      <Bus name="debug_pcm[15:0]">
+        <Signal>debug_pcm[15]</Signal>
+        <Signal>debug_pcm[14]</Signal>
+        <Signal>debug_pcm[13]</Signal>
+        <Signal>debug_pcm[12]</Signal>
+        <Signal>debug_pcm[11]</Signal>
+        <Signal>debug_pcm[10]</Signal>
+        <Signal>debug_pcm[9]</Signal>
+        <Signal>debug_pcm[8]</Signal>
+        <Signal>debug_pcm[7]</Signal>
+        <Signal>debug_pcm[6]</Signal>
+        <Signal>debug_pcm[5]</Signal>
+        <Signal>debug_pcm[4]</Signal>
+        <Signal>debug_pcm[3]</Signal>
+        <Signal>debug_pcm[2]</Signal>
+        <Signal>debug_pcm[1]</Signal>
+        <Signal>debug_pcm[0]</Signal>
+      </Bus>
+      <Bus name="debug_note[6:0]">
+        <Signal>debug_note[6]</Signal>
+        <Signal>debug_note[5]</Signal>
+        <Signal>debug_note[4]</Signal>
+        <Signal>debug_note[3]</Signal>
+        <Signal>debug_note[2]</Signal>
+        <Signal>debug_note[1]</Signal>
+        <Signal>debug_note[0]</Signal>
+      </Bus>
+      <Bus name="debug_touch[24:0]">
+        <Signal>debug_touch[24]</Signal>
+        <Signal>debug_touch[23]</Signal>
+        <Signal>debug_touch[22]</Signal>
+        <Signal>debug_touch[21]</Signal>
+        <Signal>debug_touch[20]</Signal>
+        <Signal>debug_touch[19]</Signal>
+        <Signal>debug_touch[18]</Signal>
+        <Signal>debug_touch[17]</Signal>
+        <Signal>debug_touch[16]</Signal>
+        <Signal>debug_touch[15]</Signal>
+        <Signal>debug_touch[14]</Signal>
+        <Signal>debug_touch[13]</Signal>
+        <Signal>debug_touch[12]</Signal>
+        <Signal>debug_touch[11]</Signal>
+        <Signal>debug_touch[10]</Signal>
+        <Signal>debug_touch[9]</Signal>
+        <Signal>debug_touch[8]</Signal>
+        <Signal>debug_touch[7]</Signal>
+        <Signal>debug_touch[6]</Signal>
+        <Signal>debug_touch[5]</Signal>
+        <Signal>debug_touch[4]</Signal>
+        <Signal>debug_touch[3]</Signal>
+        <Signal>debug_touch[2]</Signal>
+        <Signal>debug_touch[1]</Signal>
+        <Signal>debug_touch[0]</Signal>
+      </Bus>
+      <Bus name="voices[6:0]">
+        <Signal>voices[6]</Signal>
+        <Signal>voices[5]</Signal>
+        <Signal>voices[4]</Signal>
+        <Signal>voices[3]</Signal>
+        <Signal>voices[2]</Signal>
+        <Signal>voices[1]</Signal>
+        <Signal>voices[0]</Signal>
+      </Bus>
+      <Bus name="sensor_fault[2:0]">
+        <Signal>sensor_fault[2]</Signal>
+        <Signal>sensor_fault[1]</Signal>
+        <Signal>sensor_fault[0]</Signal>
+      </Bus>
+      <Signal>debug_underrun</Signal>
+      <Signal>playing</Signal>
+    </SignalList>
+    <Triggers>
+      <Trigger index="0">
+        <SignalList>
+          <Signal>playing</Signal>
+        </SignalList>
+      </Trigger>
+      <Trigger index="1" />
+      <Trigger index="2" />
+      <Trigger index="3" />
+      <Trigger index="4" />
+      <Trigger index="5" />
+      <Trigger index="6" />
+      <Trigger index="7" />
+      <Trigger index="8" />
+      <Trigger index="9" />
+      <Trigger index="10" />
+      <Trigger index="11" />
+      <Trigger index="12" />
+      <Trigger index="13" />
+      <Trigger index="14" />
+      <Trigger index="15" />
+    </Triggers>
+    <MatchUnits>
+      <MatchUnit index="0" enabled="1" match_type="1" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="R" value1="0" trigger="0" />
+      <MatchUnit index="1" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+      <MatchUnit index="2" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+      <MatchUnit index="3" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+      <MatchUnit index="4" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+      <MatchUnit index="5" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+      <MatchUnit index="6" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+      <MatchUnit index="7" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+      <MatchUnit index="8" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+      <MatchUnit index="9" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+      <MatchUnit index="10" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+      <MatchUnit index="11" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+      <MatchUnit index="12" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+      <MatchUnit index="13" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+      <MatchUnit index="14" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+      <MatchUnit index="15" enabled="0" match_type="0" counter_enable="0" counter_width="2" counter="2" countinuous="0" func="0" value0="" value1="" />
+    </MatchUnits>
+    <Expressions type="Static">
+      <Expression>M0</Expression>
+    </Expressions>
+  </AoCore>
+  <GAO_ID>0010011110101001</GAO_ID>
+</GAO_CONFIG>

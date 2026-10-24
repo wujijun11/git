@@ -1,0 +1,73 @@
+
+C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\c3-tx-observation-build\ble_bridge.ino.elf:     file format elf32-littleriscv
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .rtc.text     00000000  50000000  50000000  0012b020  2**0
+                  CONTENTS
+  1 .rtc.force_fast 00000000  50000000  50000000  0012b020  2**0
+                  CONTENTS
+  2 .rtc_noinit   00000000  50000000  50000000  0012b020  2**0
+                  CONTENTS
+  3 .rtc.force_slow 00000020  50000000  50000000  0012b000  2**2
+                  CONTENTS, ALLOC, LOAD, DATA
+  4 .rtc_reserved 00000028  50001fd8  50001fd8  0012bfd8  2**3
+                  ALLOC
+  5 .iram0.text   00014b1e  40380000  40380000  000a6000  2**8
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  6 .dram0.dummy  00014c00  3fc80000  3fc80000  0008e000  2**0
+                  ALLOC
+  7 .dram0.data   0000269c  3fc94c00  3fc94c00  000a2c00  2**3
+                  CONTENTS, ALLOC, LOAD, DATA
+  8 .noinit       00000000  3fc9729c  3fc9729c  00000000  2**0
+                  ALLOC
+  9 .dram0.bss    000037c0  3fc972a0  3fc972a0  000a529c  2**4
+                  ALLOC
+ 10 .flash.text   0006fb7a  42000020  42000020  000bb020  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+ 11 .flash_rodata_dummy 00070000  3c000020  3c000020  00001020  2**0
+                  ALLOC
+ 12 .flash.appdesc 00000100  3c070020  3c070020  00071020  2**4
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+ 13 .flash.rodata 00016f5c  3c070120  3c070120  00071120  2**4
+                  CONTENTS, ALLOC, LOAD, DATA
+ 14 .eh_frame_hdr 00000000  3c08707c  3c08707c  0012b020  2**0
+                  CONTENTS
+ 15 .eh_frame     00005e78  3c08707c  3c08707c  0008807c  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, DATA
+ 16 .flash.tdata  00000000  3c08cef4  3c08cef4  0012b020  2**0
+                  CONTENTS
+ 17 .iram0.text_end 000000e2  40394b1e  40394b1e  000bab1e  2**0
+                  ALLOC
+ 18 .iram0.data   00000000  40394c00  40394c00  0012b020  2**0
+                  CONTENTS
+ 19 .iram0.bss    00000000  40394c00  40394c00  0012b020  2**0
+                  CONTENTS
+ 20 .dram0.heap_start 00000000  3fc9aa60  3fc9aa60  0012b020  2**0
+                  CONTENTS
+ 21 .debug_aranges 0000c730  00000000  00000000  0012b020  2**3
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 22 .debug_info   00570647  00000000  00000000  00137750  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 23 .debug_abbrev 000714e0  00000000  00000000  006a7d97  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 24 .debug_line   001ceb70  00000000  00000000  00719277  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 25 .debug_frame  0001b4f4  00000000  00000000  008e7de8  2**2
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 26 .debug_str    001264bf  00000000  00000000  009032dc  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 27 .debug_loc    000f2eef  00000000  00000000  00a2979b  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 28 .debug_ranges 000222c8  00000000  00000000  00b1c68a  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 29 .debug_line_str 00003250  00000000  00000000  00b3e952  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 30 .debug_loclists 0001fa62  00000000  00000000  00b41ba2  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 31 .debug_rnglists 000033fb  00000000  00000000  00b61604  2**0
+                  CONTENTS, READONLY, DEBUGGING, OCTETS
+ 32 .comment      00000086  00000000  00000000  00b649ff  2**0
+                  CONTENTS, READONLY
+ 33 .riscv.attributes 0000006a  00000000  00000000  00b64a85  2**0
+                  CONTENTS, READONLY

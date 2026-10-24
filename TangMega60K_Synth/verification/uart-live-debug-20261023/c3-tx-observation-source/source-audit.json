@@ -1,0 +1,22 @@
+{
+  "ble_bridge.ino": {
+    "production_sha256": "b46c363a91c186e388c3075e862e1b9b4a2bcc0d3cdcfa1afa65bcdc4d8c646e",
+    "candidate_sha256": "bd3550f405e5c07b4ac7b7518938e1c19d24cb26df6450190ed0c21dce41c4fd"
+  },
+  "diagnostic_40_bytes_exact": true,
+  "bridge_uart_io.h": {
+    "production_sha256": "68f5562a4dce803ac7eec3caf40d81bade5f5ae679f7861565a740702588940a",
+    "candidate_sha256": "a32f2053e96794befa05bb8437595a16080c67bbc446e45b664987f5c6fef5f6"
+  },
+  "forwarding_helpers_exact": true,
+  "state": "source-frozen-not-compiled-not-uploaded",
+  "production_unchanged": true,
+  "device_access": false,
+  "sketch_files": [
+    "ble_bridge.ino",
+    "bridge_uart_io.h"
+  ],
+  "usb_only_tx_ring_bytes": 1024,
+  "uart1_tx_ring_bytes": 256,
+  "uart1_rx_ring_bytes": 1024
+}

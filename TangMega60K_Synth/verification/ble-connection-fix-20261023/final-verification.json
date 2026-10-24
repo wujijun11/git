@@ -1,0 +1,11 @@
+{
+  "accepted": true,
+  "sourceFilesMatched": 171,
+  "packageIndexEntriesVerified": 531,
+  "archiveEntries": 532,
+  "c3ApplicationUploaded": true,
+  "fpgaUserCode": "0x8FE0",
+  "fpgaAckReceived": false,
+  "codeSha256": "f2ae041564410ea3fcf99a11b0f083e8b8f81f3e25819e4822756f00e72b258f",
+  "desktopSha256": "30e21e1085983edc04cfd40488cb76d443502154412484a9ebacb108a692da2f"
+}

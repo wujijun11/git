@@ -73,5 +73,6 @@
     <File path="../rtl/voice_allocator.v" type="file.verilog" enable="1"/>
     <File path="contest_full.cst" type="file.cst" enable="1"/>
     <File path="contest_full.sdc" type="file.sdc" enable="1"/>
+    <File path="main_status.rao" type="file.gao" enable="1"/>
   </FileList>
 </Project>

@@ -6,6 +6,10 @@ module voice_engine #(
     parameter VOICE_COUNT=64, SAMPLE_RATE=48000,
     parameter ATTACK_MS=10, DECAY_MS=80, RELEASE_MS=100,
     parameter PAN_SPREAD=1, MASTER_SHIFT=1,
+    // Optional performance loudness: use the reserved 64-voice headroom
+    // for a few notes without increasing the worst-case full-polyphony sum.
+    // Legacy diagnostics retain their bit-exact scale by default.
+    parameter AUTO_HEADROOM=0,
     parameter FX_ENABLE=0, DELAY_SAMPLES=2400,
     parameter EXPRESSION_ENABLE=1,
     parameter FM_ENABLE=0,
@@ -158,9 +162,23 @@ module voice_engine #(
     stereo_mixer #(.PAN_SPREAD(PAN_SPREAD)) u_mixer_r (
         .clk(clk),.rst_n(rst_n),.clear(state==PREP),.add(state==V_MIX),
         .voice_id(voice_id),.sample_in(voice_sample_r),.left_sum(),.right_sum(mix_right));
+    // Count actual active engine states, including release tails, in the
+    // same frame as the mix. Seven bits are required to represent all 64.
+    reg [6:0] frame_active_count;
+    wire [2:0] frame_boost_shift=frame_active_count==0 ? 3'd0 :
+        frame_active_count==1 ? 3'd6 : frame_active_count==2 ? 3'd5 :
+        frame_active_count<=4 ? 3'd4 : frame_active_count<=8 ? 3'd3 :
+        frame_active_count<=16 ? 3'd2 : frame_active_count<=32 ? 3'd1 : 3'd0;
+    // N * 2**shift <= 64. The signed 32-bit sum remains bounded even for
+    // full-scale, coherent notes; gain_saturator still handles the master
+    // gain and final 24-bit clipping. Do not normalize by held keys only.
+    wire signed [31:0] master_mix_left=AUTO_HEADROOM ?
+        $signed(mix_left) <<< frame_boost_shift : mix_left;
+    wire signed [31:0] master_mix_right=AUTO_HEADROOM ?
+        $signed(mix_right) <<< frame_boost_shift : mix_right;
     wire signed [23:0] dry_left,dry_right;
     gain_saturator #(.SHIFT(MASTER_SHIFT)) u_gain (
-        .clk(clk),.mix_left(mix_left),.mix_right(mix_right),.gain(frame_gain),
+        .clk(clk),.mix_left(master_mix_left),.mix_right(master_mix_right),.gain(frame_gain),
         .out_left(dry_left),.out_right(dry_right)
     );
     wire fx_ready;
@@ -202,7 +220,7 @@ module voice_engine #(
     end
     always @(posedge clk or negedge rst_n) begin
         if(!rst_n) begin
-            state<=INIT; init_id<=0; voice_id<=0;
+            state<=INIT; init_id<=0; voice_id<=0; frame_active_count<=0;
             pending_command<=0; pending_on<=0; pending_voice<=0;
             pending_note<=0; pending_velocity<=0; pending_timbre<=0;
             done_pending<=0; done_valid<=0; done_voice<=0;
@@ -225,11 +243,12 @@ module voice_engine #(
                 IDLE: if(pending_command) state<=CMD_READ; else state<=PREP;
                 CMD_READ: state<=CMD_WRITE;
                 CMD_WRITE: begin pending_command<=0; state<=PREP; end
-                PREP: state<=LATCH;
+                PREP: begin frame_active_count<=0; state<=LATCH; end
                 LATCH: state<=EXPR_WAIT;
                 EXPR_WAIT: if(expr_valid) begin voice_id<=0; state<=V_READ; end
                 V_READ: state<=V_CALC;
                 V_CALC: begin
+                    frame_active_count<=frame_active_count+{6'd0,r_active};
                     w_active<=r_active; w_finished<=env_finished; w_timbre<=r_timbre;
                     w_velocity<=r_velocity; w_stage<=env_next_stage; w_env<=env_next;
                     w_age<=!r_active || ((r_timbre==2 || (FM_ENABLE && r_timbre==3)) && r_stage==5 && env_next_stage==1)

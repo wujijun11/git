@@ -1,4 +1,12 @@
 # Preserve bytes of audited inputs and original evidence for SHA256 checks.
+* -text
+rtl/** -text
+firmware/** -text
+desktop/** -text
+mobile/** -text
+scripts/** -text
+full/*.rao -text
+**/*.gprj -text
 verification/** -text
 /full/ContestFull.gprj -text
 /full/contest_full.cst -text
@@ -118,3 +126,8 @@ verification/** -text
 /sim/tb_watchdog_arbiter_integration.sv -text
 /sim/tb_ws2812_matrix.sv -text
 /sim/view_full_modelsim.do -text
+# Hold write-stage reference, reproducible runner and strengthened oracle.
+/sim/polar_lane_reference.v -text
+/sim/tb_polar_lane_equivalence.sv -text
+/scripts/test-modelsim-polar-equivalence.ps1 -text
+/scripts/test-modelsim-polar-equivalence.cmd -text

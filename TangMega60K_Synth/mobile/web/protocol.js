@@ -26,7 +26,22 @@
   class Session{
     constructor(write,{timeoutMs=1500,writeTimeoutMs=4000,retries=2,startSeq=0,onPacket=()=>{},onFatal=()=>{},onSequence=()=>{}}={}){this.write=write;this.timeoutMs=timeoutMs;this.writeTimeoutMs=writeTimeoutMs;this.retries=retries;this.seq=startSeq&255;this.onPacket=onPacket;this.onFatal=onFatal;this.onSequence=onSequence;this.queue=[];this.pending=null;this.closed=false;}
     send(op,payload=[]){if(this.closed)return Promise.reject(new Error('连接已关闭'));try{payload=Array.from(payload);encode(0,op,payload);}catch(e){return Promise.reject(e);}if(this.queue.length>=128){const e=new Error('命令队列已满，连接已关闭；FPGA通信看门狗将释放手机音符');this.close(e);this.onFatal(e);return Promise.reject(e);}return new Promise((resolve,reject)=>{this.queue.push({op,payload,resolve,reject});this.pump();});}
-    pump(){if(this.closed||this.pending||!this.queue.length)return;const q=this.queue.shift();q.seq=this.seq;this.seq=(this.seq+1)&255;this.onSequence(this.seq);q.bytes=encode(q.seq,q.op,q.payload);q.attempt=0;this.pending=q;this.transmit(q);}
+    pump(){
+      if(this.closed||this.pending||!this.queue.length)return;
+      const q=this.queue.shift();q.seq=this.seq;this.seq=(this.seq+1)&255;
+      q.bytes=encode(q.seq,q.op,q.payload);q.attempt=0;this.pending=q;
+      // Reserve the in-flight request before notifying observers: a callback
+      // may synchronously enqueue another command or close this session.
+      try{this.onSequence(this.seq);}
+      catch(error){
+        if(this.closed)return;
+        const failure=error instanceof Error?error:new Error(String(error));
+        this.close(failure);
+        try{this.onFatal(failure);}catch(_){/* Preserve the original failure. */}
+        return;
+      }
+      this.transmit(q);
+    }
     async transmit(q){if(this.pending!==q||this.closed)return;q.attempt++;q.writing=true;clearTimeout(q.timer);q.writeTimer=setTimeout(()=>{if(this.pending!==q||this.closed)return;const e=new Error('BLE 写入超时：连接已关闭，请重新连接');this.close(e);this.onFatal(e);},this.writeTimeoutMs);try{await this.write(q.bytes);}catch(e){clearTimeout(q.writeTimer);if(this.pending!==q||this.closed)return;this.close(e);this.onFatal(e);return;}clearTimeout(q.writeTimer);q.writing=false;if(this.pending!==q||this.closed)return;if(q.ack){this.finish(q,q.ack);return;}q.timer=setTimeout(()=>{if(q.attempt<=this.retries)this.transmit(q);else{const e=new Error('ACK 超时：连接中断，演奏状态未知；重新连接将发送全部停止');this.close(e);this.onFatal(e);}},this.timeoutMs);}
     finish(q,p){if(this.pending!==q)return;clearTimeout(q.timer);clearTimeout(q.writeTimer);this.pending=null;if(p.payload[1]===0)q.resolve(p);else q.reject(new Error('FPGA NACK status='+p.payload[1]));this.pump();}
     receive(p){const q=this.pending;if(p.op===OP.ACK&&q&&p.seq===q.seq&&p.payload[0]===q.op){q.ack=p;clearTimeout(q.timer);if(!q.writing)this.finish(q,p);}this.onPacket(p);}

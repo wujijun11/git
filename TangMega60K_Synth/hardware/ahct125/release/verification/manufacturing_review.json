@@ -1,0 +1,887 @@
+{
+  "reviewDateClient": "2026-10-18 Asia/Shanghai",
+  "status": "PASS",
+  "scope": "Read-only manufacturing export consistency review; no hardware test, assembly library reservation, or factory DFM approval.",
+  "sourceDirectory": "C:\\Users\\asus\\Documents\\LCEDA-Pro\\projects\\AHCT125-LED-R1",
+  "sourceSha256": {
+    "Gerber_AHCT125_LED_R1.zip": "ff1231a71da42265830669f89beb39aa31c08283d48180a0a21f38eae18b9032",
+    "BOM_AHCT125_LED_R1.csv": "66fea025c0694ac6f7172c2de3a168520229c1d41ab7468f9a11cc6cfa3512e4",
+    "CPL_AHCT125_LED_R1.csv": "4eb4894b3046822a958c3669a15ea75e399873408c1cf63e8108cfa7aeb9bb1c",
+    "BOM_AHCT125_LED_R1.xlsx": "4ba25a9e1b9e5b64fe6a8897ce07297cdcd02b641226959c6dc5dc57aab7a8b7",
+    "CPL_AHCT125_LED_R1.xlsx": "ee6f63351e309ccec3c65d3f628cc3beb1686b794b69350648b957488dd7b245"
+  },
+  "checks": {
+    "board40x30": true,
+    "outlineClosed": true,
+    "pthDrillCounts": true,
+    "npthDrillCounts": true,
+    "viaSupplementIsSubset": true,
+    "pasteApertures22": true,
+    "bomCplReferencesMatch9": true,
+    "bomQuantitiesOne": true,
+    "partNumbersMatchNativeSchematic": true,
+    "bomCplFootprintsMatch": true,
+    "allNineTopSide": true,
+    "positionsWithinBoard": true,
+    "bomXlsxAllCellsMatchCsv": true,
+    "cplXlsxAllCellsMatchCsv": true,
+    "previouslyReviewedSourceArtifactsUnchanged": true
+  },
+  "boardOutline": {
+    "boundsMm": {
+      "minX": 0.0,
+      "maxX": 40.0,
+      "minY": -30.0,
+      "maxY": 0.0
+    },
+    "pointsMm": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        40.0,
+        0.0
+      ],
+      [
+        40.0,
+        -30.0
+      ],
+      [
+        0.0,
+        -30.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "sizeMm": [
+      40,
+      30
+    ]
+  },
+  "drills": {
+    "pth": {
+      "toolsMm": {
+        "01": 0.29972,
+        "02": 0.3,
+        "03": 1.0,
+        "04": 1.10002,
+        "05": 1.6
+      },
+      "hitCountsByDiameterMm": {
+        "0.29972": 1,
+        "0.3": 11,
+        "1.0": 2,
+        "1.10002": 5,
+        "1.6": 2
+      },
+      "totalHoles": 21,
+      "hits": [
+        {
+          "diameterMm": 0.29972,
+          "xMm": 24.2,
+          "yMm": -17.6
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 21.5,
+          "yMm": -12.0
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 19.0,
+          "yMm": -18.0
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 20.0,
+          "yMm": -16.731
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 28.6,
+          "yMm": -20.541
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 25.4,
+          "yMm": -12.0
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 20.7,
+          "yMm": -8.0
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 12.0,
+          "yMm": -14.4
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 16.0,
+          "yMm": -14.191
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 16.0,
+          "yMm": -19.271
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 16.0,
+          "yMm": -21.811
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 24.0,
+          "yMm": -20.541
+        },
+        {
+          "diameterMm": 1.0,
+          "xMm": 30.75006,
+          "yMm": -7.0
+        },
+        {
+          "diameterMm": 1.0,
+          "xMm": 27.24994,
+          "yMm": -7.0
+        },
+        {
+          "diameterMm": 1.10002,
+          "xMm": 3.0,
+          "yMm": -14.73
+        },
+        {
+          "diameterMm": 1.10002,
+          "xMm": 3.0,
+          "yMm": -17.27
+        },
+        {
+          "diameterMm": 1.10002,
+          "xMm": 37.0,
+          "yMm": -15.46
+        },
+        {
+          "diameterMm": 1.10002,
+          "xMm": 37.0,
+          "yMm": -18.0
+        },
+        {
+          "diameterMm": 1.10002,
+          "xMm": 37.0,
+          "yMm": -20.54
+        },
+        {
+          "diameterMm": 1.6,
+          "xMm": 5.96,
+          "yMm": -5.0
+        },
+        {
+          "diameterMm": 1.6,
+          "xMm": 11.04,
+          "yMm": -5.0
+        }
+      ]
+    },
+    "npth": {
+      "toolsMm": {
+        "01": 3.2
+      },
+      "hitCountsByDiameterMm": {
+        "3.2": 2
+      },
+      "totalHoles": 2,
+      "hits": [
+        {
+          "diameterMm": 3.2,
+          "xMm": 3.0,
+          "yMm": -27.0
+        },
+        {
+          "diameterMm": 3.2,
+          "xMm": 37.0,
+          "yMm": -3.0
+        }
+      ]
+    },
+    "viaSupplement": {
+      "toolsMm": {
+        "01": 0.29972,
+        "02": 0.3
+      },
+      "hitCountsByDiameterMm": {
+        "0.29972": 1,
+        "0.3": 11
+      },
+      "totalHoles": 12,
+      "hits": [
+        {
+          "diameterMm": 0.29972,
+          "xMm": 24.2,
+          "yMm": -17.6
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 21.5,
+          "yMm": -12.0
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 19.0,
+          "yMm": -18.0
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 20.0,
+          "yMm": -16.731
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 28.6,
+          "yMm": -20.541
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 25.4,
+          "yMm": -12.0
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 20.7,
+          "yMm": -8.0
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 12.0,
+          "yMm": -14.4
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 16.0,
+          "yMm": -14.191
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 16.0,
+          "yMm": -19.271
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 16.0,
+          "yMm": -21.811
+        },
+        {
+          "diameterMm": 0.3,
+          "xMm": 24.0,
+          "yMm": -20.541
+        }
+      ]
+    },
+    "note": "Via supplement repeats the 12 vias already included in PTH. Do not add these counts together."
+  },
+  "topPaste": {
+    "polygonRegions": [
+      {
+        "reference": "C2",
+        "boundsMm": [
+          17.29503,
+          -8.69002,
+          18.55006,
+          -7.31001
+        ],
+        "centerOfBoundsMm": [
+          17.922545,
+          -8.000015000000001
+        ],
+        "vertices": 13
+      },
+      {
+        "reference": "C2",
+        "boundsMm": [
+          19.44994,
+          -8.68999,
+          20.70498,
+          -7.30998
+        ],
+        "centerOfBoundsMm": [
+          20.077460000000002,
+          -7.999985000000001
+        ],
+        "vertices": 13
+      },
+      {
+        "reference": "R1",
+        "boundsMm": [
+          11.55001,
+          -15.65499,
+          12.45001,
+          -14.75499
+        ],
+        "centerOfBoundsMm": [
+          12.00001,
+          -15.204989999999999
+        ],
+        "vertices": 13
+      },
+      {
+        "reference": "R1",
+        "boundsMm": [
+          11.54999,
+          -17.24501,
+          12.44999,
+          -16.34501
+        ],
+        "centerOfBoundsMm": [
+          11.99999,
+          -16.795009999999998
+        ],
+        "vertices": 13
+      },
+      {
+        "reference": "R2",
+        "boundsMm": [
+          30.34501,
+          -20.99001,
+          31.24501,
+          -20.09001
+        ],
+        "centerOfBoundsMm": [
+          30.795009999999998,
+          -20.540010000000002
+        ],
+        "vertices": 13
+      },
+      {
+        "reference": "R2",
+        "boundsMm": [
+          28.75499,
+          -20.98999,
+          29.65499,
+          -20.08999
+        ],
+        "centerOfBoundsMm": [
+          29.204990000000002,
+          -20.53999
+        ],
+        "vertices": 13
+      }
+    ],
+    "flashApertures": [
+      {
+        "aperture": "10",
+        "xMm": 24.70002,
+        "yMm": -12.0
+      },
+      {
+        "aperture": "10",
+        "xMm": 23.29998,
+        "yMm": -12.0
+      },
+      {
+        "aperture": "11",
+        "xMm": 22.61899,
+        "yMm": -21.81
+      },
+      {
+        "aperture": "11",
+        "xMm": 22.61899,
+        "yMm": -20.54
+      },
+      {
+        "aperture": "11",
+        "xMm": 22.61899,
+        "yMm": -19.27
+      },
+      {
+        "aperture": "11",
+        "xMm": 22.61899,
+        "yMm": -18.0
+      },
+      {
+        "aperture": "11",
+        "xMm": 22.61899,
+        "yMm": -16.73
+      },
+      {
+        "aperture": "11",
+        "xMm": 22.61899,
+        "yMm": -15.46
+      },
+      {
+        "aperture": "11",
+        "xMm": 22.61899,
+        "yMm": -14.19
+      },
+      {
+        "aperture": "11",
+        "xMm": 17.38101,
+        "yMm": -21.81
+      },
+      {
+        "aperture": "11",
+        "xMm": 17.38101,
+        "yMm": -20.54
+      },
+      {
+        "aperture": "11",
+        "xMm": 17.38101,
+        "yMm": -19.27
+      },
+      {
+        "aperture": "11",
+        "xMm": 17.38101,
+        "yMm": -18.0
+      },
+      {
+        "aperture": "11",
+        "xMm": 17.38101,
+        "yMm": -16.73
+      },
+      {
+        "aperture": "11",
+        "xMm": 17.38101,
+        "yMm": -15.46
+      },
+      {
+        "aperture": "11",
+        "xMm": 17.38101,
+        "yMm": -14.19
+      }
+    ],
+    "countsByReference": {
+      "C2": 2,
+      "R1": 2,
+      "R2": 2,
+      "C1": 2,
+      "U1": 14
+    },
+    "totalApertures": 22
+  },
+  "bom": [
+    {
+      "No.": "1",
+      "Quantity": "1",
+      "Comment": "100nF",
+      "Designator": "C1",
+      "Footprint": "C0603",
+      "Value": "100nF",
+      "Manufacturer Part": "CC0603KRX7R9BB104",
+      "Manufacturer": "YAGEO(国巨)",
+      "Supplier Part": "C14663",
+      "Supplier": "LCSC"
+    },
+    {
+      "No.": "2",
+      "Quantity": "1",
+      "Comment": "10uF",
+      "Designator": "C2",
+      "Footprint": "C0805",
+      "Value": "10uF",
+      "Manufacturer Part": "CL21A106KAYNNNE",
+      "Manufacturer": "SAMSUNG(三星)",
+      "Supplier Part": "C15850",
+      "Supplier": "LCSC"
+    },
+    {
+      "No.": "3",
+      "Quantity": "1",
+      "Comment": "1000uF",
+      "Designator": "C3",
+      "Footprint": "CAP-TH_BD8.0-P3.50-D0.6-FD",
+      "Value": "1000uF",
+      "Manufacturer Part": "10PX1000MEFC8X11.5",
+      "Manufacturer": "Rubycon(红宝石)",
+      "Supplier Part": "C88853",
+      "Supplier": "LCSC"
+    },
+    {
+      "No.": "4",
+      "Quantity": "1",
+      "Comment": "B-2100S02P-A110",
+      "Designator": "J1",
+      "Footprint": "HDR-TH_2P-P2.54-V-M-1",
+      "Value": "",
+      "Manufacturer Part": "B-2100S02P-A110",
+      "Manufacturer": "Ckmtw(灿科盟)",
+      "Supplier Part": "C124375",
+      "Supplier": "LCSC"
+    },
+    {
+      "No.": "5",
+      "Quantity": "1",
+      "Comment": "B-2100S03P-A110",
+      "Designator": "J2",
+      "Footprint": "HDR-TH_3P-P2.54-V-M-1",
+      "Value": "",
+      "Manufacturer Part": "B-2100S03P-A110",
+      "Manufacturer": "Ckmtw(灿科盟)",
+      "Supplier Part": "C124376",
+      "Supplier": "LCSC"
+    },
+    {
+      "No.": "6",
+      "Quantity": "1",
+      "Comment": "KF127-5.08-2P",
+      "Designator": "J3",
+      "Footprint": "CONN-TH_P5.08_KF127-5.08-2P",
+      "Value": "",
+      "Manufacturer Part": "KF127-5.08-2P",
+      "Manufacturer": "KEFA(科发)",
+      "Supplier Part": "C474906",
+      "Supplier": "LCSC"
+    },
+    {
+      "No.": "7",
+      "Quantity": "1",
+      "Comment": "10kΩ",
+      "Designator": "R1",
+      "Footprint": "R0603",
+      "Value": "10kΩ",
+      "Manufacturer Part": "0603WAF1002T5E",
+      "Manufacturer": "UNI-ROYAL(厚声)",
+      "Supplier Part": "C25804",
+      "Supplier": "LCSC"
+    },
+    {
+      "No.": "8",
+      "Quantity": "1",
+      "Comment": "330Ω",
+      "Designator": "R2",
+      "Footprint": "R0603",
+      "Value": "330Ω",
+      "Manufacturer Part": "0603WAF3300T5E",
+      "Manufacturer": "UNI-ROYAL(厚声)",
+      "Supplier Part": "C23138",
+      "Supplier": "LCSC"
+    },
+    {
+      "No.": "9",
+      "Quantity": "1",
+      "Comment": "SN74AHCT125DR",
+      "Designator": "U1",
+      "Footprint": "SOIC-14_L8.7-W3.9-P1.27-LS6.0-BL",
+      "Value": "",
+      "Manufacturer Part": "SN74AHCT125DR",
+      "Manufacturer": "TI(德州仪器)",
+      "Supplier Part": "C155176",
+      "Supplier": "LCSC"
+    }
+  ],
+  "cpl": [
+    {
+      "Designator": "C1",
+      "Device": "CC0603KRX7R9BB104",
+      "Footprint": "C0603",
+      "Mid X": "24mm",
+      "Mid Y": "-12mm",
+      "Ref X": "24mm",
+      "Ref Y": "-12mm",
+      "Pad X": "23.3mm",
+      "Pad Y": "-12mm",
+      "Pins": "2",
+      "Layer": "T",
+      "Rotation": "0",
+      "SMD": "Yes",
+      "Comment": "100nF",
+      "Value": "100nF",
+      "Type": "",
+      "Supplier": "LCSC",
+      "Datasheet": "https://item.szlcsc.com/datasheet/CC0603KRX7R9BB104/15331.html"
+    },
+    {
+      "Designator": "C2",
+      "Device": "CL21A106KAYNNNE_C15850",
+      "Footprint": "C0805",
+      "Mid X": "19mm",
+      "Mid Y": "-8mm",
+      "Ref X": "19mm",
+      "Ref Y": "-8mm",
+      "Pad X": "18mm",
+      "Pad Y": "-8mm",
+      "Pins": "2",
+      "Layer": "T",
+      "Rotation": "0",
+      "SMD": "Yes",
+      "Comment": "10uF",
+      "Value": "10uF",
+      "Type": "",
+      "Supplier": "LCSC",
+      "Datasheet": "https://item.szlcsc.com/datasheet/CL21A106KAYNNNE/16532.html"
+    },
+    {
+      "Designator": "C3",
+      "Device": "10PX1000MEFC8X11.5",
+      "Footprint": "CAP-TH_BD8.0-P3.50-D0.6-FD",
+      "Mid X": "29mm",
+      "Mid Y": "-7mm",
+      "Ref X": "29mm",
+      "Ref Y": "-7mm",
+      "Pad X": "27.25mm",
+      "Pad Y": "-7mm",
+      "Pins": "2",
+      "Layer": "T",
+      "Rotation": "0",
+      "SMD": "No",
+      "Comment": "1000uF",
+      "Value": "1000uF",
+      "Type": "",
+      "Supplier": "LCSC",
+      "Datasheet": "https://item.szlcsc.com/datasheet/10PX1000MEFC8X11.5/90033.html"
+    },
+    {
+      "Designator": "J1",
+      "Device": "B-2100S02P-A110",
+      "Footprint": "HDR-TH_2P-P2.54-V-M-1",
+      "Mid X": "3mm",
+      "Mid Y": "-16mm",
+      "Ref X": "3mm",
+      "Ref Y": "-16mm",
+      "Pad X": "3mm",
+      "Pad Y": "-17.27mm",
+      "Pins": "2",
+      "Layer": "T",
+      "Rotation": "90",
+      "SMD": "No",
+      "Comment": "B-2100S02P-A110",
+      "Value": "",
+      "Type": "",
+      "Supplier": "LCSC",
+      "Datasheet": "https://item.szlcsc.com/datasheet/B-2100S02P-A110/125650.html"
+    },
+    {
+      "Designator": "J2",
+      "Device": "B-2100S03P-A110",
+      "Footprint": "HDR-TH_3P-P2.54-V-M-1",
+      "Mid X": "37mm",
+      "Mid Y": "-18mm",
+      "Ref X": "37mm",
+      "Ref Y": "-18mm",
+      "Pad X": "37mm",
+      "Pad Y": "-20.54mm",
+      "Pins": "3",
+      "Layer": "T",
+      "Rotation": "90",
+      "SMD": "No",
+      "Comment": "B-2100S03P-A110",
+      "Value": "",
+      "Type": "",
+      "Supplier": "LCSC",
+      "Datasheet": "https://item.szlcsc.com/datasheet/B-2100S03P-A110/125651.html"
+    },
+    {
+      "Designator": "J3",
+      "Device": "KF127-5.08-2P",
+      "Footprint": "CONN-TH_P5.08_KF127-5.08-2P",
+      "Mid X": "8.5mm",
+      "Mid Y": "-5mm",
+      "Ref X": "8.5mm",
+      "Ref Y": "-5mm",
+      "Pad X": "5.96mm",
+      "Pad Y": "-5mm",
+      "Pins": "2",
+      "Layer": "T",
+      "Rotation": "0",
+      "SMD": "No",
+      "Comment": "KF127-5.08-2P",
+      "Value": "",
+      "Type": "",
+      "Supplier": "LCSC",
+      "Datasheet": "https://item.szlcsc.com/datasheet/KF127-5.08-2P/481524.html"
+    },
+    {
+      "Designator": "R1",
+      "Device": "0603WAF1002T5E",
+      "Footprint": "R0603",
+      "Mid X": "12mm",
+      "Mid Y": "-16mm",
+      "Ref X": "12mm",
+      "Ref Y": "-16mm",
+      "Pad X": "12mm",
+      "Pad Y": "-16.753mm",
+      "Pins": "2",
+      "Layer": "T",
+      "Rotation": "90",
+      "SMD": "Yes",
+      "Comment": "10kΩ",
+      "Value": "10kΩ",
+      "Type": "厚膜电阻",
+      "Supplier": "LCSC",
+      "Datasheet": "https://item.szlcsc.com/datasheet/0603WAF1002T5E/26547.html"
+    },
+    {
+      "Designator": "R2",
+      "Device": "0603WAF3300T5E",
+      "Footprint": "R0603",
+      "Mid X": "30mm",
+      "Mid Y": "-20.54mm",
+      "Ref X": "30mm",
+      "Ref Y": "-20.54mm",
+      "Pad X": "29.247mm",
+      "Pad Y": "-20.54mm",
+      "Pins": "2",
+      "Layer": "T",
+      "Rotation": "0",
+      "SMD": "Yes",
+      "Comment": "330Ω",
+      "Value": "330Ω",
+      "Type": "厚膜电阻",
+      "Supplier": "LCSC",
+      "Datasheet": "https://atta.szlcsc.com/upload/public/pdf/source/20200306/C422600_1E6D84923E4A46A82E41ADD87F860B5C.pdf"
+    },
+    {
+      "Designator": "U1",
+      "Device": "SN74AHCT125DR",
+      "Footprint": "SOIC-14_L8.7-W3.9-P1.27-LS6.0-BL",
+      "Mid X": "20mm",
+      "Mid Y": "-18mm",
+      "Ref X": "20mm",
+      "Ref Y": "-18mm",
+      "Pad X": "17.381mm",
+      "Pad Y": "-14.19mm",
+      "Pins": "14",
+      "Layer": "T",
+      "Rotation": "270",
+      "SMD": "Yes",
+      "Comment": "SN74AHCT125DR",
+      "Value": "",
+      "Type": "",
+      "Supplier": "LCSC",
+      "Datasheet": "https://www.ti.com/cn/lit/ds/symlink/sn74ahct125.pdf"
+    }
+  ],
+  "partNumbersVsNativeSchematic": {
+    "C1": {
+      "supplierPart": "C14663",
+      "manufacturerPart": "CC0603KRX7R9BB104",
+      "nativeSupplierPart": "C14663",
+      "nativeManufacturerPart": "CC0603KRX7R9BB104",
+      "pass": true
+    },
+    "C2": {
+      "supplierPart": "C15850",
+      "manufacturerPart": "CL21A106KAYNNNE",
+      "nativeSupplierPart": "C15850",
+      "nativeManufacturerPart": "CL21A106KAYNNNE",
+      "pass": true
+    },
+    "C3": {
+      "supplierPart": "C88853",
+      "manufacturerPart": "10PX1000MEFC8X11.5",
+      "nativeSupplierPart": "C88853",
+      "nativeManufacturerPart": "10PX1000MEFC8X11.5",
+      "pass": true
+    },
+    "J1": {
+      "supplierPart": "C124375",
+      "manufacturerPart": "B-2100S02P-A110",
+      "nativeSupplierPart": "C124375",
+      "nativeManufacturerPart": "B-2100S02P-A110",
+      "pass": true
+    },
+    "J2": {
+      "supplierPart": "C124376",
+      "manufacturerPart": "B-2100S03P-A110",
+      "nativeSupplierPart": "C124376",
+      "nativeManufacturerPart": "B-2100S03P-A110",
+      "pass": true
+    },
+    "J3": {
+      "supplierPart": "C474906",
+      "manufacturerPart": "KF127-5.08-2P",
+      "nativeSupplierPart": "C474906",
+      "nativeManufacturerPart": "KF127-5.08-2P",
+      "pass": true
+    },
+    "R1": {
+      "supplierPart": "C25804",
+      "manufacturerPart": "0603WAF1002T5E",
+      "nativeSupplierPart": "C25804",
+      "nativeManufacturerPart": "0603WAF1002T5E",
+      "pass": true
+    },
+    "R2": {
+      "supplierPart": "C23138",
+      "manufacturerPart": "0603WAF3300T5E",
+      "nativeSupplierPart": "C23138",
+      "nativeManufacturerPart": "0603WAF3300T5E",
+      "pass": true
+    },
+    "U1": {
+      "supplierPart": "C155176",
+      "manufacturerPart": "SN74AHCT125DR",
+      "nativeSupplierPart": "C155176",
+      "nativeManufacturerPart": "SN74AHCT125DR",
+      "pass": true
+    }
+  },
+  "format": {
+    "bom": "UTF-16LE BOM, tab-delimited native CSV",
+    "cpl": "UTF-16LE BOM, tab-delimited native CSV; native extra CR line separators retained"
+  },
+  "rotationNote": "Native CPL rotations retained: U1=270, J1/J2/R1=90, others=0. Negative Mid Y agrees with GKO coordinate range; no sign or rotation normalization performed.",
+  "xlsxReview": {
+    "dateClient": "2026-10-18 Asia/Shanghai",
+    "method": "Python standard-library zipfile/xml.etree.ElementTree: resolved shared strings/inline strings, retained literal mm/sign/rotation values; compared every header and cell in row order, ignoring only completely empty rows.",
+    "comparisons": {
+      "bom": {
+        "csv": "BOM_AHCT125_LED_R1.csv",
+        "xlsx": "BOM_AHCT125_LED_R1.xlsx",
+        "worksheet": "xl/worksheets/sheet1.xml",
+        "headersExactlyMatch": true,
+        "dataRows": 9,
+        "columns": 10,
+        "dataCellsCompared": 90,
+        "headerCellsCompared": 10,
+        "rowOrderExactlyMatches": true,
+        "references": [
+          "C1",
+          "C2",
+          "C3",
+          "J1",
+          "J2",
+          "J3",
+          "R1",
+          "R2",
+          "U1"
+        ],
+        "formulaCells": [],
+        "differences": [],
+        "allCellsExactlyMatch": true,
+        "xlsxSha256": "4ba25a9e1b9e5b64fe6a8897ce07297cdcd02b641226959c6dc5dc57aab7a8b7"
+      },
+      "cpl": {
+        "csv": "CPL_AHCT125_LED_R1.csv",
+        "xlsx": "CPL_AHCT125_LED_R1.xlsx",
+        "worksheet": "xl/worksheets/sheet1.xml",
+        "headersExactlyMatch": true,
+        "dataRows": 9,
+        "columns": 18,
+        "dataCellsCompared": 162,
+        "headerCellsCompared": 18,
+        "rowOrderExactlyMatches": true,
+        "references": [
+          "C1",
+          "C2",
+          "C3",
+          "J1",
+          "J2",
+          "J3",
+          "R1",
+          "R2",
+          "U1"
+        ],
+        "formulaCells": [],
+        "differences": [],
+        "allCellsExactlyMatch": true,
+        "xlsxSha256": "ee6f63351e309ccec3c65d3f628cc3beb1686b794b69350648b957488dd7b245"
+      }
+    },
+    "totalDataCellsCompared": 252,
+    "totalHeaderCellsCompared": 28,
+    "sourceFilesModified": false,
+    "deliveryRecommendation": "Use the native BOM and CPL XLSX for factory upload, retaining CSV originals as references."
+  }
+}

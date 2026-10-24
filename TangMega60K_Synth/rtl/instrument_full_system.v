@@ -19,7 +19,11 @@ module instrument_full_system #(
     output wire playing,recording,guide_active,
     input wire video_clk,input wire [9:0] video_x,video_y,input wire video_de,
     output wire [23:0] video_rgb,
-    output wire signed [23:0] monitor_left,monitor_right,output wire monitor_valid
+    output wire signed [23:0] monitor_left,monitor_right,output wire monitor_valid,
+    // Main-project hardware observation, read through the on-chip analyzer.
+    output reg [6:0] debug_last_note,
+    output wire signed [23:0] debug_transmit_left,
+    output wire [3:0] debug_audio_reset_status
 );
     wire cv,cr,router_cr,rv,rr;wire [7:0] cs,co,rs,ro;wire [79:0] cp,rp;
     wire [31:0] crc_errors,framing_errors,uart_overflows,uart_timeouts;
@@ -140,8 +144,17 @@ module instrument_full_system #(
         end
     end
     wire audio_rst_n=rst_n && !panic_discard && !sensor_overflow;
-    wire sensor_blocked=sensor_source>=25 && sensor_source<50 &&
-        panic_blocked_keys[sensor_source-25];
+    // Passive observation; none of these debug outputs controls the system.
+    assign debug_audio_reset_status={panic_quiescing,panic_request,sensor_overflow,audio_rst_n};
+    // Decode fixed source IDs in parallel instead of subtracting a variable
+    // source and selecting a bit through a wide mux on the event ready path.
+    wire [24:0] blocked_source_match;
+    genvar blocked_key;
+    generate for(blocked_key=0;blocked_key<25;blocked_key=blocked_key+1)begin:blocked_source_decode
+        assign blocked_source_match[blocked_key]=
+            sensor_source==(blocked_key+25) && panic_blocked_keys[blocked_key];
+    end endgenerate
+    wire sensor_blocked=|blocked_source_match;
     assign overflow_sticky=sensor_overflow || record_overflow || uart_overflows!=0;
     note_arbiter arbiter(.clk(clk),.rst_n(audio_rst_n),
         .in_valid({watchdog_ev,perf_ev,remote_ev,sensor_ev && !sensor_blocked}),.in_ready(arb_ready),
@@ -168,6 +181,10 @@ module instrument_full_system #(
     wire cmdv,cmdr,cmdon,dv,dr,sample_begin;
     wire [5:0] voice,done_voice;wire [6:0] note,velocity;wire [1:0] tone;
     wire [11:0] gain;wire signed [12:0] bend;wire [7:0] vibrato;
+    always @(posedge clk or negedge audio_rst_n)begin
+        if(!audio_rst_n)debug_last_note<=0;
+        else if(cmdv && cmdr && cmdon)debug_last_note<=note;
+    end
     captain_control_top_v2 control(.clk(clk),.rst_n(audio_rst_n),
         .event_valid(ev),.event_ready(er),.event_on(eon),.event_source(es),.event_note(en),.event_velocity(evel),.event_timbre(et),
         .expr_valid(xv),.expr_ready(xr),.expr_gain(xg),.expr_bend_cents(xb),.expr_vibrato_cents(vib),
@@ -175,7 +192,7 @@ module instrument_full_system #(
         .cmd_valid(cmdv),.cmd_ready(cmdr),.cmd_on(cmdon),.cmd_voice(voice),.cmd_note(note),.cmd_velocity(velocity),.cmd_timbre(tone),
         .done_valid(dv),.done_ready(dr),.done_voice(done_voice),.active_count(active_count));
     wire pcm_valid,pcm_ready;wire signed [23:0] pcm_l,pcm_r;
-    voice_engine #(.FM_ENABLE(1),.FX_ENABLE(0),.ROM_DIR(ROM_DIR)) synth(.clk(clk),.rst_n(audio_rst_n),
+    voice_engine #(.FM_ENABLE(1),.FX_ENABLE(0),.AUTO_HEADROOM(1),.ROM_DIR(ROM_DIR)) synth(.clk(clk),.rst_n(audio_rst_n),
         .cmd_valid(cmdv),.cmd_ready(cmdr),.cmd_on(cmdon),.cmd_voice(voice),.cmd_note(note),.cmd_velocity(velocity),.cmd_timbre(tone),
         .done_valid(dv),.done_ready(dr),.done_voice(done_voice),.sample_valid(pcm_valid),.sample_ready(pcm_ready),
         .sample_left(pcm_l),.sample_right(pcm_r),.engine_sample_begin(sample_begin),
@@ -184,7 +201,8 @@ module instrument_full_system #(
     runtime_audio_fx effects(.clk(clk),.rst_n(audio_rst_n),.mode(fx),.in_valid(pcm_valid),.in_ready(pcm_ready),
         .in_left(pcm_l),.in_right(pcm_r),.out_valid(fx_valid),.out_ready(fx_ready),.out_left(fx_l),.out_right(fx_r));
     i2s_tx #(.BCLK_HALF_DIV(8)) audio(.clk(clk),.rst_n(audio_rst_n),.sample_valid(fx_valid),.sample_ready(fx_ready),
-        .sample_left(fx_l),.sample_right(fx_r),.i2s_bclk(i2s_bclk),.i2s_lrclk(i2s_lrclk),.i2s_data(i2s_data),.underrun_count(underrun_count));
+        .sample_left(fx_l),.sample_right(fx_r),.i2s_bclk(i2s_bclk),.i2s_lrclk(i2s_lrclk),.i2s_data(i2s_data),.underrun_count(underrun_count),
+        .debug_frame_left(debug_transmit_left));
     assign monitor_left=fx_l;assign monitor_right=fx_r;assign monitor_valid=fx_valid && fx_ready;
     reg [1:0] video_reset;
     always @(posedge video_clk or negedge audio_rst_n)begin

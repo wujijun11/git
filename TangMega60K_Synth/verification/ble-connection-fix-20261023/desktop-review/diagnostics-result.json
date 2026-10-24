@@ -1,0 +1,8 @@
+{
+  "passed": 11,
+  "failed": 0,
+  "hardwareAccessed": false,
+  "nativeSourceSha256": "7ba8da24037e58603122f8a136a21094180b94077912116ace37bc23b3ec2b88",
+  "sourceUnchanged": true,
+  "diagnosticReadTimeoutSeconds": 0.75
+}

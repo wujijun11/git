@@ -1,0 +1,73 @@
+--- production/ble_bridge.ino
++++ candidate/ble_bridge.ino
+@@ -39,6 +39,33 @@
+ static_assert(usableBridgePin(FPGA_RX_GPIO) && usableBridgePin(FPGA_TX_GPIO),
+     "Bridge UART must use free exposed GPIOs; preserve USB, flash, BOOT and RGB.");
+ static_assert(FPGA_RX_GPIO != FPGA_TX_GPIO, "Bridge RX and TX require separate GPIOs.");
++static_assert(FPGA_RX_GPIO==6 && FPGA_TX_GPIO==7,
++    "This verification-only pad observer is fixed to the accepted GPIO6/7 wiring.");
++BridgeTxObserver txObserver;
++size_t observationUsbCapacity=0;
++void reportTxObservation(){
++    const BridgeTxObserver::Sample idle=txObserver.sample();
++    const bool initPreserved=txObserver.preserved(txObserver.initBefore,txObserver.initAfter);
++    const bool txPreserved=txObserver.attempts==0 ||
++        txObserver.preserved(txObserver.beforeTx,txObserver.afterTx);
++    char line[640];
++    const int length=snprintf(line,sizeof(line),
++        "bridge TXobs irq=%d keep=%d/%d route=%d edge=%lu d=%lu L=%d/%d idle=%d IE=%d TX7=%08lx U1RX=%08lx MUX7=%08lx OE7=%d n=%lu seq=%02x op=%02x svc=%ld type=%ld add=%ld en=%ld bootMUX=%08lx/%08lx bootTX=%08lx/%08lx bootRX=%08lx/%08lx bootOE=%d/%d usb=%u\n",
++        txObserver.irqReady(),initPreserved,txPreserved,txObserver.expectedRouting(idle),
++        (unsigned long)idle.edges,(unsigned long)(txObserver.afterTx.edges-txObserver.beforeTx.edges),
++        txObserver.beforeTx.level,txObserver.afterTx.level,idle.level,idle.inputEnabled,
++        (unsigned long)idle.txMatrix,(unsigned long)idle.rxMatrix,(unsigned long)idle.mux,
++        idle.outputEnabled,(unsigned long)txObserver.attempts,txObserver.sequence,txObserver.opcode,
++        (long)txObserver.serviceStatus,(long)txObserver.typeStatus,
++        (long)txObserver.addStatus,(long)txObserver.enableStatus,
++        (unsigned long)txObserver.initBefore.mux,(unsigned long)txObserver.initAfter.mux,
++        (unsigned long)txObserver.initBefore.txMatrix,(unsigned long)txObserver.initAfter.txMatrix,
++        (unsigned long)txObserver.initBefore.rxMatrix,(unsigned long)txObserver.initAfter.rxMatrix,
++        txObserver.initBefore.outputEnabled,txObserver.initAfter.outputEnabled,
++        (unsigned)observationUsbCapacity);
++    if(length>0 && length<(int)sizeof(line) && Serial && Serial.availableForWrite()>=length)
++        Serial.write((const uint8_t *)line,length);
++}
+ #define SERVICE_UUID "6e400001-b5a3-f393-e0a9-e50e24dcca9e"
+ #define RX_UUID "6e400002-b5a3-f393-e0a9-e50e24dcca9e"
+ #define TX_UUID "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
+@@ -167,6 +194,10 @@
+ };
+ void setup(){
+     notifyOwnerTask=xTaskGetCurrentTaskHandle();
++    // HWCDC 3.3.5 defaults to a 256-byte ring. Allocate this USB-only logging
++    // ring before begin() so the observer and existing counters both fit.
++    // UART1 still uses the unchanged 256 TX / 1024 RX buffers below.
++    observationUsbCapacity=Serial.setTxBufferSize(1024);
+     Serial.begin(115200);
+     // Logging must not delay the transport when no USB monitor is attached.
+     Serial.setTxTimeoutMs(1);
+@@ -181,6 +212,7 @@
+         bridgeUartInitialization={BridgeUartStatus::ConfigMismatch,
+             ESP_ERR_INVALID_SIZE,0,"buffer-size"};
+     bridgeUartReady=static_cast<bool>(Serial1) && bridgeUartInitialization.ok();
++    txObserver.begin();
+     Serial1.onReceiveError([](hardwareSerial_error_t){uartErrors++;failSession(sessionGeneration());});
+     BLEDevice::init("Tang-Synth-C3");server=BLEDevice::createServer();
+ #if defined(CONFIG_NIMBLE_ENABLED)
+@@ -228,6 +260,7 @@
+     // be mistaken for a completely silent physical receive path.
+     if(now-lastStats>=5000){
+         lastStats=now;
++        reportTxObservation();
+         if(Serial && Serial.availableForWrite()>=240)
+             Serial.printf("bridge counters BLEwrite=%lu UART=%lu notify=%lu resync=%lu BLErx=%lu UARTtx=%lu UARTbytes=%lu validRx=%lu notifyOK=%lu UARTdiscard=%lu\n",
+                 (unsigned long)bleWriteErrors,(unsigned long)uartErrors,(unsigned long)notifyErrors,(unsigned long)resyncCount,
+@@ -277,7 +310,9 @@
+     if(Serial1.availableForWrite()>=16 && xQueuePeek(toUart,&p,0)==pdTRUE && p.session==activeSession && healthySession(activeSession)){
+         xQueueReceive(toUart,&p,0);
+         if(healthySession(activeSession)){
++            txObserver.beforeTransmit(p.bytes[3],p.bytes[4]);
+             const BridgeUartResult sent=bridgeUartTransmit(p.bytes,16);
++            txObserver.afterTransmit();
+             if(!sent.ok()){
+                 uartErrors++;failSession(activeSession);
+                 if(Serial && Serial.availableForWrite()>=150)

@@ -1,0 +1,1283 @@
+{
+  "kind": "actual .ino + deterministic host event queue, no hardware",
+  "accepted": true,
+  "knownUnchangedLimitation": "UART error callbacks carry no origin session tag; fail-close policy is unchanged",
+  "runnerSha256": "6acc978f1cd882220853779cbed0836dd1797fb124e2a5422ef0b34f9160586a",
+  "results": {
+    "before": {
+      "exitCode": 1,
+      "summary": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\run_20261023_220707_528688\\summary.json",
+      "timestampUtc": "2026-10-23T14:07:16.571861+00:00",
+      "kind": "deterministic host stubs; no COM/BLE/hardware access",
+      "source": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\ble-connection-fix-20261023\\c3-review\\before\\ble_bridge.ino",
+      "sourceSha256Before": "ade217ace2cc8042333ba7195b04cbd8ca2f7cb0b64e4952952d005be55bbce7",
+      "compileExit": 0,
+      "compilerSetup": "D:\\.Download\\VC\\Auxiliary\\Build\\vcvars64.bat",
+      "adaptations": [
+        "historical diagnostic length assertion changed from 16 to 40",
+        "UART-ready defaults true; explicit initialization-failure cases",
+        "IDF UART driver stubs proxy existing write/short-write injection and model completion status/hooks",
+        "buffer-size return values and one-ms host tick stubs"
+      ],
+      "originalCaseCount": 29,
+      "extraCaseCount": 33,
+      "cases": [
+        {
+          "name": "first_write",
+          "passed": true,
+          "exitCode": 0,
+          "log": "first_write.log"
+        },
+        {
+          "name": "malformed_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "malformed_close.log"
+        },
+        {
+          "name": "late_write_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "late_write_close.log"
+        },
+        {
+          "name": "queue_full_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "queue_full_close.log"
+        },
+        {
+          "name": "uart_error_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "uart_error_close.log"
+        },
+        {
+          "name": "short_uart_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "short_uart_close.log"
+        },
+        {
+          "name": "same_loop_uart_error",
+          "passed": true,
+          "exitCode": 0,
+          "log": "same_loop_uart_error.log"
+        },
+        {
+          "name": "notify_retry_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "notify_retry_close.log"
+        },
+        {
+          "name": "notify_accept",
+          "passed": true,
+          "exitCode": 0,
+          "log": "notify_accept.log"
+        },
+        {
+          "name": "late_notify_status",
+          "passed": true,
+          "exitCode": 0,
+          "log": "late_notify_status.log"
+        },
+        {
+          "name": "reconnect_first_write",
+          "passed": true,
+          "exitCode": 0,
+          "log": "reconnect_first_write.log"
+        },
+        {
+          "name": "reconnect_between_loops",
+          "passed": true,
+          "exitCode": 0,
+          "log": "reconnect_between_loops.log"
+        },
+        {
+          "name": "partial_uart_timeout",
+          "passed": true,
+          "exitCode": 0,
+          "log": "partial_uart_timeout.log"
+        },
+        {
+          "name": "old_failure_new_session",
+          "passed": true,
+          "exitCode": 0,
+          "log": "old_failure_new_session.log"
+        },
+        {
+          "name": "stale_failure_cannot_unpoison",
+          "passed": true,
+          "exitCode": 0,
+          "log": "stale_failure_cannot_unpoison.log"
+        },
+        {
+          "name": "failed_writes_do_not_fill_queue",
+          "passed": true,
+          "exitCode": 0,
+          "log": "failed_writes_do_not_fill_queue.log"
+        },
+        {
+          "name": "diagnostic_endianness",
+          "passed": true,
+          "exitCode": 0,
+          "log": "diagnostic_endianness.log"
+        },
+        {
+          "name": "valid_nested_header",
+          "passed": true,
+          "exitCode": 0,
+          "log": "valid_nested_header.log"
+        },
+        {
+          "name": "crc_error_recovery",
+          "passed": true,
+          "exitCode": 0,
+          "log": "crc_error_recovery.log"
+        },
+        {
+          "name": "deleted_byte_nested_recovery",
+          "passed": true,
+          "exitCode": 0,
+          "log": "deleted_byte_nested_recovery.log"
+        },
+        {
+          "name": "inserted_byte_nested_recovery",
+          "passed": true,
+          "exitCode": 0,
+          "log": "inserted_byte_nested_recovery.log"
+        },
+        {
+          "name": "overlapping_header_recovery",
+          "passed": true,
+          "exitCode": 0,
+          "log": "overlapping_header_recovery.log"
+        },
+        {
+          "name": "fragmented_all_boundaries",
+          "passed": true,
+          "exitCode": 0,
+          "log": "fragmented_all_boundaries.log"
+        },
+        {
+          "name": "noise_then_fragmented_header",
+          "passed": true,
+          "exitCode": 0,
+          "log": "noise_then_fragmented_header.log"
+        },
+        {
+          "name": "consecutive_crc_errors",
+          "passed": true,
+          "exitCode": 0,
+          "log": "consecutive_crc_errors.log"
+        },
+        {
+          "name": "reconnect_partial_response",
+          "passed": true,
+          "exitCode": 0,
+          "log": "reconnect_partial_response.log"
+        },
+        {
+          "name": "reconnect_queued_response",
+          "passed": true,
+          "exitCode": 0,
+          "log": "reconnect_queued_response.log"
+        },
+        {
+          "name": "ble_crc_left_for_fpga",
+          "passed": true,
+          "exitCode": 0,
+          "log": "ble_crc_left_for_fpga.log"
+        },
+        {
+          "name": "crc_valid_future_version_transparent",
+          "passed": true,
+          "exitCode": 0,
+          "log": "crc_valid_future_version_transparent.log"
+        },
+        {
+          "name": "diagnostic_bootstrap",
+          "passed": true,
+          "exitCode": 0,
+          "log": "diagnostic_bootstrap.log"
+        },
+        {
+          "name": "diagnostic_periodic_refresh",
+          "passed": true,
+          "exitCode": 0,
+          "log": "diagnostic_periodic_refresh.log"
+        },
+        {
+          "name": "diagnostic_uart_ready",
+          "passed": true,
+          "exitCode": 0,
+          "log": "diagnostic_uart_ready.log"
+        },
+        {
+          "name": "success_ble_uart",
+          "passed": true,
+          "exitCode": 0,
+          "log": "success_ble_uart.log"
+        },
+        {
+          "name": "success_roundtrip",
+          "passed": true,
+          "exitCode": 0,
+          "log": "success_roundtrip.log"
+        },
+        {
+          "name": "malformed_not_success",
+          "passed": true,
+          "exitCode": 0,
+          "log": "malformed_not_success.log"
+        },
+        {
+          "name": "short_uart_not_success",
+          "passed": true,
+          "exitCode": 0,
+          "log": "short_uart_not_success.log"
+        },
+        {
+          "name": "uart_noise_crc_success_counts",
+          "passed": true,
+          "exitCode": 0,
+          "log": "uart_noise_crc_success_counts.log"
+        },
+        {
+          "name": "notify_retry_success_counts",
+          "passed": true,
+          "exitCode": 0,
+          "log": "notify_retry_success_counts.log"
+        },
+        {
+          "name": "notify_status_not_double_count",
+          "passed": true,
+          "exitCode": 0,
+          "log": "notify_status_not_double_count.log"
+        },
+        {
+          "name": "init_serial_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "init_serial_failed_closed.log"
+        },
+        {
+          "name": "init_rx_buffer_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "init_rx_buffer_failed_closed.log"
+        },
+        {
+          "name": "init_tx_buffer_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "init_tx_buffer_failed_closed.log"
+        },
+        {
+          "name": "init_prepare_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "init_prepare_failed_closed.log"
+        },
+        {
+          "name": "driver_negative_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_negative_failed_closed.log"
+        },
+        {
+          "name": "driver_zero_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_zero_failed_closed.log"
+        },
+        {
+          "name": "driver_short_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_short_failed_closed.log"
+        },
+        {
+          "name": "driver_timeout_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_timeout_failed_closed.log"
+        },
+        {
+          "name": "driver_wait_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_wait_failed_closed.log"
+        },
+        {
+          "name": "driver_config_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_config_failed_closed.log"
+        },
+        {
+          "name": "back_to_back_responses",
+          "passed": true,
+          "exitCode": 0,
+          "log": "back_to_back_responses.log"
+        },
+        {
+          "name": "response_during_tx_wait",
+          "passed": true,
+          "exitCode": 0,
+          "log": "response_during_tx_wait.log"
+        },
+        {
+          "name": "fragment_during_tx_wait",
+          "passed": true,
+          "exitCode": 0,
+          "log": "fragment_during_tx_wait.log"
+        },
+        {
+          "name": "partial_before_tx_wait_buffered_tail",
+          "passed": true,
+          "exitCode": 0,
+          "log": "partial_before_tx_wait_buffered_tail.log"
+        },
+        {
+          "name": "disconnect_during_tx_wait",
+          "passed": true,
+          "exitCode": 0,
+          "log": "disconnect_during_tx_wait.log"
+        },
+        {
+          "name": "old_tx_wait_failure_new_session",
+          "passed": true,
+          "exitCode": 0,
+          "log": "old_tx_wait_failure_new_session.log"
+        },
+        {
+          "name": "discarded_bytes_are_separate",
+          "passed": true,
+          "exitCode": 0,
+          "log": "discarded_bytes_are_separate.log"
+        },
+        {
+          "name": "failed_close_reconnect",
+          "passed": false,
+          "exitCode": 1,
+          "log": "failed_close_reconnect.log"
+        },
+        {
+          "name": "failed_close_reused_handle",
+          "passed": false,
+          "exitCode": 1,
+          "log": "failed_close_reused_handle.log"
+        },
+        {
+          "name": "close_on_host_once",
+          "passed": false,
+          "exitCode": 1,
+          "log": "close_on_host_once.log"
+        },
+        {
+          "name": "duplicate_close_requests",
+          "passed": true,
+          "exitCode": 0,
+          "log": "duplicate_close_requests.log"
+        },
+        {
+          "name": "host_close_then_reconnect",
+          "passed": true,
+          "exitCode": 0,
+          "log": "host_close_then_reconnect.log"
+        },
+        {
+          "name": "new_failure_replaces_old_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "new_failure_replaces_old_close.log"
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\ble-connection-fix-20261023\\c3-review\\before\\ble_bridge.ino": "ade217ace2cc8042333ba7195b04cbd8ca2f7cb0b64e4952952d005be55bbce7",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\ble-connection-fix-20261023\\c3-review\\before\\bridge_uart_io.h": "68f5562a4dce803ac7eec3caf40d81bade5f5ae679f7861565a740702588940a",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\c3-diagnostic-20261022\\host-tests\\run_diagnostic_host_tests.py": "f6fdb0d71b25255ef3cdc1f376bb37eefc45d1253665062ab25e735f5225dd72",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\run-bridge-tests.py": "ae79c453bda920481594e1e86177c340c017a862bd4fde0b73bda092574b6a6d",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\bridge_transport_test.cpp": "6fa15e6308100b8bf7ba1155c69ad844ee26a06b822754db7632cd69edca6e5f",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\Arduino.h": "ad5fa3e147f659eb21b098350bf0f4ad9956d1bdc10aa7ccabd6b10e926edc9f",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\BLE2902.h": "6fbb939d2a8d1d23bd87a987952ff483175805e8b8dcca169a420dde5741e0f3",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\BLEDevice.h": "fc85c987209b77334ad1889777dbb385fd4c29fcb8c322cc0f82e0e2734bcb6b",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\BLEServer.h": "030c5b5382d1d64e47ca0f024bbc274036291739e87cde2c1bce03bb6f6b72a6",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\BLEUtils.h": "b3adf106d95b8934f690943f2921308b90be5b766c4c8ba250c792de56400201",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\freertos\\FreeRTOS.h": "044c14021852b745c2eccc0b3878ddf3b21e5fa6916a66c311034c5a44531b80",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\freertos\\queue.h": "c3aab5165ea35da6669b3544f88d3a6ef8843ed35957291ab1d661daac7d3566",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\freertos\\task.h": "1a155fb741895bbbfef0f526dd34f4ca71f8cd66ac8bef455978feb91c2112c0",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\nimble\\nimble_port.h": "107a8373f7f610bac3f8f0103c9b64dcfbcb5c7b9f3ba4c5f803d54d9dbb2811"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\ble-connection-fix-20261023\\c3-review\\before\\ble_bridge.ino": "ade217ace2cc8042333ba7195b04cbd8ca2f7cb0b64e4952952d005be55bbce7",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\ble-connection-fix-20261023\\c3-review\\before\\bridge_uart_io.h": "68f5562a4dce803ac7eec3caf40d81bade5f5ae679f7861565a740702588940a",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\c3-diagnostic-20261022\\host-tests\\run_diagnostic_host_tests.py": "f6fdb0d71b25255ef3cdc1f376bb37eefc45d1253665062ab25e735f5225dd72",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\run-bridge-tests.py": "ae79c453bda920481594e1e86177c340c017a862bd4fde0b73bda092574b6a6d",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\bridge_transport_test.cpp": "6fa15e6308100b8bf7ba1155c69ad844ee26a06b822754db7632cd69edca6e5f",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\Arduino.h": "ad5fa3e147f659eb21b098350bf0f4ad9956d1bdc10aa7ccabd6b10e926edc9f",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\BLE2902.h": "6fbb939d2a8d1d23bd87a987952ff483175805e8b8dcca169a420dde5741e0f3",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\BLEDevice.h": "fc85c987209b77334ad1889777dbb385fd4c29fcb8c322cc0f82e0e2734bcb6b",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\BLEServer.h": "030c5b5382d1d64e47ca0f024bbc274036291739e87cde2c1bce03bb6f6b72a6",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\BLEUtils.h": "b3adf106d95b8934f690943f2921308b90be5b766c4c8ba250c792de56400201",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\freertos\\FreeRTOS.h": "044c14021852b745c2eccc0b3878ddf3b21e5fa6916a66c311034c5a44531b80",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\freertos\\queue.h": "c3aab5165ea35da6669b3544f88d3a6ef8843ed35957291ab1d661daac7d3566",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\freertos\\task.h": "1a155fb741895bbbfef0f526dd34f4ca71f8cd66ac8bef455978feb91c2112c0",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\before\\harness\\stubs\\nimble\\nimble_port.h": "107a8373f7f610bac3f8f0103c9b64dcfbcb5c7b9f3ba4c5f803d54d9dbb2811"
+      },
+      "sourceSha256After": "ade217ace2cc8042333ba7195b04cbd8ca2f7cb0b64e4952952d005be55bbce7",
+      "inputsUnchanged": true,
+      "passed": 59,
+      "failed": 3,
+      "accepted": false
+    },
+    "after": {
+      "exitCode": 0,
+      "summary": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\run_20261023_220720_220989\\summary.json",
+      "timestampUtc": "2026-10-23T14:07:24.872792+00:00",
+      "kind": "deterministic host stubs; no COM/BLE/hardware access",
+      "source": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\ble_bridge\\ble_bridge.ino",
+      "sourceSha256Before": "b46c363a91c186e388c3075e862e1b9b4a2bcc0d3cdcfa1afa65bcdc4d8c646e",
+      "compileExit": 0,
+      "compilerSetup": "D:\\.Download\\VC\\Auxiliary\\Build\\vcvars64.bat",
+      "adaptations": [
+        "historical diagnostic length assertion changed from 16 to 40",
+        "UART-ready defaults true; explicit initialization-failure cases",
+        "IDF UART driver stubs proxy existing write/short-write injection and model completion status/hooks",
+        "buffer-size return values and one-ms host tick stubs"
+      ],
+      "originalCaseCount": 29,
+      "extraCaseCount": 33,
+      "cases": [
+        {
+          "name": "first_write",
+          "passed": true,
+          "exitCode": 0,
+          "log": "first_write.log"
+        },
+        {
+          "name": "malformed_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "malformed_close.log"
+        },
+        {
+          "name": "late_write_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "late_write_close.log"
+        },
+        {
+          "name": "queue_full_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "queue_full_close.log"
+        },
+        {
+          "name": "uart_error_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "uart_error_close.log"
+        },
+        {
+          "name": "short_uart_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "short_uart_close.log"
+        },
+        {
+          "name": "same_loop_uart_error",
+          "passed": true,
+          "exitCode": 0,
+          "log": "same_loop_uart_error.log"
+        },
+        {
+          "name": "notify_retry_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "notify_retry_close.log"
+        },
+        {
+          "name": "notify_accept",
+          "passed": true,
+          "exitCode": 0,
+          "log": "notify_accept.log"
+        },
+        {
+          "name": "late_notify_status",
+          "passed": true,
+          "exitCode": 0,
+          "log": "late_notify_status.log"
+        },
+        {
+          "name": "reconnect_first_write",
+          "passed": true,
+          "exitCode": 0,
+          "log": "reconnect_first_write.log"
+        },
+        {
+          "name": "reconnect_between_loops",
+          "passed": true,
+          "exitCode": 0,
+          "log": "reconnect_between_loops.log"
+        },
+        {
+          "name": "partial_uart_timeout",
+          "passed": true,
+          "exitCode": 0,
+          "log": "partial_uart_timeout.log"
+        },
+        {
+          "name": "old_failure_new_session",
+          "passed": true,
+          "exitCode": 0,
+          "log": "old_failure_new_session.log"
+        },
+        {
+          "name": "stale_failure_cannot_unpoison",
+          "passed": true,
+          "exitCode": 0,
+          "log": "stale_failure_cannot_unpoison.log"
+        },
+        {
+          "name": "failed_writes_do_not_fill_queue",
+          "passed": true,
+          "exitCode": 0,
+          "log": "failed_writes_do_not_fill_queue.log"
+        },
+        {
+          "name": "diagnostic_endianness",
+          "passed": true,
+          "exitCode": 0,
+          "log": "diagnostic_endianness.log"
+        },
+        {
+          "name": "valid_nested_header",
+          "passed": true,
+          "exitCode": 0,
+          "log": "valid_nested_header.log"
+        },
+        {
+          "name": "crc_error_recovery",
+          "passed": true,
+          "exitCode": 0,
+          "log": "crc_error_recovery.log"
+        },
+        {
+          "name": "deleted_byte_nested_recovery",
+          "passed": true,
+          "exitCode": 0,
+          "log": "deleted_byte_nested_recovery.log"
+        },
+        {
+          "name": "inserted_byte_nested_recovery",
+          "passed": true,
+          "exitCode": 0,
+          "log": "inserted_byte_nested_recovery.log"
+        },
+        {
+          "name": "overlapping_header_recovery",
+          "passed": true,
+          "exitCode": 0,
+          "log": "overlapping_header_recovery.log"
+        },
+        {
+          "name": "fragmented_all_boundaries",
+          "passed": true,
+          "exitCode": 0,
+          "log": "fragmented_all_boundaries.log"
+        },
+        {
+          "name": "noise_then_fragmented_header",
+          "passed": true,
+          "exitCode": 0,
+          "log": "noise_then_fragmented_header.log"
+        },
+        {
+          "name": "consecutive_crc_errors",
+          "passed": true,
+          "exitCode": 0,
+          "log": "consecutive_crc_errors.log"
+        },
+        {
+          "name": "reconnect_partial_response",
+          "passed": true,
+          "exitCode": 0,
+          "log": "reconnect_partial_response.log"
+        },
+        {
+          "name": "reconnect_queued_response",
+          "passed": true,
+          "exitCode": 0,
+          "log": "reconnect_queued_response.log"
+        },
+        {
+          "name": "ble_crc_left_for_fpga",
+          "passed": true,
+          "exitCode": 0,
+          "log": "ble_crc_left_for_fpga.log"
+        },
+        {
+          "name": "crc_valid_future_version_transparent",
+          "passed": true,
+          "exitCode": 0,
+          "log": "crc_valid_future_version_transparent.log"
+        },
+        {
+          "name": "diagnostic_bootstrap",
+          "passed": true,
+          "exitCode": 0,
+          "log": "diagnostic_bootstrap.log"
+        },
+        {
+          "name": "diagnostic_periodic_refresh",
+          "passed": true,
+          "exitCode": 0,
+          "log": "diagnostic_periodic_refresh.log"
+        },
+        {
+          "name": "diagnostic_uart_ready",
+          "passed": true,
+          "exitCode": 0,
+          "log": "diagnostic_uart_ready.log"
+        },
+        {
+          "name": "success_ble_uart",
+          "passed": true,
+          "exitCode": 0,
+          "log": "success_ble_uart.log"
+        },
+        {
+          "name": "success_roundtrip",
+          "passed": true,
+          "exitCode": 0,
+          "log": "success_roundtrip.log"
+        },
+        {
+          "name": "malformed_not_success",
+          "passed": true,
+          "exitCode": 0,
+          "log": "malformed_not_success.log"
+        },
+        {
+          "name": "short_uart_not_success",
+          "passed": true,
+          "exitCode": 0,
+          "log": "short_uart_not_success.log"
+        },
+        {
+          "name": "uart_noise_crc_success_counts",
+          "passed": true,
+          "exitCode": 0,
+          "log": "uart_noise_crc_success_counts.log"
+        },
+        {
+          "name": "notify_retry_success_counts",
+          "passed": true,
+          "exitCode": 0,
+          "log": "notify_retry_success_counts.log"
+        },
+        {
+          "name": "notify_status_not_double_count",
+          "passed": true,
+          "exitCode": 0,
+          "log": "notify_status_not_double_count.log"
+        },
+        {
+          "name": "init_serial_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "init_serial_failed_closed.log"
+        },
+        {
+          "name": "init_rx_buffer_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "init_rx_buffer_failed_closed.log"
+        },
+        {
+          "name": "init_tx_buffer_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "init_tx_buffer_failed_closed.log"
+        },
+        {
+          "name": "init_prepare_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "init_prepare_failed_closed.log"
+        },
+        {
+          "name": "driver_negative_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_negative_failed_closed.log"
+        },
+        {
+          "name": "driver_zero_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_zero_failed_closed.log"
+        },
+        {
+          "name": "driver_short_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_short_failed_closed.log"
+        },
+        {
+          "name": "driver_timeout_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_timeout_failed_closed.log"
+        },
+        {
+          "name": "driver_wait_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_wait_failed_closed.log"
+        },
+        {
+          "name": "driver_config_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_config_failed_closed.log"
+        },
+        {
+          "name": "back_to_back_responses",
+          "passed": true,
+          "exitCode": 0,
+          "log": "back_to_back_responses.log"
+        },
+        {
+          "name": "response_during_tx_wait",
+          "passed": true,
+          "exitCode": 0,
+          "log": "response_during_tx_wait.log"
+        },
+        {
+          "name": "fragment_during_tx_wait",
+          "passed": true,
+          "exitCode": 0,
+          "log": "fragment_during_tx_wait.log"
+        },
+        {
+          "name": "partial_before_tx_wait_buffered_tail",
+          "passed": true,
+          "exitCode": 0,
+          "log": "partial_before_tx_wait_buffered_tail.log"
+        },
+        {
+          "name": "disconnect_during_tx_wait",
+          "passed": true,
+          "exitCode": 0,
+          "log": "disconnect_during_tx_wait.log"
+        },
+        {
+          "name": "old_tx_wait_failure_new_session",
+          "passed": true,
+          "exitCode": 0,
+          "log": "old_tx_wait_failure_new_session.log"
+        },
+        {
+          "name": "discarded_bytes_are_separate",
+          "passed": true,
+          "exitCode": 0,
+          "log": "discarded_bytes_are_separate.log"
+        },
+        {
+          "name": "failed_close_reconnect",
+          "passed": true,
+          "exitCode": 0,
+          "log": "failed_close_reconnect.log"
+        },
+        {
+          "name": "failed_close_reused_handle",
+          "passed": true,
+          "exitCode": 0,
+          "log": "failed_close_reused_handle.log"
+        },
+        {
+          "name": "close_on_host_once",
+          "passed": true,
+          "exitCode": 0,
+          "log": "close_on_host_once.log"
+        },
+        {
+          "name": "duplicate_close_requests",
+          "passed": true,
+          "exitCode": 0,
+          "log": "duplicate_close_requests.log"
+        },
+        {
+          "name": "host_close_then_reconnect",
+          "passed": true,
+          "exitCode": 0,
+          "log": "host_close_then_reconnect.log"
+        },
+        {
+          "name": "new_failure_replaces_old_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "new_failure_replaces_old_close.log"
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\ble_bridge\\ble_bridge.ino": "b46c363a91c186e388c3075e862e1b9b4a2bcc0d3cdcfa1afa65bcdc4d8c646e",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\ble_bridge\\bridge_uart_io.h": "68f5562a4dce803ac7eec3caf40d81bade5f5ae679f7861565a740702588940a",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\c3-diagnostic-20261022\\host-tests\\run_diagnostic_host_tests.py": "f6fdb0d71b25255ef3cdc1f376bb37eefc45d1253665062ab25e735f5225dd72",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\run-bridge-tests.py": "ae79c453bda920481594e1e86177c340c017a862bd4fde0b73bda092574b6a6d",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\bridge_transport_test.cpp": "ed781ac1746aaf6809bf811569746c911d54f4a2909026b1e7577c3b31116e51",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\Arduino.h": "ad5fa3e147f659eb21b098350bf0f4ad9956d1bdc10aa7ccabd6b10e926edc9f",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\BLE2902.h": "6fbb939d2a8d1d23bd87a987952ff483175805e8b8dcca169a420dde5741e0f3",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\BLEDevice.h": "fc85c987209b77334ad1889777dbb385fd4c29fcb8c322cc0f82e0e2734bcb6b",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\BLEServer.h": "030c5b5382d1d64e47ca0f024bbc274036291739e87cde2c1bce03bb6f6b72a6",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\BLEUtils.h": "b3adf106d95b8934f690943f2921308b90be5b766c4c8ba250c792de56400201",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\freertos\\FreeRTOS.h": "044c14021852b745c2eccc0b3878ddf3b21e5fa6916a66c311034c5a44531b80",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\freertos\\queue.h": "c3aab5165ea35da6669b3544f88d3a6ef8843ed35957291ab1d661daac7d3566",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\freertos\\task.h": "1a155fb741895bbbfef0f526dd34f4ca71f8cd66ac8bef455978feb91c2112c0",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\nimble\\nimble_port.h": "107a8373f7f610bac3f8f0103c9b64dcfbcb5c7b9f3ba4c5f803d54d9dbb2811"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\ble_bridge\\ble_bridge.ino": "b46c363a91c186e388c3075e862e1b9b4a2bcc0d3cdcfa1afa65bcdc4d8c646e",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\ble_bridge\\bridge_uart_io.h": "68f5562a4dce803ac7eec3caf40d81bade5f5ae679f7861565a740702588940a",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\c3-diagnostic-20261022\\host-tests\\run_diagnostic_host_tests.py": "f6fdb0d71b25255ef3cdc1f376bb37eefc45d1253665062ab25e735f5225dd72",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\run-bridge-tests.py": "ae79c453bda920481594e1e86177c340c017a862bd4fde0b73bda092574b6a6d",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\bridge_transport_test.cpp": "ed781ac1746aaf6809bf811569746c911d54f4a2909026b1e7577c3b31116e51",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\Arduino.h": "ad5fa3e147f659eb21b098350bf0f4ad9956d1bdc10aa7ccabd6b10e926edc9f",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\BLE2902.h": "6fbb939d2a8d1d23bd87a987952ff483175805e8b8dcca169a420dde5741e0f3",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\BLEDevice.h": "fc85c987209b77334ad1889777dbb385fd4c29fcb8c322cc0f82e0e2734bcb6b",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\BLEServer.h": "030c5b5382d1d64e47ca0f024bbc274036291739e87cde2c1bce03bb6f6b72a6",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\BLEUtils.h": "b3adf106d95b8934f690943f2921308b90be5b766c4c8ba250c792de56400201",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\freertos\\FreeRTOS.h": "044c14021852b745c2eccc0b3878ddf3b21e5fa6916a66c311034c5a44531b80",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\freertos\\queue.h": "c3aab5165ea35da6669b3544f88d3a6ef8843ed35957291ab1d661daac7d3566",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\freertos\\task.h": "1a155fb741895bbbfef0f526dd34f4ca71f8cd66ac8bef455978feb91c2112c0",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\after\\harness\\stubs\\nimble\\nimble_port.h": "107a8373f7f610bac3f8f0103c9b64dcfbcb5c7b9f3ba4c5f803d54d9dbb2811"
+      },
+      "sourceSha256After": "b46c363a91c186e388c3075e862e1b9b4a2bcc0d3cdcfa1afa65bcdc4d8c646e",
+      "inputsUnchanged": true,
+      "passed": 62,
+      "failed": 0,
+      "accepted": true
+    },
+    "sdk_after": {
+      "exitCode": 0,
+      "summary": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\run_20261023_220728_160064\\summary.json",
+      "timestampUtc": "2026-10-23T14:07:32.924163+00:00",
+      "kind": "deterministic host stubs; no COM/BLE/hardware access",
+      "source": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\ble_bridge\\ble_bridge.ino",
+      "sourceSha256Before": "b46c363a91c186e388c3075e862e1b9b4a2bcc0d3cdcfa1afa65bcdc4d8c646e",
+      "compileExit": 0,
+      "compilerSetup": "D:\\.Download\\VC\\Auxiliary\\Build\\vcvars64.bat",
+      "adaptations": [
+        "historical diagnostic length assertion changed from 16 to 40",
+        "UART-ready defaults true; explicit initialization-failure cases",
+        "IDF UART driver stubs proxy existing write/short-write injection and model completion status/hooks",
+        "buffer-size return values and one-ms host tick stubs"
+      ],
+      "originalCaseCount": 29,
+      "extraCaseCount": 31,
+      "cases": [
+        {
+          "name": "first_write",
+          "passed": true,
+          "exitCode": 0,
+          "log": "first_write.log"
+        },
+        {
+          "name": "malformed_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "malformed_close.log"
+        },
+        {
+          "name": "late_write_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "late_write_close.log"
+        },
+        {
+          "name": "queue_full_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "queue_full_close.log"
+        },
+        {
+          "name": "uart_error_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "uart_error_close.log"
+        },
+        {
+          "name": "short_uart_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "short_uart_close.log"
+        },
+        {
+          "name": "same_loop_uart_error",
+          "passed": true,
+          "exitCode": 0,
+          "log": "same_loop_uart_error.log"
+        },
+        {
+          "name": "notify_retry_close",
+          "passed": true,
+          "exitCode": 0,
+          "log": "notify_retry_close.log"
+        },
+        {
+          "name": "notify_accept",
+          "passed": true,
+          "exitCode": 0,
+          "log": "notify_accept.log"
+        },
+        {
+          "name": "late_notify_status",
+          "passed": true,
+          "exitCode": 0,
+          "log": "late_notify_status.log"
+        },
+        {
+          "name": "reconnect_first_write",
+          "passed": true,
+          "exitCode": 0,
+          "log": "reconnect_first_write.log"
+        },
+        {
+          "name": "reconnect_between_loops",
+          "passed": true,
+          "exitCode": 0,
+          "log": "reconnect_between_loops.log"
+        },
+        {
+          "name": "partial_uart_timeout",
+          "passed": true,
+          "exitCode": 0,
+          "log": "partial_uart_timeout.log"
+        },
+        {
+          "name": "old_failure_new_session",
+          "passed": true,
+          "exitCode": 0,
+          "log": "old_failure_new_session.log"
+        },
+        {
+          "name": "stale_failure_cannot_unpoison",
+          "passed": true,
+          "exitCode": 0,
+          "log": "stale_failure_cannot_unpoison.log"
+        },
+        {
+          "name": "failed_writes_do_not_fill_queue",
+          "passed": true,
+          "exitCode": 0,
+          "log": "failed_writes_do_not_fill_queue.log"
+        },
+        {
+          "name": "diagnostic_endianness",
+          "passed": true,
+          "exitCode": 0,
+          "log": "diagnostic_endianness.log"
+        },
+        {
+          "name": "valid_nested_header",
+          "passed": true,
+          "exitCode": 0,
+          "log": "valid_nested_header.log"
+        },
+        {
+          "name": "crc_error_recovery",
+          "passed": true,
+          "exitCode": 0,
+          "log": "crc_error_recovery.log"
+        },
+        {
+          "name": "deleted_byte_nested_recovery",
+          "passed": true,
+          "exitCode": 0,
+          "log": "deleted_byte_nested_recovery.log"
+        },
+        {
+          "name": "inserted_byte_nested_recovery",
+          "passed": true,
+          "exitCode": 0,
+          "log": "inserted_byte_nested_recovery.log"
+        },
+        {
+          "name": "overlapping_header_recovery",
+          "passed": true,
+          "exitCode": 0,
+          "log": "overlapping_header_recovery.log"
+        },
+        {
+          "name": "fragmented_all_boundaries",
+          "passed": true,
+          "exitCode": 0,
+          "log": "fragmented_all_boundaries.log"
+        },
+        {
+          "name": "noise_then_fragmented_header",
+          "passed": true,
+          "exitCode": 0,
+          "log": "noise_then_fragmented_header.log"
+        },
+        {
+          "name": "consecutive_crc_errors",
+          "passed": true,
+          "exitCode": 0,
+          "log": "consecutive_crc_errors.log"
+        },
+        {
+          "name": "reconnect_partial_response",
+          "passed": true,
+          "exitCode": 0,
+          "log": "reconnect_partial_response.log"
+        },
+        {
+          "name": "reconnect_queued_response",
+          "passed": true,
+          "exitCode": 0,
+          "log": "reconnect_queued_response.log"
+        },
+        {
+          "name": "ble_crc_left_for_fpga",
+          "passed": true,
+          "exitCode": 0,
+          "log": "ble_crc_left_for_fpga.log"
+        },
+        {
+          "name": "crc_valid_future_version_transparent",
+          "passed": true,
+          "exitCode": 0,
+          "log": "crc_valid_future_version_transparent.log"
+        },
+        {
+          "name": "diagnostic_bootstrap",
+          "passed": true,
+          "exitCode": 0,
+          "log": "diagnostic_bootstrap.log"
+        },
+        {
+          "name": "diagnostic_periodic_refresh",
+          "passed": true,
+          "exitCode": 0,
+          "log": "diagnostic_periodic_refresh.log"
+        },
+        {
+          "name": "diagnostic_uart_ready",
+          "passed": true,
+          "exitCode": 0,
+          "log": "diagnostic_uart_ready.log"
+        },
+        {
+          "name": "success_ble_uart",
+          "passed": true,
+          "exitCode": 0,
+          "log": "success_ble_uart.log"
+        },
+        {
+          "name": "success_roundtrip",
+          "passed": true,
+          "exitCode": 0,
+          "log": "success_roundtrip.log"
+        },
+        {
+          "name": "malformed_not_success",
+          "passed": true,
+          "exitCode": 0,
+          "log": "malformed_not_success.log"
+        },
+        {
+          "name": "short_uart_not_success",
+          "passed": true,
+          "exitCode": 0,
+          "log": "short_uart_not_success.log"
+        },
+        {
+          "name": "uart_noise_crc_success_counts",
+          "passed": true,
+          "exitCode": 0,
+          "log": "uart_noise_crc_success_counts.log"
+        },
+        {
+          "name": "notify_retry_success_counts",
+          "passed": true,
+          "exitCode": 0,
+          "log": "notify_retry_success_counts.log"
+        },
+        {
+          "name": "notify_status_not_double_count",
+          "passed": true,
+          "exitCode": 0,
+          "log": "notify_status_not_double_count.log"
+        },
+        {
+          "name": "init_serial_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "init_serial_failed_closed.log"
+        },
+        {
+          "name": "init_rx_buffer_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "init_rx_buffer_failed_closed.log"
+        },
+        {
+          "name": "init_tx_buffer_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "init_tx_buffer_failed_closed.log"
+        },
+        {
+          "name": "init_prepare_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "init_prepare_failed_closed.log"
+        },
+        {
+          "name": "driver_negative_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_negative_failed_closed.log"
+        },
+        {
+          "name": "driver_zero_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_zero_failed_closed.log"
+        },
+        {
+          "name": "driver_short_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_short_failed_closed.log"
+        },
+        {
+          "name": "driver_timeout_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_timeout_failed_closed.log"
+        },
+        {
+          "name": "driver_wait_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_wait_failed_closed.log"
+        },
+        {
+          "name": "driver_config_failed_closed",
+          "passed": true,
+          "exitCode": 0,
+          "log": "driver_config_failed_closed.log"
+        },
+        {
+          "name": "back_to_back_responses",
+          "passed": true,
+          "exitCode": 0,
+          "log": "back_to_back_responses.log"
+        },
+        {
+          "name": "response_during_tx_wait",
+          "passed": true,
+          "exitCode": 0,
+          "log": "response_during_tx_wait.log"
+        },
+        {
+          "name": "fragment_during_tx_wait",
+          "passed": true,
+          "exitCode": 0,
+          "log": "fragment_during_tx_wait.log"
+        },
+        {
+          "name": "partial_before_tx_wait_buffered_tail",
+          "passed": true,
+          "exitCode": 0,
+          "log": "partial_before_tx_wait_buffered_tail.log"
+        },
+        {
+          "name": "disconnect_during_tx_wait",
+          "passed": true,
+          "exitCode": 0,
+          "log": "disconnect_during_tx_wait.log"
+        },
+        {
+          "name": "old_tx_wait_failure_new_session",
+          "passed": true,
+          "exitCode": 0,
+          "log": "old_tx_wait_failure_new_session.log"
+        },
+        {
+          "name": "discarded_bytes_are_separate",
+          "passed": true,
+          "exitCode": 0,
+          "log": "discarded_bytes_are_separate.log"
+        },
+        {
+          "name": "sdk_burst_keeps_original_packets",
+          "passed": true,
+          "exitCode": 0,
+          "log": "sdk_burst_keeps_original_packets.log"
+        },
+        {
+          "name": "sdk_old_write_cannot_cross_connection",
+          "passed": true,
+          "exitCode": 0,
+          "log": "sdk_old_write_cannot_cross_connection.log"
+        },
+        {
+          "name": "sdk_old_and_new_keep_new_once",
+          "passed": true,
+          "exitCode": 0,
+          "log": "sdk_old_and_new_keep_new_once.log"
+        },
+        {
+          "name": "sdk_malformed_cannot_hide_behind_next_write",
+          "passed": true,
+          "exitCode": 0,
+          "log": "sdk_malformed_cannot_hide_behind_next_write.log"
+        }
+      ],
+      "inputHashesBefore": {
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\ble_bridge\\ble_bridge.ino": "b46c363a91c186e388c3075e862e1b9b4a2bcc0d3cdcfa1afa65bcdc4d8c646e",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\ble_bridge\\bridge_uart_io.h": "68f5562a4dce803ac7eec3caf40d81bade5f5ae679f7861565a740702588940a",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\c3-diagnostic-20261022\\host-tests\\run_diagnostic_host_tests.py": "f6fdb0d71b25255ef3cdc1f376bb37eefc45d1253665062ab25e735f5225dd72",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\run-bridge-tests.py": "ae79c453bda920481594e1e86177c340c017a862bd4fde0b73bda092574b6a6d",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\bridge_transport_test.cpp": "ed781ac1746aaf6809bf811569746c911d54f4a2909026b1e7577c3b31116e51",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\Arduino.h": "ad5fa3e147f659eb21b098350bf0f4ad9956d1bdc10aa7ccabd6b10e926edc9f",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\BLE2902.h": "6fbb939d2a8d1d23bd87a987952ff483175805e8b8dcca169a420dde5741e0f3",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\BLEDevice.h": "9d664a6e5da2ee35eb6dc7c8a9078d35fd65171c1c6c14ece64470238928447a",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\BLEServer.h": "030c5b5382d1d64e47ca0f024bbc274036291739e87cde2c1bce03bb6f6b72a6",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\BLEUtils.h": "b3adf106d95b8934f690943f2921308b90be5b766c4c8ba250c792de56400201",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\freertos\\FreeRTOS.h": "044c14021852b745c2eccc0b3878ddf3b21e5fa6916a66c311034c5a44531b80",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\freertos\\queue.h": "c3aab5165ea35da6669b3544f88d3a6ef8843ed35957291ab1d661daac7d3566",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\freertos\\task.h": "1a155fb741895bbbfef0f526dd34f4ca71f8cd66ac8bef455978feb91c2112c0",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\nimble\\nimble_port.h": "107a8373f7f610bac3f8f0103c9b64dcfbcb5c7b9f3ba4c5f803d54d9dbb2811"
+      },
+      "inputHashesAfter": {
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\ble_bridge\\ble_bridge.ino": "b46c363a91c186e388c3075e862e1b9b4a2bcc0d3cdcfa1afa65bcdc4d8c646e",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\firmware\\ble_bridge\\bridge_uart_io.h": "68f5562a4dce803ac7eec3caf40d81bade5f5ae679f7861565a740702588940a",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\c3-diagnostic-20261022\\host-tests\\run_diagnostic_host_tests.py": "f6fdb0d71b25255ef3cdc1f376bb37eefc45d1253665062ab25e735f5225dd72",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\run-bridge-tests.py": "ae79c453bda920481594e1e86177c340c017a862bd4fde0b73bda092574b6a6d",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\bridge_transport_test.cpp": "ed781ac1746aaf6809bf811569746c911d54f4a2909026b1e7577c3b31116e51",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\Arduino.h": "ad5fa3e147f659eb21b098350bf0f4ad9956d1bdc10aa7ccabd6b10e926edc9f",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\BLE2902.h": "6fbb939d2a8d1d23bd87a987952ff483175805e8b8dcca169a420dde5741e0f3",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\BLEDevice.h": "9d664a6e5da2ee35eb6dc7c8a9078d35fd65171c1c6c14ece64470238928447a",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\BLEServer.h": "030c5b5382d1d64e47ca0f024bbc274036291739e87cde2c1bce03bb6f6b72a6",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\BLEUtils.h": "b3adf106d95b8934f690943f2921308b90be5b766c4c8ba250c792de56400201",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\freertos\\FreeRTOS.h": "044c14021852b745c2eccc0b3878ddf3b21e5fa6916a66c311034c5a44531b80",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\freertos\\queue.h": "c3aab5165ea35da6669b3544f88d3a6ef8843ed35957291ab1d661daac7d3566",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\freertos\\task.h": "1a155fb741895bbbfef0f526dd34f4ca71f8cd66ac8bef455978feb91c2112c0",
+        "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\tmp\\cclose\\20261023_220707_498936\\sdk-after\\harness\\stubs\\nimble\\nimble_port.h": "107a8373f7f610bac3f8f0103c9b64dcfbcb5c7b9f3ba4c5f803d54d9dbb2811"
+      },
+      "sourceSha256After": "b46c363a91c186e388c3075e862e1b9b4a2bcc0d3cdcfa1afa65bcdc4d8c646e",
+      "inputsUnchanged": true,
+      "passed": 60,
+      "failed": 0,
+      "accepted": true
+    }
+  }
+}

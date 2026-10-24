@@ -1,0 +1,473 @@
+{
+  "snapshot": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\code-hardening-20261023\\fpga-build\\build_uart-prefix-recovery_20261023_094225_1ccb041d",
+  "variant": "uart-prefix-recovery",
+  "run": {
+    "startedAt": "2026-10-23T09:42:26.328831+08:00",
+    "endedAt": "2026-10-23T09:46:48.829782+08:00",
+    "durationSeconds": 262.5,
+    "exitCode": 0,
+    "timedOut": false,
+    "timeoutSeconds": 1200,
+    "command": [
+      "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+      "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\code-hardening-20261023\\fpga-build\\build_uart-prefix-recovery_20261023_094225_1ccb041d\\scripts\\build-contest-full.tcl"
+    ],
+    "pid": 22632
+  },
+  "sourceOrigin": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth",
+  "protectedMainProject": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth",
+  "baselineReport": "verification\\main-piano-repair-20261020\\build_main-status-arbiter_20261022_131109_47ea1587\\build-results.json",
+  "protectedImplUnchanged": true,
+  "protectedImplFileCount": 27,
+  "sourceInputsMatch": true,
+  "snapshotInputsMatch": true,
+  "mainProjectInputsMatch": true,
+  "mainProjectInputMismatches": [],
+  "sourceMatchingNote": "sourceInputsMatch means the explicitly named source origin; mainProjectInputsMatch is a separate full 80-input check.",
+  "buildAcceptanceNote": "Frozen source-origin build/timing and original implementation protection only. Main-source adoption and hardware validation are separate.",
+  "sourceInputFileCount": 81,
+  "timingPassMarker": true,
+  "warningCount": 75,
+  "errorLines": [],
+  "timingParserNote": "Each 3.1.1-3.1.4 table is bounded; 3.2 pulse-width rows excluded.",
+  "violationCountNote": "Setup/Hold vendor endpoint totals include recovery/removal; no separate totals provided.",
+  "gaoExpected": true,
+  "hardwareValidated": false,
+  "buildAccepted": true,
+  "current": {
+    "createdTime": "Fri Oct 23 09:46:48 2026",
+    "part": "GW5AT-LV60PG484AC1/I0",
+    "pathsAnalyzed": 97667,
+    "endpointsAnalyzed": 56217,
+    "violations": {
+      "setup": 0,
+      "hold": 0
+    },
+    "minimumSlackNs": {
+      "setup": 0.038,
+      "hold": 0.146,
+      "recovery": 6.396,
+      "removal": 0.504
+    },
+    "worstPaths": {
+      "setup": {
+        "from": "ready_sync_s0/Q",
+        "to": "system/performance/held_note_held_note_RAMREG_7_G[8]_s0/RESET"
+      },
+      "hold": {
+        "from": "system/synth/u_polar0/state_write_data_94_s0/Q",
+        "to": "system/synth/u_polar0/gowin_add_SDPX9B_states_states_0_2_s/DI[4]"
+      },
+      "recovery": {
+        "from": "gw_gao_inst_0/u_la0_top/rst_ao_s0/Q",
+        "to": "gw_gao_inst_0/u_la0_top/u_ao_mem_ctrl/capture_length_4_s1/CLEAR"
+      },
+      "removal": {
+        "from": "audio_clock/first_lock_stable_s0/Q",
+        "to": "audio_clock/pll_49m152/init/rEnable_1_s0/CLEAR"
+      }
+    },
+    "resources": {
+      "Logic": {
+        "used": 23121.0,
+        "capacity": 59904.0,
+        "reportedPercent": 39,
+        "free": 36783.0
+      },
+      "Register": {
+        "used": 17222.0,
+        "capacity": 60780.0,
+        "reportedPercent": 29,
+        "free": 43558.0
+      },
+      "BSRAM": {
+        "used": 110.0,
+        "capacity": 118.0,
+        "reportedPercent": 94,
+        "free": 8.0
+      },
+      "DSP": {
+        "used": 50.5,
+        "capacity": 118.0,
+        "reportedPercent": 43,
+        "free": 67.5
+      }
+    },
+    "clocks": [
+      {
+        "name": "sys_clk",
+        "constraintMHz": 50.0,
+        "fmaxMHz": 124.572,
+        "logicLevel": 4
+      },
+      {
+        "name": "tck_pad_i",
+        "constraintMHz": 20.0,
+        "fmaxMHz": 98.22,
+        "logicLevel": 10
+      },
+      {
+        "name": "video_clock/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 125.0,
+        "fmaxMHz": 156.678,
+        "logicLevel": 1
+      },
+      {
+        "name": "video_clock/pll/CLKOUT1.default_gen_clk",
+        "constraintMHz": 25.0,
+        "fmaxMHz": 54.27,
+        "logicLevel": 7
+      },
+      {
+        "name": "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 49.152,
+        "fmaxMHz": 49.244,
+        "logicLevel": 10
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\code-hardening-20261023\\fpga-build\\build_uart-prefix-recovery_20261023_094225_1ccb041d\\full\\impl\\pnr\\ao_0.fs",
+        "size": 20562592,
+        "sha256": "7E09D793B1E83DF59704AB515E1A9F77E9C7EA6B762A51673F0A9CA9D35BB6B6"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\code-hardening-20261023\\fpga-build\\build_uart-prefix-recovery_20261023_094225_1ccb041d\\full\\impl\\pnr\\ContestFull.tr",
+        "size": 409481,
+        "sha256": "E66D0A01447605DC3581C068C531AC5EFCA8B315F7535A01685CA566CBDC7AA7"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\code-hardening-20261023\\fpga-build\\build_uart-prefix-recovery_20261023_094225_1ccb041d\\full\\impl\\pnr\\ContestFull.rpt.txt",
+        "size": 93415,
+        "sha256": "5FAAD4C34965B419FF42287BC4C399896643C6D47E12C52D8E283884CFC30FD2"
+      }
+    ],
+    "hardwareValidated": false,
+    "implementationName": "ao_0",
+    "reportName": "ContestFull",
+    "netlistName": "ContestFull",
+    "implementationKind": "rtl-gao-in-main",
+    "gaoInstrumented": true,
+    "gaoEvidence": {
+      "verified": true,
+      "enabledConfigurationCount": 1,
+      "files": [
+        {
+          "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\code-hardening-20261023\\fpga-build\\build_uart-prefix-recovery_20261023_094225_1ccb041d\\full\\main_status.rao",
+          "size": 5710,
+          "sha256": "3196BD34ABBF8660233D9DA1293B0BE89D428F08122301970FB10477E61F1EF7"
+        },
+        {
+          "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\code-hardening-20261023\\fpga-build\\build_uart-prefix-recovery_20261023_094225_1ccb041d\\full\\impl\\pnr\\cmd.do",
+          "size": 973,
+          "sha256": "76E235D99401C07D9D72F444D7945670D1338BAD1E14879567EDD55914C7AFF6"
+        },
+        {
+          "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\code-hardening-20261023\\fpga-build\\build_uart-prefix-recovery_20261023_094225_1ccb041d\\full\\impl\\gwsynthesis\\ContestFull.vg",
+          "size": 8195707,
+          "sha256": "CF36A9915FE8051754F5617DCD080BD6E9CA59E9825F734428366B9D3B1371E4"
+        },
+        {
+          "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\code-hardening-20261023\\fpga-build\\build_uart-prefix-recovery_20261023_094225_1ccb041d\\full\\impl\\gwsynthesis\\RTL_GAO\\gw_gao_top.v",
+          "size": 6390,
+          "sha256": "AC88C1446CE14AF978D74C898BCE25108FCCC3A17E6ECF91642176545E5E150F"
+        },
+        {
+          "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\code-hardening-20261023\\fpga-build\\build_uart-prefix-recovery_20261023_094225_1ccb041d\\full\\impl\\gwsynthesis\\RTL_GAO\\ao_0\\gw_ao_parameter.v",
+          "size": 3389,
+          "sha256": "89D35E1B1936E2400E61974BD92683304CCCE67A4C1BFAF94E35AA7005291326"
+        }
+      ],
+      "gaoId": "0110110101010000",
+      "gaoIdHex": "0x6D50",
+      "rtlGaoFlag": true,
+      "pnrNetlistArgument": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\code-hardening-20261023\\fpga-build\\build_uart-prefix-recovery_20261023_094225_1ccb041d\\full\\impl\\gwsynthesis\\ContestFull.vg",
+      "instantiatedTop": "board_contest_full_top",
+      "module": "gw_gao",
+      "sampleClock": "sys_clk",
+      "captureSignalBits": 48,
+      "storageDepth": 2048,
+      "parameters": {
+        "SIG_PORT_WIDTH": 48,
+        "MEM_DATA_WIDTH": 49,
+        "STORAGE_DEPTH": 2048
+      },
+      "captureSignals": [
+        "debug_status[47]",
+        "debug_status[46]",
+        "debug_status[45]",
+        "debug_status[44]",
+        "debug_status[43]",
+        "debug_status[42]",
+        "debug_status[41]",
+        "debug_status[40]",
+        "debug_status[39]",
+        "debug_status[38]",
+        "debug_status[37]",
+        "debug_status[36]",
+        "debug_status[35]",
+        "debug_status[34]",
+        "debug_status[33]",
+        "debug_status[32]",
+        "debug_status[31]",
+        "debug_status[30]",
+        "debug_status[29]",
+        "debug_status[28]",
+        "debug_status[27]",
+        "debug_status[26]",
+        "debug_status[25]",
+        "debug_status[24]",
+        "debug_status[23]",
+        "debug_status[22]",
+        "debug_status[21]",
+        "debug_status[20]",
+        "debug_status[19]",
+        "debug_status[18]",
+        "debug_status[17]",
+        "debug_status[16]",
+        "debug_status[15]",
+        "debug_status[14]",
+        "debug_status[13]",
+        "debug_status[12]",
+        "debug_status[11]",
+        "debug_status[10]",
+        "debug_status[9]",
+        "debug_status[8]",
+        "debug_status[7]",
+        "debug_status[6]",
+        "debug_status[5]",
+        "debug_status[4]",
+        "debug_status[3]",
+        "debug_status[2]",
+        "debug_status[1]",
+        "debug_status[0]"
+      ]
+    },
+    "timingPass": true
+  },
+  "baseline": {
+    "createdTime": "Thu Oct 22 13:17:36 2026",
+    "part": "GW5AT-LV60PG484AC1/I0",
+    "pathsAnalyzed": 97688,
+    "endpointsAnalyzed": 56217,
+    "violations": {
+      "setup": 0,
+      "hold": 0
+    },
+    "minimumSlackNs": {
+      "setup": 0.066,
+      "hold": 0.101,
+      "recovery": 8.093,
+      "removal": 0.306
+    },
+    "worstPaths": {
+      "setup": {
+        "from": "system/sensors/eventizer/head_valid_s1/Q",
+        "to": "system/performance/record_ram_record_ram_0_1_s0/CEA"
+      },
+      "hold": {
+        "from": "gw_gao_inst_0/u_la0_top/capture_window_sel_10_s1/Q",
+        "to": "gw_gao_inst_0/u_la0_top/capture_end_tck_0_s0/D"
+      },
+      "recovery": {
+        "from": "gw_gao_inst_0/u_la0_top/rst_ao_s0/Q",
+        "to": "gw_gao_inst_0/u_la0_top/u_ao_mem_ctrl/capture_mem_addr_0_s5/CLEAR"
+      },
+      "removal": {
+        "from": "gw_gao_inst_0/u_la0_top/rst_ao_s0/Q",
+        "to": "gw_gao_inst_0/u_la0_top/capture_end_tck_0_s0/CLEAR"
+      }
+    },
+    "resources": {
+      "Logic": {
+        "used": 23471.0,
+        "capacity": 59904.0,
+        "reportedPercent": 40,
+        "free": 36433.0
+      },
+      "Register": {
+        "used": 17222.0,
+        "capacity": 60780.0,
+        "reportedPercent": 29,
+        "free": 43558.0
+      },
+      "BSRAM": {
+        "used": 110.0,
+        "capacity": 118.0,
+        "reportedPercent": 94,
+        "free": 8.0
+      },
+      "DSP": {
+        "used": 50.5,
+        "capacity": 118.0,
+        "reportedPercent": 43,
+        "free": 67.5
+      }
+    },
+    "clocks": [
+      {
+        "name": "sys_clk",
+        "constraintMHz": 50.0,
+        "fmaxMHz": 146.493,
+        "logicLevel": 5
+      },
+      {
+        "name": "tck_pad_i",
+        "constraintMHz": 20.0,
+        "fmaxMHz": 101.465,
+        "logicLevel": 13
+      },
+      {
+        "name": "video_clock/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 125.0,
+        "fmaxMHz": 162.39,
+        "logicLevel": 1
+      },
+      {
+        "name": "video_clock/pll/CLKOUT1.default_gen_clk",
+        "constraintMHz": 25.0,
+        "fmaxMHz": 73.196,
+        "logicLevel": 14
+      },
+      {
+        "name": "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 49.152,
+        "fmaxMHz": 49.311,
+        "logicLevel": 14
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\main-piano-repair-20261020\\build_main-status-arbiter_20261022_131109_47ea1587\\full\\impl\\pnr\\ao_0.fs",
+        "size": 20490408,
+        "sha256": "A1A85D4E0879614E0D50BE6BFF893B357B3861385720040A4CA0E73BF5542761"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\main-piano-repair-20261020\\build_main-status-arbiter_20261022_131109_47ea1587\\full\\impl\\pnr\\ContestFull.tr",
+        "size": 399658,
+        "sha256": "ADAA919F15FFB3A787191289A0D56E33587E76F4C794986D7ED9D0DFB18B0BDE"
+      },
+      {
+        "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\main-piano-repair-20261020\\build_main-status-arbiter_20261022_131109_47ea1587\\full\\impl\\pnr\\ContestFull.rpt.txt",
+        "size": 93355,
+        "sha256": "EBFD7227F336E784155B8EB9D4F2E91C58B21E5102397870E51F3C94B098D338"
+      }
+    ],
+    "hardwareValidated": false,
+    "implementationName": "ao_0",
+    "reportName": "ContestFull",
+    "netlistName": "ContestFull",
+    "implementationKind": "rtl-gao-in-main",
+    "gaoInstrumented": true,
+    "gaoEvidence": {
+      "verified": true,
+      "enabledConfigurationCount": 1,
+      "files": [
+        {
+          "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\main-piano-repair-20261020\\build_main-status-arbiter_20261022_131109_47ea1587\\full\\main_status.rao",
+          "size": 5710,
+          "sha256": "3196BD34ABBF8660233D9DA1293B0BE89D428F08122301970FB10477E61F1EF7"
+        },
+        {
+          "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\main-piano-repair-20261020\\build_main-status-arbiter_20261022_131109_47ea1587\\full\\impl\\pnr\\cmd.do",
+          "size": 937,
+          "sha256": "2A8EC2C99CAAFC5BC7663DF388E330BE365467BE9D3BD819311DC31BB6A2A0BC"
+        },
+        {
+          "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\main-piano-repair-20261020\\build_main-status-arbiter_20261022_131109_47ea1587\\full\\impl\\gwsynthesis\\ContestFull.vg",
+          "size": 8254587,
+          "sha256": "3575D5843C4865AB722C1CD489C494BC64E37E32244FEE8B02EDF0AD80DE18E7"
+        },
+        {
+          "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\main-piano-repair-20261020\\build_main-status-arbiter_20261022_131109_47ea1587\\full\\impl\\gwsynthesis\\RTL_GAO\\gw_gao_top.v",
+          "size": 6390,
+          "sha256": "AC88C1446CE14AF978D74C898BCE25108FCCC3A17E6ECF91642176545E5E150F"
+        },
+        {
+          "path": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\main-piano-repair-20261020\\build_main-status-arbiter_20261022_131109_47ea1587\\full\\impl\\gwsynthesis\\RTL_GAO\\ao_0\\gw_ao_parameter.v",
+          "size": 3389,
+          "sha256": "89D35E1B1936E2400E61974BD92683304CCCE67A4C1BFAF94E35AA7005291326"
+        }
+      ],
+      "gaoId": "0110110101010000",
+      "gaoIdHex": "0x6D50",
+      "rtlGaoFlag": true,
+      "pnrNetlistArgument": "C:\\Users\\asus\\Desktop\\Git\\TangMega60K_Synth\\verification\\main-piano-repair-20261020\\build_main-status-arbiter_20261022_131109_47ea1587\\full\\impl\\gwsynthesis\\ContestFull.vg",
+      "instantiatedTop": "board_contest_full_top",
+      "module": "gw_gao",
+      "sampleClock": "sys_clk",
+      "captureSignalBits": 48,
+      "storageDepth": 2048,
+      "parameters": {
+        "SIG_PORT_WIDTH": 48,
+        "MEM_DATA_WIDTH": 49,
+        "STORAGE_DEPTH": 2048
+      },
+      "captureSignals": [
+        "debug_status[47]",
+        "debug_status[46]",
+        "debug_status[45]",
+        "debug_status[44]",
+        "debug_status[43]",
+        "debug_status[42]",
+        "debug_status[41]",
+        "debug_status[40]",
+        "debug_status[39]",
+        "debug_status[38]",
+        "debug_status[37]",
+        "debug_status[36]",
+        "debug_status[35]",
+        "debug_status[34]",
+        "debug_status[33]",
+        "debug_status[32]",
+        "debug_status[31]",
+        "debug_status[30]",
+        "debug_status[29]",
+        "debug_status[28]",
+        "debug_status[27]",
+        "debug_status[26]",
+        "debug_status[25]",
+        "debug_status[24]",
+        "debug_status[23]",
+        "debug_status[22]",
+        "debug_status[21]",
+        "debug_status[20]",
+        "debug_status[19]",
+        "debug_status[18]",
+        "debug_status[17]",
+        "debug_status[16]",
+        "debug_status[15]",
+        "debug_status[14]",
+        "debug_status[13]",
+        "debug_status[12]",
+        "debug_status[11]",
+        "debug_status[10]",
+        "debug_status[9]",
+        "debug_status[8]",
+        "debug_status[7]",
+        "debug_status[6]",
+        "debug_status[5]",
+        "debug_status[4]",
+        "debug_status[3]",
+        "debug_status[2]",
+        "debug_status[1]",
+        "debug_status[0]"
+      ]
+    },
+    "timingPass": true
+  },
+  "change": {
+    "slackDeltaNs": {
+      "setup": -0.028,
+      "hold": 0.045,
+      "recovery": -1.697,
+      "removal": 0.198
+    },
+    "resourceDelta": {
+      "Logic": -350.0,
+      "Register": 0.0,
+      "BSRAM": 0.0,
+      "DSP": 0.0
+    }
+  }
+}

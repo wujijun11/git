@@ -1,0 +1,105 @@
+--- production/bridge_uart_io.h
++++ candidate/bridge_uart_io.h
+@@ -4,6 +4,102 @@
+ #include <stdint.h>
+ #include <driver/uart.h>
+ #include <freertos/FreeRTOS.h>
++#include <driver/gpio.h>
++#include <esp_intr_alloc.h>
++#include <hal/gpio_ll.h>
++#include <soc/gpio_reg.h>
++#include <soc/gpio_sig_map.h>
++#include <soc/io_mux_reg.h>
++
++// TEMPORARY verification-only observer for the fixed C3 GPIO7 TX wire.
++// No pinMode(), GPIO direction/output writes or UART matrix routing changes.
++// gpio_ll_input_enable() in this pinned ESP32-C3 IDF 5.5 LL only sets FUN_IE.
++// This is the same narrow operation used by Arduino's peripheral-output ISR.
++class BridgeTxObserver {
++public:
++    struct Sample {
++        uint32_t edges, mux, txMatrix, rxMatrix;
++        bool outputEnabled, inputEnabled;
++        int level;
++    };
++
++    esp_err_t serviceStatus=ESP_ERR_INVALID_STATE;
++    esp_err_t typeStatus=ESP_ERR_INVALID_STATE;
++    esp_err_t addStatus=ESP_ERR_INVALID_STATE;
++    esp_err_t enableStatus=ESP_ERR_INVALID_STATE;
++    Sample initBefore{},initAfter{},beforeTx{},afterTx{};
++    uint32_t attempts=0;
++    uint8_t sequence=0,opcode=0;
++
++    void begin() {
++        initBefore=sample();
++        // Preserve UART output enable, output signal and inversion. Enabling
++        // the input buffer allows pad feedback; it does not enable a driver.
++        gpio_ll_input_enable(&GPIO,7);
++        serviceStatus=gpio_install_isr_service(ESP_INTR_FLAG_IRAM);
++        if(serviceStatus==ESP_OK || serviceStatus==ESP_ERR_INVALID_STATE) {
++            typeStatus=gpio_set_intr_type(GPIO_NUM_7,GPIO_INTR_NEGEDGE);
++            if(typeStatus==ESP_OK) {
++                addStatus=gpio_isr_handler_add(GPIO_NUM_7,edgeIsr,this);
++                if(addStatus==ESP_OK)enableStatus=gpio_intr_enable(GPIO_NUM_7);
++            }
++        }
++        initAfter=sample();
++        beforeTx=initAfter;afterTx=initAfter;
++    }
++
++    Sample sample() {
++        Sample value;
++        portENTER_CRITICAL(&mux_);
++        value.edges=edges_;
++        portEXIT_CRITICAL(&mux_);
++        value.mux=REG_READ(IO_MUX_GPIO7_REG);
++        value.txMatrix=REG_READ(GPIO_FUNC7_OUT_SEL_CFG_REG);
++        value.rxMatrix=REG_READ(GPIO_FUNC9_IN_SEL_CFG_REG);
++        value.outputEnabled=(REG_READ(GPIO_ENABLE_REG)&(1UL<<7))!=0;
++        value.inputEnabled=(value.mux&FUN_IE_M)!=0;
++        // IDF documents gpio_get_level() as always zero if input is disabled.
++        // Use -1 for that case instead of reporting a fictitious low level.
++        value.level=value.inputEnabled?gpio_get_level(GPIO_NUM_7):-1;
++        return value;
++    }
++
++    bool irqReady() const {
++        return (serviceStatus==ESP_OK || serviceStatus==ESP_ERR_INVALID_STATE) &&
++            typeStatus==ESP_OK && addStatus==ESP_OK && enableStatus==ESP_OK;
++    }
++
++    bool preserved(const Sample &a,const Sample &b) const {
++        return ((a.mux^b.mux)&~FUN_IE_M)==0 && a.txMatrix==b.txMatrix &&
++            a.rxMatrix==b.rxMatrix && a.outputEnabled==b.outputEnabled;
++    }
++
++    bool expectedRouting(const Sample &a) const {
++        // ESP32-C3 local gpio_sig_map.h: U1TXD_OUT_IDX=9, U1RXD_IN_IDX=9.
++        // IN_SEL=6, IN_INV=0, SIG_IN_SEL=1: U1 RX matrix reads GPIO6.
++        return ((a.mux&MCU_SEL_M)>>MCU_SEL_S)==PIN_FUNC_GPIO &&
++            (a.txMatrix&0x5FFu)==U1TXD_OUT_IDX && a.outputEnabled &&
++            (a.rxMatrix&0x7Fu)==((1u<<6)|6u);
++    }
++
++    void beforeTransmit(uint8_t seq,uint8_t op) {
++        sequence=seq;opcode=op;attempts++;
++        beforeTx=sample();
++    }
++    void afterTransmit() {afterTx=sample();}
++
++private:
++    // ISR executes no allocator, std::atomic/library helper, logging or UART
++    // operation. Task snapshots and ISR increments share the short critical.
++    portMUX_TYPE mux_=portMUX_INITIALIZER_UNLOCKED;
++    volatile uint32_t edges_=0;
++    static void IRAM_ATTR edgeIsr(void *context) {
++        auto *observer=static_cast<BridgeTxObserver *>(context);
++        portENTER_CRITICAL_ISR(&observer->mux_);
++        observer->edges_++;
++        portEXIT_CRITICAL_ISR(&observer->mux_);
++    }
++};
+ 
+ // Serial1 owns installation, pin routing and its receive ring buffer. These
+ // helpers never install/delete a driver or move the selected GPIO6/7 pins.

@@ -1,0 +1,186 @@
+
+C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\c3-tx-observation-build\ble_bridge.ino.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .iram0.text:
+
+403802de <BridgeTxObserver::edgeIsr(void*)>:
+403802de:	1141                	addi	sp,sp,-16
+403802e0:	c422                	sw	s0,8(sp)
+403802e2:	c606                	sw	ra,12(sp)
+403802e4:	842a                	mv	s0,a0
+403802e6:	45d0c0ef          	jal	4038cf42 <vPortEnterCritical>
+403802ea:	08042783          	lw	a5,128(s0)
+403802ee:	40b2                	lw	ra,12(sp)
+403802f0:	0785                	addi	a5,a5,1
+403802f2:	08f42023          	sw	a5,128(s0)
+403802f6:	4422                	lw	s0,8(sp)
+403802f8:	0141                	addi	sp,sp,16
+403802fa:	4770c06f          	j	4038cf70 <vPortExitCritical>
+
+
+C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\c3-tx-observation-build\ble_bridge.ino.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .iram0.text:
+
+403802fe <gpio_intr_service>:
+403802fe:	7179                	addi	sp,sp,-48
+40380300:	d422                	sw	s0,40(sp)
+40380302:	9d818793          	addi	a5,gp,-1576 # 3fc94dd8 <gpio_context>
+40380306:	4b9c                	lw	a5,16(a5)
+40380308:	d606                	sw	ra,44(sp)
+4038030a:	d226                	sw	s1,36(sp)
+4038030c:	d04a                	sw	s2,32(sp)
+4038030e:	ce4e                	sw	s3,28(sp)
+40380310:	cc52                	sw	s4,24(sp)
+40380312:	ca56                	sw	s5,20(sp)
+40380314:	c85a                	sw	s6,16(sp)
+40380316:	c65e                	sw	s7,12(sp)
+40380318:	c3d9                	beqz	a5,4038039e <gpio_intr_service+0xa0>
+4038031a:	9d818413          	addi	s0,gp,-1576 # 3fc94dd8 <gpio_context>
+4038031e:	401c                	lw	a5,0(s0)
+40380320:	040009b7          	lui	s3,0x4000
+40380324:	19fd                	addi	s3,s3,-1 # 3ffffff <CSR_UINTSTATUS+0x3fff34e>
+40380326:	439c                	lw	a5,0(a5)
+40380328:	4fe4                	lw	s1,92(a5)
+4038032a:	0134f4b3          	and	s1,s1,s3
+4038032e:	c8a5                	beqz	s1,4038039e <gpio_intr_service+0xa0>
+40380330:	4b05                	li	s6,1
+40380332:	fc000ab7          	lui	s5,0xfc000
+40380336:	8526                	mv	a0,s1
+40380338:	ffc80097          	auipc	ra,0xffc80
+4038033c:	49c080e7          	jalr	1180(ra) # 400007d4 <__ffssi2>
+40380340:	fff50913          	addi	s2,a0,-1
+40380344:	4c4c                	lw	a1,28(s0)
+40380346:	4c08                	lw	a0,24(s0)
+40380348:	012b1a33          	sll	s4,s6,s2
+4038034c:	fffa4793          	not	a5,s4
+40380350:	864a                	mv	a2,s2
+40380352:	8cfd                	and	s1,s1,a5
+40380354:	ffc80097          	auipc	ra,0xffc80
+40380358:	4dc080e7          	jalr	1244(ra) # 40000830 <__lshrdi3>
+4038035c:	8905                	andi	a0,a0,1
+4038035e:	4b81                	li	s7,0
+40380360:	c919                	beqz	a0,40380376 <gpio_intr_service+0x78>
+40380362:	401c                	lw	a5,0(s0)
+40380364:	013a7733          	and	a4,s4,s3
+40380368:	4b85                	li	s7,1
+4038036a:	4394                	lw	a3,0(a5)
+4038036c:	46fc                	lw	a5,76(a3)
+4038036e:	0157f7b3          	and	a5,a5,s5
+40380372:	8fd9                	or	a5,a5,a4
+40380374:	c6fc                	sw	a5,76(a3)
+40380376:	481c                	lw	a5,16(s0)
+40380378:	090e                	slli	s2,s2,0x3
+4038037a:	97ca                	add	a5,a5,s2
+4038037c:	4398                	lw	a4,0(a5)
+4038037e:	c319                	beqz	a4,40380384 <gpio_intr_service+0x86>
+40380380:	43c8                	lw	a0,4(a5)
+40380382:	9702                	jalr	a4
+40380384:	000b9c63          	bnez	s7,4038039c <gpio_intr_service+0x9e>
+40380388:	401c                	lw	a5,0(s0)
+4038038a:	013a7a33          	and	s4,s4,s3
+4038038e:	4398                	lw	a4,0(a5)
+40380390:	477c                	lw	a5,76(a4)
+40380392:	0157f7b3          	and	a5,a5,s5
+40380396:	0147e7b3          	or	a5,a5,s4
+4038039a:	c77c                	sw	a5,76(a4)
+4038039c:	fcc9                	bnez	s1,40380336 <gpio_intr_service+0x38>
+4038039e:	50b2                	lw	ra,44(sp)
+403803a0:	5422                	lw	s0,40(sp)
+403803a2:	5492                	lw	s1,36(sp)
+403803a4:	5902                	lw	s2,32(sp)
+403803a6:	49f2                	lw	s3,28(sp)
+403803a8:	4a62                	lw	s4,24(sp)
+403803aa:	4ad2                	lw	s5,20(sp)
+403803ac:	4b42                	lw	s6,16(sp)
+403803ae:	4bb2                	lw	s7,12(sp)
+403803b0:	6145                	addi	sp,sp,48
+403803b2:	8082                	ret
+
+
+C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\c3-tx-observation-build\ble_bridge.ino.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .iram0.text:
+
+4038cf42 <vPortEnterCritical>:
+4038cf42:	1141                	addi	sp,sp,-16
+4038cf44:	c606                	sw	ra,12(sp)
+4038cf46:	fd3ff0ef          	jal	4038cf18 <xPortSetInterruptMaskFromISR>
+4038cf4a:	3fc997b7          	lui	a5,0x3fc99
+4038cf4e:	e587a703          	lw	a4,-424(a5) # 3fc98e58 <port_uxCriticalNesting>
+4038cf52:	0705                	addi	a4,a4,1
+4038cf54:	e4e7ac23          	sw	a4,-424(a5)
+4038cf58:	e587a703          	lw	a4,-424(a5)
+4038cf5c:	4785                	li	a5,1
+4038cf5e:	00f71663          	bne	a4,a5,4038cf6a <vPortEnterCritical+0x28>
+4038cf62:	3fc997b7          	lui	a5,0x3fc99
+4038cf66:	e4a7aa23          	sw	a0,-428(a5) # 3fc98e54 <port_uxOldInterruptState>
+4038cf6a:	40b2                	lw	ra,12(sp)
+4038cf6c:	0141                	addi	sp,sp,16
+4038cf6e:	8082                	ret
+
+
+C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\c3-tx-observation-build\ble_bridge.ino.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .iram0.text:
+
+4038cf70 <vPortExitCritical>:
+4038cf70:	3fc997b7          	lui	a5,0x3fc99
+4038cf74:	e587a703          	lw	a4,-424(a5) # 3fc98e58 <port_uxCriticalNesting>
+4038cf78:	e31d                	bnez	a4,4038cf9e <vPortExitCritical+0x2e>
+4038cf7a:	3c0776b7          	lui	a3,0x3c077
+4038cf7e:	3c080637          	lui	a2,0x3c080
+4038cf82:	3c077537          	lui	a0,0x3c077
+4038cf86:	1141                	addi	sp,sp,-16
+4038cf88:	d7068693          	addi	a3,a3,-656 # 3c076d70 <_flash_rodata_start+0x6c50>
+4038cf8c:	17860613          	addi	a2,a2,376 # 3c080178 <__func__.0>
+4038cf90:	26a00593          	li	a1,618
+4038cf94:	d6950513          	addi	a0,a0,-663 # 3c076d69 <_flash_rodata_start+0x6c49>
+4038cf98:	c606                	sw	ra,12(sp)
+4038cf9a:	680050ef          	jal	4039261a <__assert_func>
+4038cf9e:	e587a703          	lw	a4,-424(a5)
+4038cfa2:	cf19                	beqz	a4,4038cfc0 <vPortExitCritical+0x50>
+4038cfa4:	e587a703          	lw	a4,-424(a5)
+4038cfa8:	177d                	addi	a4,a4,-1
+4038cfaa:	e4e7ac23          	sw	a4,-424(a5)
+4038cfae:	e587a783          	lw	a5,-424(a5)
+4038cfb2:	e799                	bnez	a5,4038cfc0 <vPortExitCritical+0x50>
+4038cfb4:	3fc997b7          	lui	a5,0x3fc99
+4038cfb8:	e547a503          	lw	a0,-428(a5) # 3fc98e54 <port_uxOldInterruptState>
+4038cfbc:	f77ff06f          	j	4038cf32 <vPortClearInterruptMaskFromISR>
+4038cfc0:	8082                	ret
+
+
+C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\c3-tx-observation-build\ble_bridge.ino.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .iram0.text:
+
+4038cf18 <xPortSetInterruptMaskFromISR>:
+4038cf18:	300477f3          	csrrci	a5,mstatus,8
+4038cf1c:	600c2737          	lui	a4,0x600c2
+4038cf20:	19470713          	addi	a4,a4,404 # 600c2194 <SYSTEM+0x2194>
+4038cf24:	4691                	li	a3,4
+4038cf26:	4308                	lw	a0,0(a4)
+4038cf28:	8ba1                	andi	a5,a5,8
+4038cf2a:	c314                	sw	a3,0(a4)
+4038cf2c:	3007a7f3          	csrrs	a5,mstatus,a5
+4038cf30:	8082                	ret
+
+
+C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\c3-tx-observation-build\ble_bridge.ino.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .iram0.text:
+
+4038cf32 <vPortClearInterruptMaskFromISR>:
+4038cf32:	600c27b7          	lui	a5,0x600c2
+4038cf36:	18a7aa23          	sw	a0,404(a5) # 600c2194 <SYSTEM+0x2194>
+4038cf3a:	0001                	nop
+4038cf3c:	0001                	nop
+4038cf3e:	0001                	nop
+4038cf40:	8082                	ret

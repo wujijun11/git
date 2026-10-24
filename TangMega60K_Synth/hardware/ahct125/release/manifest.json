@@ -1,0 +1,173 @@
+{
+  "revision": "AHCT125-LED-R1",
+  "date": "2026-10-18",
+  "board_mm": [
+    40,
+    30
+  ],
+  "assembled_component_count": 9,
+  "assembly": {
+    "smd": 5,
+    "through_hole": 4
+  },
+  "validation": "Native SCH/PCB DRC and manufacturing file consistency checks passed.",
+  "prototype_status": "Not fabricated, assembled, or physically tested.",
+  "panel_status": "Single-board exports. Factory panel design/approval required.",
+  "files": [
+    {
+      "path": "assembly_order_notes.md",
+      "bytes": 3765,
+      "sha256": "86339d1dda57566f66462429c78601edbe9dde611c57f94897f0cdf39c4d0ffc"
+    },
+    {
+      "path": "generate_ground_plane.py",
+      "bytes": 5864,
+      "sha256": "5c9ec9f9e4be4c036611b37075938095f70db761c8b3b298fb64565e556e114c"
+    },
+    {
+      "path": "maintenance/README.md",
+      "bytes": 1099,
+      "sha256": "1922b7880d90da1d0eed489af54eb10e69c626cfae0ae8230dd54876aa8b3f95"
+    },
+    {
+      "path": "preview/PCB.png",
+      "bytes": 219007,
+      "sha256": "b7f05aa0334903c6d1556819b1efab64fa97da2e7fe7ffe1245f866f6dbf4d16"
+    },
+    {
+      "path": "preview/Schematic.png",
+      "bytes": 504063,
+      "sha256": "6a7813df0826eb5876f7a58d1d398e1f0d0edd8a5c101c967078459fe385b670"
+    },
+    {
+      "path": "production/AHCT125_LED_R1.net",
+      "bytes": 11959,
+      "sha256": "e24749d23e3ad3736b3fd62dc2f0cbd5bdbf5e99cbf973d99b10e33d2554a2c4"
+    },
+    {
+      "path": "production/Assembly_AHCT125_LED_R1.html",
+      "bytes": 9891163,
+      "sha256": "41600f4c52668a45b9548b4f277ca0585d0b2a584e54668726a684abf37ed795"
+    },
+    {
+      "path": "production/BOM_AHCT125_LED_R1.csv",
+      "bytes": 1600,
+      "sha256": "66fea025c0694ac6f7172c2de3a168520229c1d41ab7468f9a11cc6cfa3512e4"
+    },
+    {
+      "path": "production/BOM_AHCT125_LED_R1.xlsx",
+      "bytes": 7487,
+      "sha256": "4ba25a9e1b9e5b64fe6a8897ce07297cdcd02b641226959c6dc5dc57aab7a8b7"
+    },
+    {
+      "path": "production/CPL_AHCT125_LED_R1.csv",
+      "bytes": 3960,
+      "sha256": "4eb4894b3046822a958c3669a15ea75e399873408c1cf63e8108cfa7aeb9bb1c"
+    },
+    {
+      "path": "production/CPL_AHCT125_LED_R1.xlsx",
+      "bytes": 7939,
+      "sha256": "ee6f63351e309ccec3c65d3f628cc3beb1686b794b69350648b957488dd7b245"
+    },
+    {
+      "path": "production/Gerber_AHCT125_LED_R1.zip",
+      "bytes": 53686,
+      "sha256": "ff1231a71da42265830669f89beb39aa31c08283d48180a0a21f38eae18b9032"
+    },
+    {
+      "path": "production/PCB_AHCT125_LED_R1.pdf",
+      "bytes": 186043,
+      "sha256": "fa4751ddf6ce00d6bf30c7a69da4c71a1f153b8632d55610e49590e34713a944"
+    },
+    {
+      "path": "project/AHCT125-LED-R1/AHCT125-LED-R1.eprj3",
+      "bytes": 1600,
+      "sha256": "f18e082d6774dce5263a1d13c9950650a5d82ef0350eee11f136410944908d43"
+    },
+    {
+      "path": "project/AHCT125-LED-R1/panel/Panel1.epan2",
+      "bytes": 255,
+      "sha256": "f4660cc2c9c85d44b1e58ceeb7cc2f5b0300bffa1b4787de074462602bb9888f"
+    },
+    {
+      "path": "project/AHCT125-LED-R1/pcb/PCB1.epcb2",
+      "bytes": 371199,
+      "sha256": "b05a49bfd3b9bc0bfd62769282007b017f5dbb9ace538e5443deec26355a959a"
+    },
+    {
+      "path": "project/AHCT125-LED-R1/sch/Schematic1/P1.esch2",
+      "bytes": 426464,
+      "sha256": "8a304457030ba6b355a41ac8929906a228aeef62edceeb0af0e3b908104c0c60"
+    },
+    {
+      "path": "project/AHCT125-LED-R1/sch/Schematic1/Schematic1.ecfg",
+      "bytes": 755,
+      "sha256": "d896f6bf1b4d6434ba45142ed7edd9c9b97c01c9cf19b2de9d65c2d234627e4b"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5054,
+      "sha256": "a6bffa90ba10e6e484ccddf436ef7d7f891074142ad52f734af3b690c3d6287a"
+    },
+    {
+      "path": "references/critical-layout.json",
+      "bytes": 25506,
+      "sha256": "3c375376edb89f518e00eae6af3de782f6b1a3342e5a9d5f52f33f79cd77f527"
+    },
+    {
+      "path": "verification/check_ground_connectivity.py",
+      "bytes": 8409,
+      "sha256": "d3b5d8cb5b5e2c85167e1b1b810c1e8cdaaeeb830cab0df926bd8e2ca957ff3a"
+    },
+    {
+      "path": "verification/fixed-ground-geometry.json",
+      "bytes": 3950,
+      "sha256": "01c4cbe76e7cdf6fc39df640905dfe7deb9e4197de139f63320080fa76080517"
+    },
+    {
+      "path": "verification/footprint_review.md",
+      "bytes": 6456,
+      "sha256": "f9386551d9217674bc06b0d042aa373349eb6c1678abffc15fb8cc41a11df0c9"
+    },
+    {
+      "path": "verification/independent-ground-check.json",
+      "bytes": 1860,
+      "sha256": "a7491b0690458aaf75b03fb312741a28b16bc15e4418e4e5239bdeb0ca5c1a8d"
+    },
+    {
+      "path": "verification/layout_review.md",
+      "bytes": 4658,
+      "sha256": "e697550238802893e86498fb6707ebdf5102caca07586fa443cec0daf32bee4c"
+    },
+    {
+      "path": "verification/manufacturing_review.json",
+      "bytes": 22028,
+      "sha256": "b2ea796dfa80d17f2a6c9e1603b87c69bced356b65f5d00efb00400f8802c4cb"
+    },
+    {
+      "path": "verification/manufacturing_review.md",
+      "bytes": 6208,
+      "sha256": "c5a824a7756aa3c685f952002e9a27acec2aa95a1998224c6a8e5f64da6af067"
+    },
+    {
+      "path": "verification/pcb-check-ground-contours.json",
+      "bytes": 139,
+      "sha256": "b087e85241dad5634cf502f4afcf82b6e0aa4de72751339fc0d5cac040d1ef73"
+    },
+    {
+      "path": "verification/release-reopen-check.json",
+      "bytes": 247,
+      "sha256": "12858ae47a0ee95775edc4f97e73b6cc4ed3746ddd5dc94538dd0b0d297187f5"
+    },
+    {
+      "path": "verification/sch-check.json",
+      "bytes": 165,
+      "sha256": "3d24bef9cf206da81b5286795c834824724f914177b26cd828632725270d2d47"
+    },
+    {
+      "path": "verification/schematic_review.md",
+      "bytes": 5637,
+      "sha256": "15a33909f8741dae445dd419a828334b748c46fc3ad4ea59eb8c0fe45507502f"
+    }
+  ]
+}

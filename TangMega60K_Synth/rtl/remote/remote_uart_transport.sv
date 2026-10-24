@@ -151,7 +151,13 @@ module remote_uart_transport #(
                     1: if (rx_byte == 8'h5a) index<=2;
                        else if (rx_byte != 8'ha5) index<=0;
                     2: if (rx_byte == 1) begin crc<=crc8_byte(0,rx_byte); index<=3; end
-                       else begin framing_error_count<=framing_error_count+1; index<=0; end
+                       else begin
+                           framing_error_count<=framing_error_count+1;
+                           // A truncated header can run into the next packet.
+                           // Retain its A5 as a new sync prefix; the following
+                           // version, payload and CRC still require validation.
+                           index <= rx_byte == 8'ha5 ? 1 : 0;
+                       end
                     3: begin packet_seq<=rx_byte; crc<=crc8_byte(crc,rx_byte); index<=4; end
                     4: begin packet_opcode<=rx_byte; crc<=crc8_byte(crc,rx_byte); index<=5; end
                     15: begin

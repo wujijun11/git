@@ -4,6 +4,7 @@
 // separate FM regression exercises 64 simultaneous logical voices.
 module tb_fm_keyboard;
     parameter TIMBRE=3;
+    parameter AUTO_HEADROOM=0;
     parameter HOLD_FRAMES=7680;    // Override for longer piano listening clips.
     parameter RELEASE_FRAMES=5760;
     reg test_passed=0;
@@ -53,7 +54,7 @@ module tb_fm_keyboard;
         end
     end
     wire signed [23:0] sample_left,sample_right;
-    voice_engine #(.VOICE_COUNT(4),.FM_ENABLE(1),.FX_ENABLE(0)) engine(
+    voice_engine #(.VOICE_COUNT(4),.FM_ENABLE(1),.FX_ENABLE(0),.AUTO_HEADROOM(AUTO_HEADROOM)) engine(
         .clk(clk),.rst_n(rst_n),.cmd_valid(cmd_valid),.cmd_ready(cmd_ready),
         .cmd_on(cmd_on),.cmd_voice(cmd_voice),.cmd_note(cmd_note),
         .cmd_velocity(cmd_velocity),.cmd_timbre(cmd_timbre),

@@ -1,5 +1,15 @@
 # 弦光：Tang Mega 60K 电子乐器工程
 
+2026-10-23：当前完整主工程、ESP32-C3 桥接固件与 Windows **Tang Neon Studio 1.0.4** 源码已更新。FPGA 主源对应已构建的 `8FE0`；另提供只增加被动串口观察的完整工程副本，其实板 SRAM 下载编号为 `3B9F`。C3 已烧录并校验，但 FPGA 的蓝牙协议 ACK 仍未验收通过，未完成 FPGA Flash 固化；不能把编译、下载或蓝牙配对当作整机连接成功。最新状态、接线与重建入口见[当前工程状态](docs/当前工程状态-20261023.md)。下方保留各日期的历史记录。
+
+2026-10-17：用户确认材料已到齐，进入装配与实物联调。已沿60K核心BTB→31005底板BTB→外部接口核对12个新信号与3.3V取电位置，见[整机连线方案](docs/整机连线方案-20261017.md)。先焊接琴键8/8/9针和滑条4针，现场认准接口pin1并核对供电，再按单组8键→25键→滑条→LED→蓝牙逐项验收；到货和原理图核对不等于实测通过。当前文件、分步接线与记录见[到货装配与联调](docs/到货装配与联调-20261017.md)。
+
+2026-10-16继续交付核验（10月15日修改）：修复手机曲谱加载、批量上传、文件选择/导出的异步竞态，以及文件错误误断正常BLE的问题；APK更新为**1.2/code 3**，新增网页11项和原生8项异步检查通过，实际构建、lint与签名/资产校验通过。C3增加CRC辅助的重叠帧头恢复，29项宿主测试和目标编译通过，静态RAM不变。本轮FPGA分组检查候选实际Setup只有0.003ns，未采用；当前继续保留**Setup 0.252ns/Hold 0.126ns、BSRAM106/118**的已验版本。完整性导出专项7项通过，新受验包含当前位流、APK、C3固件与证据；尚未烧录或射频/整机实测，见[本轮优化与交付包](verification/optimization-20261015/README.md)。下列记录保留各自验证时点。
+
+2026-10-15蓝牙复查：修复C3报错后等待异步断连期间继续转发、旧会话故障覆盖新会话等问题；手机加入GATT连接/发现/通知订阅15秒分阶段超时、旧扫描/选择隔离，以及握手完成前的演奏/参数/心跳门禁。C3实际代码17项宿主回归通过并重新编译；新版APK1.1实际构建、lint错误/警告0、签名及包内资源一致性通过。当前FPGA/桥/手机交付237项完整性检查通过；增强音源等价在ModelSim/Icarus各50,106拍通过。新产物尚未烧录或手机射频实测，证据与APK路径见[本次复查交付](verification/code-ble-review-20261015/README.md)。
+
+2026-10-15复核（10月14日完成Hold优化）：`polar_lane`状态RAM写入增加同一真实时钟的下降沿暂存，保持原上升沿写回拍次，不增加整周期延迟。实际完整Gowin构建的**Hold由0.035ns提高到0.126ns，Setup为0.252ns**（较0.272ns减少0.020ns）；Recovery/Removal为4.496/0.676ns，时序违规0。Logic21905、Register15726、BSRAM106/118（约90%）、DSP50.5/118；CST/SDC、时钟、ROM、声部数和接口不变。新源码已采用，核心33项重新实际通过，64声部I2S启动及稳定播放欠载均0。原实现目录保留，新位流尚未下载；新产物、哈希与本次证据见[Hold余量优化](verification/hold-margin-20261014/README.md)。以下日期记录保留各自验证时点。
+
 2026-10-14（时序再优化）：采用两轮等价逻辑简化，Setup最小余量由0.051ns提高至0.272ns，Logic由22346减少至21968；Hold为0.035ns，仍偏紧。完整Gowin构建时序违规0，BSRAM仍106/118（约90%），时钟/引脚/约束与音源功能不变。核心33项由中断前28项与随后5项补跑的完整原始日志证明；watchdog和曲谱命令新增两组逐拍等价专项，共99,215拍通过。新源码已采用，原 `full/impl` 产物保留旧版；本次新位流、SHA256及全部证据见[时序余量优化](verification/timing-margin-20261014/README.md)。新位流尚未下载。重新跑Core可执行 `scripts/test-modelsim-full.cmd -Suite Core -TimeoutSeconds 1200`。
 
 2026-10-14：修复手机首个NoteOn/最后NoteOff与断连释放同拍的边界问题，调整两份板级变量声明顺序与视频测试超时常量以兼容ModelSim。实际ModelSim核心33项全部通过，整机64声部和64声部I2S、MPR121、25灯点阵、控制/音效/视频均有日志与波形。当前输入哈希复核一致；额外双音源N64逐样本长测按用户选择暂缓，不能声明Full34项通过。最终源码完整Gowin构建通过，Setup/Hold违规0，最小余量0.051/0.065ns，BSRAM106/118（约90%），时序余量仍紧张。新位流在独立快照中，未下载；原实现产物保留。证据、位流及重跑步骤见[ModelSim核心回归与构建记录](verification/modelsim-20261014/README.md)。默认核心回归入口为 `scripts/test-modelsim-full.cmd`。
@@ -50,7 +60,7 @@
 
 ## 从哪里开始
 
-1. 当前整机工程在GOWIN打开 `full/ContestFull.gprj`，顶层 `board_contest_full_top`；2026-10-14优化版已生成的位流使用[时序余量优化记录中的新路径](verification/timing-margin-20261014/README.md#新位流和复现)，原 `full/impl/pnr/ContestFull.fs` 保留为旧版本。本次未下载。板上操作见[首次上板与到货验收](docs/全功能首次上板步骤-20261011.md)。独立音源开发打开`AudioEngine_V2.gprj`，选择`audio_system_v2`顶层；单独控制接口开发仍可打开`TangMega60K_Synth_V2.gprj`。
+1. 当前整机工程在GOWIN打开 `full/ContestFull.gprj`，顶层 `board_contest_full_top`；最新优化位流使用[Hold优化记录中的明确路径](verification/hold-margin-20261014/README.md#新位流和复现)，原 `full/impl/pnr/ContestFull.fs` 保留为旧版本。本次未下载。板上操作见[首次上板与到货验收](docs/全功能首次上板步骤-20261011.md)。独立音源开发打开`AudioEngine_V2.gprj`，选择`audio_system_v2`顶层；单独控制接口开发仍可打开`TangMega60K_Synth_V2.gprj`。
    16 个音逐个播放打开 `boardseq16/BoardSequence16_48kI2S.gprj`，选择 `board_sequence16_48k_i2s_top`；在项目根目录用 GOWIN 的 `gw_sh` 执行 `scripts/build-board-sequence16-48k-i2s.tcl`，生成 `boardseq16/impl/pnr/BoardSequence16_48kI2S.fs` 后下载至 SRAM。事件源和完整板级仿真分别运行 `scripts/test-sequence16-event-source.ps1`、`scripts/test-board-sequence16-48k-i2s.ps1`。
    当前板载按键演奏打开 `boardkeys48/BoardInstrumentB48kI2S.gprj`，选择 `board_instrument_b_48k_i2s_top`；下载 `boardkeys48/impl/pnr/BoardInstrumentB48kI2S.fs` 到 SRAM，断电后需重新下载。
    既有64音48kHz数字验证打开`clock48/BoardAudio48kGAO.gprj`；验证队员B输入链打开`clock48/BoardInstrumentB48kGAO.gprj`。两者仅在片内采集I2S，尚无外置DAC引脚。

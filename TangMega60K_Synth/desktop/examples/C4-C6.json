@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "title": "C4 / C6 两端音高",
+  "rows": [
+    {"deltaMs": 0, "key": 0, "velocity": 100, "on": 1},
+    {"deltaMs": 600, "key": 0, "velocity": 0, "on": 0},
+    {"deltaMs": 200, "key": 24, "velocity": 100, "on": 1},
+    {"deltaMs": 600, "key": 24, "velocity": 0, "on": 0}
+  ]
+}

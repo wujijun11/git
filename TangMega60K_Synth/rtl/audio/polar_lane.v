@@ -90,6 +90,29 @@ module polar_lane #(
             else next_amp=value[35:0];
         end
     endfunction
+    // Register the complete write transaction on the audio rising edge, then
+    // commit it to state RAM on the following rising edge. This gives both
+    // arithmetic-to-staging and staging-to-RAM a full clock period instead
+    // of relying on the PLL clock's two half periods.
+    // The voice engine waits for the lane output before starting another
+    // voice; all four writes complete before that next start (including the
+    // one-voice case). Keep address, data and valid in the same stage.
+    reg [194:0] state_write_data;
+    reg [7:0] state_write_address;
+    reg state_write_valid;
+    always @(posedge clk) begin
+        state_write_data<={end3,ptr3,aL3,aR3,tL3,tR3,enabled3 ? phase_after : 32'd0};
+        state_write_address<=addr3;
+    end
+    // Reset cancels a queued write immediately, without clearing the RAM.
+    always @(posedge clk or negedge rst_n) begin
+        if(!rst_n) state_write_valid<=1'b0;
+        else state_write_valid<=v[3];
+    end
+    always @(posedge clk) begin
+        if(state_write_valid) states[state_write_address]<=state_write_data;
+    end
+
     // RAM/ROM datapath has no bulk reset, allowing block RAM inference.
     // age==0 selects initialized parameter state, never old/uninitialized RAM.
     always @(posedge clk) begin
@@ -113,7 +136,6 @@ module polar_lane #(
             ptr3<=ptr2; end3<=end2; addr3<=addr2; pair3<=pair2; enabled3<=enabled2;
         end
         if(v[3]) begin
-            states[addr3]<={end3,ptr3,aL3,aR3,tL3,tR3,enabled3 ? phase_after : 32'd0};
             addressL4<=angleL[31:22]; addressR4<=angleR[31:22];
             ampL4<=audible3 ? aL3[35:8] : 28'd0;
             ampR4<=audible3 ? aR3[35:8] : 28'd0; pair4<=pair3;

@@ -1,0 +1,15 @@
+test_actual_export_preserves_unknown_and_compares_bits (__main__.DecoderTests.test_actual_export_preserves_unknown_and_compares_bits) ... ok
+test_aggregate_bit_contradiction_rejected (__main__.DecoderTests.test_aggregate_bit_contradiction_rejected) ... ok
+test_counter_decrease_is_explicit (__main__.DecoderTests.test_counter_decrease_is_explicit) ... ok
+test_entire_48_bit_mapping_has_no_holes (__main__.DecoderTests.test_entire_48_bit_mapping_has_no_holes) ... ok
+test_no_longest_run_substitution_for_unknown_end (__main__.DecoderTests.test_no_longest_run_substitution_for_unknown_end) ... ok
+test_omitted_timestamp_sample_is_not_compressed (__main__.DecoderTests.test_omitted_timestamp_sample_is_not_compressed) ... ok
+test_reset_observed_blocks_delta (__main__.DecoderTests.test_reset_observed_blocks_delta) ... ok
+test_single_readback_expected_modulo_deltas (__main__.DecoderTests.test_single_readback_expected_modulo_deltas) ... ok
+test_unknown_exported_bit_rejects_known_bus (__main__.DecoderTests.test_unknown_exported_bit_rejects_known_bus) ... ok
+test_unknown_first_sample_retains_position (__main__.DecoderTests.test_unknown_first_sample_retains_position) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.129s
+
+OK

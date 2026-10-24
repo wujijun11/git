@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "value": {
+    "project": "/AHCT125-LED-R1",
+    "schematicPassed": true,
+    "schematicViolations": [],
+    "pcbPassed": true,
+    "pcbViolations": [],
+    "components": 9
+  },
+  "logs": [],
+  "durationMs": 25411
+}

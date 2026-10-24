@@ -1,0 +1,7 @@
+In file included from C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\c3-tx-observation-source\ble_bridge\ble_bridge.ino:15:
+C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\c3-tx-observation-source\ble_bridge\bridge_uart_io.h: In static member function 'static void BridgeTxObserver::edgeIsr(void*)':
+C:\Users\asus\Desktop\Git\TangMega60K_Synth\verification\uart-live-debug-20261023\c3-tx-observation-source\ble_bridge\bridge_uart_io.h:99:19: warning: '++' expression of 'volatile'-qualified type is deprecated [-Wvolatile]
+   99 |         observer->edges_++;
+      |         ~~~~~~~~~~^~~~~~
+Sketch uses 670728 bytes (51%) of program storage space. Maximum is 1310720 bytes.
+Global variables use 24156 bytes (7%) of dynamic memory, leaving 303524 bytes for local variables. Maximum is 327680 bytes.

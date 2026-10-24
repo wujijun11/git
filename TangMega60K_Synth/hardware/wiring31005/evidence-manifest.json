@@ -1,0 +1,64 @@
+{
+  "Date": "2026-10-17",
+  "Scope": "Offline schematic and CST net mapping only",
+  "PhysicalContinuityMeasured": false,
+  "PhysicalVoltagesMeasured": false,
+  "HardwareProgrammed": false,
+  "ProductionSourceModified": false,
+  "Images": [
+    {
+      "File": "core30354_p1.png",
+      "SourcePath": "C:\\Users\\asus\\Desktop\\Git\\tmp\\hardware_read_20260920\\core30354_p1.png",
+      "Sha256": "f66fd9e02771a23d5e1cb9df8885ad5fed5c6e2eb12116d9a21110a66634615f",
+      "Bytes": 301076,
+      "CopyMatchesSource": true
+    },
+    {
+      "File": "neo31005_p7.png",
+      "SourcePath": "C:\\Users\\asus\\Desktop\\Git\\tmp\\hardware_read_20260920\\neo31005_p7.png",
+      "Sha256": "86296ce5c15ab6350c6487bbb172d2a942fb6f540823d1ad678c6520c25080b5",
+      "Bytes": 803694,
+      "CopyMatchesSource": true
+    },
+    {
+      "File": "neo31005_p19.png",
+      "SourcePath": "C:\\Users\\asus\\Desktop\\Git\\tmp\\hardware_read_20260920\\neo31005_p19.png",
+      "Sha256": "b9b5018f9c4a4dcd6aa80d230a1e8922bba0ead226152a09f4a78076f8d20168",
+      "Bytes": 360615,
+      "CopyMatchesSource": true
+    },
+    {
+      "File": "core30353_p1.png",
+      "SourcePath": "C:\\Users\\asus\\Desktop\\Git\\tmp\\hardware_read_20260920\\tang_mega_60k_30353_schematics.pdf",
+      "SourcePage": 1,
+      "Sha256": "30a62bf783dad884bda29e1eb1dc1ac24b5377aedecaa264cfda13037c81a0b8",
+      "Bytes": 576416,
+      "RenderedDuringThisReview": true
+    }
+  ],
+  "SourcePdfs": [
+    {
+      "File": "tang_mega_60k_30354_schematics..pdf",
+      "Page": 1,
+      "Sha256": "e457547f08ca37250b27ccfd4c8e29e3ce44cf309b24324623932fd2626002be"
+    },
+    {
+      "File": "Tang_Mega_NEO_Dock-138K_31005_Schematics.pdf",
+      "Pages": [
+        7,
+        19
+      ],
+      "Sha256": "ade025e2c30b23d9fa820346cabd5ee3f90e6b9bfbc083d48bc691e1d3977d1e"
+    },
+    {
+      "File": "tang_mega_60k_30353_schematics.pdf",
+      "Page": 1,
+      "Sha256": "f9a1a01862fe8c48cb5461e88f84d61e37d03f2d032e0baee7ef03fb951f6157"
+    }
+  ],
+  "Cst": {
+    "File": "full/contest_full.cst",
+    "Sha256": "57f9e07e34f38c81e6f1d1b4e9b44eebddae7481f28afd06942076c44fa8dd6c"
+  },
+  "Core30353And30354Required12SignalMappingsMatch": true
+}

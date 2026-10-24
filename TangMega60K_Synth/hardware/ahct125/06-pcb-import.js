@@ -1,0 +1,11 @@
+const p=await eda.dmt_Project.getCurrentProjectInfo();
+await eda.dmt_EditorControl.openDocument(p.data[0].pcb.uuid);
+await new Promise(r=>setTimeout(r,1500));
+const mm=v=>v*1000/25.4;
+const poly=eda.pcb_MathPolygon.createPolygon([0,0,'L',mm(40),0,mm(40),-mm(30),0,-mm(30),0,0]);
+const outline=await eda.pcb_PrimitivePolyline.create('',11,poly,mm(.1),false);
+const imported=await eda.pcb_Document.importChanges();
+await new Promise(r=>setTimeout(r,5000));
+const comps=await eda.pcb_PrimitiveComponent.getAll();
+await eda.pcb_Document.save();
+return {outline:outline?.getState_PrimitiveId(),imported,components:comps};

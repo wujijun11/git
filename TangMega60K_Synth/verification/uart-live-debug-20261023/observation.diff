@@ -1,0 +1,140 @@
+--- main/full/main_status.rao
++++ observation-source/full/main_status.rao
+@@ -99,5 +99,5 @@
+       <Expression>M0</Expression>
+     </Expressions>
+   </AoCore>
+-  <GAO_ID>0110110101010000</GAO_ID>
++  <GAO_ID>0101010101000100</GAO_ID>
+ </GAO_CONFIG>--- main/rtl/board/board_contest_full_top.v
++++ observation-source/rtl/board/board_contest_full_top.v
+@@ -22,6 +22,7 @@
+     wire audio_clk,audio_locked;wire pixel_clk,serial_clk,video_locked;
+     wire [7:0] debug_pll_status;
+     wire [3:0] debug_audio_reset_status;
++    wire [43:0] debug_uart_status;
+     wire [6:0] voices;wire [2:0] sensor_ready,sensor_fault;wire overflow,playing,recording,guide;
+     wire [31:0] underruns;
+     wire signed [23:0] debug_transmit_left;
+@@ -58,10 +59,9 @@
+     (* syn_preserve=1 *) reg [47:0] debug_status_meta=0;
+     (* syn_keep=1, syn_preserve=1 *) reg [47:0] debug_status=0;
+     always @(posedge sys_clk)begin
+-        debug_status_meta<={i2s_data,i2s_lrclk,i2s_bclk,debug_audio_heartbeat[8],
+-            debug_pll_status,debug_note,voices,sensor_fault,sensor_ready,
+-            guide,playing,pressed_sync,pressed_50,debug_audio_reset_status,
+-            rst_n,ready_sync,audio_locked,board_ready};
++        // The existing two-stage sys_clk GAO sampler is unchanged.
++        // Multi-bit observation fields are coherent only while stable.
++        debug_status_meta<={debug_uart_status,rst_n,ready_sync,audio_locked,board_ready};
+         debug_status<=debug_status_meta;
+     end
+     wire local_valid;wire [7:0] action;
+@@ -85,7 +85,7 @@
+         .overflow_sticky(overflow),.playing(playing),.recording(recording),.guide_active(guide),
+         .video_clk(pixel_clk),.video_x(x),.video_y(y),.video_de(de),.video_rgb(rgb),
+         .debug_transmit_left(debug_transmit_left),.debug_last_note(debug_note),
+-        .debug_audio_reset_status(debug_audio_reset_status));
++        .debug_audio_reset_status(debug_audio_reset_status),.debug_uart_status(debug_uart_status));
+     video_sync_align #(.LATENCY(2)) align(.clk(pixel_clk),.reset(!video_reset[1]),
+         .hsync_in(hs),.vsync_in(vs),.de_in(de),.hsync_out(hs_aligned),.vsync_out(vs_aligned),.de_out(de_aligned));
+     video_tmds_tx video(.clk_pixel(pixel_clk),.clk_serial(serial_clk),.reset(!video_reset[1]),
+--- main/rtl/instrument_full_system.v
++++ observation-source/rtl/instrument_full_system.v
+@@ -23,7 +23,8 @@
+     // Main-project hardware observation, read through the on-chip analyzer.
+     output reg [6:0] debug_last_note,
+     output wire signed [23:0] debug_transmit_left,
+-    output wire [3:0] debug_audio_reset_status
++    output wire [3:0] debug_audio_reset_status,
++    output wire [43:0] debug_uart_status
+ );
+     wire cv,cr,router_cr,rv,rr;wire [7:0] cs,co,rs,ro;wire [79:0] cp,rp;
+     wire [31:0] crc_errors,framing_errors,uart_overflows,uart_timeouts;
+@@ -33,7 +34,8 @@
+         .cmd_valid(cv),.cmd_ready(cr),.cmd_seq(cs),.cmd_opcode(co),.cmd_payload(cp),
+         .rsp_valid(rv),.rsp_ready(rr),.rsp_seq(rs),.rsp_opcode(ro),.rsp_payload(rp),
+         .crc_error_count(crc_errors),.framing_error_count(framing_errors),
+-        .overflow_count(uart_overflows),.timeout_count(uart_timeouts),.overflow_pulse(uart_overflow));
++        .overflow_count(uart_overflows),.timeout_count(uart_timeouts),.overflow_pulse(uart_overflow),
++        .debug_uart_status(debug_uart_status));
+     wire remote_ev,remote_er,remote_on;wire [5:0] remote_source;
+     wire [6:0] remote_note,remote_velocity;wire [1:0] remote_timbre;
+     wire phone_xv,phone_xr;wire [2:0] phone_xm;wire [11:0] phone_gain;
+--- main/rtl/remote/remote_uart_transport.sv
++++ observation-source/rtl/remote/remote_uart_transport.sv
+@@ -6,10 +6,12 @@
+     parameter integer BAUD = 115200
+ )(
+     input wire clk, input wire reset, input wire rx,
+-    output reg [7:0] data, output reg valid, output reg framing_error
++    output reg [7:0] data, output reg valid, output reg framing_error,
++    output wire debug_rx_sync
+ );
+     localparam integer DIV = (CLK_HZ + BAUD/2) / BAUD;
+     reg rx_meta, rx_sync;
++    assign debug_rx_sync = rx_sync;
+     reg [2:0] state, bit_index;
+     reg [31:0] timer;
+     reg [7:0] shift;
+@@ -87,7 +89,8 @@
+     output reg [31:0] framing_error_count,
+     output reg [31:0] overflow_count,
+     output reg [31:0] timeout_count,
+-    output reg overflow_pulse
++    output reg overflow_pulse,
++    output wire [43:0] debug_uart_status
+ );
+     localparam integer DIV = (CLK_HZ + BAUD/2) / BAUD;
+     localparam integer TIMEOUT_CYCLES = DIV * RX_TIMEOUT_BITS;
+@@ -108,9 +111,10 @@
+         end
+     endfunction
+     wire [7:0] rx_byte;
+-    wire rx_valid, rx_framing;
++    wire rx_valid, rx_framing, debug_rx_sync;
+     remote_uart_rx #(.CLK_HZ(CLK_HZ),.BAUD(BAUD)) receiver
+-        (.clk(clk),.reset(reset),.rx(rx),.data(rx_byte),.valid(rx_valid),.framing_error(rx_framing));
++        (.clk(clk),.reset(reset),.rx(rx),.data(rx_byte),.valid(rx_valid),.framing_error(rx_framing),
++         .debug_rx_sync(debug_rx_sync));
+     reg [4:0] index;
+     reg [31:0] timeout_timer;
+     reg [7:0] packet_seq, packet_opcode, crc;
+@@ -184,6 +188,37 @@
+     reg [7:0] tx_byte;
+     wire tx_busy;
+     assign rsp_ready = !tx_active;
++    // Passive-only full-main observation. These registers never feed any
++    // command, response, reset, UART state machine or external output.
++    // Event counters wrap modulo 256 (RX/TX) or 8 (commands/responses).
++    // debug_rx_sync is the receiver's existing second synchronizer stage.
++    reg debug_rx_previous;
++    reg [7:0] debug_rx_edge_count, debug_rx_byte_count;
++    reg [7:0] debug_tx_byte_count, debug_last_rx_byte;
++    reg [2:0] debug_cmd_count, debug_rsp_count;
++    wire [3:0] debug_errors = {timeout_count!=0,overflow_count!=0,
++        framing_error_count!=0,crc_error_count!=0};
++    assign debug_uart_status = {debug_errors,debug_tx_byte_count,
++        debug_rsp_count,debug_cmd_count,debug_last_rx_byte,
++        debug_rx_byte_count,debug_rx_edge_count,tx,rx};
++    always @(posedge clk) begin
++        if (reset) begin
++            debug_rx_previous<=1; debug_rx_edge_count<=0;
++            debug_rx_byte_count<=0; debug_tx_byte_count<=0;
++            debug_last_rx_byte<=0; debug_cmd_count<=0; debug_rsp_count<=0;
++        end else begin
++            debug_rx_previous<=debug_rx_sync;
++            if (debug_rx_previous && !debug_rx_sync)
++                debug_rx_edge_count<=debug_rx_edge_count+1'b1;
++            if (rx_valid) begin
++                debug_rx_byte_count<=debug_rx_byte_count+1'b1;
++                debug_last_rx_byte<=rx_byte;
++            end
++            if (cmd_valid && cmd_ready) debug_cmd_count<=debug_cmd_count+1'b1;
++            if (rsp_valid && rsp_ready) debug_rsp_count<=debug_rsp_count+1'b1;
++            if (tx_start && !tx_busy) debug_tx_byte_count<=debug_tx_byte_count+1'b1;
++        end
++    end
+     remote_uart_tx #(.CLK_HZ(CLK_HZ),.BAUD(BAUD)) transmitter
+         (.clk(clk),.reset(reset),.data(tx_byte),.start(tx_start),.busy(tx_busy),.tx(tx));
+     always @(posedge clk) begin

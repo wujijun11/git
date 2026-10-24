@@ -20,8 +20,17 @@ module board_contest_full_top #(
     assign hdmi_enable=1'b1;
     wire board_ready;wire [2:0] pressed_50;
     wire audio_clk,audio_locked;wire pixel_clk,serial_clk,video_locked;
+    wire [7:0] debug_pll_status;
+    wire [3:0] debug_audio_reset_status;
     wire [6:0] voices;wire [2:0] sensor_ready,sensor_fault;wire overflow,playing,recording,guide;
     wire [31:0] underruns;
+    wire signed [23:0] debug_transmit_left;
+    // LRCLK's rising edge is halfway through the transmitted stereo frame;
+    // this held value was selected on its falling edge, 512 audio clocks ago.
+    (* syn_keep=1 *) wire [15:0] debug_pcm=debug_transmit_left[23:8];
+    (* syn_keep=1 *) wire [6:0] debug_note;
+    (* syn_keep=1 *) wire [24:0] debug_touch;
+    (* syn_keep=1 *) wire debug_underrun=|underruns;
     reg [4:0] status_meta=0,status_sync=0;
     always @(posedge sys_clk)begin
         status_meta<={overflow || underruns!=0,|sensor_fault,guide,playing,|voices};status_sync<=status_meta;
@@ -32,7 +41,8 @@ module board_contest_full_top #(
     board_bringup_top #(.DEBOUNCE_CYCLES(DEBOUNCE_CYCLES),.STATUS_MODE(1)) board(
         .sys_clk(sys_clk),.key_n(key_n),.rgb_data(rgb_data),.pa_disable(pa_disable),
         .board_ready(board_ready),.keys_pressed(pressed_50),.status_grb(status_grb));
-    audio_clock_48k audio_clock(.clk_50(sys_clk),.clk_audio(audio_clk),.locked(audio_locked));
+    audio_clock_48k audio_clock(.clk_50(sys_clk),.clk_audio(audio_clk),.locked(audio_locked),
+        .debug_pll_status(debug_pll_status));
     video_clocking video_clock(.clk_50(sys_clk),.reset(1'b0),.clk_pixel(pixel_clk),.clk_serial(serial_clk),.locked(video_locked));
     reg ready_meta=0,ready_sync=0;reg [2:0] pressed_meta=0,pressed_sync=0;
     always @(posedge audio_clk or negedge audio_locked)begin
@@ -40,6 +50,20 @@ module board_contest_full_top #(
         else begin ready_meta<=board_ready;ready_sync<=ready_meta;pressed_meta<=pressed_50;pressed_sync<=pressed_meta;end
     end
     wire rst_n=ready_sync && !pressed_sync[2];
+    // Keep status acquisition alive even when audio_clk or its reset is stuck.
+    // Multi-bit fields are diagnostic only; interpret stable runs, not the
+    // few samples spanning an asynchronous transition as a coherent event.
+    reg [8:0] debug_audio_heartbeat=0;
+    always @(posedge audio_clk)debug_audio_heartbeat<=debug_audio_heartbeat+1'b1;
+    (* syn_preserve=1 *) reg [47:0] debug_status_meta=0;
+    (* syn_keep=1, syn_preserve=1 *) reg [47:0] debug_status=0;
+    always @(posedge sys_clk)begin
+        debug_status_meta<={i2s_data,i2s_lrclk,i2s_bclk,debug_audio_heartbeat[8],
+            debug_pll_status,debug_note,voices,sensor_fault,sensor_ready,
+            guide,playing,pressed_sync,pressed_50,debug_audio_reset_status,
+            rst_n,ready_sync,audio_locked,board_ready};
+        debug_status<=debug_status_meta;
+    end
     wire local_valid;wire [7:0] action;
     wire local_ready;
     board_local_actions local_actions(.clk(audio_clk),.rst_n(rst_n),
@@ -57,9 +81,11 @@ module board_contest_full_top #(
         .mpr_scl(mpr_scl),.mpr_sda(mpr_sda),.mpr_irq_n(mpr_irq_n),
         .local_action_valid(local_valid),.local_action_ready(local_ready),.local_action(action),
         .i2s_bclk(i2s_bclk),.i2s_lrclk(i2s_lrclk),.i2s_data(i2s_data),.guide_led_data(guide_led_data),
-        .active_count(voices),.sensor_ready(sensor_ready),.sensor_fault(sensor_fault),.underrun_count(underruns),
+        .active_count(voices),.touch_mask(debug_touch),.sensor_ready(sensor_ready),.sensor_fault(sensor_fault),.underrun_count(underruns),
         .overflow_sticky(overflow),.playing(playing),.recording(recording),.guide_active(guide),
-        .video_clk(pixel_clk),.video_x(x),.video_y(y),.video_de(de),.video_rgb(rgb));
+        .video_clk(pixel_clk),.video_x(x),.video_y(y),.video_de(de),.video_rgb(rgb),
+        .debug_transmit_left(debug_transmit_left),.debug_last_note(debug_note),
+        .debug_audio_reset_status(debug_audio_reset_status));
     video_sync_align #(.LATENCY(2)) align(.clk(pixel_clk),.reset(!video_reset[1]),
         .hsync_in(hs),.vsync_in(vs),.de_in(de),.hsync_out(hs_aligned),.vsync_out(vs_aligned),.de_out(de_aligned));
     video_tmds_tx video(.clk_pixel(pixel_clk),.clk_serial(serial_clk),.reset(!video_reset[1]),

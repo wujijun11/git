@@ -1,0 +1,13 @@
+{
+  "frozen": true,
+  "productionFilesChanged": [
+    "firmware/ble_bridge/ble_bridge.ino"
+  ],
+  "buildPerformed": false,
+  "hardwareAccess": false,
+  "hashes": {
+    "firmware/ble_bridge/bridge_uart_io.h": "68f5562a4dce803ac7eec3caf40d81bade5f5ae679f7861565a740702588940a",
+    "firmware/ble_bridge/ble_bridge.ino": "b46c363a91c186e388c3075e862e1b9b4a2bcc0d3cdcfa1afa65bcdc4d8c646e"
+  },
+  "acceptedTestResult": "verification/ble-connection-fix-20261023/c3-review/host-close_20261023_220707_498936/result.json"
+}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+  <Template>FPGA</Template>
+  <Version>5</Version>
+  <Device name="GW5AT-60B" pn="GW5AT-LV60PG484AC1/I0">gw5at60b-002</Device>
+  <FileList>
+    <File path="../rtl/audio/adsr.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/audio/audio_fx.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/audio/audio_system_v2_fm.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/audio/audio_system_v2.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/audio/dds_lane.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/audio/fm_piano_lane.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/audio/gain_saturator.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/audio/pitch_expression.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/audio/polar_lane.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/audio/runtime_audio_fx.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/audio/stereo_mixer.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/audio/voice_engine.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/audio/voice_state_ram.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/audio/wavetable_rom.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/board/board_audio_16_48k_i2s_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/board/board_audio_48k_gao_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/board/board_audio_48k_i2s_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/board/board_audio_diagnostic_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/board/board_audio_gao_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/board/board_bringup_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/board/board_contest_full_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/board/board_instrument_b_48k_gao_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/board/board_instrument_b_48k_i2s_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/board/board_key_event_adapter.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/board/board_sequence16_48k_i2s_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/captain_control_top_v2.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/captain_control_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/captain_system_top_v2.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/captain_system_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/clock/audio_clock_48k.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/clock/pll_init.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/control/expression_merge.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/control/note_arbiter.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/control/remote_command_router.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/control/remote_note_watchdog.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/diagnostics/live64_event_source.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/diagnostics/live64_system_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/diagnostics/poly16_event_source.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/diagnostics/sequence16_event_source.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/event_fifo_v2.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/event_fifo.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/expression_controls_v2.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/i2s_tx.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/instrument_full_system.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/instrument_system_v2.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/interaction_top_v2.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/interaction_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/performance/performance_controller.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/performance/ws2812_guide.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/remote/remote_uart_transport.sv" type="file.verilog" enable="1"/>
+    <File path="../rtl/sensors/i2c_register_master.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/sensors/mpr121_input_frontend.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/sensors/mpr121_key_eventizer.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/sensors/mpr121_sampler.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/sensors/mpr121_slider.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/test_tone_source.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/tone_demo_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/visual/audio_monitor_cdc.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/visual/audio_visualizer.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/visual/scope_renderer.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/visual/video_clocking.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/visual/video_timing_640x480.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/visual/video_tmds_encoder.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/visual/video_tmds_tx.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/voice_allocator_v2.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/voice_allocator.v" type="file.verilog" enable="1"/>
+    <File path="contest_full.cst" type="file.cst" enable="1"/>
+    <File path="contest_full.sdc" type="file.sdc" enable="1"/>
+    <File path="main_status.rao" type="file.gao" enable="1"/>
+  </FileList>
+</Project>

@@ -1,0 +1,28 @@
+{
+  "accepted": true,
+  "hardwareAccessed": false,
+  "chromeMuted": true,
+  "cases": [
+    {
+      "name": "failed_ack_shows_delta_without_ready_and_exports",
+      "pass": true
+    },
+    {
+      "name": "normal_disconnect_preserves_report_without_false_failure",
+      "pass": true
+    },
+    {
+      "name": "late_failed_generation_does_not_overwrite_demo",
+      "pass": true
+    }
+  ],
+  "sourceHashes": {
+    "desktop\\native_host.py": "7ba8da24037e58603122f8a136a21094180b94077912116ace37bc23b3ec2b88",
+    "desktop\\web\\app.js": "1fe90ccd0d9f3f3acede632c5d7ed3c06529fa6c51eb0eb01394140dc590d0d3",
+    "desktop\\web\\controller.js": "3c3a77300613214c37e58aad88933b95ef26e231a3f5a290fc796ae004ce33ad",
+    "desktop\\web\\index.html": "b386f7d022c2243187144034f234f8cd6efb3c9e60a92b2909384820bd8cef5a",
+    "desktop\\web\\protocol.js": "31cb31c9ca47eb65f0cb0d2f4a4684ca394269af17c1a19415d38d8f89c3cbea",
+    "desktop\\web\\style.css": "ee5e13c4f9d816b7892da374ef8d57367e2ab5c56e27103fec8eae29f3d20045"
+  },
+  "sourcesUnchanged": true
+}

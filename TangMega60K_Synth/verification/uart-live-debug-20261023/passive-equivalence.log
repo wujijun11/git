@@ -1,0 +1,3 @@
+PASS: passive observation is cycle-equivalent to untouched current main; RX edges/bytes, cmd/rsp, TX bytes, errors/reset/wrap correct
+ALL REMOTE UART TESTS PASSED (default 49.152MHz/115200, DIV=427)
+verification/uart-live-debug-20261023/tb_uart_gao_passive.sv:167: $finish called at 44865291000 (1ps)

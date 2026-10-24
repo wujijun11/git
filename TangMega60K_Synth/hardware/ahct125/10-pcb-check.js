@@ -1,0 +1,11 @@
+const p=await eda.dmt_Project.getCurrentProjectInfo();
+const tab=await eda.dmt_EditorControl.openDocument(p.data[0].pcb.uuid);
+await new Promise(r=>setTimeout(r,8000));
+await eda.pcb_Document.save();
+const passed=await eda.pcb_Drc.check(true,false,false);
+const verbose=await eda.pcb_Drc.check(true,false,true);
+await eda.pcb_Document.zoomToBoardOutline();
+await new Promise(r=>setTimeout(r,1000));
+const img=await eda.dmt_EditorControl.getCurrentRenderedAreaImage(tab);
+const saved=await eda.sys_FileSystem.saveFileToFileSystem('C:/Users/asus/Documents/LCEDA-Pro/projects/AHCT125-LED-R1/pcb-check.png',img,undefined,true);
+return {passed,verbose,saved};

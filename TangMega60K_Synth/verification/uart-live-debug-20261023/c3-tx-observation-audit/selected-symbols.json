@@ -1,0 +1,72 @@
+{
+  "BridgeTxObserver::edgeIsr(void*)": {
+    "address": 1077412574,
+    "size": 32,
+    "kind": "W",
+    "addressHex": "0x403802de",
+    "section": ".iram0.text"
+  },
+  "gpio_intr_service": {
+    "address": 1077412606,
+    "size": 182,
+    "kind": "t",
+    "addressHex": "0x403802fe",
+    "section": ".iram0.text"
+  },
+  "vPortEnterCritical": {
+    "address": 1077464898,
+    "size": 46,
+    "kind": "T",
+    "addressHex": "0x4038cf42",
+    "section": ".iram0.text"
+  },
+  "vPortExitCritical": {
+    "address": 1077464944,
+    "size": 82,
+    "kind": "T",
+    "addressHex": "0x4038cf70",
+    "section": ".iram0.text"
+  },
+  "xPortSetInterruptMaskFromISR": {
+    "address": 1077464856,
+    "size": 26,
+    "kind": "T",
+    "addressHex": "0x4038cf18",
+    "section": ".iram0.text"
+  },
+  "vPortClearInterruptMaskFromISR": {
+    "address": 1077464882,
+    "size": 16,
+    "kind": "T",
+    "addressHex": "0x4038cf32",
+    "section": ".iram0.text"
+  },
+  "txObserver": {
+    "address": 1070157064,
+    "size": 132,
+    "kind": "D",
+    "addressHex": "0x3fc94d08",
+    "section": ".dram0.data"
+  },
+  "port_uxCriticalNesting": {
+    "address": 1070173784,
+    "size": 4,
+    "kind": "B",
+    "addressHex": "0x3fc98e58",
+    "section": ".dram0.bss"
+  },
+  "port_uxOldInterruptState": {
+    "address": 1070173780,
+    "size": 4,
+    "kind": "B",
+    "addressHex": "0x3fc98e54",
+    "section": ".dram0.bss"
+  },
+  "gpio_context": {
+    "address": 1070157272,
+    "size": 32,
+    "kind": "d",
+    "addressHex": "0x3fc94dd8",
+    "section": ".dram0.data"
+  }
+}

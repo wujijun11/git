@@ -1,0 +1,89 @@
+{
+  "pass_all": true,
+  "pads": 69,
+  "wired_pads": 42,
+  "nc_pads": 27,
+  "tracks": 564,
+  "vias": 56,
+  "minimum_copper_gap_mm": 0.30000267999999153,
+  "minimum_hole_gap_mm": 7.301223107667321,
+  "minimum_edge_gap_mm": 1.0999994800000081,
+  "nets": [
+    {
+      "net": "3V3_MPR",
+      "pads": 4,
+      "components": 1
+    },
+    {
+      "net": "C3_RX6_FROM_FPGA_TX",
+      "pads": 2,
+      "components": 1
+    },
+    {
+      "net": "C3_TX7_TO_FPGA_RX",
+      "pads": 2,
+      "components": 1
+    },
+    {
+      "net": "GND",
+      "pads": 12,
+      "components": 1
+    },
+    {
+      "net": "LED_5V_AUX",
+      "pads": 2,
+      "components": 1
+    },
+    {
+      "net": "LED_DATA_3V3",
+      "pads": 2,
+      "components": 1
+    },
+    {
+      "net": "MPR1_IRQ",
+      "pads": 2,
+      "components": 1
+    },
+    {
+      "net": "MPR1_SCL",
+      "pads": 2,
+      "components": 1
+    },
+    {
+      "net": "MPR1_SDA",
+      "pads": 2,
+      "components": 1
+    },
+    {
+      "net": "MPR2_IRQ",
+      "pads": 2,
+      "components": 1
+    },
+    {
+      "net": "MPR2_SCL",
+      "pads": 2,
+      "components": 1
+    },
+    {
+      "net": "MPR2_SDA",
+      "pads": 2,
+      "components": 1
+    },
+    {
+      "net": "MPR3_IRQ",
+      "pads": 2,
+      "components": 1
+    },
+    {
+      "net": "MPR3_SCL",
+      "pads": 2,
+      "components": 1
+    },
+    {
+      "net": "MPR3_SDA",
+      "pads": 2,
+      "components": 1
+    }
+  ],
+  "errors": []
+}

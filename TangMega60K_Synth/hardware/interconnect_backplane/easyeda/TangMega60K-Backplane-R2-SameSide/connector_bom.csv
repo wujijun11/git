@@ -1,0 +1,10 @@
+﻿designator,interface,manufacturer_part,lcsc_part,footprint,status
+J1,J_FPGA_J13,321040RG0ABK00A01,C601961,CONN-TH_321040RG0ABK00A02,R2 prototype - layout and native DRC pending
+J2,J_PWR_3V3,PZ254R-11-02P,C492410,HDR-TH_2P-P2.54-H-M-W10.4,R2 prototype - layout and native DRC pending
+J3,J_MPR1,PZ254R-11-06P,C492414,HDR-TH_6P-P2.54-H-M-W10.4,R2 prototype - layout and native DRC pending
+J4,J_MPR2,PZ254R-11-06P,C492414,HDR-TH_6P-P2.54-H-M-W10.4,R2 prototype - layout and native DRC pending
+J5,J_MPR3,PZ254R-11-06P,C492414,HDR-TH_6P-P2.54-H-M-W10.4,R2 prototype - layout and native DRC pending
+J6,J_C3,PZ254R-11-03P,C492411,HDR-TH_3P-P2.54-H-M-W10.4,R2 prototype - layout and native DRC pending
+J7,J_AHCT,PZ254R-11-02P,C492410,HDR-TH_2P-P2.54-H-M-W10.4,R2 prototype - layout and native DRC pending
+J8,J_AHCT_PWR,KF127-5.08-2P,C474906,CONN-TH_P5.08_KF127-5.08-2P,R2 prototype - layout and native DRC pending
+J9,J_LED_PWR,KF127-5.08-2P,C474906,CONN-TH_P5.08_KF127-5.08-2P,R2 prototype - layout and native DRC pending

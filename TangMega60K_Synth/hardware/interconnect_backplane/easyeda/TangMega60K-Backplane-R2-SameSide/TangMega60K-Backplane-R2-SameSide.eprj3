@@ -1,0 +1,70 @@
+{
+  "name": "TangMega60K-Backplane-R2-SameSide",
+  "content": "R2 all cable connectors on one edge, right-angle mating; editable prototype",
+  "archive": false,
+  "cbb_project": 0,
+  "ticket": 1,
+  "g_ticket": 1,
+  "boards": [],
+  "block_symbol_attrs_groups": {},
+  "default_sheet": "ad8c5ec6c06f43fe",
+  "branch_uuid": "",
+  "pcb_count": 1,
+  "format": "folder",
+  "config": {
+    "defaultSheet": "ad8c5ec6c06f43fe",
+    "settings": {}
+  },
+  "profile": {
+    "boards": {
+      "da7191bfceb3e7bc": {
+        "uuid": "da7191bfceb3e7bc",
+        "title": "Board1",
+        "zIndex": 1
+      }
+    },
+    "schematics": {
+      "2ece51e04de62823": {
+        "uuid": "2ece51e04de62823",
+        "name": "Schematic1",
+        "board": "da7191bfceb3e7bc",
+        "source": "",
+        "version": "1792894508781",
+        "updateTime": 1792894508781
+      }
+    },
+    "sheets": {
+      "e1651a70982b0441": {
+        "uuid": "e1651a70982b0441",
+        "title": "P1",
+        "schematic_uuid": "2ece51e04de62823",
+        "zIndex": 1,
+        "source": "",
+        "version": "1792894508781",
+        "updateTime": 1792894508781
+      }
+    },
+    "pcbs": {
+      "ddf9bc0e450a5f86": {
+        "uuid": "ddf9bc0e450a5f86",
+        "title": "PCB1",
+        "board": "da7191bfceb3e7bc",
+        "parent_uuid": "",
+        "source": "",
+        "version": "1792905508996",
+        "updateTime": 1792905508996
+      }
+    },
+    "panels": {
+      "462867cba8bf746f": {
+        "uuid": "462867cba8bf746f",
+        "title": "Panel1",
+        "zIndex": null
+      }
+    },
+    "blockSymbols": {},
+    "owner": {},
+    "simSchematics": {},
+    "simulations": {}
+  }
+}

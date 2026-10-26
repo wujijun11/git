@@ -48,7 +48,10 @@ module mpr121_key_eventizer #(
     wire read_ram=resetn && head_free && (ram_count!=0);
     wire bypass=push && head_free && (ram_count==0);
     wire write_ram=push && !bypass;
-    wire [22:0] head=!head_valid?23'd0:(head_from_ram?ram_head:bypass_head);
+    // 无效拍的数据不参与握手，保留旧payload即可；不要再用head_valid清零23位
+    // 数据，否则valid会经过source译码、PANIC屏蔽和仲裁再返回下游FIFO写使能。
+    // 同步RAM整体读边界和空队列旁路保持不变，避免历史上的部分字段推断问题。
+    wire [22:0] head=head_from_ram?ram_head:bypass_head;
     assign key_valid=resetn && head_valid;
     assign {key_on,key_source,key_note,key_velocity,key_timbre}=head;
     assign pending_events=count;

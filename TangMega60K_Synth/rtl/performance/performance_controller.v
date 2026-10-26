@@ -143,9 +143,15 @@ module performance_controller #(
         end
     endfunction
 
+    // 内置曲谱与上传RAM共用一拍行缓存/索引。先译码行，再处理音符所有权，
+    // 避免16位位置比较、键位映射及held选择挤在同一条组合路径里。
+    // 索引匹配才允许消费，新位置最多多等一拍；音符、力度及毫秒节奏不变。
+    reg [79:0] builtin_row_q;
+    always @(posedge clk) builtin_row_q <= builtin_row(score_position);
+
     reg [79:0] active_row;
     wire cached_row_ready=playback_q_valid && playback_q_index==score_position;
-    wire active_row_ready=(mode!=MODE_REPLAY && selected_builtin) || cached_row_ready;
+    wire active_row_ready=cached_row_ready;
     reg [7:0] active_key;
     wire [6:0] active_velocity=mode==MODE_REPLAY ? active_row[70:64] : active_row[62:56];
     // Match the allocator's MIDI semantics before updating held ownership or
@@ -181,7 +187,7 @@ module performance_controller #(
             active_row = {record_play_q,playback_q_index};
             active_key = active_row[55:48]-RECORD_BASE;
         end else begin
-            active_row=selected_builtin ? builtin_row(score_position) :
+            active_row=selected_builtin ? builtin_row_q :
                 {8'd0,7'd0,score_row_q[46],1'b0,score_row_q[45:39],
                  1'b0,score_row_q[38:32],score_row_q[31:0],playback_q_index};
             active_key=active_row[55:48];

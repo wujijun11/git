@@ -43,6 +43,9 @@ function New-TestCase([string]$Name,[string]$Top,[string]$Bench,[string]$Marker,
 $watchdogCase = New-TestCase 'remote_note_watchdog' 'tb_remote_note_watchdog' `
     'sim/tb_remote_note_watchdog.sv' 'REMOTE NOTE WATCHDOG PASS' @() '' $true
 $allCases = @(
+    (New-TestCase 'oled_timing_regression' 'tb_oled_timing_regression' 'sim/tb_oled_timing_regression.sv' 'OLED TIMING REGRESSION PASS'),
+    (New-TestCase 'oled_board' 'tb_oled_board_integration' 'sim/tb_oled_board_integration.sv' 'OLED BOARD INTEGRATION PASS'),
+    (New-TestCase 'oled_board_timing' 'tb_oled_board_integration' 'sim/tb_oled_board_integration.sv' 'OLED BOARD TIMING PASS' @('-gFAST=0')),
     (New-TestCase 'learning_mode' 'tb_learning_mode' 'sim/tb_learning_mode.sv' 'LEARNING MODE PASS'),
     (New-TestCase 'learning_status' 'tb_learning_status' 'sim/tb_learning_status.sv' 'LEARNING STATUS PASS'),
     (New-TestCase 'learning_system' 'tb_learning_system' 'sim/tb_learning_system.sv' 'LEARNING SYSTEM PASS'),

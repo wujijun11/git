@@ -3,6 +3,12 @@
 // KEY2 resets. Switching score/guide first releases all score-owned notes.
 module board_contest_full_top #(
     parameter DEBOUNCE_CYCLES=100000,
+    // 四针128x64 SSD1306/SSD1315兼容OLED：独立I2C，使用既有音频时钟。
+    // 首板默认100kHz以容忍较长接线；地址为7位0x3C，不是写地址0x78。
+    parameter OLED_ENABLE=1, OLED_I2C_HZ=100000,
+    parameter [6:0] OLED_ADDRESS=7'h3c,
+    parameter integer OLED_POWER_WAIT_CYCLES=4915200,
+    parameter integer OLED_FRAME_WAIT_CYCLES=1966080,
     parameter [7:0] GUIDE_BRIGHTNESS=8'd32, GUIDE_TOUCH_BRIGHTNESS=8'd16,
     // Index0 is DIN's first pixel. Calibrate the purchased panel before
     // replacing this identity map; its row order is not shown by the listing.
@@ -12,6 +18,7 @@ module board_contest_full_top #(
 ) (
     input wire sys_clk,input wire [2:0] key_n,
     inout wire [2:0] mpr_scl,mpr_sda,input wire [2:0] mpr_irq_n,
+    inout wire oled_scl,oled_sda,
     input wire uart_rx,output wire uart_tx,
     output wire rgb_data,pa_disable,i2s_bclk,i2s_lrclk,i2s_data,guide_led_data,
     output wire tmds_clk_p,tmds_clk_n,output wire [2:0] tmds_data_p,tmds_data_n,
@@ -24,6 +31,9 @@ module board_contest_full_top #(
     wire [3:0] debug_audio_reset_status;
     wire [6:0] voices;wire [2:0] sensor_ready,sensor_fault;wire overflow,playing,recording,guide;
     wire [31:0] underruns;
+    wire menu_main,menu_busy;wire [1:0] menu_page,menu_zone;
+    wire [7:0] menu_error;wire [15:0] menu_record_count;
+    wire oled_fault;wire [31:0] oled_completed_frames;
     wire signed [23:0] debug_transmit_left;
     // LRCLK's rising edge is halfway through the transmitted stereo frame;
     // this held value was selected on its falling edge, 512 audio clocks ago.
@@ -85,7 +95,23 @@ module board_contest_full_top #(
         .overflow_sticky(overflow),.playing(playing),.recording(recording),.guide_active(guide),
         .video_clk(pixel_clk),.video_x(x),.video_y(y),.video_de(de),.video_rgb(rgb),
         .debug_transmit_left(debug_transmit_left),.debug_last_note(debug_note),
-        .debug_audio_reset_status(debug_audio_reset_status));
+        .debug_audio_reset_status(debug_audio_reset_status),
+        .menu_main(menu_main),.menu_page(menu_page),.menu_zone(menu_zone),
+        .menu_busy(menu_busy),.menu_error(menu_error),.menu_record_count(menu_record_count));
+    // OLED只观察菜单/录放状态。NACK或掉线由显示驱动限速重试，
+    // 不接入音频ready/reset链，也不复用三组MPR121的SCL/SDA。
+    generate if(OLED_ENABLE) begin: oled_panel
+        oled_status_display #(.CLK_HZ(49152000),.I2C_HZ(OLED_I2C_HZ),
+            .POWER_WAIT_CYCLES(OLED_POWER_WAIT_CYCLES),
+            .FRAME_WAIT_CYCLES(OLED_FRAME_WAIT_CYCLES),.ADDRESS(OLED_ADDRESS)) display(
+            .clk(audio_clk),.rst_n(rst_n),.main_menu(menu_main),
+            .menu_page(menu_page),.zone(menu_zone),.recording(recording),.playing(playing),
+            .guide(guide),.busy(menu_busy),.error(menu_error),.record_count(menu_record_count),
+            .scl(oled_scl),.sda(oled_sda),.fault(oled_fault),.completed_frames(oled_completed_frames));
+    end else begin: no_oled
+        assign oled_scl=1'bz;assign oled_sda=1'bz;
+        assign oled_fault=1'b0;assign oled_completed_frames=32'd0;
+    end endgenerate
     video_sync_align #(.LATENCY(2)) align(.clk(pixel_clk),.reset(!video_reset[1]),
         .hsync_in(hs),.vsync_in(vs),.de_in(de),.hsync_out(hs_aligned),.vsync_out(vs_aligned),.de_out(de_aligned));
     video_tmds_tx video(.clk_pixel(pixel_clk),.clk_serial(serial_clk),.reset(!video_reset[1]),

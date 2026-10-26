@@ -171,7 +171,7 @@ module instrument_full_system #(
         .clk(clk),.rst_n(rst_n),.remote_valid(perf_cv),.remote_ready(perf_cr),
         .remote_opcode(perf_co),.remote_payload(perf_cp),
         .local_valid(merged_action_valid && !panic_quiescing && !panic),
-        .local_ready(staged_local_ready),.local_action(merged_action),.local_status(perf_local_action_status),
+        .local_ready(staged_local_ready),.local_action(merged_action),.local_status(),
         .command_valid(staged_command_valid),.command_ready(perf_ready),
         .command_opcode(staged_opcode),.command_payload(staged_payload),.command_status(perf_status));
     performance_controller #(.CLK_HZ(CLK_HZ),.DIRECT_SCORE_ENABLE(1),.LEARNING_ENABLE(1)) performance(
@@ -182,7 +182,9 @@ module instrument_full_system #(
         .command_opcode(staged_opcode),
         .command_payload(staged_payload),.command_status(perf_status),
         .action_busy(perf_action_busy),
-        .local_action_status(),
+        // 本地动作固定为TRANSPORT，直接读取该类状态；不能把1024行上传完整性
+        // 校验经通用command_status多路器引回菜单ready，形成跨模块长路径。
+        .local_action_status(perf_local_action_status),
         .record_valid(push_valid && push_ready && arb_selected!=2),
         .record_on(push_payload[22]),.record_source(push_payload[21:16]),.record_note(push_payload[15:9]),
         .record_velocity(push_payload[8:2]),.record_timbre(push_payload[1:0]),

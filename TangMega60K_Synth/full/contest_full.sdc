@@ -20,6 +20,9 @@ set_false_path -to [get_pins {video_reset_*_s0/CLEAR}]
 set_false_path -to [get_pins {video/*_lane/serial_ready_*_s0/CLEAR}]
 set_false_path -from [get_ports {mpr_scl[*]}] -to [get_cells {system/sensors/*/bus/scl_sync_0_s0*}]
 set_false_path -from [get_ports {mpr_sda[*]}] -to [get_cells {system/sensors/*/bus/sda_sync_0_s0*}]
+// 外部OLED返回的SCL/SDA只到双级同步器的第一级；级间数据和显示逻辑仍参与时序。
+set_false_path -from [get_ports {oled_scl}] -to [get_cells {oled_panel.display/bus/scl_sync_0_s0*}]
+set_false_path -from [get_ports {oled_sda}] -to [get_cells {oled_panel.display/bus/sda_sync_0_s0*}]
 // Coherent bundled-data mailbox: req is synchronized before sampling bundle.
 // Two destination cycles precede capture: bound only this held data bundle.
 set_max_delay 40.000 -from [get_cells {system/monitor/bundle*}] -to [get_cells {system/monitor/dst_left* system/monitor/dst_right*}]

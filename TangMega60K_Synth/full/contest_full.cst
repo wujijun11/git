@@ -47,6 +47,12 @@ IO_PORT "mpr_irq_n[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
 IO_PORT "mpr_irq_n[2]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
 IO_LOC "guide_led_data" A15;
 IO_PORT "guide_led_data" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
+// 31005 J13-15/16 -> SDRAM0_D11/D10 -> J1-11/13 -> 60K C2399-11/13 -> A20/B20.
+// 已核对30353/30354两份核心图；独立开漏I2C，外部仅上拉到3.3V。
+IO_LOC "oled_scl" A20; // J13-15
+IO_LOC "oled_sda" B20; // J13-16
+IO_PORT "oled_scl" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
+IO_PORT "oled_sda" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=4 BANK_VCCIO=3.3;
 // Official true-LVDS positive-port declarations; TLVDS_OBUF binds negatives.
 IO_LOC "tmds_data_p[0]" J14,H14;
 IO_LOC "tmds_data_p[1]" J15,H15;

@@ -14,6 +14,11 @@ module tb_global_panic;
         .active_count(voices),.touch_mask(touches),.playing(playing),.guide_active(guide),
         .video_clk(vclk),.video_x(10'd0),.video_y(10'd0),.video_de(1'b0));
     reg [2:0] snapshot_valid=0;reg [1031:0] snapshots=0;
+    // PANIC短路径必须与原通用动作握手语义逐拍一致，包括远程/菜单冲突时。
+    always @(negedge clk) if(rn) begin
+        if(dut.local_panic !== (dut.merged_action_valid && dut.merged_action_ready && dut.merged_action==8'd5))
+            $fatal(1,"local PANIC fast acceptance differs from original handshake");
+    end
     initial begin
         force dut.sensors.snap_valid=snapshot_valid;
         force dut.sensors.snaps=snapshots;

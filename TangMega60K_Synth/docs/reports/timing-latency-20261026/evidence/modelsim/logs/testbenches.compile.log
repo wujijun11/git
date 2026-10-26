@@ -1,0 +1,52 @@
+Model Technology ModelSim SE-64 vlog 10.6e Compiler 2018.06 Jun 23 2018
+Start time: 16:50:26 on Oct 26,2026
+vlog -modelsimini modelsim.ini -sv -work work sim/tb_touch_i2s_latency.sv sim/tb_transport_status_equivalence.sv sim/tb_polar_lane_margin_equivalence.sv sim/tb_oled_timing_regression.sv sim/tb_learning_mode.sv sim/tb_learning_status.sv sim/tb_learning_system.sv sim/tb_direct_score.sv sim/tb_direct_score_system.sv sim/tb_score_capacity_1024.sv sim/tb_menu_system.sv sim/tb_menu_replay.sv sim/tb_instrument_full_system.sv sim/tb_global_panic.sv sim/tb_mpr121_backpressure.sv sim/tb_mpr121_eventizer_capacity.sv sim/tb_performance_controller.sv sim/tb_performance_retrigger.sv sim/tb_performance_commit_pipeline.sv sim/tb_audio_i2s.sv sim/tb_mpr121_model.sv sim/runtime_audio_fx_reference.sv sim/polar_lane_timing_reference.v sim/performance_controller_timing_reference.v 
+-- Compiling module tb_touch_i2s_latency
+-- Compiling module tb_transport_status_equivalence
+-- Compiling module tb_polar_lane_margin_equivalence
+-- Compiling module tb_oled_timing_regression
+-- Compiling module tb_learning_mode
+-- Compiling module tb_learning_status
+-- Compiling module tb_learning_system
+-- Compiling module tb_direct_score
+-- Compiling module tb_direct_score_system
+-- Compiling module tb_score_capacity_1024
+-- Compiling module tb_menu_system
+-- Compiling module tb_menu_replay
+-- Compiling module tb_instrument_full_system
+-- Compiling module tb_global_panic
+-- Compiling module tb_mpr121_backpressure
+-- Compiling module tb_mpr121_eventizer_capacity
+-- Compiling module tb_performance_controller
+-- Compiling module tb_performance_retrigger
+-- Compiling module tb_performance_commit_pipeline
+-- Compiling module tb_audio_i2s
+-- Compiling module mpr121_bus_model
+-- Compiling module runtime_audio_fx_reference
+-- Compiling module polar_lane_timing_reference
+-- Compiling module performance_controller_timing_reference
+
+Top level modules:
+	tb_touch_i2s_latency
+	tb_transport_status_equivalence
+	tb_polar_lane_margin_equivalence
+	tb_oled_timing_regression
+	tb_learning_mode
+	tb_learning_status
+	tb_learning_system
+	tb_direct_score
+	tb_direct_score_system
+	tb_score_capacity_1024
+	tb_menu_system
+	tb_menu_replay
+	tb_instrument_full_system
+	tb_global_panic
+	tb_mpr121_backpressure
+	tb_mpr121_eventizer_capacity
+	tb_performance_controller
+	tb_performance_retrigger
+	tb_performance_commit_pipeline
+	tb_audio_i2s
+	runtime_audio_fx_reference
+End time: 16:50:26 on Oct 26,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

@@ -164,7 +164,11 @@ module instrument_full_system #(
     // 菜单接收busy结果后退避重试，按键保持旧的等待语义。
     assign merged_action_ready=rst_n && staged_local_ready &&
         (selected_menu_action || perf_local_action_status!=2) && !panic_quiescing && !panic;
-    assign local_panic=merged_action_valid && merged_action_ready && merged_action==8'd5;
+    // 本地TRANSPORT=5(PANIC)无busy条件，合法负载固定由command_stage补零。
+    // 单独用执行握手判定，避免80位命令格式归约经通用ready绕回FIFO写使能。
+    // 其余按键/菜单ready与状态处理不变；源在ready前必须保持action稳定。
+    assign local_panic=merged_action_valid && rst_n && staged_local_ready &&
+        !panic_quiescing && !panic && merged_action==8'd5;
     assign panic_request=panic || local_panic;
     assign panic_discard=panic_quiescing || panic_request;
     performance_command_stage performance_commands(

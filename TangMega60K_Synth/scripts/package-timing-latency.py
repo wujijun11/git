@@ -4,6 +4,7 @@ import difflib
 import hashlib
 import importlib.util
 import json
+import re
 import shutil
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -53,6 +54,14 @@ def main():
     assert sha(previous/old_manifest["bitstream"]) == old_manifest["sha256"]
     old = read(previous/"evidence/fpga/build-results.json")["current"]
     current = result["current"]
+    # PLL数量不等同于布线资源余量；独立列出PRIMARY/LW，避免误称时钟资源充足。
+    report = (args.snapshot/"full/impl/pnr/ContestFull.rpt.txt").read_text(encoding="utf-8-sig")
+    clock_resources = {}
+    for name in ("PRIMARY", "LW", "GCLK_PIN", "PLLA"):
+        match = re.search(r"^\s*"+name+r"\s*\|\s*(\d+)/(\d+)\s*\|", report, re.M)
+        if not match:
+            raise ValueError(f"Missing clock resource {name}")
+        clock_resources[name] = {"used":int(match[1]), "capacity":int(match[2])}
     if (current["minimumSlackNs"]["setup"] <= old["minimumSlackNs"]["setup"] or
             current["minimumSlackNs"]["hold"] <= old["minimumSlackNs"]["hold"]):
         raise ValueError("Both setup and hold must improve before selecting timing optimization delivery")
@@ -74,7 +83,7 @@ def main():
     evidence = ROOT/"verification/timing-latency-20261026"
     before = read(evidence/"before-inputs.json")
     changes = [item["path"] for item in before if sha(ROOT/item["path"]) != item["sha256"].upper()]
-    if set(changes) != {"rtl/audio/polar_lane.v", "rtl/performance/performance_controller.v"}:
+    if set(changes) != {"rtl/audio/polar_lane.v", "rtl/performance/performance_controller.v", "rtl/instrument_full_system.v"}:
         raise ValueError(f"Unexpected production changes: {changes}")
     # 从当前通过测试的CSV重新分析，禁止复制不相干的旧结果冒充本轮测量。
     spec = importlib.util.spec_from_file_location("latency_analysis", ROOT/"scripts/analyze-touch-i2s-latency.py")
@@ -84,7 +93,7 @@ def main():
     summary = read(evidence/"analysis/latency-results.json")
     assert latency == summary
     delivery = ROOT/"delivery-timing-latency"
-    copy(args.snapshot/"full/impl/pnr/ContestFull.fs", delivery/"fpga/ContestFull_TimingTouch1024.fs")
+    copy(args.snapshot/"full/impl/pnr/ContestFull.fs", delivery/"fpga/ContestFull_TimingTouch_TEST1024.fs")
     for item in inputs:
         copy(args.snapshot/item["path"], delivery/"fpga-source"/item["path"])
     for file in (args.snapshot/"full/rtl").rglob("*.hex"):
@@ -117,6 +126,8 @@ def main():
         copy_tree(evidence/"intermediate-r1", delivery/"evidence/intermediate-r1")
     if (evidence/"rejected-r2").is_dir():
         copy_tree(evidence/"rejected-r2", delivery/"evidence/rejected-r2")
+    if (evidence/"intermediate-r4").is_dir():
+        copy_tree(evidence/"intermediate-r4", delivery/"evidence/intermediate-r4")
     diff = []
     for relative in changes:
         old_file = evidence/"source-before"/relative
@@ -128,11 +139,12 @@ def main():
     manifest = {"date":"2026-10-26", "hardwareTested":False,
                 "status":"local test branch; not merged or pushed",
                 "branch":"codex/timing-latency-oled",
-                "bitstream":"fpga/ContestFull_TimingTouch1024.fs",
-                "sha256":sha(delivery/"fpga/ContestFull_TimingTouch1024.fs"),
+                "bitstream":"fpga/ContestFull_TimingTouch_TEST1024.fs",
+                "sha256":sha(delivery/"fpga/ContestFull_TimingTouch_TEST1024.fs"),
                 "setupHoldImproved":True, "timing":current["minimumSlackNs"],
                 "timingBefore":old["minimumSlackNs"], "resources":current["resources"],
                 "resourceDelta":resource_delta, "productionChanges":changes,
+                "clockResources":clock_resources,
                 "buildInputsChecked":len(inputs), "modelSimCases":[item["Name"] for item in cases],
                 "latency":latency}
     (delivery/"manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -144,14 +156,16 @@ def main():
     rows += [f"| {key} | {value['used']:g}/{value['capacity']:g} | {resource_delta[key]:+g} |"
              for key,value in current["resources"].items()]
     rows += ["", "Setup/Hold违反端点为0；完整警告保留在高云日志，不能写成无警告。约束、PLL、引脚和ROM参数未改。",
+             "", "时钟资源："+"，".join(f"{key} {value['used']}/{value['capacity']}" for key,value in clock_resources.items())+"。PRIMARY/LW仍满，不能因逻辑单元有剩余就宣称所有资源宽裕。",
              "", f"已滤波触摸状态到首完整非零I2S字观测最大{latency['observedMaxUs']:.3f}μs，"
              "详见analysis/延迟分段结果.md；不包含MPR模拟检测/滤波或DAC，尚未证明整机≤5ms/≤10ms或无抖动。",
              "", "未下载板卡、未推送GitHub；旧OLED位流哈希核对未变。",
              "", f"位流SHA256：`{manifest['sha256']}`"]
     (delivery/"验证结果.md").write_text("\n".join(rows)+"\n", encoding="utf-8")
-    (delivery/"README.md").write_text("""# 完整OLED主工程：时序余量与触摸延迟验证版
+    (delivery/"README.md").write_text("""# 本地测试版：完整OLED主工程时序与触摸延迟
 
-- 下载：fpga/ContestFull_TimingTouch1024.fs，GW5AT-60B，SRAM Program；本次未下载板卡。
+- 分支：codex/timing-latency-oled；只在本地，未合并或推送main。
+- 下载：fpga/ContestFull_TimingTouch_TEST1024.fs，GW5AT-60B，SRAM Program；本次未下载板卡。
 - GUI工程：fpga-source/full/ContestFull.gprj，保留整个fpga-source目录及full/rtl查找表。
 - 功能沿用OLED＋等候学习版；Windows/C3/手机无需更新。四针OLED和其他引脚均不变。
 - 原理/目录/问题处理：技术总结.md；量化结论：验证结果.md；原始日志：evidence。

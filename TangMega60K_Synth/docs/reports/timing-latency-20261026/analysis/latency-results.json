@@ -1,0 +1,74 @@
+{
+  "passed": true,
+  "physicalTested": false,
+  "startBoundary": "MPR121 already-filtered touch status register change in digital slave model",
+  "endBoundary": "first complete nonzero 24-bit channel word decoded from exported I2S pins",
+  "excluded": [
+    "electrode/AFE acquisition",
+    "MPR121 filtering",
+    "DAC/amplifier/acoustic delay"
+  ],
+  "nominalAudioHz": 49152000,
+  "sampleRateHz": 48000,
+  "i2cHz": 400000,
+  "pollIntervalUs": 500,
+  "voiceSlots": 64,
+  "coldCalibrationWaitAccelerated": true,
+  "steadyStateParametersUnchanged": true,
+  "cases": [
+    {
+      "case": 0,
+      "pollPhase": 0,
+      "irqUsed": true,
+      "keyCount": 1,
+      "snapshot_us": 2051.192,
+      "first_event_us": 2051.233,
+      "last_event_us": 2051.233,
+      "first_command_us": 2052.596,
+      "last_command_us": 2052.596,
+      "first_nonzero_i2s_us": 2372.985
+    },
+    {
+      "case": 1,
+      "pollPhase": 1,
+      "irqUsed": false,
+      "keyCount": 1,
+      "snapshot_us": 1561.036,
+      "first_event_us": 1561.24,
+      "last_event_us": 1561.24,
+      "first_command_us": 1562.603,
+      "last_command_us": 1562.603,
+      "first_nonzero_i2s_us": 1897.213
+    },
+    {
+      "case": 2,
+      "pollPhase": 2,
+      "irqUsed": true,
+      "keyCount": 1,
+      "snapshot_us": 1080.912,
+      "first_event_us": 1081.441,
+      "last_event_us": 1081.441,
+      "first_command_us": 1082.804,
+      "last_command_us": 1082.804,
+      "first_nonzero_i2s_us": 1301.951
+    },
+    {
+      "case": 3,
+      "pollPhase": 0,
+      "irqUsed": false,
+      "keyCount": 25,
+      "snapshot_us": 2551.196,
+      "first_event_us": 2551.236,
+      "last_event_us": 2552.783,
+      "first_command_us": 2552.599,
+      "last_command_us": 3046.682,
+      "first_nonzero_i2s_us": 2867.067
+    }
+  ],
+  "observedMinUs": 1301.951,
+  "observedMaxUs": 2867.067,
+  "observedSpreadUs": 1565.116,
+  "scopeNote": "Four finite cases; not an exhaustive worst-case bound or proof of zero jitter",
+  "physicalAtMost5msProven": false,
+  "physicalAtMost10msProven": false
+}

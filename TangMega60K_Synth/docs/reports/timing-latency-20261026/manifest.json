@@ -1,0 +1,177 @@
+{
+  "date": "2026-10-26",
+  "hardwareTested": false,
+  "status": "local test branch; not merged or pushed",
+  "branch": "codex/timing-latency-oled",
+  "bitstream": "fpga/ContestFull_TimingTouch_TEST1024.fs",
+  "sha256": "0B74A521A1BD29E0353451AF4630302DCD0B235A5B3FC753CEA027175ACD9C20",
+  "setupHoldImproved": true,
+  "timing": {
+    "setup": 0.168,
+    "hold": 0.166,
+    "recovery": 1.961,
+    "removal": 0.474
+  },
+  "timingBefore": {
+    "setup": 0.046,
+    "hold": 0.001,
+    "recovery": 12.785,
+    "removal": 0.661
+  },
+  "resources": {
+    "Logic": {
+      "used": 27208.0,
+      "capacity": 59904.0,
+      "reportedPercent": 46,
+      "free": 32696.0
+    },
+    "Register": {
+      "used": 18842.0,
+      "capacity": 60780.0,
+      "reportedPercent": 31,
+      "free": 41938.0
+    },
+    "BSRAM": {
+      "used": 105.0,
+      "capacity": 118.0,
+      "reportedPercent": 89,
+      "free": 13.0
+    },
+    "DSP": {
+      "used": 51.5,
+      "capacity": 118.0,
+      "reportedPercent": 44,
+      "free": 66.5
+    }
+  },
+  "resourceDelta": {
+    "Logic": -783.0,
+    "Register": 481.0,
+    "BSRAM": 0.0,
+    "DSP": 0.0
+  },
+  "productionChanges": [
+    "rtl/audio/polar_lane.v",
+    "rtl/instrument_full_system.v",
+    "rtl/performance/performance_controller.v"
+  ],
+  "clockResources": {
+    "PRIMARY": {
+      "used": 8,
+      "capacity": 8
+    },
+    "LW": {
+      "used": 8,
+      "capacity": 8
+    },
+    "GCLK_PIN": {
+      "used": 0,
+      "capacity": 40
+    },
+    "PLLA": {
+      "used": 3,
+      "capacity": 8
+    }
+  },
+  "buildInputsChecked": 91,
+  "modelSimCases": [
+    "touch_i2s_latency",
+    "transport_status_equivalence",
+    "polar_margin_s1",
+    "polar_margin_s2",
+    "polar_margin_s3",
+    "polar_margin_negative",
+    "polar_margin_early_write",
+    "oled_timing_regression",
+    "learning_mode",
+    "learning_status",
+    "learning_system",
+    "direct_score",
+    "direct_system",
+    "score_capacity_1024",
+    "menu_system",
+    "menu_replay",
+    "full_system",
+    "global_panic",
+    "mpr121_backpressure",
+    "mpr121_capacity",
+    "performance",
+    "performance_retrigger",
+    "performance_commit",
+    "audio_i2s"
+  ],
+  "latency": {
+    "passed": true,
+    "physicalTested": false,
+    "startBoundary": "MPR121 already-filtered touch status register change in digital slave model",
+    "endBoundary": "first complete nonzero 24-bit channel word decoded from exported I2S pins",
+    "excluded": [
+      "electrode/AFE acquisition",
+      "MPR121 filtering",
+      "DAC/amplifier/acoustic delay"
+    ],
+    "nominalAudioHz": 49152000,
+    "sampleRateHz": 48000,
+    "i2cHz": 400000,
+    "pollIntervalUs": 500,
+    "voiceSlots": 64,
+    "coldCalibrationWaitAccelerated": true,
+    "steadyStateParametersUnchanged": true,
+    "cases": [
+      {
+        "case": 0,
+        "pollPhase": 0,
+        "irqUsed": true,
+        "keyCount": 1,
+        "snapshot_us": 2051.192,
+        "first_event_us": 2051.233,
+        "last_event_us": 2051.233,
+        "first_command_us": 2052.596,
+        "last_command_us": 2052.596,
+        "first_nonzero_i2s_us": 2372.985
+      },
+      {
+        "case": 1,
+        "pollPhase": 1,
+        "irqUsed": false,
+        "keyCount": 1,
+        "snapshot_us": 1561.036,
+        "first_event_us": 1561.24,
+        "last_event_us": 1561.24,
+        "first_command_us": 1562.603,
+        "last_command_us": 1562.603,
+        "first_nonzero_i2s_us": 1897.213
+      },
+      {
+        "case": 2,
+        "pollPhase": 2,
+        "irqUsed": true,
+        "keyCount": 1,
+        "snapshot_us": 1080.912,
+        "first_event_us": 1081.441,
+        "last_event_us": 1081.441,
+        "first_command_us": 1082.804,
+        "last_command_us": 1082.804,
+        "first_nonzero_i2s_us": 1301.951
+      },
+      {
+        "case": 3,
+        "pollPhase": 0,
+        "irqUsed": false,
+        "keyCount": 25,
+        "snapshot_us": 2551.196,
+        "first_event_us": 2551.236,
+        "last_event_us": 2552.783,
+        "first_command_us": 2552.599,
+        "last_command_us": 3046.682,
+        "first_nonzero_i2s_us": 2867.067
+      }
+    ],
+    "observedMinUs": 1301.951,
+    "observedMaxUs": 2867.067,
+    "observedSpreadUs": 1565.116,
+    "scopeNote": "Four finite cases; not an exhaustive worst-case bound or proof of zero jitter",
+    "physicalAtMost5msProven": false,
+    "physicalAtMost10msProven": false
+  }
+}

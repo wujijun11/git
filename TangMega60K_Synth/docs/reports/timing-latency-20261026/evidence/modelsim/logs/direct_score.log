@@ -1,0 +1,32 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/direct_score.wlf -l logs/direct_score.log -do "do cases/direct_score.do" work.tb_direct_score 
+# Start time: 16:52:25 on Oct 26,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: sim/tb_direct_score.sv(17): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 37, found 33.
+# ** Warning: sim/tb_direct_score.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'learning_status_payload'.
+# ** Warning: sim/tb_direct_score.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'learning_touch_ready'.
+# ** Warning: sim/tb_direct_score.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'learning_touch_mask'.
+# ** Warning: sim/tb_direct_score.sv(17): (vopt-2718) [TFMPC] - Missing connection for port 'local_action_status'.
+# ** Note: (vopt-143) Recognized 1 FSM in module "voice_allocator_v2(fast)".
+# //  ModelSim SE-64 10.6e Jun 23 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_direct_score(fast)
+# Loading work.performance_controller(fast)
+# Loading work.voice_allocator_v2(fast)
+# do cases/direct_score.do
+# DIRECT SCORE PASS 128 pitches, 64 held voices, source isolation, format guard, backpressure, stop, restart, board timbre and reset
+# ** Note: $finish    : sim/tb_direct_score.sv(97)
+#    Time: 352840 ns  Iteration: 1  Instance: /tb_direct_score
+# End time: 16:52:26 on Oct 26,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 5

@@ -81,6 +81,19 @@ module performance_controller #(
     wire [15:0] arg_count = command_payload[15:0];
     wire [7:0] action = command_payload[7:0];
     wire idle = !playing && !guide_active && !stopping && !event_valid;
+    // TRANSPORT有效编号只有0..8/9。并行检查高76位和低4位，避免把8位范围
+    // 比较、80位格式校验和逐项busy判断串成深路径。错误优先级仍为格式1、
+    // 忙2、内容1；不新增等待拍，也不改变命令执行与ACK时刻。
+    wire [3:0] action_code=command_payload[3:0];
+    wire action_format_error=(|command_payload[79:4]) ||
+        action_code>(LEARNING_ENABLE ? 4'd9 : 4'd8);
+    wire action_needs_idle=action_code==1 || action_code==2 || action_code==4 ||
+        action_code==6 || action_code==8 || action_code==9;
+    wire action_idle_error=action_needs_idle && (!idle || recording);
+    wire action_needs_score=action_code==1 || action_code==6 || action_code==9;
+    wire action_content_error=(action_needs_score && committed_count==0) ||
+        ((action_code==6 || action_code==9) && selected_direct) ||
+        (action_code==8 && !replay_supported);
     assign command_ready = 1'b1;
     assign record_read_valid = record_read_q_valid;
     assign row_payload = record_read_valid ? {record_read_q,record_read_q_index} : 80'd0;
@@ -149,8 +162,27 @@ module performance_controller #(
     reg [79:0] builtin_row_q;
     always @(posedge clk) builtin_row_q <= builtin_row(score_position);
 
+    // 录音RAM输出到寄存行之间再切一拍，同时预译码录音来源减25的键号。
+    // 旧路径把BSRAM时钟到输出、来源减法、25键映射及held判断串到event_*，
+    // 实际Setup为0.000ns。保留索引/模式标签，换行或切模式期间禁止读旧行。
+    // 只调整MODE_REPLAY；上传曲谱/学习逐行握手保持原来拍次和吞吐量。
+    reg [63:0] replay_row_q;
+    reg [7:0] playback_key_q;
+    reg [15:0] playback_meta_index;
+    reg [1:0] playback_meta_mode;
+    reg playback_meta_valid;
+    always @(posedge clk) begin
+        playback_meta_index<=playback_q_index;
+        playback_meta_mode<=mode;
+        replay_row_q<=record_play_q;
+        playback_key_q<=record_play_q[39:32]-RECORD_BASE;
+        if(!rst_n)playback_meta_valid<=0;
+        else playback_meta_valid<=playback_q_valid;
+    end
     reg [79:0] active_row;
-    wire cached_row_ready=playback_q_valid && playback_q_index==score_position;
+    wire cached_row_ready=mode==MODE_REPLAY ?
+        (playback_meta_valid && playback_meta_index==score_position && playback_meta_mode==mode) :
+        (playback_q_valid && playback_q_index==score_position);
     wire active_row_ready=cached_row_ready;
     reg [7:0] active_key;
     wire [6:0] active_velocity=mode==MODE_REPLAY ? active_row[70:64] : active_row[62:56];
@@ -158,8 +190,14 @@ module performance_controller #(
     // guide state. A velocity-zero NoteOn releases the currently held note.
     wire active_on=(mode==MODE_REPLAY ? active_row[72] : active_row[64]) && active_velocity!=0;
     wire active_direct=DIRECT_SCORE_ENABLE && selected_direct && !selected_builtin && mode!=MODE_REPLAY;
+    // 25个固定键位并行译码后按位或，避免“键号*7”可变位选推断宽桶形
+    // 移位器，再串接held数组选择。上传合法键号始终0..24；直接音高走旁路。
+    reg [6:0] active_mapped_note,active_held_note;
+    reg [1:0] active_held_timbre;
+    reg active_key_held;
+    integer select_key;
     wire [6:0] active_note=mode==MODE_REPLAY ? active_row[62:56] :
-        active_direct ? active_key[6:0] : key_map_flat[active_key*7 +: 7];
+        active_direct ? active_key[6:0] : active_mapped_note;
     wire [1:0] active_timbre=mode==MODE_REPLAY ? active_row[74:73] : current_timbre;
     // 学习器与原定时播放器共享RAM读口；只有学习器握手时才推进读地址。
     wire learn_row_valid=LEARNING_ENABLE && mode==MODE_LEARN && active_row_ready &&
@@ -183,29 +221,32 @@ module performance_controller #(
         assign learn_target=0; assign learn_completed=0; assign learning_status_payload=0;
     end endgenerate
     always @* begin
-        if (mode==MODE_REPLAY) begin
-            active_row = {record_play_q,playback_q_index};
-            active_key = active_row[55:48]-RECORD_BASE;
+        if(mode==MODE_REPLAY) begin
+            active_row={replay_row_q,playback_meta_index};
+            active_key=playback_key_q;
         end else begin
             active_row=selected_builtin ? builtin_row_q :
                 {8'd0,7'd0,score_row_q[46],1'b0,score_row_q[45:39],
                  1'b0,score_row_q[38:32],score_row_q[31:0],playback_q_index};
             active_key=active_row[55:48];
         end
+        active_mapped_note=0;
+        active_held_note=0;
+        active_held_timbre=0;
+        active_key_held=0;
+        for(select_key=0;select_key<25;select_key=select_key+1) begin
+            active_mapped_note=active_mapped_note |
+                (key_map_flat[select_key*7 +:7] & {7{active_key==select_key}});
+            active_held_note=active_held_note |
+                (held_note[select_key] & {7{active_key==select_key}});
+            active_held_timbre=active_held_timbre |
+                (held_timbre[select_key] & {2{active_key==select_key}});
+            active_key_held=active_key_held || (held[select_key] && active_key==select_key);
+        end
         first_held=0;
         for (n=24;n>=0;n=n-1) if (held[n]) first_held=n;
-        action_status=0;
-        if (command_payload[79:8]!=0 || action>(LEARNING_ENABLE ? 9 : 8)) action_status=1;
-        else case (action)
-            1,6,9: if (!idle || recording) action_status=2;
-                 else if (committed_count==0) action_status=1;
-                 else if ((action==6 || action==9) && selected_direct) action_status=1;
-            2: if (!idle || recording) action_status=2;
-            4: if (!idle || recording) action_status=2;
-            8: if (!idle || recording) action_status=2;
-               else if (!replay_supported) action_status=1;
-            default: action_status=0;
-        endcase
+        action_status={6'd0,!action_format_error && action_idle_error,
+            action_format_error || (!action_idle_error && action_content_error)};
         score_write_status=0;
         if (!idle || recording) score_write_status=2;
         else if (arg_count>=SCORE_CAPACITY || command_payload[79:73]!=0 ||
@@ -351,22 +392,22 @@ module performance_controller #(
                         event_is_direct<=0;
                         event_valid<=1; event_key<=active_key[4:0];
                         event_source<=SCORE_BASE+active_key[5:0];
-                        if (held[active_key] && active_on && held_note[active_key]!=active_note) begin
+                        if (active_key_held && active_on && active_held_note!=active_note) begin
                             // A key may be remapped between repeated NoteOns.
                             // Release its old pitch before replacing ownership;
                             // event_release keeps this score row pending until
                             // the release is accepted. Stop/Panic can still
                             // drain this transaction without starting the row.
                             event_release<=1; event_on<=0;
-                            event_note<=held_note[active_key]; event_velocity<=0;
-                            event_timbre<=held_timbre[active_key];
+                            event_note<=active_held_note; event_velocity<=0;
+                            event_timbre<=active_held_timbre;
                         end else begin
                             // Same-pitch retriggers reuse the allocator's held
                             // voice, including when every voice slot is busy.
                             event_release<=0; event_on<=active_on;
-                            event_note<=held[active_key] && !active_on ? held_note[active_key] : active_note;
+                            event_note<=active_key_held && !active_on ? active_held_note : active_note;
                             event_velocity<=active_on ? active_velocity : 0;
-                            event_timbre<=held[active_key] && !active_on ? held_timbre[active_key] : active_timbre;
+                            event_timbre<=active_key_held && !active_on ? active_held_timbre : active_timbre;
                         end
                     end
                 end

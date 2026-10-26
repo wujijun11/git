@@ -90,24 +90,35 @@ module polar_lane #(
             else next_amp=value[35:0];
         end
     endfunction
-    // Register the complete write transaction on the audio rising edge, then
-    // commit it to state RAM on the following rising edge. This gives both
-    // arithmetic-to-staging and staging-to-RAM a full clock period instead
-    // of relying on the PLL clock's two half periods.
+    // 算术结果先在上升沿整包暂存，再在下降沿锁住，最后仍在下一上升沿写RAM。
+    // 算术仍有完整一拍；额外下降沿寄存器只搬运数据，不做计算。这样RAM写沿
+    // 前后各有约半拍稳定时间，改善原先同沿寄存器到RAM仅0.001ns的Hold余量。
+    // 不是把RAM写入提前到下降沿：写回拍次、读旧值语义和输出有效拍保持不变。
     // The voice engine waits for the lane output before starting another
     // voice; all four writes complete before that next start (including the
     // one-voice case). Keep address, data and valid in the same stage.
     reg [194:0] state_write_data;
     reg [7:0] state_write_address;
     reg state_write_valid;
+    reg [194:0] state_stage_data;
+    reg [7:0] state_stage_address;
+    reg state_stage_valid;
     always @(posedge clk) begin
-        state_write_data<={end3,ptr3,aL3,aR3,tL3,tR3,enabled3 ? phase_after : 32'd0};
-        state_write_address<=addr3;
+        state_stage_data<={end3,ptr3,aL3,aR3,tL3,tR3,enabled3 ? phase_after : 32'd0};
+        state_stage_address<=addr3;
     end
     // Reset cancels a queued write immediately, without clearing the RAM.
     always @(posedge clk or negedge rst_n) begin
+        if(!rst_n) state_stage_valid<=1'b0;
+        else state_stage_valid<=v[3];
+    end
+    always @(negedge clk) begin
+        state_write_data<=state_stage_data;
+        state_write_address<=state_stage_address;
+    end
+    always @(negedge clk or negedge rst_n) begin
         if(!rst_n) state_write_valid<=1'b0;
-        else state_write_valid<=v[3];
+        else state_write_valid<=state_stage_valid;
     end
     always @(posedge clk) begin
         if(state_write_valid) states[state_write_address]<=state_write_data;

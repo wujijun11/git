@@ -1,5 +1,7 @@
 # 弦光：Tang Mega 60K 电子乐器工程
 
+本目录为**独立本地测试分支 `codex/timing-latency-oled`**，不代表main或已上板版本。以提交 `4bee4c9` 的OLED版为基线，试验时序余量与触摸到I2S数字延迟；修改、验证及待实测项目见[本轮技术总结](docs/时序余量与触摸I2S延迟技术总结_20261026.md)。未经确认不合并或推送main。原 `比赛 2/TangMega60K_Synth` 生产源码已恢复OLED版。
+
 2026-10-26（本地OLED接入）：完整顶层新增独立四针128×64 I²C状态屏，显示中文菜单、分区反显和录放状态。20项ModelSim针对性回归与实际Gowin构建通过，Setup/Hold违反端点均为0，最小余量0.046/0.001ns，余量仍偏紧。音源算法与客户端未改，旧LearningMode交付保留；本地新位流位于 `delivery-oled-integration/fpga/ContestFull_OLED_Learning1024.fs`，尚未下载实测。接线、模块说明和复现命令见[OLED完整工程接入](docs/OLED完整工程接入_20261026.md)。此条不代表已推送GitHub。
 
 2026-10-23：当前完整主工程、ESP32-C3 桥接固件与 Windows **Tang Neon Studio 1.0.4** 源码已更新。FPGA 主源对应已构建的 `8FE0`；另提供只增加被动串口观察的完整工程副本，其实板 SRAM 下载编号为 `3B9F`。C3 已烧录并校验，但 FPGA 的蓝牙协议 ACK 仍未验收通过，未完成 FPGA Flash 固化；不能把编译、下载或蓝牙配对当作整机连接成功。最新状态、接线与重建入口见[当前工程状态](docs/当前工程状态-20261023.md)。下方保留各日期的历史记录。

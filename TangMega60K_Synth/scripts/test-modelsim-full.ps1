@@ -43,6 +43,13 @@ function New-TestCase([string]$Name,[string]$Top,[string]$Bench,[string]$Marker,
 $watchdogCase = New-TestCase 'remote_note_watchdog' 'tb_remote_note_watchdog' `
     'sim/tb_remote_note_watchdog.sv' 'REMOTE NOTE WATCHDOG PASS' @() '' $true
 $allCases = @(
+    (New-TestCase 'touch_i2s_latency' 'tb_touch_i2s_latency' 'sim/tb_touch_i2s_latency.sv' 'TOUCH I2S LATENCY PASS'),
+    (New-TestCase 'transport_status_equivalence' 'tb_transport_status_equivalence' 'sim/tb_transport_status_equivalence.sv' 'TRANSPORT STATUS EQUIVALENCE PASS'),
+    (New-TestCase 'polar_margin_s1' 'tb_polar_lane_margin_equivalence' 'sim/tb_polar_lane_margin_equivalence.sv' 'POLAR MARGIN EQUIVALENCE PASS'),
+    (New-TestCase 'polar_margin_s2' 'tb_polar_lane_margin_equivalence' 'sim/tb_polar_lane_margin_equivalence.sv' 'POLAR MARGIN EQUIVALENCE PASS' @('-gSEED0=94177')),
+    (New-TestCase 'polar_margin_s3' 'tb_polar_lane_margin_equivalence' 'sim/tb_polar_lane_margin_equivalence.sv' 'POLAR MARGIN EQUIVALENCE PASS' @('-gSEED0=123456789')),
+    (New-TestCase 'polar_margin_negative' 'tb_polar_lane_margin_equivalence' 'sim/tb_polar_lane_margin_equivalence.sv' '' @('-gINJECT=1') 'polar output mismatch cycle=20'),
+    (New-TestCase 'polar_margin_early_write' 'tb_polar_lane_margin_equivalence' 'sim/tb_polar_lane_margin_equivalence.sv' '' @('-gEARLY_MUTANT=1') 'polar RAM read-state mismatch cycle=1216 age=1 sameaddr=1/1'),
     (New-TestCase 'oled_timing_regression' 'tb_oled_timing_regression' 'sim/tb_oled_timing_regression.sv' 'OLED TIMING REGRESSION PASS'),
     (New-TestCase 'oled_board' 'tb_oled_board_integration' 'sim/tb_oled_board_integration.sv' 'OLED BOARD INTEGRATION PASS'),
     (New-TestCase 'oled_board_timing' 'tb_oled_board_integration' 'sim/tb_oled_board_integration.sv' 'OLED BOARD TIMING PASS' @('-gFAST=0')),
@@ -219,11 +226,13 @@ try {
         throw 'ContestFull RTL source list is empty or contains duplicate paths'
     }
     $benchSources = @($cases.Bench | Select-Object -Unique)
-    if ($Suite -ne 'Watchdog') { $benchSources += @('sim/tb_mpr121_model.sv','sim/runtime_audio_fx_reference.sv') }
+    if ($Suite -ne 'Watchdog') { $benchSources += @('sim/tb_mpr121_model.sv','sim/runtime_audio_fx_reference.sv',
+        'sim/polar_lane_timing_reference.v','sim/performance_controller_timing_reference.v') }
     # A filtered run retains the complete Full source fingerprint, allowing
     # evidence from separate runs to be compared without weakening coverage.
     $stagedBenchSources = if ($Suite -ne 'Watchdog') {
-        @($allCases.Bench | Select-Object -Unique) + @('sim/tb_mpr121_model.sv','sim/runtime_audio_fx_reference.sv')
+        @($allCases.Bench | Select-Object -Unique) + @('sim/tb_mpr121_model.sv','sim/runtime_audio_fx_reference.sv',
+            'sim/polar_lane_timing_reference.v','sim/performance_controller_timing_reference.v')
     } else { $benchSources }
     foreach ($bench in $stagedBenchSources) { Stage-Input (Join-Path $projectDir $bench) $bench 'Testbench' }
     foreach ($rom in (Get-ChildItem -LiteralPath (Join-Path $projectDir 'rtl/audio/rom') -File -Filter '*.hex' | Sort-Object Name)) {
@@ -302,7 +311,18 @@ try {
                 # This ModelSim edition can return 0 even for $fatal. The
                 # exact DUT failure location/message is the negative oracle.
                 if ($simResult.ExitCode -notin @(0,1)) { throw "Unexpected process exit $($simResult.ExitCode)" }
-                if ($fatalLines.Count -ne 1 -or $errorLines.Count -ne 0 -or
+                if ($case.Name -in @('polar_margin_negative','polar_margin_early_write')) {
+                    # 运行期等价负例需要固定消息、时间和测试台实例；
+                    # 原参数time-zero拒绝检查保持原样，不能以其他错误冒充通过。
+                    $expectedTime = if ($case.Name -eq 'polar_margin_negative') {196} else {12156}
+                    if ($fatalLines.Count -ne 1 -or $errorLines.Count -ne 0 -or
+                        $fatalLines[0] -notmatch ('\*\*\s+Fatal:\s*' + [regex]::Escape($case.ExpectedFatal) + '\s*$') -or
+                        $logText -notmatch ('\bTime:\s*' + $expectedTime + '\s+ns\b') -or
+                        $logText -notmatch ('(?im)\bInstance:\s*/' + [regex]::Escape($case.Top) + '\s*$') -or
+                        $logText -match 'POLAR MARGIN EQUIVALENCE PASS') {
+                        throw 'Missing exact runtime equivalence-oracle rejection'
+                    }
+                } elseif ($fatalLines.Count -ne 1 -or $errorLines.Count -ne 0 -or
                     $fatalLines[0] -notmatch ('\*\*\s+Fatal:\s*' + [regex]::Escape($case.ExpectedFatal) + '\s*$') -or
                     $logText -notmatch '(?im)\bTime:\s*0\s+(?:fs|ps|ns|us|ms|sec|s)\b' -or
                     $logText -notmatch ('(?im)\bInstance:\s*/' + [regex]::Escape($case.Top) + '/dut\b') -or

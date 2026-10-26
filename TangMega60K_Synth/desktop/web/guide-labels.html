@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>25灯与琴键编号贴纸</title>
+<style>
+body { max-width: 180mm; margin: 12mm auto; color: #241d30; font-family: "Microsoft YaHei", sans-serif; }
+h1 { font-size: 22px; } h2 { font-size: 16px; margin: 20px 0 10px; } p { font-size: 13px; line-height: 1.7; }
+.labels { display: grid; grid-template-columns: repeat(5, 14mm); gap: 3mm; }
+.labels span { width: 12mm; height: 12mm; border: .3mm solid #342d40; border-radius: 50%; display: grid; place-items: center; font-size: 18px; font-weight: bold; }
+.matrix { display: grid; grid-template-columns: repeat(5, 14mm); gap: 2mm; }
+.matrix span { display: grid; place-items: center; border: .3mm solid #999; width: 14mm; height: 14mm; }
+.sets { display: flex; gap: 12mm; flex-wrap: wrap; }
+@page { size: A4; margin: 12mm; }
+@media print { body { margin: 0; } .screen-only { display: none; } }
+</style>
+<h1>灯亮哪一号，就弹哪一键</h1>
+<p>两组相同编号：一组贴灯旁，一组贴琴键旁。琴键从左到右编号，包含黑键；换音区后编号不变。</p>
+<p class="screen-only">请用浏览器打开此文件，按 Ctrl+P 打印。贴纸直径约12mm，可按实际空间缩放。这不是灯板孔距模板。</p>
+<div class="sets"><section><h2>灯旁编号</h2><div class="labels" id="lamp"></div></section><section><h2>琴键旁编号</h2><div class="labels" id="key"></div></section></div>
+<h2>5×5编号对照卡 ↑ 此侧朝上</h2><div class="matrix" id="matrix"></div>
+<p>这张卡按逻辑编号排列。实物灯板到货后先校准灯位方向和顺序，再贴编号。</p>
+<script>
+for (const id of ['lamp', 'key', 'matrix']) {
+    const area = document.getElementById(id);
+    for (let i = 1; i <= 25; i++) {
+        const label = document.createElement('span');
+        label.textContent = String(i).padStart(2, '0');
+        area.append(label);
+    }
+}
+</script>
+</html>

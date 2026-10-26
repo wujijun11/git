@@ -93,3 +93,6 @@ desktop/reference/
 desktop/dist*/
 desktop/TangNeonStudio-Windows-*.zip
 verification/
+
+# Local portable build and delivery directories; curated releases are tracked separately.
+/delivery*/

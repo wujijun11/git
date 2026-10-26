@@ -1,6 +1,7 @@
 [CmdletBinding()]
 param(
     [string]$ArduinoCli='',
+    [string]$ToolRoot='',
     [string]$ConfigFile='',
     [string]$BuildDir='',
     [string]$OutputDir=''
@@ -15,7 +16,7 @@ function Get-BridgeSha256([string]$Path) {
     finally { $hashStream.Dispose();$hashAlgorithm.Dispose() }
 }
 $projectDir=[IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
-$toolDir=[IO.Path]::GetFullPath((Join-Path $projectDir '../tmp/ble-build'))
+$toolDir=if($ToolRoot){[IO.Path]::GetFullPath($ToolRoot)}else{[IO.Path]::GetFullPath((Join-Path $projectDir '../tmp/ble-build'))}
 if (!$ArduinoCli) {
     $localCli=Join-Path $toolDir 'arduino-cli.exe'
     if (Test-Path -LiteralPath $localCli) { $ArduinoCli=$localCli }

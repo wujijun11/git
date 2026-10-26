@@ -80,6 +80,7 @@ module tb_global_panic;
             if(timeout==1000)$fatal(1,"PANIC drain deadlocked");end
     endtask
     reg panic_seen=0,allow_new_touch=0;
+    reg previous_panic_discard=0;
     integer discarded_sensor=0,discarded_perf=0,discarded_watchdog=0,post_panic_ons=0,panic_cycles=0;
     reg sensor_stalled=0,perf_stalled=0,remote_stalled=0,watchdog_stalled=0;
     reg [22:0] last_sensor,last_perf,last_remote,last_watchdog;
@@ -100,7 +101,9 @@ module tb_global_panic;
         watchdog_stalled=dut.watchdog_ev && !dut.watchdog_er;last_watchdog=watchdog_payload;
         if(dut.panic_discard)begin
             panic_seen=1;panic_cycles=panic_cycles+1;
-            if(dut.audio_rst_n || dut.cr || dut.push_valid)$fatal(1,"PANIC sink admitted audio/new command");
+            // 命令/事件入口必须立即屏蔽；高扇出音频复位允许寄存边界的一拍延迟。
+            if((previous_panic_discard && dut.audio_rst_n) || dut.cr || dut.push_valid)
+                $fatal(1,"PANIC sink admitted audio/new command");
             if(dut.sensor_ev && dut.sensor_er)discarded_sensor=discarded_sensor+1;
             if(dut.perf_ev && dut.perf_er)discarded_perf=discarded_perf+1;
             if(dut.watchdog_ev && dut.watchdog_er)discarded_watchdog=discarded_watchdog+1;
@@ -109,6 +112,7 @@ module tb_global_panic;
             if(dut.push_payload[21:16]!=63 && !allow_new_touch)$fatal(1,"stale producer note-on replayed after PANIC");
             post_panic_ons=post_panic_ons+1;
         end
+        previous_panic_discard=dut.panic_discard;
     end
     reg [79:0] p;integer timeout;
     initial begin

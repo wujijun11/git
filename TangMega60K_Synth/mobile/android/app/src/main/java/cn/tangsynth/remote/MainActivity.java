@@ -23,6 +23,7 @@ public final class MainActivity extends Activity {
     private final Handler ui=new Handler(Looper.getMainLooper());
     private Runnable chooseDeviceTask,setupTimeoutTask;
     private WebView web;
+    private MusicCatalog musicCatalog;
     private BluetoothAdapter adapter;
     private BluetoothLeScanner scanner;
     private ScanCallback scanCallback;
@@ -48,6 +49,7 @@ public final class MainActivity extends Activity {
     @SuppressLint("SetJavaScriptEnabled")
     @Override public void onCreate(Bundle b){super.onCreate(b);
         web=new WebView(this);setContentView(web);
+        musicCatalog=new MusicCatalog(getCacheDir(),(id,result)->ui.post(()->{if(web!=null)js("window.nativeMusicResult("+id+","+result.toString()+")");}));
         web.getSettings().setJavaScriptEnabled(true);web.getSettings().setDomStorageEnabled(true);
         web.getSettings().setAllowFileAccess(false);web.getSettings().setAllowContentAccess(true);
         web.addJavascriptInterface(new Bridge(),"AndroidBle");
@@ -56,7 +58,7 @@ public final class MainActivity extends Activity {
             @Override public boolean shouldOverrideUrlLoading(WebView view,WebResourceRequest request){return !isLocalAsset(request.getUrl());}
             @Override public boolean shouldOverrideUrlLoading(WebView view,String url){return !isLocalAsset(Uri.parse(url));}
         });
-        web.setWebChromeClient(new WebChromeClient(){@Override public boolean onShowFileChooser(WebView v,ValueCallback<Uri[]> cb,FileChooserParams p){return chooseScoreFile(cb);}});
+        web.setWebChromeClient(new WebChromeClient(){@Override public boolean onShowFileChooser(WebView v,ValueCallback<Uri[]> cb,FileChooserParams p){return chooseScoreFile(cb,p);}});
         web.loadUrl("file:///android_asset/index.html");
         BluetoothManager manager=(BluetoothManager)getSystemService(BLUETOOTH_SERVICE);adapter=manager==null?null:manager.getAdapter();
     }
@@ -87,11 +89,18 @@ public final class MainActivity extends Activity {
         }catch(SecurityException e){permissionLost();}
     }
     private void cancelSetupTimeout(){setupGeneration++;if(setupTimeoutTask!=null){ui.removeCallbacks(setupTimeoutTask);setupTimeoutTask=null;}}
+    private void requestPerformanceLink(BluetoothGatt owner) {
+        // 连接优先级仅申请较短间隔；不循环重试、不因手机拒绝而断开。
+        try {
+            if (!BlePerformanceLink.requestHighPriority(owner))
+                state("info", "系统未接受高优先级连接申请，继续使用当前参数");
+        } catch (SecurityException failure) { permissionLost(); }
+    }
     private void armSetupTimeout(BluetoothGatt owner,String stage){cancelSetupTimeout();final long generation=connectionGeneration,deadline=setupGeneration;setupTimeoutTask=()->{if(generation!=connectionGeneration||deadline!=setupGeneration||owner!=gatt||ready)return;disconnect(false);state("error",stage+"超时，请检查桥供电后重新连接");};ui.postDelayed(setupTimeoutTask,GATT_SETUP_TIMEOUT_MS);}
     private final BluetoothGattCallback gattCallback=new BluetoothGattCallback(){
         @Override public void onConnectionStateChange(BluetoothGatt g,int status,int newState){ui.post(()->{if(g!=gatt)return;try{if(status==BluetoothGatt.GATT_SUCCESS&&newState==BluetoothProfile.STATE_CONNECTED){state("connecting","连接成功，发现 UART 服务");armSetupTimeout(g,"服务发现");if(!g.discoverServices()){state("error","服务发现启动失败");disconnect(false);}}else if(newState==BluetoothProfile.STATE_DISCONNECTED||status!=BluetoothGatt.GATT_SUCCESS){state("disconnected","蓝牙断开 status="+status);disconnect(false);}}catch(SecurityException e){permissionLost();}});}
         @Override public void onServicesDiscovered(BluetoothGatt g,int status){ui.post(()->{if(g!=gatt)return;try{BluetoothGattService service=g.getService(UUID.fromString(Protocol.SERVICE));if(status!=BluetoothGatt.GATT_SUCCESS||service==null){state("error","缺少固定 NUS 服务");disconnect(false);return;}rx=service.getCharacteristic(UUID.fromString(Protocol.RX));BluetoothGattCharacteristic tx=service.getCharacteristic(UUID.fromString(Protocol.TX));if(rx==null||tx==null||!g.setCharacteristicNotification(tx,true)){state("error","UART 特征不可用");disconnect(false);return;}BluetoothGattDescriptor descriptor=tx.getDescriptor(CCCD);if(descriptor==null){state("error","缺少通知 CCCD");disconnect(false);return;}descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);armSetupTimeout(g,"通知订阅");if(!g.writeDescriptor(descriptor)){state("error","启用通知失败");disconnect(false);}}catch(SecurityException e){permissionLost();}});}
-        @Override public void onDescriptorWrite(BluetoothGatt g,BluetoothGattDescriptor d,int status){ui.post(()->{if(g!=gatt||!CCCD.equals(d.getUuid()))return;if(status==BluetoothGatt.GATT_SUCCESS){cancelSetupTimeout();ready=true;state("ready","通知已启用，等待 FPGA 握手");}else{state("error","CCCD 写入失败 status="+status);disconnect(false);}});}
+        @Override public void onDescriptorWrite(BluetoothGatt g,BluetoothGattDescriptor d,int status){ui.post(()->{if(g!=gatt||!CCCD.equals(d.getUuid()))return;if(status==BluetoothGatt.GATT_SUCCESS){cancelSetupTimeout();requestPerformanceLink(g);if(g!=gatt)return;ready=true;state("ready","通知已启用，等待 FPGA 握手");}else{state("error","CCCD 写入失败 status="+status);disconnect(false);}});}
         @Override public void onCharacteristicWrite(BluetoothGatt g,BluetoothGattCharacteristic c,int status){ui.post(()->{if(g==gatt&&c==rx&&writing)writeResult(status==BluetoothGatt.GATT_SUCCESS,"GATT 写入 status="+status);});}
         @Override public void onCharacteristicChanged(BluetoothGatt g,BluetoothGattCharacteristic c){final byte[] bytes=c.getValue().clone();ui.post(()->{if(g==gatt)js("window.nativeBleReceive("+JSONObject.quote(Protocol.hex(bytes))+")");});}
     };
@@ -99,16 +108,19 @@ public final class MainActivity extends Activity {
     public final class Bridge {
         @JavascriptInterface public void connect(){ui.post(MainActivity.this::connect);}
         @JavascriptInterface public void disconnect(){ui.post(()->MainActivity.this.disconnect(true));}
-        @JavascriptInterface public void writeHex(String hex){ui.post(()->{try{byte[] bytes=Protocol.unhex(hex);if(!ready||gatt==null||rx==null||writing){writeResult(false,"GATT 未就绪或写入忙");return;}if(!hasPermissions()){permissionLost();return;}rx.setWriteType(BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT);rx.setValue(bytes);writing=true;final long id=++writeGeneration;if(!gatt.writeCharacteristic(rx))writeResult(false,"GATT 拒绝写入");else ui.postDelayed(()->{if(writing&&writeGeneration==id){writeResult(false,"GATT 写回调超时");MainActivity.this.disconnect(true);}},3000);}catch(SecurityException e){permissionLost();writeResult(false,"蓝牙权限已撤销");}catch(Exception e){writeResult(false,e.getMessage());}});}
+        @JavascriptInterface public void writeHex(String hex){ui.post(()->{try{byte[] bytes=Protocol.unhex(hex);if(!ready||gatt==null||rx==null||writing){writeResult(false,"GATT 未就绪或写入忙");return;}if(!hasPermissions()){permissionLost();return;}rx.setWriteType(BlePerformanceLink.writeTypeFor(rx.getProperties()));rx.setValue(bytes);writing=true;final long id=++writeGeneration;if(!gatt.writeCharacteristic(rx))writeResult(false,"GATT 拒绝写入");else ui.postDelayed(()->{if(writing&&writeGeneration==id){writeResult(false,"GATT 写回调超时");MainActivity.this.disconnect(true);}},3000);}catch(SecurityException e){permissionLost();writeResult(false,"蓝牙权限已撤销");}catch(Exception e){writeResult(false,e.getMessage());}});}
         @JavascriptInterface public void loadScoreUrl(String url,int id){ui.post(()->startScoreDownload(url,id));}
         @JavascriptInterface public void cancelScoreLoad(){ui.post(MainActivity.this::cancelScoreDownload);}
+        @JavascriptInterface public void musicRequest(String json,int id){if(musicCatalog!=null)musicCatalog.request(json,id);}
         @JavascriptInterface public void exportJson(String json){ui.post(()->beginExport(json));}
     }
-    private boolean chooseScoreFile(ValueCallback<Uri[]> cb){
+    private boolean chooseScoreFile(ValueCallback<Uri[]> cb,WebChromeClient.FileChooserParams params){
         // A fixed Android request code may have only one outstanding owner.
         // Replacing the callback would route picker A's URI into callback B.
         if(fileChoice!=null||web==null){cb.onReceiveValue(null);return true;}
-        fileChoice=cb;Intent intent=new Intent(Intent.ACTION_OPEN_DOCUMENT).setType("application/json").addCategory(Intent.CATEGORY_OPENABLE);
+        boolean midi=false;for(String accept:params.getAcceptTypes())if(accept.contains("mid"))midi=true;
+        fileChoice=cb;Intent intent=new Intent(Intent.ACTION_OPEN_DOCUMENT).setType(midi?"*/*":"application/json").addCategory(Intent.CATEGORY_OPENABLE);
+        // 厂商文档提供器对audio/midi标注不一致，MID使用通用选择器，文件内容仍严格解析。
         try{startActivityForResult(intent,FILE);}catch(RuntimeException e){fileChoice=null;cb.onReceiveValue(null);state("info","文件选择失败：无法打开文件选择器");}return true;
     }
     private void beginExport(String json){
@@ -129,8 +141,8 @@ public final class MainActivity extends Activity {
     private void scoreResult(ScoreDownload request,String json,String error){
         ui.post(()->{if(scoreDownload!=request||web==null)return;scoreDownload=null;js("window.nativeScoreLoaded("+(json==null?"null":JSONObject.quote(json))+","+(error==null?"null":JSONObject.quote(error))+","+request.id+")");});
     }
-    private void loadJson(String address,ScoreDownload request){try{URL url=new URL(address);byte[] body=null;for(int redirects=0;redirects<4;redirects++){checkScoreDownload(request);if(!"https".equalsIgnoreCase(url.getProtocol()))throw new IOException("只允许 HTTPS 曲谱");HttpURLConnection c=(HttpURLConnection)url.openConnection();request.connection=c;try{checkScoreDownload(request);c.setInstanceFollowRedirects(false);c.setConnectTimeout(10000);c.setReadTimeout(10000);c.setRequestProperty("Accept","application/json");int code=c.getResponseCode();checkScoreDownload(request);if(code>=300&&code<400){String to=c.getHeaderField("Location");if(to==null)throw new IOException("重定向缺少 Location");url=new URL(url,to);continue;}if(code!=200)throw new IOException("HTTP "+code);try(InputStream in=c.getInputStream();ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] chunk=new byte[4096];int n;while((n=in.read(chunk))!=-1){checkScoreDownload(request);if(out.size()+n>262144)throw new IOException("JSON 超过 256KiB");out.write(chunk,0,n);}body=out.toByteArray();}break;}finally{c.disconnect();request.connection=null;}}checkScoreDownload(request);if(body==null)throw new IOException("重定向次数过多");scoreResult(request,new String(body,StandardCharsets.UTF_8),null);}catch(Exception e){scoreResult(request,null,String.valueOf(e.getMessage()));}}
+    private void loadJson(String address,ScoreDownload request){try{URL url=new URL(address);byte[] body=null;for(int redirects=0;redirects<4;redirects++){checkScoreDownload(request);if(!"https".equalsIgnoreCase(url.getProtocol()))throw new IOException("只允许 HTTPS 曲谱");HttpURLConnection c=(HttpURLConnection)url.openConnection();request.connection=c;try{checkScoreDownload(request);c.setInstanceFollowRedirects(false);c.setConnectTimeout(10000);c.setReadTimeout(10000);c.setRequestProperty("Accept","application/json");int code=c.getResponseCode();checkScoreDownload(request);if(code>=300&&code<400){String to=c.getHeaderField("Location");if(to==null)throw new IOException("重定向缺少 Location");url=new URL(url,to);continue;}if(code!=200)throw new IOException("HTTP "+code);try(InputStream in=c.getInputStream();ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] chunk=new byte[4096];int n;while((n=in.read(chunk))!=-1){checkScoreDownload(request);if(out.size()+n>16777216)throw new IOException("JSON 超过 16MiB");out.write(chunk,0,n);}body=out.toByteArray();}break;}finally{c.disconnect();request.connection=null;}}checkScoreDownload(request);if(body==null)throw new IOException("重定向次数过多");scoreResult(request,new String(body,StandardCharsets.UTF_8),null);}catch(Exception e){scoreResult(request,null,String.valueOf(e.getMessage()));}}
     @Override public void onRequestPermissionsResult(int r,String[] p,int[] grants){super.onRequestPermissionsResult(r,p,grants);if(r==PERMISSIONS){if(hasPermissions())connect();else state("error","蓝牙扫描/连接权限被拒绝");}}
     @Override protected void onActivityResult(int r,int result,Intent data){super.onActivityResult(r,result,data);if(r==ENABLE){if(result==RESULT_OK)connect();else state("error","蓝牙未启用");}else if(r==FILE){if(fileChoice!=null){ValueCallback<Uri[]> owner=fileChoice;fileChoice=null;owner.onReceiveValue(result==RESULT_OK&&data!=null&&data.getData()!=null?new Uri[]{data.getData()}:null);}}else if(r==EXPORT){String snapshot=exportJson;exportJson=null;if(snapshot!=null&&result==RESULT_OK&&data!=null&&data.getData()!=null){try(OutputStream out=getContentResolver().openOutputStream(data.getData(),"wt")){if(out==null)throw new IOException("无法写入文件");out.write(snapshot.getBytes(StandardCharsets.UTF_8));state("info","录音 JSON 已保存");}catch(Exception e){state("info","导出失败 "+e.getMessage());}}}}
-    @Override protected void onDestroy(){disconnect(false);cancelScoreDownload();scoreExecutor.shutdownNow();exportJson=null;if(fileChoice!=null){fileChoice.onReceiveValue(null);fileChoice=null;}web.removeJavascriptInterface("AndroidBle");web.destroy();web=null;super.onDestroy();}
+    @Override protected void onDestroy(){disconnect(false);cancelScoreDownload();if(musicCatalog!=null)musicCatalog.close();scoreExecutor.shutdownNow();exportJson=null;if(fileChoice!=null){fileChoice.onReceiveValue(null);fileChoice=null;}web.removeJavascriptInterface("AndroidBle");web.destroy();web=null;super.onDestroy();}
 }

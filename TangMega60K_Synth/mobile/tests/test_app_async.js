@@ -7,6 +7,9 @@ const elements=new Map(),defaults={timbre:'2',effect:'0',velocity:'100',gain:'20
 for(const id of fs.readFileSync(path.join(__dirname,'../web/index.html'),'utf8').matchAll(/id="([^"]+)"/g))elements.set(id[1],new Element(defaults[id[1]]||''));
 const context={console,setTimeout,clearTimeout,setInterval(){},performance,Blob,URL,AbortController,TextEncoder,navigator:{},isSecureContext:true,addEventListener(){},localStorage:{getItem(){return 0;},setItem(){}},document:{hidden:false,getElementById:id=>elements.get(id),createElement:()=>new Element(),addEventListener(){}}};context.window=context;context.globalThis=context;vm.createContext(context);
 vm.runInContext(fs.readFileSync(path.join(__dirname,'../web/protocol.js'),'utf8'),context);
+// 与实际HTML保持相同的依赖顺序，避免新增实时播放模块后旧测试台漏加载。
+for(const file of ['realtime-score.js','realtime-playback.js'])
+  vm.runInContext(fs.readFileSync(path.join(__dirname,'../web',file),'utf8'),context,{filename:file});
 vm.runInContext(fs.readFileSync(source,'utf8'),context,{filename:source});
 const run=code=>vm.runInContext(code,context),delay=ms=>new Promise(r=>setTimeout(r,ms));
 const doc=title=>JSON.stringify({version:1,title,rows:[{deltaMs:0,key:0,velocity:100,on:1},{deltaMs:50,key:0,velocity:0,on:0}]});
@@ -47,19 +50,25 @@ async function main(){
  });
  function ready(){run(`globalThis.writes=[];globalThis.mock=new Simulator();createSession(b=>{writes.push(P.decode(b));return mock.write(b);},true);setControlReady(true);mock.deliver=b=>decoder&&decoder.push(b);setScore(${doc('upload')});`);}
  await test('parallel uploads reject without interleaving rows or commits',async()=>{
-   ready();const first=track(run('upload()'));await assert.rejects(run('upload()'),/正在|完成/);await first;assert.equal(run('writes.filter(p=>p.op===6).length'),2);assert.equal(run('writes.filter(p=>p.op===7).length'),1);
+   ready();const first=track(run('upload()'));await assert.rejects(run('upload()'),/正在|完成/);await first;assert.equal(run('writes.filter(p=>p.op===6).length'),2);assert.equal(run('writes.filter(p=>p.op===7&&p.payload[2]!==1).length'),1);
  });
  await test('upload excludes recorder operations and builtin replacement',async()=>{
    ready();const first=track(run('upload()'));await assert.rejects(run('readRecording()'),/正在|完成/);
    elements.get('builtin').click();elements.get('recordStart').click();elements.get('recordClear').click();elements.get('play').click();await flush();await first;
-   assert.equal(run('writes.filter(p=>p.op===7).length'),1);assert.equal(run('writes.some(p=>p.op===4&&[1,2,4].includes(p.payload[0]))'),false);
+   assert.equal(run('writes.filter(p=>p.op===7&&p.payload[2]!==1).length'),1);assert.equal(run('writes.some(p=>p.op===4&&[1,2,4].includes(p.payload[0]))'),false);
  });
- await test('replacing loaded score during upload preserves the new label',async()=>{
-   ready();const first=track(run('upload()'));run(`setScore(${doc('new-not-uploaded')});`);await first;assert.match(elements.get('scoreInfo').textContent,/new-not-uploaded.*尚未上传/);
+ await test('upload locks score replacement; new selection works after completion',async()=>{
+   ready();const first=track(run('upload()'));
+   assert.throws(()=>run(`setScore(${doc('new-not-uploaded')});`),/正在上传/);
+   await first;
+   assert.equal(run('score.title'),'upload');
+   assert.equal(run('writes.filter(p=>p.op===6).length'),2);
+   run(`setScore(${doc('new-not-uploaded')});`);
+   assert.match(elements.get('scoreInfo').textContent,/new-not-uploaded.*尚未上传/);
  });
  await test('stop cancels remaining score rows and commit',async()=>{
    ready();const first=track(run('upload()'));await until(()=>run('writes.some(p=>p.op===6)'));elements.get('stop').click();await assert.rejects(first,/取消/);await delay(40);
-   assert.equal(run('writes.filter(p=>p.op===6).length'),1);assert.equal(run('writes.filter(p=>p.op===7).length'),0);assert.equal(run('dataOperation'),null);
+   assert.equal(run('writes.filter(p=>p.op===6).length'),1);assert.equal(run('writes.filter(p=>p.op===7&&p.payload[2]!==1).length'),0);assert.equal(run('dataOperation'),null);
  });
  await test('recorder read excludes export, start and clear, then releases lock',async()=>{
    ready();run('mock.events=[{deltaMs:0,source:25,midi:60,velocity:100,timbre:0,on:1},{deltaMs:50,source:25,midi:60,velocity:0,timbre:0,on:0}]');
@@ -68,12 +77,44 @@ async function main(){
  });
  await test('failed bulk command releases operation lock for retry',async()=>{
    ready();run(`const previous=mock.write.bind(mock);mock.write=bytes=>{const p=P.decode(bytes);mock.write=previous;setTimeout(()=>mock.deliver(P.encode(p.seq,128,[p.op,1])),0);return Promise.resolve();};`);
-   await assert.rejects(run('upload()'),/NACK/);assert.equal(run('dataOperation'),null);await run('upload()');assert.equal(run('writes.filter(p=>p.op===7).length'),1);
+   await assert.rejects(run('upload()'),/NACK/);assert.equal(run('dataOperation'),null);await run('upload()');assert.equal(run('writes.filter(p=>p.op===7&&p.payload[2]!==1).length'),1);
  });
  await test('native file-error info keeps the healthy JS session and controls',async()=>{
    ready();const owner=run('session');context.nativeBleState('info','导出失败：测试文档提供器');
    assert.equal(run('session'),owner);assert.equal(run('controlReady'),true);assert.equal(elements.get('keys').children[0].disabled,false);
    assert.match(elements.get('status').textContent,/导出失败/);await run('readback(0)');
+ });
+ await test('mapped upload failure restores all previous physical key pitches',async()=>{
+   ready();const old=JSON.parse(run('JSON.stringify(map)'));
+   run(`{setScore({...${doc('mapped')},mapping:Array.from({length:25},(_,i)=>40+i)});
+     const previous=mock.write.bind(mock);let rejected=false;mock.write=bytes=>{const p=P.decode(bytes);if(p.op===6&&!rejected){rejected=true;setTimeout(()=>mock.deliver(P.encode(p.seq,128,[p.op,2])),0);return Promise.resolve();}return previous(bytes);};}`);
+   await assert.rejects(run('upload()'),/NACK/);
+   assert.deepEqual(JSON.parse(run('JSON.stringify(map)')),old);
+   const maps=JSON.parse(run('JSON.stringify(writes.filter(p=>p.op===5))'));
+   assert.equal(maps.length,50);assert.deepEqual(maps.slice(-25).map(p=>p.payload[1]),old);
+   assert.equal(run('writes.some(p=>p.op===7&&p.payload[2]!==1)'),false);assert.equal(run('dataOperation'),null);
+ });
+ await test('cancel during remapping sends no score rows and restores mapping',async()=>{
+   ready();const old=JSON.parse(run('JSON.stringify(map)'));
+   run(`setScore({...${doc('cancel-mapping')},mapping:Array.from({length:25},(_,i)=>35+i)});`);
+   const upload=track(run('upload()'));await until(()=>run('writes.some(p=>p.op===5)'));
+   run('cancelDataOperation()');await assert.rejects(upload,/取消/);
+   assert.equal(run('writes.some(p=>p.op===6||(p.op===7&&p.payload[2]!==1))'),false);
+   assert.deepEqual(JSON.parse(run('JSON.stringify(map)')),old);
+ });
+ await test('direct upload probes capability, preserves keys and commits format2',async()=>{
+   ready();run(`setScore({version:2,playback:'direct',title:'direct',rows:[{deltaMs:0,midi:0,velocity:100,on:1},{deltaMs:50,midi:0,velocity:0,on:0}]})`);
+   await run('upload()');
+   assert.equal(run('writes[0].op'),8);assert.equal(run('writes[0].payload[0]'),3);
+   assert.equal(run('writes.some(p=>p.op===5)'),false);
+   assert.equal(run('writes.filter(p=>p.op===6).every(p=>p.payload[9]===1)'),true);
+   assert.equal(run('writes.at(-1).payload[2]'),2);
+ });
+ await test('old mapping restoration never writes to a reconnected session',async()=>{
+   ready();run(`setScore({...${doc('reconnect-mapping')},mapping:Array.from({length:25},(_,i)=>30+i)});`);
+   const upload=track(run('upload()'));await until(()=>run('writes.some(p=>p.op===5)'));
+   run("lost('test reconnect')");ready();await assert.rejects(upload,/reconnect|连接|关闭/);await flush();
+   assert.equal(run('writes.length'),0);assert.equal(run('controlReady'),true);
  });
  console.log(JSON.stringify({Passed:passed,Failed:failed,HardwareTested:false}));if(failed)process.exitCode=1;
 }

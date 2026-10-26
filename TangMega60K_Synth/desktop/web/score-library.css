@@ -1,0 +1,214 @@
+/* 搜索结果用曲目列表，右侧保留音轨/时间编辑器，与原有演奏界面共用配色。 */
+.music-library {
+    margin-bottom: 24px;
+    padding: 24px;
+}
+.music-library h2 {
+    font-size: 24px;
+    margin: 0;
+}
+.music-library p,
+.music-library small {
+    line-height: 1.6;
+}
+.music-profile {
+    display: block;
+    margin: 16px 0;
+    line-height: 1.8;
+}
+.music-profile select {
+    margin: 0 10px;
+}
+.music-search {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 20px 0 12px;
+}
+.music-search input {
+    flex: 1;
+    min-width: 180px;
+}
+.music-library input:not([type="checkbox"]),
+.music-library select {
+    color: inherit;
+    background: #211d2a;
+    border: 1px solid #625572;
+    border-radius: 6px;
+    padding: 10px;
+}
+.music-workspace {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) minmax(320px, 1.2fr);
+    gap: 28px;
+}
+.music-result {
+    padding: 16px 0;
+    border-bottom: 1px solid #493e57;
+}
+.music-result h3 {
+    margin: 0 0 6px;
+    font-size: 17px;
+}
+.music-result p {
+    margin: 4px 0;
+    color: #c4b9d1;
+}
+.music-result button {
+    margin-top: 8px;
+}
+.music-editor {
+    border-left: 1px solid #493e57;
+    padding-left: 24px;
+}
+.music-editor[hidden] {
+    display: none;
+}
+.music-editor label {
+    display: block;
+    line-height: 1.6;
+}
+.music-editor select {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+}
+.music-editor fieldset {
+    border: 1px solid #625572;
+    margin: 16px 0;
+    padding: 12px;
+}
+.music-tracks {
+    max-height: 180px;
+    overflow: auto;
+}
+.music-tracks input,
+.music-check input {
+    margin-right: 8px;
+}
+.music-range {
+    display: flex;
+    gap: 12px;
+}
+.music-range label {
+    flex: 1;
+    min-width: 0;
+}
+.music-range input {
+    width: 100%;
+    box-sizing: border-box;
+}
+.music-check {
+    margin: 14px 0;
+}
+.music-analysis {
+    white-space: pre-line;
+    line-height: 1.6;
+    margin: 16px 0;
+    color: #ded0ed;
+}
+.music-roll {
+    width: 100%;
+    height: 160px;
+    border-bottom: 1px solid #625572;
+    background: #201c28;
+}
+.music-library [aria-busy="true"],
+.music-library[aria-busy="true"] {
+    cursor: progress;
+}
+.music-library :focus-visible {
+    outline: 2px solid #a9ead6;
+    outline-offset: 3px;
+}
+@media (max-width: 900px) {
+    .music-workspace {
+        grid-template-columns: 1fr;
+    }
+    .music-editor {
+        border-left: 0;
+        border-top: 1px solid #493e57;
+        padding: 20px 0 0;
+    }
+}
+.music-recommendations {
+    margin: 22px 0 30px;
+    padding: 20px;
+    background: #17131f;
+    border: 1px solid #493653;
+    border-radius: 12px;
+}
+.music-recommend-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+.music-recommend-heading h3 {
+    font-size: 16px;
+    margin: 0 0 8px;
+    color: #dec8ed;
+}
+.music-recommend-heading p,
+.music-recommend-status {
+    font-size: 11px;
+    line-height: 1.8;
+    color: #b5a3c4;
+}
+.music-recommend-heading .data-actions {
+    margin: 0;
+    flex-shrink: 0;
+}
+.music-recommend-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+.music-recommend-card {
+    padding: 16px;
+    border: 1px solid #403149;
+    border-radius: 9px;
+    background: linear-gradient(140deg, #292032, #1e1927);
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 0;
+}
+.music-recommend-card h4 {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+    color: #eddcf7;
+    overflow-wrap: anywhere;
+}
+.music-recommend-card p {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+.music-recommend-card small {
+    font-size: 10px;
+    color: #bea3cf;
+}
+.music-recommend-card button {
+    margin-top: auto;
+    align-self: flex-start;
+}
+@media (max-width: 1000px) {
+    .music-recommend-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .music-recommend-heading {
+        flex-direction: column;
+    }
+}
+@media (max-width: 600px) {
+    .music-recommendations {
+        padding: 14px;
+    }
+    .music-recommend-list {
+        grid-template-columns: 1fr;
+    }
+}

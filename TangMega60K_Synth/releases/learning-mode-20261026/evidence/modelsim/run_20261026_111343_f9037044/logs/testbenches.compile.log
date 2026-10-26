@@ -1,0 +1,19 @@
+Model Technology ModelSim SE-64 vlog 10.6e Compiler 2018.06 Jun 23 2018
+Start time: 11:13:45 on Oct 26,2026
+vlog -modelsimini modelsim.ini -sv -work work sim/tb_performance_command_stage.sv sim/tb_score_capacity_1024.sv sim/tb_instrument_full_system.sv sim/tb_mpr121_backpressure.sv sim/tb_mpr121_model.sv sim/runtime_audio_fx_reference.sv 
+-- Compiling module tb_performance_command_stage
+-- Compiling module tb_score_capacity_1024
+-- Compiling module tb_instrument_full_system
+-- Compiling module tb_mpr121_backpressure
+-- Compiling module mpr121_bus_model
+-- Compiling module runtime_audio_fx_reference
+
+Top level modules:
+	tb_performance_command_stage
+	tb_score_capacity_1024
+	tb_instrument_full_system
+	tb_mpr121_backpressure
+	mpr121_bus_model
+	runtime_audio_fx_reference
+End time: 11:13:45 on Oct 26,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

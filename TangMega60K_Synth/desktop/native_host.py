@@ -22,6 +22,7 @@ import secrets
 import sys
 import tempfile
 import threading
+import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import unquote, urlsplit
 
@@ -29,7 +30,7 @@ SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e"
 RX_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e"
 TX_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e"
 DIAG_UUID = "6e400004-b5a3-f393-e0a9-e50e24dcca9e"
-MAX_JSON_BYTES = 4 * 1024 * 1024
+MAX_JSON_BYTES = 16 * 1024 * 1024
 BLE_WRITE_TIMEOUT = 3.0
 DIAG_READ_TIMEOUT = 0.75
 DIAG_ERROR_COUNTERS = ("bleWriteErrors", "uartErrors", "notifyErrors", "resyncCount")
@@ -71,7 +72,7 @@ def _generation(value) -> int:
 
 def _json_text(text) -> str:
     if not isinstance(text, str) or len(text.encode("utf-8")) > MAX_JSON_BYTES:
-        raise ValueError("JSON文件必须小于4MiB")
+        raise ValueError("JSON文件必须小于16MiB")
     json.loads(text)
     return text
 
@@ -125,6 +126,8 @@ class _Context:
         self.kind, self.generation = kind, generation
         self.client = self.serial = self.reader = None
         self.rx = None
+        self.write_response = True
+        self.connection_preference = None
         self.connected = False
         self.diagnostic_characteristic = None
         self.diagnostic_baseline = {"available": False, "reason": "not_sampled"}
@@ -132,13 +135,14 @@ class _Context:
 
 
 class NativeHost:
-    """Only the seven public methods below are exposed to the local page."""
+    """仅向本机页面公开设备、文件与曲库操作；曲库不创建硬件控制帧。"""
 
     def __init__(self):
         self._window = None
         self._api_lock = threading.RLock()
         self._scan_lock = threading.Lock()
         self._file_lock = threading.Lock()
+        self._preferences_lock = threading.Lock()
         self._state_lock = threading.Lock()
         self._generation = 0
         self._closed = False
@@ -274,7 +278,11 @@ class NativeHost:
                 except Exception as exc:
                     self._state("error", _error_text(exc), generation)
                     return {"ok": False, "generation": generation, "error": _error_text(exc)}
-                return {"ok": True, "generation": generation}
+                result = {"ok": True, "generation": generation}
+                context = self._context
+                if context is not None and context.generation == generation and context.connection_preference:
+                    result['connectionPreference'] = context.connection_preference.describe()
+                return result
         except Exception as exc:
             return {"ok": False, "error": _error_text(exc)}
 
@@ -303,11 +311,19 @@ class NativeHost:
                     tx = service.get_characteristic(TX_UUID) if service else None
                     if service is None or context.rx is None or tx is None:
                         raise RuntimeError("蓝牙设备缺少 Tang Synth NUS 服务或特征")
-                    if "write" not in context.rx.properties or "notify" not in tx.properties:
-                        raise RuntimeError("蓝牙特征不支持带响应写入或通知")
+                    if not ({"write", "write-without-response"} & set(context.rx.properties)) or "notify" not in tx.properties:
+                        raise RuntimeError("蓝牙特征不支持写入或通知")
+                    # 仅在设备明确声明支持时省去ATT写响应；FPGA应用层ACK和重试仍保留。
+                    context.write_response = "write-without-response" not in context.rx.properties
                     def notify(_, data):
                         self._receive(bytes(data), context)
                     await asyncio.wait_for(context.client.start_notify(tx, notify), 5.0)
+                    try:
+                        from ble_link import prefer_performance
+                        context.connection_preference = await prefer_performance(identifier)
+                    except Exception:
+                        # Win10/适配器不支持时继续原连接；不改全局电源或驱动设置。
+                        LOG.info('Windows connection preference unavailable', exc_info=True)
                     # Optional diagnostics never gate compatibility with old
                     # bridges and are sampled before the first protocol write.
                     try:
@@ -361,8 +377,8 @@ class NativeHost:
         try:
             frame, generation = validate_frame(hex), _generation(generation)
             with self._api_lock:
-                self._call(self._write(frame, generation), BLE_WRITE_TIMEOUT + 3.0)
-            return {"ok": True}
+                timing = self._call(self._write(frame, generation), BLE_WRITE_TIMEOUT + 3.0)
+            return {"ok": True, **timing}
         except Exception as exc:
             return {"ok": False, "error": _error_text(exc)}
 
@@ -372,12 +388,19 @@ class NativeHost:
             if not self._live(generation) or context is None or context.generation != generation or not context.connected:
                 raise RuntimeError("连接已关闭或连接代际已过期")
             try:
+                started = time.perf_counter()
                 if context.client is not None:
-                    await asyncio.wait_for(context.client.write_gatt_char(context.rx, frame, response=True), BLE_WRITE_TIMEOUT)
+                    await asyncio.wait_for(context.client.write_gatt_char(context.rx, frame, response=context.write_response), BLE_WRITE_TIMEOUT)
                 else:
                     count = await asyncio.wait_for(asyncio.to_thread(context.serial.write, frame), 2.0)
                     if count != len(frame):
                         raise IOError("串口未完整写入16字节")
+                result = {"write_ms": (time.perf_counter() - started) * 1000,
+                        "write_mode": "gatt-response" if context.client is not None and context.write_response else
+                        "gatt-command" if context.client is not None else "serial"}
+                if context.connection_preference:
+                    result['connectionPreference'] = context.connection_preference.describe()
+                return result
             except BaseException as exc:
                 await self._teardown(context)
                 self._state("error", f"设备写入失败，连接已关闭：{str(exc) or type(exc).__name__}", generation)
@@ -450,6 +473,9 @@ class NativeHost:
         if self._context is context:
             self._context = None
         context.connected = False
+        if context.connection_preference:
+            context.connection_preference.close()
+            context.connection_preference = None
         if context.reader is not None and context.reader is not asyncio.current_task():
             context.reader.cancel()
             with contextlib.suppress(asyncio.CancelledError, Exception):
@@ -461,6 +487,25 @@ class NativeHost:
         if context.serial is not None:
             with contextlib.suppress(Exception):
                 await asyncio.wait_for(asyncio.to_thread(context.serial.close), 1.0)
+
+    def _preferences(self):
+        with self._preferences_lock:
+            if not hasattr(self, '_preference_store'):
+                from preferences import Preferences
+                self._preference_store = Preferences()
+            return self._preference_store
+
+    def load_key_bindings(self):
+        try:
+            return self._preferences().load_bindings()
+        except Exception as error:
+            return {'ok': False, 'error': '读取快捷键失败：' + _error_text(error)}
+
+    def save_key_bindings(self, codes):
+        try:
+            return self._preferences().save_bindings(codes)
+        except Exception as error:
+            return {'ok': False, 'error': '保存快捷键失败：' + _error_text(error)}
 
     def load_json(self):
         try:
@@ -474,11 +519,61 @@ class NativeHost:
                 with path.open("rb") as stream:
                     data = stream.read(MAX_JSON_BYTES + 1)
                 if len(data) > MAX_JSON_BYTES:
-                    raise ValueError("JSON文件必须小于4MiB")
+                    raise ValueError("JSON文件必须小于16MiB")
                 text = _json_text(data.decode("utf-8-sig"))
                 return {"ok": True, "text": text, "name": path.name}
         except Exception as exc:
             return {"ok": False, "error": _error_text(exc)}
+
+    def _music_library(self):
+        # 延迟加载，曲库依赖不会影响已有蓝牙/串口模块的导入与自检。
+        with self._file_lock:
+            if not hasattr(self, "_music"):
+                from score_library import ScoreLibrary
+                cache = Path(os.environ.get("LOCALAPPDATA", tempfile.gettempdir())) / "TangNeonStudio/score-cache"
+                self._music = ScoreLibrary(cache)
+            return self._music
+
+    def search_music(self, query, offset=0):
+        try:
+            return {"ok": True, **self._music_library().search(query, offset)}
+        except Exception as exc:
+            return {"ok": False, "error": "曲库搜索失败：" + _error_text(exc)}
+
+    def fetch_music(self, token):
+        try:
+            return {"ok": True, **self._music_library().fetch(str(token))}
+        except Exception as exc:
+            return {"ok": False, "error": "曲目下载失败：" + _error_text(exc)}
+
+    def recommend_music(self, batch=0, refresh=False):
+        try:
+            return {'ok': True, **self._music_library().recommend(batch, refresh)}
+        except Exception as error:
+            return {'ok': False, 'error': '推荐暂不可用：' + _error_text(error)}
+
+    def prepare_music(self, token, options):
+        try:
+            if not isinstance(options, dict):
+                raise ValueError("MIDI转换选项必须为对象")
+            return {"ok": True, **self._music_library().prepare(str(token), options)}
+        except Exception as exc:
+            return {"ok": False, "error": "MIDI转换失败：" + _error_text(exc)}
+
+    def load_midi(self):
+        try:
+            import webview
+            with self._file_lock:
+                selected = self._window.create_file_dialog(webview.FileDialog.OPEN, allow_multiple=False,
+                                                          file_types=("MIDI或MIDI压缩包 (*.mid;*.midi;*.zip)",))
+                if not selected:
+                    return {"ok": True, "cancelled": True}
+                path = Path(selected[0])
+                with path.open("rb") as source:
+                    content = source.read(4 * 1024 * 1024 + 1)
+            return {"ok": True, **self._music_library().load_bytes(content, path.name)}
+        except Exception as exc:
+            return {"ok": False, "error": "MIDI打开失败：" + _error_text(exc)}
 
     def save_json(self, text, suggestedName):
         temporary = None
@@ -621,7 +716,7 @@ def _icon_path() -> Path:
 
 def smoke_test() -> dict:
     checks = {}
-    for name in ("webview", "webview.platforms.edgechromium", "bleak", "serial", "winrt.windows.devices.bluetooth", "winrt.windows.devices.bluetooth.genericattributeprofile", "winrt.windows.storage.streams"):
+    for name in ("webview", "webview.platforms.edgechromium", "bleak", "serial", "mido", "score_library", "score_library.recommendations", "ble_link", "preferences", "winrt.windows.devices.bluetooth", "winrt.windows.devices.bluetooth.genericattributeprofile", "winrt.windows.storage.streams"):
         try:
             __import__(name)
             checks[name] = "ok"
@@ -631,6 +726,21 @@ def smoke_test() -> dict:
     checks["local_index"] = "ok" if (assets / "index.html").is_file() else "missing desktop/web/index.html"
     checks["window_icon"] = "ok" if _icon_path().is_file() else "missing desktop/assets/neon.ico"
     checks["frame_validation"] = "ok" if validate_frame("a55a01000000000000000000000000" + f"{crc8(bytes.fromhex('01000000000000000000000000')):02x}") else "failed"
+    try:
+        import ssl
+        context = ssl.create_default_context()
+        checks["https_context"] = "ok" if context.check_hostname and context.verify_mode == ssl.CERT_REQUIRED else "unsafe TLS context"
+    except Exception as exc:
+        # 只导入ssl不足以发现缺失证书文件；实际创建上下文，仍不发送网络请求。
+        checks["https_context"] = _error_text(exc)
+    try:
+        from score_library.midi_import import convert
+        # 在打包环境中实际解析并转换一个500ms单音，不联网、不访问蓝牙。
+        example = bytes.fromhex("4d546864000000060000000101e04d54726b0000000d00903c648360803c0000ff2f00")
+        converted = convert(example, "packaged-smoke", {"tracks": [0], "endMs": 500})
+        checks["midi_conversion"] = "ok" if converted["canUpload"] and len(converted["score"]["rows"]) == 2 else "failed"
+    except Exception as exc:
+        checks["midi_conversion"] = str(exc)
     checks["webview2_runtime"] = "not checked"
     if sys.platform == "win32":
         import winreg
@@ -650,7 +760,7 @@ def smoke_test() -> dict:
                     pass
         checks["webview2_runtime"] = "ok" if found else "请安装Microsoft Edge WebView2 Runtime"
     return {"ok": all(value == "ok" for value in checks.values()), "checks": checks,
-            "versions": {name: importlib.metadata.version(name) for name in ("pywebview", "bleak", "pyserial")},
+            "versions": {name: importlib.metadata.version(name) for name in ("pywebview", "bleak", "pyserial", "mido")},
             "protocol": {"service": SERVICE_UUID, "rx": RX_UUID, "tx": TX_UUID, "baud": 115200},
             "hardware_connection_tested": False}
 
@@ -660,8 +770,20 @@ def main():
     parser.add_argument("--debug", action="store_true")
     parser.add_argument("--smoke-test", action="store_true")
     parser.add_argument("--smoke-output")
+    parser.add_argument("--catalog-check", action="store_true",
+                        help="只检查公开曲库联网，不启动界面或连接硬件")
+    parser.add_argument("--catalog-output", help="曲库诊断JSON文件；缓存放在同级catalog-check-cache")
     args = parser.parse_args()
     logging.basicConfig(level=logging.DEBUG if args.debug else logging.WARNING)
+    if args.catalog_check:
+        from score_library.diagnostics import check_catalog
+        output = Path(args.catalog_output) if args.catalog_output else Path.cwd() / "catalog-check.json"
+        output.parent.mkdir(parents=True, exist_ok=True)
+        report = check_catalog(output.parent / "catalog-check-cache")
+        output.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+        if sys.stdout is not None:
+            print(json.dumps(report, ensure_ascii=False, indent=2))
+        return 0 if report["ok"] else 1
     if args.smoke_test:
         try:
             report = smoke_test()

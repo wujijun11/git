@@ -1,0 +1,80 @@
+Generated 12 independent mido/Windows reference cases: C:\Users\sll\Documents\ChatGPT\���� 2\publish-current-20261026\TangMega60K_Synth\verification\mobile\midi-fixtures.json
+{
+  "reference": "Python mido + desktop converter",
+  "cases": [
+    {
+      "name": "tempo",
+      "pass": true,
+      "events": 4,
+      "canUpload": true
+    },
+    {
+      "name": "segment-held",
+      "pass": true,
+      "events": 4,
+      "canUpload": true
+    },
+    {
+      "name": "selected-track-tempo",
+      "pass": true,
+      "events": 4,
+      "canUpload": true
+    },
+    {
+      "name": "overlap",
+      "pass": true,
+      "events": 4,
+      "canUpload": true
+    },
+    {
+      "name": "controls",
+      "pass": true,
+      "events": 4,
+      "canUpload": true
+    },
+    {
+      "name": "mapping-missing",
+      "pass": true,
+      "events": 2,
+      "canUpload": false
+    },
+    {
+      "name": "compact",
+      "pass": true,
+      "events": 2,
+      "canUpload": true
+    },
+    {
+      "name": "drums",
+      "pass": true,
+      "events": 2,
+      "canUpload": true
+    },
+    {
+      "name": "over-capacity",
+      "pass": true,
+      "events": 1026,
+      "canUpload": false
+    },
+    {
+      "name": "direct-128-pitches",
+      "pass": true,
+      "events": 256,
+      "canUpload": true
+    },
+    {
+      "name": "direct-64-held",
+      "pass": true,
+      "events": 128,
+      "canUpload": true
+    },
+    {
+      "name": "direct-65-held",
+      "pass": true,
+      "events": 130,
+      "canUpload": false
+    }
+  ],
+  "malformedFilesRejected": true,
+  "hardwareAccessed": false
+}

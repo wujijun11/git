@@ -1,0 +1,61 @@
+LEARNING DESKTOP PASS: strict protocol, wait/repeat/chord, EOF, polling, restart/stop, old firmware and cancellation
+ALL DESKTOP CONTROLLER TESTS PASSED: handshake, ACK/data ordering, generation isolation, failures, held pitches, atomic remote release batches, clean batch failure, expression coalescing, upload/cancel, recording and demo distinction
+{
+  "controllerPath": "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\TangMega60K_Synth\\desktop\\web\\controller.js",
+  "controllerSha256": "6b1c124d57e5faf4bc293057cfb2a18eac56d1ed0e2f4e328211102fab8ce735",
+  "cases": [
+    {
+      "name": "panicSkipsOldBacklog",
+      "pass": true
+    },
+    {
+      "name": "disconnectUsesAcceptedNotes",
+      "pass": true
+    },
+    {
+      "name": "queueHasRealBound",
+      "pass": true
+    },
+    {
+      "name": "stopKeepsAckDataBoundary",
+      "pass": true
+    },
+    {
+      "name": "cancelledReleaseDoesNotClose",
+      "pass": true
+    },
+    {
+      "name": "missingAckStillFailsClosed",
+      "pass": true
+    },
+    {
+      "name": "disconnectObserverIsReentrant",
+      "pass": true
+    },
+    {
+      "name": "rapidTapsAreNotSilentlyDropped",
+      "pass": true
+    },
+    {
+      "name": "retriggerAndSharedOwnersRemainCorrect",
+      "pass": true
+    },
+    {
+      "name": "releaseAllPreservesUnsentNotes",
+      "pass": true
+    },
+    {
+      "name": "busyTrafficDoesNotQueueHeartbeatReads",
+      "pass": true
+    }
+  ],
+  "unhandledRejections": [],
+  "accepted": true,
+  "hardwareAccessed": false
+}
+MODE SYNC PASS board truth, negative transpose, idle polling, no config writes, malformed packet and legacy fallback
+DIRECT SCORE CLIENT PASS full pitches, mobile parity, format, capacity, read-only capability, no remapping, upload, legacy safety
+MAPPED SCORE UPLOAD PASS mapping, recording guard, rollback, cancel and reconnect isolation
+REALTIME SCORE PASS: absolute timing, chord order, stop/ACK, rests, overload, disconnect, long score, mapping snapshot, shared source
+GUIDE TIMELINE PASS: chords/rest/retrigger, telemetry correction, stale/disconnect/unknown guards, builtin profiles
+KEYBOARD BINDINGS PASS defaults, drafts, unique keys, reserved keys, clearing, labels and immutable snapshots

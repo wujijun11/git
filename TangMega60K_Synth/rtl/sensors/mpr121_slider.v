@@ -4,7 +4,9 @@ module mpr121_slider #(
     parameter integer NOISE0=4,NOISE1=4,NOISE2=4,NOISE3=4,
     parameter integer GAIN0=256,GAIN1=256,GAIN2=256,GAIN3=256,
     parameter integer MIN_WEIGHT=12, POSITION_MIN=0,POSITION_MAX=3072,
-    parameter integer BEND_MAX_CENTS=200, DEADZONE_CENTS=3,HYSTERESIS_CENTS=2
+    parameter integer BEND_MAX_CENTS=200, DEADZONE_CENTS=3,HYSTERESIS_CENTS=2,
+    // 旧采集测试默认仍输出弯音；菜单入口只取位置，不提交表情参数。
+    parameter integer BEND_ENABLE=1
 )(
     input wire clk,resetn, snapshot_strobe,input wire [343:0] snapshot,
     input wire fault,
@@ -52,7 +54,7 @@ module mpr121_slider #(
             active<=0;position<=1536;latest_bend<=0;expr_update_valid<=0;expr_update_bend_cents<=0;
         end else begin
             if(expr_update_valid && expr_update_ready) expr_update_valid<=0;
-            if((!expr_update_valid || expr_update_ready) && expr_update_bend_cents!=latest_bend) begin
+            if(BEND_ENABLE && (!expr_update_valid || expr_update_ready) && expr_update_bend_cents!=latest_bend) begin
                 expr_update_bend_cents<=latest_bend;expr_update_valid<=1;
             end
             if(fault) begin active<=0;latest_bend<=0;state<=IDLE;position<=1536;end
@@ -73,7 +75,7 @@ module mpr121_slider #(
                 if(raw_position<POSITION_MIN) position<=POSITION_MIN;
                 else if(raw_position>POSITION_MAX) position<=POSITION_MAX;
                 else position<=raw_position;
-                state<=PREP_BEND;
+                state<=BEND_ENABLE ? PREP_BEND : IDLE;
             end else if(state==PREP_BEND) begin
                 // Reuse the sequential divider for calibrated endpoint mapping;
                 // a constant /3072 combinational divider exceeded 49.152MHz.

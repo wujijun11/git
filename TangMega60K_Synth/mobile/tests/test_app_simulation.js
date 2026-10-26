@@ -9,7 +9,8 @@ class Element{
 const elements=new Map(),defaults={timbre:'2',effect:'0',velocity:'100',gain:'2048',bend:'0',vibrato:'0',mapKey:'0',mapNote:'60'};
 for(const id of fs.readFileSync(path.join(__dirname,'../web/index.html'),'utf8').matchAll(/id="([^"]+)"/g))elements.set(id[1],new Element(defaults[id[1]]||''));
 const storage=new Map(),windowEvents=new Map(),documentEvents=new Map(),intervals=[],context={console,setTimeout,clearTimeout,setInterval:fn=>{intervals.push(fn);return intervals.length;},performance,Blob,URL,navigator:{},isSecureContext:true,addEventListener:(name,fn)=>windowEvents.set(name,fn),localStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v)},document:{hidden:false,getElementById:id=>elements.get(id),createElement:()=>new Element(),addEventListener:(name,fn)=>documentEvents.set(name,fn)}};context.window=context;context.globalThis=context;vm.createContext(context);
-for(const file of ['protocol.js','app.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../web',file),'utf8'),context,{filename:file});
+// 加载真实页面依赖，模拟器与异步工作流测试才能覆盖当前版本。
+for(const file of ['protocol.js','realtime-score.js','realtime-playback.js','app.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../web',file),'utf8'),context,{filename:file});
 // Low-level fixtures exercise post-handshake workflows without repeating setup.
 vm.runInContext('function createReadySession(...args){const owner=createSession(...args);setControlReady(true);return owner;}',context);
 const run=code=>vm.runInContext(code,context),delay=ms=>new Promise(r=>setTimeout(r,ms));
@@ -75,12 +76,12 @@ async function main(){
   await until(()=>run('expressionControl && !expressionControl.sending && !expressionControl.pending'));
   assert.equal(run('uiWrites[uiWrites.length-1].packet.payload[0]'),5);
   assert.equal(run('uiWrites[uiWrites.length-1].packet.payload[5]'),30);
-  // Changing the loaded score midway must not mix two documents in one upload.
+  // 上传期间拒绝换谱，保证只发送冻结的原曲谱，不混入第二份文档。
   run(`globalThis.scoreWrites=[];globalThis.scoreMock=new Simulator();createReadySession(b=>{
     scoreWrites.push(P.decode(b));return scoreMock.write(b);
   },true);scoreMock.deliver=b=>decoder&&decoder.push(b);setScore(scoreFixture);`);
   const snapshotUpload=run('upload()');
-  run('setScore({version:1,title:"new",rows:[{deltaMs:0,key:24,velocity:1,on:1}]})');
+  assert.throws(()=>run('setScore({version:1,title:"new",rows:[{deltaMs:0,key:24,velocity:1,on:1}]})'),/正在上传/);
   await snapshotUpload;
   const uploaded=JSON.parse(run('JSON.stringify(scoreWrites)'));
   assert.equal(uploaded.filter(p=>p.op===6).length,8);
@@ -176,7 +177,7 @@ async function main(){
   const setupPackets=bleB.writes.map(b=>run('P.decode')(Uint8Array.from(b)));
   assert.equal(setupPackets[0].op,8);assert.equal(setupPackets[1].op,4);assert.equal(setupPackets[1].payload[0],5);
   assert.equal(setupPackets.some(p=>p.op===1),false);
-  assert.equal(setupPackets.filter(p=>p.op===8).length,2); // probe + final state, no heartbeat
+  assert.equal(setupPackets.filter(p=>p.op===8).length,3); // probe + mode capability probe + final state, no heartbeat
   assert.equal(bleB.mock.notes.size,0);assert.equal(run('controlReady'),true);
   for(const id of ['timbre','effect','gain','bend','vibrato','mapKey','mapNote','mapApply'])assert.equal(elements.get(id).disabled,false);
   assert.equal(key.disabled,false);

@@ -12,7 +12,7 @@ module mpr121_input_frontend #(
     parameter integer SLIDER_NOISE0=4,SLIDER_NOISE1=4,SLIDER_NOISE2=4,SLIDER_NOISE3=4,
     parameter integer SLIDER_GAIN0=256,SLIDER_GAIN1=256,SLIDER_GAIN2=256,SLIDER_GAIN3=256,
     parameter integer SLIDER_MIN_WEIGHT=12,SLIDER_POSITION_MIN=0,SLIDER_POSITION_MAX=3072,
-    parameter integer SLIDER_BEND_MAX=200
+    parameter integer SLIDER_BEND_MAX=200, SLIDER_BEND_ENABLE=1
 )(
     input wire clk,resetn,input wire [2:0] irq_n,
     inout wire [2:0] scl,sda,
@@ -61,7 +61,7 @@ module mpr121_input_frontend #(
       .NOISE3(SLIDER_NOISE3),.GAIN0(SLIDER_GAIN0),.GAIN1(SLIDER_GAIN1),
       .GAIN2(SLIDER_GAIN2),.GAIN3(SLIDER_GAIN3),.MIN_WEIGHT(SLIDER_MIN_WEIGHT),
       .POSITION_MIN(SLIDER_POSITION_MIN),.POSITION_MAX(SLIDER_POSITION_MAX),
-      .BEND_MAX_CENTS(SLIDER_BEND_MAX)) slider(
+      .BEND_MAX_CENTS(SLIDER_BEND_MAX),.BEND_ENABLE(SLIDER_BEND_ENABLE)) slider(
       .clk(clk),.resetn(resetn),.snapshot_strobe(snap_valid[0] && snap_ready[0]),
       .snapshot(snaps[343:0]),.fault(fault[0]),
       .expr_update_valid(expr_update_valid),.expr_update_ready(expr_update_ready),

@@ -74,7 +74,8 @@ async function disconnectUsesAcceptedNotes() {
     t.ack(); await tick();
     assert.deepEqual(t.requests[start+2].payload.slice(1, 5), [60, 0, 2, 0], 'release the note accepted by the in-flight ACK');
     t.ack(); await close;
-    assert.ok((await active).ok); assert.ok((await Promise.all(old)).every(x => !x.ok && x.error.cancelled));
+    assert.ok((await active).ok);
+    assert.ok((await Promise.all(old)).every(x => !x.ok && x.error.cancelled));
     assert.equal(t.notes.size, 0); assert.equal(t.closes, 1); assert.equal(t.requests.length-start, 3);
     assert.ok(t.requests.slice(start).every(q => q.op === P.OP.NOTE), 'disconnect must not stop local FPGA score owners');
   });
@@ -143,10 +144,80 @@ async function disconnectObserverIsReentrant() {
   } finally { if (c._ctx) c._lose(c._ctx, new Error('test cleanup')); }
 }
 
+async function rapidTapsAreNotSilentlyDropped() {
+  await fixture(async (c, t) => {
+    t.gate(); const start = t.requests.length;
+    const active = outcome(c.noteOn('active', 60)); await tick();
+    const released = outcome(c.noteOff('active'));
+    const taps = [];
+    for (let i = 0; i < 50; i++) {
+      taps.push(outcome(c.noteOn('tap'+i, 60+i%25)), outcome(c.noteOff('tap'+i)));
+    }
+    assert.equal(c.ready, true);
+    for(let i=0;i<102;i++){t.ack();await tick();}
+    assert.ok((await active).ok && (await released).ok);
+    const results = await Promise.all(taps);
+    assert.ok(results.every(x => x.ok), 'normal fast taps must all be transmitted');
+    assert.equal(t.requests.length-start, 102);
+    for(let i=0;i<50;i++){
+      const on=t.requests[start+2+i*2],off=t.requests[start+3+i*2];
+      assert.equal(on.payload[1],60+i%25);assert.equal(on.payload[4],1);
+      assert.equal(off.payload[1],on.payload[1]);assert.equal(off.payload[4],0);
+    }
+    assert.equal(t.notes.size, 0);
+  });
+}
+
+async function retriggerAndSharedOwnersRemainCorrect() {
+  await fixture(async (c, t) => {
+    t.gate(); const start = t.requests.length;
+    const first = outcome(c.noteOn('first', 60)); await tick();
+    const off = outcome(c.noteOff('first'));
+    const next = outcome(c.noteOn('second', 60));
+    await c.noteOn('shared', 60);
+    await c.noteOff('second');
+    t.ack(); await tick(); t.ack(); await tick();
+    assert.deepEqual(t.pending[0].payload.slice(1, 5), [60, 100, 2, 1]);
+    t.ack(); await tick();
+    assert.ok((await first).ok && (await off).ok && (await next).ok);
+    assert.deepEqual([...t.notes], [60], 'one remaining UI owner keeps the new press sounding');
+    const last = outcome(c.noteOff('shared')); t.ack(); await last;
+    assert.equal(t.notes.size, 0); assert.equal(t.requests.length-start, 4);
+  });
+}
+
+async function releaseAllPreservesUnsentNotes() {
+  await fixture(async (c, t) => {
+    t.gate(); const read = outcome(c.readStatus()); await tick();
+    const a = outcome(c.noteOn('a', 60)), b = outcome(c.noteOn('b', 62));
+    const release=outcome(c.releaseAll());
+    for(let i=0;i<5;i++){t.ack();await tick();}
+    await read;
+    assert.ok((await a).ok && (await b).ok && (await release).ok);
+    assert.equal(t.notes.size, 0);
+  });
+}
+
+async function busyTrafficDoesNotQueueHeartbeatReads() {
+  const t=wire(),c=new NeonController({...opts,heartbeatMs:4,timeoutMs:1000});
+  try{
+    await c.connect(t);t.gate();const start=t.requests.length;
+    const on=outcome(c.noteOn('held',60));await tick();
+    const off=outcome(c.noteOff('held'));
+    await new Promise(resolve=>setTimeout(resolve,25));
+    assert.equal(c._ctx.queue.length,1,'background status must not join the note backlog');
+    assert.equal(t.requests.length-start,1);
+    t.ack();await tick();t.ack();await tick();
+    assert.ok((await on).ok && (await off).ok);
+    t.automatic();await new Promise(resolve=>setTimeout(resolve,15));
+    assert.ok(t.requests.slice(start+2).some(q=>q.op===P.OP.READBACK),'idle keepalive must resume');
+  }finally{if(c._ctx)c._lose(c._ctx,new Error('test cleanup'));}
+}
+
 (async () => {
   const unhandled = []; const collect = error => unhandled.push(String(error)); process.on('unhandledRejection', collect);
   const cases = [];
-  for (const test of [panicSkipsOldBacklog, disconnectUsesAcceptedNotes, queueHasRealBound, stopKeepsAckDataBoundary, cancelledReleaseDoesNotClose, missingAckStillFailsClosed, disconnectObserverIsReentrant]) {
+  for (const test of [panicSkipsOldBacklog, disconnectUsesAcceptedNotes, queueHasRealBound, stopKeepsAckDataBoundary, cancelledReleaseDoesNotClose, missingAckStillFailsClosed, disconnectObserverIsReentrant, rapidTapsAreNotSilentlyDropped, retriggerAndSharedOwnersRemainCorrect, releaseAllPreservesUnsentNotes, busyTrafficDoesNotQueueHeartbeatReads]) {
     try { await test(); cases.push({name: test.name, pass: true}); }
     catch (error) { cases.push({name: test.name, pass: false, error: error.stack}); }
   }

@@ -1,0 +1,118 @@
+{
+  "note": "Historical accepted ModeSync1024 build used only for comparison; not direct-score acceptance",
+  "current": {
+    "createdTime": "Sun Oct 25 13:53:58 2026",
+    "part": "GW5AT-LV60PG484AC1/I0",
+    "pathsAnalyzed": 102819,
+    "endpointsAnalyzed": 57662,
+    "violations": {
+      "setup": 0,
+      "hold": 0
+    },
+    "minimumSlackNs": {
+      "setup": 0.023,
+      "hold": 0.001,
+      "recovery": 6.028,
+      "removal": 0.592
+    },
+    "worstPaths": {
+      "setup": {
+        "from": "pressed_sync_2_s0/Q",
+        "to": "system/menu_actions/state_0_s1/CE"
+      },
+      "hold": {
+        "from": "system/synth/u_polar0/state_write_data_74_s0/Q",
+        "to": "system/synth/u_polar0/states_states_0_2_s/DI[2]"
+      },
+      "recovery": {
+        "from": "system/router/state_2_s0/Q",
+        "to": "system/synth/u_polar0/n28252_0_s/RESET[0]"
+      },
+      "removal": {
+        "from": "audio_clock/first_lock_stable_s0/Q",
+        "to": "audio_clock/pll_49m152/init/rEnable_1_s0/CLEAR"
+      }
+    },
+    "resources": {
+      "Logic": {
+        "used": 27148.0,
+        "capacity": 59904.0,
+        "reportedPercent": 46,
+        "free": 32756.0
+      },
+      "Register": {
+        "used": 17784.0,
+        "capacity": 60780.0,
+        "reportedPercent": 30,
+        "free": 42996.0
+      },
+      "BSRAM": {
+        "used": 104.0,
+        "capacity": 118.0,
+        "reportedPercent": 89,
+        "free": 14.0
+      },
+      "DSP": {
+        "used": 51.5,
+        "capacity": 118.0,
+        "reportedPercent": 44,
+        "free": 66.5
+      }
+    },
+    "clocks": [
+      {
+        "name": "sys_clk",
+        "constraintMHz": 50.0,
+        "fmaxMHz": 145.27,
+        "logicLevel": 10
+      },
+      {
+        "name": "video_clock/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 125.0,
+        "fmaxMHz": 178.591,
+        "logicLevel": 1
+      },
+      {
+        "name": "video_clock/pll/CLKOUT1.default_gen_clk",
+        "constraintMHz": 25.0,
+        "fmaxMHz": 58.63,
+        "logicLevel": 17
+      },
+      {
+        "name": "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 49.152,
+        "fmaxMHz": 49.207,
+        "logicLevel": 17
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangSynthModeSync_20261025\\verification\\build\\build_mode-sync_20261025_134327_0ee13180\\full\\impl\\pnr\\ContestFull.fs",
+        "size": 20634972,
+        "sha256": "2EBECEEF27E2139FB886A7A5D24549F6587FDDAC705BEA21AF1E61F324DA56CA"
+      },
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangSynthModeSync_20261025\\verification\\build\\build_mode-sync_20261025_134327_0ee13180\\full\\impl\\pnr\\ContestFull.tr",
+        "size": 427198,
+        "sha256": "78345ECC65A822A1EEE906C691CE94CBAB0962B803042447685B1D7DA1253AE8"
+      },
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangSynthModeSync_20261025\\verification\\build\\build_mode-sync_20261025_134327_0ee13180\\full\\impl\\pnr\\ContestFull.rpt.txt",
+        "size": 92261,
+        "sha256": "5BD051AF9DC6F0CFC5E63E480196586899BB1F20455F5A73D5876CD2D5AC76A0"
+      }
+    ],
+    "hardwareValidated": false,
+    "implementationName": "ContestFull",
+    "reportName": "ContestFull",
+    "netlistName": "ContestFull",
+    "implementationKind": "bare-main",
+    "gaoInstrumented": false,
+    "gaoEvidence": {
+      "verified": false,
+      "enabledConfigurationCount": 0,
+      "files": []
+    },
+    "timingPass": true
+  }
+}

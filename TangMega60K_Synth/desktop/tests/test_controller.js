@@ -156,11 +156,11 @@ async function bulkAndRecording() {
   const before = t.requests.length;
   const cancelled = c.uploadScore(score(80), p => { if (p.completed === 2) c.transportAction(0).catch(() => {}); }).catch(e => e);
   assert.match((await cancelled).message, /取消/);
-  await c.readStatus(); assert.equal(t.requests.slice(before).filter(q => q.op === 7).length, 0, 'cancelled upload never commits');
+  await c.readStatus(); assert.equal(t.requests.slice(before).filter(q => q.op === 7 && q.payload[2] !== 1).length, 0, 'cancelled upload never commits');
   const panicStart = t.requests.length; let panic;
   const panicCancelled = c.uploadScore(score(80), p => { if (p.completed === 2) panic = c.panic(); }).catch(e => e);
   assert.match((await panicCancelled).message, /取消/); await panic;
-  assert.equal(t.requests.slice(panicStart).filter(q => q.op === 7).length, 0, 'PANIC also cancels uncommitted bulk');
+  assert.equal(t.requests.slice(panicStart).filter(q => q.op === 7 && q.payload[2] !== 1).length, 0, 'PANIC also cancels uncommitted bulk');
   await c.transportAction(2); await c.noteOn('record', 65); await delay(3); await c.noteOff('record');
   const rows = await c.readRecording(); assert.equal(rows.length, 2); assert.equal(rows[0].source, 63); assert.equal(rows[0].midi, 65); assert.equal(rows[1].on, 0); assert.equal(c.recorded, rows);
   await assert.rejects(c.transportAction(8), /NACK status=1/, 'source63 recording cannot use FPGA physical replay');

@@ -3,6 +3,9 @@
 module instrument_full_system #(
     parameter CLK_HZ=49152000, UART_BAUD=115200,
     parameter SENSOR_SETTLE_CYCLES=CLK_HZ/20,
+    parameter MENU_ENABLE=1,
+    parameter MENU_DEBOUNCE_CYCLES=CLK_HZ/50,
+    parameter MENU_LONG_PRESS_CYCLES=CLK_HZ,
     parameter ROM_DIR="rtl/audio/rom/",
     parameter [7:0] GUIDE_BRIGHTNESS=8'd32, GUIDE_TOUCH_BRIGHTNESS=8'd16,
     parameter [124:0] GUIDE_PIXEL_KEY_MAP={5'd24,5'd23,5'd22,5'd21,5'd20,
@@ -23,7 +26,16 @@ module instrument_full_system #(
     // Main-project hardware observation, read through the on-chip analyzer.
     output reg [6:0] debug_last_note,
     output wire signed [23:0] debug_transmit_left,
-    output wire [3:0] debug_audio_reset_status
+    output wire [3:0] debug_audio_reset_status,
+    // 仅给板级OLED包装层使用；不增加event/cmd/done/sample公共V2端口。
+    output wire menu_main,
+    output wire [1:0] menu_page,menu_zone,menu_timbre,
+    output wire signed [6:0] menu_transpose,
+    output wire menu_busy,
+    output wire [7:0] menu_error,
+    output wire [15:0] menu_record_count,
+    output wire menu_prompt_valid,
+    output wire [1:0] menu_prompt_code
 );
     wire cv,cr,router_cr,rv,rr;wire [7:0] cs,co,rs,ro;wire [79:0] cp,rp;
     wire [31:0] crc_errors,framing_errors,uart_overflows,uart_timeouts;
@@ -39,7 +51,15 @@ module instrument_full_system #(
     wire phone_xv,phone_xr;wire [2:0] phone_xm;wire [11:0] phone_gain;
     wire signed [12:0] phone_bend;wire [7:0] phone_vib;
     wire perf_cv,perf_cr,perf_pending;wire [7:0] perf_co,perf_status;wire [79:0] perf_cp;
-    wire [174:0] mapping;wire [1:0] timbre,fx;wire panic;
+    wire [7:0] perf_local_action_status;
+    wire [174:0] mapping,base_mapping;wire [1:0] timbre,router_timbre,fx;wire panic;
+    wire router_timbre_written;
+    // 只读扩展0x83：版本、状态旗标、页面、区域、实际音色、有符号半音、效果、错误。
+    // 与OLED共用实际状态；不读取router内部可能已被滑条覆盖的旧音色。
+    wire [79:0] learning_status_payload;
+    wire [79:0] mode_status_payload = {16'd0,menu_error,6'd0,fx,
+        menu_transpose[6],menu_transpose,6'd0,timbre,6'd0,menu_zone,6'd0,menu_page,
+        2'd0,(MENU_ENABLE!=0),guide_active,recording,playing,menu_busy,menu_main,8'd1};
     wire [15:0] record_count,score_position,read_index;wire read_valid;wire [79:0] read_row;
     wire phone_releasing,local_panic,panic_request,panic_discard;
     reg panic_quiescing;
@@ -49,7 +69,7 @@ module instrument_full_system #(
     // Stop new transactions during watchdog release without ever retracting
     // an already presented note event from a stalled arbiter grant.
     assign cr=router_cr && accept_commands;
-    remote_command_router router(.clk(clk),.rst_n(rst_n),.cmd_valid(cv && accept_commands),.cmd_ready(router_cr),
+    remote_command_router #(.ENABLE_MODE_STATUS(1),.ENABLE_DIRECT_SCORE(1),.ENABLE_LEARNING(1)) router(.clk(clk),.rst_n(rst_n),.cmd_valid(cv && accept_commands),.cmd_ready(router_cr),
         .cmd_seq(cs),.cmd_opcode(co),.cmd_payload(cp),.rsp_valid(rv),.rsp_ready(rr),
         .rsp_seq(rs),.rsp_opcode(ro),.rsp_payload(rp),
         .event_valid(remote_ev),.event_ready(remote_er),.event_on(remote_on),.event_source(remote_source),
@@ -58,10 +78,11 @@ module instrument_full_system #(
         .expr_bend(phone_bend),.expr_vibrato(phone_vib),
         .performance_valid(perf_cv),.performance_pending(perf_pending),.performance_ready(perf_cr),.performance_opcode(perf_co),
         .performance_payload(perf_cp),.performance_status(perf_status),
-        .key_map_flat(mapping),.current_timbre(timbre),.effect_mode(fx),.panic_pulse(panic),
+        .key_map_flat(base_mapping),.current_timbre(router_timbre),.effect_mode(fx),.panic_pulse(panic),
+        .timbre_write_pulse(router_timbre_written),
         .active_count(active_count),.playing(playing),.recording(recording),.guide_active(guide_active),
         .overflow_sticky(overflow_sticky),.record_count(record_count),.score_position(score_position),
-        .underrun_count(underrun_count),.record_read_index(read_index),
+        .underrun_count(underrun_count),.mode_status_payload(mode_status_payload),.learning_status_payload(learning_status_payload),.record_read_index(read_index),
         .record_read_valid(read_valid),.record_read_payload(read_row));
 
     reg [2:0] irq_meta,irq_sync;
@@ -74,7 +95,9 @@ module instrument_full_system #(
     wire [5:0] sensor_source;wire [6:0] sensor_note,sensor_velocity;wire [1:0] sensor_timbre;
     wire slider_xv,slider_xr;wire [2:0] slider_xm;wire [11:0] slider_gain;
     wire signed [12:0] slider_bend;wire [7:0] slider_vib;
-    mpr121_input_frontend #(.CLK_HZ(CLK_HZ),.SETTLE_CYCLES(SENSOR_SETTLE_CYCLES),.SOURCE_BASE(25)) sensors(
+    wire slider_active;wire [11:0] slider_position;
+    mpr121_input_frontend #(.CLK_HZ(CLK_HZ),.SETTLE_CYCLES(SENSOR_SETTLE_CYCLES),
+        .SOURCE_BASE(25),.SLIDER_BEND_ENABLE(!MENU_ENABLE)) sensors(
         .clk(clk),.resetn(rst_n),.irq_n(irq_sync),.scl(mpr_scl),.sda(mpr_sda),
         .key_map_flat(mapping),.current_timbre(timbre),.key_valid(sensor_ev),.key_ready(sensor_er),
         .key_on(sensor_on),.key_source(sensor_source),.key_note(sensor_note),
@@ -82,31 +105,91 @@ module instrument_full_system #(
         .expr_update_valid(slider_xv),.expr_update_ready(slider_xr),.expr_update_mask(slider_xm),
         .expr_update_gain_q1_11(slider_gain),.expr_update_bend_cents(slider_bend),
         .expr_update_vibrato_depth_cents(slider_vib),.touch_mask(touch_mask),
-        .fault(sensor_fault),.ready(sensor_ready),.event_overflow(sensor_overflow),.pending_events(sensor_pending));
+        .fault(sensor_fault),.ready(sensor_ready),.event_overflow(sensor_overflow),.pending_events(sensor_pending),
+        .slider_active(slider_active),.slider_position(slider_position));
+
+    wire menu_request_valid,menu_request_ready;
+    wire [1:0] menu_request_kind,menu_request_page,menu_request_zone;
+    wire menu_timbre_valid;wire [1:0] local_timbre;
+    wire [1:0] menu_preview_zone;
+    wire menu_action_valid,menu_action_ready;wire [7:0] menu_action;
+    slider_menu_controller #(.CLK_HZ(CLK_HZ),.DEBOUNCE_CYCLES(MENU_DEBOUNCE_CYCLES),
+        .LONG_PRESS_CYCLES(MENU_LONG_PRESS_CYCLES)) menu_input(
+        .clk(clk),.rst_n(rst_n),.touch_active(MENU_ENABLE && slider_active),
+        .touch_fault(sensor_fault[0] || !sensor_ready[0]),.position(slider_position),
+        .request_valid(menu_request_valid),.request_ready(menu_request_ready),
+        .request_kind(menu_request_kind),.request_page(menu_request_page),.request_zone(menu_request_zone),
+        .main_menu(menu_main),.page(menu_page),.selected_zone(),.preview_zone(menu_preview_zone));
+    menu_action_router #(.CLK_HZ(CLK_HZ)) menu_actions(
+        .clk(clk),.rst_n(rst_n),.request_valid(menu_request_valid),.request_ready(menu_request_ready),
+        .request_kind(menu_request_kind),.request_page(menu_request_page),.request_zone(menu_request_zone),
+        .recording(recording),.playing(playing),.guide_active(guide_active),
+        .timbre_valid(menu_timbre_valid),.timbre(local_timbre),.transpose(menu_transpose),
+        .action_valid(menu_action_valid),.action_ready(menu_action_ready),.action(menu_action),.action_status(perf_local_action_status),
+        .prompt_valid(menu_prompt_valid),.prompt_code(menu_prompt_code),.last_error(menu_error),.busy(menu_busy));
+    reg [1:0] selected_timbre;
+    always @(posedge clk or negedge rst_n) begin
+        if(!rst_n)selected_timbre<=2;
+        else begin
+            if(menu_timbre_valid)selected_timbre<=local_timbre;
+            // 同拍冲突时App提交优先；同值配置仍可收回菜单的音色选择权。
+            if(router_timbre_written)selected_timbre<=router_timbre;
+        end
+    end
+    assign timbre=selected_timbre;
+    assign menu_timbre=selected_timbre;
+    // 空闲时显示实际音色/音区，App修改音色后高亮也跟随，不沿用旧触摸位置。
+    assign menu_zone=(slider_active || menu_main)?menu_preview_zone:
+        menu_page==0?(timbre==2?2'd0:timbre==1?2'd1:timbre==0?2'd2:2'd3):
+        menu_page==1?(menu_transpose==-24?2'd0:menu_transpose==-12?2'd1:menu_transpose==0?2'd2:2'd3):
+        menu_preview_zone;
+    assign menu_record_count=record_count;
+    key_map_transpose transpose_keys(.base_map(base_mapping),.semitones(menu_transpose),.mapped_notes(mapping));
 
     wire perf_ev,perf_er,perf_on;wire [5:0] perf_source;
     wire [6:0] perf_note,perf_velocity;wire [1:0] perf_timbre;
     wire record_overflow,perf_ready,perf_action_busy;
-    wire [3:0] arb_ready;wire [1:0] arb_selected;wire push_valid,push_ready;
+    wire [3:0] arb_ready;wire [1:0] arb_selected;wire push_valid,push_ready,arbiter_push_valid;
     wire [22:0] push_payload;
-    assign perf_cr=perf_ready;
-    assign local_action_ready=rst_n && !perf_cv && perf_ready && !perf_action_busy && !panic_quiescing && !panic;
-    assign local_panic=local_action_valid && local_action_ready && local_action==8'd5;
+    wire staged_command_valid,staged_local_ready;
+    wire [7:0] staged_opcode;
+    wire [79:0] staged_payload;
+    wire merged_action_valid,merged_action_ready,selected_menu_action;
+    wire [7:0] merged_action;
+    local_action_arbiter local_controls(.clk(clk),.rst_n(rst_n),
+        .key_valid(local_action_valid),.key_ready(local_action_ready),.key_action(local_action),
+        .menu_valid(menu_action_valid),.menu_ready(menu_action_ready),.menu_action(menu_action),
+        .out_valid(merged_action_valid),.out_ready(merged_action_ready),.out_action(merged_action),
+        .selected_menu(selected_menu_action));
+    // 菜单接收busy结果后退避重试，按键保持旧的等待语义。
+    assign merged_action_ready=rst_n && staged_local_ready &&
+        (selected_menu_action || perf_local_action_status!=2) && !panic_quiescing && !panic;
+    assign local_panic=merged_action_valid && merged_action_ready && merged_action==8'd5;
     assign panic_request=panic || local_panic;
     assign panic_discard=panic_quiescing || panic_request;
-    performance_controller #(.CLK_HZ(CLK_HZ)) performance(
+    performance_command_stage performance_commands(
+        .clk(clk),.rst_n(rst_n),.remote_valid(perf_cv),.remote_ready(perf_cr),
+        .remote_opcode(perf_co),.remote_payload(perf_cp),
+        .local_valid(merged_action_valid && !panic_quiescing && !panic),
+        .local_ready(staged_local_ready),.local_action(merged_action),.local_status(perf_local_action_status),
+        .command_valid(staged_command_valid),.command_ready(perf_ready),
+        .command_opcode(staged_opcode),.command_payload(staged_payload),.command_status(perf_status));
+    performance_controller #(.CLK_HZ(CLK_HZ),.DIRECT_SCORE_ENABLE(1),.LEARNING_ENABLE(1)) performance(
         // Present local valid independently of ready/status. The controller
         // itself consumes only valid && ready with status==0. Feeding ready
         // back into valid created a long command-decode/record-enable path.
-        .clk(clk),.rst_n(rst_n),.command_valid(perf_cv || (local_action_valid && !panic_quiescing && !panic)),.command_ready(perf_ready),
-        .command_opcode(perf_pending ? perf_co : 8'h04),
-        .command_payload(perf_pending ? perf_cp : {72'd0,local_action}),.command_status(perf_status),
+        .clk(clk),.rst_n(rst_n),.command_valid(staged_command_valid),.command_ready(perf_ready),
+        .command_opcode(staged_opcode),
+        .command_payload(staged_payload),.command_status(perf_status),
         .action_busy(perf_action_busy),
+        .local_action_status(),
         .record_valid(push_valid && push_ready && arb_selected!=2),
         .record_on(push_payload[22]),.record_source(push_payload[21:16]),.record_note(push_payload[15:9]),
         .record_velocity(push_payload[8:2]),.record_timbre(push_payload[1:0]),
         .event_valid(perf_ev),.event_ready(perf_er),.event_on(perf_on),.event_source(perf_source),
         .event_note(perf_note),.event_velocity(perf_velocity),.event_timbre(perf_timbre),
+        .learning_touch_mask(touch_mask),.learning_touch_ready((&sensor_ready) && !(|sensor_fault)),
+        .learning_status_payload(learning_status_payload),
         .key_map_flat(mapping),.current_timbre(timbre),.guide_mask(guide_mask),.playing(playing),
         .recording(recording),.guide_active(guide_active),.overflow_sticky(record_overflow),
         .record_count(record_count),.score_position(score_position),.record_read_index(read_index),
@@ -143,7 +226,14 @@ module instrument_full_system #(
             end
         end
     end
-    wire audio_rst_n=rst_n && !panic_discard && !sensor_overflow;
+    // 高扇出音频复位由寄存器驱动；PANIC仍先在事件入口切到丢弃/排空。
+    // 复位断言至多增加一拍(20.35ns)，避免动作解码组合路径驱动数千寄存器。
+    reg audio_reset_released;
+    always @(posedge clk or negedge rst_n) begin
+        if(!rst_n)audio_reset_released<=0;
+        else audio_reset_released<=!panic_discard && !sensor_overflow;
+    end
+    wire audio_rst_n=rst_n && audio_reset_released;
     // Passive observation; none of these debug outputs controls the system.
     assign debug_audio_reset_status={panic_quiescing,panic_request,sensor_overflow,audio_rst_n};
     // Decode fixed source IDs in parallel instead of subtracting a variable
@@ -162,7 +252,9 @@ module instrument_full_system #(
             perf_on,perf_source,perf_note,perf_velocity,perf_timbre,
             remote_on,remote_source,remote_note,remote_velocity,remote_timbre,
             sensor_on,sensor_source,sensor_note,sensor_velocity,sensor_timbre}),
-        .out_valid(push_valid),.out_ready(push_ready),.out_payload(push_payload),.selected(arb_selected));
+        .out_valid(arbiter_push_valid),.out_ready(push_ready),.out_payload(push_payload),.selected(arb_selected));
+    // 复位寄存器生效前的一拍也禁止FIFO/录音接收旧事件；来源仍握手到丢弃端。
+    assign push_valid=arbiter_push_valid && !panic_discard;
     assign sensor_er=panic_discard || sensor_blocked || arb_ready[0];
     assign remote_er=panic_discard || arb_ready[1];
     assign perf_er=panic_discard || arb_ready[2];
@@ -200,17 +292,22 @@ module instrument_full_system #(
     wire fx_valid,fx_ready;wire signed [23:0] fx_l,fx_r;
     runtime_audio_fx effects(.clk(clk),.rst_n(audio_rst_n),.mode(fx),.in_valid(pcm_valid),.in_ready(pcm_ready),
         .in_left(pcm_l),.in_right(pcm_r),.out_valid(fx_valid),.out_ready(fx_ready),.out_left(fx_l),.out_right(fx_r));
-    i2s_tx #(.BCLK_HALF_DIV(8)) audio(.clk(clk),.rst_n(audio_rst_n),.sample_valid(fx_valid),.sample_ready(fx_ready),
-        .sample_left(fx_l),.sample_right(fx_r),.i2s_bclk(i2s_bclk),.i2s_lrclk(i2s_lrclk),.i2s_data(i2s_data),.underrun_count(underrun_count),
+    wire post_valid,post_ready;wire signed [23:0] post_l,post_r;
+    ui_tone_overlay #(.SINE_FILE({ROM_DIR,"sine.hex"})) ui_prompt(
+        .clk(clk),.rst_n(audio_rst_n),.prompt_valid(menu_prompt_valid),.prompt_code(menu_prompt_code),
+        .in_valid(fx_valid),.in_ready(fx_ready),.in_left(fx_l),.in_right(fx_r),
+        .out_valid(post_valid),.out_ready(post_ready),.out_left(post_l),.out_right(post_r));
+    i2s_tx #(.BCLK_HALF_DIV(8)) audio(.clk(clk),.rst_n(audio_rst_n),.sample_valid(post_valid),.sample_ready(post_ready),
+        .sample_left(post_l),.sample_right(post_r),.i2s_bclk(i2s_bclk),.i2s_lrclk(i2s_lrclk),.i2s_data(i2s_data),.underrun_count(underrun_count),
         .debug_frame_left(debug_transmit_left));
-    assign monitor_left=fx_l;assign monitor_right=fx_r;assign monitor_valid=fx_valid && fx_ready;
+    assign monitor_left=post_l;assign monitor_right=post_r;assign monitor_valid=post_valid && post_ready;
     reg [1:0] video_reset;
     always @(posedge video_clk or negedge audio_rst_n)begin
         if(!audio_rst_n)video_reset<=0;else video_reset<={video_reset[0],1'b1};
     end
     wire vsample;wire signed [23:0] vl,vr;wire [31:0] cdc_drops;
     audio_monitor_cdc monitor(.src_clk(clk),.src_rst_n(audio_rst_n),.src_valid(monitor_valid),
-        .src_left(fx_l),.src_right(fx_r),.drop_count(cdc_drops),.dst_clk(video_clk),.dst_rst_n(video_reset[1]),
+        .src_left(post_l),.src_right(post_r),.drop_count(cdc_drops),.dst_clk(video_clk),.dst_rst_n(video_reset[1]),
         .dst_valid(vsample),.dst_left(vl),.dst_right(vr));
     wire [511:0] levels;wire [7:0] wave_index;wire signed [7:0] wave;wire [13:0] xy_addr;wire xy,xyvalid;
     audio_visualizer visual(.clk(video_clk),.rst_n(video_reset[1]),.sample_valid(vsample),.sample_left(vl),.sample_right(vr),

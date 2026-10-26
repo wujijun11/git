@@ -10,7 +10,9 @@ async function main(){
   assert.deepEqual(P.scoreRow(257,{deltaMs:0x12345678,key:24,velocity:127,on:1}),[1,1,120,86,52,18,24,127,1]);
   const example=JSON.parse(fs.readFileSync(path.join(__dirname,'../examples/score.json'),'utf8'));assert.equal(P.validateScore(example).rows.length,8);
   for(const bad of [{version:2,rows:[]},{version:1,rows:[]},{version:1,rows:[{deltaMs:-1,key:0,velocity:0,on:1}]},{version:1,rows:[{deltaMs:0,key:25,velocity:0,on:1}]},{version:1,rows:[{deltaMs:0,key:1.2,velocity:0,on:1}]},{version:1,rows:[{deltaMs:0,key:0,velocity:128,on:1}]},{version:1,rows:[{deltaMs:0,key:0,velocity:0,on:2}]}])assert.throws(()=>P.validateScore(bad));
-  assert.throws(()=>P.validateScore({...example,rows:Array(257).fill(example.rows[0])}));
+  assert.equal(P.validateScore({...example,rows:Array(1024).fill(example.rows[0])}).rows.length,1024);
+  assert.throws(()=>P.validateScore({...example,rows:Array(1025).fill(example.rows[0])}));
+  assert.throws(()=>P.validateScore({...example,rows:Array(257).fill(example.rows[0])},256));
   assert.deepEqual(P.telemetry([16,15,0,4,120,86,52,18,255,0]),{activeVoices:16,playing:true,recording:true,guide:true,overflow:true,recordCount:1024,audioUnderruns:0x12345678,scorePosition:255});
   assert.deepEqual(P.event([1,4,120,86,52,18,63,127,100,7]),{index:1025,deltaMs:0x12345678,source:63,midi:127,velocity:100,on:1,timbre:3});
   const seen=[],decoder=new P.StreamDecoder(q=>seen.push(q));const valid=P.encode(4,1,[63,60,100,1,1]),bad=valid.slice();bad[15]^=1;

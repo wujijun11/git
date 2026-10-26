@@ -1,11 +1,11 @@
 'use strict';
-const {chromium}=require('C:/Users/asus/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const {chromium}=require(process.env.TANG_PLAYWRIGHT || require('node:path').join(process.env.USERPROFILE,'.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright'));
 const assert=require('node:assert/strict');const fs=require('node:fs');const path=require('node:path');
 (async()=>{
- const out=path.resolve(__dirname,'../../verification/desktop-app-20261021');fs.mkdirSync(out,{recursive:true});
+ const out=path.resolve(process.env.TANG_UI_OUTPUT || path.resolve(__dirname,'../../verification/desktop-app-20261021'));fs.mkdirSync(out,{recursive:true});
  const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true,args:['--no-sandbox','--autoplay-policy=no-user-gesture-required']});
  const page=await browser.newPage({viewport:{width:1440,height:1040},deviceScaleFactor:1});const errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto('http://127.0.0.1:8766',{waitUntil:'networkidle'});await page.screenshot({path:path.join(out,'studio-offline.png'),fullPage:true});
+ await page.goto(process.env.TANG_UI_URL || 'http://127.0.0.1:8766',{waitUntil:'networkidle'});await page.screenshot({path:path.join(out,'studio-offline.png'),fullPage:true});
  assert.equal(await page.locator('.piano-key').count(),25);assert.equal(await page.locator('.piano-key.black').count(),10);
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
  await page.click('#connectButton');await page.click('[data-transport=demo]');await page.click('#startDemo');await page.waitForFunction(()=>neonApp.controller.ready);

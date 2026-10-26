@@ -1,0 +1,11 @@
+{
+  "bitstream": {
+    "file": "ContestFull_LearningMode1024.fs",
+    "sha256": "0AB13E814B438645713217552312657058C569E5769EFB1FDFE3FFD6EAE8CBB1"
+  },
+  "windows": {
+    "file": "TangNeonStudio-Windows-1.5.0.zip",
+    "sha256": "6EECF554CD0508625898BF03F3110E6DDF0D5EF9418171FDF501CC58FFBA535B",
+    "bytes": 15643333
+  }
+}

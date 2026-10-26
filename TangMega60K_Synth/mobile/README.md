@@ -1,5 +1,20 @@
 # Tang Synth phone control
 
+Android 1.7 adds optional direct-pitch score playback (MIDI0–127), FPGA capability
+probe, current on-board timbre, and unchanged physical-key mapping. It requires
+the new DirectScore FPGA build; 1024 events and shared64 voices still apply.
+No per-key LED guide in direct mode. See `../docs/直接音高曲谱播放_20261025.md`.
+
+Android1.6 adds piano-score recommendations, a new-batch button and forced
+refresh with offline-cache labeling. Existing mode sync, BLE performance
+policy, MIDI and1024-event upload remain. See `../docs/推荐曲目与刷新_20261025.md`.
+
+2026-10-25 local update: Android 1.3 adds Mutopia search, local MID/MIDI,
+track/segment conversion, provenance, strict 1024/legacy256 profiles and
+mapping-aware upload. See [中文使用和模块说明](../docs/手机版曲库与蓝牙按键说明_20261025.md).
+The build/test records below dated 2026-10-11 describe the earlier 1.2 release;
+the current APK hash and acceptance records are in `../verification/mobile/`.
+
 `web/` is a complete control client with real Web Bluetooth connections,
 capability detection and an explicitly labelled software simulator. `android/`
 is a native Java Android BLE host for the same local UI. It scans the fixed
@@ -78,7 +93,7 @@ timbre, effect and expression settings.
   physical slider's bend. Disconnect cancels trailing updates, and window blur
   releases held phone notes.
 - HTTPS online JSON loading or a selected local JSON file, strict row checks,
-  sequential SCORE_WRITE and final SCORE_COMMIT. Capacity 256 rows.
+  sequential SCORE_WRITE and final SCORE_COMMIT. Current profile1024, legacy256.
 - FPGA event recording, stop/readback of up to 1024 rows, JSON export and
   FPGA event replay for recordings of physical keys (sources25..49).
   Phone-note recordings remain exportable but local replay is rejected.
@@ -140,3 +155,8 @@ Official API references used:
 - [Android Gradle Plugin 8.7 requirements](https://developer.android.com/build/releases/agp-8-7-0-release-notes)
 - [Web Bluetooth specification](https://webbluetoothcg.github.io/web-bluetooth/)
 - [Espressif BLE UART](https://docs.espressif.com/projects/arduino-esp32/en/latest/api/ble.html)
+# 蓝牙实时曲谱播放（Android 1.8）
+
+曲库分析新增“播放方式”：选择“蓝牙实时播放”后，曲谱留在手机，导入后点击“蓝牙实时播放”。支持MIDI 0–127和最多100000条事件，持续连接并保持应用前台，切后台主动停止。以开始时的板上音色演奏；原有上传后脱机播放仍保留。
+
+公共调度器在`web/realtime-score.js`，手机Session适配在`web/realtime-playback.js`。详细说明见`../docs/蓝牙实时曲谱播放_20261025.md`。APK版本号1.8；真实Android BLE长曲播放与DAC延迟待实测。

@@ -3,6 +3,8 @@
 Every invocation creates a new directory. --prepare-only captures inputs without
 starting Gowin; --run-snapshot starts only an unbuilt snapshot prepared here.
 The RTL, ROM, constraints and original build Tcl are copied without edits.
+--without-gao disables GAO only in the staged project file, with separate
+source and transformed snapshot hashes. It never edits the source project.
 """
 import argparse
 import datetime as dt
@@ -25,7 +27,7 @@ GOWIN_DEFAULT = Path(r"C:\Gowin\Gowin_V1.9.12_x64\IDE\bin\gw_sh.exe")
 BASELINE_DEFAULT = PROJECT / "verification/modelsim-20261014/build_snapshot_20261014_124217/build-results.json"
 ROMS = (
     "waves.hex", "midi.hex", "velocity.hex", "sine.hex", "ratio.hex",
-    "piano.hex", "polar_lane0.hex", "polar_lane1.hex", "polar_ratios.hex",
+    "piano.hex", "polar_lane0.hex", "polar_lane1.hex", "polar_ratios.hex", "menu_font.hex",
 )
 
 
@@ -69,14 +71,14 @@ def input_check(snapshot, entries, source_root=PROJECT):
         staged_sha = sha256(staged) if staged.is_file() else None
         main_sha = sha256(main_source) if main_source.is_file() else None
         checks.append({**entry, "sourceSha256": source_sha, "snapshotSha256": staged_sha,
-                       "sourceMatches": source_sha == entry["sha256"],
+                       "sourceMatches": source_sha == entry.get("expectedSourceSha256", entry["sha256"]),
                        "snapshotMatches": staged_sha == entry["sha256"],
                        "mainProjectSha256": main_sha,
-                       "mainProjectMatches": main_sha == entry["sha256"]})
+                       "mainProjectMatches": main_sha == entry.get("expectedSourceSha256", entry["sha256"])})
     return checks
 
 
-def prepare(variant, output_root, gowin, baseline, source_root=PROJECT):
+def prepare(variant, output_root, gowin, baseline, source_root=PROJECT, without_gao=False):
     source_root = ensure_within(source_root, PROJECT)
     output_root = ensure_within(output_root, PROJECT / "verification")
     stamp = dt.datetime.now(LOCAL_TZ).strftime("%Y%m%d_%H%M%S")
@@ -87,6 +89,8 @@ def prepare(variant, output_root, gowin, baseline, source_root=PROJECT):
     sources = {gprj, source_root / "scripts/build-contest-full.tcl"}
     for item in ET.parse(gprj).getroot().findall("./FileList/File"):
         if item.get("enable", "1") != "1":
+            continue
+        if without_gao and item.get("type") == "file.gao":
             continue
         source = ensure_within(gprj.parent / item.attrib["path"], source_root)
         if not source.is_file():
@@ -107,12 +111,26 @@ def prepare(variant, output_root, gowin, baseline, source_root=PROJECT):
         entry = {"path": str(relative), "size": source.stat().st_size, "sha256": sha256(source)}
         if sha256(target) != entry["sha256"]:
             raise ValueError(f"Snapshot copy differs: {target}")
+        if source == gprj and without_gao:
+            # 只改变快照中逻辑分析仪的启用标志，不放宽任何时序约束。
+            original_hash = entry["sha256"]
+            def disable_gao(match):
+                tag = match[0]
+                if 'enable="' in tag:
+                    return re.sub(r'enable="[01]"', 'enable="0"', tag)
+                return tag.replace('/>', ' enable="0"/>')
+            text = re.sub(r'<File\b[^>]*type="file[.]gao"[^>]*/>', disable_gao,
+                          target.read_text(encoding="utf-8"))
+            target.write_text(text, encoding="utf-8")
+            entry.update(expectedSourceSha256=original_hash, sha256=sha256(target),
+                         size=target.stat().st_size, transform="disable-gao-in-snapshot")
         entries.append(entry)
     write_json(snapshot / "snapshot-inputs.json", entries)
     write_json(snapshot / "gprj-dependencies.json", dependencies)
     write_json(snapshot / "protected-impl-before.json", file_inventory(PROJECT / "full/impl"))
     metadata = {"snapshot": str(snapshot), "project": str(PROJECT), "sourceRoot": str(source_root), "variant": variant,
                 "createdAt": now(), "gowin": str(gowin), "baselineReport": str(baseline),
+                "withoutGao": without_gao,
                 "gprjDependencies": len(dependencies), "inputFiles": len(entries),
                 "gaoExpected": any(item["type"] == "file.gao" for item in dependencies),
                 "implementationKind": "gao-requested" if any(item["type"] == "file.gao" for item in dependencies) else "bare-main",
@@ -391,6 +409,7 @@ def main():
     parser.add_argument("--source-root", type=Path, default=PROJECT,
                         help="Explicit source origin within this project; original main full/impl always protected")
     parser.add_argument("--prepare-only", action="store_true")
+    parser.add_argument("--without-gao", action="store_true", help="Disable GAO in staged GPRJ only; keep all timing constraints")
     parser.add_argument("--run-snapshot", type=Path)
     parser.add_argument("--timeout-seconds", type=int, default=2400)
     parser.add_argument("--parse-pnr", type=Path, help="Read-only parser validation against an existing PnR directory")
@@ -404,7 +423,7 @@ def main():
         parser.error("--timeout-seconds must be at least 60")
     if args.prepare_only and args.run_snapshot:
         parser.error("--prepare-only cannot be combined with --run-snapshot")
-    snapshot = args.run_snapshot or prepare(args.variant, args.output_root, args.gowin, args.baseline, args.source_root)
+    snapshot = args.run_snapshot or prepare(args.variant, args.output_root, args.gowin, args.baseline, args.source_root, args.without_gao)
     print(json.dumps({"snapshot": str(snapshot), "preparedOnly": args.prepare_only}, ensure_ascii=False), flush=True)
     if args.prepare_only:
         return 0

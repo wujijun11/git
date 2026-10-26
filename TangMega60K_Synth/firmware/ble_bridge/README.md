@@ -1,5 +1,11 @@
 # ESP32-C3 BLE UART bridge
 
+2026-10-25 local latency update: successful notifications no longer have an
+artificial15ms gap; failed attempts retain15ms backoff. The bridge requests
+7.5–15ms/latency0 and advertises optional WRITE_NR, while clients still wait for
+the existing FPGA ACK. See `docs/蓝牙延迟优化与测量_20261025.md` in the project root
+for actual measurements and the new build manifest. No C3 was flashed by this task.
+
 This firmware only transports existing 16-byte packets. FPGA synthesis and
 score/record timing remain on the FPGA. It neither streams PCM nor creates
 NOTE/PANIC commands.

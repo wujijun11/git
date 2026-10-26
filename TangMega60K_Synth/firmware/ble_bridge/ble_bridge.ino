@@ -13,6 +13,8 @@
 #include <nimble/nimble_port.h>
 #endif
 #include "bridge_uart_io.h"
+#include "bridge_notify_policy.h"
+#include "bridge_link_policy.h"
 
 #if !defined(CONFIG_IDF_TARGET_ESP32C3)
 #error "Build this bridge for the ESP32-C3, not another ESP32 variant."
@@ -136,6 +138,13 @@ class ServerCallbacks : public BLEServerCallbacks {
     void onDisconnect(BLEServer *) override {
         sessionState=(sessionState.load()+4)&~SESSION_FLAGS;
     }
+#if defined(CONFIG_NIMBLE_ENABLED)
+    void onConnect(BLEServer *owner, ble_gap_conn_desc *desc) override {
+        // 使用当前回调提供的连接句柄，不从其他任务猜测或重用旧句柄。
+        owner->updateConnParams(desc->conn_handle, BRIDGE_INTERVAL_MIN,
+            BRIDGE_INTERVAL_MAX, BRIDGE_SLAVE_LATENCY, BRIDGE_SUPERVISION_TIMEOUT);
+    }
+#endif
 };
 class ReceiveCallbacks : public BLECharacteristicCallbacks {
     void onWrite(BLECharacteristic *c) override {
@@ -193,7 +202,7 @@ void setup(){
     txChar->addDescriptor(new BLE2902());
 #endif
     txChar->setCallbacks(new NotifyCallbacks());
-    BLECharacteristic *rxChar=service->createCharacteristic(RX_UUID,BLECharacteristic::PROPERTY_WRITE);
+    BLECharacteristic *rxChar=service->createCharacteristic(RX_UUID,BLECharacteristic::PROPERTY_WRITE | BLECharacteristic::PROPERTY_WRITE_NR);
     rxChar->setCallbacks(new ReceiveCallbacks());
     diagChar=service->createCharacteristic(DIAG_UUID,BLECharacteristic::PROPERTY_READ);
     diagChar->setCallbacks(new DiagnosticCallbacks());
@@ -329,6 +338,6 @@ void loop(){
     if(notifying && (notifyResult==-1 || now-notifyTime>500)){
         notifying=false;notifyResult=0;if(++notifyAttempts>=3){notifyErrors++;failSession(activeSession);delay(1);return;}
     }
-    if(!notifying&&now-notifyTime>=15&&xQueuePeek(toBle,&p,0)==pdTRUE){notifying=true;notifyResult=0;notifyTime=now;txChar->setValue(p.bytes,16);txChar->notify();}
+    if(!notifying&&bridgeNotifyDue(now,notifyTime,notifyAttempts)&&xQueuePeek(toBle,&p,0)==pdTRUE){notifying=true;notifyResult=0;notifyTime=now;txChar->setValue(p.bytes,16);txChar->notify();}
     delay(1);
 }

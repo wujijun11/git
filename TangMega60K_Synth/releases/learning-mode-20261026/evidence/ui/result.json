@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "hardwareTested": false,
+  "wait": true,
+  "wrongKey": true,
+  "repeatedKey": true,
+  "chord": true,
+  "restart": true,
+  "stop": true,
+  "disconnect": true,
+  "narrowLayout": true,
+  "pageErrors": []
+}

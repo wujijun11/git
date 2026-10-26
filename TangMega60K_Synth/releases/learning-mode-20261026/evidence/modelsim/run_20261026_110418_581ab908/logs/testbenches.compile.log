@@ -1,0 +1,54 @@
+Model Technology ModelSim SE-64 vlog 10.6e Compiler 2018.06 Jun 23 2018
+Start time: 11:04:20 on Oct 26,2026
+vlog -modelsimini modelsim.ini -sv -work work sim/tb_learning_mode.sv sim/tb_learning_status.sv sim/tb_learning_system.sv sim/tb_direct_score.sv sim/tb_direct_capability.sv sim/tb_direct_score_system.sv sim/tb_menu_system.sv sim/tb_mode_status.sv sim/tb_menu_replay.sv sim/tb_global_panic.sv sim/tb_full_control.sv sim/tb_performance_controller.sv sim/tb_performance_retrigger.sv sim/tb_performance_commit_pipeline.sv sim/tb_ws2812_matrix.sv sim/tb_mpr121_model.sv sim/runtime_audio_fx_reference.sv 
+-- Compiling module tb_learning_mode
+-- Compiling module tb_learning_status
+-- Compiling module tb_learning_system
+-- Compiling module tb_direct_score
+-- Compiling module tb_direct_capability
+-- Compiling module tb_direct_score_system
+-- Compiling module tb_menu_system
+-- Compiling module tb_mode_status
+-- Compiling module tb_menu_replay
+-- Compiling module tb_global_panic
+-- Compiling module tb_full_control
+-- Compiling module tb_expression_merge
+-- Compiling module tb_note_arbiter
+-- Compiling module tb_performance_controller
+-- Compiling module tb_performance_retrigger
+-- Compiling module tb_performance_commit_pipeline
+-- Compiling module ws2812_matrix_check
+-- Compiling module tb_ws2812_invalid_zero_count
+-- Compiling module tb_ws2812_invalid_large_count
+-- Compiling module tb_ws2812_invalid_key_map
+-- Compiling module tb_ws2812_duplicate_key_map
+-- Compiling module tb_ws2812_matrix
+-- Compiling module mpr121_bus_model
+-- Compiling module runtime_audio_fx_reference
+
+Top level modules:
+	tb_learning_mode
+	tb_learning_status
+	tb_learning_system
+	tb_direct_score
+	tb_direct_capability
+	tb_direct_score_system
+	tb_menu_system
+	tb_mode_status
+	tb_menu_replay
+	tb_global_panic
+	tb_full_control
+	tb_expression_merge
+	tb_note_arbiter
+	tb_performance_controller
+	tb_performance_retrigger
+	tb_performance_commit_pipeline
+	tb_ws2812_invalid_zero_count
+	tb_ws2812_invalid_large_count
+	tb_ws2812_invalid_key_map
+	tb_ws2812_duplicate_key_map
+	tb_ws2812_matrix
+	mpr121_bus_model
+	runtime_audio_fx_reference
+End time: 11:04:20 on Oct 26,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

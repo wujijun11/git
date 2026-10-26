@@ -1,0 +1,66 @@
+/* 沿用现有设置页的紫色面板和按钮；快捷键与MIDI映射分开呈现。 */
+.keyboard-shortcuts {
+    margin-top: 23px;
+}
+.keyboard-shortcuts > p {
+    max-width: 850px;
+}
+.shortcut-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+    padding: 2px;
+}
+.shortcut-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    background: #1b1424;
+    border: 1px solid #382841;
+    border-radius: 8px;
+    padding: 12px;
+}
+.shortcut-item > span {
+    font-size: 11px;
+    color: #b7a0cb;
+}
+.shortcut-item > kbd {
+    font:
+        13px Consolas,
+        monospace;
+    min-width: 30px;
+    max-width: 90px;
+    overflow-wrap: anywhere;
+    text-align: center;
+    color: #dfcaf3;
+}
+.shortcut-item.capturing {
+    border-color: #c7a3ed;
+    box-shadow: 0 0 0 1px #c7a3ed;
+}
+.shortcut-item .shortcut-edit {
+    justify-self: start;
+}
+.shortcut-item .shortcut-clear {
+    font-size: 10px;
+    justify-self: end;
+}
+.keyboard-shortcuts #shortcutStatus {
+    color: #cab0e6;
+    font-size: 11px;
+    min-height: 22px;
+}
+.keyboard-shortcuts button:focus-visible {
+    outline: 2px solid #d7b7fc;
+    outline-offset: 3px;
+}
+@media (max-width: 700px) {
+    .shortcut-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .shortcut-item {
+        padding: 9px;
+        gap: 8px;
+    }
+}

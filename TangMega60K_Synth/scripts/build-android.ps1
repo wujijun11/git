@@ -40,8 +40,15 @@ $oldSdkRoot = $env:ANDROID_SDK_ROOT
 try {
     $env:JAVA_HOME = $JavaHome
     $env:ANDROID_SDK_ROOT = $sdk
-    'sdk.dir=' + $sdk.Replace('\','/') | Set-Content -LiteralPath (Join-Path $androidDir 'local.properties') -Encoding ascii
-    $arguments = @('--no-daemon','--console','plain','--gradle-user-home',(Join-Path $ToolRoot 'gradle-home'),'-p',$androidDir,"-PtangDebugKeystore=$keystore",'assembleDebug','lintDebug')
+    # Java properties按ISO-8859-1读取，中文需写为Unicode转义，避免错误回退SDK路径。
+    $taskSdkProperty = [regex]::Replace($sdk.Replace('\','/'), '[^\u0000-\u007f]', {
+        param($taskMatch)
+        '\u{0:x4}' -f [int][char]$taskMatch.Value
+    })
+    'sdk.dir=' + $taskSdkProperty | Set-Content -LiteralPath (Join-Path $androidDir 'local.properties') -Encoding ascii
+    # AGP在Windows上默认拒绝含中文的工程路径。此选项仅影响本次构建；
+    # 仍实际运行资源编译、APK组装和lint，不能把跳过路径预检查当成构建成功。
+    $arguments = @('--no-daemon','--console','plain','--gradle-user-home',(Join-Path $ToolRoot 'gradle-home'),'-p',$androidDir,'-Pandroid.overridePathCheck=true',"-PtangDebugKeystore=$keystore",'assembleDebug','lintDebug')
     if ($Offline) { $arguments += '--offline' }
     if ($RerunChecks) { $arguments += '--rerun-tasks' }
     if ($InitScript) { $arguments += @('--init-script', [IO.Path]::GetFullPath($InitScript)) }

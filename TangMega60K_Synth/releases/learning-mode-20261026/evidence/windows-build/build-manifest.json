@@ -1,0 +1,155 @@
+{
+  "executable": "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\TangMega60K_Synth\\delivery-learning-mode\\windows\\TangNeonStudio\\TangNeonStudio.exe",
+  "exeSHA256": "693D5B920F0D86B57CD80F60A33754C6B9E483D3D08C00056B80FA5E45AA7C86",
+  "nativeHostSHA256": "46B1A24759001C746D63DE2567BE6D73E7357CE010A55C0D4D5509054AE53D59",
+  "tlsRuntimeData": [
+    {
+      "path": "codex-rejected-cas.pem",
+      "sha256": "C916CE1B14ED8CA69E9B5C9FAB22799A900DD610D6D4EC9B1347F4FD48E53718"
+    }
+  ],
+  "pythonSources": [
+    {
+      "path": "native_host.py",
+      "sha256": "46B1A24759001C746D63DE2567BE6D73E7357CE010A55C0D4D5509054AE53D59"
+    },
+    {
+      "path": "ble_link.py",
+      "sha256": "E0588383BBBB0FC77175B348B1ECA229A9C78071E0E12460AD6A61CAB811AC7A"
+    },
+    {
+      "path": "score_library\\__init__.py",
+      "sha256": "E4ECF7C502C0B37B64CEA03488237D49DDC66ED56C91EF44AC178D497186D335"
+    },
+    {
+      "path": "score_library\\diagnostics.py",
+      "sha256": "5059D0F6E9E14AC5DC19A84E6E43E8C1DB678131DF8061546E0724DDAD57D797"
+    },
+    {
+      "path": "score_library\\midi_import.py",
+      "sha256": "92CE1A9E633CB8E45C3BDA9C909426C8184CE58F4282B51A6BA17F0B110135F4"
+    },
+    {
+      "path": "score_library\\mutopia.py",
+      "sha256": "04904E1F3C961C40D925ED127AD6FB9AD66271F87DE4773B01AA65DCE282ADAA"
+    },
+    {
+      "path": "score_library\\recommendations.py",
+      "sha256": "621298EA0FCB75A7239C4C257929F675D7F5A9858802F0572A0E043BD94B218B"
+    },
+    {
+      "path": "score_library\\service.py",
+      "sha256": "A81B57E788B0975774D8689C630C63F0863782D44532886085F4CE6264044505"
+    },
+    {
+      "path": "preferences.py",
+      "sha256": "FADB067AB30A39FCEF52FCE938F546DFD46F72A16F98B0D5ECE2ECD0692D7F2D"
+    }
+  ],
+  "totalFiles": 379,
+  "totalBytes": 36244819.0,
+  "webAssets": [
+    {
+      "path": "app.js",
+      "sha256": "5BF72354D4AEE5A01069B586CCDA11CD49C88728A21F2823ACD17BF32B5B94FC"
+    },
+    {
+      "path": "controller.js",
+      "sha256": "6B1C124D57E5FAF4BC293057CFB2A18EAC56D1ED0E2F4E328211102FAB8CE735"
+    },
+    {
+      "path": "guide-control.js",
+      "sha256": "192C87065B1AE8580BF75DFFC7F5DB9A7B6CDDEE312A821B0CB99ADA1D16EE73"
+    },
+    {
+      "path": "guide-labels.html",
+      "sha256": "008CF30E9CAE9702B7CB48504DED8B3CECB9CE6180E32696FD1B724DF940E5D7"
+    },
+    {
+      "path": "guide-panel.css",
+      "sha256": "7F2A6434CB50EAFB65B4DC1D54DB05472EC883A2E05B0CC964285FA5FBABFE2D"
+    },
+    {
+      "path": "guide-panel.js",
+      "sha256": "58BB156AF2B8BA2648F058496A4546BA279AE96BB9987049DA4099570CE91C25"
+    },
+    {
+      "path": "guide-timeline.js",
+      "sha256": "F1F8A32013E3010180C5F5AA0C110790A5B87AD0E0D990594B6134D3E315768D"
+    },
+    {
+      "path": "index.html",
+      "sha256": "DB62770A6F185443CD05CB26F1281D1DF0EC6F0867A426F3AAFBFFE636522D31"
+    },
+    {
+      "path": "keyboard-bindings.js",
+      "sha256": "ED868B4779B05737FFD5954344F9A7165317D1EBFDED9FEBC190AD66938BC76B"
+    },
+    {
+      "path": "keyboard-shortcuts.css",
+      "sha256": "B4CAB60F14AAC3AC01474DB4E070E66C6186231E11336FF4D141BAD770B787BF"
+    },
+    {
+      "path": "keyboard-shortcuts.js",
+      "sha256": "B83F2D8873CDC3040833F409F007EF90B83F0BF2F439EEED7F0F931CEEC4006D"
+    },
+    {
+      "path": "learning-control.js",
+      "sha256": "06961B2113CC7875F1DE92E24D4AE066581FEB0E9ACFC4FD6D6F41D0133A0F15"
+    },
+    {
+      "path": "learning-demo.js",
+      "sha256": "0B7FFAA5769EAB4F550DE78253A29C69EEC19453995DA15D608E1A5FEE367DEC"
+    },
+    {
+      "path": "protocol.js",
+      "sha256": "01F6074C4D16EEC198AC0C6EB7D3A663065E8F65B2C3D3BBA859749EAC2C0D70"
+    },
+    {
+      "path": "realtime-playback.js",
+      "sha256": "FD6C2CF042BDBA95D3950076FA853E4DF014BCFC6613854A9E7FEF92020868DB"
+    },
+    {
+      "path": "realtime-score.js",
+      "sha256": "755B75CA1EBE5C83584EC31329ECDCCD6A5B34D7AF72115CF17DF77149D51026"
+    },
+    {
+      "path": "score-library.css",
+      "sha256": "CB9E6EA26627981EC88DA51670DDE8E78B32617DBAC4650D383B1D11F61ED34B"
+    },
+    {
+      "path": "score-library.js",
+      "sha256": "5181C860BC20581EBC057A1BE1781E989284E7E21D99DDE265B247D8A0209C55"
+    },
+    {
+      "path": "score-upload.js",
+      "sha256": "CD634ADC8D191758C8FFCA3FB7B7A6F354B8ECAF97255C9BB5EA52C0A425B0FA"
+    },
+    {
+      "path": "style.css",
+      "sha256": "EE5E13C4F9D816B7892DA374EF8D57367E2AB5C56E27103FEC8EAE29F3D20045"
+    }
+  ],
+  "applicationAssets": [
+    {
+      "path": "neon.ico",
+      "sha256": "083AA6B3CD6AF8DE0A3BB7A4F659ABBC22D405AF47DC56B7C14CF95021203A8A"
+    },
+    {
+      "path": "neon.png",
+      "sha256": "F1F627AE1F9DA915EFE1D3E02233E02BC9DABA795CDF984E66D806E9DCF91753"
+    }
+  ],
+  "deliveryDocuments": [
+    {
+      "path": "README.md",
+      "sha256": "3221E8919EA113701D6DD65863F2C5291A504BFE7CC367AC895153496B91D57C"
+    },
+    {
+      "path": "examples\\C4-C6.json",
+      "sha256": "D7C38B3D70A889562A7228F030343DC25A2D3A63CC57E8626A0A8C0EAD874EEF"
+    }
+  ],
+  "packagedSmokeTest": "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\TangMega60K_Synth\\verification\\learning-mode\\windows-build\\packaged-smoke-test.json",
+  "hardwareConnectionTested": false
+}

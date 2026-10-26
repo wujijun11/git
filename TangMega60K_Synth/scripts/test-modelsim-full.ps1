@@ -1,4 +1,4 @@
-param(
+﻿param(
     [ValidateSet('Core','Full','Watchdog')][string]$Suite = 'Core',
     [string[]]$CaseName = @(),
     [string]$ModelSimBin = 'D:/msim/modelsim_ase/win32aloem',
@@ -43,6 +43,22 @@ function New-TestCase([string]$Name,[string]$Top,[string]$Bench,[string]$Marker,
 $watchdogCase = New-TestCase 'remote_note_watchdog' 'tb_remote_note_watchdog' `
     'sim/tb_remote_note_watchdog.sv' 'REMOTE NOTE WATCHDOG PASS' @() '' $true
 $allCases = @(
+    (New-TestCase 'learning_mode' 'tb_learning_mode' 'sim/tb_learning_mode.sv' 'LEARNING MODE PASS'),
+    (New-TestCase 'learning_status' 'tb_learning_status' 'sim/tb_learning_status.sv' 'LEARNING STATUS PASS'),
+    (New-TestCase 'learning_system' 'tb_learning_system' 'sim/tb_learning_system.sv' 'LEARNING SYSTEM PASS'),
+
+    (New-TestCase 'direct_score' 'tb_direct_score' 'sim/tb_direct_score.sv' 'DIRECT SCORE PASS'),
+    (New-TestCase 'performance_stage' 'tb_performance_command_stage' 'sim/tb_performance_command_stage.sv' 'PERFORMANCE COMMAND STAGE PASS'),
+    (New-TestCase 'direct_capability' 'tb_direct_capability' 'sim/tb_direct_capability.sv' 'DIRECT CAPABILITY PASS'),
+    (New-TestCase 'direct_system' 'tb_direct_score_system' 'sim/tb_direct_score_system.sv' 'DIRECT SYSTEM PASS'),
+    (New-TestCase 'score_capacity_1024' 'tb_score_capacity_1024' 'sim/tb_score_capacity_1024.sv' 'SCORE 1024 PASS'),
+    (New-TestCase 'headroom_audit' 'tb_headroom_audit' 'sim/tb_headroom_audit.sv' 'HEADROOM AUDIT CAPTURE PASS'),
+    (New-TestCase 'menu_system' 'tb_menu_system' 'sim/tb_menu_system.sv' 'MENU SYSTEM PASS'),
+    (New-TestCase 'mode_status' 'tb_mode_status' 'sim/tb_mode_status.sv' 'MODE STATUS PASS'),
+    (New-TestCase 'oled_menu' 'tb_oled_menu' 'sim/tb_oled_menu.sv' 'OLED MENU PASS'),
+    (New-TestCase 'ui_tone' 'tb_ui_tone_overlay' 'sim/tb_ui_tone_overlay.sv' 'UI TONE PASS'),
+    (New-TestCase 'slider_menu' 'tb_slider_menu' 'sim/tb_slider_menu.sv' 'SLIDER MENU PASS'),
+    (New-TestCase 'menu_replay' 'tb_menu_replay' 'sim/tb_menu_replay.sv' 'MENU REPLAY PASS'),
     (New-TestCase 'full_system' 'tb_instrument_full_system' 'sim/tb_instrument_full_system.sv' 'FULL SYSTEM PASS' @() '' $true),
     (New-TestCase 'global_panic' 'tb_global_panic' 'sim/tb_global_panic.sv' 'GLOBAL PANIC PASS'),
     (New-TestCase 'control_router' 'tb_full_control' 'sim/tb_full_control.sv' 'FULL CONTROL ROUTER PASS'),

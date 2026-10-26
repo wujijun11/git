@@ -1,0 +1,78 @@
+{
+  "version": "1.5.0-local",
+  "date": "2026-10-26",
+  "hardwareTested": false,
+  "bitstream": "fpga\\ContestFull_LearningMode1024.fs",
+  "bitstreamSha256": "0AB13E814B438645713217552312657058C569E5769EFB1FDFE3FFD6EAE8CBB1",
+  "buildInputsMatchWorkingFiles": true,
+  "checkedBuildInputs": 91,
+  "audioAndMobileUnchangedFiles": 252,
+  "modelsimCases": [
+    "learning_mode",
+    "learning_status",
+    "learning_system",
+    "direct_score",
+    "direct_capability",
+    "direct_system",
+    "menu_system",
+    "mode_status",
+    "menu_replay",
+    "global_panic",
+    "control_router",
+    "performance",
+    "performance_retrigger",
+    "performance_commit",
+    "ws2812_matrix",
+    "performance_stage",
+    "score_capacity_1024",
+    "full_system",
+    "mpr121_backpressure"
+  ],
+  "desktopUnitSuites": 9,
+  "browserSuites": 5,
+  "packagedSmokePassed": true,
+  "timing": {
+    "setup": 0.002,
+    "hold": 0.063,
+    "recovery": 13.061,
+    "removal": 0.471
+  },
+  "resources": {
+    "Logic": {
+      "used": 27557.0,
+      "capacity": 59904.0,
+      "reportedPercent": 46,
+      "free": 32347.0
+    },
+    "Register": {
+      "used": 18094.0,
+      "capacity": 60780.0,
+      "reportedPercent": 30,
+      "free": 42686.0
+    },
+    "BSRAM": {
+      "used": 104.0,
+      "capacity": 118.0,
+      "reportedPercent": 89,
+      "free": 14.0
+    },
+    "DSP": {
+      "used": 51.5,
+      "capacity": 118.0,
+      "reportedPercent": 44,
+      "free": 66.5
+    }
+  },
+  "resourceDeltaFromDeliveredDirectScore": {
+    "Logic": 308.0,
+    "Register": 71.0,
+    "BSRAM": 0.0,
+    "DSP": 0.0
+  },
+  "knownLimits": [
+    "minimum setup slack 0.002 ns",
+    "existing clock/routing warnings retained",
+    "physical keys/BLE/LED25 remain untested",
+    "GAO disabled only in build snapshot"
+  ]
+}

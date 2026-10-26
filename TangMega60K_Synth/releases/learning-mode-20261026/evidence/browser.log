@@ -1,0 +1,5 @@
+LEARNING UI PASS: waiting, wrong/repeated key, chord, completion, restart/stop, old timed guide, disconnect and 900px layout
+GUIDE MAP UI PASS: 25 labels, silent lookup, chord/rest targets, stale/disconnect clear, remap and 900px layout
+GUIDE UI PASS: builtin, 50 calibration events, start/stop, silent guide, direct-score guard and cancellation
+REALTIME UI PASS: NOTE stream, no RAM upload, >1024 events; Windows continues in background, mobile stops; stop/restart/disconnect
+SHORTCUT UI PASS custom key, conflict, capture, typing/IME, Esc, 40 rapid note events, release, persistence and reset

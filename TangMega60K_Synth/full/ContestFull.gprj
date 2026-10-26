@@ -5,6 +5,15 @@
   <Version>5</Version>
   <Device name="GW5AT-60B" pn="GW5AT-LV60PG484AC1/I0">gw5at60b-002</Device>
   <FileList>
+    <File path="../rtl/control/performance_command_stage.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/visual/bin16_to_bcd.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/visual/oled_menu_renderer.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/visual/oled_status_display.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/audio/ui_tone_overlay.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/control/slider_menu_controller.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/control/menu_action_router.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/control/local_action_arbiter.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/control/key_map_transpose.v" type="file.verilog" enable="1"/>
     <File path="../rtl/audio/adsr.v" type="file.verilog" enable="1"/>
     <File path="../rtl/audio/audio_fx.v" type="file.verilog" enable="1"/>
     <File path="../rtl/audio/audio_system_v2_fm.v" type="file.verilog" enable="1"/>
@@ -52,6 +61,7 @@
     <File path="../rtl/instrument_system_v2.v" type="file.verilog" enable="1"/>
     <File path="../rtl/interaction_top_v2.v" type="file.verilog" enable="1"/>
     <File path="../rtl/interaction_top.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/performance/learning_stepper.v" type="file.verilog" enable="1"/>
     <File path="../rtl/performance/performance_controller.v" type="file.verilog" enable="1"/>
     <File path="../rtl/performance/ws2812_guide.v" type="file.verilog" enable="1"/>
     <File path="../rtl/remote/remote_uart_transport.sv" type="file.verilog" enable="1"/>

@@ -1,10 +1,245 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tang Synth 控制</title><link rel="stylesheet" href="style.css"></head><body>
-<h1>Tang Synth</h1><p>FPGA 乐器 · BLE 控制与曲谱</p>
-<div class="card"><div id="capability"></div><button id="connect">连接蓝牙桥</button><button id="disconnect">断开</button><button id="simulate">协议模拟（无硬件）</button><p id="status" role="status">未连接</p></div>
-<div class="card"><h2>演奏</h2><label>音色 <select id="timbre"><option value="0">正弦</option><option value="1">风琴</option><option value="2" selected>钢琴</option><option value="3">FM电钢琴</option></select></label><label>效果 <select id="effect"><option value="0">直通</option><option value="1">延迟</option><option value="2">混响</option><option value="3">合唱</option></select></label><label>力度 <input id="velocity" type="range" min="1" max="127" value="100"></label><label>增益 Q1.11 <input id="gain" type="range" min="0" max="4095" value="2048"><output id="gainValue">2048</output></label><label>弯音（音分） <input id="bend" type="range" min="-1200" max="1200" value="0"><output id="bendValue">0</output></label><label>颤音（音分） <input id="vibrato" type="range" min="0" max="100" value="0"><output id="vibratoValue">0</output></label><div id="keys" aria-label="25键琴键"></div><button id="test64">64声部现场测试</button><button id="panic" class="danger">全部停止 / Panic</button></div>
-<div class="card"><h2>25 键映射</h2><label>物理键 <select id="mapKey"></select></label><label>MIDI <input id="mapNote" type="number" min="0" max="127" value="60"></label><button id="mapApply">写入映射</button><p>默认 MIDI 60..84；每个物理键均可独立修改。</p></div>
-<div class="card"><h2>在线曲谱与脱机引导</h2><label>HTTPS JSON URL <input id="scoreUrl" type="url" placeholder="https://example.org/score.json"></label><button id="loadUrl">在线加载</button><label>或选择本地 JSON <input id="scoreFile" type="file" accept=".json,application/json"></label><p id="scoreInfo">尚未加载曲谱</p><button id="upload">上传并提交曲谱</button><button id="play">播放用户曲谱</button><button id="builtin">选择内置脱机曲谱</button><button id="guideStart">启动 LED 引导</button><button id="guideStop">停止引导</button><button id="stop">停止曲谱</button><details><summary>曲谱格式</summary><pre>{"version":1,"title":"示例","rows":[
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Tang Synth 控制</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <h1>Tang Synth</h1>
+        <p>FPGA 乐器 · BLE 控制与曲谱</p>
+        <div class="card">
+            <div id="capability"></div>
+            <button id="connect">连接蓝牙桥</button
+            ><button id="disconnect">断开</button
+            ><button id="simulate">协议模拟（无硬件）</button>
+            <p id="status" role="status">未连接</p>
+            <p id="boardMode" role="status">板上模式：等待状态回传</p>
+        </div>
+        <div class="card">
+            <h2>演奏</h2>
+            <label
+                >音色
+                <select id="timbre">
+                    <option value="0">正弦</option>
+                    <option value="1">风琴</option>
+                    <option value="2" selected>钢琴</option>
+                    <option value="3">FM电钢琴</option>
+                </select></label
+            ><label
+                >效果
+                <select id="effect">
+                    <option value="0">直通</option>
+                    <option value="1">延迟</option>
+                    <option value="2">混响</option>
+                    <option value="3">合唱</option>
+                </select></label
+            ><label
+                >力度
+                <input
+                    id="velocity"
+                    type="range"
+                    min="1"
+                    max="127"
+                    value="100" /></label
+            ><label
+                >增益 Q1.11
+                <input
+                    id="gain"
+                    type="range"
+                    min="0"
+                    max="4095"
+                    value="2048"
+                /><output id="gainValue">2048</output></label
+            ><label
+                >弯音（音分）
+                <input
+                    id="bend"
+                    type="range"
+                    min="-1200"
+                    max="1200"
+                    value="0"
+                /><output id="bendValue">0</output></label
+            ><label
+                >颤音（音分）
+                <input
+                    id="vibrato"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="0"
+                /><output id="vibratoValue">0</output></label
+            >
+            <div id="keys" aria-label="25键琴键"></div>
+            <button id="test64">64声部现场测试</button
+            ><button id="panic" class="danger">全部停止 / Panic</button>
+        </div>
+        <div class="card">
+            <h2>25 键映射</h2>
+            <label
+                >物理键
+                <select id="mapKey"></select></label
+            ><label
+                >MIDI
+                <input
+                    id="mapNote"
+                    type="number"
+                    min="0"
+                    max="127"
+                    value="60" /></label
+            ><button id="mapApply">写入映射</button>
+            <p>默认 MIDI 60..84；每个物理键均可独立修改。</p>
+        </div>
+        <section class="card" id="musicLibrary">
+            <h2>找一首，弹起来</h2>
+            <p>
+                Mutopia公开授权曲库 · 可搜索曲名或作者。在线搜索需新版Android
+                APK；本地MIDI也可在浏览器分析。
+            </p>
+            <form id="musicSearch">
+                <label
+                    >曲名 / 作者
+                    <input
+                        id="musicQuery"
+                        maxlength="80"
+                        placeholder="Bach、Mozart…"
+                        required /></label
+                ><button type="submit">搜索</button>
+            </form>
+            <label
+                >打开本地MID / MIDI
+                <input
+                    id="midiFile"
+                    type="file"
+                    accept=".mid,.midi,audio/midi,audio/x-midi"
+            /></label>
+            <p id="musicStatus" role="status">
+                完整MIDI保留在手机，选好音轨和片段后才转换上传。
+            </p>
+            <section id="musicRecommendations" class="music-recommendations">
+                <h3>不知道弹什么？看看这些</h3>
+                <p>
+                    公开曲库轮换推荐，优先钢琴独奏。仍需分析音轨、音高和事件容量。
+                </p>
+                <button id="musicRecommendNext" type="button">换一批</button
+                ><button id="musicRecommendRefresh" type="button">
+                    刷新曲库
+                </button>
+                <p id="musicRecommendStatus" role="status">
+                    滑到这里加载推荐，或点“换一批”。
+                </p>
+                <div id="musicRecommendList"></div>
+            </section>
+            <div id="musicResults"></div>
+            <button id="musicPrevious" disabled>上一页</button
+            ><button id="musicNext" disabled>下一页</button>
+            <div id="musicEditor" hidden>
+                <label
+                    >文件
+                    <select id="musicFile"></select
+                ></label>
+                <fieldset>
+                    <legend>导入哪些音轨</legend>
+                    <div id="musicTracks"></div>
+                </fieldset>
+                <label
+                    >开始（秒）<input
+                        id="musicStart"
+                        type="number"
+                        min="0"
+                        step="0.001"
+                        value="0" /></label
+                ><label
+                    >结束（秒）<input
+                        id="musicEnd"
+                        type="number"
+                        min="0.001"
+                        step="0.001"
+                /></label>
+                <label>播放方式<select id="musicTransport"><option value="board">上传后由 FPGA 定时播放</option><option value="realtime">蓝牙实时播放 · 曲谱留在手机</option></select></label>
+                <label
+                    ><input
+                        id="musicDirect"
+                        type="checkbox"
+                    />脱离25键直接播放（FPGA当前音色，需DirectScore新版）</label
+                ><label><input
+                        id="musicCompact"
+                        type="checkbox"
+                    />按片段音高重新安排25键（改变实体键位映射）</label
+                ><button id="musicAnalyze">分析片段</button>
+                <pre id="musicAnalysis"></pre>
+                <label
+                    ><input
+                        id="musicAgree"
+                        type="checkbox"
+                    />确认使用FPGA当前音色，导入音符与力度；忽略原音色、踏板等未支持控制。</label
+                ><button id="musicAccept" disabled>导入当前曲谱</button>
+                <p>
+                    按所选方式上传或点击蓝牙实时播放。实时曲谱最多10万事件，需持续连接并保持应用前台运行。
+                </p>
+            </div>
+        </section>
+        <div class="card">
+            <h2>在线曲谱与脱机引导</h2>
+            <label
+                >板上程序容量
+                <select id="scoreCapacity">
+                    <option value="1024">新版1024条事件</option>
+                    <option value="256">旧版兼容256条</option>
+                </select></label
+            >
+            <p>应与实际下载的FPGA程序匹配；协议尚无自动容量查询。</p>
+            <label
+                >HTTPS JSON URL
+                <input
+                    id="scoreUrl"
+                    type="url"
+                    placeholder="https://example.org/score.json" /></label
+            ><button id="loadUrl">在线加载</button
+            ><label
+                >或选择本地 JSON
+                <input
+                    id="scoreFile"
+                    type="file"
+                    accept=".json,application/json"
+            /></label>
+            <p id="scoreInfo">尚未加载曲谱</p>
+            <button id="realtimePlay">蓝牙实时播放</button><button id="realtimeStop">停止实时播放</button><p id="realtimeStatus" role="status">实时曲谱留在手机，使用开始时的板上音色。</p><button id="upload">上传并提交曲谱</button
+            ><button id="play">播放用户曲谱</button
+            ><button id="builtin">选择内置脱机曲谱</button
+            ><button id="guideStart">启动 LED 引导</button
+            ><button id="guideStop">停止引导</button
+            ><button id="stop">停止曲谱</button>
+            <details>
+                <summary>曲谱格式</summary>
+                <pre>
+{"version":1,"title":"示例","rows":[
 {"deltaMs":0,"key":0,"velocity":100,"on":1},
-{"deltaMs":500,"key":0,"velocity":0,"on":0}]}</pre></details></div>
-<div class="card"><h2>FPGA 演奏事件录音</h2><button id="recordStart">开始录音</button><button id="recordStop">停止录音</button><button id="recordRead">回传录音</button><button id="recordExport">导出 JSON</button><button id="recordReplay">物理琴键事件回放</button><button id="recordClear">清除录音</button><p id="recordInfo">0 条已回传</p><button id="readStatus">读取 FPGA 状态</button><pre id="telemetry">等待状态</pre></div>
-<div class="card"><h2>运行日志</h2><pre id="log" aria-live="polite"></pre></div><script src="protocol.js"></script><script src="app.js"></script></body></html>
+{"deltaMs":500,"key":0,"velocity":0,"on":0}]}</pre
+                >
+            </details>
+        </div>
+        <div class="card">
+            <h2>FPGA 演奏事件录音</h2>
+            <button id="recordStart">开始录音</button
+            ><button id="recordStop">停止录音</button
+            ><button id="recordRead">回传录音</button
+            ><button id="recordExport">导出 JSON</button
+            ><button id="recordReplay">物理琴键事件回放</button
+            ><button id="recordClear">清除录音</button>
+            <p id="recordInfo">0 条已回传</p>
+            <button id="readStatus">读取 FPGA 状态</button>
+            <pre id="telemetry">等待状态</pre>
+        </div>
+        <div class="card">
+            <h2>运行日志</h2>
+            <pre id="log" aria-live="polite"></pre>
+        </div>
+        <script src="protocol.js"></script>
+        <script src="music/smf.js"></script>
+        <script src="music/library.js"></script>
+        <script src="music/panel.js"></script>
+        <script src="realtime-score.js"></script><script src="realtime-playback.js"></script><script src="app.js"></script>
+    </body>
+</html>

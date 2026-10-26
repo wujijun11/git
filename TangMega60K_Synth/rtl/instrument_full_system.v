@@ -6,6 +6,8 @@ module instrument_full_system #(
     parameter MENU_ENABLE=1,
     parameter MENU_DEBOUNCE_CYCLES=CLK_HZ/50,
     parameter MENU_LONG_PRESS_CYCLES=CLK_HZ,
+    parameter MENU_ROOT_IDLE_CYCLES=CLK_HZ*5,
+    parameter SLIDER_VOLUME_ENABLE=0,
     parameter ROM_DIR="rtl/audio/rom/",
     parameter [7:0] GUIDE_BRIGHTNESS=8'd32, GUIDE_TOUCH_BRIGHTNESS=8'd16,
     parameter [124:0] GUIDE_PIXEL_KEY_MAP={5'd24,5'd23,5'd22,5'd21,5'd20,
@@ -35,7 +37,9 @@ module instrument_full_system #(
     output wire [7:0] menu_error,
     output wire [15:0] menu_record_count,
     output wire menu_prompt_valid,
-    output wire [1:0] menu_prompt_code
+    output wire [1:0] menu_prompt_code,
+    output wire menu_volume_mode,
+    output wire [7:0] menu_volume_percent
 );
     wire cv,cr,router_cr,rv,rr;wire [7:0] cs,co,rs,ro;wire [79:0] cp,rp;
     wire [31:0] crc_errors,framing_errors,uart_overflows,uart_timeouts;
@@ -113,13 +117,18 @@ module instrument_full_system #(
     wire menu_timbre_valid;wire [1:0] local_timbre;
     wire [1:0] menu_preview_zone;
     wire menu_action_valid,menu_action_ready;wire [7:0] menu_action;
+    wire volume_position_valid;
+    wire [11:0] volume_position;
     slider_menu_controller #(.CLK_HZ(CLK_HZ),.DEBOUNCE_CYCLES(MENU_DEBOUNCE_CYCLES),
-        .LONG_PRESS_CYCLES(MENU_LONG_PRESS_CYCLES)) menu_input(
+        .LONG_PRESS_CYCLES(MENU_LONG_PRESS_CYCLES),
+        .PERFORMANCE_ENABLE(SLIDER_VOLUME_ENABLE),.ROOT_IDLE_CYCLES(MENU_ROOT_IDLE_CYCLES)) menu_input(
         .clk(clk),.rst_n(rst_n),.touch_active(MENU_ENABLE && slider_active),
         .touch_fault(sensor_fault[0] || !sensor_ready[0]),.position(slider_position),
         .request_valid(menu_request_valid),.request_ready(menu_request_ready),
         .request_kind(menu_request_kind),.request_page(menu_request_page),.request_zone(menu_request_zone),
-        .main_menu(menu_main),.page(menu_page),.selected_zone(),.preview_zone(menu_preview_zone));
+        .main_menu(menu_main),.page(menu_page),.selected_zone(),.preview_zone(menu_preview_zone),
+        .action_busy(menu_busy),.performance_mode(menu_volume_mode),
+        .volume_position_valid(volume_position_valid),.volume_position(volume_position));
     menu_action_router #(.CLK_HZ(CLK_HZ)) menu_actions(
         .clk(clk),.rst_n(rst_n),.request_valid(menu_request_valid),.request_ready(menu_request_ready),
         .request_kind(menu_request_kind),.request_page(menu_request_page),.request_zone(menu_request_zone),
@@ -272,13 +281,30 @@ module instrument_full_system #(
         .push_timbre(push_payload[1:0]),.pop_valid(ev),.pop_ready(er),.pop_on(eon),.pop_source(es),
         .pop_note(en),.pop_velocity(evel),.pop_timbre(et));
     wire xv,xr;wire [11:0] xg;wire signed [12:0] xb;wire [7:0] vib;
+    wire volume_xv,volume_xr,expression_a_ready;
+    wire [11:0] volume_gain;
+    generate if(SLIDER_VOLUME_ENABLE && MENU_ENABLE) begin: local_volume
+        slider_volume_control volume(.clk(clk),.rst_n(audio_rst_n),
+            .position_valid(volume_position_valid),.position(volume_position),
+            .expr_valid(volume_xv),.expr_ready(volume_xr),.expr_gain(volume_gain));
+    end else begin: no_local_volume
+        assign volume_xv=1'b0;
+        assign volume_gain=12'd2048;
+    end endgenerate
+    assign volume_xr=expression_a_ready;
+    assign slider_xr=(SLIDER_VOLUME_ENABLE && MENU_ENABLE) ? 1'b1 : expression_a_ready;
     expression_merge expression(.clk(clk),.rst_n(audio_rst_n),
-        .a_valid(slider_xv),.a_ready(slider_xr),.a_mask(slider_xm),.a_gain(slider_gain),.a_bend(slider_bend),.a_vibrato(slider_vib),
+        .a_valid((SLIDER_VOLUME_ENABLE && MENU_ENABLE) ? volume_xv : slider_xv),
+        .a_ready(expression_a_ready),
+        .a_mask((SLIDER_VOLUME_ENABLE && MENU_ENABLE) ? 3'b001 : slider_xm),
+        .a_gain((SLIDER_VOLUME_ENABLE && MENU_ENABLE) ? volume_gain : slider_gain),
+        .a_bend(slider_bend),.a_vibrato(slider_vib),
         .b_valid(phone_xv),.b_ready(phone_xr),.b_mask(phone_xm),.b_gain(phone_gain),.b_bend(phone_bend),.b_vibrato(phone_vib),
         .out_valid(xv),.out_ready(xr),.out_gain(xg),.out_bend(xb),.out_vibrato(vib));
     wire cmdv,cmdr,cmdon,dv,dr,sample_begin;
     wire [5:0] voice,done_voice;wire [6:0] note,velocity;wire [1:0] tone;
     wire [11:0] gain;wire signed [12:0] bend;wire [7:0] vibrato;
+    gain_percent_meter volume_meter(.clk(clk),.rst_n(rst_n),.gain(gain),.percent(menu_volume_percent));
     always @(posedge clk or negedge audio_rst_n)begin
         if(!audio_rst_n)debug_last_note<=0;
         else if(cmdv && cmdr && cmdon)debug_last_note<=note;

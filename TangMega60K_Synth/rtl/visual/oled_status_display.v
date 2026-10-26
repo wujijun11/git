@@ -8,7 +8,8 @@ module oled_status_display #(
     parameter integer FRAME_WAIT_CYCLES=CLK_HZ/25,
     parameter [6:0] ADDRESS=7'h3c,
     parameter integer COLUMN_OFFSET=0,
-    parameter FONT_FILE="rtl/audio/rom/menu_font.hex"
+    parameter FONT_FILE="rtl/audio/rom/menu_font.hex",
+    parameter integer PERFORMANCE_UI_ENABLE=0
 ) (
     input wire clk,rst_n,main_menu,
     input wire [1:0] menu_page,zone,
@@ -17,7 +18,9 @@ module oled_status_display #(
     input wire [15:0] record_count,
     inout wire scl,sda,
     output reg fault,
-    output reg [31:0] completed_frames
+    output reg [31:0] completed_frames,
+    input wire performance_mode,
+    input wire [7:0] volume_percent
 );
     localparam [3:0] POWER=0,INIT=1,SNAPSHOT=2,BCD_WAIT=3,PAGE=4,
         RENDER_WAIT=5,DATA=6,SEND=7,WAIT_DONE=8,FRAME_WAIT=9,RETRY=10;
@@ -32,19 +35,33 @@ module oled_status_display #(
     reg [1:0] snap_page,snap_zone;
     reg [7:0] snap_error;
     reg [15:0] snap_count;
+    reg snap_performance;
+    reg [7:0] snap_volume;
     reg bcd_start;
+    reg count_done_seen,volume_done_seen;
     wire bcd_done;
     wire [15:0] digits;
+    wire [15:0] volume_digits;
+    wire volume_bcd_done;
     wire [7:0] pixels;
     wire cmd_ready,transaction_done;
     wire [2:0] transaction_error;
     bin16_to_bcd decimal_count(.clk(clk),.rst_n(rst_n),.start(bcd_start),
         .value(snap_count),.digits(digits),.done(bcd_done));
-    oled_menu_renderer #(.FONT_FILE(FONT_FILE)) renderer(
+    generate if(PERFORMANCE_UI_ENABLE) begin: volume_bcd
+        bin16_to_bcd decimal_volume(.clk(clk),.rst_n(rst_n),.start(bcd_start),
+            .value({8'd0,snap_volume}),.digits(volume_digits),.done(volume_bcd_done));
+    end else begin: no_volume_bcd
+        assign volume_digits=16'h0100;
+        assign volume_bcd_done=1'b1;
+    end endgenerate
+    oled_menu_renderer #(.FONT_FILE(FONT_FILE),.PERFORMANCE_UI_ENABLE(PERFORMANCE_UI_ENABLE)) renderer(
         .clk(clk),.screen_page(screen_page),.column(column),
         .main_menu(snap_main),.menu_page(snap_page),.zone(snap_zone),
         .recording(snap_record),.playing(snap_play),.guide(snap_guide),
-        .busy(snap_busy),.error(snap_error),.record_digits(digits),.data(pixels));
+        .busy(snap_busy),.error(snap_error),.record_digits(digits),.data(pixels),
+        .performance_mode(snap_performance),.volume_digits(volume_digits[11:0]),
+        .volume_percent(snap_volume));
     i2c_register_master #(.CLK_HZ(CLK_HZ),.I2C_HZ(I2C_HZ)) bus(
         .clk(clk),.resetn(rst_n),.cmd_valid(state==SEND),.cmd_ready(cmd_ready),
         .cmd_read(1'b0),.cmd_addr(ADDRESS),.cmd_reg(control_byte),
@@ -73,6 +90,8 @@ module oled_status_display #(
             snap_main<=0;snap_page<=0;snap_zone<=0;snap_record<=0;
             snap_play<=0;snap_guide<=0;snap_busy<=0;snap_error<=0;snap_count<=0;
             bcd_start<=0;fault<=0;completed_frames<=0;
+            snap_performance<=0;snap_volume<=100;
+            count_done_seen<=0;volume_done_seen<=0;
         end else begin
             bcd_start<=0;
             case(state)
@@ -85,9 +104,18 @@ module oled_status_display #(
                     snap_main<=main_menu;snap_page<=menu_page;snap_zone<=zone;
                     snap_record<=recording;snap_play<=playing;snap_guide<=guide;
                     snap_busy<=busy;snap_error<=error;snap_count<=record_count;
+                    snap_performance<=PERFORMANCE_UI_ENABLE && performance_mode;
+                    snap_volume<=PERFORMANCE_UI_ENABLE ? volume_percent : 8'd100;
+                    count_done_seen<=0;volume_done_seen<=0;
                     bcd_start<=1;state<=BCD_WAIT;screen_page<=0;column<=0;page_command<=0;
                 end
-                BCD_WAIT:if(bcd_done)state<=PAGE;
+                BCD_WAIT:begin
+                    // 事件数超9999会立即饱和，而音量需16拍转换；两路done不一定同拍。
+                    // 分别记住完成状态，避免等待两个一次性脉冲重合而卡住显示。
+                    if(bcd_done)count_done_seen<=1;
+                    if(volume_bcd_done)volume_done_seen<=1;
+                    if((bcd_done || count_done_seen) && (volume_bcd_done || volume_done_seen))state<=PAGE;
+                end
                 PAGE:begin
                     transfer_kind<=1;control_byte<=0;state<=SEND;
                     case(page_command)

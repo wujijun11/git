@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 // 完整板级顶层+原厂PLL+独立OLED从机。FAST=1仅加速显示/菜单等待；
 // FAST=0保留实际100kHz并测外部引脚低/高时间，不把仿真当成实屏验收。
-module tb_oled_board_integration #(parameter FAST=1);
+module tb_oled_board_integration #(parameter FAST=1, VOLUME_MODE=0);
     // 高云DDR输出原语使用全局GSR实例，完整HDMI板级仿真必须提供。
     GSR GSR(.GSRI(1'b1));
     reg sys_clk=0;always #10 sys_clk=~sys_clk;
@@ -11,7 +11,7 @@ module tb_oled_board_integration #(parameter FAST=1);
     wire bc,lr,sd,led;
     reg ack_low=0,nack=0,slide=0;reg [11:0] slide_position=0;
     assign oled_sda=ack_low?1'b0:1'bz;
-    board_contest_full_top #(.DEBOUNCE_CYCLES(8),
+    board_contest_full_top #(.DEBOUNCE_CYCLES(8),.SLIDER_VOLUME_ENABLE(VOLUME_MODE),
         .OLED_I2C_HZ(FAST?3000000:100000),
         .OLED_POWER_WAIT_CYCLES(8),.OLED_FRAME_WAIT_CYCLES(8)) dut(
         .sys_clk(sys_clk),.key_n(key_n),.mpr_scl(mpr_scl),.mpr_sda(mpr_sda),.mpr_irq_n(3'b111),
@@ -105,8 +105,26 @@ module tb_oled_board_integration #(parameter FAST=1);
         if(data_count!=1024 || commands!=49 || dut.oled_fault)$fatal(1,"board frame incomplete");
         for(index=0;index<1024;index=index+1)begin
             page=index/128;column=index%128;glyph=text_glyph(page/2,column/16);
-            expected=font[glyph*32+(page%2)*16+column%16];
-            if(page/2==1 && column/32==0)expected=expected^8'hff;
+            if(VOLUME_MODE)begin
+                // 新顶层首帧在音量模式锁存；中途长按进总菜单也不能撕裂该帧。
+                glyph=0;
+                case(page/2)
+                    0:case(column/16)0:glyph=21;1:glyph=13;2:glyph=17;3:glyph=18;endcase
+                    1:case(column/16)0:glyph=21;1:glyph=13;3:glyph=2;4,5:glyph=1;6:glyph=14;endcase
+                    3:case(column/16)0:glyph=50;1:glyph=51;2:glyph=52;3:glyph=53;
+                        4:glyph=19;5:glyph=17;6:glyph=18;endcase
+                endcase
+                expected=font[glyph*32+(page%2)*16+column%16];
+                if(page/2==2)begin
+                    if(column==4 || column==123 || (column>=6 && column<=121))
+                        expected=(page%2)?8'h07:8'hfc;
+                    else if(column==5 || column==122)expected=8'h04;
+                    else expected=0;
+                end
+            end else begin
+                expected=font[glyph*32+(page%2)*16+column%16];
+                if(page/2==1 && column/32==0)expected=expected^8'hff;
+            end
             if(image[index]!==expected)$fatal(1,"board snapshot byte %d got %h expected %h",index,image[index],expected);
         end
         $writememh("sim/audio_results/oled_board_frame.hex",image);

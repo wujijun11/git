@@ -1,0 +1,22 @@
+{
+  "snapshot": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_7qf5we7m\\verification\\build-volume\\build_slider-volume-r2_20261026_211618_05282521",
+  "project": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_7qf5we7m",
+  "sourceRoot": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_7qf5we7m",
+  "variant": "slider-volume-r2",
+  "createdAt": "2026-10-26T21:16:18.492637+08:00",
+  "gowin": "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+  "baselineReport": "verification\\slider-volume-baseline.json",
+  "withoutGao": true,
+  "gprjDependencies": 80,
+  "inputFiles": 93,
+  "gaoExpected": false,
+  "implementationKind": "bare-main",
+  "gaoEvidence": {
+    "verified": false,
+    "enabledConfigurationCount": 0,
+    "files": []
+  },
+  "preparedOnly": false,
+  "driverSha256": "8E903BD45C894C810A9A1B42310F00DDE47545BBD568EB3A7BF312A164A5D78C",
+  "buildStartedAt": "2026-10-26T21:16:18.543752+08:00"
+}

@@ -72,7 +72,7 @@ module menu_action_router #(
                     retries <= 0;
                     if (request_kind != 0) begin
                         prompt_valid <= 1;
-                        prompt_code <= request_kind == 2 ? 2'd3 : request_page;
+                        prompt_code <= request_kind >= 2 ? 2'd3 : request_page;
                     end else if (request_page == 0) begin
                         timbre_valid <= 1;
                         case (request_zone)

@@ -1,0 +1,12 @@
+{
+  "branch": "codex/slider-volume-performance",
+  "sourceRevision": "7121713abc3d0c6a494d766cfe5601b852994fa9",
+  "archive": "ContestFull_SliderVolume_TEST1024.zip",
+  "archiveBytes": 2252404,
+  "files": 398,
+  "archiveSha256": "1B50A1BE3391CE78945996355846D5AC87ED4D851A5A4570BE9E434133FBD478",
+  "bitstreamSha256": "3C87F83E373BBEABF9D564474E7FB669F35856E339B89EF383AA9A25A6C35BF6",
+  "modelSimChecks": 38,
+  "hardwareValidated": false,
+  "pushed": false
+}

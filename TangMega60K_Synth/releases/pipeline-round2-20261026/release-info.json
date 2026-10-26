@@ -1,0 +1,12 @@
+{
+  "branch": "codex/timing-resource-round2",
+  "sourceRevision": "ffc496ebd30b314598f55eba393972f460583229",
+  "zip": "ContestFull_PipelineRound2_TEST1024.zip",
+  "zipSha256": "81FF7B3159E1F9ABAF9EA5B3B76B960712C8056D28840C2ECDA580AE5D214A62",
+  "zipBytes": 2181730,
+  "files": 331,
+  "bitstreamSha256": "E08012C3DF7C3C7802C6F75B6549FD3CD3E7C050CD738A0622B735CF2994A573",
+  "modelSimChecks": 27,
+  "hardwareValidated": false,
+  "pushed": false
+}

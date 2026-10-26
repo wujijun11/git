@@ -1,0 +1,16 @@
+{
+  "status": "local test only; not flashed, merged, or pushed",
+  "branch": "codex/timing-latency-oled",
+  "sourceRevision": "330f34028e0790d5f8341b7e97c6fa8eed019f43",
+  "bitstreamSha256": "0B74A521A1BD29E0353451AF4630302DCD0B235A5B3FC753CEA027175ACD9C20",
+  "file": "ContestFull_TimingTouch_TEST1024.fs",
+  "timing": {
+    "setup": 0.168,
+    "hold": 0.166,
+    "recovery": 1.961,
+    "removal": 0.474
+  },
+  "physicalLatencyTested": false,
+  "zipSha256": "DA168F941FD245A0E6C6CA3CEAAA5559F3E25007475781244518A330F2B0DEDC",
+  "zipBytes": 1496381
+}

@@ -43,6 +43,9 @@ function New-TestCase([string]$Name,[string]$Top,[string]$Bench,[string]$Marker,
 $watchdogCase = New-TestCase 'remote_note_watchdog' 'tb_remote_note_watchdog' `
     'sim/tb_remote_note_watchdog.sv' 'REMOTE NOTE WATCHDOG PASS' @() '' $true
 $allCases = @(
+    (New-TestCase 'note_event_pipeline' 'tb_note_event_pipeline' 'sim/tb_note_event_pipeline.sv' 'NOTE EVENT PIPELINE PASS'),
+    (New-TestCase 'score_upload_tracker' 'tb_score_upload_tracker' 'sim/tb_score_upload_tracker.sv' 'SCORE UPLOAD TRACKER PASS'),
+    (New-TestCase 'event_fifo_pipeline' 'tb_event_fifo_pipeline' 'sim/tb_event_fifo_pipeline.sv' 'EVENT FIFO PIPELINE PASS'),
     (New-TestCase 'touch_i2s_latency' 'tb_touch_i2s_latency' 'sim/tb_touch_i2s_latency.sv' 'TOUCH I2S LATENCY PASS'),
     (New-TestCase 'transport_status_equivalence' 'tb_transport_status_equivalence' 'sim/tb_transport_status_equivalence.sv' 'TRANSPORT STATUS EQUIVALENCE PASS'),
     (New-TestCase 'polar_margin_s1' 'tb_polar_lane_margin_equivalence' 'sim/tb_polar_lane_margin_equivalence.sv' 'POLAR MARGIN EQUIVALENCE PASS'),
@@ -227,12 +230,14 @@ try {
     }
     $benchSources = @($cases.Bench | Select-Object -Unique)
     if ($Suite -ne 'Watchdog') { $benchSources += @('sim/tb_mpr121_model.sv','sim/runtime_audio_fx_reference.sv',
-        'sim/polar_lane_timing_reference.v','sim/performance_controller_timing_reference.v') }
+        'sim/polar_lane_timing_reference.v','sim/performance_controller_timing_reference.v',
+        'sim/event_fifo_v2_pipeline_reference.v') }
     # A filtered run retains the complete Full source fingerprint, allowing
     # evidence from separate runs to be compared without weakening coverage.
     $stagedBenchSources = if ($Suite -ne 'Watchdog') {
         @($allCases.Bench | Select-Object -Unique) + @('sim/tb_mpr121_model.sv','sim/runtime_audio_fx_reference.sv',
-            'sim/polar_lane_timing_reference.v','sim/performance_controller_timing_reference.v')
+            'sim/polar_lane_timing_reference.v','sim/performance_controller_timing_reference.v',
+            'sim/event_fifo_v2_pipeline_reference.v')
     } else { $benchSources }
     foreach ($bench in $stagedBenchSources) { Stage-Input (Join-Path $projectDir $bench) $bench 'Testbench' }
     foreach ($rom in (Get-ChildItem -LiteralPath (Join-Path $projectDir 'rtl/audio/rom') -File -Filter '*.hex' | Sort-Object Name)) {

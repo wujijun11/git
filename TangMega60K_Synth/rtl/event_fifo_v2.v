@@ -45,6 +45,14 @@ module event_fifo_v2 #(
     reg [AWIDTH-1:0] wptr, rptr;
     reg [AWIDTH:0] count, ram_count;
 
+    // 写请求先锁存一拍，再驱动存储阵列。原来的ready/bypass/地址译码一路
+    // 串到大量存储位的CE，是完整工程0.168ns余量的关键路径。
+    // 增加一个完整事件、地址和有效位的寄存器，以少量FF换取较短的路径。
+    // 逻辑入队时刻、容量和对外握手不变；最新待写字通过下面的同址转发读取。
+    reg pending_write_valid;
+    reg [AWIDTH-1:0] pending_write_address;
+    reg [EV_WIDTH-1:0] pending_write_payload;
+
     wire do_push = push_valid && push_ready;
     wire do_pop  = pop_valid && pop_ready;
     wire head_free = !head_valid || pop_ready;
@@ -68,11 +76,29 @@ module event_fifo_v2 #(
     assign pop_velocity = head[8:2];
     assign pop_timbre   = head[1:0];
 
-    // Read and write addresses differ whenever both enables are asserted:
-    // the oldest queued RAM word was written before it can be prefetched.
+    // 延后一拍的物理写与预取可能同址，此时必须转发完整待写事件，不能读旧RAM。
+    // 保留整字同步读寄存器，避免重新引入Gowin部分字段读口压缩的问题。
     always @(posedge clk) begin
-        if (write_ram) mem[wptr] <= push_payload;
-        if (read_ram) ram_head <= mem[rptr];
+        if (pending_write_valid)
+            mem[pending_write_address] <= pending_write_payload;
+        if (read_ram) begin
+            if (pending_write_valid && pending_write_address == rptr)
+                ram_head <= pending_write_payload;
+            else
+                ram_head <= mem[rptr];
+        end
+        if (write_ram) begin
+            pending_write_address <= wptr;
+            pending_write_payload <= push_payload;
+        end
+    end
+
+    // 复位取消尚未落到RAM的写入；RAM本体不复位，旧字只有再次正式入队后才可见。
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
+            pending_write_valid <= 1'b0;
+        else
+            pending_write_valid <= write_ram;
     end
 
     always @(posedge clk or negedge rst_n) begin

@@ -13,8 +13,17 @@ SUFFIXES = {'.v', '.sv', '.hex', '.tcl', '.py', '.ps1', '.cmd', '.gprj', '.cst',
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True, help='本机记录JSON，非构建输出')
+    parser.add_argument('--stage-parent', type=Path,
+                        help='可写的纯英文隔离目录父路径；默认使用系统临时目录')
     args = parser.parse_args()
-    stage = Path(tempfile.mkdtemp(prefix='TangDirectScore_'))
+    if args.stage_parent:
+        parent = args.stage_parent.resolve()
+        if not str(parent).isascii():
+            raise ValueError('隔离目录父路径必须为ASCII，避免EDA工具处理中文路径失败')
+        parent.mkdir(parents=True, exist_ok=True)
+    else:
+        parent = None
+    stage = Path(tempfile.mkdtemp(prefix='TangDirectScore_', dir=parent))
     if not str(stage).isascii():
         raise ValueError('系统临时目录含非ASCII字符，请使用英文用户名或TEMP目录后重试')
     inputs = []

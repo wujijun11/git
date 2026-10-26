@@ -1,0 +1,22 @@
+{
+  "snapshot": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_234n0d0c\\verification\\build-round2\\build_fifo-write-pipeline-r1_20261026_195601_4f803ab2",
+  "project": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_234n0d0c",
+  "sourceRoot": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_234n0d0c",
+  "variant": "fifo-write-pipeline-r1",
+  "createdAt": "2026-10-26T19:56:01.445698+08:00",
+  "gowin": "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+  "baselineReport": "verification\\pipeline-baseline.json",
+  "withoutGao": true,
+  "gprjDependencies": 78,
+  "inputFiles": 91,
+  "gaoExpected": false,
+  "implementationKind": "bare-main",
+  "gaoEvidence": {
+    "verified": false,
+    "enabledConfigurationCount": 0,
+    "files": []
+  },
+  "preparedOnly": false,
+  "driverSha256": "8E903BD45C894C810A9A1B42310F00DDE47545BBD568EB3A7BF312A164A5D78C",
+  "buildStartedAt": "2026-10-26T19:56:01.484777+08:00"
+}

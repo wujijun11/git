@@ -1,4 +1,4 @@
-"""核对29项回归、源文件哈希和实际STA后，打包第二轮独立测试版。"""
+"""核对27项回归、源文件哈希和实际STA后，打包最终选用的FIFO写缓存测试版。"""
 import argparse
 import importlib.util
 import json
@@ -13,8 +13,7 @@ SPEC = importlib.util.spec_from_file_location("delivery_common", ROOT / "scripts
 COMMON = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(COMMON)
 read, sha, copy, copy_tree = COMMON.read, COMMON.sha, COMMON.copy, COMMON.copy_tree
-CASES = COMMON.CASES | {"event_fifo_pipeline", "score_upload_tracker", "note_event_pipeline",
-                       "remote_note_watchdog", "watchdog_arbiter"}
+CASES = COMMON.CASES | {"event_fifo_pipeline", "remote_note_watchdog", "watchdog_arbiter"}
 
 
 def validate(snapshot, modelsim):
@@ -46,7 +45,7 @@ def validate(snapshot, modelsim):
     results = read(modelsim / "test-summary.json")
     if (not manifest["Passed"] or not manifest["InputsUnchanged"] or len(results) != len(CASES) or
             {item["Name"] for item in results} != CASES or not all(item["Passed"] for item in results)):
-        raise ValueError("29项ModelSim检查未全部通过")
+        raise ValueError("27项ModelSim检查未全部通过")
     sim_inputs = read(modelsim / "inputs.json")
     for item in sim_inputs:
         if item["Kind"] in {"RTL", "ROM", "Testbench", "Runner"}:
@@ -60,8 +59,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--snapshot", type=Path, required=True)
     parser.add_argument("--modelsim", type=Path, required=True)
-    parser.add_argument("--first-candidate", type=Path, help="首个候选的实际报告目录，仅归档报告，不交付其位流")
-    parser.add_argument("--second-candidate", type=Path, help="第二个候选的实际报告目录，仅归档报告")
+    parser.add_argument("--experiment", type=Path, action="append", default=[],
+                        help="未选用实验的实际构建目录，可重复指定；仅归档报告，不交付其位流")
     args = parser.parse_args()
     build, baseline, inputs, sim_inputs, protected = validate(args.snapshot, args.modelsim)
     current = build["current"]
@@ -101,12 +100,9 @@ def main():
     # 分析器同时输出JSON和中文分段结果，命令失败即停止交付。
     subprocess.run([sys.executable, str(ROOT / "scripts/analyze-touch-i2s-latency.py"),
                     str(csv), str(delivery / "analysis")], check=True)
-    if args.first_candidate:
+    for experiment in args.experiment:
         for name in ("build-results.json", "gowin-build.log"):
-            copy(args.first_candidate / name, delivery / "evidence/first-candidate" / name)
-    if args.second_candidate:
-        for name in ("build-results.json", "gowin-build.log"):
-            copy(args.second_candidate / name, delivery / "evidence/second-candidate" / name)
+            copy(experiment / name, delivery / "evidence/experiments" / experiment.name / name)
     report = (args.snapshot / "full/impl/pnr/ContestFull.rpt.txt").read_text(encoding="utf-8-sig")
     clocks = {}
     for name in ("PRIMARY", "LW", "GCLK_PIN", "PLLA"):
@@ -123,7 +119,7 @@ def main():
                 "buildInputCount": len(inputs), "protectedInputsChecked": len(protected),
                 "modelSimCases": sorted(CASES), "latency": latency}
     (delivery / "manifest.json").write_text(json.dumps(metadata, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    rows = ["# 本地测试版实际验证结果", "", "29项ModelSim检查通过，其中2项为预期注错拒绝。未上板。",
+    rows = ["# 本地测试版实际验证结果", "", "27项ModelSim检查通过，其中2项为预期注错拒绝。未上板。",
             "", "| 余量/ns | 上一测试版 | 本轮 |", "|---|---:|---:|"]
     rows += [f"| {key} | {baseline['minimumSlackNs'][key]:.3f} | {current['minimumSlackNs'][key]:.3f} |"
              for key in ("setup", "hold", "recovery", "removal")]

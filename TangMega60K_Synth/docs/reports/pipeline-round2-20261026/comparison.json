@@ -1,0 +1,110 @@
+[
+  {
+    "label": "selected-fifo-r1",
+    "source": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_234n0d0c\\verification\\build-round2\\build_fifo-write-pipeline-r1_20261026_195601_4f803ab2",
+    "timing": {
+      "setup": 0.457,
+      "hold": 0.126,
+      "recovery": 3.851,
+      "removal": 0.484
+    },
+    "resources": {
+      "Logic": {
+        "used": 27021.0,
+        "capacity": 59904.0,
+        "reportedPercent": 46,
+        "free": 32883.0
+      },
+      "Register": {
+        "used": 18871.0,
+        "capacity": 60780.0,
+        "reportedPercent": 32,
+        "free": 41909.0
+      },
+      "BSRAM": {
+        "used": 105.0,
+        "capacity": 118.0,
+        "reportedPercent": 89,
+        "free": 13.0
+      },
+      "DSP": {
+        "used": 51.5,
+        "capacity": 118.0,
+        "reportedPercent": 44,
+        "free": 66.5
+      }
+    }
+  },
+  {
+    "label": "experiment-group-r2",
+    "source": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_nea3juzl\\verification\\build-round2\\build_fifo-group-pipeline-r2_20261026_195805_6a0b8d6a",
+    "timing": {
+      "setup": 0.177,
+      "hold": 0.189,
+      "recovery": 3.139,
+      "removal": 0.564
+    },
+    "resources": {
+      "Logic": {
+        "used": 26837.0,
+        "capacity": 59904.0,
+        "reportedPercent": 45,
+        "free": 33067.0
+      },
+      "Register": {
+        "used": 18935.0,
+        "capacity": 60780.0,
+        "reportedPercent": 32,
+        "free": 41845.0
+      },
+      "BSRAM": {
+        "used": 105.0,
+        "capacity": 118.0,
+        "reportedPercent": 89,
+        "free": 13.0
+      },
+      "DSP": {
+        "used": 51.5,
+        "capacity": 118.0,
+        "reportedPercent": 44,
+        "free": 66.5
+      }
+    }
+  },
+  {
+    "label": "experiment-elastic-r3",
+    "source": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_duntcp3h\\verification\\build-round2\\build_event-elastic-pipeline-r3_20261026_200646_b00e8254",
+    "timing": {
+      "setup": 0.001,
+      "hold": 0.01,
+      "recovery": 4.343,
+      "removal": 0.473
+    },
+    "resources": {
+      "Logic": {
+        "used": 26872.0,
+        "capacity": 59904.0,
+        "reportedPercent": 45,
+        "free": 33032.0
+      },
+      "Register": {
+        "used": 18961.0,
+        "capacity": 60780.0,
+        "reportedPercent": 32,
+        "free": 41819.0
+      },
+      "BSRAM": {
+        "used": 105.0,
+        "capacity": 118.0,
+        "reportedPercent": 89,
+        "free": 13.0
+      },
+      "DSP": {
+        "used": 51.5,
+        "capacity": 118.0,
+        "reportedPercent": 44,
+        "free": 66.5
+      }
+    }
+  }
+]

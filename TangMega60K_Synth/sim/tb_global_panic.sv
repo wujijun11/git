@@ -87,8 +87,6 @@ module tb_global_panic;
     reg panic_seen=0,allow_new_touch=0;
     reg previous_panic_discard=0;
     integer discarded_sensor=0,discarded_perf=0,discarded_watchdog=0,post_panic_ons=0,panic_cycles=0;
-    integer discarded_buffered_sensor=0;
-    wire buffered_sensor=dut.arbiter_push_valid && dut.arb_selected==0;
     reg sensor_stalled=0,perf_stalled=0,remote_stalled=0,watchdog_stalled=0;
     reg [22:0] last_sensor,last_perf,last_remote,last_watchdog;
     wire [22:0] sensor_payload={dut.sensor_on,dut.sensor_source,dut.sensor_note,dut.sensor_velocity,dut.sensor_timbre};
@@ -108,15 +106,9 @@ module tb_global_panic;
         watchdog_stalled=dut.watchdog_ev && !dut.watchdog_er;last_watchdog=watchdog_payload;
         if(dut.panic_discard)begin
             panic_seen=1;panic_cycles=panic_cycles+1;
-            // 新弹性级可提前接走一条；把该条与来源队列的剩余条目一起精确计数。
-            // 首次PANIC即禁止该条出队，随后异步复位必须清掉有效位。
-            if(!previous_panic_discard && buffered_sensor)
-                discarded_buffered_sensor=discarded_buffered_sensor+1;
             // 命令/事件入口必须立即屏蔽；高扇出音频复位允许寄存边界的一拍延迟。
             if((previous_panic_discard && dut.audio_rst_n) || dut.cr || dut.push_valid)
                 $fatal(1,"PANIC sink admitted audio/new command");
-            if(!dut.audio_rst_n && dut.event_pipeline.valid)
-                $fatal(1,"PANIC did not clear the buffered event");
             if(dut.sensor_ev && dut.sensor_er)discarded_sensor=discarded_sensor+1;
             if(dut.perf_ev && dut.perf_er)discarded_perf=discarded_perf+1;
             if(dut.watchdog_ev && dut.watchdog_er)discarded_watchdog=discarded_watchdog+1;
@@ -139,10 +131,8 @@ module tb_global_panic;
         force dut.push_ready=1'b0;
         snapshot(0,9'h0ff);snapshot(1,9'h0ff);snapshot(2,9'h1ff);
         repeat(30)@(negedge clk);local_command(1);repeat(20)@(negedge clk);
-        if(dut.sensor_pending+buffered_sensor!=25 || !buffered_sensor ||
-            !dut.sensor_ev || !dut.perf_ev || !playing)
-            $fatal(1,"producer backlog missing sensor=%d buffered=%b perf=%b",
-                dut.sensor_pending,buffered_sensor,dut.perf_ev);
+        if(dut.sensor_pending!=25 || !dut.sensor_ev || !dut.perf_ev || !playing)
+            $fatal(1,"producer backlog missing sensor=%d perf=%b",dut.sensor_pending,dut.perf_ev);
         force dut.rr=1'b0;
         send_command(3,80'h00000000000000000200);
         send_command(4,80'd5);
@@ -156,10 +146,8 @@ module tb_global_panic;
         wait_quiet;wait_acks(4);repeat(3000)@(negedge clk);
         if(voices!=1 || playing || guide || dut.performance.held!=0 || dut.watchdog.held!=(128'd1<<90))
             $fatal(1,"PANIC restored old state voices=%d perfheld=%h phoneheld=%h",voices,dut.performance.held,dut.watchdog.held);
-        if(discarded_sensor+discarded_buffered_sensor!=25 || discarded_buffered_sensor!=1 ||
-            discarded_perf<2 || discarded_watchdog<1 || post_panic_ons!=1)
-            $fatal(1,"drain counts sensor=%d buffered=%d perf=%d watchdog=%d postons=%d",
-                discarded_sensor,discarded_buffered_sensor,discarded_perf,discarded_watchdog,post_panic_ons);
+        if(discarded_sensor!=25 || discarded_perf<2 || discarded_watchdog<1 || post_panic_ons!=1)
+            $fatal(1,"drain counts sensor=%d perf=%d watchdog=%d postons=%d",discarded_sensor,discarded_perf,discarded_watchdog,post_panic_ons);
         if(dut.panic_blocked_keys!=25'h1ffffff)$fatal(1,"held-key quarantine missing");
         // Repeated held snapshots cannot resurrect notes. Local PANIC must use
         // exactly the same sink/reset policy and leave UART usable afterwards.
@@ -175,9 +163,7 @@ module tb_global_panic;
         allow_new_touch=1;snapshot(0,1);repeat(3000)@(negedge clk);
         if(voices!=2 || post_panic_ons!=3)$fatal(1,"fresh physical press lost/duplicated voices=%d ons=%d",voices,post_panic_ons);
         if(dut.uart_overflows!=0 || dut.crc_errors!=0 || dut.framing_errors!=0)$fatal(1,"transport fault");
-        $display("GLOBAL PANIC PASS old MPR=%0d buffered=%0d total=%0d perf=%0d watchdog=%0d sink_cycles=%0d; UART ACK/FIFO and fresh notes preserved",
-            discarded_sensor,discarded_buffered_sensor,discarded_sensor+discarded_buffered_sensor,
-            discarded_perf,discarded_watchdog,panic_cycles);
+        $display("GLOBAL PANIC PASS old MPR=%0d perf=%0d watchdog=%0d sink_cycles=%0d; UART ACK/FIFO and fresh notes preserved",discarded_sensor,discarded_perf,discarded_watchdog,panic_cycles);
         $finish;
     end
     initial begin #20000000;$fatal(1,"global PANIC timeout");end

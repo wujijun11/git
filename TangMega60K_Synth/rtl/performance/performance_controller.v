@@ -47,7 +47,7 @@ module performance_controller #(
     localparam integer RECORD_AW=(RECORD_CAPACITY>1) ? $clog2(RECORD_CAPACITY) : 1;
     // 时间32 + 音高/键位7 + 力度7 + 开关1 = 47位，1024行仍落在原3组18位BSRAM内。
     reg [46:0] score_ram [0:SCORE_CAPACITY-1];
-    wire [SCORE_CAPACITY-1:0] row_written;
+    reg [SCORE_CAPACITY-1:0] row_written;
     reg clear_written;
     reg [63:0] record_ram [0:RECORD_CAPACITY-1];
     reg [46:0] score_row_q;
@@ -74,7 +74,8 @@ module performance_controller #(
     // 停止逐音扫描释放；不用128路长优先编码器，避免扩大关键组合路径。
     reg [6:0] direct_release_cursor;
     integer i, n, first_held;
-    wire all_written;
+    wire [SCORE_CAPACITY-1:0] written_or_unused;
+    wire all_written=!clear_written && &written_or_unused;
     reg [7:0] action_status, score_write_status, score_commit_status;
     wire replay_supported=(record_count!=0) && !unsupported_record_source;
     wire [15:0] arg_count = command_payload[15:0];
@@ -110,12 +111,10 @@ module performance_controller #(
     wire score_write=command_valid && command_opcode==8'h06 && score_write_status==0;
     wire score_commit=command_valid && command_opcode==8'h07 && score_commit_status==0;
 
-    // 每16行保存一个完成标志，用额外寄存器缩短提交命令的1024位组合路径。
-    // 位图仍可处理乱序上传、重复覆盖和清批次；不改变提交的同拍校验语义。
-    score_upload_tracker #(.CAPACITY(SCORE_CAPACITY)) upload_tracker(
-        .clk(clk), .rst_n(rst_n), .clear(clear_written),
-        .write_valid(score_write), .write_index(arg_count), .query_count(arg_count),
-        .complete(all_written), .row_written(row_written));
+    genvar row;
+    generate for (row=0;row<SCORE_CAPACITY;row=row+1) begin: uploaded_rows
+        assign written_or_unused[row]=row_written[row] || arg_count<=row;
+    end endgenerate
 
     // Synchronous RAM ports: score has one write and one read port; recorder
     // has one write/playback-read port and one independent readback port.
@@ -274,7 +273,7 @@ module performance_controller #(
 
     always @(posedge clk) begin
         if (!rst_n) begin
-            clear_written<=0; selected_builtin<=1; committed_count<=BUILTIN_ROWS;
+            row_written<=0; clear_written<=0; selected_builtin<=1; committed_count<=BUILTIN_ROWS;
             selected_direct<=0;upload_has_rows<=0;upload_direct<=0;
             direct_held<=0;direct_release_cursor<=0;event_is_direct<=0;
             run_count<=0; mode<=MODE_SCORE; tick_accumulator<=0; time_ms<=0;
@@ -316,9 +315,11 @@ module performance_controller #(
             // treats the pending clear as empty immediately, and a write on
             // the following cycle overrides its own bit after the clear.
             clear_written<=score_commit;
+            if (clear_written) row_written<=0;
             // Upload/commit are accepted only while idle, so they cannot
             // overlap an event transaction or the playback scheduler.
             if (score_write) begin
+                row_written[arg_count]<=1;
                 committed_count<=0;
                 upload_has_rows<=1;upload_direct<=command_payload[72];
             end else if (score_commit) begin

@@ -252,24 +252,13 @@ module instrument_full_system #(
     end endgenerate
     wire sensor_blocked=|blocked_source_match;
     assign overflow_sticky=sensor_overflow || record_overflow || uart_overflows!=0;
-    wire arbiter_raw_valid, arbiter_raw_ready;
-    wire [22:0] arbiter_raw_payload;
-    wire [1:0] arbiter_raw_selected;
     note_arbiter arbiter(.clk(clk),.rst_n(audio_rst_n),
         .in_valid({watchdog_ev,perf_ev,remote_ev,sensor_ev && !sensor_blocked}),.in_ready(arb_ready),
         .in_payload({watchdog_on,watchdog_source,watchdog_note,watchdog_velocity,watchdog_timbre,
             perf_on,perf_source,perf_note,perf_velocity,perf_timbre,
             remote_on,remote_source,remote_note,remote_velocity,remote_timbre,
             sensor_on,sensor_source,sensor_note,sensor_velocity,sensor_timbre}),
-        .out_valid(arbiter_raw_valid),.out_ready(arbiter_raw_ready),
-        .out_payload(arbiter_raw_payload),.selected(arbiter_raw_selected));
-    // 数据与来源编号同拍寄存，录音过滤仍以实际入队事件的来源为准。
-    // 反压由弹性寄存器回传，不扩大ready组合链；PANIC复位同时清空该级。
-    note_event_pipeline event_pipeline(.clk(clk),.rst_n(audio_rst_n),
-        .in_valid(arbiter_raw_valid),.in_ready(arbiter_raw_ready),
-        .in_payload({arbiter_raw_selected,arbiter_raw_payload}),
-        .out_valid(arbiter_push_valid),.out_ready(push_ready),
-        .out_payload({arb_selected,push_payload}));
+        .out_valid(arbiter_push_valid),.out_ready(push_ready),.out_payload(push_payload),.selected(arb_selected));
     // 复位寄存器生效前的一拍也禁止FIFO/录音接收旧事件；来源仍握手到丢弃端。
     assign push_valid=arbiter_push_valid && !panic_discard;
     assign sensor_er=panic_discard || sensor_blocked || arb_ready[0];

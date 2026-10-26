@@ -31,14 +31,14 @@ if ($Build) {
 }
 try {
     & (Join-Path $taskStage 'scripts/test-modelsim-full.ps1') -ModelSimBin $ModelSimBin -TimeoutSeconds 1200 `
-        -CaseName @('note_event_pipeline','score_upload_tracker','event_fifo_pipeline','transport_status_equivalence',
+        -CaseName @('event_fifo_pipeline','transport_status_equivalence',
             'polar_margin_s1','polar_margin_s2','polar_margin_s3','polar_margin_negative','polar_margin_early_write',
             'touch_i2s_latency','oled_timing_regression','menu_system','learning_mode','learning_status',
             'learning_system','direct_score','direct_system','performance','performance_retrigger',
             'performance_commit','global_panic','mpr121_backpressure','mpr121_capacity','audio_i2s',
             'full_system','menu_replay','score_capacity_1024','remote_note_watchdog','watchdog_arbiter') `
         -OutputRoot (Join-Path $taskStage 'verification/modelsim-pipeline-round2')
-    if ($LASTEXITCODE -ne 0) { throw '29项ModelSim检查未全部通过' }
+    if ($LASTEXITCODE -ne 0) { throw '27项ModelSim检查未全部通过' }
     $taskLatest = Get-ChildItem -LiteralPath (Join-Path $taskStage 'verification/modelsim-pipeline-round2') -Directory |
         Sort-Object Name | Select-Object -Last 1
     & $Python (Join-Path $taskStage 'scripts/analyze-touch-i2s-latency.py') `

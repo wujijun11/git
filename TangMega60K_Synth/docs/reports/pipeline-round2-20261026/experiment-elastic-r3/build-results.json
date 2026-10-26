@@ -1,0 +1,281 @@
+{
+  "snapshot": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_duntcp3h\\verification\\build-round2\\build_event-elastic-pipeline-r3_20261026_200646_b00e8254",
+  "variant": "event-elastic-pipeline-r3",
+  "run": {
+    "startedAt": "2026-10-26T20:06:47.298902+08:00",
+    "endedAt": "2026-10-26T20:11:49.692958+08:00",
+    "durationSeconds": 302.39,
+    "exitCode": 0,
+    "timedOut": false,
+    "timeoutSeconds": 2400,
+    "command": [
+      "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+      "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_duntcp3h\\verification\\build-round2\\build_event-elastic-pipeline-r3_20261026_200646_b00e8254\\scripts\\build-contest-full.tcl"
+    ],
+    "pid": 16164
+  },
+  "sourceOrigin": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_duntcp3h",
+  "protectedMainProject": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_duntcp3h",
+  "baselineReport": "verification\\pipeline-baseline.json",
+  "protectedImplUnchanged": true,
+  "protectedImplFileCount": 0,
+  "sourceInputsMatch": true,
+  "snapshotInputsMatch": true,
+  "mainProjectInputsMatch": true,
+  "mainProjectInputMismatches": [],
+  "sourceMatchingNote": "sourceInputsMatch means the explicitly named source origin; mainProjectInputsMatch is a separate full 80-input check.",
+  "buildAcceptanceNote": "Frozen source-origin build/timing and original implementation protection only. Main-source adoption and hardware validation are separate.",
+  "sourceInputFileCount": 93,
+  "timingPassMarker": true,
+  "warningCount": 79,
+  "errorLines": [],
+  "timingParserNote": "Each 3.1.1-3.1.4 table is bounded; 3.2 pulse-width rows excluded.",
+  "violationCountNote": "Setup/Hold vendor endpoint totals include recovery/removal; no separate totals provided.",
+  "gaoExpected": false,
+  "hardwareValidated": false,
+  "buildAccepted": true,
+  "current": {
+    "createdTime": "Mon Oct 26 20:11:48 2026",
+    "part": "GW5AT-LV60PG484AC1/I0",
+    "pathsAnalyzed": 105771,
+    "endpointsAnalyzed": 61209,
+    "violations": {
+      "setup": 0,
+      "hold": 0
+    },
+    "minimumSlackNs": {
+      "setup": 0.001,
+      "hold": 0.01,
+      "recovery": 4.343,
+      "removal": 0.473
+    },
+    "worstPaths": {
+      "setup": {
+        "from": "system/sensors/eventizer/head_from_ram_s0/Q",
+        "to": "system/performance/held_note_held_note_RAMREG_22_G[8]_s0/RESET"
+      },
+      "hold": {
+        "from": "system/synth/wave_addr_4_s0/Q",
+        "to": "system/synth/u_tables/waves_waves_0_0_s/AD[6]"
+      },
+      "recovery": {
+        "from": "pressed_sync_2_s0/Q",
+        "to": "system/synth/u_polar1/state_write_valid_s0/CLEAR"
+      },
+      "removal": {
+        "from": "audio_clock/first_lock_stable_s0/Q",
+        "to": "audio_clock/pll_49m152/init/rEnable_1_s0/CLEAR"
+      }
+    },
+    "resources": {
+      "Logic": {
+        "used": 26872.0,
+        "capacity": 59904.0,
+        "reportedPercent": 45,
+        "free": 33032.0
+      },
+      "Register": {
+        "used": 18961.0,
+        "capacity": 60780.0,
+        "reportedPercent": 32,
+        "free": 41819.0
+      },
+      "BSRAM": {
+        "used": 105.0,
+        "capacity": 118.0,
+        "reportedPercent": 89,
+        "free": 13.0
+      },
+      "DSP": {
+        "used": 51.5,
+        "capacity": 118.0,
+        "reportedPercent": 44,
+        "free": 66.5
+      }
+    },
+    "clocks": [
+      {
+        "name": "sys_clk",
+        "constraintMHz": 50.0,
+        "fmaxMHz": 155.024,
+        "logicLevel": 9
+      },
+      {
+        "name": "video_clock/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 125.0,
+        "fmaxMHz": 163.332,
+        "logicLevel": 1
+      },
+      {
+        "name": "video_clock/pll/CLKOUT1.default_gen_clk",
+        "constraintMHz": 25.0,
+        "fmaxMHz": 69.777,
+        "logicLevel": 8
+      },
+      {
+        "name": "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 49.152,
+        "fmaxMHz": 49.154,
+        "logicLevel": 15
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_duntcp3h\\verification\\build-round2\\build_event-elastic-pipeline-r3_20261026_200646_b00e8254\\full\\impl\\pnr\\ContestFull.fs",
+        "size": 20634972,
+        "sha256": "A3530435CC5705088FB589C58E2BA1A9C19048A5AF73F89FAEDC50CA46692720"
+      },
+      {
+        "path": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_duntcp3h\\verification\\build-round2\\build_event-elastic-pipeline-r3_20261026_200646_b00e8254\\full\\impl\\pnr\\ContestFull.tr",
+        "size": 400390,
+        "sha256": "DE41B4D583C5020FDCB86D970CD78A6B613E027ED26E547F573A9691B2876876"
+      },
+      {
+        "path": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_duntcp3h\\verification\\build-round2\\build_event-elastic-pipeline-r3_20261026_200646_b00e8254\\full\\impl\\pnr\\ContestFull.rpt.txt",
+        "size": 93038,
+        "sha256": "8674DAA331999F78EE4F3240EB2E35D7E755C525B6D1088A43EA6DB056A7B4AA"
+      }
+    ],
+    "hardwareValidated": false,
+    "implementationName": "ContestFull",
+    "reportName": "ContestFull",
+    "netlistName": "ContestFull",
+    "implementationKind": "bare-main",
+    "gaoInstrumented": false,
+    "gaoEvidence": {
+      "verified": false,
+      "enabledConfigurationCount": 0,
+      "files": []
+    },
+    "timingPass": true
+  },
+  "baseline": {
+    "createdTime": "Mon Oct 26 16:55:14 2026",
+    "part": "GW5AT-LV60PG484AC1/I0",
+    "pathsAnalyzed": 106658,
+    "endpointsAnalyzed": 60852,
+    "violations": {
+      "setup": 0,
+      "hold": 0
+    },
+    "minimumSlackNs": {
+      "setup": 0.168,
+      "hold": 0.166,
+      "recovery": 1.961,
+      "removal": 0.474
+    },
+    "worstPaths": {
+      "setup": {
+        "from": "pressed_sync_2_s0/Q",
+        "to": "system/events/mem_mem_RAMREG_13_G[20]_s0/CE"
+      },
+      "hold": {
+        "from": "system/visual/shadow[8]_4_s0/Q",
+        "to": "system/visual/spectrum_levels_68_s0/D"
+      },
+      "recovery": {
+        "from": "pressed_sync_2_s0/Q",
+        "to": "system/synth/u_polar0/state_write_valid_s0/CLEAR"
+      },
+      "removal": {
+        "from": "audio_clock/first_lock_stable_s0/Q",
+        "to": "audio_clock/pll_49m152/init/rEnable_1_s0/CLEAR"
+      }
+    },
+    "resources": {
+      "Logic": {
+        "used": 27208.0,
+        "capacity": 59904.0,
+        "reportedPercent": 46,
+        "free": 32696.0
+      },
+      "Register": {
+        "used": 18842.0,
+        "capacity": 60780.0,
+        "reportedPercent": 31,
+        "free": 41938.0
+      },
+      "BSRAM": {
+        "used": 105.0,
+        "capacity": 118.0,
+        "reportedPercent": 89,
+        "free": 13.0
+      },
+      "DSP": {
+        "used": 51.5,
+        "capacity": 118.0,
+        "reportedPercent": 44,
+        "free": 66.5
+      }
+    },
+    "clocks": [
+      {
+        "name": "sys_clk",
+        "constraintMHz": 50.0,
+        "fmaxMHz": 161.486,
+        "logicLevel": 9
+      },
+      {
+        "name": "video_clock/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 125.0,
+        "fmaxMHz": 153.404,
+        "logicLevel": 1
+      },
+      {
+        "name": "video_clock/pll/CLKOUT1.default_gen_clk",
+        "constraintMHz": 25.0,
+        "fmaxMHz": 66.077,
+        "logicLevel": 16
+      },
+      {
+        "name": "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 49.152,
+        "fmaxMHz": 49.562,
+        "logicLevel": 8
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_kkehmfa5\\verification\\build\\build_timing-margin-r6_20261026_165028_6bb1b02c\\full\\impl\\pnr\\ContestFull.fs",
+        "size": 20779356,
+        "sha256": "0B74A521A1BD29E0353451AF4630302DCD0B235A5B3FC753CEA027175ACD9C20"
+      },
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_kkehmfa5\\verification\\build\\build_timing-margin-r6_20261026_165028_6bb1b02c\\full\\impl\\pnr\\ContestFull.tr",
+        "size": 389429,
+        "sha256": "857A763D05D80C852D6107447D00A58A267A7A1795E4AEE6750B677C3F15E8E8"
+      },
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_kkehmfa5\\verification\\build\\build_timing-margin-r6_20261026_165028_6bb1b02c\\full\\impl\\pnr\\ContestFull.rpt.txt",
+        "size": 92818,
+        "sha256": "BE2675C97E0B12D432D8CD9472836FD79449092CD9310C204E90BBB5ABD2F500"
+      }
+    ],
+    "hardwareValidated": false,
+    "implementationName": "ContestFull",
+    "reportName": "ContestFull",
+    "netlistName": "ContestFull",
+    "implementationKind": "bare-main",
+    "gaoInstrumented": false,
+    "gaoEvidence": {
+      "verified": false,
+      "enabledConfigurationCount": 0,
+      "files": []
+    },
+    "timingPass": true
+  },
+  "change": {
+    "slackDeltaNs": {
+      "setup": -0.167,
+      "hold": -0.156,
+      "recovery": 2.382,
+      "removal": -0.001
+    },
+    "resourceDelta": {
+      "Logic": -336.0,
+      "Register": 119.0,
+      "BSRAM": 0.0,
+      "DSP": 0.0
+    }
+  }
+}

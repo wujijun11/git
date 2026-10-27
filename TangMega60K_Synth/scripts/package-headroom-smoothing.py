@@ -3,6 +3,7 @@ import argparse
 import hashlib
 import json
 import shutil
+import stat
 import subprocess
 import sys
 import xml.etree.ElementTree as ET
@@ -21,7 +22,20 @@ def sha(path):
 
 def copy(source, target):
     target.parent.mkdir(parents=True, exist_ok=True)
+    # Gowin可能将生成的位流标为只读；重复整理同一交付包时跳过相同内容。
+    # 仅调整本脚本生成目录中待更新的副本，不更改构建快照或用户原文件。
+    if target.exists():
+        if sha(source) == sha(target):
+            return
+        target.chmod(target.stat().st_mode | stat.S_IWRITE)
     shutil.copy2(source, target)
+
+
+def copy_folder(source, target):
+    """逐文件调用受控副本更新，兼容上一次保留的只读EDA报告。"""
+    for file in source.rglob('*'):
+        if file.is_file():
+            copy(file, target / file.relative_to(source))
 
 
 def validate(build_dir, sim_dir):
@@ -86,7 +100,7 @@ def main():
     baseline_dir = 'docs/reports/slider-volume-20261026'
     for relative in ('selected-r2/build-results.json', 'selected-r2/snapshot-inputs.json', 'modelsim-final/test-summary.json'):
         copy(ROOT / baseline_dir / relative, delivery / 'fpga-source' / baseline_dir / relative)
-    shutil.copytree(ROOT / 'licenses', delivery / 'fpga-source/licenses', dirs_exist_ok=True)
+    copy_folder(ROOT / 'licenses', delivery / 'fpga-source/licenses')
     for name in ('build-results.json', 'snapshot-inputs.json', 'snapshot-inputs-after.json', 'snapshot-metadata.json', 'gowin-run.json', 'gowin-build.log'):
         copy(args.build / name, delivery / 'evidence/fpga' / name)
     for suffix in ('tr', 'rpt.txt', 'pin.html'):
@@ -94,7 +108,7 @@ def main():
     for name in ('manifest.json', 'test-summary.json', 'inputs.json'):
         copy(args.modelsim / name, delivery / 'evidence/modelsim' / name)
     for folder in ('logs', 'cases'):
-        shutil.copytree(args.modelsim / folder, delivery / 'evidence/modelsim' / folder, dirs_exist_ok=True)
+        copy_folder(args.modelsim / folder, delivery / 'evidence/modelsim' / folder)
     for count in (4, 64):
         capture = args.modelsim / f'sim/audio_results/headroom_smoothing_n{count}.csv'
         copy(capture, delivery / f'evidence/headroom_smoothing_n{count}.csv')
@@ -108,7 +122,7 @@ def main():
     technical_doc = 'docs/混音增益跨档平滑实现说明_20261027.md'
     copy(ROOT / technical_doc, delivery / 'fpga-source' / technical_doc)
     report_dir = 'docs/reports/headroom-smoothing-20261027'
-    shutil.copytree(ROOT / report_dir, delivery / 'fpga-source' / report_dir, dirs_exist_ok=True)
+    copy_folder(ROOT / report_dir, delivery / 'fpga-source' / report_dir)
     (delivery / '实现说明.md').write_text(
         (ROOT / technical_doc).read_text(encoding='utf-8').replace('(reports/', '(fpga-source/docs/reports/'),
         encoding='utf-8',

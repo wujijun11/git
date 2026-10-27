@@ -1,0 +1,13 @@
+{
+  "startedAt": "2026-10-27T19:49:30.758311+08:00",
+  "endedAt": "2026-10-27T19:55:00.817720+08:00",
+  "durationSeconds": 330.063,
+  "exitCode": 0,
+  "timedOut": false,
+  "timeoutSeconds": 2400,
+  "command": [
+    "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+    "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_7kgb9i4h\\verification\\oled-wave-build\\build_oled-idle-wave-r2_20261027_194930_0103381b\\scripts\\build-contest-full.tcl"
+  ],
+  "pid": 54696
+}

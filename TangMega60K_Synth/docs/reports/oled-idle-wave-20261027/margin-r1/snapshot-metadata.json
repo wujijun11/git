@@ -1,0 +1,22 @@
+{
+  "snapshot": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_nde31adm\\verification\\oled-wave-build\\build_oled-idle-wave_20261027_194110_f7045f09",
+  "project": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_nde31adm",
+  "sourceRoot": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_nde31adm",
+  "variant": "oled-idle-wave",
+  "createdAt": "2026-10-27T19:41:10.664808+08:00",
+  "gowin": "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+  "baselineReport": "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-timing-latency-20261026\\TangMega60K_Synth\\docs\\reports\\headroom-board-triage-20261027\\selected-r2\\build-results.json",
+  "withoutGao": true,
+  "gprjDependencies": 86,
+  "inputFiles": 99,
+  "gaoExpected": false,
+  "implementationKind": "bare-main",
+  "gaoEvidence": {
+    "verified": false,
+    "enabledConfigurationCount": 0,
+    "files": []
+  },
+  "preparedOnly": false,
+  "driverSha256": "8E903BD45C894C810A9A1B42310F00DDE47545BBD568EB3A7BF312A164A5D78C",
+  "buildStartedAt": "2026-10-27T19:41:10.706639+08:00"
+}

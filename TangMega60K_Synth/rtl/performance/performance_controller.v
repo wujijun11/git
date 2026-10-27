@@ -73,6 +73,20 @@ module performance_controller #(
     reg [127:0] direct_held;
     // 停止逐音扫描释放；不用128路长优先编码器，避免扩大关键组合路径。
     reg [6:0] direct_release_cursor;
+    // 25键分别译码写使能，避免动态数组写入产生一条驱动225位数据的公共控制长路径。
+    // 写入边沿、复位值及对外事件握手均与原实现相同，不增加流水拍次。
+    genvar held_key;
+    generate for (held_key=0; held_key<25; held_key=held_key+1) begin: held_metadata
+        always @(posedge clk) begin
+            if (!rst_n) begin
+                held_note[held_key] <= 0;
+                held_timbre[held_key] <= 0;
+            end else if (event_valid && event_ready && !event_is_direct && event_on && event_key==held_key) begin
+                held_note[held_key] <= event_note;
+                held_timbre[held_key] <= event_timbre;
+            end
+        end
+    end endgenerate
     integer i, n, first_held;
     wire [SCORE_CAPACITY-1:0] written_or_unused;
     wire all_written=!clear_written && &written_or_unused;
@@ -283,7 +297,6 @@ module performance_controller #(
             overflow_sticky<=0; record_count<=0; score_position<=0;
             event_valid<=0; event_on<=0; event_source<=0; event_note<=0;
             event_velocity<=0; event_timbre<=0; event_key<=0; event_release<=0;
-            for (i=0;i<25;i=i+1) begin held_note[i]<=0; held_timbre[i]<=0; end
         end else begin
             if (tick_ms) begin tick_accumulator<=tick_remainder[31:0]; time_ms<=time_ms+32'd1; end
             else tick_accumulator<=tick_sum[31:0];
@@ -301,7 +314,6 @@ module performance_controller #(
                 if (event_is_direct) direct_held[event_note]<=event_on;
                 else begin
                     held[event_key]<=event_on;
-                    if (event_on) begin held_note[event_key]<=event_note; held_timbre[event_key]<=event_timbre; end
                 end
                 if (!event_release && !stopping) begin
                     score_position<=score_position+16'd1;

@@ -12,6 +12,8 @@ module board_contest_full_top #(
     parameter [6:0] OLED_ADDRESS=7'h3c,
     parameter integer OLED_POWER_WAIT_CYCLES=4915200,
     parameter integer OLED_FRAME_WAIT_CYCLES=1966080,
+    parameter integer OLED_WAVE_ENABLE=1,
+    parameter integer OLED_WAVE_IDLE_CYCLES=147456000,
     parameter [7:0] GUIDE_BRIGHTNESS=8'd32, GUIDE_TOUCH_BRIGHTNESS=8'd16,
     // Index0 is DIN's first pixel. Calibrate the purchased panel before
     // replacing this identity map; its row order is not shown by the listing.
@@ -38,6 +40,7 @@ module board_contest_full_top #(
     wire [7:0] menu_error;wire [15:0] menu_record_count;
     wire menu_volume_mode;
     wire [7:0] menu_volume_percent;
+    wire menu_touch_active;
     wire oled_fault;wire [31:0] oled_completed_frames;
     wire signed [23:0] debug_transmit_left;
     // LRCLK's rising edge is halfway through the transmitted stereo frame;
@@ -100,7 +103,8 @@ module board_contest_full_top #(
     end
     wire [9:0] x,y;wire hs,vs,de,hs_aligned,vs_aligned,de_aligned;wire [23:0] rgb;
     video_timing_640x480 timing(.clk(pixel_clk),.reset(!video_reset[1]),.pixel_x(x),.pixel_y(y),.hsync(hs),.vsync(vs),.de(de));
-    instrument_full_system #(.SLIDER_VOLUME_ENABLE(SLIDER_VOLUME_ENABLE),.GUIDE_BRIGHTNESS(GUIDE_BRIGHTNESS),
+    instrument_full_system #(.SLIDER_VOLUME_ENABLE(SLIDER_VOLUME_ENABLE),
+        .MENU_ROOT_IDLE_CYCLES(OLED_ENABLE && OLED_WAVE_ENABLE ? 0 : 245760000),.GUIDE_BRIGHTNESS(GUIDE_BRIGHTNESS),
         .GUIDE_TOUCH_BRIGHTNESS(GUIDE_TOUCH_BRIGHTNESS),.GUIDE_PIXEL_KEY_MAP(GUIDE_PIXEL_KEY_MAP)) system(
         .clk(audio_clk),.rst_n(rst_n),.uart_rx(uart_rx),.uart_tx(uart_tx),
         .mpr_scl(mpr_scl),.mpr_sda(mpr_sda),.mpr_irq_n(mpr_irq_n),
@@ -113,18 +117,31 @@ module board_contest_full_top #(
         .debug_audio_reset_status(debug_audio_reset_status),
         .menu_main(menu_main),.menu_page(menu_page),.menu_zone(menu_zone),
         .menu_busy(menu_busy),.menu_error(menu_error),.menu_record_count(menu_record_count),
-        .menu_volume_mode(menu_volume_mode),.menu_volume_percent(menu_volume_percent));
+        .menu_volume_mode(menu_volume_mode),.menu_volume_percent(menu_volume_percent),
+        .menu_touch_active(menu_touch_active));
+    // 在LRCLK下降后一拍采到本帧已选择的左声道PCM，含启动/欠载时真实发送的零值。
+    reg oled_previous_lrclk;
+    always @(posedge audio_clk or negedge rst_n) begin
+        if (!rst_n)
+            oled_previous_lrclk <= 1;
+        else
+            oled_previous_lrclk <= i2s_lrclk;
+    end
+    wire oled_audio_sample_valid = oled_previous_lrclk && !i2s_lrclk;
     // OLED只观察菜单/录放状态。NACK或掉线由显示驱动限速重试，
     // 不接入音频ready/reset链，也不复用三组MPR121的SCL/SDA。
     generate if(OLED_ENABLE) begin: oled_panel
         oled_status_display #(.CLK_HZ(49152000),.I2C_HZ(OLED_I2C_HZ),.PERFORMANCE_UI_ENABLE(SLIDER_VOLUME_ENABLE),
+            .WAVEFORM_ENABLE(OLED_WAVE_ENABLE),.WAVE_IDLE_CYCLES(OLED_WAVE_IDLE_CYCLES),
             .POWER_WAIT_CYCLES(OLED_POWER_WAIT_CYCLES),
             .FRAME_WAIT_CYCLES(OLED_FRAME_WAIT_CYCLES),.ADDRESS(OLED_ADDRESS)) display(
             .clk(audio_clk),.rst_n(rst_n),.main_menu(menu_main),
             .menu_page(menu_page),.zone(menu_zone),.recording(recording),.playing(playing),
             .guide(guide),.busy(menu_busy),.error(menu_error),.record_count(menu_record_count),
             .performance_mode(menu_volume_mode),.volume_percent(menu_volume_percent),
-            .scl(oled_scl),.sda(oled_sda),.fault(oled_fault),.completed_frames(oled_completed_frames));
+            .scl(oled_scl),.sda(oled_sda),.fault(oled_fault),.completed_frames(oled_completed_frames),
+            .ui_activity(menu_touch_active),.audio_sample_valid(oled_audio_sample_valid),
+            .audio_sample(debug_transmit_left));
     end else begin: no_oled
         assign oled_scl=1'bz;assign oled_sda=1'bz;
         assign oled_fault=1'b0;assign oled_completed_frames=32'd0;

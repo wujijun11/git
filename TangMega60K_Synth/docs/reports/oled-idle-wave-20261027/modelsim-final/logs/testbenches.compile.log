@@ -1,0 +1,65 @@
+Model Technology ModelSim SE-64 vlog 10.6e Compiler 2018.06 Jun 23 2018
+Start time: 19:51:53 on Oct 27,2026
+vlog -modelsimini modelsim.ini -sv -work work sim/tb_performance_held_write.sv sim/tb_oled_i2c_stream.sv sim/tb_oled_wave_board.sv sim/tb_oled_wave_units.sv sim/tb_oled_wave_display.sv sim/tb_audio_boot_status.sv sim/tb_headroom_smoothing.sv sim/tb_oled_board_integration.sv sim/tb_oled_volume.sv sim/tb_slider_performance.sv sim/tb_transport_status_equivalence.sv sim/tb_learning_system.sv sim/tb_direct_score_system.sv sim/tb_menu_system.sv sim/tb_oled_menu.sv sim/tb_slider_menu.sv sim/tb_instrument_full_system.sv sim/tb_global_panic.sv sim/tb_performance_controller.sv sim/tb_performance_retrigger.sv sim/tb_performance_commit_pipeline.sv sim/tb_audio_i2s.sv sim/tb_mpr121_model.sv sim/runtime_audio_fx_reference.sv sim/polar_lane_timing_reference.v sim/performance_controller_timing_reference.v sim/event_fifo_v2_pipeline_reference.v sim/remote_command_router_reference.v 
+-- Compiling module performance_held_write_reference
+-- Compiling module held_write_equivalence_lane
+-- Compiling module tb_performance_held_write
+-- Compiling module tb_oled_i2c_stream
+-- Compiling module tb_oled_wave_board
+-- Compiling module tb_oled_wave_capture
+-- Compiling module tb_oled_idle_menu
+-- Compiling module tb_oled_wave_display
+-- Compiling module tb_audio_boot_status
+-- Compiling module tb_headroom_smoothing
+-- Compiling module tb_oled_board_integration
+-- Compiling module tb_oled_volume
+-- Compiling module tb_slider_performance
+-- Compiling module tb_transport_status_equivalence
+-- Compiling module tb_learning_system
+-- Compiling module tb_direct_score_system
+-- Compiling module tb_menu_system
+-- Compiling module tb_oled_menu
+-- Compiling module tb_slider_menu
+-- Compiling module tb_instrument_full_system
+-- Compiling module tb_global_panic
+-- Compiling module tb_performance_controller
+-- Compiling module tb_performance_retrigger
+-- Compiling module tb_performance_commit_pipeline
+-- Compiling module tb_audio_i2s
+-- Compiling module mpr121_bus_model
+-- Compiling module runtime_audio_fx_reference
+-- Compiling module polar_lane_timing_reference
+-- Compiling module performance_controller_timing_reference
+-- Compiling module event_fifo_v2_pipeline_reference
+-- Compiling module remote_command_router_reference
+
+Top level modules:
+	tb_performance_held_write
+	tb_oled_i2c_stream
+	tb_oled_wave_board
+	tb_oled_wave_capture
+	tb_oled_idle_menu
+	tb_oled_wave_display
+	tb_audio_boot_status
+	tb_headroom_smoothing
+	tb_oled_board_integration
+	tb_oled_volume
+	tb_slider_performance
+	tb_transport_status_equivalence
+	tb_learning_system
+	tb_direct_score_system
+	tb_menu_system
+	tb_oled_menu
+	tb_slider_menu
+	tb_instrument_full_system
+	tb_global_panic
+	tb_performance_controller
+	tb_performance_retrigger
+	tb_performance_commit_pipeline
+	tb_audio_i2s
+	mpr121_bus_model
+	runtime_audio_fx_reference
+	polar_lane_timing_reference
+	event_fifo_v2_pipeline_reference
+End time: 19:51:53 on Oct 27,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

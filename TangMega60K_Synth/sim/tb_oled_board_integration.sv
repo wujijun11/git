@@ -11,7 +11,7 @@ module tb_oled_board_integration #(parameter FAST=1, VOLUME_MODE=0);
     wire bc,lr,sd,led;
     reg ack_low=0,nack=0,slide=0;reg [11:0] slide_position=0;
     assign oled_sda=ack_low?1'b0:1'bz;
-    board_contest_full_top #(.DEBOUNCE_CYCLES(8),.SLIDER_VOLUME_ENABLE(VOLUME_MODE),
+    board_contest_full_top #(.DEBOUNCE_CYCLES(8),.SLIDER_VOLUME_ENABLE(VOLUME_MODE),.OLED_WAVE_ENABLE(0),
         .OLED_I2C_HZ(FAST?3000000:100000),
         .OLED_POWER_WAIT_CYCLES(8),.OLED_FRAME_WAIT_CYCLES(8)) dut(
         .sys_clk(sys_clk),.key_n(key_n),.mpr_scl(mpr_scl),.mpr_sda(mpr_sda),.mpr_irq_n(3'b111),

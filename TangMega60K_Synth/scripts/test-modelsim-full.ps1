@@ -43,6 +43,13 @@ function New-TestCase([string]$Name,[string]$Top,[string]$Bench,[string]$Marker,
 $watchdogCase = New-TestCase 'remote_note_watchdog' 'tb_remote_note_watchdog' `
     'sim/tb_remote_note_watchdog.sv' 'REMOTE NOTE WATCHDOG PASS' @() '' $true
 $allCases = @(
+    (New-TestCase 'performance_held_write' 'tb_performance_held_write' 'sim/tb_performance_held_write.sv' 'PERFORMANCE HELD WRITE EQUIVALENCE PASS'),
+    (New-TestCase 'oled_i2c_stream' 'tb_oled_i2c_stream' 'sim/tb_oled_i2c_stream.sv' 'OLED I2C STREAM PASS'),
+    (New-TestCase 'oled_wave_board' 'tb_oled_wave_board' 'sim/tb_oled_wave_board.sv' 'OLED WAVE BOARD PASS'),
+    (New-TestCase 'oled_wave_board_timing' 'tb_oled_wave_board' 'sim/tb_oled_wave_board.sv' 'OLED WAVE BOARD TIMING PASS' @('-gFAST=0')),
+    (New-TestCase 'oled_wave_capture' 'tb_oled_wave_capture' 'sim/tb_oled_wave_units.sv' 'OLED WAVE CAPTURE PASS'),
+    (New-TestCase 'oled_idle_menu' 'tb_oled_idle_menu' 'sim/tb_oled_wave_units.sv' 'OLED IDLE MENU PASS'),
+    (New-TestCase 'oled_wave_display' 'tb_oled_wave_display' 'sim/tb_oled_wave_display.sv' 'OLED WAVE DISPLAY PASS'),
     (New-TestCase 'audio_boot_status' 'tb_audio_boot_status' 'sim/tb_audio_boot_status.sv' 'AUDIO BOOT STATUS PASS'),
     (New-TestCase 'headroom_smoother' 'tb_headroom_smoother' 'sim/tb_headroom_smoother.sv' 'HEADROOM SMOOTHER PASS'),
     (New-TestCase 'headroom_smoothing_n4' 'tb_headroom_smoothing' 'sim/tb_headroom_smoothing.sv' 'HEADROOM SMOOTHING PASS N=4'),
@@ -239,13 +246,14 @@ try {
     $benchSources = @($cases.Bench | Select-Object -Unique)
     if ($Suite -ne 'Watchdog') { $benchSources += @('sim/tb_mpr121_model.sv','sim/runtime_audio_fx_reference.sv',
         'sim/polar_lane_timing_reference.v','sim/performance_controller_timing_reference.v',
-        'sim/event_fifo_v2_pipeline_reference.v') }
+        'sim/event_fifo_v2_pipeline_reference.v','sim/remote_command_router_reference.v') }
     # A filtered run retains the complete Full source fingerprint, allowing
     # evidence from separate runs to be compared without weakening coverage.
     $stagedBenchSources = if ($Suite -ne 'Watchdog') {
         @($allCases.Bench | Select-Object -Unique) + @('sim/tb_mpr121_model.sv','sim/runtime_audio_fx_reference.sv',
             'sim/polar_lane_timing_reference.v','sim/performance_controller_timing_reference.v',
-            'sim/event_fifo_v2_pipeline_reference.v')
+            'sim/event_fifo_v2_pipeline_reference.v','sim/remote_command_router_reference.v',
+            'sim/performance_held_write_reference.v')
     } else { $benchSources }
     foreach ($bench in $stagedBenchSources) { Stage-Input (Join-Path $projectDir $bench) $bench 'Testbench' }
     foreach ($rom in (Get-ChildItem -LiteralPath (Join-Path $projectDir 'rtl/audio/rom') -File -Filter '*.hex' | Sort-Object Name)) {

@@ -90,7 +90,8 @@ module slider_menu_controller #(
                 request_valid <= 0;
 
             // 仅总菜单超时；子页面即使闲置很久也必须长按返回。
-            if (!PERFORMANCE_ENABLE || performance_mode || !main_menu ||
+            // ROOT_IDLE_CYCLES=0供OLED空闲波形入口使用：显示超时由覆盖层处理，菜单状态保留。
+            if (ROOT_IDLE_CYCLES <= 0 || !PERFORMANCE_ENABLE || performance_mode || !main_menu ||
                 touch_active || touch_fault || request_valid || action_busy) begin
                 idle_count <= 0;
             end else if (idle_count >= IDLE_LIMIT - 1) begin

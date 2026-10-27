@@ -39,7 +39,9 @@ module instrument_full_system #(
     output wire menu_prompt_valid,
     output wire [1:0] menu_prompt_code,
     output wire menu_volume_mode,
-    output wire [7:0] menu_volume_percent
+    output wire [7:0] menu_volume_percent,
+    // 显示观察接口：原始滑条触摸状态，不改变event/cmd/done/sample公共V2端口。
+    output wire menu_touch_active
 );
     wire cv,cr,router_cr,rv,rr;wire [7:0] cs,co,rs,ro;wire [79:0] cp,rp;
     wire [31:0] crc_errors,framing_errors,uart_overflows,uart_timeouts;
@@ -100,6 +102,7 @@ module instrument_full_system #(
     wire slider_xv,slider_xr;wire [2:0] slider_xm;wire [11:0] slider_gain;
     wire signed [12:0] slider_bend;wire [7:0] slider_vib;
     wire slider_active;wire [11:0] slider_position;
+    assign menu_touch_active = slider_active;
     mpr121_input_frontend #(.CLK_HZ(CLK_HZ),.SETTLE_CYCLES(SENSOR_SETTLE_CYCLES),
         .SOURCE_BASE(25),.SLIDER_BEND_ENABLE(!MENU_ENABLE)) sensors(
         .clk(clk),.resetn(rst_n),.irq_n(irq_sync),.scl(mpr_scl),.sda(mpr_sda),

@@ -9,7 +9,10 @@ module oled_status_display #(
     parameter [6:0] ADDRESS=7'h3c,
     parameter integer COLUMN_OFFSET=0,
     parameter FONT_FILE="rtl/audio/rom/menu_font.hex",
-    parameter integer PERFORMANCE_UI_ENABLE=0
+    parameter integer PERFORMANCE_UI_ENABLE=0,
+    parameter integer WAVEFORM_ENABLE=0,
+    parameter integer WAVE_IDLE_CYCLES=CLK_HZ*3,
+    parameter integer WAVE_FRAME_WAIT_CYCLES=CLK_HZ/200
 ) (
     input wire clk,rst_n,main_menu,
     input wire [1:0] menu_page,zone,
@@ -20,7 +23,10 @@ module oled_status_display #(
     output reg fault,
     output reg [31:0] completed_frames,
     input wire performance_mode,
-    input wire [7:0] volume_percent
+    input wire [7:0] volume_percent,
+    input wire ui_activity,
+    input wire audio_sample_valid,
+    input wire signed [23:0] audio_sample
 );
     localparam [3:0] POWER=0,INIT=1,SNAPSHOT=2,BCD_WAIT=3,PAGE=4,
         RENDER_WAIT=5,DATA=6,SEND=7,WAIT_DONE=8,FRAME_WAIT=9,RETRY=10;
@@ -37,6 +43,7 @@ module oled_status_display #(
     reg [15:0] snap_count;
     reg snap_performance;
     reg [7:0] snap_volume;
+    reg snap_wave;
     reg bcd_start;
     reg count_done_seen,volume_done_seen;
     wire bcd_done;
@@ -44,6 +51,14 @@ module oled_status_display #(
     wire [15:0] volume_digits;
     wire volume_bcd_done;
     wire [7:0] pixels;
+    wire [7:0] menu_pixels;
+    wire [7:0] wave_pixels;
+    wire waveform_idle;
+    wire wave_requested = WAVEFORM_ENABLE && waveform_idle && !ui_activity && !busy && error == 0;
+    wire stream_ready;
+    wire [7:0] stream_data = WAVEFORM_ENABLE && transfer_kind == 2 ? pixels : payload;
+    wire [7:0] stream_length = WAVEFORM_ENABLE && transfer_kind == 2 ? 8'd128 : 8'd1;
+    assign pixels = snap_wave && screen_page >= 2 ? wave_pixels : menu_pixels;
     wire cmd_ready,transaction_done;
     wire [2:0] transaction_error;
     bin16_to_bcd decimal_count(.clk(clk),.rst_n(rst_n),.start(bcd_start),
@@ -59,14 +74,35 @@ module oled_status_display #(
         .clk(clk),.screen_page(screen_page),.column(column),
         .main_menu(snap_main),.menu_page(snap_page),.zone(snap_zone),
         .recording(snap_record),.playing(snap_play),.guide(snap_guide),
-        .busy(snap_busy),.error(snap_error),.record_digits(digits),.data(pixels),
+        .busy(snap_busy),.error(snap_error),.record_digits(digits),.data(menu_pixels),
         .performance_mode(snap_performance),.volume_digits(volume_digits[11:0]),
         .volume_percent(snap_volume));
-    i2c_register_master #(.CLK_HZ(CLK_HZ),.I2C_HZ(I2C_HZ)) bus(
+    generate if (WAVEFORM_ENABLE) begin: live_wave
+        wire [13:0] ui_signature = {main_menu,menu_page,zone,
+            (PERFORMANCE_UI_ENABLE ? performance_mode : 1'b0),
+            (PERFORMANCE_UI_ENABLE ? volume_percent : 8'd100)};
+        wire [11:0] bounds;
+        oled_idle_view #(.IDLE_CYCLES(WAVE_IDLE_CYCLES)) idle_control (
+            .clk(clk),.rst_n(rst_n),.touch_active(ui_activity),.busy(busy),
+            .error(error),.ui_signature(ui_signature),.waveform_view(waveform_idle)
+        );
+        oled_wave_capture capture (
+            .clk(clk),.rst_n(rst_n),.sample_valid(audio_sample_valid),.sample(audio_sample),
+            .frame_snapshot(state==SNAPSHOT),.read_column(column),.read_bounds(bounds)
+        );
+        oled_wave_renderer wave_renderer (
+            .clk(clk),.screen_page(screen_page),.column(column),.bounds(bounds),.data(wave_pixels)
+        );
+    end else begin: no_wave
+        assign waveform_idle = 1'b0;
+        assign wave_pixels = 8'd0;
+    end endgenerate
+    // 仍叫bus，保留原SDC中OLED输入双级同步器的精确层级名称。
+    oled_i2c_stream #(.CLK_HZ(CLK_HZ),.I2C_HZ(I2C_HZ)) bus(
         .clk(clk),.resetn(rst_n),.cmd_valid(state==SEND),.cmd_ready(cmd_ready),
-        .cmd_read(1'b0),.cmd_addr(ADDRESS),.cmd_reg(control_byte),
-        .cmd_wdata(payload),.cmd_len(6'd1),.busy(),.done(transaction_done),
-        .error(transaction_error),.rdata_valid(),.rdata(),.rindex(),.scl(scl),.sda(sda));
+        .cmd_addr(ADDRESS),.cmd_control(control_byte),.cmd_length(stream_length),
+        .data_valid(1'b1),.data_ready(stream_ready),.data(stream_data),
+        .done(transaction_done),.error(transaction_error),.scl(scl),.sda(sda));
     function [7:0] init_byte;
         input [4:0] index;
         begin
@@ -91,9 +127,13 @@ module oled_status_display #(
             snap_play<=0;snap_guide<=0;snap_busy<=0;snap_error<=0;snap_count<=0;
             bcd_start<=0;fault<=0;completed_frames<=0;
             snap_performance<=0;snap_volume<=100;
+            snap_wave<=0;
             count_done_seen<=0;volume_done_seen<=0;
         end else begin
             bcd_start<=0;
+            // 成页流式发送时，数据握手才移动列地址；同步ROM/RAM有整字节时间准备下一列。
+            if (WAVEFORM_ENABLE && transfer_kind==2 && state==WAIT_DONE && stream_ready && column!=127)
+                column<=column+1'b1;
             case(state)
                 POWER:if(timer+1>=POWER_WAIT_CYCLES)begin timer<=0;state<=INIT;end
                     else timer<=timer+1'b1;
@@ -106,6 +146,7 @@ module oled_status_display #(
                     snap_busy<=busy;snap_error<=error;snap_count<=record_count;
                     snap_performance<=PERFORMANCE_UI_ENABLE && performance_mode;
                     snap_volume<=PERFORMANCE_UI_ENABLE ? volume_percent : 8'd100;
+                    snap_wave<=wave_requested;
                     count_done_seen<=0;volume_done_seen<=0;
                     bcd_start<=1;state<=BCD_WAIT;screen_page<=0;column<=0;page_command<=0;
                 end
@@ -135,7 +176,10 @@ module oled_status_display #(
                             else begin init_index<=init_index+1'b1;state<=INIT;end
                         1:if(page_command==2)state<=RENDER_WAIT;
                             else begin page_command<=page_command+1'b1;state<=PAGE;end
-                        default:if(column==127)begin
+                        default:if (WAVEFORM_ENABLE && snap_wave && !wave_requested) begin
+                            // 触摸/状态改变时，在当前页STOP之后恢复UI，不截断I2C事务。
+                            state<=SNAPSHOT;
+                        end else if(WAVEFORM_ENABLE || column==127)begin
                             column<=0;page_command<=0;
                             if(screen_page==7)begin
                                 fault<=0;completed_frames<=completed_frames+1'b1;
@@ -144,7 +188,7 @@ module oled_status_display #(
                         end else begin column<=column+1'b1;state<=RENDER_WAIT;end
                     endcase
                 end
-                FRAME_WAIT:if(timer+1>=FRAME_WAIT_CYCLES)begin timer<=0;state<=SNAPSHOT;end
+                FRAME_WAIT:if(timer+1>=(snap_wave ? WAVE_FRAME_WAIT_CYCLES : FRAME_WAIT_CYCLES))begin timer<=0;state<=SNAPSHOT;end
                     else timer<=timer+1'b1;
                 // 无屏/断线只影响显示，限速重试，不能拖住演奏或其他I2C。
                 RETRY:if(timer+1>=POWER_WAIT_CYCLES)begin timer<=0;init_index<=0;state<=INIT;end

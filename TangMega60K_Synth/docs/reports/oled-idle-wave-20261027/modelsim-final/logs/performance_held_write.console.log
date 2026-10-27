@@ -1,0 +1,50 @@
+Reading C:/modelsim/modeltech64_10.6e/tcl/vsim/pref.tcl
+
+# 10.6e
+
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/performance_held_write.wlf -l logs/performance_held_write.log -do "do cases/performance_held_write.do" work.tb_performance_held_write 
+# Start time: 19:51:54 on Oct 27,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "remote_command_router(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "remote_command_router_reference(fast)".
+# ** Warning: sim/tb_performance_held_write.sv(73): (vopt-2685) [TFMPC] - Too few port connections for 'performance'.  Expected 37, found 33.
+# ** Warning: sim/tb_performance_held_write.sv(73): (vopt-2718) [TFMPC] - Missing connection for port 'learning_status_payload'.
+# ** Warning: sim/tb_performance_held_write.sv(73): (vopt-2718) [TFMPC] - Missing connection for port 'learning_touch_ready'.
+# ** Warning: sim/tb_performance_held_write.sv(73): (vopt-2718) [TFMPC] - Missing connection for port 'learning_touch_mask'.
+# ** Warning: sim/tb_performance_held_write.sv(73): (vopt-2718) [TFMPC] - Missing connection for port 'local_action_status'.
+# ** Warning: sim/tb_performance_held_write.sv(51): (vopt-2685) [TFMPC] - Too few port connections for 'router'.  Expected 49, found 46.
+# ** Warning: sim/tb_performance_held_write.sv(51): (vopt-2718) [TFMPC] - Missing connection for port 'learning_status_payload'.
+# ** Warning: sim/tb_performance_held_write.sv(51): (vopt-2718) [TFMPC] - Missing connection for port 'mode_status_payload'.
+# ** Warning: sim/tb_performance_held_write.sv(51): (vopt-2718) [TFMPC] - Missing connection for port 'timbre_write_pulse'.
+# ** Warning: sim/tb_performance_held_write.sv(86): (vopt-2685) [TFMPC] - Too few port connections for 'performance'.  Expected 37, found 33.
+# ** Warning: sim/tb_performance_held_write.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'learning_status_payload'.
+# ** Warning: sim/tb_performance_held_write.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'learning_touch_ready'.
+# ** Warning: sim/tb_performance_held_write.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'learning_touch_mask'.
+# ** Warning: sim/tb_performance_held_write.sv(86): (vopt-2718) [TFMPC] - Missing connection for port 'local_action_status'.
+# //  ModelSim SE-64 10.6e Jun 23 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_performance_held_write(fast)
+# Loading work.held_write_equivalence_lane(fast)
+# Loading work.remote_command_router(fast)
+# Loading work.performance_controller(fast)
+# Loading work.held_write_equivalence_lane(fast__1)
+# Loading work.remote_command_router_reference(fast)
+# Loading work.performance_held_write_reference(fast)
+# do cases/performance_held_write.do
+# PERFORMANCE HELD WRITE EQUIVALENCE PASS cycles=10348 random_cycles=10000 seed=471833 remote=1906 local=3243 acks=1898 perf=944 stalled_acks=1833 reset_in_perf=1 adjacent_writes=11 adjacent_commits=8 contention=477 record_edges=905
+# ** Note: $finish    : sim/tb_performance_held_write.sv(332)
+#    Time: 103477 ns  Iteration: 0  Instance: /tb_performance_held_write
+# End time: 19:51:54 on Oct 27,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 14

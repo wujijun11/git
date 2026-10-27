@@ -1,6 +1,8 @@
 # 弦光：Tang Mega 60K 电子乐器工程
 
-本目录为**独立本地测试分支 `codex/timing-latency-oled`**，不代表main或已上板版本。以提交 `4bee4c9` 的OLED版为基线，试验时序余量与触摸到I2S数字延迟；修改、验证及待实测项目见[本轮技术总结](docs/时序余量与触摸I2S延迟技术总结_20261026.md)。未经确认不合并或推送main。原 `比赛 2/TangMega60K_Synth` 生产源码已恢复OLED版。
+当前在**本地源码整理分支 `codex/source-guide-submission`**，功能基线为提交`603a417`归档的滑条音量测试版（功能源码`7121713`），不代表main或已上板验收版本。本次只整理文档与只读清点工具，不改音源、不下载、不推送。完整目录用途、逐文件说明及作品文档写作方案从[作品源码阅读入口](docs/作品文档准备_20261026/README.md)开始。
+
+2026-10-26最新测试版：默认滑条连续音量、长按菜单与OLED四区显示；38个选定ModelSim用例满足预期，完整隔离构建Setup/Hold余量0.618/0.093ns。位流`ContestFull_SliderVolume_TEST1024.fs`及配套GUI源码位于[滑条音量交付ZIP](releases/slider-volume-20261026/ContestFull_SliderVolume_TEST1024.zip)；构建快照关闭GAO，工作区GPRJ保留调试配置。实物滑条、OLED、灯序和总延迟待验收，见[滑条音量实现说明](docs/滑条音量演奏模式实现说明_20261026.md)。以下条目按日期保留历史状态，不能将较早的“当前/最新”入口当作本版产物。
 
 2026-10-26（本地OLED接入）：完整顶层新增独立四针128×64 I²C状态屏，显示中文菜单、分区反显和录放状态。20项ModelSim针对性回归与实际Gowin构建通过，Setup/Hold违反端点均为0，最小余量0.046/0.001ns，余量仍偏紧。音源算法与客户端未改，旧LearningMode交付保留；本地新位流位于 `delivery-oled-integration/fpga/ContestFull_OLED_Learning1024.fs`，尚未下载实测。接线、模块说明和复现命令见[OLED完整工程接入](docs/OLED完整工程接入_20261026.md)。此条不代表已推送GitHub。
 
@@ -64,7 +66,7 @@
 
 ## 从哪里开始
 
-1. 当前整机工程在GOWIN打开 `full/ContestFull.gprj`，顶层 `board_contest_full_top`；最新优化位流使用[Hold优化记录中的明确路径](verification/hold-margin-20261014/README.md#新位流和复现)，原 `full/impl/pnr/ContestFull.fs` 保留为旧版本。本次未下载。板上操作见[首次上板与到货验收](docs/全功能首次上板步骤-20261011.md)。独立音源开发打开`AudioEngine_V2.gprj`，选择`audio_system_v2`顶层；单独控制接口开发仍可打开`TangMega60K_Synth_V2.gprj`。
+1. 完整工程源码入口是 `full/ContestFull.gprj`，顶层 `board_contest_full_top`。若要重建本版已验证位流，请先解压上方滑条音量ZIP，使用其中`fpga-source/full/ContestFull.gprj`及配套说明，保证GAO开关与冻结输入一致。旧`full/impl`及下方历史位流不自动代表本版。当前未下载，实物操作可参考[首次上板步骤](docs/全功能首次上板步骤-20261011.md)，并按当前CST与[本版操作](docs/滑条音量模式使用说明_20261026.md)核对。独立音源开发可打开`AudioEngine_V2.gprj`/`audio_system_v2`，单独控制开发可打开`TangMega60K_Synth_V2.gprj`。
    16 个音逐个播放打开 `boardseq16/BoardSequence16_48kI2S.gprj`，选择 `board_sequence16_48k_i2s_top`；在项目根目录用 GOWIN 的 `gw_sh` 执行 `scripts/build-board-sequence16-48k-i2s.tcl`，生成 `boardseq16/impl/pnr/BoardSequence16_48kI2S.fs` 后下载至 SRAM。事件源和完整板级仿真分别运行 `scripts/test-sequence16-event-source.ps1`、`scripts/test-board-sequence16-48k-i2s.ps1`。
    当前板载按键演奏打开 `boardkeys48/BoardInstrumentB48kI2S.gprj`，选择 `board_instrument_b_48k_i2s_top`；下载 `boardkeys48/impl/pnr/BoardInstrumentB48kI2S.fs` 到 SRAM，断电后需重新下载。
    既有64音48kHz数字验证打开`clock48/BoardAudio48kGAO.gprj`；验证队员B输入链打开`clock48/BoardInstrumentB48kGAO.gprj`。两者仅在片内采集I2S，尚无外置DAC引脚。

@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-26",
+  "branch": "codex/source-guide-submission",
+  "sourceRevision": "603a417df77731770730baeab8003b41f919b078",
+  "passed": true,
+  "trackedFileCount": 1654,
+  "codeFilesExplained": 520,
+  "archiveFilesExplained": 151,
+  "otherFilesIndexed": 1134,
+  "allFrozenBlobHashesVerified": 1654,
+  "mainProjectListedHdlFiles": 78,
+  "staticReachableModules": 59,
+  "staticReachableFiles": 53,
+  "productionInputsCompared": 93,
+  "productionInputMismatches": [],
+  "localMarkdownLinksChecked": 1883,
+  "brokenLocalLinks": [],
+  "utilityChecks": [
+    "Python syntax",
+    "nested HDL parameters",
+    "ignore comments/strings",
+    "duplicate module rejection",
+    "UTF-8 filenames",
+    "Git content unaffected by local README edit",
+    "missing-purpose rejection"
+  ],
+  "existingEvidenceRead": {
+    "modelSimSelectedCases": 38,
+    "normalCases": 36,
+    "expectedRejectionCases": 2,
+    "allMetExpectations": true,
+    "newModelSimRun": false,
+    "newGowinRun": false,
+    "latencySourceZipEntry": "ContestFull_SliderVolume_TEST1024/analysis/latency-results.json",
+    "resourceSource": "docs/reports/slider-volume-20261026/selected-r2/build-results.json"
+  },
+  "hardwareAccessed": false,
+  "pushed": false
+}

@@ -104,7 +104,15 @@ def main():
     copy(latency, delivery / 'evidence/touch_i2s_latency.csv')
     subprocess.run([sys.executable, str(ROOT / 'scripts/analyze-touch-i2s-latency.py'),
                     str(latency), str(delivery / 'latency-analysis')], check=True, stdout=subprocess.DEVNULL)
-    copy(ROOT / 'docs/混音增益跨档平滑实现说明_20261027.md', delivery / '实现说明.md')
+    # 根目录说明供直接阅读，源码目录保留原文及相对报告链接，避免解压后链接失效。
+    technical_doc = 'docs/混音增益跨档平滑实现说明_20261027.md'
+    copy(ROOT / technical_doc, delivery / 'fpga-source' / technical_doc)
+    report_dir = 'docs/reports/headroom-smoothing-20261027'
+    shutil.copytree(ROOT / report_dir, delivery / 'fpga-source' / report_dir, dirs_exist_ok=True)
+    (delivery / '实现说明.md').write_text(
+        (ROOT / technical_doc).read_text(encoding='utf-8').replace('(reports/', '(fpga-source/docs/reports/'),
+        encoding='utf-8',
+    )
     project = delivery / 'fpga-source/full/ContestFull.gprj'
     for item in ET.parse(project).findall('./FileList/File'):
         if item.get('enable') != '0' and not (project.parent / item.attrib['path']).is_file():

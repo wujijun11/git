@@ -74,6 +74,9 @@ def validate(build_dir, sim_dir):
 
 
 def main():
+    issue_status = ROOT / 'releases/headroom-smoothing-20261027/STATUS.json'
+    if issue_status.exists() and read(issue_status).get('status') == 'suspended_after_hardware_failure':
+        raise ValueError('此平滑位流已出现实板故障，暂停重新交付；请使用原版或独立启动诊断版')
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--build', type=Path, required=True)
     parser.add_argument('--modelsim', type=Path, required=True)

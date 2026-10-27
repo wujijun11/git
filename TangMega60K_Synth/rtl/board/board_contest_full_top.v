@@ -4,6 +4,8 @@
 module board_contest_full_top #(
     parameter DEBOUNCE_CYCLES=100000,
     parameter SLIDER_VOLUME_ENABLE=1,
+    // 仅本地排查分支启用，改用已有彩灯观察启动状态，不改变音频/通信功能。
+    parameter BOOT_DIAGNOSTIC=1,
     // 四针128x64 SSD1306/SSD1315兼容OLED：独立I2C，使用既有音频时钟。
     // 首板默认100kHz以容忍较长接线；地址为7位0x3C，不是写地址0x78。
     parameter OLED_ENABLE=1, OLED_I2C_HZ=100000,
@@ -44,16 +46,19 @@ module board_contest_full_top #(
     (* syn_keep=1 *) wire [6:0] debug_note;
     (* syn_keep=1 *) wire [24:0] debug_touch;
     (* syn_keep=1 *) wire debug_underrun=|underruns;
-    reg [4:0] status_meta=0,status_sync=0;
+    // 诊断模式仍保留原状态同步寄存器，保持原SDC对象及功能采样链存在。
+    (* syn_keep=1, syn_preserve=1 *) reg [4:0] status_meta=0,status_sync=0;
     always @(posedge sys_clk)begin
         status_meta<={overflow || underruns!=0,|sensor_fault,guide,playing,|voices};status_sync<=status_meta;
     end
     wire [23:0] status_grb=status_sync[4] ? 24'h002000 :
         status_sync[3] ? 24'h081008 : status_sync[2] ? 24'h000020 :
         status_sync[1] ? 24'h200008 : status_sync[0] ? 24'h180000 : 24'h020000;
+    wire [23:0] boot_status_grb;
+    wire [23:0] selected_status_grb = BOOT_DIAGNOSTIC ? boot_status_grb : status_grb;
     board_bringup_top #(.DEBOUNCE_CYCLES(DEBOUNCE_CYCLES),.STATUS_MODE(1)) board(
         .sys_clk(sys_clk),.key_n(key_n),.rgb_data(rgb_data),.pa_disable(pa_disable),
-        .board_ready(board_ready),.keys_pressed(pressed_50),.status_grb(status_grb));
+        .board_ready(board_ready),.keys_pressed(pressed_50),.status_grb(selected_status_grb));
     audio_clock_48k audio_clock(.clk_50(sys_clk),.clk_audio(audio_clk),.locked(audio_locked),
         .debug_pll_status(debug_pll_status));
     video_clocking video_clock(.clk_50(sys_clk),.reset(1'b0),.clk_pixel(pixel_clk),.clk_serial(serial_clk),.locked(video_locked));
@@ -77,6 +82,13 @@ module board_contest_full_top #(
             rst_n,ready_sync,audio_locked,board_ready};
         debug_status<=debug_status_meta;
     end
+    generate if (BOOT_DIAGNOSTIC) begin: boot_probe
+        audio_boot_status status_monitor (
+            .clk(sys_clk), .snapshot(debug_status), .status_grb(boot_status_grb)
+        );
+    end else begin: normal_status
+        assign boot_status_grb = 24'd0;
+    end endgenerate
     wire local_valid;wire [7:0] action;
     wire local_ready;
     board_local_actions local_actions(.clk(audio_clk),.rst_n(rst_n),

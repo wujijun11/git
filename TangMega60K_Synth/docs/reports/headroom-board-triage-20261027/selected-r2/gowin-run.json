@@ -1,0 +1,13 @@
+{
+  "startedAt": "2026-10-27T18:31:19.110336+08:00",
+  "endedAt": "2026-10-27T18:36:17.134920+08:00",
+  "durationSeconds": 298.015,
+  "exitCode": 0,
+  "timedOut": false,
+  "timeoutSeconds": 2400,
+  "command": [
+    "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+    "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_62y47pf7\\verification\\boot-build\\build_headroom-boot-probe-r2_20261027_183118_06c8d611\\scripts\\build-contest-full.tcl"
+  ],
+  "pid": 48952
+}

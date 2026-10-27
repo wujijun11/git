@@ -5,6 +5,7 @@
   <Version>5</Version>
   <Device name="GW5AT-60B" pn="GW5AT-LV60PG484AC1/I0">gw5at60b-002</Device>
   <FileList>
+    <File path="../rtl/board/audio_boot_status.v" type="file.verilog" enable="1"/>
     <File path="../rtl/audio/headroom_smoother.v" type="file.verilog" enable="1"/>
     <File path="../rtl/control/slider_volume_control.v" type="file.verilog" enable="1"/>
     <File path="../rtl/control/gain_percent_meter.v" type="file.verilog" enable="1"/>

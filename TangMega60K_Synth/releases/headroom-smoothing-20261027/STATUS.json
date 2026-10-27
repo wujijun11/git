@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-27",
+  "status": "suspended_after_hardware_failure",
+  "affectedBitstream": "ContestFull_HeadroomSmooth_TEST1024.fs",
+  "sha256": "2415136A6A5DC6278B8772AE6E2F3C83290882282383437C5CA35A7D15F3ECA9",
+  "userReported": ["physical keyboard unresponsive", "C3 discoverable, FPGA handshake timeout", "same wiring works after reverting previous bitstream"],
+  "rootCauseConfirmed": false,
+  "rollback": "ContestFull_SliderVolume_TEST1024.fs",
+  "rollbackSha256": "3C87F83E373BBEABF9D564474E7FB669F35856E339B89EF383AA9A25A6C35BF6",
+  "historicalZipPreserved": true
+}

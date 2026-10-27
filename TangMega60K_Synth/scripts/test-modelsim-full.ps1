@@ -43,6 +43,7 @@ function New-TestCase([string]$Name,[string]$Top,[string]$Bench,[string]$Marker,
 $watchdogCase = New-TestCase 'remote_note_watchdog' 'tb_remote_note_watchdog' `
     'sim/tb_remote_note_watchdog.sv' 'REMOTE NOTE WATCHDOG PASS' @() '' $true
 $allCases = @(
+    (New-TestCase 'audio_boot_status' 'tb_audio_boot_status' 'sim/tb_audio_boot_status.sv' 'AUDIO BOOT STATUS PASS'),
     (New-TestCase 'headroom_smoother' 'tb_headroom_smoother' 'sim/tb_headroom_smoother.sv' 'HEADROOM SMOOTHER PASS'),
     (New-TestCase 'headroom_smoothing_n4' 'tb_headroom_smoothing' 'sim/tb_headroom_smoothing.sv' 'HEADROOM SMOOTHING PASS N=4'),
     (New-TestCase 'headroom_smoothing_n64' 'tb_headroom_smoothing' 'sim/tb_headroom_smoothing.sv' 'HEADROOM SMOOTHING PASS N=64' @('-gN=64')),

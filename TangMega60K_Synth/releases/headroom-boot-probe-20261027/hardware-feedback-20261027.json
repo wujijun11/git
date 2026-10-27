@@ -11,6 +11,12 @@
     "physicalKeyboardSound": true
   },
   "scope": "one reported running session; not full hardware acceptance",
+  "additionalListeningFeedback": {
+    "report": "holding one key and adding other keys makes the held note seem to halve in volume",
+    "matchesRtlPolicy": "AUTO_HEADROOM target changes from 64 to 32 for one to two active voices; smoothing retains that endpoint",
+    "gainPolicyImprovementImplemented": false,
+    "isSeparateFromUnresolvedBootFailure": true
+  },
   "rootCauseConfirmed": false,
   "notYetVerified": [
     "repeated cold starts",

@@ -316,7 +316,7 @@ module instrument_full_system #(
         .cmd_valid(cmdv),.cmd_ready(cmdr),.cmd_on(cmdon),.cmd_voice(voice),.cmd_note(note),.cmd_velocity(velocity),.cmd_timbre(tone),
         .done_valid(dv),.done_ready(dr),.done_voice(done_voice),.active_count(active_count));
     wire pcm_valid,pcm_ready;wire signed [23:0] pcm_l,pcm_r;
-    voice_engine #(.FM_ENABLE(1),.FX_ENABLE(0),.AUTO_HEADROOM(1),.ROM_DIR(ROM_DIR)) synth(.clk(clk),.rst_n(audio_rst_n),
+    voice_engine #(.FM_ENABLE(1),.FX_ENABLE(0),.AUTO_HEADROOM(1),.HEADROOM_SMOOTH(1),.ROM_DIR(ROM_DIR)) synth(.clk(clk),.rst_n(audio_rst_n),
         .cmd_valid(cmdv),.cmd_ready(cmdr),.cmd_on(cmdon),.cmd_voice(voice),.cmd_note(note),.cmd_velocity(velocity),.cmd_timbre(tone),
         .done_valid(dv),.done_ready(dr),.done_voice(done_voice),.sample_valid(pcm_valid),.sample_ready(pcm_ready),
         .sample_left(pcm_l),.sample_right(pcm_r),.engine_sample_begin(sample_begin),

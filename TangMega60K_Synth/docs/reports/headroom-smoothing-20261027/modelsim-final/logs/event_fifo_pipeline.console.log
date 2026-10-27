@@ -1,0 +1,44 @@
+Reading C:/modelsim/modeltech64_10.6e/tcl/vsim/pref.tcl
+
+# 10.6e
+
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/event_fifo_pipeline.wlf -l logs/event_fifo_pipeline.log -do "do cases/event_fifo_pipeline.do" work.tb_event_fifo_pipeline 
+# Start time: 16:34:24 on Oct 27,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# //  ModelSim SE-64 10.6e Jun 23 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_event_fifo_pipeline(fast)
+# Loading work.fifo_pipeline_fixture(fast)
+# Loading work.event_fifo_v2(fast)
+# Loading work.event_fifo_v2_pipeline_reference(fast)
+# Loading work.fifo_pipeline_fixture(fast__1)
+# Loading work.event_fifo_v2(fast__1)
+# Loading work.event_fifo_v2_pipeline_reference(fast__1)
+# Loading work.fifo_pipeline_fixture(fast__2)
+# Loading work.event_fifo_v2(fast__2)
+# Loading work.event_fifo_v2_pipeline_reference(fast__2)
+# Loading work.fifo_pipeline_fixture(fast__3)
+# Loading work.event_fifo_v2(fast__3)
+# Loading work.event_fifo_v2_pipeline_reference(fast__3)
+# do cases/event_fifo_pipeline.do
+# FIFO fixture depth=2 source=6 cycles=16075 push=11283 pop=11261 forwarding=1894
+# FIFO fixture depth=4 source=1 cycles=16085 push=11999 pop=11955 forwarding=1702
+# FIFO fixture depth=8 source=6 cycles=16109 push=12040 pop=11942 forwarding=144
+# FIFO fixture depth=64 source=6 cycles=16445 push=13247 pop=12241 forwarding=112
+# EVENT FIFO PIPELINE PASS
+# ** Note: $finish    : sim/tb_event_fifo_pipeline.sv(123)
+#    Time: 164450 ns  Iteration: 2  Instance: /tb_event_fifo_pipeline
+# End time: 16:34:24 on Oct 27,2026, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0

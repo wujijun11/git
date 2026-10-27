@@ -1,0 +1,22 @@
+{
+  "snapshot": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_pd40h4_g\\verification\\headroom-build\\build_headroom-smooth-final_20261027_163028_c08913e8",
+  "project": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_pd40h4_g",
+  "sourceRoot": "C:\\Users\\sll\\.codex\\visualizations\\2026\\09\\14\\01a09eec-6508-7961-b0d4-f2d9baea4604\\fpga-build-temp\\TangDirectScore_pd40h4_g",
+  "variant": "headroom-smooth-final",
+  "createdAt": "2026-10-27T16:30:28.635839+08:00",
+  "gowin": "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+  "baselineReport": "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-timing-latency-20261026\\TangMega60K_Synth\\docs\\reports\\slider-volume-20261026\\selected-r2\\build-results.json",
+  "withoutGao": true,
+  "gprjDependencies": 81,
+  "inputFiles": 94,
+  "gaoExpected": false,
+  "implementationKind": "bare-main",
+  "gaoEvidence": {
+    "verified": false,
+    "enabledConfigurationCount": 0,
+    "files": []
+  },
+  "preparedOnly": false,
+  "driverSha256": "8E903BD45C894C810A9A1B42310F00DDE47545BBD568EB3A7BF312A164A5D78C",
+  "buildStartedAt": "2026-10-27T16:30:28.680757+08:00"
+}

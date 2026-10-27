@@ -10,6 +10,8 @@ module voice_engine #(
     // for a few notes without increasing the worst-case full-polyphony sum.
     // Legacy diagnostics retain their bit-exact scale by default.
     parameter AUTO_HEADROOM=0,
+    // 仅完整乐器试验入口显式启用；旧诊断默认保留原逐位标度和跨档行为。
+    parameter HEADROOM_SMOOTH=0,
     parameter FX_ENABLE=0, DELAY_SAMPLES=2400,
     parameter EXPRESSION_ENABLE=1,
     parameter FM_ENABLE=0,
@@ -172,10 +174,30 @@ module voice_engine #(
     // N * 2**shift <= 64. The signed 32-bit sum remains bounded even for
     // full-scale, coherent notes; gain_saturator still handles the master
     // gain and final 24-bit clipping. Do not normalize by held keys only.
-    wire signed [31:0] master_mix_left=AUTO_HEADROOM ?
-        $signed(mix_left) <<< frame_boost_shift : mix_left;
-    wire signed [31:0] master_mix_right=AUTO_HEADROOM ?
-        $signed(mix_right) <<< frame_boost_shift : mix_right;
+    wire signed [31:0] master_mix_left;
+    wire signed [31:0] master_mix_right;
+    generate
+        if (AUTO_HEADROOM && HEADROOM_SMOOTH) begin:g_smooth_headroom
+            wire [16:0] applied_gain_q10;
+            wire peak_guard;
+            headroom_smoother smooth_gain (
+                .clk(clk),
+                .rst_n(rst_n),
+                .start(state==V_MIX && voice_id==VOICE_COUNT-1),
+                .active_count(frame_active_count),
+                .target_shift(frame_boost_shift),
+                .mix_left(mix_left),
+                .mix_right(mix_right),
+                .scaled_left(master_mix_left),
+                .scaled_right(master_mix_right),
+                .applied_gain_q10(applied_gain_q10),
+                .peak_guard(peak_guard)
+            );
+        end else begin:g_original_headroom
+            assign master_mix_left = AUTO_HEADROOM ? $signed(mix_left) <<< frame_boost_shift : mix_left;
+            assign master_mix_right = AUTO_HEADROOM ? $signed(mix_right) <<< frame_boost_shift : mix_right;
+        end
+    endgenerate
     wire signed [23:0] dry_left,dry_right;
     gain_saturator #(.SHIFT(MASTER_SHIFT)) u_gain (
         .clk(clk),.mix_left(master_mix_left),.mix_right(master_mix_right),.gain(frame_gain),

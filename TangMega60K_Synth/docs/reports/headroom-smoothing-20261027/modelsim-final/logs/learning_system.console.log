@@ -1,0 +1,140 @@
+Reading C:/modelsim/modeltech64_10.6e/tcl/vsim/pref.tcl
+
+# 10.6e
+
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/learning_system.wlf -l logs/learning_system.log -do "do cases/learning_system.do" work.tb_learning_system 
+# Start time: 16:38:36 on Oct 27,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: rtl/instrument_full_system.v(104): (vopt-2685) [TFMPC] - Too few port connections for 'sensors'.  Expected 32, found 27.
+# ** Warning: rtl/instrument_full_system.v(104): (vopt-2718) [TFMPC] - Missing connection for port 'oor_status'.
+# ** Warning: rtl/instrument_full_system.v(104): (vopt-2718) [TFMPC] - Missing connection for port 'init_stage'.
+# ** Warning: rtl/instrument_full_system.v(104): (vopt-2718) [TFMPC] - Missing connection for port 'last_success_age'.
+# ** Warning: rtl/instrument_full_system.v(104): (vopt-2718) [TFMPC] - Missing connection for port 'error_count'.
+# ** Warning: rtl/instrument_full_system.v(104): (vopt-2718) [TFMPC] - Missing connection for port 'last_error'.
+# ** Warning: rtl/instrument_full_system.v(213): (vopt-2685) [TFMPC] - Too few port connections for 'guide'.  Expected 7, found 5.
+# ** Warning: rtl/instrument_full_system.v(213): (vopt-2718) [TFMPC] - Missing connection for port 'frame_done'.
+# ** Warning: rtl/instrument_full_system.v(213): (vopt-2718) [TFMPC] - Missing connection for port 'busy'.
+# ** Warning: rtl/instrument_full_system.v(218): (vopt-2685) [TFMPC] - Too few port connections for 'watchdog'.  Expected 16, found 15.
+# ** Warning: rtl/instrument_full_system.v(218): (vopt-2718) [TFMPC] - Missing connection for port 'timeout_count'.
+# ** Warning: rtl/instrument_full_system.v(278): (vopt-2685) [TFMPC] - Too few port connections for 'events'.  Expected 19, found 16.
+# ** Warning: rtl/instrument_full_system.v(278): (vopt-2718) [TFMPC] - Missing connection for port 'empty'.
+# ** Warning: rtl/instrument_full_system.v(278): (vopt-2718) [TFMPC] - Missing connection for port 'full'.
+# ** Warning: rtl/instrument_full_system.v(278): (vopt-2718) [TFMPC] - Missing connection for port 'level'.
+# ** Warning: rtl/instrument_full_system.v(312): (vopt-2685) [TFMPC] - Too few port connections for 'control'.  Expected 35, found 29.
+# ** Warning: rtl/instrument_full_system.v(312): (vopt-2718) [TFMPC] - Missing connection for port 'done_error_pulse'.
+# ** Warning: rtl/instrument_full_system.v(312): (vopt-2718) [TFMPC] - Missing connection for port 'ignored_pulse'.
+# ** Warning: rtl/instrument_full_system.v(312): (vopt-2718) [TFMPC] - Missing connection for port 'full_pulse'.
+# ** Warning: rtl/instrument_full_system.v(312): (vopt-2718) [TFMPC] - Missing connection for port 'held_mask'.
+# ** Warning: rtl/instrument_full_system.v(312): (vopt-2718) [TFMPC] - Missing connection for port 'active_mask'.
+# ** Warning: rtl/instrument_full_system.v(312): (vopt-2718) [TFMPC] - Missing connection for port 'expr_applied'.
+# ** Warning: rtl/instrument_full_system.v(332): (vopt-2685) [TFMPC] - Too few port connections for 'audio'.  Expected 15, found 11.
+# ** Warning: rtl/instrument_full_system.v(332): (vopt-2718) [TFMPC] - Missing connection for port 'underrun_sticky'.
+# ** Warning: rtl/instrument_full_system.v(332): (vopt-2718) [TFMPC] - Missing connection for port 'underrun_pulse'.
+# ** Warning: rtl/instrument_full_system.v(332): (vopt-2718) [TFMPC] - Missing connection for port 'fifo_level'.
+# ** Warning: rtl/instrument_full_system.v(332): (vopt-2718) [TFMPC] - Missing connection for port 'frame_tick'.
+# ** Warning: rtl/instrument_full_system.v(345): (vopt-2685) [TFMPC] - Too few port connections for 'visual'.  Expected 13, found 11.
+# ** Warning: rtl/instrument_full_system.v(345): (vopt-2718) [TFMPC] - Missing connection for port 'dropped_samples'.
+# ** Warning: rtl/instrument_full_system.v(345): (vopt-2718) [TFMPC] - Missing connection for port 'spectrum_valid'.
+# ** Note: (vopt-143) Recognized 1 FSM in module "voice_engine(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "runtime_audio_fx(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "i2c_register_master(fast)".
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 47, found 27.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'menu_volume_percent'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'menu_volume_mode'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'menu_prompt_code'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'menu_prompt_valid'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'menu_record_count'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'menu_error'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'menu_busy'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'menu_transpose'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'menu_timbre'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'menu_zone'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'menu_page'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'menu_main'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'debug_audio_reset_status'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'debug_transmit_left'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'debug_last_note'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'video_rgb'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'sensor_fault'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'sensor_ready'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'guide_mask'.
+# ** Warning: sim/tb_learning_system.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'touch_mask'.
+# ** Note: (vopt-143) Recognized 1 FSM in module "mpr121_sampler(fast__2)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "mpr121_sampler(fast__1)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "mpr121_sampler(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "remote_command_router(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "audio_visualizer(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "mpr121_slider(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "voice_allocator_v2(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "menu_action_router(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "pitch_expression(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "learning_stepper(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "remote_uart_rx(fast)".
+# //  ModelSim SE-64 10.6e Jun 23 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_learning_system(fast)
+# Loading work.instrument_full_system(fast)
+# Loading work.remote_uart_transport(fast)
+# Loading work.remote_uart_rx(fast)
+# Loading work.remote_uart_tx(fast)
+# Loading work.remote_command_router(fast)
+# Loading work.mpr121_input_frontend(fast)
+# Loading work.mpr121_sampler(fast)
+# Loading work.i2c_register_master(fast)
+# Loading work.mpr121_sampler(fast__1)
+# Loading work.mpr121_sampler(fast__2)
+# Loading work.mpr121_key_eventizer(fast)
+# Loading work.mpr121_slider(fast)
+# Loading work.slider_menu_controller(fast)
+# Loading work.menu_action_router(fast)
+# Loading work.key_map_transpose(fast)
+# Loading work.local_action_arbiter(fast)
+# Loading work.performance_command_stage(fast)
+# Loading work.performance_controller(fast)
+# Loading work.learning_stepper(fast)
+# Loading work.ws2812_guide(fast)
+# Loading work.remote_note_watchdog(fast)
+# Loading work.note_arbiter(fast)
+# Loading work.event_fifo_v2(fast)
+# Loading work.expression_merge(fast)
+# Loading work.gain_percent_meter(fast)
+# Loading work.captain_control_top_v2(fast)
+# Loading work.voice_allocator_v2(fast)
+# Loading work.expression_controls_v2(fast)
+# Loading work.voice_engine(fast)
+# Loading work.voice_state_ram(fast)
+# Loading work.adsr(fast)
+# Loading work.pitch_expression(fast)
+# Loading work.dds_lane(fast)
+# Loading work.polar_lane(fast)
+# Loading work.polar_lane(fast__1)
+# Loading work.fm_piano_lane(fast)
+# Loading work.wavetable_rom(fast)
+# Loading work.stereo_mixer(fast)
+# Loading work.headroom_smoother(fast)
+# Loading work.gain_saturator(fast)
+# Loading work.audio_fx(fast)
+# Loading work.runtime_audio_fx(fast)
+# Loading work.ui_tone_overlay(fast)
+# Loading work.i2s_tx(fast)
+# Loading work.audio_monitor_cdc(fast)
+# Loading work.audio_visualizer(fast)
+# Loading work.scope_renderer(fast)
+# do cases/learning_system.do
+# LEARNING SYSTEM PASS UART/CRC, physical-only acceptance, repeated note, guide mask, local stop, panic, no audio underrun
+# ** Note: $finish    : sim/tb_learning_system.sv(93)
+#    Time: 688732446 ps  Iteration: 1  Instance: /tb_learning_system
+# End time: 16:38:37 on Oct 27,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 51

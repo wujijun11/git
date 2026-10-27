@@ -1,0 +1,108 @@
+Model Technology ModelSim SE-64 vlog 10.6e Compiler 2018.06 Jun 23 2018
+Start time: 16:30:28 on Oct 27,2026
+vlog -modelsimini modelsim.ini -sv "+define+SIM" -work work rtl/audio/headroom_smoother.v rtl/control/slider_volume_control.v rtl/control/gain_percent_meter.v rtl/control/performance_command_stage.v rtl/visual/bin16_to_bcd.v rtl/visual/oled_menu_renderer.v rtl/visual/oled_status_display.v rtl/audio/ui_tone_overlay.v rtl/control/slider_menu_controller.v rtl/control/menu_action_router.v rtl/control/local_action_arbiter.v rtl/control/key_map_transpose.v rtl/audio/adsr.v rtl/audio/audio_fx.v rtl/audio/audio_system_v2_fm.v rtl/audio/audio_system_v2.v rtl/audio/dds_lane.v rtl/audio/fm_piano_lane.v rtl/audio/gain_saturator.v rtl/audio/pitch_expression.v rtl/audio/polar_lane.v rtl/audio/runtime_audio_fx.v rtl/audio/stereo_mixer.v rtl/audio/voice_engine.v rtl/audio/voice_state_ram.v rtl/audio/wavetable_rom.v rtl/board/board_audio_16_48k_i2s_top.v rtl/board/board_audio_48k_gao_top.v rtl/board/board_audio_48k_i2s_top.v rtl/board/board_audio_diagnostic_top.v rtl/board/board_audio_gao_top.v rtl/board/board_bringup_top.v rtl/board/board_contest_full_top.v rtl/board/board_instrument_b_48k_gao_top.v rtl/board/board_instrument_b_48k_i2s_top.v rtl/board/board_key_event_adapter.v rtl/board/board_sequence16_48k_i2s_top.v rtl/captain_control_top_v2.v rtl/captain_control_top.v rtl/captain_system_top_v2.v rtl/captain_system_top.v rtl/clock/audio_clock_48k.v rtl/clock/pll_init.v rtl/control/expression_merge.v rtl/control/note_arbiter.v rtl/control/remote_command_router.v rtl/control/remote_note_watchdog.v rtl/diagnostics/live64_event_source.v rtl/diagnostics/live64_system_top.v rtl/diagnostics/poly16_event_source.v rtl/diagnostics/sequence16_event_source.v rtl/event_fifo_v2.v rtl/event_fifo.v rtl/expression_controls_v2.v rtl/i2s_tx.v rtl/instrument_full_system.v rtl/instrument_system_v2.v rtl/interaction_top_v2.v rtl/interaction_top.v rtl/performance/learning_stepper.v rtl/performance/performance_controller.v rtl/performance/ws2812_guide.v rtl/remote/remote_uart_transport.sv rtl/sensors/i2c_register_master.v rtl/sensors/mpr121_input_frontend.v rtl/sensors/mpr121_key_eventizer.v rtl/sensors/mpr121_sampler.v rtl/sensors/mpr121_slider.v rtl/test_tone_source.v rtl/tone_demo_top.v rtl/visual/audio_monitor_cdc.v rtl/visual/audio_visualizer.v rtl/visual/scope_renderer.v rtl/visual/video_clocking.v rtl/visual/video_timing_640x480.v rtl/visual/video_tmds_encoder.v rtl/visual/video_tmds_tx.v rtl/voice_allocator_v2.v rtl/voice_allocator.v 
+-- Compiling module headroom_smoother
+-- Compiling module slider_volume_control
+-- Compiling module gain_percent_meter
+-- Compiling module performance_command_stage
+-- Compiling module bin16_to_bcd
+-- Compiling module oled_menu_renderer
+-- Compiling module oled_status_display
+-- Compiling module ui_tone_overlay
+-- Compiling module slider_menu_controller
+-- Compiling module menu_action_router
+-- Compiling module local_action_arbiter
+-- Compiling module key_map_transpose
+-- Compiling module adsr
+-- Compiling module audio_fx
+-- Compiling module audio_system_v2_fm
+-- Compiling module audio_system_v2
+-- Compiling module audio_system_v2_delay
+-- Compiling module dds_lane
+-- Compiling module fm_piano_lane
+-- Compiling module gain_saturator
+-- Compiling module pitch_expression
+-- Compiling module polar_lane
+-- Compiling module runtime_audio_fx
+-- Compiling module stereo_mixer
+-- Compiling module voice_engine
+-- Compiling module voice_state_ram
+-- Compiling module wavetable_rom
+-- Compiling module board_audio_16_48k_i2s_top
+-- Compiling module board_audio_48k_gao_top
+-- Compiling module board_audio_48k_i2s_top
+-- Compiling module board_audio_diagnostic_top
+-- Compiling module board_audio_gao_top
+-- Compiling module board_bringup_top
+-- Compiling module board_contest_full_top
+-- Compiling module board_local_actions
+-- Compiling module board_instrument_b_48k_gao_top
+-- Compiling module board_instrument_b_48k_i2s_top
+-- Compiling module board_key_event_adapter
+-- Compiling module board_sequence16_48k_i2s_top
+-- Compiling module captain_control_top_v2
+-- Compiling module captain_control_top
+-- Compiling module captain_system_top_v2
+-- Compiling module captain_system_top
+-- Compiling module audio_clock_48k
+-- Compiling module audio_plla_stage
+-- Compiling module PLL_INIT
+-- Compiling module expression_merge
+-- Compiling module note_arbiter
+-- Compiling module remote_command_router
+-- Compiling module remote_note_watchdog
+-- Compiling module live64_event_source
+-- Compiling module live64_system_top
+-- Compiling module poly16_event_source
+-- Compiling module sequence16_event_source
+-- Compiling module event_fifo_v2
+-- Compiling module event_fifo
+-- Compiling module expression_controls_v2
+-- Compiling module i2s_tx
+-- Compiling module instrument_full_system
+-- Compiling module instrument_system_v2
+-- Compiling module interaction_top_v2
+-- Compiling module interaction_top
+-- Compiling module learning_stepper
+-- Compiling module performance_controller
+-- Compiling module ws2812_guide
+-- Compiling module remote_uart_rx
+-- Compiling module remote_uart_tx
+-- Compiling module remote_uart_transport
+-- Compiling module i2c_register_master
+-- Compiling module mpr121_input_frontend
+-- Compiling module mpr121_key_eventizer
+-- Compiling module mpr121_sampler
+-- Compiling module mpr121_slider
+-- Compiling module test_tone_source
+-- Compiling module tone_demo_top
+-- Compiling module audio_monitor_cdc
+-- Compiling module audio_visualizer
+-- Compiling module scope_renderer
+-- Compiling module video_clocking
+-- Compiling module video_timing_640x480
+-- Compiling module video_sync_align
+-- Compiling module video_tmds_encoder
+-- Compiling module video_tmds_tx
+-- Compiling module video_serializer10
+-- Compiling module voice_allocator_v2
+-- Compiling module voice_allocator
+
+Top level modules:
+	audio_system_v2_fm
+	audio_system_v2_delay
+	board_audio_16_48k_i2s_top
+	board_audio_48k_gao_top
+	board_audio_48k_i2s_top
+	board_audio_diagnostic_top
+	board_audio_gao_top
+	board_contest_full_top
+	board_instrument_b_48k_gao_top
+	board_instrument_b_48k_i2s_top
+	board_sequence16_48k_i2s_top
+	captain_system_top
+	PLL_INIT
+	interaction_top
+	tone_demo_top
+End time: 16:30:28 on Oct 27,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

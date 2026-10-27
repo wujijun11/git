@@ -1,0 +1,73 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/headroom_legacy.wlf -l logs/headroom_legacy.log -do "do cases/headroom_legacy.do" work.tb_voice_headroom 
+# Start time: 16:31:32 on Oct 27,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "voice_engine(fast__1)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "voice_engine(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "pitch_expression(fast)".
+# //  ModelSim SE-64 10.6e Jun 23 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_voice_headroom(fast)
+# Loading work.voice_engine(fast)
+# Loading work.voice_state_ram(fast)
+# Loading work.adsr(fast)
+# Loading work.pitch_expression(fast)
+# Loading work.dds_lane(fast)
+# Loading work.polar_lane(fast)
+# Loading work.polar_lane(fast__1)
+# Loading work.wavetable_rom(fast)
+# Loading work.stereo_mixer(fast)
+# Loading work.gain_saturator(fast)
+# Loading work.audio_fx(fast)
+# Loading work.voice_engine(fast__1)
+# do cases/headroom_legacy.do
+# HEADROOM STEADY PASS voices=1 boost=64 samples=24
+# HEADROOM STEADY PASS voices=2 boost=32 samples=24
+# HEADROOM STEADY PASS voices=4 boost=16 samples=24
+# HEADROOM STEADY PASS voices=8 boost=8 samples=24
+# HEADROOM STEADY PASS voices=16 boost=4 samples=24
+# HEADROOM STEADY PASS voices=32 boost=2 samples=24
+# HEADROOM STEADY PASS voices=64 boost=1 samples=24
+# HEADROOM STEADY PASS voices=64 boost=1 samples=24
+# HEADROOM STEADY PASS voices=1 boost=64 samples=24
+# HEADROOM PITCH PASS midi=60 hz=261.625565 ftw=16534c3
+# HEADROOM PITCH PASS midi=61 hz=277.182631 ftw=17a725a
+# HEADROOM PITCH PASS midi=62 hz=293.664768 ftw=190f347
+# HEADROOM PITCH PASS midi=63 hz=311.126984 ftw=1a8cac3
+# HEADROOM PITCH PASS midi=64 hz=329.627557 ftw=1c20d2f
+# HEADROOM PITCH PASS midi=65 hz=349.228231 ftw=1dcd01d
+# HEADROOM PITCH PASS midi=66 hz=369.994423 ftw=1f92a6d
+# HEADROOM PITCH PASS midi=67 hz=391.995436 ftw=2173456
+# HEADROOM PITCH PASS midi=68 hz=415.304698 ftw=2370783
+# HEADROOM PITCH PASS midi=69 hz=440.000000 ftw=258bf26
+# HEADROOM PITCH PASS midi=70 hz=466.163762 ftw=27c780b
+# HEADROOM PITCH PASS midi=71 hz=493.883301 ftw=2a250ba
+# HEADROOM PITCH PASS midi=72 hz=523.251131 ftw=2ca6987
+# HEADROOM PITCH PASS midi=73 hz=554.365262 ftw=2f4e4b4
+# HEADROOM PITCH PASS midi=74 hz=587.329536 ftw=321e68d
+# HEADROOM PITCH PASS midi=75 hz=622.253967 ftw=3519586
+# HEADROOM PITCH PASS midi=76 hz=659.255114 ftw=3841a5d
+# HEADROOM PITCH PASS midi=77 hz=698.456463 ftw=3b9a03a
+# HEADROOM PITCH PASS midi=78 hz=739.988845 ftw=3f254d9
+# HEADROOM PITCH PASS midi=79 hz=783.990872 ftw=42e68ac
+# HEADROOM PITCH PASS midi=80 hz=830.609395 ftw=46e0f07
+# HEADROOM PITCH PASS midi=81 hz=880.000000 ftw=4b17e4b
+# HEADROOM PITCH PASS midi=82 hz=932.327523 ftw=4f8f017
+# HEADROOM PITCH PASS midi=83 hz=987.766603 ftw=544a173
+# HEADROOM PITCH PASS midi=84 hz=1046.502261 ftw=594d30d
+# VOICE HEADROOM PASSED pcm=1309 stall_checks=3927 release_scans=2304 pitch_checks=25 peak=6091440 cycles=941548
+# ** Note: $finish    : sim/tb_voice_headroom.sv(226)
+#    Time: 18830960 ns  Iteration: 1  Instance: /tb_voice_headroom
+# End time: 16:31:40 on Oct 27,2026, Elapsed time: 0:00:08
+# Errors: 0, Warnings: 0

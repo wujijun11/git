@@ -43,6 +43,10 @@ function New-TestCase([string]$Name,[string]$Top,[string]$Bench,[string]$Marker,
 $watchdogCase = New-TestCase 'remote_note_watchdog' 'tb_remote_note_watchdog' `
     'sim/tb_remote_note_watchdog.sv' 'REMOTE NOTE WATCHDOG PASS' @() '' $true
 $allCases = @(
+    (New-TestCase 'headroom_smoother' 'tb_headroom_smoother' 'sim/tb_headroom_smoother.sv' 'HEADROOM SMOOTHER PASS'),
+    (New-TestCase 'headroom_smoothing_n4' 'tb_headroom_smoothing' 'sim/tb_headroom_smoothing.sv' 'HEADROOM SMOOTHING PASS N=4'),
+    (New-TestCase 'headroom_smoothing_n64' 'tb_headroom_smoothing' 'sim/tb_headroom_smoothing.sv' 'HEADROOM SMOOTHING PASS N=64' @('-gN=64')),
+    (New-TestCase 'headroom_legacy' 'tb_voice_headroom' 'sim/tb_voice_headroom.sv' 'VOICE HEADROOM PASSED'),
     (New-TestCase 'oled_volume_board' 'tb_oled_board_integration' 'sim/tb_oled_board_integration.sv' 'OLED BOARD INTEGRATION PASS' @('-gVOLUME_MODE=1')),
     (New-TestCase 'oled_volume' 'tb_oled_volume' 'sim/tb_oled_volume.sv' 'OLED VOLUME PASS'),
     (New-TestCase 'slider_volume_system' 'tb_slider_volume_system' 'sim/tb_slider_volume_system.sv' 'SLIDER VOLUME SYSTEM PASS'),

@@ -1,0 +1,54 @@
+{
+  "passed": true,
+  "sampleRateHz": 48000,
+  "samples": 16008,
+  "hardwareTested": false,
+  "allSamplesCheckedAgainstRawMix": true,
+  "steadyBitExactSamples": 15882,
+  "peakGuardFrames": 0,
+  "clippedOldFrames": 0,
+  "clippedNewFrames": 0,
+  "peakOld": 390784,
+  "peakNew": 390784,
+  "maximumAdjacentStepOld": 54336,
+  "maximumAdjacentStepNew": 46080,
+  "transitions": [
+    {
+      "frame": 1506,
+      "timeMs": 31.354,
+      "voicesBefore": 1,
+      "voicesAfter": 2,
+      "factorBefore": 64,
+      "factorAfter": 32,
+      "oldGainChangeContribution": 94144,
+      "newGainChangeContribution": 1472,
+      "oldContributionDbFS": -38.998,
+      "newContributionDbFS": -75.116,
+      "reductionPercent": 98.436,
+      "framesToTargetObserved": 64,
+      "note": "当前同一个原始混音值上隔离增益变化贡献；不是声学噪声测量"
+    },
+    {
+      "frame": 7806,
+      "timeMs": 162.604,
+      "voicesBefore": 2,
+      "voicesAfter": 1,
+      "factorBefore": 32,
+      "factorAfter": 64,
+      "oldGainChangeContribution": 42304,
+      "newGainChangeContribution": 662,
+      "oldContributionDbFS": -45.946,
+      "newContributionDbFS": -82.057,
+      "reductionPercent": 98.435,
+      "framesToTargetObserved": 64,
+      "note": "当前同一个原始混音值上隔离增益变化贡献；不是声学噪声测量"
+    }
+  ],
+  "limits": [
+    "没有DAC/功放/接线/电源模型",
+    "整体样本差分不是噼啪检测器",
+    "只检查本次具体激励；瞬态峰值保护可能引入非线性",
+    "平滑时间按生成帧数，48kHz连续输出时最多1.333ms"
+  ],
+  "captureSha256": "937F48CAC3488387D0FB8A1B4BDB4599DBD95481A08FD39837FD10A522F40D72"
+}

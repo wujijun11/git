@@ -1,0 +1,78 @@
+{
+  "source": "existing HDL raw-mix captures; offline gain arithmetic only",
+  "captures": [
+    {
+      "capture": "delivery-headroom-smoothing/evidence/headroom_smoothing_n4.csv",
+      "sha256": "937F48CAC3488387D0FB8A1B4BDB4599DBD95481A08FD39837FD10A522F40D72",
+      "frames": 16008,
+      "durationSeconds": 0.3335,
+      "maxActiveVoices": 2,
+      "maxMasterGain": 2048,
+      "options": [
+        {
+          "fixedGain": 16,
+          "peakUnclipped": 185792,
+          "peakPercentOfFullScale": 2.215,
+          "peakDbFS": -33.093,
+          "clippedChannelSamplesWithoutLimiter": 0,
+          "above80PercentChannelSamples": 0
+        },
+        {
+          "fixedGain": 32,
+          "peakUnclipped": 371584,
+          "peakPercentOfFullScale": 4.43,
+          "peakDbFS": -27.073,
+          "clippedChannelSamplesWithoutLimiter": 0,
+          "above80PercentChannelSamples": 0
+        },
+        {
+          "fixedGain": 64,
+          "peakUnclipped": 743168,
+          "peakPercentOfFullScale": 8.859,
+          "peakDbFS": -21.052,
+          "clippedChannelSamplesWithoutLimiter": 0,
+          "above80PercentChannelSamples": 0
+        }
+      ]
+    },
+    {
+      "capture": "delivery-headroom-smoothing/evidence/headroom_smoothing_n64.csv",
+      "sha256": "997F2EAB551DD3A04FFFE24EACA6CA893FEB9F18548DAB2693A0011712BB86AE",
+      "frames": 5531,
+      "durationSeconds": 0.115229,
+      "maxActiveVoices": 64,
+      "maxMasterGain": 4095,
+      "options": [
+        {
+          "fixedGain": 16,
+          "peakUnclipped": 1572224,
+          "peakPercentOfFullScale": 18.742,
+          "peakDbFS": -14.544,
+          "clippedChannelSamplesWithoutLimiter": 0,
+          "above80PercentChannelSamples": 0
+        },
+        {
+          "fixedGain": 32,
+          "peakUnclipped": 3144448,
+          "peakPercentOfFullScale": 37.485,
+          "peakDbFS": -8.523,
+          "clippedChannelSamplesWithoutLimiter": 0,
+          "above80PercentChannelSamples": 0
+        },
+        {
+          "fixedGain": 64,
+          "peakUnclipped": 6288896,
+          "peakPercentOfFullScale": 74.969,
+          "peakDbFS": -2.502,
+          "clippedChannelSamplesWithoutLimiter": 0,
+          "above80PercentChannelSamples": 0
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "short finite piano captures with specific notes, velocity and envelopes",
+    "no proof for other timbres, effects, steady-state full load or coherent worst-case",
+    "no limiter implemented, no new HDL simulation, no bitstream changed"
+  ]
+}

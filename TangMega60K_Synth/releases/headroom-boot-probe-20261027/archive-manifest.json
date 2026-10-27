@@ -1,0 +1,17 @@
+{
+  "archive": "ContestFull_HeadroomBootProbe_R2.zip",
+  "archiveSha256": "8809A7DBA794E579FA0AAD162587889184E75F81481C4374F3A9BF2052D3F2CE",
+  "archiveBytes": 2177272,
+  "files": 265,
+  "bitstream": "ContestFull_HeadroomBootProbe_R2.fs",
+  "bitstreamSha256": "BD359CFD031977B970D2DB0C4E058C9575E12F2596B24A69CC62ED4A5E00480A",
+  "sourceRevision": "75d07698f1b9d2ff0cd486cd152970d3a08daf6d",
+  "userReportedChecks": [
+    "RGB green",
+    "FPGA handshake",
+    "physical key sound"
+  ],
+  "rootCauseConfirmed": false,
+  "fullHardwareAcceptance": false,
+  "pushed": false
+}

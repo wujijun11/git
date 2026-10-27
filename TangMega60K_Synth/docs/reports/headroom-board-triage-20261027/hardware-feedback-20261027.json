@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-27",
+  "timezone": "Asia/Shanghai",
+  "evidenceSource": "direct user report in this chat; no agent instrument measurement",
+  "bitstream": "ContestFull_HeadroomBootProbe_R2.fs",
+  "sha256": "BD359CFD031977B970D2DB0C4E058C9575E12F2596B24A69CC62ED4A5E00480A",
+  "userCode": "0x0000F2EA",
+  "reportedPassed": {
+    "fpgaRgbGreen": true,
+    "c3ToFpgaHandshake": true,
+    "physicalKeyboardSound": true
+  },
+  "scope": "one reported running session; not full hardware acceptance",
+  "rootCauseConfirmed": false,
+  "notYetVerified": [
+    "repeated cold starts",
+    "long-duration stability",
+    "64-voice hardware spectrum and sustained output",
+    "headroom transition listening comparison",
+    "physical end-to-end latency"
+  ],
+  "decision": "preserve this exact tested candidate; keep the original failed headroom bitstream suspended",
+  "agentDownloadedHardware": false,
+  "pushed": false
+}

@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-27",
+  "branch": "codex/headroom-smoothing",
+  "sourceRevision": "b15a102097a888edc4f48f0db4e54940d1024eca",
+  "hardwareValidated": false,
+  "pushed": false,
+  "diagnosticsIncluded": false,
+  "bitstream": "fpga/ContestFull_HeadroomSmooth_TEST1024.fs",
+  "sha256": "2415136A6A5DC6278B8772AE6E2F3C83290882282383437C5CA35A7D15F3ECA9",
+  "protectedInputs": [
+    "full/contest_full.cst",
+    "full/contest_full.sdc",
+    "rtl/audio/rom/menu_font.hex",
+    "rtl/audio/rom/midi.hex",
+    "rtl/audio/rom/piano.hex",
+    "rtl/audio/rom/polar_lane0.hex",
+    "rtl/audio/rom/polar_lane1.hex",
+    "rtl/audio/rom/polar_ratios.hex",
+    "rtl/audio/rom/ratio.hex",
+    "rtl/audio/rom/sine.hex",
+    "rtl/audio/rom/velocity.hex",
+    "rtl/audio/rom/waves.hex",
+    "rtl/clock/audio_clock_48k.v",
+    "rtl/clock/pll_init.v",
+    "rtl/visual/goertzel_1024_64.hex"
+  ],
+  "timing": {
+    "setup": 0.338,
+    "hold": 0.101,
+    "recovery": 4.479,
+    "removal": 0.566
+  },
+  "resources": {
+    "Logic": {
+      "used": 27679.0,
+      "capacity": 59904.0,
+      "reportedPercent": 47,
+      "free": 32225.0
+    },
+    "Register": {
+      "used": 19157.0,
+      "capacity": 60780.0,
+      "reportedPercent": 32,
+      "free": 41623.0
+    },
+    "BSRAM": {
+      "used": 105.0,
+      "capacity": 118.0,
+      "reportedPercent": 89,
+      "free": 13.0
+    },
+    "DSP": {
+      "used": 56.5,
+      "capacity": 118.0,
+      "reportedPercent": 48,
+      "free": 61.5
+    }
+  },
+  "modelSimCases": [
+    "headroom_smoother",
+    "headroom_smoothing_n4",
+    "headroom_smoothing_n64",
+    "headroom_legacy",
+    "oled_volume_board",
+    "oled_volume",
+    "slider_volume_system",
+    "slider_volume_control",
+    "slider_performance",
+    "event_fifo_pipeline",
+    "touch_i2s_latency",
+    "transport_status_equivalence",
+    "polar_margin_s1",
+    "polar_margin_s2",
+    "polar_margin_s3",
+    "polar_margin_negative",
+    "polar_margin_early_write",
+    "oled_timing_regression",
+    "oled_board",
+    "oled_board_timing",
+    "learning_mode",
+    "learning_status",
+    "learning_system",
+    "direct_score",
+    "direct_system",
+    "score_capacity_1024",
+    "menu_system",
+    "mode_status",
+    "oled_menu",
+    "slider_menu",
+    "menu_replay",
+    "full_system",
+    "global_panic",
+    "expression_merge",
+    "remote_note_watchdog",
+    "watchdog_arbiter",
+    "mpr121_backpressure",
+    "mpr121_capacity",
+    "performance",
+    "performance_retrigger",
+    "performance_commit",
+    "audio_i2s"
+  ]
+}

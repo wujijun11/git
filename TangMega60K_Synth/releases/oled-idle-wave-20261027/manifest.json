@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-27",
+  "branch": "codex/oled-idle-waveform",
+  "sourceRevision": "f5492503c2bfb2367a541f9944f6d23841547f39",
+  "hardwareValidated": false,
+  "downloadedByAgent": false,
+  "pushed": false,
+  "bitstream": "fpga/ContestFull_OLEDIdleWave_TEST1024.fs",
+  "sha256": "987CCEEB8F0491E51254D89880EF2667B450AFF0B1C8B3125CEE16E3222F656C",
+  "userCode": "0x000010C2",
+  "timing": {
+    "setup": 0.381,
+    "hold": 0.163,
+    "recovery": 4.242,
+    "removal": 0.389
+  },
+  "resources": {
+    "Logic": {
+      "used": 27882.0,
+      "capacity": 59904.0,
+      "reportedPercent": 47,
+      "free": 32022.0
+    },
+    "Register": {
+      "used": 19141.0,
+      "capacity": 60780.0,
+      "reportedPercent": 32,
+      "free": 41639.0
+    },
+    "BSRAM": {
+      "used": 106.0,
+      "capacity": 118.0,
+      "reportedPercent": 90,
+      "free": 12.0
+    },
+    "DSP": {
+      "used": 56.5,
+      "capacity": 118.0,
+      "reportedPercent": 48,
+      "free": 61.5
+    }
+  },
+  "modelSimCases": [
+    "audio_boot_status",
+    "audio_i2s",
+    "direct_system",
+    "full_system",
+    "global_panic",
+    "headroom_smoothing_n64",
+    "learning_system",
+    "menu_system",
+    "oled_i2c_stream",
+    "oled_idle_menu",
+    "oled_menu",
+    "oled_volume",
+    "oled_volume_board",
+    "oled_wave_board",
+    "oled_wave_board_timing",
+    "oled_wave_capture",
+    "oled_wave_display",
+    "performance",
+    "performance_commit",
+    "performance_held_write",
+    "performance_retrigger",
+    "slider_menu",
+    "slider_performance",
+    "transport_status_equivalence"
+  ],
+  "idleSeconds": 3,
+  "menuStatePreservedOnIdle": true,
+  "sampleRateHz": 48000,
+  "displayedChannel": "actual transmitted left"
+}

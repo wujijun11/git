@@ -1,5 +1,5 @@
 /* 桌面曲谱播放协调层：连接生命周期、远程音符归属和播放状态显示。
- * 调度算法在realtime-score.js，通信仍由NeonController负责。
+ * Windows原生连接使用native-score-player；网页/Demo保留realtime-score调度。
  */
 class DesktopRealtimePlayback {
     constructor({ controller, getConnection, getScore, assertIdle, statusNode, message, beforeStart = () => {} }) {
@@ -11,8 +11,9 @@ class DesktopRealtimePlayback {
             release: () => this.release(),
             onState: state => this.render(state),
         });
+        this.nativePlayer = new NativeScorePlayer(controller, state => this.render(state));
     }
-    get busy() { return this.starting || this.player.busy; }
+    get busy() { return this.starting || this.player.busy || this.nativePlayer.busy; }
     sameConnection() { return this.connection === this.getConnection() && this.controller.ready; }
     async send(event) {
         if (!this.sameConnection()) throw Error("蓝牙连接已变化，实时播放停止");
@@ -68,6 +69,8 @@ class DesktopRealtimePlayback {
                 check();
                 this.timbre = this.controller.timbre;
                 this.starting = false;
+                if (this.controller.supportsNativePlayback())
+                    return await this.nativePlayer.start(snapshot, this.timbre);
                 return await this.player.start(snapshot);
             } finally { this.starting = false; }
         });
@@ -76,6 +79,7 @@ class DesktopRealtimePlayback {
     stop() {
         this.cancelled = true;
         if (this.player.busy) this.player.stop().catch(() => {});
+        if (this.nativePlayer.busy) this.nativePlayer.stop().catch(() => {});
         return this.done ? this.done.catch(() => {}) : Promise.resolve();
     }
 }

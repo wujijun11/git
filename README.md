@@ -1,5 +1,7 @@
 # 弦光：Tang Mega 60K 实时多音色电子乐器
 
+2026-10-27：最近全部测试版本源码、问题处理与验证报告一并更新。[版本状态与问题汇总](TangMega60K_Synth/docs/版本问题与解决方案汇总_20261027.md) · [OLED波形版FPGA下载](TangMega60K_Synth/releases/oled-idle-wave-20261027/README.md) · [Windows 1.5.1下载](TangMega60K_Synth/releases/windows-minimized-20261027/README.md)。最新FPGA版已有用户发声反馈；**OLED屏幕、5×5灯板未进行实物测试**。Windows最小化专项使用真实窗口与内存设备，真实蓝牙/DAC待复测；历史故障FS仍暂停使用。下方为各自日期的历史记录。
+
 2026-10-26：更新Tang Mega 60K当前演奏与学习版本。**[下载FPGA位流、Windows 1.5.0软件和查看验证结果](TangMega60K_Synth/releases/learning-mode-20261026/README.md)**。支持按对实体琴键才前进的学习模式；保留曲库、蓝牙、菜单和实时HDL合成。时序余量很紧，新学习功能实物验收与总延迟仍待测。下方保留历史更新。
 
 

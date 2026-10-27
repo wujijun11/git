@@ -1,0 +1,1 @@
+ALL DESKTOP CONTROLLER TESTS PASSED: handshake, ACK/data ordering, generation isolation, failures, held pitches, atomic remote release batches, clean batch failure, expression coalescing, upload/cancel, recording and demo distinction

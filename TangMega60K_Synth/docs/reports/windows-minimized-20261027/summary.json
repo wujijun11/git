@@ -1,0 +1,59 @@
+{
+  "pythonTests": 52,
+  "jsSuites": 8,
+  "offlineUiSuites": 3,
+  "realWindowMinimizedTest": {
+    "ok": true,
+    "javascriptBaseline": false,
+    "actualWindowMinimized": true,
+    "minimizedSeconds": 71.0,
+    "expectedNoteEvents": 2800,
+    "actualNoteEvents": 2800,
+    "exactNoteOrder": true,
+    "noteEventsWhileMinimized": 2759,
+    "uiReceiveCallbacksWhileMinimized": 2,
+    "maxNoteGapMs": 47.00000000593718,
+    "frontendResult": {
+      "ok": true,
+      "result": {
+        "ok": true,
+        "state": "finished",
+        "completed": 2800,
+        "total": 2800,
+        "maxLateMs": 45.99999941274291,
+        "error": null,
+        "nextSeq": 18,
+        "token": "score_1793105043732_1",
+        "connectionLost": false
+      },
+      "ready": true,
+      "status": "播放完成 · 2800/2800 条事件 · 最大发送至确认滞后 46.0 ms"
+    },
+    "actualBluetoothTested": false,
+    "dacTested": false
+  },
+  "baselineReproduced": {
+    "ok": false,
+    "javascriptBaseline": true,
+    "actualWindowMinimized": true,
+    "minimizedSeconds": 13.0,
+    "expectedNoteEvents": 480,
+    "actualNoteEvents": 42,
+    "exactNoteOrder": false,
+    "noteEventsWhileMinimized": 0,
+    "uiReceiveCallbacksWhileMinimized": 12,
+    "maxNoteGapMs": 31.9999999992433,
+    "frontendResult": {
+      "ok": false,
+      "error": "Error: 发送落后曲谱超过250ms，已停止；请减少音轨或降低曲速后重试",
+      "status": "播放中止 · 42/480 条事件 · 最大发送至确认滞后 876.1 ms · 发送落后曲谱超过250ms，已停止；请减少音轨或降低曲速后重试"
+    },
+    "actualBluetoothTested": false,
+    "dacTested": false
+  },
+  "packedSmokePassed": true,
+  "zipBytesVerified": true,
+  "actualBluetoothTested": false,
+  "oledTested": false,
+  "led5x5Tested": false
+}

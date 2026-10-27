@@ -1,0 +1,124 @@
+199 INFO: PyInstaller: 6.22.3, contrib hooks: 2026.9
+200 INFO: Python: 3.12.14
+231 INFO: Platform: Windows-11-10.0.26200-SP0
+231 INFO: Python environment: C:\Users\sll\Documents\ChatGPT\���� 2\TangMega60K_Synth\tmp\desktop-python
+232 INFO: wrote C:\Users\sll\Documents\ChatGPT\���� 2\test-timing-latency-20261026\TangMega60K_Synth\tmp\windows-minimized-pyinstaller\spec\TangNeonStudio.spec
+143 WARNING: Failed to collect submodules for 'webview.platforms.android' because importing 'webview.platforms.android' raised: ModuleNotFoundError: No module named 'android'
+150 WARNING: Failed to collect submodules for 'bleak.backends.corebluetooth' because importing 'bleak.backends.corebluetooth' raised: ModuleNotFoundError: No module named 'objc'
+2501 INFO: Module search paths (PYTHONPATH):
+['C:\\Users\\sll\\Documents\\ChatGPT\\���� '
+ '2\\test-timing-latency-20261026\\TangMega60K_Synth',
+ 'C:\\Users\\sll\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python312.zip',
+ 'C:\\Users\\sll\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\DLLs',
+ 'C:\\Users\\sll\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib',
+ 'C:\\Users\\sll\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python',
+ 'C:\\Users\\sll\\Documents\\ChatGPT\\���� '
+ '2\\TangMega60K_Synth\\tmp\\desktop-python',
+ 'C:\\Users\\sll\\Documents\\ChatGPT\\���� '
+ '2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages',
+ 'C:\\Users\\sll\\Documents\\ChatGPT\\���� '
+ '2\\test-timing-latency-20261026\\TangMega60K_Synth\\desktop']
+2890 INFO: Appending 'binaries' from .spec
+2891 INFO: Appending 'datas' from .spec
+2914 INFO: checking Analysis
+2915 INFO: Building Analysis because Analysis-00.toc is non existent
+2915 INFO: Looking for Python shared library...
+2915 INFO: Using Python shared library: C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python312.dll
+2915 INFO: Running Analysis Analysis-00.toc
+2915 INFO: Target bytecode optimization level: 0
+2915 INFO: Initializing module dependency graph...
+2916 INFO: Initializing module graph hook caches...
+2970 INFO: Analyzing modules for base_library.zip ...
+4071 INFO: Processing standard module hook 'hook-encodings.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+4442 INFO: Processing standard module hook 'hook-math.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+4616 INFO: Processing standard module hook 'hook-heapq.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+5299 INFO: Processing standard module hook 'hook-pickle.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+7093 INFO: Caching module dependency graph...
+7112 INFO: Analyzing C:\Users\sll\Documents\ChatGPT\���� 2\test-timing-latency-20261026\TangMega60K_Synth\desktop\native_host.py
+7276 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+7427 INFO: Processing standard module hook 'hook-xml.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+7743 INFO: Processing standard module hook 'hook-_ctypes.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+8246 INFO: Processing standard module hook 'hook-bleak.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+8293 INFO: Processing standard module hook 'hook-platform.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+8299 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+8300 INFO: SetuptoolsInfo: initializing cached setuptools info...
+9678 INFO: Processing standard module hook 'hook-webview.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\webview\\__pyinstaller'
+9768 INFO: Processing standard module hook 'hook-webbrowser.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+10148 INFO: Processing pre-safe-import-module hook 'hook-gi.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+10244 INFO: Processing standard module hook 'hook-clr.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\pythonnet\\_pyinstaller'
+10261 INFO: Processing standard module hook 'hook-clr_loader.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+10373 INFO: Processing standard module hook 'hook-pycparser.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\_pyinstaller_hooks_contrib\\stdhooks'
+10498 INFO: Processing standard module hook 'hook-setuptools.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+10547 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+10640 INFO: Processing standard module hook 'hook-sysconfig.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+10652 INFO: Processing pre-safe-import-module hook 'hook-jaraco.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+10653 INFO: Setuptools: 'jaraco' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco'!
+10666 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+10667 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+10777 INFO: Processing standard module hook 'hook-_osx_support.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+10808 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+11058 INFO: Processing standard module hook 'hook-setuptools._vendor.jaraco.text.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+11060 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+11216 INFO: Processing pre-safe-import-module hook 'hook-backports.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+11216 INFO: Setuptools: 'backports' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.backports'!
+11810 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+11811 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+12374 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+12375 INFO: Setuptools: 'wheel' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.wheel'!
+12827 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+13120 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+13122 INFO: Setuptools: 'importlib_metadata' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.importlib_metadata'!
+13143 INFO: Processing standard module hook 'hook-setuptools._vendor.importlib_metadata.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+13210 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\pre_safe_import_module'
+13211 INFO: Setuptools: 'zipp' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.zipp'!
+13259 INFO: Analyzing hidden import 'webview.__pyinstaller'
+13261 INFO: Analyzing hidden import 'webview.__pyinstaller.hook-webview'
+13330 INFO: Processing standard module hook 'hook-win32ctypes.core.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks'
+14534 INFO: Analyzing hidden import 'webview._version'
+14536 INFO: Analyzing hidden import 'bleak.backends._manufacturers'
+14566 INFO: Analyzing hidden import 'winrt.runtime.interop'
+14573 INFO: Analyzing hidden import 'winrt.system.hresult'
+14583 INFO: Analyzing hidden import 'pythonnet._pyinstaller'
+14585 INFO: Analyzing hidden import 'pythonnet._pyinstaller.hook-clr'
+14586 INFO: Processing module hooks (post-graph stage)...
+14586 WARNING: Hidden import "pycparser.lextab" not found!
+14586 WARNING: Hidden import "pycparser.yacctab" not found!
+14803 INFO: Performing binary vs. data reclassification (301 entries)
+15008 INFO: Looking for ctypes DLLs
+15027 WARNING: Ignoring /System/Library/Frameworks/IOKit.framework/IOKit imported from C:\Users\sll\Documents\ChatGPT\���� 2\TangMega60K_Synth\tmp\desktop-python\Lib\site-packages\serial\tools\list_ports_osx.py - only basenames are supported with ctypes imports!
+15027 WARNING: Ignoring /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation imported from C:\Users\sll\Documents\ChatGPT\���� 2\TangMega60K_Synth\tmp\desktop-python\Lib\site-packages\serial\tools\list_ports_osx.py - only basenames are supported with ctypes imports!
+15052 INFO: Analyzing run-time hooks ...
+15054 INFO: Including run-time hook 'pyi_rth_inspect.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+15063 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+15071 INFO: Including run-time hook 'pyi_rth_setuptools.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+15077 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from 'C:\\Users\\sll\\Documents\\ChatGPT\\���� 2\\TangMega60K_Synth\\tmp\\desktop-python\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks'
+15091 INFO: Creating base_library.zip...
+15103 INFO: Looking for dynamic libraries
+15805 INFO: Extra DLL search directories (AddDllDirectory): []
+15805 INFO: Extra DLL search directories (PATH): []
+16232 INFO: Warnings written to C:\Users\sll\Documents\ChatGPT\���� 2\test-timing-latency-20261026\TangMega60K_Synth\tmp\windows-minimized-pyinstaller\TangNeonStudio\warn-TangNeonStudio.txt
+16265 INFO: Graph cross-reference written to C:\Users\sll\Documents\ChatGPT\���� 2\test-timing-latency-20261026\TangMega60K_Synth\tmp\windows-minimized-pyinstaller\TangNeonStudio\xref-TangNeonStudio.html
+16324 INFO: checking PYZ
+16324 INFO: Building PYZ because PYZ-00.toc is non existent
+16324 INFO: Building PYZ (ZlibArchive) C:\Users\sll\Documents\ChatGPT\���� 2\test-timing-latency-20261026\TangMega60K_Synth\tmp\windows-minimized-pyinstaller\TangNeonStudio\PYZ-00.pyz
+16682 INFO: Building PYZ (ZlibArchive) C:\Users\sll\Documents\ChatGPT\���� 2\test-timing-latency-20261026\TangMega60K_Synth\tmp\windows-minimized-pyinstaller\TangNeonStudio\PYZ-00.pyz completed successfully.
+16693 INFO: checking PKG
+16693 INFO: Building PKG because PKG-00.toc is non existent
+16693 INFO: Building PKG (CArchive) TangNeonStudio.pkg
+16740 INFO: Building PKG (CArchive) TangNeonStudio.pkg completed successfully.
+16741 INFO: Bootloader C:\Users\sll\Documents\ChatGPT\���� 2\TangMega60K_Synth\tmp\desktop-python\Lib\site-packages\PyInstaller\bootloader\Windows-64bit-intel\runw.exe
+16741 INFO: checking EXE
+16741 INFO: Building EXE because EXE-00.toc is non existent
+16741 INFO: Building EXE from EXE-00.toc
+16741 INFO: Copying bootloader EXE to C:\Users\sll\Documents\ChatGPT\���� 2\test-timing-latency-20261026\TangMega60K_Synth\tmp\windows-minimized-pyinstaller\TangNeonStudio\TangNeonStudio.exe
+16813 INFO: Copying icon to EXE
+16841 INFO: Copying 0 resources to EXE
+16842 INFO: Embedding manifest in EXE
+16869 INFO: Appending PKG archive to EXE
+16918 INFO: Fixing EXE headers
+17086 INFO: Building EXE from EXE-00.toc completed successfully.
+17088 INFO: checking COLLECT
+17088 INFO: Building COLLECT because COLLECT-00.toc is non existent
+17090 INFO: Building COLLECT COLLECT-00.toc
+17498 INFO: Building COLLECT COLLECT-00.toc completed successfully.
+17503 INFO: Build complete! The results are available in: C:\Users\sll\Documents\ChatGPT\���� 2\test-timing-latency-20261026\TangMega60K_Synth\delivery-windows-minimized\windows

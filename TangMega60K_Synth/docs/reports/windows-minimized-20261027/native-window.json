@@ -1,0 +1,30 @@
+{
+  "ok": true,
+  "javascriptBaseline": false,
+  "actualWindowMinimized": true,
+  "minimizedSeconds": 71.0,
+  "expectedNoteEvents": 2800,
+  "actualNoteEvents": 2800,
+  "exactNoteOrder": true,
+  "noteEventsWhileMinimized": 2759,
+  "uiReceiveCallbacksWhileMinimized": 2,
+  "maxNoteGapMs": 47.00000000593718,
+  "frontendResult": {
+    "ok": true,
+    "result": {
+      "ok": true,
+      "state": "finished",
+      "completed": 2800,
+      "total": 2800,
+      "maxLateMs": 45.99999941274291,
+      "error": null,
+      "nextSeq": 18,
+      "token": "score_1793105043732_1",
+      "connectionLost": false
+    },
+    "ready": true,
+    "status": "播放完成 · 2800/2800 条事件 · 最大发送至确认滞后 46.0 ms"
+  },
+  "actualBluetoothTested": false,
+  "dacTested": false
+}

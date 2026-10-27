@@ -1,0 +1,57 @@
+test_invalid_address_never_calls_os (test_ble_link.LinkTests.test_invalid_address_never_calls_os) ... ok
+test_lease_uses_public_api_and_releases_both_objects (test_ble_link.LinkTests.test_lease_uses_public_api_and_releases_both_objects) ... ok
+test_request_failure_closes_device_without_leaking (test_ble_link.LinkTests.test_request_failure_closes_device_without_leaking) ... ok
+test_crc_encoder_uses_only_readback (test_ble_probe.ProbeTests.test_crc_encoder_uses_only_readback) ... ok
+test_probe_sends_no_note_config_or_panic (test_ble_probe.ProbeTests.test_probe_sends_no_note_config_or_panic) ... ok
+test_cached_cards_never_count_as_live_network_success (test_catalog_diagnostics.CatalogDiagnosticTests.test_cached_cards_never_count_as_live_network_success) ... ok
+test_creation_errors_are_reported_and_details_are_bounded (test_catalog_diagnostics.CatalogDiagnosticTests.test_creation_errors_are_reported_and_details_are_bounded) ... ok
+test_fallback_preserves_underlying_network_error (test_catalog_diagnostics.CatalogDiagnosticTests.test_fallback_preserves_underlying_network_error) ... ok
+test_success_requires_nonempty_uncached_network_results (test_catalog_diagnostics.CatalogDiagnosticTests.test_success_requires_nonempty_uncached_network_results) ... ok
+test_64_held_is_valid_but_65_is_rejected (test_direct_midi.DirectMidiTests.test_64_held_is_valid_but_65_is_rejected) ... ok
+test_all_128_pitches_are_preserved_without_key_mapping (test_direct_midi.DirectMidiTests.test_all_128_pitches_are_preserved_without_key_mapping) ... ok
+test_capacity_still_applies_and_invalid_option_is_rejected (test_direct_midi.DirectMidiTests.test_capacity_still_applies_and_invalid_option_is_rejected) ... ok
+test_legacy_still_rejects_more_than_25_and_does_not_discard_notes (test_direct_midi.DirectMidiTests.test_legacy_still_rejects_more_than_25_and_does_not_discard_notes) ... ok
+test_capacity_is_not_truncated (test_music_library.MusicLibraryTests.test_capacity_is_not_truncated) ... ok
+test_catalog_parse_and_cache (test_music_library.MusicLibraryTests.test_catalog_parse_and_cache) ... ok
+test_exactly_1024_and_legacy_capacity (test_music_library.MusicLibraryTests.test_exactly_1024_and_legacy_capacity) ... ok
+test_invalid_capacity (test_music_library.MusicLibraryTests.test_invalid_capacity) ... ok
+test_invalid_files_and_options (test_music_library.MusicLibraryTests.test_invalid_files_and_options) ... ok
+test_more_than_25_distinct_pitches (test_music_library.MusicLibraryTests.test_more_than_25_distinct_pitches) ... ok
+test_range_is_not_silently_dropped (test_music_library.MusicLibraryTests.test_range_is_not_silently_dropped) ... ok
+test_segment_seeds_and_releases_held_notes (test_music_library.MusicLibraryTests.test_segment_seeds_and_releases_held_notes) ... ok
+test_tempo_change (test_music_library.MusicLibraryTests.test_tempo_change) ... ok
+test_track_selection_uses_global_tempo (test_music_library.MusicLibraryTests.test_track_selection_uses_global_tempo) ... ok
+test_unsupported_controls_are_visible (test_music_library.MusicLibraryTests.test_unsupported_controls_are_visible) ... ok
+test_url_restrictions (test_music_library.MusicLibraryTests.test_url_restrictions) ... ok
+test_velocity_zero_and_overlap (test_music_library.MusicLibraryTests.test_velocity_zero_and_overlap) ... ok
+test_zip_is_memory_only_and_bounded (test_music_library.MusicLibraryTests.test_zip_is_memory_only_and_bounded) ... ok
+test_ack_timeout_closes_no_future_events (test_native_playback.NativeTests.test_ack_timeout_closes_no_future_events) ... ok
+test_disconnect_wakes_pending_ack (test_native_playback.NativeTests.test_disconnect_wakes_pending_ack) ... ok
+test_fast_chords_sequence_wrap_all_events_no_ui (test_native_playback.NativeTests.test_fast_chords_sequence_wrap_all_events_no_ui) ... ok
+test_host_routes_acks_without_any_ui_callback (test_native_playback.NativeTests.test_host_routes_acks_without_any_ui_callback) ... ok
+test_host_stop_before_start_and_wrong_token_isolation (test_native_playback.NativeTests.test_host_stop_before_start_and_wrong_token_isolation) ... ok
+test_idle_keepalive_without_ui_queries (test_native_playback.NativeTests.test_idle_keepalive_without_ui_queries) ... ok
+test_nack_releases_owned_notes (test_native_playback.NativeTests.test_nack_releases_owned_notes) ... ok
+test_retry_identical_frame_wrong_ack_ignored (test_native_playback.NativeTests.test_retry_identical_frame_wrong_ack_ignored) ... ok
+test_stop_before_start_sends_nothing (test_native_playback.NativeTests.test_stop_before_start_sends_nothing) ... ok
+test_stop_while_on_inflight_releases_after_ack (test_native_playback.NativeTests.test_stop_while_on_inflight_releases_after_ack) ... ok
+test_too_slow_preserves_threshold_and_releases (test_native_playback.NativeTests.test_too_slow_preserves_threshold_and_releases) ... ok
+test_validation_rejects_bad_rows_and_accepts_full_midi (test_native_playback.NativeTests.test_validation_rejects_bad_rows_and_accepts_full_midi) ... ok
+test_both_write_modes_preserve_frame_and_await_write (test_native_write.WriteTests.test_both_write_modes_preserve_frame_and_await_write) ... ok
+test_stale_connection_cannot_write (test_native_write.WriteTests.test_stale_connection_cannot_write) ... ok
+test_bad_input_never_overwrites_valid_file (test_preferences.PreferenceTests.test_bad_input_never_overwrites_valid_file) ... ok
+test_corrupt_settings_warn_and_preserve_original (test_preferences.PreferenceTests.test_corrupt_settings_warn_and_preserve_original) ... ok
+test_restart_loads_exact_saved_layout (test_preferences.PreferenceTests.test_restart_loads_exact_saved_layout) ... ok
+test_symbol_and_numeric_keys_supported (test_preferences.PreferenceTests.test_symbol_and_numeric_keys_supported) ... ok
+test_long_midi_and_mobile_match (test_realtime_midi.RealtimeMidiTests.test_long_midi_and_mobile_match) ... ok
+test_batch_changes_page_and_refresh_reaches_provider (test_recommendations.RecommendationTests.test_batch_changes_page_and_refresh_reaches_provider) ... ok
+test_empty_page_falls_back_once (test_recommendations.RecommendationTests.test_empty_page_falls_back_once) ... ok
+test_forced_refresh_bypasses_cache_and_failed_refresh_keeps_old (test_recommendations.RecommendationTests.test_forced_refresh_bypasses_cache_and_failed_refresh_keeps_old) ... ok
+test_invalid_parameters_do_not_fetch (test_recommendations.RecommendationTests.test_invalid_parameters_do_not_fetch) ... ok
+test_recommendations_receive_safe_fetch_tokens (test_recommendations.RecommendationTests.test_recommendations_receive_safe_fetch_tokens) ... ok
+test_solo_first_only_downloadable_keyboard_and_deduplicated (test_recommendations.RecommendationTests.test_solo_first_only_downloadable_keyboard_and_deduplicated) ... ok
+
+----------------------------------------------------------------------
+Ran 52 tests in 0.747s
+
+OK

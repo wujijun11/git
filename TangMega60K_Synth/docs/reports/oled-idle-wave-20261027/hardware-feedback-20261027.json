@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-27",
+  "source": "user_report_in_current_conversation",
+  "fpga": "ContestFull_OLEDIdleWave_TEST1024.fs",
+  "userCode": "10C2",
+  "sha256": "987CCEEB8F0491E51254D89880EF2667B450AFF0B1C8B3125CEE16E3222F656C",
+  "sound": "user_reported_audible",
+  "oledTested": false,
+  "led5x5Tested": false,
+  "allModesVerified": false,
+  "longTermStabilityVerified": false,
+  "notes": "当前反馈未单独确认新版的蓝牙握手、OLED实屏或灯板；不借用R2反馈替代。"
+}

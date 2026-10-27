@@ -1,6 +1,6 @@
 'use strict';
 (() => {
- const APP_VERSION='1.5.0-local';
+ const APP_VERSION='1.5.1-local';
  const $=id=>document.getElementById(id), P=RemoteProtocol;
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const names=['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'];
@@ -162,6 +162,10 @@
  function buildNativeTransport(generation,attempt){
   let bytes=()=>{},lost=()=>{};
   const transport={generation,diagnosticText:null,closePromise:null,
+   // 后台租用同一连接和seq，不额外建立BLE连接。长任务不依赖界面ACK回调。
+   playRealtime:async(rows,timbre,seq,token)=>nativeResult(await nativeAPI().play_realtime(rows,timbre,seq,token,generation)),
+   stopRealtime:async token=>nativeResult(await nativeAPI().stop_realtime(token,generation)),
+   realtimeStatus:async token=>nativeResult(await nativeAPI().realtime_status(token,generation)),
    write:async data=>{const result=nativeResult(await nativeAPI().write_frame(Array.from(data,b=>b.toString(16).padStart(2,'0')).join(''),generation));transport.lastWriteMetrics=result;if(!transport.linkLogged&&result.connectionPreference){log('Windows BLE连接参数：'+JSON.stringify(result.connectionPreference));transport.linkLogged=true;}return result;},
    close:()=>{
     if(transport.closePromise)return transport.closePromise;

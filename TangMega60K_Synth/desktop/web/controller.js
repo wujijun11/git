@@ -718,7 +718,40 @@
             }
         }
         cancelBulk() {
-            if (this._bulk) this._bulk.cancelled = true;
+            if (this._bulk) {
+                this._bulk.cancelled = true;
+                this._bulk.nativeStop?.().catch(error => this._log(error.message));
+            }
+        }
+        supportsNativePlayback() {
+            return typeof this._ctx?.transport.playRealtime === "function";
+        }
+        async playNativeScore(snapshot, timbre, token) {
+            const op = this._startBulk("原生实时曲谱"), ctx = op.ctx;
+            try {
+                return await this._enqueue(ctx, async () => {
+                    this._check(ctx);
+                    if (op.cancelled) return { state: "stopped", completed: 0,
+                        total: snapshot.rows.length, maxLateMs: 0, error: null };
+                    // 独占队列直到归还seq；JS心跳看到running会让行，ACK由原生线程消费。
+                    op.nativeStop = async () => ctx.transport.stopRealtime(token);
+                    const result = await ctx.transport.playRealtime(snapshot.rows, timbre, ctx.session.seq, token);
+                    this._check(ctx, true);
+                    number(result.nextSeq, 0, 255, "原生归还seq");
+                    ctx.session.seq = this._nextSeq = result.nextSeq;
+                    if (result.connectionLost) this._lose(ctx, new Error(result.error || "原生播放连接中断"));
+                    return result;
+                });
+            } catch (error) {
+                // 原生调用结果不明时不能猜测seq后继续发送，以断连/板上看门狗兜底。
+                if (this._ctx === ctx) this._lose(ctx, error);
+                throw error;
+            } finally {
+                if (this._bulk === op) this._bulk = null;
+            }
+        }
+        nativeScoreStatus(token) {
+            return this._context().transport.realtimeStatus(token);
         }
         _startBulk(name) {
             if (this._bulk)

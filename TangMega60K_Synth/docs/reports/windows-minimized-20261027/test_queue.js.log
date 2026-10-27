@@ -1,0 +1,53 @@
+{
+  "controllerPath": "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-timing-latency-20261026\\TangMega60K_Synth\\desktop\\web\\controller.js",
+  "controllerSha256": "9ea2c151f326a228686f2c41655fce6b469b1f5b7c59c2c6b96285365ae41f32",
+  "cases": [
+    {
+      "name": "panicSkipsOldBacklog",
+      "pass": true
+    },
+    {
+      "name": "disconnectUsesAcceptedNotes",
+      "pass": true
+    },
+    {
+      "name": "queueHasRealBound",
+      "pass": true
+    },
+    {
+      "name": "stopKeepsAckDataBoundary",
+      "pass": true
+    },
+    {
+      "name": "cancelledReleaseDoesNotClose",
+      "pass": true
+    },
+    {
+      "name": "missingAckStillFailsClosed",
+      "pass": true
+    },
+    {
+      "name": "disconnectObserverIsReentrant",
+      "pass": true
+    },
+    {
+      "name": "rapidTapsAreNotSilentlyDropped",
+      "pass": true
+    },
+    {
+      "name": "retriggerAndSharedOwnersRemainCorrect",
+      "pass": true
+    },
+    {
+      "name": "releaseAllPreservesUnsentNotes",
+      "pass": true
+    },
+    {
+      "name": "busyTrafficDoesNotQueueHeartbeatReads",
+      "pass": true
+    }
+  ],
+  "unhandledRejections": [],
+  "accepted": true,
+  "hardwareAccessed": false
+}

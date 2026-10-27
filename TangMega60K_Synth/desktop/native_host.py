@@ -1,7 +1,8 @@
 """Local Windows shell and byte transport for Tang Neon Studio.
 
-The frontend owns the existing FPGA protocol/session. This module never creates
-NOTE, configuration, handshake, retry, or panic commands of its own.
+The frontend owns handshake and normal commands. During explicitly requested
+realtime playback it leases the session to realtime_native on the BLE thread;
+NOTE/ACK/keepalive then run without WebView timers. No PCM or global panic is generated.
 """
 from __future__ import annotations
 
@@ -132,6 +133,8 @@ class _Context:
         self.diagnostic_characteristic = None
         self.diagnostic_baseline = {"available": False, "reason": "not_sampled"}
         self.diagnostic_report = None
+        self.playback = None
+        self.cancelled_playback = None
 
 
 class NativeHost:
@@ -217,7 +220,10 @@ class NativeHost:
 
     def _receive(self, data: bytes, context: _Context):
         if context is self._context and context.connected and data and self._live(context.generation):
-            self._queue_callback("nativeReceive", [bytes(data).hex(), context.generation], context.generation)
+            if context.playback is not None:
+                context.playback.session.feed(data)
+            else:
+                self._queue_callback("nativeReceive", [bytes(data).hex(), context.generation], context.generation)
 
     def _callback_loop(self):
         while True:
@@ -377,10 +383,71 @@ class NativeHost:
         try:
             frame, generation = validate_frame(hex), _generation(generation)
             with self._api_lock:
-                timing = self._call(self._write(frame, generation), BLE_WRITE_TIMEOUT + 3.0)
+                timing = self._call(self._write_frontend(frame, generation), BLE_WRITE_TIMEOUT + 3.0)
             return {"ok": True, **timing}
         except Exception as exc:
             return {"ok": False, "error": _error_text(exc)}
+
+    async def _write_frontend(self, frame, generation):
+        if self._context is not None and self._context.playback is not None:
+            raise RuntimeError("原生曲谱正在独占通信会话，请先停止播放")
+        return await self._write(frame, generation)
+
+    def play_realtime(self, rows, timbre, seq, token, generation):
+        """显式播放API，长任务不持有_api_lock；停止/断开可以独立到达后台线程。"""
+        try:
+            return self._call(self._play_realtime(rows, timbre, seq, token, _generation(generation)), 6 * 3600 + 30)
+        except Exception as exc:
+            return {"ok": False, "error": _error_text(exc)}
+
+    def stop_realtime(self, token, generation):
+        try:
+            return self._call(self._playback_control(token, _generation(generation), True), 3)
+        except Exception as exc:
+            return {"ok": False, "error": _error_text(exc)}
+
+    def realtime_status(self, token, generation):
+        try:
+            return self._call(self._playback_control(token, _generation(generation), False), 3)
+        except Exception as exc:
+            return {"ok": False, "error": _error_text(exc)}
+
+    def _playback_context(self, token, generation):
+        if not isinstance(token, str) or re.fullmatch(r"[a-zA-Z0-9_-]{1,80}", token) is None:
+            raise ValueError("无效播放任务编号")
+        context = self._context
+        if not self._live(generation) or context is None or context.generation != generation or not context.connected:
+            raise RuntimeError("连接代际已过期")
+        return context
+
+    async def _playback_control(self, token, generation, stop):
+        context = self._playback_context(token, generation)
+        job = context.playback
+        if stop:
+            # 允许停止先于play API抵达；只取消相同token，不污染之后的新任务。
+            context.cancelled_playback = token
+        if job is not None and job.token == token:
+            if stop:
+                job.stop()
+            return {"ok": True, **job.snapshot()}
+        return {"ok": True, "state": "idle", "token": token}
+
+    async def _play_realtime(self, rows, timbre, seq, token, generation):
+        from realtime_native import NativePlayback
+        context = self._playback_context(token, generation)
+        if context.playback is not None:
+            raise RuntimeError("已有原生曲谱正在播放")
+        job = NativePlayback(rows, timbre, seq, token, lambda frame: self._write(frame, generation))
+        context.playback = job
+        if context.cancelled_playback == token:
+            job.stop()
+        try:
+            result = await job.run()
+        finally:
+            context.playback = None
+        if result["connectionLost"]:
+            await self._fail_current(generation, result["error"] or "原生播放连接已中断")
+        return {"ok": True, **result}
 
     async def _write(self, frame: bytes, generation: int):
         async with self._transport_lock:
@@ -468,6 +535,8 @@ class NativeHost:
     async def _teardown(self, context):
         if context is None:
             return
+        if context.playback is not None:
+            context.playback.lose()
         if context.kind == "ble" and self._live(context.generation):
             self._last_diagnostics = context.diagnostic_report or _bridge_diagnostic_report(context, {"available": False, "reason": "link_closed"})
         if self._context is context:
@@ -716,7 +785,7 @@ def _icon_path() -> Path:
 
 def smoke_test() -> dict:
     checks = {}
-    for name in ("webview", "webview.platforms.edgechromium", "bleak", "serial", "mido", "score_library", "score_library.recommendations", "ble_link", "preferences", "winrt.windows.devices.bluetooth", "winrt.windows.devices.bluetooth.genericattributeprofile", "winrt.windows.storage.streams"):
+    for name in ("webview", "webview.platforms.edgechromium", "bleak", "serial", "mido", "score_library", "score_library.recommendations", "ble_link", "preferences", "realtime_native", "winrt.windows.devices.bluetooth", "winrt.windows.devices.bluetooth.genericattributeprofile", "winrt.windows.storage.streams"):
         try:
             __import__(name)
             checks[name] = "ok"

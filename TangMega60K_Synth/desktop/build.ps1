@@ -3,12 +3,13 @@ param(
     [switch]$SkipInstall,
     [string]$OutputDirectory,
     [string]$EvidenceDirectory,
-    [string]$BuildDirectory
+    [string]$BuildDirectory,
+    [string]$VirtualEnvironment
 )
 $ErrorActionPreference = 'Stop'
 $taskDesktop = $PSScriptRoot
 $taskRoot = Split-Path -Parent $taskDesktop
-$taskVenv = Join-Path $taskRoot 'tmp/desktop-python'
+$taskVenv = if ($VirtualEnvironment) { [IO.Path]::GetFullPath($VirtualEnvironment) } else { Join-Path $taskRoot 'tmp/desktop-python' }
 $taskPython = Join-Path $taskVenv 'Scripts/python.exe'
 $taskCache = Join-Path $taskRoot 'tmp/desktop-pip-cache'
 $taskWork = if ($BuildDirectory) { [IO.Path]::GetFullPath($BuildDirectory) } else { Join-Path $taskRoot 'tmp/desktop-pyinstaller' }
@@ -37,6 +38,7 @@ $taskInputs += @($taskTlsFiles | ForEach-Object { Get-Item -LiteralPath $_ })
 $taskDeliveryInputs = @()
 $taskInputs += @(Get-ChildItem -LiteralPath (Join-Path $taskDesktop 'score_library') -File -Recurse -Filter '*.py')
 $taskInputs += Get-Item -LiteralPath (Join-Path $taskDesktop 'preferences.py')
+$taskInputs += @(Get-ChildItem -LiteralPath (Join-Path $taskDesktop 'realtime_native') -File -Recurse -Filter '*.py')
 if (Test-Path -LiteralPath (Join-Path $taskDesktop 'README.md')) { $taskDeliveryInputs += Get-Item -LiteralPath (Join-Path $taskDesktop 'README.md') }
 if (Test-Path -LiteralPath (Join-Path $taskDesktop 'examples')) { $taskDeliveryInputs += @(Get-ChildItem -LiteralPath (Join-Path $taskDesktop 'examples') -File -Recurse) }
 $taskInputs += $taskDeliveryInputs

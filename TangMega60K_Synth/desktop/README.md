@@ -1,3 +1,13 @@
+# TANG / NEON STUDIO 1.5.1-local
+
+2026-10-27：Windows实际蓝牙/串口连接的实时曲谱改用原生后台线程完成计时、NOTE/ACK与长休止保活，不再依赖最小化后的界面定时器。事件不会因窗口隐藏而删除，保留原250ms滞后保护。正常窗口、曲库/推荐、MIDI、键位设置、状态与学习功能继续保留，手机端未改。
+
+下载：[Windows 1.5.1完整便携包](../releases/windows-minimized-20261027/README.md)。解压整个文件夹，运行`TangNeonStudio.exe`，保留`_internal`；关闭旧程序后再启动新版，左下角应为1.5.1。不需要为本次上位机修复重烧FPGA/C3。
+
+真实WebView2窗口最小化71秒的内存设备专项已完整发送2800条事件，顺序一致；真实蓝牙/喇叭尚待用户复测。此前1.5.0只验证取消主动停播，不能认为已解决实际最小化，详见[问题与修复](../docs/Windows最小化实时播放修复_20261027.md)。OLED与5×5灯板未进行实物测试。
+
+以下为历史说明，旧版本的“后台继续”应以本段和本次技术报告补充的验证边界为准。
+
 # TANG / NEON STUDIO 1.5.0-local
 
 GitHub下载入口：[Windows 1.5.0完整ZIP与配套FPGA位流](../releases/learning-mode-20261026/README.md)。下文delivery-*为开发机历史本地目录。

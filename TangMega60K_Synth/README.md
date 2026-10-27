@@ -1,5 +1,7 @@
 # 弦光：Tang Mega 60K 电子乐器工程
 
+**2026-10-27本轮完整更新**：当前测试源为OLED空闲真实波形版，Windows为1.5.1原生后台曲谱版。下载[FPGA源码/位流](releases/oled-idle-wave-20261027/README.md)、[Windows便携包](releases/windows-minimized-20261027/README.md)，先看[版本、历史问题与解决方案](docs/版本问题与解决方案汇总_20261027.md)。用户反馈最新FPGA版可以发声；**OLED屏幕和5×5灯板尚未实测**。Windows真实最小化窗口＋模拟设备专项通过，真实蓝牙试听仍待复测。故障平滑位流继续暂停，持续音随复音数被压低的策略尚未修改。下方按各自日期保留历史交付状态，不将旧“当前/尚未上板/未上传”字样当作本轮结论。
+
 2026-10-27 OLED空闲波形测试版：当前分支`codex/oled-idle-waveform`。滑条静置3秒，OLED在原页面标题下显示实际I2S左声道波形；触摸恢复原页面，总菜单/子页都不再空闲自动回音量。24项选定ModelSim实际通过，完整Gowin布局布线Setup/Hold余量0.381/0.163ns，BSRAM106/118；为时序将曲谱按键元数据改为同拍分组写使能并通过独立参考比较。原R2位流保留，本版尚未上板、未自动下载或上传。见[实现说明与预览](docs/OLED空闲实时波形实现说明_20261027.md)及[独立测试交付包](releases/oled-idle-wave-20261027/ContestFull_OLEDIdleWave_TEST1024.zip)。以下保留历史记录，“当前/最新”按对应日期和分支解释。
 
 **2026-10-27上板异常：暂停使用`ContestFull_HeadroomSmooth_TEST1024.fs`。**用户确认相同接线下平滑新版实体键失效、C3可发现但FPGA握手超时，回退`ContestFull_SliderVolume_TEST1024.fs`后恢复。原42项仿真和STA通过仍有效，但不能作为这份位流实板可用的证明。当前为独立`codex/headroom-board-triage`排查分支，临时用已有RGB观察公共时钟/复位启动链，不包含历史黑匣子。见[上板排查说明](docs/混音平滑上板异常排查_20261027.md)。

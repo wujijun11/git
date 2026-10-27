@@ -1,0 +1,26 @@
+{
+  "branch": "codex/headroom-board-triage",
+  "sourceRevision": "75d07698f1b9d2ff0cd486cd152970d3a08daf6d",
+  "purpose": "temporary boot observation; not a confirmed fix",
+  "hardwareValidated": false,
+  "rootCauseConfirmed": false,
+  "downloadedByAgent": false,
+  "bitstream": "fpga/ContestFull_HeadroomBootProbe_R2.fs",
+  "sha256": "BD359CFD031977B970D2DB0C4E058C9575E12F2596B24A69CC62ED4A5E00480A",
+  "userCode": "0x0000F2EA",
+  "timing": {
+    "setup": 0.2,
+    "hold": 0.126,
+    "recovery": 3.555,
+    "removal": 0.573
+  },
+  "modelSimCases": [
+    "audio_boot_status",
+    "headroom_smoothing_n64",
+    "oled_volume_board",
+    "transport_status_equivalence",
+    "full_system",
+    "expression_merge",
+    "audio_i2s"
+  ]
+}

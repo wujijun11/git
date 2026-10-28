@@ -1,0 +1,80 @@
+{
+  "date": "2026-10-28",
+  "sourceRevision": "b97352d5867033a2d2c7aa5447d22dd03eae5c39",
+  "sourceDirty": true,
+  "bitstream": "fpga/ContestFull_OLEDIdle10s_TEST1024.fs",
+  "sha256": "3A5C209604F70ED5090EA6AA491869F34C087E11B5F2134AE61FC4CB35AC7B6C",
+  "userCode": "0x000012EF",
+  "idleSeconds": 10,
+  "menuStatePreserved": true,
+  "freezeFixed": false,
+  "hardwareValidated": false,
+  "downloadedByAgent": false,
+  "pushed": false,
+  "modelSimCases": [
+    "audio_boot_status",
+    "audio_i2s",
+    "control_router",
+    "expression_merge",
+    "global_panic",
+    "headroom_smoothing_n64",
+    "learning_system",
+    "menu_replay",
+    "menu_system",
+    "mode_status",
+    "mpr121_backpressure",
+    "mpr121_capacity",
+    "mpr121_frontend",
+    "oled_i2c_stream",
+    "oled_idle10",
+    "oled_idle_menu",
+    "oled_menu",
+    "oled_volume",
+    "oled_volume_board",
+    "oled_wave_board",
+    "oled_wave_board_timing",
+    "oled_wave_capture",
+    "oled_wave_display",
+    "slider_liveness",
+    "slider_menu",
+    "slider_performance",
+    "slider_volume_control",
+    "slider_volume_system",
+    "transport_status_equivalence"
+  ],
+  "timing": {
+    "setup": 0.115,
+    "hold": 0.024,
+    "recovery": 4.696,
+    "removal": 0.75
+  },
+  "resources": {
+    "Logic": {
+      "used": 27789.0,
+      "capacity": 59904.0,
+      "reportedPercent": 47,
+      "free": 32115.0
+    },
+    "Register": {
+      "used": 19142.0,
+      "capacity": 60780.0,
+      "reportedPercent": 32,
+      "free": 41638.0
+    },
+    "BSRAM": {
+      "used": 106.0,
+      "capacity": 118.0,
+      "reportedPercent": 90,
+      "free": 12.0
+    },
+    "DSP": {
+      "used": 56.5,
+      "capacity": 118.0,
+      "reportedPercent": 48,
+      "free": 61.5
+    }
+  },
+  "zip": "ContestFull_OLEDIdle10s_TEST1024.zip",
+  "zipSHA256": "0F385FCED0F6EB8B507E4B20AC75ACF13F062309AEA740AAC30D311D5F0BEFFF",
+  "zipBytes": 2396322
+}

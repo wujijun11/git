@@ -1,0 +1,20 @@
+Model Technology ModelSim SE-64 vlog 10.6e Compiler 2018.06 Jun 23 2018
+Start time: 20:06:19 on Oct 28,2026
+vlog -modelsimini modelsim.ini -sv -work work sim/tb_mpr121_early.sv sim/tb_mpr121_model.sv sim/runtime_audio_fx_reference.sv sim/polar_lane_timing_reference.v sim/performance_controller_timing_reference.v sim/event_fifo_v2_pipeline_reference.v sim/remote_command_router_reference.v 
+-- Compiling module tb_mpr121_early
+-- Compiling module mpr121_bus_model
+-- Compiling module runtime_audio_fx_reference
+-- Compiling module polar_lane_timing_reference
+-- Compiling module performance_controller_timing_reference
+-- Compiling module event_fifo_v2_pipeline_reference
+-- Compiling module remote_command_router_reference
+
+Top level modules:
+	tb_mpr121_early
+	runtime_audio_fx_reference
+	polar_lane_timing_reference
+	performance_controller_timing_reference
+	event_fifo_v2_pipeline_reference
+	remote_command_router_reference
+End time: 20:06:19 on Oct 28,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

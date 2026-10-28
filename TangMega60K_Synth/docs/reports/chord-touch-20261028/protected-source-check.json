@@ -1,0 +1,102 @@
+[
+  {
+    "path": "rtl/audio/adsr.v",
+    "sha256": "4681934C77A0148F295CF5AB8590A4C59952948ED7E615A010191C7691D0194E",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/pitch_expression.v",
+    "sha256": "984E73EC77A45B7E89A3F323C337821C0AE13E9AD9037156053AD6C695776F85",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/polar_lane.v",
+    "sha256": "79A533579F43C48F4016A1A242D4F79A098AA83EE41577BB5657381860FA6C82",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/fm_piano_lane.v",
+    "sha256": "0A59404A8C1B5E1BE88D8CD115BE8D4596CD5E8C37E51308EB7873644463287A",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/runtime_audio_fx.v",
+    "sha256": "94B238B4D30C74703AD2F7F43CC3228D0E9770EB71E1D2E44FFCBC88657596E9",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/voice_allocator_v2.v",
+    "sha256": "5B4A7CE1BF419A8BFCB1307632436FB5F26E98786082D782D9F5CDA63A33174D",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/expression_controls_v2.v",
+    "sha256": "1E5999906661197F9AADF1318C2680028258C6353FB9AFD970C0E45BB5D0FCD2",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "full/contest_full.cst",
+    "sha256": "18C30E4B651A13B68A506C6416E37A7518A02A0E29D91F441F67CC24DF8E52B4",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "full/contest_full.sdc",
+    "sha256": "8902A07D00AA0D36303602741C04DBFD1A2D2C42EABC220FD714198BAF0F3F8C",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/rom/menu_font.hex",
+    "sha256": "D841A703C846E75BC3316F33CB61A03848F879C819D3B339E26827ECBC45235B",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/rom/menu_hierarchy_font.hex",
+    "sha256": "F9253D778FC00E7C84CC8889AA415D4B76B584684E9AEF73960B0E0159A1AF53",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/rom/midi.hex",
+    "sha256": "025DC926A55E048D3C03DA49E1F0AB7C2315F2E33C53FF7C8C865D0E1546DE4C",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/rom/piano.hex",
+    "sha256": "00B5D0759EBFA5A44285F326297F70271447802D9EFAAA7938DF653F6F0214E3",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/rom/polar_lane0.hex",
+    "sha256": "D5163AF00AA2F50C6968288EF931C2BC09CF173FBEF42F3B5BFF6AB9318B5F91",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/rom/polar_lane1.hex",
+    "sha256": "51D162A4D6F4DA7FDAA5A3FF5BD7E975DD7EC5DA749CD735CE77249C9CDE45AC",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/rom/polar_ratios.hex",
+    "sha256": "02C874830BF48598DF323AF3B1DBA1F9CFF3C7E03F64394AB7E42326403E7C38",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/rom/ratio.hex",
+    "sha256": "D56E8AAE3D44582E16AEBE622D28C2BEE4D41D9D8B80B73FDB0A3D9B37988C8D",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/rom/sine.hex",
+    "sha256": "39D6E76E2DCF7F8337257C5948D6F525A94FFE09F5CF481E9E75A1300082B3C5",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/rom/velocity.hex",
+    "sha256": "962FA489ED5ACAE7209FCC6C447D9CC8A478EBC882D941AC4B6904FDD5B4371D",
+    "matchesBranchBase": true
+  },
+  {
+    "path": "rtl/audio/rom/waves.hex",
+    "sha256": "2C78E04753B9912CA8A3DAACB203250D91EA54B62D9C59E1ECDE2EE1D4DB88DD",
+    "matchesBranchBase": true
+  }
+]

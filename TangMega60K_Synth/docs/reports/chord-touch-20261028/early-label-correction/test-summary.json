@@ -1,0 +1,18 @@
+[
+  {
+    "Name": "mpr121_early_mailbox",
+    "Top": "tb_mpr121_early",
+    "Generics": [],
+    "ExpectedRejection": false,
+    "ExpectedMarker": "MPR121 EARLY MAILBOX PASS",
+    "ExpectedFatal": "",
+    "Passed": true,
+    "ExitCode": 0,
+    "TimedOut": false,
+    "ElapsedSeconds": 1.481,
+    "TimeoutSeconds": 600,
+    "Log": "logs/mpr121_early_mailbox.log",
+    "Wave": null,
+    "Failure": null
+  }
+]

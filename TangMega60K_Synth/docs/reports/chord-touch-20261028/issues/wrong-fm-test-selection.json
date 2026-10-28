@@ -1,0 +1,44 @@
+[
+  {
+    "Name": "stable_polar_n4",
+    "Top": "tb_audio_engine",
+    "Generics": [
+      "-gN=4",
+      "-gPOLAR=1",
+      "-gFM=1",
+      "-gSTABLE=1"
+    ],
+    "ExpectedRejection": false,
+    "ExpectedMarker": "POLAR ENGINE PASSED N=4",
+    "ExpectedFatal": "",
+    "Passed": false,
+    "ExitCode": 0,
+    "TimedOut": false,
+    "ElapsedSeconds": 5.607,
+    "TimeoutSeconds": 1200,
+    "Log": "logs/stable_polar_n4.log",
+    "Wave": null,
+    "Failure": "Missing final marker: POLAR ENGINE PASSED N=4"
+  },
+  {
+    "Name": "stable_polar_n64",
+    "Top": "tb_audio_engine",
+    "Generics": [
+      "-gN=64",
+      "-gPOLAR=1",
+      "-gFM=1",
+      "-gSTABLE=1"
+    ],
+    "ExpectedRejection": false,
+    "ExpectedMarker": "POLAR ENGINE PASSED N=64",
+    "ExpectedFatal": "",
+    "Passed": false,
+    "ExitCode": 0,
+    "TimedOut": false,
+    "ElapsedSeconds": 61.76,
+    "TimeoutSeconds": 1200,
+    "Log": "logs/stable_polar_n64.log",
+    "Wave": null,
+    "Failure": "Missing final marker: POLAR ENGINE PASSED N=64"
+  }
+]

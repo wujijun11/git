@@ -1,0 +1,22 @@
+{
+  "snapshot": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_5wotyngm\\verification\\chord-touch-build\\build_chord-touch_20261028_195250_9cadf685",
+  "project": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_5wotyngm",
+  "sourceRoot": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_5wotyngm",
+  "variant": "chord-touch",
+  "createdAt": "2026-10-28T19:52:50.706158+08:00",
+  "gowin": "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+  "baselineReport": "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-timing-latency-20261026\\TangMega60K_Synth\\docs\\reports\\menu-hierarchy-20261028\\selected\\build-results.json",
+  "withoutGao": true,
+  "gprjDependencies": 91,
+  "inputFiles": 105,
+  "gaoExpected": false,
+  "implementationKind": "bare-main",
+  "gaoEvidence": {
+    "verified": false,
+    "enabledConfigurationCount": 0,
+    "files": []
+  },
+  "preparedOnly": false,
+  "driverSha256": "B5832AF11492AE983103495BA6426E05B2D084DF19D8B23047F1B2ACD234596E",
+  "buildStartedAt": "2026-10-28T19:52:50.749852+08:00"
+}

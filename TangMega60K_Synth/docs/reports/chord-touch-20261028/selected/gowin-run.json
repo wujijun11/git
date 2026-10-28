@@ -1,0 +1,13 @@
+{
+  "startedAt": "2026-10-28T19:52:50.749852+08:00",
+  "endedAt": "2026-10-28T19:57:53.322761+08:00",
+  "durationSeconds": 302.578,
+  "exitCode": 0,
+  "timedOut": false,
+  "timeoutSeconds": 2400,
+  "command": [
+    "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+    "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_5wotyngm\\verification\\chord-touch-build\\build_chord-touch_20261028_195250_9cadf685\\scripts\\build-contest-full.tcl"
+  ],
+  "pid": 40048
+}

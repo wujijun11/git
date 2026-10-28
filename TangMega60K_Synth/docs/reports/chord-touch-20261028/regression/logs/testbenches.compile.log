@@ -1,0 +1,97 @@
+Model Technology ModelSim SE-64 vlog 10.6e Compiler 2018.06 Jun 23 2018
+Start time: 19:59:19 on Oct 28,2026
+vlog -modelsimini modelsim.ini -sv -work work sim/tb_oled_wave_board.sv sim/tb_oled_hierarchy.sv sim/tb_slider_liveness.sv sim/tb_menu_hierarchy.sv sim/tb_slider_expression_control.sv sim/tb_oled_idle10.sv sim/tb_oled_i2c_stream.sv sim/tb_oled_wave_units.sv sim/tb_oled_wave_display.sv sim/tb_audio_boot_status.sv sim/tb_headroom_smoothing.sv sim/tb_oled_board_integration.sv sim/tb_oled_volume.sv sim/tb_slider_volume_system.sv sim/tb_slider_volume_control.sv sim/tb_slider_performance.sv sim/tb_event_fifo_pipeline.sv sim/tb_transport_status_equivalence.sv sim/tb_learning_system.sv sim/tb_menu_system.sv sim/tb_mode_status.sv sim/tb_oled_menu.sv sim/tb_slider_menu.sv sim/tb_menu_replay.sv sim/tb_global_panic.sv sim/tb_full_control.sv sim/tb_runtime_audio_fx.sv sim/tb_runtime_audio_fx_storage.sv sim/tb_mpr121_i2c.sv sim/tb_mpr121_frontend.sv sim/tb_mpr121_backpressure.sv sim/tb_mpr121_timing.sv sim/tb_mpr121_eventizer_capacity.sv sim/tb_performance_retrigger.sv sim/tb_audio_units.sv sim/tb_audio_engine.sv sim/tb_audio_i2s.sv sim/tb_mpr121_model.sv sim/runtime_audio_fx_reference.sv sim/polar_lane_timing_reference.v sim/performance_controller_timing_reference.v sim/event_fifo_v2_pipeline_reference.v sim/remote_command_router_reference.v 
+-- Compiling module tb_oled_wave_board
+-- Compiling module tb_oled_hierarchy
+-- Compiling module tb_slider_liveness
+-- Compiling module tb_menu_hierarchy
+-- Compiling module tb_slider_expression_control
+-- Compiling module tb_oled_idle10
+-- Compiling module tb_oled_i2c_stream
+-- Compiling module tb_oled_wave_capture
+-- Compiling module tb_oled_idle_menu
+-- Compiling module tb_oled_wave_display
+-- Compiling module tb_audio_boot_status
+-- Compiling module tb_headroom_smoothing
+-- Compiling module tb_oled_board_integration
+-- Compiling module tb_oled_volume
+-- Compiling module tb_slider_volume_system
+-- Compiling module tb_slider_volume_control
+-- Compiling module tb_slider_performance
+-- Compiling module fifo_pipeline_fixture
+-- Compiling module tb_event_fifo_pipeline
+-- Compiling module tb_transport_status_equivalence
+-- Compiling module tb_learning_system
+-- Compiling module tb_menu_system
+-- Compiling module tb_mode_status
+-- Compiling module tb_oled_menu
+-- Compiling module tb_slider_menu
+-- Compiling module tb_menu_replay
+-- Compiling module tb_global_panic
+-- Compiling module tb_full_control
+-- Compiling module tb_expression_merge
+-- Compiling module tb_note_arbiter
+-- Compiling module tb_runtime_audio_fx
+-- Compiling module fx_storage_case
+-- Compiling module tb_runtime_audio_fx_storage
+-- Compiling module tb_mpr121_i2c
+-- Compiling module tb_mpr121_frontend
+-- Compiling module tb_mpr121_backpressure
+-- Compiling module tb_mpr121_timing
+-- Compiling module tb_mpr121_eventizer_capacity
+-- Compiling module tb_performance_retrigger
+-- Compiling module tb_audio_units
+-- Compiling module tb_audio_engine
+-- Compiling module tb_audio_i2s
+-- Compiling module mpr121_bus_model
+-- Compiling module runtime_audio_fx_reference
+-- Compiling module polar_lane_timing_reference
+-- Compiling module performance_controller_timing_reference
+-- Compiling module event_fifo_v2_pipeline_reference
+-- Compiling module remote_command_router_reference
+
+Top level modules:
+	tb_oled_wave_board
+	tb_oled_hierarchy
+	tb_slider_liveness
+	tb_menu_hierarchy
+	tb_slider_expression_control
+	tb_oled_idle10
+	tb_oled_i2c_stream
+	tb_oled_wave_capture
+	tb_oled_idle_menu
+	tb_oled_wave_display
+	tb_audio_boot_status
+	tb_headroom_smoothing
+	tb_oled_board_integration
+	tb_oled_volume
+	tb_slider_volume_system
+	tb_slider_volume_control
+	tb_slider_performance
+	tb_event_fifo_pipeline
+	tb_transport_status_equivalence
+	tb_learning_system
+	tb_menu_system
+	tb_mode_status
+	tb_oled_menu
+	tb_slider_menu
+	tb_menu_replay
+	tb_global_panic
+	tb_full_control
+	tb_expression_merge
+	tb_note_arbiter
+	tb_runtime_audio_fx
+	tb_runtime_audio_fx_storage
+	tb_mpr121_i2c
+	tb_mpr121_frontend
+	tb_mpr121_backpressure
+	tb_mpr121_timing
+	tb_mpr121_eventizer_capacity
+	tb_performance_retrigger
+	tb_audio_units
+	tb_audio_engine
+	tb_audio_i2s
+	polar_lane_timing_reference
+	remote_command_router_reference
+End time: 19:59:19 on Oct 28,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

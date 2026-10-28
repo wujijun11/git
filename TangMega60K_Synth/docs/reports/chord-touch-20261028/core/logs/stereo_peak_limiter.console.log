@@ -1,0 +1,30 @@
+Reading C:/modelsim/modeltech64_10.6e/tcl/vsim/pref.tcl
+
+# 10.6e
+
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/stereo_peak_limiter.wlf -l logs/stereo_peak_limiter.log -do "do cases/stereo_peak_limiter.do" work.tb_stereo_peak_limiter 
+# Start time: 20:06:04 on Oct 28,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "stereo_peak_limiter(fast)".
+# //  ModelSim SE-64 10.6e Jun 23 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_stereo_peak_limiter(fast)
+# Loading work.stereo_peak_limiter(fast)
+# do cases/stereo_peak_limiter.do
+# STEREO PEAK LIMITER PASS frames=1107 stalls=21 arithmetic, stereo linkage, ceiling, unity, release and reset
+# ** Note: $finish    : sim/tb_stereo_peak_limiter.sv(86)
+#    Time: 89310 ns  Iteration: 1  Instance: /tb_stereo_peak_limiter
+# End time: 20:06:05 on Oct 28,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

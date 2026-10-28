@@ -1,0 +1,181 @@
+[
+  {
+    "Name": "stable_polar_n4",
+    "Top": "tb_audio_engine",
+    "Generics": [
+      "-gN=4",
+      "-gPOLAR=1",
+      "-gSTABLE=1"
+    ],
+    "ExpectedRejection": false,
+    "ExpectedMarker": "POLAR ENGINE PASSED N=4",
+    "ExpectedFatal": "",
+    "Passed": true,
+    "ExitCode": 0,
+    "TimedOut": false,
+    "ElapsedSeconds": 9.135,
+    "TimeoutSeconds": 1200,
+    "Log": "logs/stable_polar_n4.log",
+    "Wave": null,
+    "Failure": null
+  },
+  {
+    "Name": "stable_polar_n64",
+    "Top": "tb_audio_engine",
+    "Generics": [
+      "-gN=64",
+      "-gPOLAR=1",
+      "-gSTABLE=1"
+    ],
+    "ExpectedRejection": false,
+    "ExpectedMarker": "POLAR ENGINE PASSED N=64",
+    "ExpectedFatal": "",
+    "Passed": true,
+    "ExitCode": 0,
+    "TimedOut": false,
+    "ElapsedSeconds": 123.177,
+    "TimeoutSeconds": 1200,
+    "Log": "logs/stable_polar_n64.log",
+    "Wave": null,
+    "Failure": null
+  },
+  {
+    "Name": "mpr121_early_mailbox",
+    "Top": "tb_mpr121_early",
+    "Generics": [],
+    "ExpectedRejection": false,
+    "ExpectedMarker": "MPR121 EARLY MAILBOX PASS",
+    "ExpectedFatal": "",
+    "Passed": true,
+    "ExitCode": 0,
+    "TimedOut": false,
+    "ElapsedSeconds": 1.931,
+    "TimeoutSeconds": 1200,
+    "Log": "logs/mpr121_early_mailbox.log",
+    "Wave": null,
+    "Failure": null
+  },
+  {
+    "Name": "mpr121_frontend_early",
+    "Top": "tb_mpr121_frontend",
+    "Generics": [
+      "-gEARLY=1"
+    ],
+    "ExpectedRejection": false,
+    "ExpectedMarker": "PASS tb_mpr121_frontend",
+    "ExpectedFatal": "",
+    "Passed": true,
+    "ExitCode": 0,
+    "TimedOut": false,
+    "ElapsedSeconds": 2.071,
+    "TimeoutSeconds": 1200,
+    "Log": "logs/mpr121_frontend_early.log",
+    "Wave": null,
+    "Failure": null
+  },
+  {
+    "Name": "touch_i2s_gain",
+    "Top": "tb_touch_i2s_latency",
+    "Generics": [
+      "-gSTABLE=1"
+    ],
+    "ExpectedRejection": false,
+    "ExpectedMarker": "TOUCH I2S LATENCY PASS",
+    "ExpectedFatal": "",
+    "Passed": true,
+    "ExitCode": 0,
+    "TimedOut": false,
+    "ElapsedSeconds": 97.701,
+    "TimeoutSeconds": 1200,
+    "Log": "logs/touch_i2s_gain.log",
+    "Wave": null,
+    "Failure": null
+  },
+  {
+    "Name": "touch_i2s_early_gain",
+    "Top": "tb_touch_i2s_latency",
+    "Generics": [
+      "-gEARLY=1",
+      "-gSTABLE=1"
+    ],
+    "ExpectedRejection": false,
+    "ExpectedMarker": "TOUCH I2S LATENCY PASS",
+    "ExpectedFatal": "",
+    "Passed": true,
+    "ExitCode": 0,
+    "TimedOut": false,
+    "ElapsedSeconds": 109.674,
+    "TimeoutSeconds": 1200,
+    "Log": "logs/touch_i2s_early_gain.log",
+    "Wave": null,
+    "Failure": null
+  },
+  {
+    "Name": "stable_chord_n64",
+    "Top": "tb_stable_chord_mix",
+    "Generics": [],
+    "ExpectedRejection": false,
+    "ExpectedMarker": "STABLE CHORD MIX PASS N=64 TIMBRE=0",
+    "ExpectedFatal": "",
+    "Passed": true,
+    "ExitCode": 0,
+    "TimedOut": false,
+    "ElapsedSeconds": 50.083,
+    "TimeoutSeconds": 1200,
+    "Log": "logs/stable_chord_n64.log",
+    "Wave": null,
+    "Failure": null
+  },
+  {
+    "Name": "stable_chord_piano",
+    "Top": "tb_stable_chord_mix",
+    "Generics": [
+      "-gN=4",
+      "-gTIMBRE=2",
+      "-gLONG_DEMO=1"
+    ],
+    "ExpectedRejection": false,
+    "ExpectedMarker": "STABLE CHORD MIX PASS N=4 TIMBRE=2",
+    "ExpectedFatal": "",
+    "Passed": true,
+    "ExitCode": 0,
+    "TimedOut": false,
+    "ElapsedSeconds": 33.791,
+    "TimeoutSeconds": 1200,
+    "Log": "logs/stable_chord_piano.log",
+    "Wave": null,
+    "Failure": null
+  },
+  {
+    "Name": "stereo_peak_limiter",
+    "Top": "tb_stereo_peak_limiter",
+    "Generics": [],
+    "ExpectedRejection": false,
+    "ExpectedMarker": "STEREO PEAK LIMITER PASS",
+    "ExpectedFatal": "",
+    "Passed": true,
+    "ExitCode": 0,
+    "TimedOut": false,
+    "ElapsedSeconds": 1.758,
+    "TimeoutSeconds": 1200,
+    "Log": "logs/stereo_peak_limiter.log",
+    "Wave": null,
+    "Failure": null
+  },
+  {
+    "Name": "touch_i2s_latency",
+    "Top": "tb_touch_i2s_latency",
+    "Generics": [],
+    "ExpectedRejection": false,
+    "ExpectedMarker": "TOUCH I2S LATENCY PASS",
+    "ExpectedFatal": "",
+    "Passed": true,
+    "ExitCode": 0,
+    "TimedOut": false,
+    "ElapsedSeconds": 130.978,
+    "TimeoutSeconds": 1200,
+    "Log": "logs/touch_i2s_latency.log",
+    "Wave": null,
+    "Failure": null
+  }
+]

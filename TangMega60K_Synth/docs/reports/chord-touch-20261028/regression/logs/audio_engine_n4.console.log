@@ -1,0 +1,60 @@
+Reading C:/modelsim/modeltech64_10.6e/tcl/vsim/pref.tcl
+
+# 10.6e
+
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/audio_engine_n4.wlf -l logs/audio_engine_n4.log -do "do cases/audio_engine_n4.do" work.tb_audio_engine -gN=4 
+# Start time: 20:06:55 on Oct 28,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "voice_engine(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "voice_engine(fast__1)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "voice_allocator_v2(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "pitch_expression(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "pitch_expression(fast__1)".
+# //  ModelSim SE-64 10.6e Jun 23 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_audio_engine(fast)
+# Loading work.voice_allocator_v2(fast)
+# Loading work.expression_controls_v2(fast)
+# Loading work.voice_engine(fast)
+# Loading work.voice_state_ram(fast)
+# Loading work.adsr(fast)
+# Loading work.pitch_expression(fast)
+# Loading work.dds_lane(fast)
+# Loading work.polar_lane(fast)
+# Loading work.polar_lane(fast__1)
+# Loading work.wavetable_rom(fast)
+# Loading work.stereo_mixer(fast)
+# Loading work.gain_saturator(fast)
+# Loading work.audio_fx(fast)
+# Loading work.voice_engine(fast__1)
+# Loading work.voice_state_ram(fast__1)
+# Loading work.pitch_expression(fast__1)
+# Loading work.polar_lane(fast__2)
+# Loading work.polar_lane(fast__3)
+# do cases/audio_engine_n4.do
+# MEASURE N=4 tag=0 samples=4800 rms=26065.96200 f=440.001905
+# NEUTRAL BIT EXACT N=4 frames=9804
+# MEASURE N=4 tag=1 samples=4800 rms=13032.97355 f=439.996642
+# MEASURE N=4 tag=2 samples=4800 rms=26066.02557 f=879.996465
+# MEASURE N=4 tag=3 samples=4800 rms=26065.96102 f=219.996074
+# MEASURE N=4 tag=4 samples=21002 rms=26073.60807 f=439.268865
+# VIBRATO N=4 minFTW=37160838 maxFTW=41711644 5Hz step checked every frame
+# MEASURE N=4 tag=5 samples=4800 rms=11376.10547 f=439.992502
+# MEASURE N=4 tag=6 samples=1024 rms=36910.56805 f=439.988702
+# AUDIO ENGINE PASSED N=4 max_compute_clocks=53 samples=81187 done=6
+# ** Note: $finish    : sim/tb_audio_engine.sv(439)
+#    Time: 90971580 ns  Iteration: 1  Instance: /tb_audio_engine
+# End time: 20:07:28 on Oct 28,2026, Elapsed time: 0:00:33
+# Errors: 0, Warnings: 0

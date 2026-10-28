@@ -1,0 +1,175 @@
+Reading C:/modelsim/modeltech64_10.6e/tcl/vsim/pref.tcl
+
+# 10.6e
+
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/touch_i2s_early_gain.wlf -l logs/touch_i2s_early_gain.log -do "do cases/touch_i2s_early_gain.do" work.tb_touch_i2s_latency -gEARLY=1 -gSTABLE=1 
+# Start time: 20:02:50 on Oct 28,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "voice_allocator_v2(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "menu_action_router(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "pitch_expression(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "stereo_peak_limiter(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "menu_hierarchy(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "learning_stepper(fast)".
+# ** Warning: rtl/instrument_full_system.v(119): (vopt-2685) [TFMPC] - Too few port connections for 'sensors'.  Expected 32, found 27.
+# ** Warning: rtl/instrument_full_system.v(119): (vopt-2718) [TFMPC] - Missing connection for port 'oor_status'.
+# ** Warning: rtl/instrument_full_system.v(119): (vopt-2718) [TFMPC] - Missing connection for port 'init_stage'.
+# ** Warning: rtl/instrument_full_system.v(119): (vopt-2718) [TFMPC] - Missing connection for port 'last_success_age'.
+# ** Warning: rtl/instrument_full_system.v(119): (vopt-2718) [TFMPC] - Missing connection for port 'error_count'.
+# ** Warning: rtl/instrument_full_system.v(119): (vopt-2718) [TFMPC] - Missing connection for port 'last_error'.
+# ** Warning: rtl/instrument_full_system.v(267): (vopt-2685) [TFMPC] - Too few port connections for 'guide'.  Expected 7, found 5.
+# ** Warning: rtl/instrument_full_system.v(267): (vopt-2718) [TFMPC] - Missing connection for port 'frame_done'.
+# ** Warning: rtl/instrument_full_system.v(267): (vopt-2718) [TFMPC] - Missing connection for port 'busy'.
+# ** Warning: rtl/instrument_full_system.v(272): (vopt-2685) [TFMPC] - Too few port connections for 'watchdog'.  Expected 16, found 15.
+# ** Warning: rtl/instrument_full_system.v(272): (vopt-2718) [TFMPC] - Missing connection for port 'timeout_count'.
+# ** Warning: rtl/instrument_full_system.v(332): (vopt-2685) [TFMPC] - Too few port connections for 'events'.  Expected 19, found 16.
+# ** Warning: rtl/instrument_full_system.v(332): (vopt-2718) [TFMPC] - Missing connection for port 'empty'.
+# ** Warning: rtl/instrument_full_system.v(332): (vopt-2718) [TFMPC] - Missing connection for port 'full'.
+# ** Warning: rtl/instrument_full_system.v(332): (vopt-2718) [TFMPC] - Missing connection for port 'level'.
+# ** Warning: rtl/instrument_full_system.v(389): (vopt-2685) [TFMPC] - Too few port connections for 'control'.  Expected 35, found 29.
+# ** Warning: rtl/instrument_full_system.v(389): (vopt-2718) [TFMPC] - Missing connection for port 'done_error_pulse'.
+# ** Warning: rtl/instrument_full_system.v(389): (vopt-2718) [TFMPC] - Missing connection for port 'ignored_pulse'.
+# ** Warning: rtl/instrument_full_system.v(389): (vopt-2718) [TFMPC] - Missing connection for port 'full_pulse'.
+# ** Warning: rtl/instrument_full_system.v(389): (vopt-2718) [TFMPC] - Missing connection for port 'held_mask'.
+# ** Warning: rtl/instrument_full_system.v(389): (vopt-2718) [TFMPC] - Missing connection for port 'active_mask'.
+# ** Warning: rtl/instrument_full_system.v(389): (vopt-2718) [TFMPC] - Missing connection for port 'expr_applied'.
+# ** Warning: rtl/instrument_full_system.v(410): (vopt-2685) [TFMPC] - Too few port connections for 'audio'.  Expected 15, found 11.
+# ** Warning: rtl/instrument_full_system.v(410): (vopt-2718) [TFMPC] - Missing connection for port 'underrun_sticky'.
+# ** Warning: rtl/instrument_full_system.v(410): (vopt-2718) [TFMPC] - Missing connection for port 'underrun_pulse'.
+# ** Warning: rtl/instrument_full_system.v(410): (vopt-2718) [TFMPC] - Missing connection for port 'fifo_level'.
+# ** Warning: rtl/instrument_full_system.v(410): (vopt-2718) [TFMPC] - Missing connection for port 'frame_tick'.
+# ** Warning: rtl/instrument_full_system.v(423): (vopt-2685) [TFMPC] - Too few port connections for 'visual'.  Expected 13, found 11.
+# ** Warning: rtl/instrument_full_system.v(423): (vopt-2718) [TFMPC] - Missing connection for port 'dropped_samples'.
+# ** Warning: rtl/instrument_full_system.v(423): (vopt-2718) [TFMPC] - Missing connection for port 'spectrum_valid'.
+# ** Note: (vopt-143) Recognized 1 FSM in module "voice_engine(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "runtime_audio_fx(fast)".
+# ** Warning: sim/tb_touch_i2s_latency.sv(13): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 20, found 11.
+# ** Warning: sim/tb_touch_i2s_latency.sv(13): (vopt-2718) [TFMPC] - Missing connection for port 'hdmi_enable'.
+# ** Warning: sim/tb_touch_i2s_latency.sv(13): (vopt-2718) [TFMPC] - Missing connection for port 'tmds_data_n'.
+# ** Warning: sim/tb_touch_i2s_latency.sv(13): (vopt-2718) [TFMPC] - Missing connection for port 'tmds_data_p'.
+# ** Warning: sim/tb_touch_i2s_latency.sv(13): (vopt-2718) [TFMPC] - Missing connection for port 'tmds_clk_n'.
+# ** Warning: sim/tb_touch_i2s_latency.sv(13): (vopt-2718) [TFMPC] - Missing connection for port 'tmds_clk_p'.
+# ** Warning: sim/tb_touch_i2s_latency.sv(13): (vopt-2718) [TFMPC] - Missing connection for port 'guide_led_data'.
+# ** Warning: sim/tb_touch_i2s_latency.sv(13): (vopt-2718) [TFMPC] - Missing connection for port 'pa_disable'.
+# ** Warning: sim/tb_touch_i2s_latency.sv(13): (vopt-2718) [TFMPC] - Missing connection for port 'rgb_data'.
+# ** Warning: sim/tb_touch_i2s_latency.sv(13): (vopt-2718) [TFMPC] - Missing connection for port 'uart_tx'.
+# ** Note: (vopt-143) Recognized 1 FSM in module "i2c_register_master(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "mpr121_sampler(fast__1)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "mpr121_sampler(fast__2)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "mpr121_sampler(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "oled_status_display(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "remote_command_router(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "oled_i2c_stream(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "audio_visualizer(fast)".
+# ** Warning: rtl/board/board_contest_full_top.v(120): (vopt-2685) [TFMPC] - Too few port connections for 'system'.  Expected 54, found 46.
+# ** Warning: rtl/board/board_contest_full_top.v(120): (vopt-2718) [TFMPC] - Missing connection for port 'menu_prompt_code'.
+# ** Warning: rtl/board/board_contest_full_top.v(120): (vopt-2718) [TFMPC] - Missing connection for port 'menu_prompt_valid'.
+# ** Warning: rtl/board/board_contest_full_top.v(120): (vopt-2718) [TFMPC] - Missing connection for port 'menu_transpose'.
+# ** Warning: rtl/board/board_contest_full_top.v(120): (vopt-2718) [TFMPC] - Missing connection for port 'menu_timbre'.
+# ** Warning: rtl/board/board_contest_full_top.v(120): (vopt-2718) [TFMPC] - Missing connection for port 'monitor_valid'.
+# ** Warning: rtl/board/board_contest_full_top.v(120): (vopt-2718) [TFMPC] - Missing connection for port 'monitor_right'.
+# ** Warning: rtl/board/board_contest_full_top.v(120): (vopt-2718) [TFMPC] - Missing connection for port 'monitor_left'.
+# ** Warning: rtl/board/board_contest_full_top.v(120): (vopt-2718) [TFMPC] - Missing connection for port 'guide_mask'.
+# ** Note: (vopt-143) Recognized 1 FSM in module "mpr121_slider(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "remote_uart_rx(fast)".
+# //  ModelSim SE-64 10.6e Jun 23 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_touch_i2s_latency(fast)
+# Loading work.GSR(fast)
+# Loading work.board_contest_full_top(fast)
+# Loading work.board_bringup_top(fast)
+# Loading work.audio_clock_48k(fast)
+# Loading work.audio_plla_stage(fast)
+# Loading work.PLLA(fast)
+# Loading work.audio_plla_stage(fast__1)
+# Loading work.PLLA(fast__1)
+# Loading work.video_clocking(fast)
+# Loading work.PLLA(fast__2)
+# Loading work.audio_boot_status(fast)
+# Loading work.board_local_actions(fast)
+# Loading work.video_timing_640x480(fast)
+# Loading work.instrument_full_system(fast)
+# Loading work.remote_uart_transport(fast)
+# Loading work.remote_uart_rx(fast)
+# Loading work.remote_uart_tx(fast)
+# Loading work.remote_command_router(fast)
+# Loading work.mpr121_input_frontend(fast)
+# Loading work.mpr121_sampler(fast)
+# Loading work.i2c_register_master(fast)
+# Loading work.mpr121_sampler(fast__1)
+# Loading work.mpr121_sampler(fast__2)
+# Loading work.mpr121_key_eventizer(fast)
+# Loading work.mpr121_slider(fast)
+# Loading work.menu_hierarchy(fast)
+# Loading work.slider_gesture_input(fast)
+# Loading work.menu_action_router(fast)
+# Loading work.key_map_transpose(fast)
+# Loading work.local_action_arbiter(fast)
+# Loading work.performance_command_stage(fast)
+# Loading work.performance_controller(fast)
+# Loading work.learning_stepper(fast)
+# Loading work.ws2812_guide(fast)
+# Loading work.remote_note_watchdog(fast)
+# Loading work.note_arbiter(fast)
+# Loading work.event_fifo_v2(fast)
+# Loading work.slider_expression_control(fast)
+# Loading work.expression_merge(fast)
+# Loading work.gain_percent_meter(fast)
+# Loading work.captain_control_top_v2(fast)
+# Loading work.voice_allocator_v2(fast)
+# Loading work.expression_controls_v2(fast)
+# Loading work.voice_engine(fast)
+# Loading work.voice_state_ram(fast)
+# Loading work.adsr(fast)
+# Loading work.pitch_expression(fast)
+# Loading work.dds_lane(fast)
+# Loading work.polar_lane(fast)
+# Loading work.polar_lane(fast__1)
+# Loading work.fm_piano_lane(fast)
+# Loading work.wavetable_rom(fast)
+# Loading work.stereo_mixer(fast)
+# Loading work.gain_saturator(fast)
+# Loading work.stereo_peak_limiter(fast)
+# Loading work.audio_fx(fast)
+# Loading work.runtime_audio_fx(fast)
+# Loading work.ui_tone_overlay(fast)
+# Loading work.i2s_tx(fast)
+# Loading work.audio_monitor_cdc(fast)
+# Loading work.audio_visualizer(fast)
+# Loading work.scope_renderer(fast)
+# Loading work.oled_status_display(fast)
+# Loading work.bin16_to_bcd(fast)
+# Loading work.oled_hierarchy_renderer(fast)
+# Loading work.oled_wave_capture(fast)
+# Loading work.oled_wave_renderer(fast)
+# Loading work.oled_i2c_stream(fast)
+# Loading work.video_sync_align(fast)
+# Loading work.video_tmds_tx(fast)
+# Loading work.video_tmds_encoder(fast)
+# Loading work.video_serializer10(fast)
+# Loading work.ODDR(fast)
+# Loading work.TLVDS_OBUF(fast)
+# Loading work.mpr121_bus_model(fast)
+# Loading work.mpr121_bus_model(fast__1)
+# do cases/touch_i2s_early_gain.do
+# TOUCH I2S LATENCY case=0 phase=0 irq=1 keys=1 snapshot=1106.345us event=1106.385us command=1107.748us last_command=1107.748us complete_I2S=1414.607us
+# TOUCH I2S LATENCY case=1 phase=1 irq=0 keys=1 snapshot=616.718us event=616.921us command=618.285us last_command=618.285us complete_I2S=939.365us
+# TOUCH I2S LATENCY case=2 phase=2 irq=1 keys=1 snapshot=137.122us event=137.651us command=139.014us last_command=139.014us complete_I2S=365.465us
+# TOUCH I2S LATENCY case=3 phase=0 irq=0 keys=25 snapshot=1606.347us event=1606.388us command=1607.751us last_command=2088.303us complete_I2S=1908.689us
+# TOUCH I2S LATENCY PASS 4 phase/bus cases, 25-note chord, serial I2C, note releases, 24/32 I2S, no underrun; excludes physical sensor filtering/DAC
+# ** Note: $finish    : sim/tb_touch_i2s_latency.sv(187)
+#    Time: 68646490241 ps  Iteration: 4  Instance: /tb_touch_i2s_latency
+# End time: 20:04:39 on Oct 28,2026, Elapsed time: 0:01:49
+# Errors: 0, Warnings: 49

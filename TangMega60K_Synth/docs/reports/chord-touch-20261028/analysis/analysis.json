@@ -1,0 +1,265 @@
+{
+  "audio": {
+    "passed": true,
+    "heldA4ComponentRatios": {
+      "old": 0.4999988068667041,
+      "new": 0.9999976137334082
+    },
+    "componentAmplitudes": {
+      "old": [
+        1857684.124498203,
+        928839.8457843193
+      ],
+      "new": [
+        1857684.124498203,
+        1857679.6915686387
+      ]
+    },
+    "singleNoteBitExact": true,
+    "voiceCountVerified": 64,
+    "newPeakCeiling": 4194303,
+    "dryFullScaleRailSamples": 0,
+    "dryAtLimiterCeilingSamples": 0,
+    "limitedSineFrames": 2095,
+    "sampleRate": 48000,
+    "pianoVoiceCountVerified": 4,
+    "pianoDemoSeconds": 0.8026666666666666,
+    "demoEnvelopeNote": "Testbench overrides generic attack/decay/release; piano-specific core remains unchanged. Not a full-board recording.",
+    "warning": "Peak limiting can reduce loud chords and introduce compression artifacts; no promise of zero nonlinear distortion."
+  },
+  "hardwareTested": false,
+  "latency": {
+    "baseline": {
+      "passed": true,
+      "physicalTested": false,
+      "startBoundary": "MPR121 already-filtered touch status register change in digital slave model",
+      "endBoundary": "first complete nonzero 24-bit channel word decoded from exported I2S pins",
+      "excluded": [
+        "electrode/AFE acquisition",
+        "MPR121 filtering",
+        "DAC/amplifier/acoustic delay"
+      ],
+      "nominalAudioHz": 49152000,
+      "sampleRateHz": 48000,
+      "i2cHz": 400000,
+      "pollIntervalUs": 500,
+      "voiceSlots": 64,
+      "coldCalibrationWaitAccelerated": true,
+      "steadyStateParametersUnchanged": true,
+      "cases": [
+        {
+          "case": 0,
+          "pollPhase": 0,
+          "irqUsed": true,
+          "keyCount": 1,
+          "snapshot_us": 2051.192,
+          "first_event_us": 2051.233,
+          "last_event_us": 2051.233,
+          "first_command_us": 2052.596,
+          "last_command_us": 2052.596,
+          "first_nonzero_i2s_us": 2372.985
+        },
+        {
+          "case": 1,
+          "pollPhase": 1,
+          "irqUsed": false,
+          "keyCount": 1,
+          "snapshot_us": 1561.036,
+          "first_event_us": 1561.24,
+          "last_event_us": 1561.24,
+          "first_command_us": 1562.603,
+          "last_command_us": 1562.603,
+          "first_nonzero_i2s_us": 1897.213
+        },
+        {
+          "case": 2,
+          "pollPhase": 2,
+          "irqUsed": true,
+          "keyCount": 1,
+          "snapshot_us": 1080.912,
+          "first_event_us": 1081.441,
+          "last_event_us": 1081.441,
+          "first_command_us": 1082.804,
+          "last_command_us": 1082.804,
+          "first_nonzero_i2s_us": 1301.951
+        },
+        {
+          "case": 3,
+          "pollPhase": 0,
+          "irqUsed": false,
+          "keyCount": 25,
+          "snapshot_us": 2551.196,
+          "first_event_us": 2551.236,
+          "last_event_us": 2552.783,
+          "first_command_us": 2552.599,
+          "last_command_us": 3046.682,
+          "first_nonzero_i2s_us": 2867.067
+        }
+      ],
+      "observedMinUs": 1301.951,
+      "observedMaxUs": 2867.067,
+      "observedSpreadUs": 1565.116,
+      "scopeNote": "Four finite cases; not an exhaustive worst-case bound or proof of zero jitter",
+      "physicalAtMost5msProven": false,
+      "physicalAtMost10msProven": false
+    },
+    "gainOnly": {
+      "passed": true,
+      "physicalTested": false,
+      "startBoundary": "MPR121 already-filtered touch status register change in digital slave model",
+      "endBoundary": "first complete nonzero 24-bit channel word decoded from exported I2S pins",
+      "excluded": [
+        "electrode/AFE acquisition",
+        "MPR121 filtering",
+        "DAC/amplifier/acoustic delay"
+      ],
+      "nominalAudioHz": 49152000,
+      "sampleRateHz": 48000,
+      "i2cHz": 400000,
+      "pollIntervalUs": 500,
+      "voiceSlots": 64,
+      "coldCalibrationWaitAccelerated": true,
+      "steadyStateParametersUnchanged": true,
+      "cases": [
+        {
+          "case": 0,
+          "pollPhase": 0,
+          "irqUsed": true,
+          "keyCount": 1,
+          "snapshot_us": 2051.192,
+          "first_event_us": 2051.233,
+          "last_event_us": 2051.233,
+          "first_command_us": 2052.596,
+          "last_command_us": 2052.596,
+          "first_nonzero_i2s_us": 2372.985
+        },
+        {
+          "case": 1,
+          "pollPhase": 1,
+          "irqUsed": false,
+          "keyCount": 1,
+          "snapshot_us": 1561.036,
+          "first_event_us": 1561.24,
+          "last_event_us": 1561.24,
+          "first_command_us": 1562.603,
+          "last_command_us": 1562.603,
+          "first_nonzero_i2s_us": 1897.213
+        },
+        {
+          "case": 2,
+          "pollPhase": 2,
+          "irqUsed": true,
+          "keyCount": 1,
+          "snapshot_us": 1080.912,
+          "first_event_us": 1081.441,
+          "last_event_us": 1081.441,
+          "first_command_us": 1082.804,
+          "last_command_us": 1082.804,
+          "first_nonzero_i2s_us": 1301.951
+        },
+        {
+          "case": 3,
+          "pollPhase": 0,
+          "irqUsed": false,
+          "keyCount": 25,
+          "snapshot_us": 2551.196,
+          "first_event_us": 2551.236,
+          "last_event_us": 2552.783,
+          "first_command_us": 2552.599,
+          "last_command_us": 3046.682,
+          "first_nonzero_i2s_us": 2867.067
+        }
+      ],
+      "observedMinUs": 1301.951,
+      "observedMaxUs": 2867.067,
+      "observedSpreadUs": 1565.116,
+      "scopeNote": "Four finite cases; not an exhaustive worst-case bound or proof of zero jitter",
+      "physicalAtMost5msProven": false,
+      "physicalAtMost10msProven": false
+    },
+    "gainAndEarly": {
+      "passed": true,
+      "physicalTested": false,
+      "startBoundary": "MPR121 already-filtered touch status register change in digital slave model",
+      "endBoundary": "first complete nonzero 24-bit channel word decoded from exported I2S pins",
+      "excluded": [
+        "electrode/AFE acquisition",
+        "MPR121 filtering",
+        "DAC/amplifier/acoustic delay"
+      ],
+      "nominalAudioHz": 49152000,
+      "sampleRateHz": 48000,
+      "i2cHz": 400000,
+      "pollIntervalUs": 500,
+      "voiceSlots": 64,
+      "coldCalibrationWaitAccelerated": true,
+      "steadyStateParametersUnchanged": true,
+      "cases": [
+        {
+          "case": 0,
+          "pollPhase": 0,
+          "irqUsed": true,
+          "keyCount": 1,
+          "snapshot_us": 1106.345,
+          "first_event_us": 1106.385,
+          "last_event_us": 1106.385,
+          "first_command_us": 1107.748,
+          "last_command_us": 1107.748,
+          "first_nonzero_i2s_us": 1414.607
+        },
+        {
+          "case": 1,
+          "pollPhase": 1,
+          "irqUsed": false,
+          "keyCount": 1,
+          "snapshot_us": 616.718,
+          "first_event_us": 616.921,
+          "last_event_us": 616.921,
+          "first_command_us": 618.285,
+          "last_command_us": 618.285,
+          "first_nonzero_i2s_us": 939.365
+        },
+        {
+          "case": 2,
+          "pollPhase": 2,
+          "irqUsed": true,
+          "keyCount": 1,
+          "snapshot_us": 137.122,
+          "first_event_us": 137.651,
+          "last_event_us": 137.651,
+          "first_command_us": 139.014,
+          "last_command_us": 139.014,
+          "first_nonzero_i2s_us": 365.465
+        },
+        {
+          "case": 3,
+          "pollPhase": 0,
+          "irqUsed": false,
+          "keyCount": 25,
+          "snapshot_us": 1606.347,
+          "first_event_us": 1606.388,
+          "last_event_us": 1607.934,
+          "first_command_us": 1607.751,
+          "last_command_us": 2088.303,
+          "first_nonzero_i2s_us": 1908.689
+        }
+      ],
+      "observedMinUs": 365.465,
+      "observedMaxUs": 1908.689,
+      "observedSpreadUs": 1543.224,
+      "scopeNote": "Four finite cases; not an exhaustive worst-case bound or proof of zero jitter",
+      "physicalAtMost5msProven": false,
+      "physicalAtMost10msProven": false
+    }
+  },
+  "observedI2sSavingsUs": [
+    958.378,
+    957.848,
+    936.486,
+    958.378
+  ],
+  "analysisScriptSHA256": {
+    "analyze-chord-touch.py": "F38B313BDF943AB5DE73D135003B369710A1D45BE642B3338A029C7FEA179708",
+    "analyze-touch-i2s-latency.py": "9A622F1576CDAFC3635D9A7B213AB9CCDC5F6D413071B0A35092DCCE9ECE98CA"
+  }
+}

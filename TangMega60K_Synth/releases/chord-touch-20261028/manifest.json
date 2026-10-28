@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-28",
+  "sourceBase": "b06bc97ca85197203d3fa0fba4026b19ca3d91ac",
+  "branch": "codex/chord-gain-stable-20261028",
+  "bitstream": "fpga/ContestFull_ChordStable_EarlyTouch_TEST1024.fs",
+  "sha256": "2F54A832EE9DFC616CA7BB35A6B6D5899CDB7BC5D6FB4B1439FAF37A17A44DDB",
+  "userCode": "0x0000F571",
+  "coreCases": [
+    "mpr121_early_mailbox",
+    "mpr121_frontend_early",
+    "stable_chord_n64",
+    "stable_chord_piano",
+    "stable_polar_n4",
+    "stable_polar_n64",
+    "stereo_peak_limiter",
+    "touch_i2s_early_gain",
+    "touch_i2s_gain",
+    "touch_i2s_latency"
+  ],
+  "regressionCases": [
+    "audio_boot_status",
+    "audio_engine_n4",
+    "audio_i2s",
+    "audio_units",
+    "control_router",
+    "event_fifo_pipeline",
+    "expression_merge",
+    "global_panic",
+    "headroom_smoothing_n64",
+    "hierarchy_board",
+    "hierarchy_board_timing",
+    "hierarchy_pixels",
+    "hierarchy_system",
+    "learning_system",
+    "menu_hierarchy",
+    "menu_replay",
+    "menu_system",
+    "mode_status",
+    "mpr121_backpressure",
+    "mpr121_capacity",
+    "mpr121_frontend",
+    "mpr121_i2c",
+    "mpr121_timing",
+    "note_arbiter",
+    "oled_i2c_stream",
+    "oled_idle10",
+    "oled_idle_menu",
+    "oled_menu",
+    "oled_volume",
+    "oled_volume_board",
+    "oled_wave_board",
+    "oled_wave_board_timing",
+    "oled_wave_capture",
+    "oled_wave_display",
+    "performance_retrigger",
+    "runtime_fx",
+    "runtime_fx_storage",
+    "slider_expression",
+    "slider_liveness",
+    "slider_menu",
+    "slider_performance",
+    "slider_volume_control",
+    "slider_volume_system",
+    "transport_status_equivalence"
+  ],
+  "caseCount": 54,
+  "resources": {
+    "Logic": {
+      "used": 28558.0,
+      "capacity": 59904.0,
+      "reportedPercent": 48,
+      "free": 31346.0
+    },
+    "Register": {
+      "used": 19430.0,
+      "capacity": 60780.0,
+      "reportedPercent": 32,
+      "free": 41350.0
+    },
+    "BSRAM": {
+      "used": 107.0,
+      "capacity": 118.0,
+      "reportedPercent": 91,
+      "free": 11.0
+    },
+    "DSP": {
+      "used": 56.0,
+      "capacity": 118.0,
+      "reportedPercent": 48,
+      "free": 62.0
+    }
+  },
+  "minimumSlackNs": {
+    "setup": 0.368,
+    "hold": 0.178,
+    "recovery": 5.215,
+    "removal": 0.816
+  },
+  "i2sSavingsUs": [
+    958.378,
+    957.848,
+    936.486,
+    958.378
+  ],
+  "heldA4Ratios": {
+    "old": 0.4999988068667041,
+    "new": 0.9999976137334082
+  },
+  "hardwareValidated": false,
+  "physicalLatencyMeasured": false,
+  "powerFaultFixed": false,
+  "previousOledBasicUserFeedback": true,
+  "newFirmwareOledHardwareValidated": false,
+  "led5x5HardwareValidated": false,
+  "downloadedByAgent": false,
+  "pushed": false,
+  "zip": "ContestFull_ChordStable_EarlyTouch_TEST1024.zip",
+  "zipSHA256": "CE36E9711D23CB18A4ECBA5742D14F5394ADC80252D985268BABE300C02625BD",
+  "zipBytes": 3497996
+}

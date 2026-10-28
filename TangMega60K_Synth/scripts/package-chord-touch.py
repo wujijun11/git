@@ -76,7 +76,7 @@ def main():
     if not build["current"]["timingPass"]:
         raise ValueError("Full timing failed; do not distribute the bitstream")
     verify_sim(args.core, CORE, label_correction=True)
-    verify_sim(args.regression, REGRESSION)
+    verify_sim(args.regression, REGRESSION, label_correction=True)
     verify_sim(args.early_check, {"mpr121_early_mailbox"})
     analysis = read(args.core / "analysis/analysis.json")
     if not analysis["audio"]["passed"] or not all(row["passed"] for row in analysis["latency"].values()):

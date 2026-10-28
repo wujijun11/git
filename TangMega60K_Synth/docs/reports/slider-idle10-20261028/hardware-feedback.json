@@ -7,7 +7,8 @@
     "刚进入菜单就回到波形；未仪器计时",
     "明确要求菜单闲置10秒显示波形，触摸恢复原页",
     "有时断电重启后RGB仍未点亮，左下与右上灯短暂闪过",
-    "用户确认视频拍摄时长按HDMI旁PWR电源键"
+    "用户确认视频拍摄时长按HDMI旁PWR电源键",
+    "正常时完全断电后接电开机，无需重新下载就会自动出现RGB多色变化；异常时不出现"
   ],
   "rootCauseConfirmed": false,
   "freezeFixed": false,
@@ -30,5 +31,12 @@
     "originalVideoIncludedInRelease": false,
     "buttonPressed": "PWR near HDMI; user confirmation",
     "uncommandedPowerOffProven": false
+  },
+  "automaticBoot": {
+    "colorSequenceWithoutRedownloadUserConfirmed": true,
+    "flashImageVersionConfirmed": false,
+    "factoryImageConfirmed": false,
+    "currentSourceHasFixedRainbowAnimation": false,
+    "bareBoardPowerOnlyComparisonCompleted": false
   }
 }

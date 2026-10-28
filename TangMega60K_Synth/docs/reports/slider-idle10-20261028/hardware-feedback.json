@@ -6,7 +6,8 @@
     "核心板上的所有灯熄灭，开发底板电源灯仍亮",
     "刚进入菜单就回到波形；未仪器计时",
     "明确要求菜单闲置10秒显示波形，触摸恢复原页",
-    "有时断电重启后RGB仍未点亮，左下与右上灯短暂闪过"
+    "有时断电重启后RGB仍未点亮，左下与右上灯短暂闪过",
+    "用户确认视频拍摄时长按HDMI旁PWR电源键"
   ],
   "rootCauseConfirmed": false,
   "freezeFixed": false,
@@ -23,9 +24,11 @@
     "decodedFrames": 132,
     "batteryIndicatorRowDarkApproxSeconds": 2.33,
     "rowLaterRelights": true,
-    "buttonPressedConfirmed": false,
+    "buttonPressedConfirmed": true,
     "voltageDropConfirmed": false,
     "actualLampSilkscreensConfirmed": false,
-    "originalVideoIncludedInRelease": false
+    "originalVideoIncludedInRelease": false,
+    "buttonPressed": "PWR near HDMI; user confirmation",
+    "uncommandedPowerOffProven": false
   }
 }

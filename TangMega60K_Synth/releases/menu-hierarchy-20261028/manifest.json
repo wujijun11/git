@@ -1,0 +1,90 @@
+{
+  "date": "2026-10-28",
+  "sourceRevision": "1126d1b65a8d00d39059fac62c60f9fd2543fc39",
+  "sourceInputsMatch": true,
+  "bitstream": "fpga/ContestFull_MenuExpression_TEST1024.fs",
+  "sha256": "0D56B19F538878475D528494B2F13072302CCC65C8E2B34F6C8877CAB56831C7",
+  "userCode": "0x00003DF3",
+  "idleSeconds": 10,
+  "modelSimCases": [
+    "audio_boot_status",
+    "audio_i2s",
+    "control_router",
+    "expression_merge",
+    "global_panic",
+    "headroom_smoothing_n64",
+    "hierarchy_board",
+    "hierarchy_board_timing",
+    "hierarchy_pixels",
+    "hierarchy_system",
+    "learning_system",
+    "menu_hierarchy",
+    "menu_replay",
+    "menu_system",
+    "mode_status",
+    "mpr121_backpressure",
+    "mpr121_capacity",
+    "mpr121_frontend",
+    "oled_i2c_stream",
+    "oled_idle10",
+    "oled_idle_menu",
+    "oled_menu",
+    "oled_volume",
+    "oled_volume_board",
+    "oled_wave_board",
+    "oled_wave_board_timing",
+    "oled_wave_capture",
+    "oled_wave_display",
+    "runtime_fx",
+    "slider_expression",
+    "slider_liveness",
+    "slider_menu",
+    "slider_performance",
+    "slider_volume_control",
+    "slider_volume_system",
+    "transport_status_equivalence"
+  ],
+  "timing": {
+    "setup": 0.088,
+    "hold": 0.126,
+    "recovery": 5.125,
+    "removal": 0.709
+  },
+  "resources": {
+    "Logic": {
+      "used": 28232.0,
+      "capacity": 59904.0,
+      "reportedPercent": 48,
+      "free": 31672.0
+    },
+    "Register": {
+      "used": 19213.0,
+      "capacity": 60780.0,
+      "reportedPercent": 32,
+      "free": 41567.0
+    },
+    "BSRAM": {
+      "used": 107.0,
+      "capacity": 118.0,
+      "reportedPercent": 91,
+      "free": 11.0
+    },
+    "DSP": {
+      "used": 56.0,
+      "capacity": 118.0,
+      "reportedPercent": 48,
+      "free": 62.0
+    }
+  },
+  "hardwareValidated": false,
+  "oledHardwareValidated": false,
+  "led5x5HardwareValidated": false,
+  "powerFaultFixed": false,
+  "portamentoAdded": false,
+  "downloadedByAgent": false,
+  "pushed": false,
+  "fullHierarchyStatusInExistingApps": false,
+  "zip": "ContestFull_MenuExpression_TEST1024.zip",
+  "zipSHA256": "5D445C4DF93AF3D7F275DD36884171C9CB5515E829F1129B8CEE242B3FD06AD2",
+  "zipBytes": 2587357
+}

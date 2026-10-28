@@ -1,6 +1,6 @@
 // OLED空闲覆盖层：只选择显示内容，不改变滑条菜单状态或消费触摸事件。
 module oled_idle_view #(
-    parameter integer IDLE_CYCLES = 147456000 // 49.152MHz下3秒
+    parameter integer IDLE_CYCLES = 491520000 // 49.152MHz下10秒
 ) (
     input wire clk,
     input wire rst_n,

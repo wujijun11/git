@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-28",
+  "userReported": [
+    "滑条操作后FPGA无响应，琴键和蓝牙控制均失效",
+    "彩色RGB灯直接熄灭",
+    "核心板上的所有灯熄灭，开发底板电源灯仍亮",
+    "刚进入菜单就回到波形；未仪器计时",
+    "明确要求菜单闲置10秒显示波形，触摸恢复原页",
+    "有时断电重启后RGB仍未点亮，左下与右上灯短暂闪过"
+  ],
+  "rootCauseConfirmed": false,
+  "freezeFixed": false,
+  "recoveryMethodConfirmed": false,
+  "voltageMeasured": false,
+  "agentDownloadedHardware": false,
+  "oledPriorVersion": "user_reported_menu_wave_transition",
+  "new10SecondFirmwareHardwareTested": false,
+  "led5x5HardwareValidated": false,
+  "videoObservation": {
+    "file": "VID_20261028_135515.mp4",
+    "sha256": "95ECF86BFE29B74168C40E944C4CF6E95B3F3821BD5C2D1226B349BA50DBD450",
+    "durationSeconds": 4.407271,
+    "decodedFrames": 132,
+    "batteryIndicatorRowDarkApproxSeconds": 2.33,
+    "rowLaterRelights": true,
+    "buttonPressedConfirmed": false,
+    "voltageDropConfirmed": false,
+    "actualLampSilkscreensConfirmed": false,
+    "originalVideoIncludedInRelease": false
+  }
+}

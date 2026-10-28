@@ -1,0 +1,22 @@
+{
+  "snapshot": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_4m4zzyk3\\verification\\slider-idle10-build\\build_slider-idle10_20261028_135916_278db728",
+  "project": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_4m4zzyk3",
+  "sourceRoot": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_4m4zzyk3",
+  "variant": "slider-idle10",
+  "createdAt": "2026-10-28T13:59:16.799732+08:00",
+  "gowin": "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+  "baselineReport": "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-timing-latency-20261026\\TangMega60K_Synth\\docs\\reports\\oled-idle-wave-20261027\\selected-r2\\build-results.json",
+  "withoutGao": true,
+  "gprjDependencies": 86,
+  "inputFiles": 99,
+  "gaoExpected": false,
+  "implementationKind": "bare-main",
+  "gaoEvidence": {
+    "verified": false,
+    "enabledConfigurationCount": 0,
+    "files": []
+  },
+  "preparedOnly": false,
+  "driverSha256": "8E903BD45C894C810A9A1B42310F00DDE47545BBD568EB3A7BF312A164A5D78C",
+  "buildStartedAt": "2026-10-28T13:59:16.838677+08:00"
+}

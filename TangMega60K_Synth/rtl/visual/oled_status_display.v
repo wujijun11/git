@@ -11,7 +11,7 @@ module oled_status_display #(
     parameter FONT_FILE="rtl/audio/rom/menu_font.hex",
     parameter integer PERFORMANCE_UI_ENABLE=0,
     parameter integer WAVEFORM_ENABLE=0,
-    parameter integer WAVE_IDLE_CYCLES=CLK_HZ*3,
+    parameter integer WAVE_IDLE_CYCLES=CLK_HZ*10,
     parameter integer WAVE_FRAME_WAIT_CYCLES=CLK_HZ/200
 ) (
     input wire clk,rst_n,main_menu,

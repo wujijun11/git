@@ -43,6 +43,8 @@ function New-TestCase([string]$Name,[string]$Top,[string]$Bench,[string]$Marker,
 $watchdogCase = New-TestCase 'remote_note_watchdog' 'tb_remote_note_watchdog' `
     'sim/tb_remote_note_watchdog.sv' 'REMOTE NOTE WATCHDOG PASS' @() '' $true
 $allCases = @(
+    (New-TestCase 'oled_idle10' 'tb_oled_idle10' 'sim/tb_oled_idle10.sv' 'OLED IDLE10 PASS'),
+    (New-TestCase 'slider_liveness' 'tb_slider_liveness' 'sim/tb_slider_liveness.sv' 'SLIDER LIVENESS PASS'),
     (New-TestCase 'performance_held_write' 'tb_performance_held_write' 'sim/tb_performance_held_write.sv' 'PERFORMANCE HELD WRITE EQUIVALENCE PASS'),
     (New-TestCase 'oled_i2c_stream' 'tb_oled_i2c_stream' 'sim/tb_oled_i2c_stream.sv' 'OLED I2C STREAM PASS'),
     (New-TestCase 'oled_wave_board' 'tb_oled_wave_board' 'sim/tb_oled_wave_board.sv' 'OLED WAVE BOARD PASS'),

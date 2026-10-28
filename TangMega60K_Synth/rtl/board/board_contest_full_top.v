@@ -13,7 +13,8 @@ module board_contest_full_top #(
     parameter integer OLED_POWER_WAIT_CYCLES=4915200,
     parameter integer OLED_FRAME_WAIT_CYCLES=1966080,
     parameter integer OLED_WAVE_ENABLE=1,
-    parameter integer OLED_WAVE_IDLE_CYCLES=147456000,
+    // 滑条松手/菜单状态最后一次变化后等待10秒再显示波形；保留当前菜单页。
+    parameter integer OLED_WAVE_IDLE_CYCLES=491520000,
     parameter [7:0] GUIDE_BRIGHTNESS=8'd32, GUIDE_TOUCH_BRIGHTNESS=8'd16,
     // Index0 is DIN's first pixel. Calibrate the purchased panel before
     // replacing this identity map; its row order is not shown by the listing.

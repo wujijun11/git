@@ -5,6 +5,8 @@ module board_contest_full_top #(
     parameter DEBOUNCE_CYCLES=100000,
     parameter SLIDER_VOLUME_ENABLE=1,
     parameter MENU_HIERARCHY_ENABLE=1,
+    parameter STABLE_CHORD_MIX_ENABLE=1,
+    parameter EARLY_KEY_ENABLE=1,
     // 仅本地排查分支启用，改用已有彩灯观察启动状态，不改变音频/通信功能。
     parameter BOOT_DIAGNOSTIC=1,
     // 四针128x64 SSD1306/SSD1315兼容OLED：独立I2C，使用既有音频时钟。
@@ -112,6 +114,8 @@ module board_contest_full_top #(
     video_timing_640x480 timing(.clk(pixel_clk),.reset(!video_reset[1]),.pixel_x(x),.pixel_y(y),.hsync(hs),.vsync(vs),.de(de));
     instrument_full_system #(.SLIDER_VOLUME_ENABLE(SLIDER_VOLUME_ENABLE),
         .HIERARCHICAL_MENU_ENABLE(MENU_HIERARCHY_ENABLE),.MENU_WAVE_IDLE_CYCLES(OLED_WAVE_IDLE_CYCLES),
+        .STABLE_CHORD_MIX_ENABLE(STABLE_CHORD_MIX_ENABLE),
+        .EARLY_KEY_ENABLE(EARLY_KEY_ENABLE),
         .MENU_ROOT_IDLE_CYCLES(OLED_ENABLE && OLED_WAVE_ENABLE ? 0 : 245760000),.GUIDE_BRIGHTNESS(GUIDE_BRIGHTNESS),
         .GUIDE_TOUCH_BRIGHTNESS(GUIDE_TOUCH_BRIGHTNESS),.GUIDE_PIXEL_KEY_MAP(GUIDE_PIXEL_KEY_MAP)) system(
         .clk(audio_clk),.rst_n(rst_n),.uart_rx(uart_rx),.uart_tx(uart_tx),

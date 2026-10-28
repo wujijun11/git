@@ -43,6 +43,15 @@ function New-TestCase([string]$Name,[string]$Top,[string]$Bench,[string]$Marker,
 $watchdogCase = New-TestCase 'remote_note_watchdog' 'tb_remote_note_watchdog' `
     'sim/tb_remote_note_watchdog.sv' 'REMOTE NOTE WATCHDOG PASS' @() '' $true
 $allCases = @(
+    (New-TestCase 'stable_polar_n4' 'tb_audio_engine' 'sim/tb_audio_engine.sv' 'POLAR ENGINE PASSED N=4' @('-gN=4','-gPOLAR=1','-gSTABLE=1')),
+    (New-TestCase 'stable_polar_n64' 'tb_audio_engine' 'sim/tb_audio_engine.sv' 'POLAR ENGINE PASSED N=64' @('-gN=64','-gPOLAR=1','-gSTABLE=1')),
+    (New-TestCase 'mpr121_early_mailbox' 'tb_mpr121_early' 'sim/tb_mpr121_early.sv' 'MPR121 EARLY MAILBOX PASS'),
+    (New-TestCase 'mpr121_frontend_early' 'tb_mpr121_frontend' 'sim/tb_mpr121_frontend.sv' 'PASS tb_mpr121_frontend' @('-gEARLY=1')),
+    (New-TestCase 'touch_i2s_gain' 'tb_touch_i2s_latency' 'sim/tb_touch_i2s_latency.sv' 'TOUCH I2S LATENCY PASS' @('-gSTABLE=1')),
+    (New-TestCase 'touch_i2s_early_gain' 'tb_touch_i2s_latency' 'sim/tb_touch_i2s_latency.sv' 'TOUCH I2S LATENCY PASS' @('-gEARLY=1','-gSTABLE=1')),
+    (New-TestCase 'stable_chord_n64' 'tb_stable_chord_mix' 'sim/tb_stable_chord_mix.sv' 'STABLE CHORD MIX PASS N=64 TIMBRE=0'),
+    (New-TestCase 'stable_chord_piano' 'tb_stable_chord_mix' 'sim/tb_stable_chord_mix.sv' 'STABLE CHORD MIX PASS N=4 TIMBRE=2' @('-gN=4','-gTIMBRE=2','-gLONG_DEMO=1')),
+    (New-TestCase 'stereo_peak_limiter' 'tb_stereo_peak_limiter' 'sim/tb_stereo_peak_limiter.sv' 'STEREO PEAK LIMITER PASS'),
     (New-TestCase 'hierarchy_board_timing' 'tb_oled_wave_board' 'sim/tb_oled_wave_board.sv' 'HIERARCHY BOARD TIMING PASS' @('-gHIERARCHY=1','-gFAST=0')),
     (New-TestCase 'hierarchy_pixels' 'tb_oled_hierarchy' 'sim/tb_oled_hierarchy.sv' 'OLED HIERARCHY PIXELS EXPORTED'),
     (New-TestCase 'hierarchy_system' 'tb_slider_liveness' 'sim/tb_slider_liveness.sv' 'HIERARCHY SYSTEM PASS' @('-gHIERARCHY=1')),

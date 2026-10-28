@@ -4,6 +4,7 @@ module tb_audio_engine;
     parameter N=4;
     parameter POLAR=0;
     parameter FM=0;
+    parameter STABLE=0;
     wire [63:0] fm_debug_phase0;
     generate if(FM) begin: g_probe_fm
         assign fm_debug_phase0=dut.g_fm.u_fm.phase_ram[0];
@@ -53,7 +54,7 @@ module tb_audio_engine;
     reg sample_ready=1;
     wire sample_valid;
     wire signed [23:0] sl,sr;
-    voice_engine #(.VOICE_COUNT(N),.FM_ENABLE(FM)) dut (
+    voice_engine #(.VOICE_COUNT(N),.FM_ENABLE(FM),.STABLE_CHORD_GAIN(STABLE)) dut (
         .clk(clk),.rst_n(rst_n),.cmd_valid(cmd_valid),.cmd_ready(cmd_ready),.cmd_on(cmd_on),
         .cmd_voice(cmd_voice),.cmd_note(cmd_note),.cmd_velocity(cmd_velocity),.cmd_timbre(cmd_timbre),
         .done_valid(done_valid),.done_ready(done_ready),.done_voice(done_voice),
@@ -67,7 +68,7 @@ module tb_audio_engine;
     // Explicit no-expression reference path: same core, compile-time neutral.
     // External PCM frequency/RMS and memory independence tests are additional,
     // so equivalence alone is not being used as proof of audio correctness.
-    voice_engine #(.VOICE_COUNT(N),.EXPRESSION_ENABLE(0),.FM_ENABLE(FM)) reference_engine (
+    voice_engine #(.VOICE_COUNT(N),.EXPRESSION_ENABLE(0),.FM_ENABLE(FM),.STABLE_CHORD_GAIN(STABLE)) reference_engine (
         .clk(clk),.rst_n(rst_n),.cmd_valid(cmd_valid),.cmd_ready(ref_ready),.cmd_on(cmd_on),
         .cmd_voice(cmd_voice),.cmd_note(cmd_note),.cmd_velocity(cmd_velocity),.cmd_timbre(cmd_timbre),
         .done_valid(ref_done),.done_ready(done_ready),.done_voice(ref_done_voice),
@@ -102,7 +103,10 @@ module tb_audio_engine;
         end else begin
             if(done_error) $fatal(1,"N=%0d illegal/duplicate done",N);
             if(full_pulse) fulls=fulls+1;
-            if(cmd_ready!==ref_ready || sample_valid!==ref_valid) $fatal(1,"reference scheduling mismatch");
+            // 新限幅器按实际峰值选择除法路径。表情改变后与中性参考耗时可不同，
+            // 因此仅在中性对照阶段要求逐拍一致；本机反压/LFO/帧预算检查始终保留。
+            if((!STABLE || check_neutral) && (cmd_ready!==ref_ready || sample_valid!==ref_valid))
+                $fatal(1,"reference scheduling mismatch");
             if(previous_stall && (!sample_valid || {sl,sr}!==held_sample)) $fatal(1,"sample backpressure corruption");
             if(previous_done_stall && (!done_valid || done_voice!==held_done)) $fatal(1,"done backpressure corruption");
             previous_stall=sample_valid && !sample_ready; held_sample={sl,sr};

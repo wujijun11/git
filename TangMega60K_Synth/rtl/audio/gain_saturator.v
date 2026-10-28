@@ -3,7 +3,9 @@ module gain_saturator #(parameter SHIFT=1) (
     input wire clk,
     input wire signed [31:0] mix_left, mix_right,
     input wire [11:0] gain,
-    output wire signed [23:0] out_left, out_right
+    output wire signed [23:0] out_left, out_right,
+    // 可选观察/限幅入口：保留饱和前的完整结果，避免先削波再做保护。
+    output wire signed [44:0] wide_left,wide_right
 );
     reg signed [44:0] product_l,product_r;
     wire signed [44:0] scaled_l=((product_l+45'sd1024)>>>11)<<<SHIFT;
@@ -22,4 +24,6 @@ module gain_saturator #(parameter SHIFT=1) (
     end
     assign out_left=sat24(scaled_l);
     assign out_right=sat24(scaled_r);
+    assign wide_left=scaled_l;
+    assign wide_right=scaled_r;
 endmodule

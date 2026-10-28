@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-module tb_mpr121_frontend;
+module tb_mpr121_frontend #(parameter EARLY=0);
     reg clk=0;always #5 clk=~clk;
     reg resetn=0;reg [2:0] irq_n=3'b111;
     tri1 [2:0] scl,sda;
@@ -18,7 +18,7 @@ module tb_mpr121_frontend;
     reg hold0=0,hold1=0,hold2=0;
     mpr121_input_frontend #(.CLK_HZ(4000000),.I2C_HZ(400000),
       .TIMEOUT_CYCLES(10000),.POLL_CYCLES(40),.RESET_CYCLES(20),
-      .SETTLE_CYCLES(100),.RETRY_CYCLES(200),.CALIBRATION_SNAPSHOTS(2)) dut(.*);
+      .SETTLE_CYCLES(100),.RETRY_CYCLES(200),.CALIBRATION_SNAPSHOTS(2),.EARLY_KEY_ENABLE(EARLY)) dut(.*);
     mpr121_bus_model m0(clk,scl[0],sda[0],nack0,mismatch0,hold0,1'b0);
     mpr121_bus_model m1(clk,scl[1],sda[1],nack1,mismatch1,hold1,1'b0);
     mpr121_bus_model m2(clk,scl[2],sda[2],nack2,mismatch2,hold2,1'b0);

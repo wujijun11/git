@@ -2,7 +2,7 @@
 // 完整OLED板级顶层：三组MPR121串行从机→事件→64声部引擎→外部I2S解码。
 // 起点是已滤波触摸寄存器变更，不含真实MPR模拟检测、DAC和喇叭。
 // 只缩短冷启动校准等待；steady-state轮询、400kHz总线、ADSR与I2S不加速。
-module tb_touch_i2s_latency;
+module tb_touch_i2s_latency #(parameter EARLY=0,STABLE=0);
     GSR GSR(.GSRI(1'b1));
     reg sys_clk=0;
     always #10 sys_clk=~sys_clk;
@@ -10,7 +10,7 @@ module tb_touch_i2s_latency;
     tri1 [2:0] scl, sda;
     tri1 oled_scl, oled_sda;
     wire bc,lr,sd;
-    board_contest_full_top dut(
+    board_contest_full_top #(.EARLY_KEY_ENABLE(EARLY),.STABLE_CHORD_MIX_ENABLE(STABLE)) dut(
         .sys_clk(sys_clk),.key_n(key_n),.mpr_scl(scl),.mpr_sda(sda),.mpr_irq_n(irq_n),
         .uart_rx(1'b1),.i2s_bclk(bc),.i2s_lrclk(lr),.i2s_data(sd),
         .oled_scl(oled_scl),.oled_sda(oled_sda));
@@ -40,10 +40,13 @@ module tb_touch_i2s_latency;
             $fatal(1,"touch latency audio/sensor error");
         if(dut.system.monitor_valid) pcm_frames=pcm_frames+1;
         if(measuring) begin
-            if(first_snapshot_at==0 &&
+            if(first_snapshot_at==0 && (EARLY ?
+                ((dut.system.sensors.early_valid[0] && dut.system.sensors.early_ready[0] && dut.system.sensors.early_status[7:0]!=0) ||
+                 (dut.system.sensors.early_valid[1] && dut.system.sensors.early_ready[1] && dut.system.sensors.early_status[19:12]!=0) ||
+                 (dut.system.sensors.early_valid[2] && dut.system.sensors.early_ready[2] && dut.system.sensors.early_status[32:24]!=0)) :
                 ((dut.system.sensors.snap_valid[0] && dut.system.sensors.snap_ready[0] && dut.system.sensors.snaps[7:0]!=0) ||
                  (dut.system.sensors.snap_valid[1] && dut.system.sensors.snap_ready[1] && dut.system.sensors.snaps[351:344]!=0) ||
-                 (dut.system.sensors.snap_valid[2] && dut.system.sensors.snap_ready[2] && dut.system.sensors.snaps[696:688]!=0)))
+                 (dut.system.sensors.snap_valid[2] && dut.system.sensors.snap_ready[2] && dut.system.sensors.snaps[696:688]!=0))))
                 first_snapshot_at=$time;
             if(dut.system.sensor_ev && dut.system.sensor_er) begin
                 source_index=dut.system.sensor_source-25;
@@ -170,7 +173,8 @@ module tb_touch_i2s_latency;
     endtask
     initial begin
         $timeformat(-9,0,"",0);
-        output_file=$fopen("sim/audio_results/touch_i2s_latency.csv","w");
+        // 参数化文件名避免对照组覆盖新版本证据；snapshot_ns表示供事件转换器使用的状态就绪。
+        output_file=$fopen($sformatf("sim/audio_results/touch_i2s_latency_e%0d_s%0d.csv",EARLY,STABLE),"w");
         if(output_file==0) $fatal(1,"cannot write touch latency report");
         $fdisplay(output_file,"case_id,phase,irq,key_count,status_ns,snapshot_ns,first_event_ns,last_event_ns,first_command_ns,last_command_ns,first_nonzero_i2s_ns");
         await_ready();

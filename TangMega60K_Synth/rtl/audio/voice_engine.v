@@ -12,6 +12,8 @@ module voice_engine #(
     parameter AUTO_HEADROOM=0,
     // 仅完整乐器试验入口显式启用；旧诊断默认保留原逐位标度和跨档行为。
     parameter HEADROOM_SMOOTH=0,
+    // 独立对照入口：固定单声部标度，按真实PCM峰值保护，不按声部数归一化。
+    parameter STABLE_CHORD_GAIN=0,
     parameter FX_ENABLE=0, DELAY_SAMPLES=2400,
     parameter EXPRESSION_ENABLE=1,
     parameter FM_ENABLE=0,
@@ -177,7 +179,11 @@ module voice_engine #(
     wire signed [31:0] master_mix_left;
     wire signed [31:0] master_mix_right;
     generate
-        if (AUTO_HEADROOM && HEADROOM_SMOOTH) begin:g_smooth_headroom
+        if(STABLE_CHORD_GAIN)begin:g_stable_chord_gain
+            // 64路16位累加后左移6仍在32位有符号范围内；后续保留宽位再限幅。
+            assign master_mix_left=$signed(mix_left)<<<6;
+            assign master_mix_right=$signed(mix_right)<<<6;
+        end else if (AUTO_HEADROOM && HEADROOM_SMOOTH) begin:g_smooth_headroom
             wire [16:0] applied_gain_q10;
             wire peak_guard;
             headroom_smoother smooth_gain (
@@ -199,14 +205,30 @@ module voice_engine #(
         end
     endgenerate
     wire signed [23:0] dry_left,dry_right;
+    wire signed [44:0] wide_left,wide_right;
     gain_saturator #(.SHIFT(MASTER_SHIFT)) u_gain (
         .clk(clk),.mix_left(master_mix_left),.mix_right(master_mix_right),.gain(frame_gain),
-        .out_left(dry_left),.out_right(dry_right)
+        .out_left(dry_left),.out_right(dry_right),.wide_left(wide_left),.wide_right(wide_right)
     );
     wire fx_ready;
+    wire source_valid,source_ready;
+    wire signed [23:0] source_left,source_right;
+    generate if(STABLE_CHORD_GAIN)begin:g_peak_limiter
+        wire [16:0] limiter_gain;
+        wire limiting;
+        stereo_peak_limiter limiter(.clk(clk),.rst_n(rst_n),
+            .in_valid(state==FX_SEND),.in_ready(fx_ready),.in_left(wide_left),.in_right(wide_right),
+            .out_valid(source_valid),.out_ready(source_ready),.out_left(source_left),.out_right(source_right),
+            .applied_gain_q16(limiter_gain),.limiting(limiting));
+    end else begin:g_legacy_peak_path
+        assign source_valid=state==FX_SEND;
+        assign source_left=dry_left;
+        assign source_right=dry_right;
+        assign fx_ready=source_ready;
+    end endgenerate
     audio_fx #(.ENABLE(FX_ENABLE),.DELAY_SAMPLES(DELAY_SAMPLES)) u_fx (
         .clk(clk),.rst_n(rst_n),.bypass(!FX_ENABLE),
-        .in_valid(state==FX_SEND),.in_ready(fx_ready),.in_left(dry_left),.in_right(dry_right),
+        .in_valid(source_valid),.in_ready(source_ready),.in_left(source_left),.in_right(source_right),
         .out_valid(sample_valid),.out_ready(sample_ready),.out_left(sample_left),.out_right(sample_right)
     );
     always @(*) begin

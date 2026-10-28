@@ -11,6 +11,8 @@ module instrument_full_system #(
     // 分层菜单仅由新板级入口开启；保留旧接口/回归入口的默认行为。
     parameter HIERARCHICAL_MENU_ENABLE=0,
     parameter MENU_WAVE_IDLE_CYCLES=CLK_HZ*10,
+    parameter STABLE_CHORD_MIX_ENABLE=0,
+    parameter EARLY_KEY_ENABLE=0,
     parameter ROM_DIR="rtl/audio/rom/",
     parameter [7:0] GUIDE_BRIGHTNESS=8'd32, GUIDE_TOUCH_BRIGHTNESS=8'd16,
     parameter [124:0] GUIDE_PIXEL_KEY_MAP={5'd24,5'd23,5'd22,5'd21,5'd20,
@@ -113,6 +115,7 @@ module instrument_full_system #(
     wire slider_active;wire [11:0] slider_position;
     assign menu_touch_active = slider_active;
     mpr121_input_frontend #(.CLK_HZ(CLK_HZ),.SETTLE_CYCLES(SENSOR_SETTLE_CYCLES),
+        .EARLY_KEY_ENABLE(EARLY_KEY_ENABLE),
         .SOURCE_BASE(25),.SLIDER_BEND_ENABLE(!MENU_ENABLE)) sensors(
         .clk(clk),.resetn(rst_n),.irq_n(irq_sync),.scl(mpr_scl),.sda(mpr_sda),
         .key_map_flat(mapping),.current_timbre(timbre),.key_valid(sensor_ev),.key_ready(sensor_er),
@@ -390,7 +393,8 @@ module instrument_full_system #(
         .cmd_valid(cmdv),.cmd_ready(cmdr),.cmd_on(cmdon),.cmd_voice(voice),.cmd_note(note),.cmd_velocity(velocity),.cmd_timbre(tone),
         .done_valid(dv),.done_ready(dr),.done_voice(done_voice),.active_count(active_count));
     wire pcm_valid,pcm_ready;wire signed [23:0] pcm_l,pcm_r;
-    voice_engine #(.FM_ENABLE(1),.FX_ENABLE(0),.AUTO_HEADROOM(1),.HEADROOM_SMOOTH(1),.ROM_DIR(ROM_DIR)) synth(.clk(clk),.rst_n(audio_rst_n),
+    voice_engine #(.FM_ENABLE(1),.FX_ENABLE(0),.AUTO_HEADROOM(1),.HEADROOM_SMOOTH(1),
+        .STABLE_CHORD_GAIN(STABLE_CHORD_MIX_ENABLE),.ROM_DIR(ROM_DIR)) synth(.clk(clk),.rst_n(audio_rst_n),
         .cmd_valid(cmdv),.cmd_ready(cmdr),.cmd_on(cmdon),.cmd_voice(voice),.cmd_note(note),.cmd_velocity(velocity),.cmd_timbre(tone),
         .done_valid(dv),.done_ready(dr),.done_voice(done_voice),.sample_valid(pcm_valid),.sample_ready(pcm_ready),
         .sample_left(pcm_l),.sample_right(pcm_r),.engine_sample_begin(sample_begin),

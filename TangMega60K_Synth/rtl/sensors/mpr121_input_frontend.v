@@ -7,6 +7,7 @@ module mpr121_input_frontend #(
     parameter integer RETRY_CYCLES=CLK_HZ/10,CALIBRATION_SNAPSHOTS=3,MAX_RETRIES=2,
     parameter [6:0] ADDR0=7'h5a,ADDR1=7'h5a,ADDR2=7'h5a,
     parameter integer SOURCE_BASE=25,EVENT_FIFO_DEPTH=64,
+    parameter integer EARLY_KEY_ENABLE=0,
     parameter [7:0] TOUCH_THRESHOLD=12,RELEASE_THRESHOLD=6,
     parameter [7:0] FILTER_CDC=8'h10,FILTER_CDT=8'h20,
     parameter integer SLIDER_NOISE0=4,SLIDER_NOISE1=4,SLIDER_NOISE2=4,SLIDER_NOISE3=4,
@@ -33,12 +34,18 @@ module mpr121_input_frontend #(
 );
     wire [2:0] snap_valid,snap_ready;
     wire [1031:0] snaps;
+    wire [2:0] early_valid,early_ready,event_snapshot_ready;
+    wire [35:0] early_status;
+    // 快通道只接键事件；滑条继续接完整且一致的43字节快照，不能回灌旧键状态。
+    assign snap_ready=EARLY_KEY_ENABLE?3'b111:event_snapshot_ready;
+    assign early_ready=EARLY_KEY_ENABLE?event_snapshot_ready:3'b111;
     genvar g;
     generate for(g=0;g<3;g=g+1) begin: sensors
       mpr121_sampler #(.CLK_HZ(CLK_HZ),.I2C_HZ(I2C_HZ),.TIMEOUT_CYCLES(TIMEOUT_CYCLES),
         .POLL_CYCLES(POLL_CYCLES),.RESET_CYCLES(RESET_CYCLES),.SETTLE_CYCLES(SETTLE_CYCLES),
         .RETRY_CYCLES(RETRY_CYCLES),.CALIBRATION_SNAPSHOTS(CALIBRATION_SNAPSHOTS),
         .MAX_RETRIES(MAX_RETRIES),.ELECTRODES((g==0)?12:((g==1)?8:9)),
+        .EARLY_KEY_ENABLE(EARLY_KEY_ENABLE),
         .I2C_ADDR((g==0)?ADDR0:((g==1)?ADDR1:ADDR2)),
         .TOUCH_THRESHOLD(TOUCH_THRESHOLD),.RELEASE_THRESHOLD(RELEASE_THRESHOLD),
         .FILTER_CDC(FILTER_CDC),.FILTER_CDT(FILTER_CDT)) sampler(
@@ -47,11 +54,14 @@ module mpr121_input_frontend #(
         .ready(ready[g]),.fault(fault[g]),.last_error(last_error[g*4 +:4]),
         .error_count(error_count[g*32 +:32]),.last_success_age(last_success_age[g*32 +:32]),
         .init_stage(init_stage[g*5 +:5]),.oor_status(oor_status[g*16 +:16]),
-        .scl(scl[g]),.sda(sda[g]));
+        .scl(scl[g]),.sda(sda[g]),.early_key_valid(early_valid[g]),
+        .early_key_ready(early_ready[g]),.early_key_status(early_status[g*12+:12]));
     end endgenerate
     mpr121_key_eventizer #(.FIFO_DEPTH(EVENT_FIFO_DEPTH),.SOURCE_BASE(SOURCE_BASE)) eventizer(
-      .clk(clk),.resetn(resetn),.snapshot_valid(snap_valid),.snapshot_ready(snap_ready),
-      .touch0(snaps[7:0]),.touch1(snaps[344 +:8]),.touch2(snaps[688 +:9]),
+      .clk(clk),.resetn(resetn),.snapshot_valid(EARLY_KEY_ENABLE?early_valid:snap_valid),.snapshot_ready(event_snapshot_ready),
+      .touch0(EARLY_KEY_ENABLE?early_status[7:0]:snaps[7:0]),
+      .touch1(EARLY_KEY_ENABLE?early_status[12+:8]:snaps[344+:8]),
+      .touch2(EARLY_KEY_ENABLE?early_status[24+:9]:snaps[688+:9]),
       .fault(fault),.key_map_flat(key_map_flat),.current_timbre(current_timbre),
       .key_valid(key_valid),.key_ready(key_ready),.key_on(key_on),.key_source(key_source),
       .key_note(key_note),.key_velocity(key_velocity),.key_timbre(key_timbre),

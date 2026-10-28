@@ -9,6 +9,8 @@ module mpr121_sampler #(
     parameter integer RETRY_CYCLES=CLK_HZ/10,
     parameter integer CALIBRATION_SNAPSHOTS=3, MAX_RETRIES=2,
     parameter integer ELECTRODES=12,
+    // 只提前发布已收到的两个状态字节；原43字节完整读取/校准/滑条数据仍保留。
+    parameter integer EARLY_KEY_ENABLE=0,
     parameter [6:0] I2C_ADDR=7'h5a,
     parameter [7:0] TOUCH_THRESHOLD=12, RELEASE_THRESHOLD=6,
     parameter [7:0] FILTER_CDC=8'h10, FILTER_CDT=8'h20
@@ -19,7 +21,10 @@ module mpr121_sampler #(
     output reg [3:0] last_error, output reg [31:0] error_count,
     output reg [31:0] last_success_age,
     output wire [4:0] init_stage,
-    output reg [15:0] oor_status, inout wire scl,sda
+    output reg [15:0] oor_status, inout wire scl,sda,
+    output reg early_key_valid,
+    input wire early_key_ready,
+    output reg [11:0] early_key_status
 );
     localparam [4:0] WRITE=0,WWAIT=1,VERIFY=2,VWAIT=3,RESET_WAIT=4,
        SETTLE=5,POLL=6,PWAIT=7,HOLD=8,RETRY=9,OVCF_LOCK=10;
@@ -34,7 +39,9 @@ module mpr121_sampler #(
     wire [7:0] rx_data;
     wire [5:0] rx_index;
     wire cmd_read=(state==VERIFY || state==POLL);
-    wire cmd_valid=(state==WRITE || state==VERIFY || state==POLL);
+    wire early_key_space=!early_key_valid || early_key_ready;
+    wire poll_allowed=!EARLY_KEY_ENABLE || !ready || early_key_space;
+    wire cmd_valid=(state==WRITE || state==VERIFY || (state==POLL && poll_allowed));
     wire [11:0] enabled_mask=(12'hfff >> (12-ELECTRODES));
     function [7:0] cfg_addr;
       input [5:0] n;
@@ -73,6 +80,23 @@ module mpr121_sampler #(
       .busy(bus_busy),.done(bus_done),.error(bus_error),
       .rdata_valid(rx_valid),.rdata(rx_data),.rindex(rx_index),.scl(scl),.sda(sda));
     assign init_stage=state;
+    // 已呈现快照在反压时保持；新事务启动前预留邮箱位置，禁止覆盖按下/松开。
+    // fault/ready撤销属于采集通道取消，丢弃未确认旧状态，避免故障恢复后重放陈旧按键。
+    always @(posedge clk)begin
+      if(!resetn)begin
+        early_key_valid<=0;
+        early_key_status<=0;
+      end else if(fault || !ready)begin
+        early_key_valid<=0;
+      end else begin
+        if(early_key_valid && early_key_ready)
+          early_key_valid<=0;
+        if(EARLY_KEY_ENABLE && state==PWAIT && rx_valid && rx_index==1 && !rx_data[7])begin
+          early_key_status<={rx_data[3:0],scratch[7:0]};
+          early_key_valid<=1;
+        end
+      end
+    end
     integer k;
     integer filtered,baseline,delta;
     reg calibration_ok;
@@ -97,6 +121,13 @@ module mpr121_sampler #(
         if(rx_valid) begin
           if(state==VWAIT) verify_byte<=rx_data;
           if(state==PWAIT) scratch[rx_index*8 +:8]<=rx_data;
+          // 状态高字节包含OVCF：一旦已知过流就停止发键并触发既有故障释放。
+          // I2C事务仍由bus完成，不带电气截断；完整状态机随后进入OVCF_LOCK。
+          if(EARLY_KEY_ENABLE && ready && state==PWAIT && rx_index==1 && rx_data[7])begin
+            fault<=1;
+            ready<=0;
+            last_error<=5;
+          end
         end
         case(state)
           WRITE: if(bus_ready) state<=WWAIT;
@@ -117,9 +148,9 @@ module mpr121_sampler #(
             end else if(cfg_index==44) begin timer<=0;cal_count<=0;state<=SETTLE;end
             else begin cfg_index<=cfg_index+1;state<=WRITE;end
           end
-          SETTLE: if(timer>=SETTLE_CYCLES-1) begin timer<=0;state<=POLL;end
+          SETTLE: if(timer>=SETTLE_CYCLES-1 && poll_allowed) begin timer<=0;state<=POLL;end
             else timer<=timer+1;
-          POLL: if(bus_ready) state<=PWAIT;
+          POLL: if(bus_ready && poll_allowed) state<=PWAIT;
           PWAIT: if(bus_done) begin
             if(bus_error!=0) begin
               last_error<={1'b0,bus_error};error_count<=error_count+1;
@@ -152,7 +183,7 @@ module mpr121_sampler #(
           OVCF_LOCK: begin ready<=0;fault<=1;end
           default: state<=WRITE;
         endcase
-        if(state==SETTLE && ready && (timer>=POLL_CYCLES-1 || !irq_n)) begin
+        if(state==SETTLE && ready && poll_allowed && (timer>=POLL_CYCLES-1 || !irq_n)) begin
           timer<=0;state<=POLL;
         end
       end

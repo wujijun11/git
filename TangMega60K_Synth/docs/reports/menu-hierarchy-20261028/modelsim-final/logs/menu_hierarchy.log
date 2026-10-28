@@ -1,0 +1,27 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/menu_hierarchy.wlf -l logs/menu_hierarchy.log -do "do cases/menu_hierarchy.do" work.tb_menu_hierarchy 
+# Start time: 15:27:59 on Oct 28,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "menu_hierarchy(fast)".
+# //  ModelSim SE-64 10.6e Jun 23 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_menu_hierarchy(fast)
+# Loading work.menu_hierarchy(fast)
+# Loading work.slider_gesture_input(fast)
+# do cases/menu_hierarchy.do
+# MENU HIERARCHY PASS four categories, nested sound, expressions, ten-second wave, success/error, wake, backpressure and reset
+# ** Note: $finish    : sim/tb_menu_hierarchy.sv(82)
+#    Time: 318410 ns  Iteration: 1  Instance: /tb_menu_hierarchy
+# End time: 15:28:00 on Oct 28,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

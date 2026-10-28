@@ -43,6 +43,12 @@ function New-TestCase([string]$Name,[string]$Top,[string]$Bench,[string]$Marker,
 $watchdogCase = New-TestCase 'remote_note_watchdog' 'tb_remote_note_watchdog' `
     'sim/tb_remote_note_watchdog.sv' 'REMOTE NOTE WATCHDOG PASS' @() '' $true
 $allCases = @(
+    (New-TestCase 'hierarchy_board_timing' 'tb_oled_wave_board' 'sim/tb_oled_wave_board.sv' 'HIERARCHY BOARD TIMING PASS' @('-gHIERARCHY=1','-gFAST=0')),
+    (New-TestCase 'hierarchy_pixels' 'tb_oled_hierarchy' 'sim/tb_oled_hierarchy.sv' 'OLED HIERARCHY PIXELS EXPORTED'),
+    (New-TestCase 'hierarchy_system' 'tb_slider_liveness' 'sim/tb_slider_liveness.sv' 'HIERARCHY SYSTEM PASS' @('-gHIERARCHY=1')),
+    (New-TestCase 'hierarchy_board' 'tb_oled_wave_board' 'sim/tb_oled_wave_board.sv' 'HIERARCHY BOARD PASS' @('-gHIERARCHY=1')),
+    (New-TestCase 'menu_hierarchy' 'tb_menu_hierarchy' 'sim/tb_menu_hierarchy.sv' 'MENU HIERARCHY PASS'),
+    (New-TestCase 'slider_expression' 'tb_slider_expression_control' 'sim/tb_slider_expression_control.sv' 'SLIDER EXPRESSION PASS'),
     (New-TestCase 'oled_idle10' 'tb_oled_idle10' 'sim/tb_oled_idle10.sv' 'OLED IDLE10 PASS'),
     (New-TestCase 'slider_liveness' 'tb_slider_liveness' 'sim/tb_slider_liveness.sv' 'SLIDER LIVENESS PASS'),
     (New-TestCase 'performance_held_write' 'tb_performance_held_write' 'sim/tb_performance_held_write.sv' 'PERFORMANCE HELD WRITE EQUIVALENCE PASS'),

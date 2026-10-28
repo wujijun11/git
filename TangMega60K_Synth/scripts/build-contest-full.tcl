@@ -7,7 +7,7 @@ if {[file pathtype $script_path] ne "absolute"} { set script_path [file join [pw
 set project_root [file dirname [file dirname $script_path]]
 set full_root [file join $project_root full]
 file mkdir [file join $full_root rtl audio rom]
-foreach rom {waves.hex midi.hex velocity.hex sine.hex ratio.hex piano.hex polar_lane0.hex polar_lane1.hex polar_ratios.hex menu_font.hex} {
+foreach rom {waves.hex midi.hex velocity.hex sine.hex ratio.hex piano.hex polar_lane0.hex polar_lane1.hex polar_ratios.hex menu_font.hex menu_hierarchy_font.hex} {
     file copy -force [file join $project_root rtl audio rom $rom] [file join $full_root rtl audio rom $rom]
 }
 file mkdir [file join $full_root rtl visual]

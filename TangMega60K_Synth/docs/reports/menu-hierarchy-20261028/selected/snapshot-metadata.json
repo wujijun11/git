@@ -1,0 +1,22 @@
+{
+  "snapshot": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_ancf_nc8\\verification\\menu-hierarchy-build\\build_menu-hierarchy_20261028_153730_a900ca96",
+  "project": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_ancf_nc8",
+  "sourceRoot": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_ancf_nc8",
+  "variant": "menu-hierarchy",
+  "createdAt": "2026-10-28T15:37:30.683076+08:00",
+  "gowin": "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+  "baselineReport": "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-timing-latency-20261026\\TangMega60K_Synth\\docs\\reports\\slider-idle10-20261028\\selected\\build-results.json",
+  "withoutGao": true,
+  "gprjDependencies": 90,
+  "inputFiles": 104,
+  "gaoExpected": false,
+  "implementationKind": "bare-main",
+  "gaoEvidence": {
+    "verified": false,
+    "enabledConfigurationCount": 0,
+    "files": []
+  },
+  "preparedOnly": false,
+  "driverSha256": "B5832AF11492AE983103495BA6426E05B2D084DF19D8B23047F1B2ACD234596E",
+  "buildStartedAt": "2026-10-28T15:37:30.724167+08:00"
+}

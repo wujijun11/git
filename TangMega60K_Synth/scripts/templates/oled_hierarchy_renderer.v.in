@@ -1,0 +1,93 @@
+// generate-hierarchy-font.py生成。四行16像素文字，表达单位不混用。
+module oled_hierarchy_renderer #(
+    parameter FONT_FILE="rtl/audio/rom/menu_hierarchy_font.hex"
+)(
+    input wire clk,input wire [2:0] screen_page,input wire [6:0] column,
+    input wire [3:0] view,input wire [1:0] zone,expression_mode,
+    input wire recording,playing,guide,busy,input wire [7:0] error,
+    input wire [15:0] record_digits,control_digits,
+    input wire control_negative,input wire [7:0] control_percent,
+    output wire [7:0] data
+);
+    reg [55:0] text;
+    wire continuous=view==0;
+    wire [7:0] percent=control_percent>100?8'd100:control_percent;
+    wire [14:0] fill_end=({7'd0,percent}<<6)+({7'd0,percent}<<5)+
+        ({7'd0,percent}<<4)+({7'd0,percent}<<2); // percent*116
+    wire [14:0] coordinate=column>=6?({8'd0,column}-15'd6)*15'd100:15'd0;
+    wire fill=column>=6 && column<=121 && coordinate<fill_end;
+    wire [7:0] bar=(column==4 || column==123)?(screen_page[0]?8'h07:8'hfc):
+        column>4 && column<123?(screen_page[0]?(fill?8'h07:8'h04):(fill?8'hfc:8'h04)):8'd0;
+    always @*begin
+        text=0;
+        case(screen_page[2:1])
+            0:if(continuous)case(expression_mode)
+                0:text=@LABEL0@;
+                1:text=@LABEL1@;
+                default:text=@LABEL2@;
+                endcase
+              else case(view)
+                1:text=@TITLE1@;
+                2:text=@TITLE2@;
+                3:text=@TITLE3@;
+                4:text=@TITLE4@;
+                5:text=@TITLE5@;
+                6:text=@TITLE6@;
+                7:text=@TITLE7@;
+                default:text=@TITLE8@;
+              endcase
+            1:if(continuous)begin
+                if(expression_mode==1)begin
+                    text=@LABEL4@;
+                    text[20:14]=control_negative?7'd@MINUS@:7'd@PLUS@;
+                    text[27:21]=7'd@ZERO@+{3'd0,control_digits[15:12]};
+                    text[34:28]=7'd@ZERO@+{3'd0,control_digits[11:8]};
+                    text[41:35]=7'd@ZERO@+{3'd0,control_digits[7:4]};
+                    text[48:42]=7'd@ZERO@+{3'd0,control_digits[3:0]};
+                end else begin
+                    text=expression_mode==0?@LABEL3@:@LABEL5@;
+                    text[27:21]=7'd@ZERO@+{3'd0,control_digits[11:8]};
+                    text[34:28]=7'd@ZERO@+{3'd0,control_digits[7:4]};
+                    text[41:35]=7'd@ZERO@+{3'd0,control_digits[3:0]};
+                end
+              end else case(view)
+                1:text=@ITEM1@;
+                2:text=@ITEM2@;
+                3:text=@ITEM3@;
+                4:text=@ITEM4@;
+                5:text=@ITEM5@;
+                6:text=@ITEM6@;
+                7:text=@ITEM7@;
+                default:text=@ITEM8@;
+              endcase
+            2:begin
+                if(error!=0)text=@LABEL6@;
+                else if(busy)text=@LABEL7@;
+                else if(recording)text=@LABEL8@;
+                else if(playing)text=@LABEL9@;
+                else if(guide)text=@LABEL10@;
+                else text=@LABEL11@;
+                text[34:28]=7'd@ZERO@+{3'd0,record_digits[15:12]};
+                text[41:35]=7'd@ZERO@+{3'd0,record_digits[11:8]};
+                text[48:42]=7'd@ZERO@+{3'd0,record_digits[7:4]};
+                text[55:49]=7'd@ZERO@+{3'd0,record_digits[3:0]};
+            end
+            default:if(!continuous)text=@LABEL15@;
+                else if(expression_mode==1)text=@LABEL13@;
+                else if(expression_mode==2)text=@LABEL14@;
+                else text=@LABEL12@;
+        endcase
+    end
+    reg [7:0] font[0:@DEPTH@-1];
+    reg [7:0] pixel,bar_pixel;
+    reg inverse,use_bar;
+    wire [6:0] glyph=text[column[6:4]*7+:7];
+    initial $readmemh(FONT_FILE,font);
+    always @(posedge clk)begin
+        pixel<=font[{glyph,screen_page[0],column[3:0]}];
+        inverse<=!continuous && screen_page[2:1]==1 && column[6:5]==zone;
+        use_bar<=continuous && screen_page[2:1]==2;
+        bar_pixel<=bar;
+    end
+    assign data=use_bar?bar_pixel:pixel^{8{inverse}};
+endmodule

@@ -8,6 +8,9 @@ module instrument_full_system #(
     parameter MENU_LONG_PRESS_CYCLES=CLK_HZ,
     parameter MENU_ROOT_IDLE_CYCLES=CLK_HZ*5,
     parameter SLIDER_VOLUME_ENABLE=0,
+    // 分层菜单仅由新板级入口开启；保留旧接口/回归入口的默认行为。
+    parameter HIERARCHICAL_MENU_ENABLE=0,
+    parameter MENU_WAVE_IDLE_CYCLES=CLK_HZ*10,
     parameter ROM_DIR="rtl/audio/rom/",
     parameter [7:0] GUIDE_BRIGHTNESS=8'd32, GUIDE_TOUCH_BRIGHTNESS=8'd16,
     parameter [124:0] GUIDE_PIXEL_KEY_MAP={5'd24,5'd23,5'd22,5'd21,5'd20,
@@ -41,7 +44,13 @@ module instrument_full_system #(
     output wire menu_volume_mode,
     output wire [7:0] menu_volume_percent,
     // 显示观察接口：原始滑条触摸状态，不改变event/cmd/done/sample公共V2端口。
-    output wire menu_touch_active
+    output wire menu_touch_active,
+    output wire [3:0] menu_view,
+    output wire [1:0] menu_expression_mode,
+    output wire menu_waveform_view,
+    output wire [11:0] menu_control_value,
+    output wire menu_control_negative,
+    output wire [7:0] menu_control_percent
 );
     wire cv,cr,router_cr,rv,rr;wire [7:0] cs,co,rs,ro;wire [79:0] cp,rp;
     wire [31:0] crc_errors,framing_errors,uart_overflows,uart_timeouts;
@@ -58,7 +67,7 @@ module instrument_full_system #(
     wire signed [12:0] phone_bend;wire [7:0] phone_vib;
     wire perf_cv,perf_cr,perf_pending;wire [7:0] perf_co,perf_status;wire [79:0] perf_cp;
     wire [7:0] perf_local_action_status;
-    wire [174:0] mapping,base_mapping;wire [1:0] timbre,router_timbre,fx;wire panic;
+    wire [174:0] mapping,base_mapping;wire [1:0] timbre,router_timbre,fx,router_fx;wire panic;
     wire router_timbre_written;
     // 只读扩展0x83：版本、状态旗标、页面、区域、实际音色、有符号半音、效果、错误。
     // 与OLED共用实际状态；不读取router内部可能已被滑条覆盖的旧音色。
@@ -84,7 +93,7 @@ module instrument_full_system #(
         .expr_bend(phone_bend),.expr_vibrato(phone_vib),
         .performance_valid(perf_cv),.performance_pending(perf_pending),.performance_ready(perf_cr),.performance_opcode(perf_co),
         .performance_payload(perf_cp),.performance_status(perf_status),
-        .key_map_flat(base_mapping),.current_timbre(router_timbre),.effect_mode(fx),.panic_pulse(panic),
+        .key_map_flat(base_mapping),.current_timbre(router_timbre),.effect_mode(router_fx),.panic_pulse(panic),
         .timbre_write_pulse(router_timbre_written),
         .active_count(active_count),.playing(playing),.recording(recording),.guide_active(guide_active),
         .overflow_sticky(overflow_sticky),.record_count(record_count),.score_position(score_position),
@@ -122,6 +131,31 @@ module instrument_full_system #(
     wire menu_action_valid,menu_action_ready;wire [7:0] menu_action;
     wire volume_position_valid;
     wire [11:0] volume_position;
+    wire local_fx_write,local_expression_reset;
+    wire [1:0] local_fx_value;
+    wire [7:0] dispatch_error,hierarchy_error;
+    assign menu_error=HIERARCHICAL_MENU_ENABLE?hierarchy_error:dispatch_error;
+    generate if(HIERARCHICAL_MENU_ENABLE)begin: hierarchical_menu
+        menu_hierarchy #(.DEBOUNCE_CYCLES(MENU_DEBOUNCE_CYCLES),
+            .LONG_PRESS_CYCLES(MENU_LONG_PRESS_CYCLES),.IDLE_CYCLES(MENU_WAVE_IDLE_CYCLES)) navigation(
+            .clk(clk),.rst_n(rst_n),.touch_active(MENU_ENABLE && slider_active),
+            .touch_fault(sensor_fault[0] || !sensor_ready[0]),.position(slider_position),
+            .request_valid(menu_request_valid),.request_ready(menu_request_ready),
+            .request_kind(menu_request_kind),.request_page(menu_request_page),.request_zone(menu_request_zone),
+            .action_busy(menu_busy),.action_done(menu_prompt_valid),.action_error(dispatch_error),.display_error(hierarchy_error),
+            .fx_write(local_fx_write),.fx_value(local_fx_value),.expression_reset(local_expression_reset),
+            .view(menu_view),.expression_mode(menu_expression_mode),.waveform_view(menu_waveform_view),
+            .preview_zone(menu_preview_zone),.position_valid(volume_position_valid),.control_position(volume_position));
+        assign menu_main=menu_view==1;
+        // 0x83保留既有页面编码；新层级视图不冒充新的公共协议版本。
+        assign menu_page=menu_view==4?2'd1:menu_view==7?2'd2:menu_view==8?2'd3:2'd0;
+        assign menu_volume_mode=menu_view==0;
+    end else begin: legacy_menu
+        assign menu_view=menu_volume_mode?4'd0:menu_main?4'd1:{2'd0,menu_page}+4'd3;
+        assign menu_expression_mode=0;
+        assign menu_waveform_view=0;
+        assign local_fx_write=0;assign local_fx_value=0;assign local_expression_reset=0;
+        assign hierarchy_error=0;
     slider_menu_controller #(.CLK_HZ(CLK_HZ),.DEBOUNCE_CYCLES(MENU_DEBOUNCE_CYCLES),
         .LONG_PRESS_CYCLES(MENU_LONG_PRESS_CYCLES),
         .PERFORMANCE_ENABLE(SLIDER_VOLUME_ENABLE),.ROOT_IDLE_CYCLES(MENU_ROOT_IDLE_CYCLES)) menu_input(
@@ -132,13 +166,27 @@ module instrument_full_system #(
         .main_menu(menu_main),.page(menu_page),.selected_zone(),.preview_zone(menu_preview_zone),
         .action_busy(menu_busy),.performance_mode(menu_volume_mode),
         .volume_position_valid(volume_position_valid),.volume_position(volume_position));
-    menu_action_router #(.CLK_HZ(CLK_HZ)) menu_actions(
+    end endgenerate
+    menu_action_router #(.CLK_HZ(CLK_HZ),.LEARNING_MENU_ENABLE(HIERARCHICAL_MENU_ENABLE)) menu_actions(
         .clk(clk),.rst_n(rst_n),.request_valid(menu_request_valid),.request_ready(menu_request_ready),
         .request_kind(menu_request_kind),.request_page(menu_request_page),.request_zone(menu_request_zone),
         .recording(recording),.playing(playing),.guide_active(guide_active),
         .timbre_valid(menu_timbre_valid),.timbre(local_timbre),.transpose(menu_transpose),
         .action_valid(menu_action_valid),.action_ready(menu_action_ready),.action(menu_action),.action_status(perf_local_action_status),
-        .prompt_valid(menu_prompt_valid),.prompt_code(menu_prompt_code),.last_error(menu_error),.busy(menu_busy));
+        .prompt_valid(menu_prompt_valid),.prompt_code(menu_prompt_code),.last_error(dispatch_error),.busy(menu_busy));
+    reg [1:0] selected_fx,previous_router_fx;
+    always @(posedge clk or negedge rst_n)begin
+        if(!rst_n)begin selected_fx<=0;previous_router_fx<=0;end
+        else begin
+            previous_router_fx<=router_fx;
+            if(local_fx_write)selected_fx<=local_fx_value;
+            // 手机/电脑提交音效（即使值与路由器旧值相同）也可接回控制权。
+            if(router_fx!=previous_router_fx ||
+               (cv && cr && co==8'h03 && cp[7:0]==1 && cp[79:16]==0 && cp[15:8]<=3))
+                selected_fx<=cv && cr && co==8'h03 ? cp[9:8] : router_fx;
+        end
+    end
+    assign fx=HIERARCHICAL_MENU_ENABLE?selected_fx:router_fx;
     reg [1:0] selected_timbre;
     always @(posedge clk or negedge rst_n) begin
         if(!rst_n)selected_timbre<=2;
@@ -151,7 +199,7 @@ module instrument_full_system #(
     assign timbre=selected_timbre;
     assign menu_timbre=selected_timbre;
     // 空闲时显示实际音色/音区，App修改音色后高亮也跟随，不沿用旧触摸位置。
-    assign menu_zone=(slider_active || menu_main)?menu_preview_zone:
+    assign menu_zone=HIERARCHICAL_MENU_ENABLE?menu_preview_zone:(slider_active || menu_main)?menu_preview_zone:
         menu_page==0?(timbre==2?2'd0:timbre==1?2'd1:timbre==0?2'd2:2'd3):
         menu_page==1?(menu_transpose==-24?2'd0:menu_transpose==-12?2'd1:menu_transpose==0?2'd2:2'd3):
         menu_preview_zone;
@@ -286,28 +334,51 @@ module instrument_full_system #(
     wire xv,xr;wire [11:0] xg;wire signed [12:0] xb;wire [7:0] vib;
     wire volume_xv,volume_xr,expression_a_ready;
     wire [11:0] volume_gain;
-    generate if(SLIDER_VOLUME_ENABLE && MENU_ENABLE) begin: local_volume
+    wire [2:0] local_expression_mask;
+    wire signed [12:0] local_expression_bend;
+    wire [7:0] local_expression_vibrato;
+    wire local_expression_enabled=MENU_ENABLE && (SLIDER_VOLUME_ENABLE || HIERARCHICAL_MENU_ENABLE);
+    generate if(HIERARCHICAL_MENU_ENABLE && MENU_ENABLE)begin: local_expression
+        slider_expression_control parameters(.clk(clk),.rst_n(audio_rst_n),.mode(menu_expression_mode),
+            .position_valid(volume_position_valid),.position(volume_position),
+            .touch_active(slider_active),.touch_fault(sensor_fault[0] || !sensor_ready[0]),
+            .reset_expression(local_expression_reset),.expr_valid(volume_xv),.expr_ready(volume_xr),
+            .expr_mask(local_expression_mask),.expr_gain(volume_gain),
+            .expr_bend(local_expression_bend),.expr_vibrato(local_expression_vibrato));
+    end else begin: legacy_expression
+        assign local_expression_mask=3'b001;
+        assign local_expression_bend=slider_bend;assign local_expression_vibrato=slider_vib;
+    if(SLIDER_VOLUME_ENABLE && MENU_ENABLE) begin: local_volume
         slider_volume_control volume(.clk(clk),.rst_n(audio_rst_n),
             .position_valid(volume_position_valid),.position(volume_position),
             .expr_valid(volume_xv),.expr_ready(volume_xr),.expr_gain(volume_gain));
     end else begin: no_local_volume
         assign volume_xv=1'b0;
         assign volume_gain=12'd2048;
+    end
     end endgenerate
     assign volume_xr=expression_a_ready;
-    assign slider_xr=(SLIDER_VOLUME_ENABLE && MENU_ENABLE) ? 1'b1 : expression_a_ready;
+    assign slider_xr=local_expression_enabled ? 1'b1 : expression_a_ready;
     expression_merge expression(.clk(clk),.rst_n(audio_rst_n),
-        .a_valid((SLIDER_VOLUME_ENABLE && MENU_ENABLE) ? volume_xv : slider_xv),
+        .a_valid(local_expression_enabled ? volume_xv : slider_xv),
         .a_ready(expression_a_ready),
-        .a_mask((SLIDER_VOLUME_ENABLE && MENU_ENABLE) ? 3'b001 : slider_xm),
-        .a_gain((SLIDER_VOLUME_ENABLE && MENU_ENABLE) ? volume_gain : slider_gain),
-        .a_bend(slider_bend),.a_vibrato(slider_vib),
+        .a_mask(local_expression_enabled ? local_expression_mask : slider_xm),
+        .a_gain(local_expression_enabled ? volume_gain : slider_gain),
+        .a_bend(local_expression_bend),.a_vibrato(local_expression_vibrato),
         .b_valid(phone_xv),.b_ready(phone_xr),.b_mask(phone_xm),.b_gain(phone_gain),.b_bend(phone_bend),.b_vibrato(phone_vib),
         .out_valid(xv),.out_ready(xr),.out_gain(xg),.out_bend(xb),.out_vibrato(vib));
     wire cmdv,cmdr,cmdon,dv,dr,sample_begin;
     wire [5:0] voice,done_voice;wire [6:0] note,velocity;wire [1:0] tone;
     wire [11:0] gain;wire signed [12:0] bend;wire [7:0] vibrato;
     gain_percent_meter volume_meter(.clk(clk),.rst_n(rst_n),.gain(gain),.percent(menu_volume_percent));
+    wire [12:0] bend_magnitude=bend[12]?-bend:bend;
+    wire signed [13:0] bend_bar=$signed({bend[12],bend})+14'sd200;
+    assign menu_control_value=menu_expression_mode==1?bend_magnitude[11:0]:
+        menu_expression_mode==2?{4'd0,vibrato}:{4'd0,menu_volume_percent};
+    assign menu_control_negative=menu_expression_mode==1 && bend[12];
+    assign menu_control_percent=menu_expression_mode==1?
+        ($signed(bend)<-200?8'd0:$signed(bend)>200?8'd100:bend_bar[9:2]):
+        menu_expression_mode==2?vibrato:menu_volume_percent;
     always @(posedge clk or negedge audio_rst_n)begin
         if(!audio_rst_n)debug_last_note<=0;
         else if(cmdv && cmdr && cmdon)debug_last_note<=note;

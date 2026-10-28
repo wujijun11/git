@@ -10,6 +10,7 @@ module oled_status_display #(
     parameter integer COLUMN_OFFSET=0,
     parameter FONT_FILE="rtl/audio/rom/menu_font.hex",
     parameter integer PERFORMANCE_UI_ENABLE=0,
+    parameter integer HIERARCHY_UI_ENABLE=0,
     parameter integer WAVEFORM_ENABLE=0,
     parameter integer WAVE_IDLE_CYCLES=CLK_HZ*10,
     parameter integer WAVE_FRAME_WAIT_CYCLES=CLK_HZ/200
@@ -26,7 +27,13 @@ module oled_status_display #(
     input wire [7:0] volume_percent,
     input wire ui_activity,
     input wire audio_sample_valid,
-    input wire signed [23:0] audio_sample
+    input wire signed [23:0] audio_sample,
+    input wire [3:0] hierarchy_view,
+    input wire [1:0] expression_mode,
+    input wire external_waveform_view,
+    input wire [11:0] control_value,
+    input wire control_negative,
+    input wire [7:0] control_percent
 );
     localparam [3:0] POWER=0,INIT=1,SNAPSHOT=2,BCD_WAIT=3,PAGE=4,
         RENDER_WAIT=5,DATA=6,SEND=7,WAIT_DONE=8,FRAME_WAIT=9,RETRY=10;
@@ -43,6 +50,11 @@ module oled_status_display #(
     reg [15:0] snap_count;
     reg snap_performance;
     reg [7:0] snap_volume;
+    reg [3:0] snap_view;
+    reg [1:0] snap_expression;
+    reg [11:0] snap_control;
+    reg snap_negative;
+    reg [7:0] snap_percent;
     reg snap_wave;
     reg bcd_start;
     reg count_done_seen,volume_done_seen;
@@ -65,11 +77,19 @@ module oled_status_display #(
         .value(snap_count),.digits(digits),.done(bcd_done));
     generate if(PERFORMANCE_UI_ENABLE) begin: volume_bcd
         bin16_to_bcd decimal_volume(.clk(clk),.rst_n(rst_n),.start(bcd_start),
-            .value({8'd0,snap_volume}),.digits(volume_digits),.done(volume_bcd_done));
+            .value(HIERARCHY_UI_ENABLE?{4'd0,snap_control}:{8'd0,snap_volume}),
+            .digits(volume_digits),.done(volume_bcd_done));
     end else begin: no_volume_bcd
         assign volume_digits=16'h0100;
         assign volume_bcd_done=1'b1;
     end endgenerate
+    generate if(HIERARCHY_UI_ENABLE)begin: hierarchy_renderer
+        oled_hierarchy_renderer renderer(.clk(clk),.screen_page(screen_page),.column(column),
+            .view(snap_view),.zone(snap_zone),.expression_mode(snap_expression),
+            .recording(snap_record),.playing(snap_play),.guide(snap_guide),.busy(snap_busy),.error(snap_error),
+            .record_digits(digits),.control_digits(volume_digits),.control_negative(snap_negative),
+            .control_percent(snap_percent),.data(menu_pixels));
+    end else begin: legacy_renderer
     oled_menu_renderer #(.FONT_FILE(FONT_FILE),.PERFORMANCE_UI_ENABLE(PERFORMANCE_UI_ENABLE)) renderer(
         .clk(clk),.screen_page(screen_page),.column(column),
         .main_menu(snap_main),.menu_page(snap_page),.zone(snap_zone),
@@ -77,15 +97,20 @@ module oled_status_display #(
         .busy(snap_busy),.error(snap_error),.record_digits(digits),.data(menu_pixels),
         .performance_mode(snap_performance),.volume_digits(volume_digits[11:0]),
         .volume_percent(snap_volume));
+    end endgenerate
     generate if (WAVEFORM_ENABLE) begin: live_wave
         wire [13:0] ui_signature = {main_menu,menu_page,zone,
             (PERFORMANCE_UI_ENABLE ? performance_mode : 1'b0),
             (PERFORMANCE_UI_ENABLE ? volume_percent : 8'd100)};
         wire [11:0] bounds;
+        if(HIERARCHY_UI_ENABLE)begin: external_policy
+            assign waveform_idle=external_waveform_view;
+        end else begin: legacy_policy
         oled_idle_view #(.IDLE_CYCLES(WAVE_IDLE_CYCLES)) idle_control (
             .clk(clk),.rst_n(rst_n),.touch_active(ui_activity),.busy(busy),
             .error(error),.ui_signature(ui_signature),.waveform_view(waveform_idle)
         );
+        end
         oled_wave_capture capture (
             .clk(clk),.rst_n(rst_n),.sample_valid(audio_sample_valid),.sample(audio_sample),
             .frame_snapshot(state==SNAPSHOT),.read_column(column),.read_bounds(bounds)
@@ -127,6 +152,7 @@ module oled_status_display #(
             snap_play<=0;snap_guide<=0;snap_busy<=0;snap_error<=0;snap_count<=0;
             bcd_start<=0;fault<=0;completed_frames<=0;
             snap_performance<=0;snap_volume<=100;
+            snap_view<=0;snap_expression<=0;snap_control<=100;snap_negative<=0;snap_percent<=100;
             snap_wave<=0;
             count_done_seen<=0;volume_done_seen<=0;
         end else begin
@@ -146,6 +172,8 @@ module oled_status_display #(
                     snap_busy<=busy;snap_error<=error;snap_count<=record_count;
                     snap_performance<=PERFORMANCE_UI_ENABLE && performance_mode;
                     snap_volume<=PERFORMANCE_UI_ENABLE ? volume_percent : 8'd100;
+                    snap_view<=hierarchy_view;snap_expression<=expression_mode;
+                    snap_control<=control_value;snap_negative<=control_negative;snap_percent<=control_percent;
                     snap_wave<=wave_requested;
                     count_done_seen<=0;volume_done_seen<=0;
                     bcd_start<=1;state<=BCD_WAIT;screen_page<=0;column<=0;page_command<=0;

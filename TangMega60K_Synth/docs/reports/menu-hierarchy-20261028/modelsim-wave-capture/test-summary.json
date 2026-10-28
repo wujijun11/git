@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "hierarchy_board",
+    "Top": "tb_oled_wave_board",
+    "Generics": [
+      "-gHIERARCHY=1"
+    ],
+    "ExpectedRejection": false,
+    "ExpectedMarker": "HIERARCHY BOARD PASS",
+    "ExpectedFatal": "",
+    "Passed": true,
+    "ExitCode": 0,
+    "TimedOut": false,
+    "ElapsedSeconds": 44.871,
+    "TimeoutSeconds": 600,
+    "Log": "logs/hierarchy_board.log",
+    "Wave": null,
+    "Failure": null
+  }
+]

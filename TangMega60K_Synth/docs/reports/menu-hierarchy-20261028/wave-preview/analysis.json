@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "pixelsComparedBytes": 768,
+  "headerCompared": false,
+  "i2sSamples": 512,
+  "sampleRateHz": 48000,
+  "windowMs": 10.666666666666666,
+  "visualSaturatedColumns": 0,
+  "source": "external I2S pin decode and external OLED I2C pin capture in simulation",
+  "hardwareTested": false,
+  "note": "display scaling saturation is separate from audio clipping; audio path is unchanged",
+  "frameSha256": "A39E18C541156CA9392A32243A0DBDB9654ECC0D4F7D3A9F27C321FB0C48EDAC",
+  "pcmSha256": "207F1DF49693BD1ABDEA87C9D93C59425121C840C1EEF787C533521F41078F55"
+}

@@ -1,0 +1,18 @@
+{
+  "hardwareTested": false,
+  "oledHardwareValidated": false,
+  "led5x5HardwareValidated": false,
+  "powerFaultFixed": false,
+  "portamentoAdded": false,
+  "appHierarchyDisplayUpdated": false,
+  "old10SecondFsPreserved": true,
+  "agentDownloaded": false,
+  "pushed": false,
+  "compileFailureRecorded": true,
+  "textReferenceWhitespaceCorrected": true,
+  "finalModelSimCasesPassed": 36,
+  "extraProductionCapturePassed": true,
+  "menuPixelsComparedBytes": 12288,
+  "newWavePixelsComparedBytes": 768,
+  "newI2sSamplesCompared": 512
+}

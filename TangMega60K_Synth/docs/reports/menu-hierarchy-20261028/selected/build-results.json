@@ -1,0 +1,281 @@
+{
+  "snapshot": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_ancf_nc8\\verification\\menu-hierarchy-build\\build_menu-hierarchy_20261028_153730_a900ca96",
+  "variant": "menu-hierarchy",
+  "run": {
+    "startedAt": "2026-10-28T15:37:30.724167+08:00",
+    "endedAt": "2026-10-28T15:42:30.319242+08:00",
+    "durationSeconds": 299.609,
+    "exitCode": 0,
+    "timedOut": false,
+    "timeoutSeconds": 2400,
+    "command": [
+      "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+      "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_ancf_nc8\\verification\\menu-hierarchy-build\\build_menu-hierarchy_20261028_153730_a900ca96\\scripts\\build-contest-full.tcl"
+    ],
+    "pid": 34104
+  },
+  "sourceOrigin": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_ancf_nc8",
+  "protectedMainProject": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_ancf_nc8",
+  "baselineReport": "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-timing-latency-20261026\\TangMega60K_Synth\\docs\\reports\\slider-idle10-20261028\\selected\\build-results.json",
+  "protectedImplUnchanged": true,
+  "protectedImplFileCount": 0,
+  "sourceInputsMatch": true,
+  "snapshotInputsMatch": true,
+  "mainProjectInputsMatch": true,
+  "mainProjectInputMismatches": [],
+  "sourceMatchingNote": "sourceInputsMatch means the explicitly named source origin; mainProjectInputsMatch is a separate full 80-input check.",
+  "buildAcceptanceNote": "Frozen source-origin build/timing and original implementation protection only. Main-source adoption and hardware validation are separate.",
+  "sourceInputFileCount": 104,
+  "timingPassMarker": true,
+  "warningCount": 76,
+  "errorLines": [],
+  "timingParserNote": "Each 3.1.1-3.1.4 table is bounded; 3.2 pulse-width rows excluded.",
+  "violationCountNote": "Setup/Hold vendor endpoint totals include recovery/removal; no separate totals provided.",
+  "gaoExpected": false,
+  "hardwareValidated": false,
+  "buildAccepted": true,
+  "current": {
+    "createdTime": "Wed Oct 28 15:42:29 2026",
+    "part": "GW5AT-LV60PG484AC1/I0",
+    "pathsAnalyzed": 109570,
+    "endpointsAnalyzed": 62101,
+    "violations": {
+      "setup": 0,
+      "hold": 0
+    },
+    "minimumSlackNs": {
+      "setup": 0.088,
+      "hold": 0.126,
+      "recovery": 5.125,
+      "removal": 0.709
+    },
+    "worstPaths": {
+      "setup": {
+        "from": "system/performance_commands/command_payload_10_s0/Q",
+        "to": "system/performance/learning.stepper/target_mask_13_s1/CE"
+      },
+      "hold": {
+        "from": "system/visual/shadow[2]_6_s0/Q",
+        "to": "system/visual/spectrum_levels_22_s0/D"
+      },
+      "recovery": {
+        "from": "ready_sync_s0/Q",
+        "to": "system/synth/u_polar1/state_write_valid_s0/CLEAR"
+      },
+      "removal": {
+        "from": "audio_clock/first_lock_stable_s0/Q",
+        "to": "audio_clock/pll_49m152/init/rEnable_1_s0/CLEAR"
+      }
+    },
+    "resources": {
+      "Logic": {
+        "used": 28232.0,
+        "capacity": 59904.0,
+        "reportedPercent": 48,
+        "free": 31672.0
+      },
+      "Register": {
+        "used": 19213.0,
+        "capacity": 60780.0,
+        "reportedPercent": 32,
+        "free": 41567.0
+      },
+      "BSRAM": {
+        "used": 107.0,
+        "capacity": 118.0,
+        "reportedPercent": 91,
+        "free": 11.0
+      },
+      "DSP": {
+        "used": 56.0,
+        "capacity": 118.0,
+        "reportedPercent": 48,
+        "free": 62.0
+      }
+    },
+    "clocks": [
+      {
+        "name": "sys_clk",
+        "constraintMHz": 50.0,
+        "fmaxMHz": 152.497,
+        "logicLevel": 9
+      },
+      {
+        "name": "video_clock/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 125.0,
+        "fmaxMHz": 175.596,
+        "logicLevel": 1
+      },
+      {
+        "name": "video_clock/pll/CLKOUT1.default_gen_clk",
+        "constraintMHz": 25.0,
+        "fmaxMHz": 65.115,
+        "logicLevel": 16
+      },
+      {
+        "name": "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 49.152,
+        "fmaxMHz": 49.366,
+        "logicLevel": 14
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_ancf_nc8\\verification\\menu-hierarchy-build\\build_menu-hierarchy_20261028_153730_a900ca96\\full\\impl\\pnr\\ContestFull.fs",
+        "size": 20635044,
+        "sha256": "0D56B19F538878475D528494B2F13072302CCC65C8E2B34F6C8877CAB56831C7"
+      },
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_ancf_nc8\\verification\\menu-hierarchy-build\\build_menu-hierarchy_20261028_153730_a900ca96\\full\\impl\\pnr\\ContestFull.tr",
+        "size": 393623,
+        "sha256": "DC285B237BB7414D3D26928D112A695AE009FBCA9E638837BFFC16CCA389B646"
+      },
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_ancf_nc8\\verification\\menu-hierarchy-build\\build_menu-hierarchy_20261028_153730_a900ca96\\full\\impl\\pnr\\ContestFull.rpt.txt",
+        "size": 92854,
+        "sha256": "2C1801A2995DAF5454CA96A50A9F500A21641F4099B3DE2DE201F9BA70E4D602"
+      }
+    ],
+    "hardwareValidated": false,
+    "implementationName": "ContestFull",
+    "reportName": "ContestFull",
+    "netlistName": "ContestFull",
+    "implementationKind": "bare-main",
+    "gaoInstrumented": false,
+    "gaoEvidence": {
+      "verified": false,
+      "enabledConfigurationCount": 0,
+      "files": []
+    },
+    "timingPass": true
+  },
+  "baseline": {
+    "createdTime": "Wed Oct 28 14:03:50 2026",
+    "part": "GW5AT-LV60PG484AC1/I0",
+    "pathsAnalyzed": 109064,
+    "endpointsAnalyzed": 61872,
+    "violations": {
+      "setup": 0,
+      "hold": 0
+    },
+    "minimumSlackNs": {
+      "setup": 0.115,
+      "hold": 0.024,
+      "recovery": 4.696,
+      "removal": 0.75
+    },
+    "worstPaths": {
+      "setup": {
+        "from": "system/sensors/eventizer/head_from_ram_s0/Q",
+        "to": "system/performance/held_note[24]_6_s0/CE"
+      },
+      "hold": {
+        "from": "system/synth/u_expression/ratio_addr_1_s0/Q",
+        "to": "system/synth/u_expression/ratios_ratios_0_5_s/AD[2]"
+      },
+      "recovery": {
+        "from": "pressed_sync_2_s0/Q",
+        "to": "system/synth/u_polar1/state_write_valid_s0/CLEAR"
+      },
+      "removal": {
+        "from": "audio_clock/first_lock_stable_s0/Q",
+        "to": "audio_clock/pll_49m152/init/rEnable_1_s0/CLEAR"
+      }
+    },
+    "resources": {
+      "Logic": {
+        "used": 27789.0,
+        "capacity": 59904.0,
+        "reportedPercent": 47,
+        "free": 32115.0
+      },
+      "Register": {
+        "used": 19142.0,
+        "capacity": 60780.0,
+        "reportedPercent": 32,
+        "free": 41638.0
+      },
+      "BSRAM": {
+        "used": 106.0,
+        "capacity": 118.0,
+        "reportedPercent": 90,
+        "free": 12.0
+      },
+      "DSP": {
+        "used": 56.5,
+        "capacity": 118.0,
+        "reportedPercent": 48,
+        "free": 61.5
+      }
+    },
+    "clocks": [
+      {
+        "name": "sys_clk",
+        "constraintMHz": 50.0,
+        "fmaxMHz": 124.397,
+        "logicLevel": 10
+      },
+      {
+        "name": "video_clock/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 125.0,
+        "fmaxMHz": 167.119,
+        "logicLevel": 1
+      },
+      {
+        "name": "video_clock/pll/CLKOUT1.default_gen_clk",
+        "constraintMHz": 25.0,
+        "fmaxMHz": 66.176,
+        "logicLevel": 15
+      },
+      {
+        "name": "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 49.152,
+        "fmaxMHz": 49.432,
+        "logicLevel": 15
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_4m4zzyk3\\verification\\slider-idle10-build\\build_slider-idle10_20261028_135916_278db728\\full\\impl\\pnr\\ContestFull.fs",
+        "size": 20779356,
+        "sha256": "3A5C209604F70ED5090EA6AA491869F34C087E11B5F2134AE61FC4CB35AC7B6C"
+      },
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_4m4zzyk3\\verification\\slider-idle10-build\\build_slider-idle10_20261028_135916_278db728\\full\\impl\\pnr\\ContestFull.tr",
+        "size": 394351,
+        "sha256": "5537FB88C217D109B60848AFED1A752184FE3A6EFEB4B939E7769C6F8949AEB6"
+      },
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_4m4zzyk3\\verification\\slider-idle10-build\\build_slider-idle10_20261028_135916_278db728\\full\\impl\\pnr\\ContestFull.rpt.txt",
+        "size": 92863,
+        "sha256": "28C3AAC255D852A2E77CB4B4DAA0504905B13C1F9DE86FA6E8EC0C0D1BD6A07F"
+      }
+    ],
+    "hardwareValidated": false,
+    "implementationName": "ContestFull",
+    "reportName": "ContestFull",
+    "netlistName": "ContestFull",
+    "implementationKind": "bare-main",
+    "gaoInstrumented": false,
+    "gaoEvidence": {
+      "verified": false,
+      "enabledConfigurationCount": 0,
+      "files": []
+    },
+    "timingPass": true
+  },
+  "change": {
+    "slackDeltaNs": {
+      "setup": -0.027,
+      "hold": 0.102,
+      "recovery": 0.429,
+      "removal": -0.041
+    },
+    "resourceDelta": {
+      "Logic": 443.0,
+      "Register": 71.0,
+      "BSRAM": 1.0,
+      "DSP": -0.5
+    }
+  }
+}

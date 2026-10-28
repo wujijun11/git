@@ -27,7 +27,7 @@ GOWIN_DEFAULT = Path(r"C:\Gowin\Gowin_V1.9.12_x64\IDE\bin\gw_sh.exe")
 BASELINE_DEFAULT = PROJECT / "verification/modelsim-20261014/build_snapshot_20261014_124217/build-results.json"
 ROMS = (
     "waves.hex", "midi.hex", "velocity.hex", "sine.hex", "ratio.hex",
-    "piano.hex", "polar_lane0.hex", "polar_lane1.hex", "polar_ratios.hex", "menu_font.hex",
+    "piano.hex", "polar_lane0.hex", "polar_lane1.hex", "polar_ratios.hex", "menu_font.hex", "menu_hierarchy_font.hex",
 )
 
 

@@ -3,7 +3,8 @@
 module menu_action_router #(
     parameter integer CLK_HZ = 49152000,
     parameter integer RETRY_CYCLES = CLK_HZ / 1000,
-    parameter integer MAX_RETRIES = 250
+    parameter integer MAX_RETRIES = 250,
+    parameter integer LEARNING_MENU_ENABLE = 0
 ) (
     input wire clk, rst_n,
     input wire request_valid, output wire request_ready,
@@ -25,7 +26,7 @@ module menu_action_router #(
     localparam integer RW = $clog2(RETRY_CYCLES + 1) > 0 ? $clog2(RETRY_CYCLES + 1) : 1;
     reg [RW-1:0] retry_timer;
     wire start_request = target_action == 1 || target_action == 2 ||
-                         target_action == 6 || target_action == 8;
+                         target_action == 6 || target_action == 8 || target_action == 9;
     reg [7:0] decoded_action;
     always @* begin
         if (request_page == 2) begin
@@ -40,7 +41,7 @@ module menu_action_router #(
                 0: decoded_action = 1;
                 1: decoded_action = 0;
                 2: decoded_action = 6;
-                default: decoded_action = 7;
+                default: decoded_action = LEARNING_MENU_ENABLE ? 8'd9 : 8'd7;
             endcase
         end
     end
@@ -100,11 +101,11 @@ module menu_action_router #(
                         target_action <= decoded_action;
                         // step0停录音，step1停播放，step2执行目标；全部经同一握手。
                         if ((decoded_action == 1 || decoded_action == 2 ||
-                             decoded_action == 6 || decoded_action == 8) && recording) begin
+                                      decoded_action == 6 || decoded_action == 8 || decoded_action == 9) && recording) begin
                             current_action <= 3;
                             step <= 0;
                         end else if ((decoded_action == 1 || decoded_action == 2 ||
-                                      decoded_action == 6 || decoded_action == 8) &&
+                                      decoded_action == 6 || decoded_action == 8 || decoded_action == 9) &&
                                      (playing || guide_active)) begin
                             current_action <= 0;
                             step <= 1;

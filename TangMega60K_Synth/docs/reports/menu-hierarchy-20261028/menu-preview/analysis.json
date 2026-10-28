@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "frames": 12,
+  "bytesCompared": 12288,
+  "hardwareTested": false,
+  "captureSHA256": "0A6EF54B7989B6B6C5DD82F9529F10E01CDC1E981714F2EEF0E393BDCA1B964E",
+  "fontSHA256": "F9253D778FC00E7C84CC8889AA415D4B76B584684E9AEF73960B0E0159A1AF53",
+  "checks": [
+    "四类主菜单",
+    "声音三级菜单",
+    "四种音效",
+    "表情四项",
+    "带符号弯音音分",
+    "颤音百分比",
+    "音量百分比",
+    "区域预览高亮",
+    "控制刻度"
+  ]
+}

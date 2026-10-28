@@ -5,6 +5,10 @@
   <Version>5</Version>
   <Device name="GW5AT-60B" pn="GW5AT-LV60PG484AC1/I0">gw5at60b-002</Device>
   <FileList>
+    <File path="../rtl/control/slider_gesture_input.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/control/menu_hierarchy.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/control/slider_expression_control.v" type="file.verilog" enable="1"/>
+    <File path="../rtl/visual/oled_hierarchy_renderer.v" type="file.verilog" enable="1"/>
     <File path="../rtl/visual/oled_idle_view.v" type="file.verilog" enable="1"/>
     <File path="../rtl/visual/oled_wave_capture.v" type="file.verilog" enable="1"/>
     <File path="../rtl/visual/oled_wave_renderer.v" type="file.verilog" enable="1"/>

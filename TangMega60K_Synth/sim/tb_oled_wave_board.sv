@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 // 生产完整顶层：真实合成/PLL模型/I2S引脚解码，核对OLED波形确实来自发声样本。
 // FAST=0只完成真实100kHz引脚时序检查；FAST=1加快OLED等待以导出完整屏幕。
-module tb_oled_wave_board #(parameter FAST=1);
+module tb_oled_wave_board #(parameter FAST=1,parameter HIERARCHY=0);
     GSR GSR(.GSRI(1'b1));
     reg sys_clk = 0;
     always #10 sys_clk = ~sys_clk;
@@ -14,7 +14,7 @@ module tb_oled_wave_board #(parameter FAST=1);
     reg [11:0] position = 0;
     assign sda = ack_low ? 1'b0 : 1'bz;
     wire bclk, lrclk, audio_data;
-    board_contest_full_top #(.DEBOUNCE_CYCLES(8), .OLED_WAVE_ENABLE(1),
+    board_contest_full_top #(.DEBOUNCE_CYCLES(8), .MENU_HIERARCHY_ENABLE(HIERARCHY), .OLED_WAVE_ENABLE(1),
         .OLED_WAVE_IDLE_CYCLES(256), .OLED_POWER_WAIT_CYCLES(8), .OLED_FRAME_WAIT_CYCLES(8),
         .OLED_I2C_HZ(FAST ? 3000000 : 100000)) dut (
         .sys_clk(sys_clk), .key_n(keys), .mpr_scl(mpr_scl), .mpr_sda(mpr_sda),
@@ -129,7 +129,8 @@ module tb_oled_wave_board #(parameter FAST=1);
             wait (pixel_count >= 16);
             if (checked_low < 100 || checked_high < 100 || dut.system.underrun_count != 0)
                 $fatal(1, "100kHz waveform timing/audio check");
-            $display("OLED WAVE BOARD TIMING PASS 100kHz external timings, burst transfer and zero underruns");
+            if(HIERARCHY)$display("HIERARCHY BOARD TIMING PASS 100kHz external timings, burst transfer and zero underruns");
+            else $display("OLED WAVE BOARD TIMING PASS 100kHz external timings, burst transfer and zero underruns");
             $finish;
         end
         wait (dut.oled_completed_frames == 2);
@@ -161,13 +162,30 @@ module tb_oled_wave_board #(parameter FAST=1);
         $fdisplay(pcm_file, "frame,left");
         for (k = 0; k < 512; k = k + 1) $fdisplay(pcm_file, "%0d,%0d", k, $signed(decoded_pcm[k]));
         $fclose(pcm_file);
-        // 同一滑条输入唤醒并长按，确认没有吞掉手势，随后空闲仍停留总菜单。
+        // 新版唤醒手势只调连续参数；旧版保留同次手势长按进入菜单的原语义。
         slide = 1;
         position = 0;
         repeat (30) @(negedge dut.audio_clk);
         slide = 0;
         repeat (1200) @(negedge dut.audio_clk);
-        if (!dut.menu_main || dut.menu_volume_mode || !dut.oled_panel.display.wave_requested)
+        if(HIERARCHY)begin
+            if(dut.menu_main || !dut.menu_volume_mode || !dut.oled_panel.display.wave_requested)
+                $fatal(1,"new hierarchy wake did not remain continuous control");
+            // 再次唤醒后短松手；新的左长按才进入总菜单，依次选声音/音色/正弦。
+            position=2000;slide=1;repeat(8)@(negedge dut.audio_clk);
+            slide=0;repeat(8)@(negedge dut.audio_clk);
+            position=0;slide=1;repeat(30)@(negedge dut.audio_clk);
+            slide=0;repeat(8)@(negedge dut.audio_clk);
+            if(dut.menu_view!=1)$fatal(1,"board root entry");
+            repeat(2)begin
+                slide=1;repeat(8)@(negedge dut.audio_clk);
+                slide=0;repeat(8)@(negedge dut.audio_clk);
+            end
+            if(dut.menu_view!=3)$fatal(1,"board nested timbre entry");
+            position=2000;slide=1;repeat(8)@(negedge dut.audio_clk);
+            slide=0;repeat(16)@(negedge dut.audio_clk);
+            if(dut.system.timbre!=0 || !dut.menu_waveform_view)$fatal(1,"board successful selection did not show waveform");
+        end else if (!dut.menu_main || dut.menu_volume_mode || !dut.oled_panel.display.wave_requested)
             $fatal(1, "waveform idle changed menu state");
         // OLED拔掉不应影响真实音源持续供数。
         nack = 1;
@@ -176,7 +194,8 @@ module tb_oled_wave_board #(parameter FAST=1);
         repeat (20000) @(negedge dut.audio_clk);
         if (decoded < before_audio+10 || dut.system.underrun_count != 0)
             $fatal(1, "OLED disconnect disturbed audio");
-        $display("OLED WAVE BOARD PASS decoded PCM to 768 pixel bytes, menu wake, idle preserve and audio fault isolation");
+        if(HIERARCHY)$display("HIERARCHY BOARD PASS production top, genuine I2S PCM/pixels, nested menu, selection waveform, wake and OLED fault isolation");
+        else $display("OLED WAVE BOARD PASS decoded PCM to 768 pixel bytes, menu wake, idle preserve and audio fault isolation");
         $finish;
     end
     initial begin

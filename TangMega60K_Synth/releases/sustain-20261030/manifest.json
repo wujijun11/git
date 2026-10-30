@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-30",
+  "branch": "codex/sustain-20261030",
+  "baseCommit": "df6e8f6f8fcc60a31d0ff549eab37640f67aa4f7",
+  "publicationType": "independent test branch",
+  "hardwareTested": false,
+  "adoptedAsFinal": false,
+  "mainModified": false,
+  "fpgaUserCode": "0x00007D2F",
+  "previousValidation": {
+    "modelSimCases": 34,
+    "clientCheckCommands": 21,
+    "gowinTimingPassed": true
+  },
+  "files": [
+    {
+      "path": "ContestFull_ChordSustain_TEST1024.zip",
+      "bytes": 5551164,
+      "sha256": "BB7C78AEFD23B606E0E7C4143D5E2AD2A656B54F0F7731A6ECE4771623C0A79D"
+    },
+    {
+      "path": "TangNeonStudio-Windows-1.5.2-Sustain.zip",
+      "bytes": 15655432,
+      "sha256": "0DFD803AA3344E0F712A566AC571071AC87A0ABC8893D6B2CED0A1937F406883"
+    },
+    {
+      "path": "TangSynthRemote-1.9-Sustain-20261030.apk",
+      "bytes": 74235,
+      "sha256": "E58B4AA4A5EFA700C2D2CF9CEDFCFDDC3B429C8D889E2F544EF4CE2FDFD86008"
+    }
+  ],
+  "fpgaBitstreamInsideZip": {
+    "path": "fpga/ContestFull_ChordSustain_TEST1024.fs",
+    "sha256": "16420C67386E78F16096F15331DD1F66D96AA03C95D8109EA655F503E0C29B6A"
+  },
+  "documentation": {
+    "rtlModules": 97,
+    "ports": 1465,
+    "knownInstances": 122,
+    "codeFilesClassified": 596
+  }
+}

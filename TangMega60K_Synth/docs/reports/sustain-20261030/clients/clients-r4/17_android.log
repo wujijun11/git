@@ -1,0 +1,18 @@
+注: C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\TangMega60K_Synth\mobile\android\app\src\main\java\cn\tangsynth\remote\MainActivity.java使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\tmp\android-callback-test\run-n8s95p0e\sources\CallbackHarness.java:7: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+import sun.misc.Unsafe;
+               ^
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\tmp\android-callback-test\run-n8s95p0e\sources\CallbackHarness.java:10: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+    private static Unsafe unsafe;
+                   ^
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\tmp\android-callback-test\run-n8s95p0e\sources\CallbackHarness.java:30: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+        Field singleton=Unsafe.class.getDeclaredField("theUnsafe");singleton.setAccessible(true);unsafe=(Unsafe)singleton.get(null);
+                        ^
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\tmp\android-callback-test\run-n8s95p0e\sources\CallbackHarness.java:30: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+        Field singleton=Unsafe.class.getDeclaredField("theUnsafe");singleton.setAccessible(true);unsafe=(Unsafe)singleton.get(null);
+                                                                                                         ^
+注: C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\tmp\android-callback-test\run-n8s95p0e\sources\CallbackHarness.java使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+4 个警告
+ALL ANDROID CALLBACK QUEUE TESTS PASSED (GATT reconnect/write ownership, 3 setup deadlines, stage cancellation, CCCD filtering, stale scans/chooser, background dispatch, destruction)

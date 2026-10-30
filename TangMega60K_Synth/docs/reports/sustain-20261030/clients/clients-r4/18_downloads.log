@@ -1,0 +1,18 @@
+注: C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\TangMega60K_Synth\mobile\android\app\src\main\java\cn\tangsynth\remote\MainActivity.java使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\tmp\android-async-test\run-_mulqy62\sources\AsyncHarness.java:4: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+import java.util.concurrent.*;import java.util.concurrent.atomic.*;import sun.misc.Unsafe;
+                                                                                  ^
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\tmp\android-async-test\run-_mulqy62\sources\AsyncHarness.java:6: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+ static Unsafe unsafe;static MainActivity activity;static MainActivity.Bridge bridge;static ThreadPoolExecutor executor;
+        ^
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\tmp\android-async-test\run-_mulqy62\sources\AsyncHarness.java:98: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+  Field singleton=Unsafe.class.getDeclaredField("theUnsafe");singleton.setAccessible(true);unsafe=(Unsafe)singleton.get(null);
+                  ^
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\tmp\android-async-test\run-_mulqy62\sources\AsyncHarness.java:98: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+  Field singleton=Unsafe.class.getDeclaredField("theUnsafe");singleton.setAccessible(true);unsafe=(Unsafe)singleton.get(null);
+                                                                                                   ^
+4 个警告
+PASS native download supersession: 31 requests; max workers=1; actual production queue capacity=1; opened=2; only request 31 delivered
+PASS completed result cancelled before UI delivery
+PASS destruction cancels executor, queued result and late bridge operations

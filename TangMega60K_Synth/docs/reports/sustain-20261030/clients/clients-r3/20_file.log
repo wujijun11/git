@@ -1,0 +1,26 @@
+注: C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\TangMega60K_Synth\mobile\android\app\src\main\java\cn\tangsynth\remote\MainActivity.java使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\tmp\android-async-test\run-i5cbxmmm\sources\AsyncHarness.java:4: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+import java.util.concurrent.*;import java.util.concurrent.atomic.*;import sun.misc.Unsafe;
+                                                                                  ^
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\tmp\android-async-test\run-i5cbxmmm\sources\AsyncHarness.java:6: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+ static Unsafe unsafe;static MainActivity activity;static MainActivity.Bridge bridge;static ThreadPoolExecutor executor;
+        ^
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\tmp\android-async-test\run-i5cbxmmm\sources\AsyncHarness.java:98: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+  Field singleton=Unsafe.class.getDeclaredField("theUnsafe");singleton.setAccessible(true);unsafe=(Unsafe)singleton.get(null);
+                  ^
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\tmp\android-async-test\run-i5cbxmmm\sources\AsyncHarness.java:98: 警告: Unsafe是内部专用 API, 可能会在未来发行版中删除
+  Field singleton=Unsafe.class.getDeclaredField("theUnsafe");singleton.setAccessible(true);unsafe=(Unsafe)singleton.get(null);
+                                                                                                   ^
+4 个警告
+Exception in thread "main" java.lang.NoSuchMethodError: 'java.lang.String[] android.webkit.WebChromeClient$FileChooserParams.getAcceptTypes()'
+	at cn.tangsynth.remote.MainActivity.chooseScoreFile(MainActivity.java:121)
+	at cn.tangsynth.remote.MainActivity$2.onShowFileChooser(MainActivity.java:61)
+	at AsyncHarness.file(AsyncHarness.java:84)
+	at AsyncHarness.main(AsyncHarness.java:103)
+Traceback (most recent call last):
+  File "C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\TangMega60K_Synth\mobile\tests\test_android_async.py", line 193, in <module>
+    subprocess.run([str(JAVA / 'bin/java.exe'), '-classpath', str(runtime) + ';' + str(production) + ';' + str(SDK), 'AsyncHarness', args.case, str(production)], check=True)
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['C:\\Program Files\\Java\\jdk-17\\bin\\java.exe', '-classpath', 'C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-sustain-20261030\\tmp\\android-async-test\\run-i5cbxmmm\\runtime;C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-sustain-20261030\\tmp\\android-async-test\\run-i5cbxmmm\\production;C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\TangMega60K_Synth\\tmp\\android-build\\sdk\\platforms\\android-35\\android.jar', 'AsyncHarness', 'file', 'C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-sustain-20261030\\tmp\\android-async-test\\run-i5cbxmmm\\production']' returned non-zero exit status 1.

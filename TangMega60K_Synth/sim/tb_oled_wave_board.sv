@@ -14,7 +14,7 @@ module tb_oled_wave_board #(parameter FAST=1,parameter HIERARCHY=0);
     reg [11:0] position = 0;
     assign sda = ack_low ? 1'b0 : 1'bz;
     wire bclk, lrclk, audio_data;
-    board_contest_full_top #(.DEBOUNCE_CYCLES(8), .MENU_HIERARCHY_ENABLE(HIERARCHY), .OLED_WAVE_ENABLE(1),
+    board_contest_full_top #(.SUSTAIN_ENABLE(0),.DEBOUNCE_CYCLES(8), .MENU_HIERARCHY_ENABLE(HIERARCHY), .OLED_WAVE_ENABLE(1),
         .OLED_WAVE_IDLE_CYCLES(256), .OLED_POWER_WAIT_CYCLES(8), .OLED_FRAME_WAIT_CYCLES(8),
         .OLED_I2C_HZ(FAST ? 3000000 : 100000)) dut (
         .sys_clk(sys_clk), .key_n(keys), .mpr_scl(mpr_scl), .mpr_sda(mpr_sda),

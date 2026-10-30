@@ -1,0 +1,48 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/sustain_neutral_n64.wlf -l logs/sustain_neutral_n64.log -do "do cases/sustain_neutral_n64.do" work.tb_sustain_neutral 
+# Start time: 11:30:00 on Oct 30,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "voice_engine(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "voice_engine(fast__1)".
+# ** Warning: sim/tb_sustain_neutral.sv(22): (vopt-2685) [TFMPC] - Too few port connections for 'old_engine'.  Expected 20, found 19.
+# ** Warning: sim/tb_sustain_neutral.sv(22): (vopt-2718) [TFMPC] - Missing connection for port 'engine_sample_begin'.
+# ** Warning: sim/tb_sustain_neutral.sv(36): (vopt-2685) [TFMPC] - Too few port connections for 'new_engine'.  Expected 20, found 19.
+# ** Warning: sim/tb_sustain_neutral.sv(36): (vopt-2718) [TFMPC] - Missing connection for port 'engine_sample_begin'.
+# ** Note: (vopt-143) Recognized 1 FSM in module "pitch_expression(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "stereo_peak_limiter(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "sustain_command_gate(fast)".
+# //  ModelSim SE-64 10.6e Jun 23 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_sustain_neutral(fast)
+# Loading work.voice_engine(fast)
+# Loading work.voice_state_ram(fast)
+# Loading work.adsr(fast)
+# Loading work.pitch_expression(fast)
+# Loading work.dds_lane(fast)
+# Loading work.polar_lane(fast)
+# Loading work.polar_lane(fast__1)
+# Loading work.fm_piano_lane(fast)
+# Loading work.wavetable_rom(fast)
+# Loading work.stereo_mixer(fast)
+# Loading work.gain_saturator(fast)
+# Loading work.stereo_peak_limiter(fast)
+# Loading work.audio_fx(fast)
+# Loading work.sustain_command_gate(fast)
+# Loading work.voice_engine(fast__1)
+# do cases/sustain_neutral_n64.do
+# SUSTAIN NEUTRAL PASS N=64 TIMBRE=0 frames=8288 full_voice_frames=1316 limited=2095 done=64 stalls=2502016
+# ** Note: $finish    : sim/tb_sustain_neutral.sv(117)
+#    Time: 84869170 ns  Iteration: 1  Instance: /tb_sustain_neutral
+# End time: 11:30:36 on Oct 30,2026, Elapsed time: 0:00:36
+# Errors: 0, Warnings: 4

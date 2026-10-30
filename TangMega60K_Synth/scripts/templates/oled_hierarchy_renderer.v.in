@@ -1,12 +1,14 @@
 // generate-hierarchy-font.py生成。四行16像素文字，表达单位不混用。
 module oled_hierarchy_renderer #(
-    parameter FONT_FILE="rtl/audio/rom/menu_hierarchy_font.hex"
+    parameter FONT_FILE="rtl/audio/rom/menu_hierarchy_font.hex",
+    parameter SUSTAIN_ENABLE=0
 )(
     input wire clk,input wire [2:0] screen_page,input wire [6:0] column,
     input wire [3:0] view,input wire [1:0] zone,expression_mode,
     input wire recording,playing,guide,busy,input wire [7:0] error,
     input wire [15:0] record_digits,control_digits,
     input wire control_negative,input wire [7:0] control_percent,
+    input wire sustain_enabled,
     output wire [7:0] data
 );
     reg [55:0] text;
@@ -34,6 +36,7 @@ module oled_hierarchy_renderer #(
                 5:text=@TITLE5@;
                 6:text=@TITLE6@;
                 7:text=@TITLE7@;
+                9:text=@TITLE9@;
                 default:text=@TITLE8@;
               endcase
             1:if(continuous)begin
@@ -52,25 +55,29 @@ module oled_hierarchy_renderer #(
                 end
               end else case(view)
                 1:text=@ITEM1@;
-                2:text=@ITEM2@;
+                2:text=SUSTAIN_ENABLE?@LABEL19@:@ITEM2@;
                 3:text=@ITEM3@;
                 4:text=@ITEM4@;
                 5:text=@ITEM5@;
                 6:text=@ITEM6@;
                 7:text=@ITEM7@;
+                9:text=@ITEM9@;
                 default:text=@ITEM8@;
               endcase
             2:begin
-                if(error!=0)text=@LABEL6@;
+                if(SUSTAIN_ENABLE && view==9)text=sustain_enabled?@LABEL18@:@LABEL17@;
+                else if(error!=0)text=@LABEL6@;
                 else if(busy)text=@LABEL7@;
                 else if(recording)text=@LABEL8@;
                 else if(playing)text=@LABEL9@;
                 else if(guide)text=@LABEL10@;
                 else text=@LABEL11@;
-                text[34:28]=7'd@ZERO@+{3'd0,record_digits[15:12]};
-                text[41:35]=7'd@ZERO@+{3'd0,record_digits[11:8]};
-                text[48:42]=7'd@ZERO@+{3'd0,record_digits[7:4]};
-                text[55:49]=7'd@ZERO@+{3'd0,record_digits[3:0]};
+                if(!(SUSTAIN_ENABLE && view==9))begin
+                    text[34:28]=7'd@ZERO@+{3'd0,record_digits[15:12]};
+                    text[41:35]=7'd@ZERO@+{3'd0,record_digits[11:8]};
+                    text[48:42]=7'd@ZERO@+{3'd0,record_digits[7:4]};
+                    text[55:49]=7'd@ZERO@+{3'd0,record_digits[3:0]};
+                end
             end
             default:if(!continuous)text=@LABEL15@;
                 else if(expression_mode==1)text=@LABEL13@;

@@ -10,6 +10,7 @@ module tb_oled_hierarchy;
     reg [7:0] error=0,control_percent=100;
     reg [15:0] record_digits=16'h0012,control_digits=16'h0100;
     wire [7:0] data;
+    wire sustain_enabled=1'b0;
     oled_hierarchy_renderer dut(.*);
     integer f,n,p,x,number;
     initial begin

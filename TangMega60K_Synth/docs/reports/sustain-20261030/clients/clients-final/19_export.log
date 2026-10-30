@@ -1,0 +1,29 @@
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\TangMega60K_Synth\mobile\android\app\src\main\java\cn\tangsynth\remote\MainActivity.java:26: 错误: 找不到符号
+    private MusicCatalog musicCatalog;
+            ^
+  符号:   类 MusicCatalog
+  位置: 类 MainActivity
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\TangMega60K_Synth\mobile\android\app\src\main\java\cn\tangsynth\remote\MainActivity.java:52: 错误: 找不到符号
+        musicCatalog=new MusicCatalog(getCacheDir(),(id,result)->ui.post(()->{if(web!=null)js("window.nativeMusicResult("+id+","+result.toString()+")");}));
+                         ^
+  符号:   类 MusicCatalog
+  位置: 类 MainActivity
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\TangMega60K_Synth\mobile\android\app\src\main\java\cn\tangsynth\remote\MainActivity.java:95: 错误: 找不到符号
+            if (!BlePerformanceLink.requestHighPriority(owner))
+                 ^
+  符号:   变量 BlePerformanceLink
+  位置: 类 MainActivity
+C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\TangMega60K_Synth\mobile\android\app\src\main\java\cn\tangsynth\remote\MainActivity.java:111: 错误: 找不到符号
+        @JavascriptInterface public void writeHex(String hex){ui.post(()->{try{byte[] bytes=Protocol.unhex(hex);if(!ready||gatt==null||rx==null||writing){writeResult(false,"GATT 未就绪或写入忙");return;}if(!hasPermissions()){permissionLost();return;}rx.setWriteType(BlePerformanceLink.writeTypeFor(rx.getProperties()));rx.setValue(bytes);writing=true;final long id=++writeGeneration;if(!gatt.writeCharacteristic(rx))writeResult(false,"GATT 拒绝写入");else ui.postDelayed(()->{if(writing&&writeGeneration==id){writeResult(false,"GATT 写回调超时");MainActivity.this.disconnect(true);}},3000);}catch(SecurityException e){permissionLost();writeResult(false,"蓝牙权限已撤销");}catch(Exception e){writeResult(false,e.getMessage());}});}
+                                                                                                                                                                                                                                                                   ^
+  符号:   变量 BlePerformanceLink
+  位置: 类 MainActivity.Bridge
+注: C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\TangMega60K_Synth\mobile\android\app\src\main\java\cn\tangsynth\remote\MainActivity.java使用或覆盖了已过时的 API。
+注: 有关详细信息, 请使用 -Xlint:deprecation 重新编译。
+4 个错误
+Traceback (most recent call last):
+  File "C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\TangMega60K_Synth\mobile\tests\test_android_async.py", line 190, in <module>
+    subprocess.run([str(JAVA / 'bin/javac.exe'), '-encoding', 'UTF-8', '-classpath', str(SDK), '-d', str(production), str(native / 'Protocol.java'), str(activity_source)], check=True)
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['C:\\Program Files\\Java\\jdk-17\\bin\\javac.exe', '-encoding', 'UTF-8', '-classpath', 'C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\TangMega60K_Synth\\tmp\\android-build\\sdk\\platforms\\android-35\\android.jar', '-d', 'C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-sustain-20261030\\tmp\\android-async-test\\run-onng5btf\\production', 'C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-sustain-20261030\\TangMega60K_Synth\\mobile\\android\\app\\src\\main\\java\\cn\\tangsynth\\remote\\Protocol.java', 'C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-sustain-20261030\\TangMega60K_Synth\\mobile\\android\\app\\src\\main\\java\\cn\\tangsynth\\remote\\MainActivity.java']' returned non-zero exit status 1.

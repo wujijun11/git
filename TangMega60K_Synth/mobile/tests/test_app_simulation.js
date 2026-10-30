@@ -177,7 +177,8 @@ async function main(){
   const setupPackets=bleB.writes.map(b=>run('P.decode')(Uint8Array.from(b)));
   assert.equal(setupPackets[0].op,8);assert.equal(setupPackets[1].op,4);assert.equal(setupPackets[1].payload[0],5);
   assert.equal(setupPackets.some(p=>p.op===1),false);
-  assert.equal(setupPackets.filter(p=>p.op===8).length,3); // probe + mode capability probe + final state, no heartbeat
+  assert.equal(setupPackets.filter(p=>p.op===8).length,4); // 状态、模式、延音能力和最终状态；没有心跳插队。
+  assert.equal(setupPackets.filter(p=>p.op===8 && p.payload[0]===5).length,1);
   assert.equal(bleB.mock.notes.size,0);assert.equal(run('controlReady'),true);
   for(const id of ['timbre','effect','gain','bend','vibrato','mapKey','mapNote','mapApply'])assert.equal(elements.get(id).disabled,false);
   assert.equal(key.disabled,false);

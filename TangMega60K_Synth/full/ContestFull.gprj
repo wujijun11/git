@@ -5,6 +5,7 @@
   <Version>5</Version>
   <Device name="GW5AT-60B" pn="GW5AT-LV60PG484AC1/I0">gw5at60b-002</Device>
   <FileList>
+    <File path="../rtl/control/sustain_command_gate.v" type="file.verilog" enable="1"/>
     <File path="../rtl/audio/stereo_peak_limiter.v" type="file.verilog" enable="1"/>
     <File path="../rtl/control/slider_gesture_input.v" type="file.verilog" enable="1"/>
     <File path="../rtl/control/menu_hierarchy.v" type="file.verilog" enable="1"/>

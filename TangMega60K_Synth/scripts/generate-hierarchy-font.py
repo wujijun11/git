@@ -7,11 +7,12 @@ from pathlib import Path
 import shutil
 
 ROOT = Path(__file__).resolve().parents[1]
-TITLES = ['连续表情','总菜单','声音设置','音色选择','音区选择','音效选择','表情选择','录制回放','曲谱指引']
+TITLES = ['连续表情','总菜单','声音设置','音色选择','音区选择','音效选择','表情选择','录制回放','曲谱指引','延音设置']
 ITEMS = ['','声音表情录放曲谱','音色音区音效返回','钢琴风琴正弦FM',
-         '低2低1标准高1','关闭延迟混响合唱','音量弯音颤音复位','开始结束回放停止','播放停止指引学习']
+         '低2低1标准高1','关闭延迟混响合唱','音量弯音颤音复位','开始结束回放停止','播放停止指引学习','关闭开启返回主页']
 LABELS = ['音量控制','弯音控制','颤音控制','音量 000%','弯音+0000','深度 000%',
-          '错误','请等待','录制中','播放中','指引中','事件数','长按左端选模式','音分松手回零','百分比调节深度','长按右端回音量','-']
+          '错误','请等待','录制中','播放中','指引中','事件数','长按左端选模式','音分松手回零','百分比调节深度','长按右端回音量','-',
+          '延音关闭','延音开启','音色音区音效延音']
 
 
 def main():
@@ -22,7 +23,9 @@ def main():
     source_sha = hashlib.sha256(args.font_gzip.read_bytes()).hexdigest()
     if source_sha != old['sourceSha256']:
         raise ValueError('原始字体与既有授权记录哈希不一致')
-    chars = list(old['glyphs'])
+    # 追加字形，保留已验F571的既有编号与像素；仍校验同一OFL原字体。
+    previous = ROOT/'licenses/menu-hierarchy-font/manifest.json'
+    chars = list(json.loads(previous.read_text(encoding='utf-8'))['glyphs']) if previous.exists() else list(old['glyphs'])
     for char in ''.join(TITLES+ITEMS+LABELS):
         if char not in chars:
             chars.append(char)

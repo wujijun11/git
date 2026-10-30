@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "desktopSwitch": true,
+  "desktopPanic": true,
+  "phoneSwitch": true,
+  "oldFirmwareFallback": true,
+  "pageErrors": [],
+  "hardwareTested": false
+}

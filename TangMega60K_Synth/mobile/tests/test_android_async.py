@@ -28,7 +28,7 @@ STUBS.update({
  'android/view/ContextThemeWrapper.java': 'package android.view;public class ContextThemeWrapper extends android.content.Context {public ContextThemeWrapper(){}}',
  'android/bluetooth/BluetoothGattCallback.java': 'package android.bluetooth;public class BluetoothGattCallback {public BluetoothGattCallback(){}}',
  'android/webkit/WebChromeClient.java': r'''package android.webkit;
-public class WebChromeClient {public static class FileChooserParams {}public boolean onShowFileChooser(WebView v,ValueCallback<android.net.Uri[]> cb,FileChooserParams p){return false;}}
+public class WebChromeClient {public static class FileChooserParams {public String[] getAcceptTypes(){return new String[]{"application/json"};}}public boolean onShowFileChooser(WebView v,ValueCallback<android.net.Uri[]> cb,FileChooserParams p){return false;}}
 ''',
  'android/app/Activity.java': r'''package android.app;
 public class Activity extends android.view.ContextThemeWrapper {
@@ -147,15 +147,15 @@ public final class AsyncHarness {
   }
   expect(chooser!=null,"Production file chooser callback missing");
   java.util.List<Uri[]> first=new java.util.ArrayList<>(),second=new java.util.ArrayList<>();
-  chooser.onShowFileChooser(null,first::add,null);chooser.onShowFileChooser(null,second::add,null);
+  chooser.onShowFileChooser(null,first::add,new WebChromeClient.FileChooserParams());chooser.onShowFileChooser(null,second::add,new WebChromeClient.FileChooserParams());
   expect(android.app.Activity.requests.size()==1&&first.isEmpty()&&second.size()==1&&second.get(0)==null,"Overlapping file chooser replaced its owner");
   Method result=MainActivity.class.getDeclaredMethod("onActivityResult",int.class,int.class,Intent.class);result.setAccessible(true);
   result.invoke(activity,12,-1,new Intent("result").setData(Uri.parse("content://score/A")));
   expect(first.size()==1&&first.get(0)[0].toString().equals("content://score/A")&&second.size()==1,"Old URI reached new chooser callback");
-  chooser.onShowFileChooser(null,second::add,null);result.invoke(activity,12,-1,new Intent("null-result"));expect(second.size()==2&&second.get(1)==null,"Missing URI not treated as cancelled file choice");
+  chooser.onShowFileChooser(null,second::add,new WebChromeClient.FileChooserParams());result.invoke(activity,12,-1,new Intent("null-result"));expect(second.size()==2&&second.get(1)==null,"Missing URI not treated as cancelled file choice");
   System.out.println("PASS file chooser owner, duplicate rejection, URI result and null cancellation");
   android.bluetooth.BluetoothGatt healthy=new android.bluetooth.BluetoothGatt();field(activity,"gatt",healthy);field(activity,"ready",true);WebView.calls.clear();
-  java.util.List<Uri[]> failed=new java.util.ArrayList<>();android.app.Activity.failStarts=true;chooser.onShowFileChooser(null,failed::add,null);android.app.Activity.failStarts=false;
+  java.util.List<Uri[]> failed=new java.util.ArrayList<>();android.app.Activity.failStarts=true;chooser.onShowFileChooser(null,failed::add,new WebChromeClient.FileChooserParams());android.app.Activity.failStarts=false;
   expect(failed.size()==1&&failed.get(0)==null&&field(activity,"fileChoice")==null,"Failed file picker retained callback");
   expect((Boolean)field(activity,"ready")&&field(activity,"gatt")==healthy&&WebView.calls.size()==1&&WebView.calls.get(0).contains("nativeBleState(\"info\""),"File picker failure dispatched BLE-disconnect error state");
   System.out.println("PASS file picker failure preserves healthy GATT and returns cancelled callback");
@@ -187,6 +187,7 @@ with tempfile.TemporaryDirectory(prefix='run-', dir=scratch) as temporary:
         paths.append(str(path))
     native = ROOT / 'mobile/android/app/src/main/java/cn/tangsynth/remote'
     activity_source = args.activity_source or native / 'MainActivity.java'
-    subprocess.run([str(JAVA / 'bin/javac.exe'), '-encoding', 'UTF-8', '-classpath', str(SDK), '-d', str(production), str(native / 'Protocol.java'), str(activity_source)], check=True)
+    production_sources = sorted(path for path in native.glob('*.java') if path.name != 'MainActivity.java')
+    subprocess.run([str(JAVA / 'bin/javac.exe'), '-encoding', 'UTF-8', '-classpath', str(SDK), '-d', str(production), *map(str, production_sources), str(activity_source)], check=True)
     subprocess.run([str(JAVA / 'bin/javac.exe'), '-encoding', 'UTF-8', '-classpath', str(production) + ';' + str(SDK), '-d', str(runtime), *paths], check=True)
     subprocess.run([str(JAVA / 'bin/java.exe'), '-classpath', str(runtime) + ';' + str(production) + ';' + str(SDK), 'AsyncHarness', args.case, str(production)], check=True)

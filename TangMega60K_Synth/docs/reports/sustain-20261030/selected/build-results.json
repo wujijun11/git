@@ -1,0 +1,281 @@
+{
+  "snapshot": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\verification\\sustain-build\\build_sustain_20261030_110824_b6773b27",
+  "variant": "sustain",
+  "run": {
+    "startedAt": "2026-10-30T11:08:25.022331+08:00",
+    "endedAt": "2026-10-30T11:13:14.319321+08:00",
+    "durationSeconds": 289.297,
+    "exitCode": 0,
+    "timedOut": false,
+    "timeoutSeconds": 2400,
+    "command": [
+      "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+      "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\verification\\sustain-build\\build_sustain_20261030_110824_b6773b27\\scripts\\build-contest-full.tcl"
+    ],
+    "pid": 13212
+  },
+  "sourceOrigin": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p",
+  "protectedMainProject": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p",
+  "baselineReport": "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-sustain-20261030\\TangMega60K_Synth\\docs\\reports\\chord-touch-20261028\\selected\\build-results.json",
+  "protectedImplUnchanged": true,
+  "protectedImplFileCount": 0,
+  "sourceInputsMatch": true,
+  "snapshotInputsMatch": true,
+  "mainProjectInputsMatch": true,
+  "mainProjectInputMismatches": [],
+  "sourceMatchingNote": "sourceInputsMatch means the explicitly named source origin; mainProjectInputsMatch is a separate full 80-input check.",
+  "buildAcceptanceNote": "Frozen source-origin build/timing and original implementation protection only. Main-source adoption and hardware validation are separate.",
+  "sourceInputFileCount": 106,
+  "timingPassMarker": true,
+  "warningCount": 76,
+  "errorLines": [],
+  "timingParserNote": "Each 3.1.1-3.1.4 table is bounded; 3.2 pulse-width rows excluded.",
+  "violationCountNote": "Setup/Hold vendor endpoint totals include recovery/removal; no separate totals provided.",
+  "gaoExpected": false,
+  "hardwareValidated": false,
+  "buildAccepted": true,
+  "current": {
+    "createdTime": "Fri Oct 30 11:13:13 2026",
+    "part": "GW5AT-LV60PG484AC1/I0",
+    "pathsAnalyzed": 111407,
+    "endpointsAnalyzed": 63007,
+    "violations": {
+      "setup": 0,
+      "hold": 0
+    },
+    "minimumSlackNs": {
+      "setup": 1.165,
+      "hold": 0.126,
+      "recovery": 5.329,
+      "removal": 0.556
+    },
+    "worstPaths": {
+      "setup": {
+        "from": "system/performance/selected_builtin_s0/Q",
+        "to": "system/performance/event_timbre_1_s0/D"
+      },
+      "hold": {
+        "from": "system/visual/shadow[15]_7_s0/Q",
+        "to": "system/visual/spectrum_levels_127_s0/D"
+      },
+      "recovery": {
+        "from": "system/audio_reset_released_s0/Q",
+        "to": "system/synth/u_polar1/state_write_valid_s0/CLEAR"
+      },
+      "removal": {
+        "from": "audio_clock/first_lock_stable_s0/Q",
+        "to": "audio_clock/pll_49m152/init/rEnable_1_s0/CLEAR"
+      }
+    },
+    "resources": {
+      "Logic": {
+        "used": 28722.0,
+        "capacity": 59904.0,
+        "reportedPercent": 48,
+        "free": 31182.0
+      },
+      "Register": {
+        "used": 19533.0,
+        "capacity": 60780.0,
+        "reportedPercent": 33,
+        "free": 41247.0
+      },
+      "BSRAM": {
+        "used": 107.0,
+        "capacity": 118.0,
+        "reportedPercent": 91,
+        "free": 11.0
+      },
+      "DSP": {
+        "used": 56.0,
+        "capacity": 118.0,
+        "reportedPercent": 48,
+        "free": 62.0
+      }
+    },
+    "clocks": [
+      {
+        "name": "sys_clk",
+        "constraintMHz": 50.0,
+        "fmaxMHz": 116.33,
+        "logicLevel": 7
+      },
+      {
+        "name": "video_clock/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 125.0,
+        "fmaxMHz": 167.018,
+        "logicLevel": 1
+      },
+      {
+        "name": "video_clock/pll/CLKOUT1.default_gen_clk",
+        "constraintMHz": 25.0,
+        "fmaxMHz": 65.533,
+        "logicLevel": 14
+      },
+      {
+        "name": "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 49.152,
+        "fmaxMHz": 52.138,
+        "logicLevel": 15
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\verification\\sustain-build\\build_sustain_20261030_110824_b6773b27\\full\\impl\\pnr\\ContestFull.fs",
+        "size": 20490692,
+        "sha256": "16420C67386E78F16096F15331DD1F66D96AA03C95D8109EA655F503E0C29B6A"
+      },
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\verification\\sustain-build\\build_sustain_20261030_110824_b6773b27\\full\\impl\\pnr\\ContestFull.tr",
+        "size": 405521,
+        "sha256": "2C02B0A67C9BF1B34BC2E30991399DEDE80F22471E4A13357EE55518B9B2AD1B"
+      },
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\verification\\sustain-build\\build_sustain_20261030_110824_b6773b27\\full\\impl\\pnr\\ContestFull.rpt.txt",
+        "size": 92818,
+        "sha256": "D6BE3F07890459A2521056B88D2166A2C6D3DEB7EB0CBD58A8A29C9D2311BFAE"
+      }
+    ],
+    "hardwareValidated": false,
+    "implementationName": "ContestFull",
+    "reportName": "ContestFull",
+    "netlistName": "ContestFull",
+    "implementationKind": "bare-main",
+    "gaoInstrumented": false,
+    "gaoEvidence": {
+      "verified": false,
+      "enabledConfigurationCount": 0,
+      "files": []
+    },
+    "timingPass": true
+  },
+  "baseline": {
+    "createdTime": "Wed Oct 28 19:57:52 2026",
+    "part": "GW5AT-LV60PG484AC1/I0",
+    "pathsAnalyzed": 110927,
+    "endpointsAnalyzed": 62698,
+    "violations": {
+      "setup": 0,
+      "hold": 0
+    },
+    "minimumSlackNs": {
+      "setup": 0.368,
+      "hold": 0.178,
+      "recovery": 5.215,
+      "removal": 0.816
+    },
+    "worstPaths": {
+      "setup": {
+        "from": "system/sensors/eventizer/head_from_ram_s1/Q",
+        "to": "system/performance/held_timbre[18]_0_s0/CE"
+      },
+      "hold": {
+        "from": "system/events/pending_write_payload_6_s0/Q",
+        "to": "system/events/mem_mem_RAMREG_49_G[6]_s0/D"
+      },
+      "recovery": {
+        "from": "ready_sync_s0/Q",
+        "to": "system/synth/u_polar1/state_write_valid_s0/CLEAR"
+      },
+      "removal": {
+        "from": "audio_clock/first_lock_stable_s0/Q",
+        "to": "audio_clock/pll_49m152/init/rEnable_1_s0/CLEAR"
+      }
+    },
+    "resources": {
+      "Logic": {
+        "used": 28558.0,
+        "capacity": 59904.0,
+        "reportedPercent": 48,
+        "free": 31346.0
+      },
+      "Register": {
+        "used": 19430.0,
+        "capacity": 60780.0,
+        "reportedPercent": 32,
+        "free": 41350.0
+      },
+      "BSRAM": {
+        "used": 107.0,
+        "capacity": 118.0,
+        "reportedPercent": 91,
+        "free": 11.0
+      },
+      "DSP": {
+        "used": 56.0,
+        "capacity": 118.0,
+        "reportedPercent": 48,
+        "free": 62.0
+      }
+    },
+    "clocks": [
+      {
+        "name": "sys_clk",
+        "constraintMHz": 50.0,
+        "fmaxMHz": 116.051,
+        "logicLevel": 9
+      },
+      {
+        "name": "video_clock/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 125.0,
+        "fmaxMHz": 180.754,
+        "logicLevel": 1
+      },
+      {
+        "name": "video_clock/pll/CLKOUT1.default_gen_clk",
+        "constraintMHz": 25.0,
+        "fmaxMHz": 61.921,
+        "logicLevel": 8
+      },
+      {
+        "name": "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 49.152,
+        "fmaxMHz": 50.056,
+        "logicLevel": 15
+      }
+    ],
+    "artifacts": [
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_5wotyngm\\verification\\chord-touch-build\\build_chord-touch_20261028_195250_9cadf685\\full\\impl\\pnr\\ContestFull.fs",
+        "size": 20779356,
+        "sha256": "2F54A832EE9DFC616CA7BB35A6B6D5899CDB7BC5D6FB4B1439FAF37A17A44DDB"
+      },
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_5wotyngm\\verification\\chord-touch-build\\build_chord-touch_20261028_195250_9cadf685\\full\\impl\\pnr\\ContestFull.tr",
+        "size": 394597,
+        "sha256": "10FDF250BA4504CB10D7EDAAB1D8A9956B84F1F7ACA635808B599577CE0E92C9"
+      },
+      {
+        "path": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_5wotyngm\\verification\\chord-touch-build\\build_chord-touch_20261028_195250_9cadf685\\full\\impl\\pnr\\ContestFull.rpt.txt",
+        "size": 92841,
+        "sha256": "9F29D235609B1EC4B288D9D5D34B821A8D8C11338F1A11DA1AEC8AB5CD7B8E85"
+      }
+    ],
+    "hardwareValidated": false,
+    "implementationName": "ContestFull",
+    "reportName": "ContestFull",
+    "netlistName": "ContestFull",
+    "implementationKind": "bare-main",
+    "gaoInstrumented": false,
+    "gaoEvidence": {
+      "verified": false,
+      "enabledConfigurationCount": 0,
+      "files": []
+    },
+    "timingPass": true
+  },
+  "change": {
+    "slackDeltaNs": {
+      "setup": 0.797,
+      "hold": -0.052,
+      "recovery": 0.114,
+      "removal": -0.26
+    },
+    "resourceDelta": {
+      "Logic": 164.0,
+      "Register": 103.0,
+      "BSRAM": 0.0,
+      "DSP": 0.0
+    }
+  }
+}

@@ -1,0 +1,85 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.9/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :app
+WARNING: The option setting 'android.overridePathCheck=true' is experimental.
+The current default is 'false'.
+WARNING: platform-tools package is not installed.
+
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:generateDebugResValues
+> Task :app:checkDebugAarMetadata
+> Task :app:javaPreCompileDebug
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:mergeDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :app:parseDebugLocalResources
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets
+> Task :app:processDebugJavaRes NO-SOURCE
+> Task :app:compressDebugAssets
+> Task :app:checkDebugDuplicateClasses
+> Task :app:mergeDebugJavaResource
+> Task :app:desugarDebugFileDependencies
+> Task :app:mergeDebugJniLibFolders
+> Task :app:mergeDebugNativeLibs NO-SOURCE
+> Task :app:stripDebugDebugSymbols NO-SOURCE
+> Task :app:validateSigningDebug
+> Task :app:mergeExtDexDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:mergeLibDexDebug
+> Task :app:writeDebugSigningConfigVersions
+> Task :app:preDebugAndroidTestBuild SKIPPED
+> Task :app:generateDebugAndroidTestResValues
+> Task :app:extractProguardFiles
+> Task :app:preDebugUnitTestBuild UP-TO-DATE
+> Task :app:processDebugManifestForPackage
+10-30 11:24:21.309 22460 14900 W aapt2.e : AssetsProvider.cpp:114 Failed to stat file 'C:\Users\sll\Documents\ChatGPT\比赛 2\TangMega60K_Synth\tmp\android-build\sdk\platforms\android-35\android.jar': No such file or directory
+
+> Task :app:processDebugResources
+
+> Task :app:compileDebugJavaWithJavac
+ע: C:\Users\sll\Documents\ChatGPT\���� 2\test-sustain-20261030\TangMega60K_Synth\mobile\android\app\src\main\java\cn\tangsynth\remote\MainActivity.javaʹ�û򸲸����ѹ�ʱ�� API��
+ע: �й���ϸ��Ϣ, ��ʹ�� -Xlint:deprecation ���±��롣
+
+> Task :app:dexBuilderDebug
+> Task :app:bundleDebugClassesToCompileJar
+> Task :app:mergeProjectDexDebug
+> Task :app:generateDebugLintReportModel
+> Task :app:generateDebugAndroidTestLintModel
+> Task :app:generateDebugUnitTestLintModel
+> Task :app:packageDebug
+> Task :app:createDebugApkListingFileRedirect
+> Task :app:assembleDebug
+> Task :app:lintAnalyzeDebug
+> Task :app:lintAnalyzeDebugAndroidTest
+> Task :app:lintAnalyzeDebugUnitTest
+> Task :app:lintReportDebug
+> Task :app:lintDebug
+
+BUILD SUCCESSFUL in 22s
+42 actionable tasks: 42 executed
+Verifies
+Verified using v1 scheme (JAR signing): true
+Verified using v2 scheme (APK Signature Scheme v2): true
+Verified using v3 scheme (APK Signature Scheme v3): false
+Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+Number of signers: 1
+WARNING: META-INF/com/android/build/gradle/app-metadata.properties not protected by signature. Unauthorized modifications to this JAR entry will not be detected. Delete or move the entry outside of META-INF/.
+
+Algorithm       Hash                                                                   Path
+---------       ----                                                                   ----
+SHA256          E58B4AA4A5EFA700C2D2CF9CEDFCFDDC3B429C8D889E2F544EF4CE2FDFD86008       C:\Users\sll\Documents\ChatGPT\…
+APK ready: C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\TangMega60K_Synth\mobile\android\output\TangSynthRemote-debug.apk
+

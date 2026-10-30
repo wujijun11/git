@@ -1,6 +1,6 @@
 'use strict';
 (() => {
- const APP_VERSION='1.5.1-local';
+ const APP_VERSION='1.5.2-sustain-test';
  const $=id=>document.getElementById(id), P=RemoteProtocol;
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const names=['C','C♯','D','D♯','E','F','F♯','G','G♯','A','A♯','B'];
@@ -13,7 +13,7 @@
  let nativeTransport=null,connecting=false,selectedTransport='ble',previewEnabled=false,localAudio=null,activeKeys=new Map(),keyRefs=new Map(),noteTrails=[],lastNote=null,toastTimer,logs=[],lastTelemetryAt=0,selectedScore='builtin',uploadedScore=null,visualMic=null,recordCache=[],fileLoadGeneration=0;
  let playbackTimer=null,playbackToken=0,previewPlaying=false,realtimePlayback=null,guidePanel=null,learningControl=null;
  let currentConnectionGeneration=0,playGeneration=0,dataBusy=false,lastBridgeDiagnostics=null,lastControllerState=null;
- const controller=new NeonController({onState:onState,onTelemetry:onTelemetry,onLog:log,onEvent:()=>{},modeSync:true,onBoardMode:onBoardMode,
+ const controller=new NeonController({onState:onState,onTelemetry:onTelemetry,onLog:log,onEvent:()=>{},modeSync:true,onBoardMode:onBoardMode,sustainSync:true,onSustainState:renderSustain,
   onTiming:t=>{if(t.op===P.OP.NOTE)$('latencyDetails').textContent='最近按键：本机排队 '+t.queueMs.toFixed(1)+' ms · 请求至确认 '+t.serviceMs.toFixed(1)+' ms';}});
  realtimePlayback = new DesktopRealtimePlayback({controller,
   getConnection:()=>currentConnectionGeneration, getScore:()=>scores[selectedScore],
@@ -39,7 +39,17 @@
  async function dataOperation(fn){if(realtimePlayback?.busy)throw Error('请先停止蓝牙实时播放');if(dataBusy)throw new Error('数据操作正在进行，请等待完成或点击停止。');dataBusy=true;const elements=document.querySelectorAll('#recordStart,#recordStop,#readRecording,#exportRecording,#replayRecording,#clearRecording,#uploadScore,#scorePlay,#playButton,#guideButton,#learningButton,#importScore,.score-card,#resetMapping,.map-item input');for(const el of elements)el.disabled=true;try{return await fn();}finally{dataBusy=false;for(const el of elements)el.disabled=false;}}
  function clearRecordCache(){recordCache=[];controller.recorded=[];renderRecording([]);$('recordInfo').textContent='本会话尚未回读事件';}
  function bind(id,fn){$(id).addEventListener('click',()=>run(fn));}
+ function renderSustain(){
+  const box=$('sustainEnabled'), label=$('sustainStatus');
+  if(!box || !label)return;
+  const s=controller.sustainState || {supported:false,enabled:false,deferredVoices:0};
+  box.disabled=!controller.ready || !s.supported;
+  box.checked=controller.ready && s.supported && s.enabled;
+  label.textContent=!controller.ready?'连接配套延音测试版后可用':!s.supported?'板上版本尚不支持延音':
+   (s.enabled?'延音已开启':'延音已关闭')+' · 保留 '+s.deferredVoices+' / 64 声部';
+ }
  function onState(state){
+  renderSustain();
   lastControllerState=state;
   if (!state.ready && !state.connected) { learningControl?.cancel(); guidePanel?.clear('disconnected'); }
   const demo=state.mode==='demo';$('connectionStatus').className='connection-pill'+(state.ready?(demo?' demo':' connected'):'');
@@ -133,6 +143,11 @@
  for(const button of $('soundPresets').children)button.addEventListener('click',()=>run(async()=>{const value=Number(button.dataset.timbre);if(controller.ready)await controller.configure(0,value);else controller.timbre=value;updatePreset(value);}));
  function updatePreset(value){for(const b of $('soundPresets').children)b.classList.toggle('selected',Number(b.dataset.timbre)===value);$('presetName').textContent=presetNames[value];$('presetIndex').textContent=String(value+1).padStart(2,'0')+' / 04';$('presetDescription').textContent=presetDescriptions[value];}
  $('effect').addEventListener('change',()=>run(async()=>{if(controller.ready)await controller.configure(1,Number($('effect').value));else controller.effect=Number($('effect').value);}));
+ if($('sustainEnabled'))$('sustainEnabled').addEventListener('change',()=>run(async()=>{
+  const value=$('sustainEnabled').checked;
+  $('sustainEnabled').disabled=true;
+  try{await controller.setSustain(value);}finally{renderSustain();}
+ }));
  const pageTexts={studio:['YOUR SOUND. YOUR SPACE.','让灵感，发出光','从一次触键开始，进入你的声音宇宙。'],scores:['A LIBRARY OF POSSIBILITIES.','让旋律，有迹可循','曲谱导入、设备播放，让创作流畅发生。'],recordings:['CAPTURE THE MOMENT.','记录此刻的你','音符与时间，留下每一次值得回放的灵感。'],settings:['MAKE IT YOUR OWN.','为你的演奏，重新定义','从连接到琴键映射，让声音属于自己。']};
  for(const b of document.querySelectorAll('[data-page]'))b.addEventListener('click',()=>{const page=b.dataset.page;releaseAll();for(const p of document.querySelectorAll('.page'))p.classList.toggle('active',p.id==='page-'+page);for(const n of document.querySelectorAll('[data-page]'))n.classList.toggle('active',n===b);$('pageEyebrow').textContent=pageTexts[page][0];$('pageTitle').innerHTML=pageTexts[page][1]+'<span>。</span>';$('pageSubtitle').textContent=pageTexts[page][2];});
  bind('connectButton',()=>$('connectDialog').showModal());bind('closeDialog',()=>$('connectDialog').close());

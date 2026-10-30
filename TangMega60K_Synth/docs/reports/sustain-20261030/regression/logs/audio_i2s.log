@@ -1,0 +1,47 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/audio_i2s.wlf -l logs/audio_i2s.log -do "do cases/audio_i2s.do" work.tb_audio_i2s 
+# Start time: 11:45:20 on Oct 30,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "voice_engine(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "voice_allocator_v2(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "audio_fx(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "pitch_expression(fast)".
+# ** Warning: rtl/captain_system_top_v2.v(76): (vopt-2685) [TFMPC] - Too few port connections for 'u_audio'.  Expected 15, found 14.
+# ** Warning: rtl/captain_system_top_v2.v(76): (vopt-2718) [TFMPC] - Missing connection for port 'debug_frame_left'.
+# //  ModelSim SE-64 10.6e Jun 23 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_audio_i2s(fast)
+# Loading work.audio_system_v2(fast)
+# Loading work.captain_system_top_v2(fast)
+# Loading work.captain_control_top_v2(fast)
+# Loading work.voice_allocator_v2(fast)
+# Loading work.expression_controls_v2(fast)
+# Loading work.i2s_tx(fast)
+# Loading work.voice_engine(fast)
+# Loading work.voice_state_ram(fast)
+# Loading work.adsr(fast)
+# Loading work.pitch_expression(fast)
+# Loading work.dds_lane(fast)
+# Loading work.polar_lane(fast)
+# Loading work.polar_lane(fast__1)
+# Loading work.wavetable_rom(fast)
+# Loading work.stereo_mixer(fast)
+# Loading work.gain_saturator(fast)
+# Loading work.audio_fx(fast)
+# do cases/audio_i2s.do
+# AUDIO I2S INTEGRATION PASSED voices=64 delay=on frames=10862 nonzero=10859 steady_underrun_delta=0 startup_underruns=0 stalls=3322025
+# ** Note: $finish    : sim/tb_audio_i2s.sv(105)
+#    Time: 226302464373 ps  Iteration: 3  Instance: /tb_audio_i2s
+# End time: 11:45:53 on Oct 30,2026, Elapsed time: 0:00:33
+# Errors: 0, Warnings: 2

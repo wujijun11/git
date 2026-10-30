@@ -43,6 +43,16 @@ function New-TestCase([string]$Name,[string]$Top,[string]$Bench,[string]$Marker,
 $watchdogCase = New-TestCase 'remote_note_watchdog' 'tb_remote_note_watchdog' `
     'sim/tb_remote_note_watchdog.sv' 'REMOTE NOTE WATCHDOG PASS' @() '' $true
 $allCases = @(
+    (New-TestCase 'sustain_menu' 'tb_sustain_menu' 'sim/tb_sustain_menu.sv' 'SUSTAIN MENU PASS'),
+    (New-TestCase 'sustain_router' 'tb_sustain_router' 'sim/tb_sustain_router.sv' 'SUSTAIN ROUTER PASS'),
+    (New-TestCase 'sustain_full64' 'tb_sustain_system' 'sim/tb_sustain_system.sv' 'SUSTAIN SYSTEM FULL64 PASS' @('-gFULL_LOAD=1')),
+    (New-TestCase 'sustain_neutral_n4' 'tb_sustain_neutral' 'sim/tb_sustain_neutral.sv' 'SUSTAIN NEUTRAL PASS N=4' @('-gN=4','-gTIMBRE=2')),
+    (New-TestCase 'sustain_neutral_n64' 'tb_sustain_neutral' 'sim/tb_sustain_neutral.sv' 'SUSTAIN NEUTRAL PASS N=64'),
+    (New-TestCase 'sustain_gate_n4' 'tb_sustain_gate' 'sim/tb_sustain_gate.sv' 'SUSTAIN GATE PASS N=4' @('-gN=4')),
+    (New-TestCase 'sustain_gate_n64' 'tb_sustain_gate' 'sim/tb_sustain_gate.sv' 'SUSTAIN GATE PASS N=64'),
+    (New-TestCase 'sustain_allocator_n4' 'tb_sustain_allocator' 'sim/tb_sustain_allocator.sv' 'SUSTAIN ALLOCATOR PASS N=4' @('-gN=4')),
+    (New-TestCase 'sustain_allocator_n64' 'tb_sustain_allocator' 'sim/tb_sustain_allocator.sv' 'SUSTAIN ALLOCATOR PASS N=64'),
+    (New-TestCase 'sustain_system' 'tb_sustain_system' 'sim/tb_sustain_system.sv' 'SUSTAIN SYSTEM PASS'),
     (New-TestCase 'stable_polar_n4' 'tb_audio_engine' 'sim/tb_audio_engine.sv' 'POLAR ENGINE PASSED N=4' @('-gN=4','-gPOLAR=1','-gSTABLE=1')),
     (New-TestCase 'stable_polar_n64' 'tb_audio_engine' 'sim/tb_audio_engine.sv' 'POLAR ENGINE PASSED N=64' @('-gN=64','-gPOLAR=1','-gSTABLE=1')),
     (New-TestCase 'mpr121_early_mailbox' 'tb_mpr121_early' 'sim/tb_mpr121_early.sv' 'MPR121 EARLY MAILBOX PASS'),

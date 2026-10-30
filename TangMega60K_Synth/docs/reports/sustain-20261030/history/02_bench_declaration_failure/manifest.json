@@ -1,0 +1,1521 @@
+{
+  "Suite": "Core",
+  "StartedUtc": "2026-10-30T03:08:18.9718689Z",
+  "FinishedUtc": "2026-10-30T03:08:21.2942417Z",
+  "Project": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p",
+  "ResultDirectory": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\verification\\sustain-core\\run_20261030_110818_a6b070af",
+  "ModelSimBin": "C:\\modelsim\\modeltech64_10.6e\\win64",
+  "VendorModel": "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\simlib\\gw5a\\prim_sim.v",
+  "SourceCount": 90,
+  "TimeoutSeconds": 1200,
+  "AudioLongTimeoutSeconds": 7200,
+  "SuiteCaseCount": 98,
+  "FullCaseCount": 99,
+  "SelectedCaseNames": [
+    "sustain_gate_n4",
+    "sustain_gate_n64",
+    "sustain_allocator_n4",
+    "sustain_allocator_n64",
+    "sustain_system"
+  ],
+  "Compiled": false,
+  "InputsUnchanged": true,
+  "ExpectedCases": 5,
+  "PassedCases": 0,
+  "FailedCases": 0,
+  "Passed": false,
+  "InfrastructureError": "ModelSim compilation failed (exit 2). See C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\verification\\sustain-core\\run_20261030_110818_a6b070af\\logs\\testbenches.compile.log",
+  "Cases": [],
+  "Inputs": [
+    {
+      "Kind": "Project",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\full\\ContestFull.gprj",
+      "StagedPath": "full/ContestFull.gprj",
+      "Sha256Before": "087fb1c1c942b524077edfd5d4197404e9116809223e29b08a8e23c82963c407",
+      "Sha256After": "087fb1c1c942b524077edfd5d4197404e9116809223e29b08a8e23c82963c407",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\sustain_command_gate.v",
+      "StagedPath": "rtl/control/sustain_command_gate.v",
+      "Sha256Before": "13856aa4d17f9780fee31ff8938321897a8ec3fc38d60605d60d29423c850d41",
+      "Sha256After": "13856aa4d17f9780fee31ff8938321897a8ec3fc38d60605d60d29423c850d41",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\stereo_peak_limiter.v",
+      "StagedPath": "rtl/audio/stereo_peak_limiter.v",
+      "Sha256Before": "4662ef4b143adaf962b5c6274e0b7767ed7218e8ccd6591659791baa744e3298",
+      "Sha256After": "4662ef4b143adaf962b5c6274e0b7767ed7218e8ccd6591659791baa744e3298",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\slider_gesture_input.v",
+      "StagedPath": "rtl/control/slider_gesture_input.v",
+      "Sha256Before": "2035026f18120b04d95384f3762c3f329d08e38995ef67bd73b817f518f567e1",
+      "Sha256After": "2035026f18120b04d95384f3762c3f329d08e38995ef67bd73b817f518f567e1",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\menu_hierarchy.v",
+      "StagedPath": "rtl/control/menu_hierarchy.v",
+      "Sha256Before": "af44f8c916fe9a2e28efc2405dc936c95182b7fc869fa581b7a5f59783f149bf",
+      "Sha256After": "af44f8c916fe9a2e28efc2405dc936c95182b7fc869fa581b7a5f59783f149bf",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\slider_expression_control.v",
+      "StagedPath": "rtl/control/slider_expression_control.v",
+      "Sha256Before": "6c8886167104214cba113de4f56cf2b5faa6ce13696d05e903e0f247327bbb04",
+      "Sha256After": "6c8886167104214cba113de4f56cf2b5faa6ce13696d05e903e0f247327bbb04",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\oled_hierarchy_renderer.v",
+      "StagedPath": "rtl/visual/oled_hierarchy_renderer.v",
+      "Sha256Before": "cfb816d566b1ad4befbcae6d06bcec01bff4c1bad85880db9e4f396603662eec",
+      "Sha256After": "cfb816d566b1ad4befbcae6d06bcec01bff4c1bad85880db9e4f396603662eec",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\oled_idle_view.v",
+      "StagedPath": "rtl/visual/oled_idle_view.v",
+      "Sha256Before": "00392a752fb695bbab3142941a7ec223d488a97ebf1518efa8161fa593d1943a",
+      "Sha256After": "00392a752fb695bbab3142941a7ec223d488a97ebf1518efa8161fa593d1943a",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\oled_wave_capture.v",
+      "StagedPath": "rtl/visual/oled_wave_capture.v",
+      "Sha256Before": "83f70e7694969db685c48683c02277997bfeaeb40c7e0fbf0551274d3e456b3f",
+      "Sha256After": "83f70e7694969db685c48683c02277997bfeaeb40c7e0fbf0551274d3e456b3f",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\oled_wave_renderer.v",
+      "StagedPath": "rtl/visual/oled_wave_renderer.v",
+      "Sha256Before": "ee57d529ef33584dca896441a5cd906da94ec9949dd48508ae840ada58dbe873",
+      "Sha256After": "ee57d529ef33584dca896441a5cd906da94ec9949dd48508ae840ada58dbe873",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\oled_i2c_stream.v",
+      "StagedPath": "rtl/visual/oled_i2c_stream.v",
+      "Sha256Before": "b6b1e1865594a5deed54cfbc2b0aa2d97e775a89056f3607f9c9714b6122f170",
+      "Sha256After": "b6b1e1865594a5deed54cfbc2b0aa2d97e775a89056f3607f9c9714b6122f170",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\board\\audio_boot_status.v",
+      "StagedPath": "rtl/board/audio_boot_status.v",
+      "Sha256Before": "a611631bf6c6d8676d8f044afe86b507b106d9bff1e1a0ff9d597dcab4a3b1c1",
+      "Sha256After": "a611631bf6c6d8676d8f044afe86b507b106d9bff1e1a0ff9d597dcab4a3b1c1",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\headroom_smoother.v",
+      "StagedPath": "rtl/audio/headroom_smoother.v",
+      "Sha256Before": "240e5c4b4d184cba8260f6e6ac5c5ae40c11c063a27b1d6899c458fee31eb0d5",
+      "Sha256After": "240e5c4b4d184cba8260f6e6ac5c5ae40c11c063a27b1d6899c458fee31eb0d5",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\slider_volume_control.v",
+      "StagedPath": "rtl/control/slider_volume_control.v",
+      "Sha256Before": "ece98cc9147896139e9184bef8c04c0f7e7d48b3703d0e23da70b74c5a7161a4",
+      "Sha256After": "ece98cc9147896139e9184bef8c04c0f7e7d48b3703d0e23da70b74c5a7161a4",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\gain_percent_meter.v",
+      "StagedPath": "rtl/control/gain_percent_meter.v",
+      "Sha256Before": "138349be76448ed7597c9dee1df2cb4e0ee13b1cac99e779a517ecf73410b7a5",
+      "Sha256After": "138349be76448ed7597c9dee1df2cb4e0ee13b1cac99e779a517ecf73410b7a5",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\performance_command_stage.v",
+      "StagedPath": "rtl/control/performance_command_stage.v",
+      "Sha256Before": "5fcaa14f3a78ffce4908b804451bb86843d75ca5056ba034346e4a1a90995e33",
+      "Sha256After": "5fcaa14f3a78ffce4908b804451bb86843d75ca5056ba034346e4a1a90995e33",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\bin16_to_bcd.v",
+      "StagedPath": "rtl/visual/bin16_to_bcd.v",
+      "Sha256Before": "a3d08f013c6f254d7354c36adbffe57b9084d4be5c003c8fbd4c8ce47f1f01a8",
+      "Sha256After": "a3d08f013c6f254d7354c36adbffe57b9084d4be5c003c8fbd4c8ce47f1f01a8",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\oled_menu_renderer.v",
+      "StagedPath": "rtl/visual/oled_menu_renderer.v",
+      "Sha256Before": "974f4d76aa66f87531cba1f8bf589e7e3b7ed82aa4c752fcfa9417240e02a34f",
+      "Sha256After": "974f4d76aa66f87531cba1f8bf589e7e3b7ed82aa4c752fcfa9417240e02a34f",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\oled_status_display.v",
+      "StagedPath": "rtl/visual/oled_status_display.v",
+      "Sha256Before": "667bab32906b6406a3360a3bc2af56849fc67efaec6a4dcd5c42de819486827c",
+      "Sha256After": "667bab32906b6406a3360a3bc2af56849fc67efaec6a4dcd5c42de819486827c",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\ui_tone_overlay.v",
+      "StagedPath": "rtl/audio/ui_tone_overlay.v",
+      "Sha256Before": "e980b6ae03c894e61c10bed6202bd2f0b7f8ba4e736f36e406205dc335454577",
+      "Sha256After": "e980b6ae03c894e61c10bed6202bd2f0b7f8ba4e736f36e406205dc335454577",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\slider_menu_controller.v",
+      "StagedPath": "rtl/control/slider_menu_controller.v",
+      "Sha256Before": "e76e2f4bd0332bd952f3d664b06ae9bd4adf5c869be8e3cb0d6ad628636ff293",
+      "Sha256After": "e76e2f4bd0332bd952f3d664b06ae9bd4adf5c869be8e3cb0d6ad628636ff293",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\menu_action_router.v",
+      "StagedPath": "rtl/control/menu_action_router.v",
+      "Sha256Before": "3394fdeb048d4fb5dd115c721bfaaf304bb5d0cd8470816dcc8784f7a4673f91",
+      "Sha256After": "3394fdeb048d4fb5dd115c721bfaaf304bb5d0cd8470816dcc8784f7a4673f91",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\local_action_arbiter.v",
+      "StagedPath": "rtl/control/local_action_arbiter.v",
+      "Sha256Before": "85742e28429e94e0df1f099ca1d1e25b2c7683ebe63c0cba268093d00870df39",
+      "Sha256After": "85742e28429e94e0df1f099ca1d1e25b2c7683ebe63c0cba268093d00870df39",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\key_map_transpose.v",
+      "StagedPath": "rtl/control/key_map_transpose.v",
+      "Sha256Before": "f248520dcad24311e51f096b09a0610b6ce7c7332e8963f0d1600ff1a7b04736",
+      "Sha256After": "f248520dcad24311e51f096b09a0610b6ce7c7332e8963f0d1600ff1a7b04736",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\adsr.v",
+      "StagedPath": "rtl/audio/adsr.v",
+      "Sha256Before": "4681934c77a0148f295cf5ab8590a4c59952948ed7e615a010191c7691d0194e",
+      "Sha256After": "4681934c77a0148f295cf5ab8590a4c59952948ed7e615a010191c7691d0194e",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\audio_fx.v",
+      "StagedPath": "rtl/audio/audio_fx.v",
+      "Sha256Before": "d987fbeb0419ebabac66a2ef26d8440a554b7662764ae69616af048d28be912d",
+      "Sha256After": "d987fbeb0419ebabac66a2ef26d8440a554b7662764ae69616af048d28be912d",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\audio_system_v2_fm.v",
+      "StagedPath": "rtl/audio/audio_system_v2_fm.v",
+      "Sha256Before": "7619181d0e405c6a428fc5e4577d3a55d8bad376e02ee9d48d10f98cf21c6c15",
+      "Sha256After": "7619181d0e405c6a428fc5e4577d3a55d8bad376e02ee9d48d10f98cf21c6c15",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\audio_system_v2.v",
+      "StagedPath": "rtl/audio/audio_system_v2.v",
+      "Sha256Before": "2dc326de168b92fa260adc6ea747c5755ad3a951c1b7a2f6e3cd476c6e4cc98b",
+      "Sha256After": "2dc326de168b92fa260adc6ea747c5755ad3a951c1b7a2f6e3cd476c6e4cc98b",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\dds_lane.v",
+      "StagedPath": "rtl/audio/dds_lane.v",
+      "Sha256Before": "6b4e97a82f37c24baa6b7d3e189a630a1a0cf557aec39dfd4f2ca2183d55a192",
+      "Sha256After": "6b4e97a82f37c24baa6b7d3e189a630a1a0cf557aec39dfd4f2ca2183d55a192",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\fm_piano_lane.v",
+      "StagedPath": "rtl/audio/fm_piano_lane.v",
+      "Sha256Before": "0a59404a8c1b5e1be88d8cd115be8d4596cd5e8c37e51308eb7873644463287a",
+      "Sha256After": "0a59404a8c1b5e1be88d8cd115be8d4596cd5e8c37e51308eb7873644463287a",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\gain_saturator.v",
+      "StagedPath": "rtl/audio/gain_saturator.v",
+      "Sha256Before": "ad27e4d1a133ffa586f4df0143806d08a5ef943ed6b02a3076d0264d7e9746e8",
+      "Sha256After": "ad27e4d1a133ffa586f4df0143806d08a5ef943ed6b02a3076d0264d7e9746e8",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\pitch_expression.v",
+      "StagedPath": "rtl/audio/pitch_expression.v",
+      "Sha256Before": "984e73ec77a45b7e89a3f323c337821c0ae13e9ad9037156053ad6c695776f85",
+      "Sha256After": "984e73ec77a45b7e89a3f323c337821c0ae13e9ad9037156053ad6c695776f85",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\polar_lane.v",
+      "StagedPath": "rtl/audio/polar_lane.v",
+      "Sha256Before": "79a533579f43c48f4016a1a242d4f79a098aa83ee41577bb5657381860fa6c82",
+      "Sha256After": "79a533579f43c48f4016a1a242d4f79a098aa83ee41577bb5657381860fa6c82",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\runtime_audio_fx.v",
+      "StagedPath": "rtl/audio/runtime_audio_fx.v",
+      "Sha256Before": "94b238b4d30c74703ad2f7f43cc3228d0e9770eb71e1d2e44ffcbc88657596e9",
+      "Sha256After": "94b238b4d30c74703ad2f7f43cc3228d0e9770eb71e1d2e44ffcbc88657596e9",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\stereo_mixer.v",
+      "StagedPath": "rtl/audio/stereo_mixer.v",
+      "Sha256Before": "56955d73d27f4d6dbb5778c33ef5779fefe6dd90dde6eac373b9694186710188",
+      "Sha256After": "56955d73d27f4d6dbb5778c33ef5779fefe6dd90dde6eac373b9694186710188",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\voice_engine.v",
+      "StagedPath": "rtl/audio/voice_engine.v",
+      "Sha256Before": "587cbaf180aee78e69afb7eb9210160f0371e5391a24314e2b06fa33c3b3aa78",
+      "Sha256After": "587cbaf180aee78e69afb7eb9210160f0371e5391a24314e2b06fa33c3b3aa78",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\voice_state_ram.v",
+      "StagedPath": "rtl/audio/voice_state_ram.v",
+      "Sha256Before": "7b62a9d2600d7a58434e996a5985773a6538c28b96232ca30849ba9207edc7fd",
+      "Sha256After": "7b62a9d2600d7a58434e996a5985773a6538c28b96232ca30849ba9207edc7fd",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\wavetable_rom.v",
+      "StagedPath": "rtl/audio/wavetable_rom.v",
+      "Sha256Before": "1c162cc98d743a01f1a24ec000c96088b4594c750399154519405477c6dd37fa",
+      "Sha256After": "1c162cc98d743a01f1a24ec000c96088b4594c750399154519405477c6dd37fa",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\board\\board_audio_16_48k_i2s_top.v",
+      "StagedPath": "rtl/board/board_audio_16_48k_i2s_top.v",
+      "Sha256Before": "52fd587b0d2c459da788153d029437f092ca463bc58c8c0885b347b3d49d4a38",
+      "Sha256After": "52fd587b0d2c459da788153d029437f092ca463bc58c8c0885b347b3d49d4a38",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\board\\board_audio_48k_gao_top.v",
+      "StagedPath": "rtl/board/board_audio_48k_gao_top.v",
+      "Sha256Before": "7d6a1b5ab389b400a0f3012820cd44a03ab7e8a5a47c9497c86f7a115880b676",
+      "Sha256After": "7d6a1b5ab389b400a0f3012820cd44a03ab7e8a5a47c9497c86f7a115880b676",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\board\\board_audio_48k_i2s_top.v",
+      "StagedPath": "rtl/board/board_audio_48k_i2s_top.v",
+      "Sha256Before": "8b664d20b3b56fe87c19412cd46103006ea8d68ced0789f0ff2af1256e4bc0aa",
+      "Sha256After": "8b664d20b3b56fe87c19412cd46103006ea8d68ced0789f0ff2af1256e4bc0aa",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\board\\board_audio_diagnostic_top.v",
+      "StagedPath": "rtl/board/board_audio_diagnostic_top.v",
+      "Sha256Before": "851ae9aeb5e922f9efbf1ae7dcc5e4e3ead965b9d3ba78b0acf4570e011ec651",
+      "Sha256After": "851ae9aeb5e922f9efbf1ae7dcc5e4e3ead965b9d3ba78b0acf4570e011ec651",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\board\\board_audio_gao_top.v",
+      "StagedPath": "rtl/board/board_audio_gao_top.v",
+      "Sha256Before": "3129e781a0bf5e5d31a1d3d78ab3a7dc6b6271d2dd54e43ab7a8874fa02476ef",
+      "Sha256After": "3129e781a0bf5e5d31a1d3d78ab3a7dc6b6271d2dd54e43ab7a8874fa02476ef",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\board\\board_bringup_top.v",
+      "StagedPath": "rtl/board/board_bringup_top.v",
+      "Sha256Before": "b1b964fa086512d759dc50d5400fe1c9cf5df95753f8718553aa4be6587276f1",
+      "Sha256After": "b1b964fa086512d759dc50d5400fe1c9cf5df95753f8718553aa4be6587276f1",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\board\\board_contest_full_top.v",
+      "StagedPath": "rtl/board/board_contest_full_top.v",
+      "Sha256Before": "a4b23eeb8ee46cb3140165cd6ce9117def90cf9943a8b5a69a7a1f3730102124",
+      "Sha256After": "a4b23eeb8ee46cb3140165cd6ce9117def90cf9943a8b5a69a7a1f3730102124",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\board\\board_instrument_b_48k_gao_top.v",
+      "StagedPath": "rtl/board/board_instrument_b_48k_gao_top.v",
+      "Sha256Before": "98f0a26a17edac4ee49457453720b5903d08cc0f5bc9e3f17a8afde45bafef6f",
+      "Sha256After": "98f0a26a17edac4ee49457453720b5903d08cc0f5bc9e3f17a8afde45bafef6f",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\board\\board_instrument_b_48k_i2s_top.v",
+      "StagedPath": "rtl/board/board_instrument_b_48k_i2s_top.v",
+      "Sha256Before": "6b23d46cd3daa221fa23d504e9c561c699f05b68bd2b206fbf22af6d7a3dfa6b",
+      "Sha256After": "6b23d46cd3daa221fa23d504e9c561c699f05b68bd2b206fbf22af6d7a3dfa6b",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\board\\board_key_event_adapter.v",
+      "StagedPath": "rtl/board/board_key_event_adapter.v",
+      "Sha256Before": "972e0d2b61f7a6b640c3f1ddabcf2e9907118592c3ff3000bc60478ccccfcddd",
+      "Sha256After": "972e0d2b61f7a6b640c3f1ddabcf2e9907118592c3ff3000bc60478ccccfcddd",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\board\\board_sequence16_48k_i2s_top.v",
+      "StagedPath": "rtl/board/board_sequence16_48k_i2s_top.v",
+      "Sha256Before": "92d831c606100c73cba463d3619ef9865b63aa10c220d84291adfbfffc96f38f",
+      "Sha256After": "92d831c606100c73cba463d3619ef9865b63aa10c220d84291adfbfffc96f38f",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\captain_control_top_v2.v",
+      "StagedPath": "rtl/captain_control_top_v2.v",
+      "Sha256Before": "73a178a24e73fe7e39b307d9b5407cc209f936a63beacc53a28892a2a5dad2b2",
+      "Sha256After": "73a178a24e73fe7e39b307d9b5407cc209f936a63beacc53a28892a2a5dad2b2",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\captain_control_top.v",
+      "StagedPath": "rtl/captain_control_top.v",
+      "Sha256Before": "58051c5483eeb97a700765442f5eb26f454bc3ca1303dc079dcdcc39451a76ba",
+      "Sha256After": "58051c5483eeb97a700765442f5eb26f454bc3ca1303dc079dcdcc39451a76ba",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\captain_system_top_v2.v",
+      "StagedPath": "rtl/captain_system_top_v2.v",
+      "Sha256Before": "6cb353e564b599481eaefd8973ea7c149d8d6ab111775e3333678ce005716815",
+      "Sha256After": "6cb353e564b599481eaefd8973ea7c149d8d6ab111775e3333678ce005716815",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\captain_system_top.v",
+      "StagedPath": "rtl/captain_system_top.v",
+      "Sha256Before": "416ed87045c1338d4dcc467fa9ea7e2335f7119f6e798f0942f95ebfe224eb6e",
+      "Sha256After": "416ed87045c1338d4dcc467fa9ea7e2335f7119f6e798f0942f95ebfe224eb6e",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\clock\\audio_clock_48k.v",
+      "StagedPath": "rtl/clock/audio_clock_48k.v",
+      "Sha256Before": "c14994b0b06a732900b428e2d79191f857faa9f07035cf9d042868b39c55176b",
+      "Sha256After": "c14994b0b06a732900b428e2d79191f857faa9f07035cf9d042868b39c55176b",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\clock\\pll_init.v",
+      "StagedPath": "rtl/clock/pll_init.v",
+      "Sha256Before": "3fc6bef9a7086f0920bfa47265b1766854a53f6ca1c0f75084eaf6b6ef4d6258",
+      "Sha256After": "3fc6bef9a7086f0920bfa47265b1766854a53f6ca1c0f75084eaf6b6ef4d6258",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\expression_merge.v",
+      "StagedPath": "rtl/control/expression_merge.v",
+      "Sha256Before": "6845ee307831f819c501328fe59db2a0d2d5621750aff8d413832d9a65f08f58",
+      "Sha256After": "6845ee307831f819c501328fe59db2a0d2d5621750aff8d413832d9a65f08f58",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\note_arbiter.v",
+      "StagedPath": "rtl/control/note_arbiter.v",
+      "Sha256Before": "78d2b2ac3b7781cdf025f19ac35ff787b50538c88a70a95c7ab4704d4a6af380",
+      "Sha256After": "78d2b2ac3b7781cdf025f19ac35ff787b50538c88a70a95c7ab4704d4a6af380",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\remote_command_router.v",
+      "StagedPath": "rtl/control/remote_command_router.v",
+      "Sha256Before": "2783609e4cd48367b9f2cdd9fb354b17ada4f81e1d6010d86c9af3725c280174",
+      "Sha256After": "2783609e4cd48367b9f2cdd9fb354b17ada4f81e1d6010d86c9af3725c280174",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\control\\remote_note_watchdog.v",
+      "StagedPath": "rtl/control/remote_note_watchdog.v",
+      "Sha256Before": "7bb684532e012bd450adddc3b1a97e59073b8d80ea9a8c52cce4bb84b7be16d7",
+      "Sha256After": "7bb684532e012bd450adddc3b1a97e59073b8d80ea9a8c52cce4bb84b7be16d7",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\diagnostics\\live64_event_source.v",
+      "StagedPath": "rtl/diagnostics/live64_event_source.v",
+      "Sha256Before": "c0041578a949bc4990b90dd0f9997c855e960db927129d00421fd9b100edb679",
+      "Sha256After": "c0041578a949bc4990b90dd0f9997c855e960db927129d00421fd9b100edb679",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\diagnostics\\live64_system_top.v",
+      "StagedPath": "rtl/diagnostics/live64_system_top.v",
+      "Sha256Before": "659e063860a9a2c6d04507a42ab82db71963965bd5d23d1718367d448b3c4c1d",
+      "Sha256After": "659e063860a9a2c6d04507a42ab82db71963965bd5d23d1718367d448b3c4c1d",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\diagnostics\\poly16_event_source.v",
+      "StagedPath": "rtl/diagnostics/poly16_event_source.v",
+      "Sha256Before": "425b2a6f25ee49fdcb5e511d7e1b58ccea807f1c6bdb46a00fb8710b85a0cd96",
+      "Sha256After": "425b2a6f25ee49fdcb5e511d7e1b58ccea807f1c6bdb46a00fb8710b85a0cd96",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\diagnostics\\sequence16_event_source.v",
+      "StagedPath": "rtl/diagnostics/sequence16_event_source.v",
+      "Sha256Before": "fbb58aeefe2e1b1051ae46d8d23a2b36bf30e950d0b57ff13707edc54c58202a",
+      "Sha256After": "fbb58aeefe2e1b1051ae46d8d23a2b36bf30e950d0b57ff13707edc54c58202a",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\event_fifo_v2.v",
+      "StagedPath": "rtl/event_fifo_v2.v",
+      "Sha256Before": "99cdb88c0ccf2cef21253d834e77f33b3492160f1bc164cfe59f792ee5fac074",
+      "Sha256After": "99cdb88c0ccf2cef21253d834e77f33b3492160f1bc164cfe59f792ee5fac074",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\event_fifo.v",
+      "StagedPath": "rtl/event_fifo.v",
+      "Sha256Before": "0bae0e372fa20687efa27def24032463336490613b27b71b6427d160efc3aaa7",
+      "Sha256After": "0bae0e372fa20687efa27def24032463336490613b27b71b6427d160efc3aaa7",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\expression_controls_v2.v",
+      "StagedPath": "rtl/expression_controls_v2.v",
+      "Sha256Before": "1e5999906661197f9aadf1318c2680028258c6353fb9afd970c0e45bb5d0fcd2",
+      "Sha256After": "1e5999906661197f9aadf1318c2680028258c6353fb9afd970c0e45bb5d0fcd2",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\i2s_tx.v",
+      "StagedPath": "rtl/i2s_tx.v",
+      "Sha256Before": "d12f7b45168e65d0d4bf67fb2656b264344c61e79c633fddb6b2060ae81032e3",
+      "Sha256After": "d12f7b45168e65d0d4bf67fb2656b264344c61e79c633fddb6b2060ae81032e3",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\instrument_full_system.v",
+      "StagedPath": "rtl/instrument_full_system.v",
+      "Sha256Before": "8ba467bbf855756f96454fc11d29ed8004900b2bccfbc1208fbf2642bfe81318",
+      "Sha256After": "8ba467bbf855756f96454fc11d29ed8004900b2bccfbc1208fbf2642bfe81318",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\instrument_system_v2.v",
+      "StagedPath": "rtl/instrument_system_v2.v",
+      "Sha256Before": "2fe1d96bd7850c473f95867ab1d80472d7b0950e5c0f697d7ee813af9c8b1176",
+      "Sha256After": "2fe1d96bd7850c473f95867ab1d80472d7b0950e5c0f697d7ee813af9c8b1176",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\interaction_top_v2.v",
+      "StagedPath": "rtl/interaction_top_v2.v",
+      "Sha256Before": "37396f29d885891a8bbda5545e8fdea17880297ad9294ecbcb7a1f0dac93b954",
+      "Sha256After": "37396f29d885891a8bbda5545e8fdea17880297ad9294ecbcb7a1f0dac93b954",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\interaction_top.v",
+      "StagedPath": "rtl/interaction_top.v",
+      "Sha256Before": "156dd2ad23ed14c05ea12b8e34d279df406b32ab37f84681d40535ed94a71b4c",
+      "Sha256After": "156dd2ad23ed14c05ea12b8e34d279df406b32ab37f84681d40535ed94a71b4c",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\performance\\learning_stepper.v",
+      "StagedPath": "rtl/performance/learning_stepper.v",
+      "Sha256Before": "75edb80349db29c6859d9cfaa6c6acec4fe6dd284d0fa147ef001681264f517b",
+      "Sha256After": "75edb80349db29c6859d9cfaa6c6acec4fe6dd284d0fa147ef001681264f517b",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\performance\\performance_controller.v",
+      "StagedPath": "rtl/performance/performance_controller.v",
+      "Sha256Before": "4ee256827f7557c4cb007b2754ced514b436db876d742b53a5e7a555087b60d8",
+      "Sha256After": "4ee256827f7557c4cb007b2754ced514b436db876d742b53a5e7a555087b60d8",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\performance\\ws2812_guide.v",
+      "StagedPath": "rtl/performance/ws2812_guide.v",
+      "Sha256Before": "249594b10cbd6aa7dcf8299ea4e6b14e958410bede8a1ddfc76ca4c0e60578ee",
+      "Sha256After": "249594b10cbd6aa7dcf8299ea4e6b14e958410bede8a1ddfc76ca4c0e60578ee",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\remote\\remote_uart_transport.sv",
+      "StagedPath": "rtl/remote/remote_uart_transport.sv",
+      "Sha256Before": "f5a0aac35fc18411b1e485c1a21b2d63f6417de634757ae5e0abd4925fd6bf38",
+      "Sha256After": "f5a0aac35fc18411b1e485c1a21b2d63f6417de634757ae5e0abd4925fd6bf38",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\sensors\\i2c_register_master.v",
+      "StagedPath": "rtl/sensors/i2c_register_master.v",
+      "Sha256Before": "21713fcdd00e76627fea4dbffcf796f21ea080a0fde22fae156aa03397e03906",
+      "Sha256After": "21713fcdd00e76627fea4dbffcf796f21ea080a0fde22fae156aa03397e03906",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\sensors\\mpr121_input_frontend.v",
+      "StagedPath": "rtl/sensors/mpr121_input_frontend.v",
+      "Sha256Before": "32b676a20b6b543db505c1ab1ce1a39eec010fd04f49df80e77650f961aa45b7",
+      "Sha256After": "32b676a20b6b543db505c1ab1ce1a39eec010fd04f49df80e77650f961aa45b7",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\sensors\\mpr121_key_eventizer.v",
+      "StagedPath": "rtl/sensors/mpr121_key_eventizer.v",
+      "Sha256Before": "2e43bbe04a1c8b15c98e7acce066efecf5b5399006afc6b8adf95352f6b93cdd",
+      "Sha256After": "2e43bbe04a1c8b15c98e7acce066efecf5b5399006afc6b8adf95352f6b93cdd",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\sensors\\mpr121_sampler.v",
+      "StagedPath": "rtl/sensors/mpr121_sampler.v",
+      "Sha256Before": "7aba3aca5c02b0dfb88604faee273004d7e3dd15f5669e7c8ab6898714b179e2",
+      "Sha256After": "7aba3aca5c02b0dfb88604faee273004d7e3dd15f5669e7c8ab6898714b179e2",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\sensors\\mpr121_slider.v",
+      "StagedPath": "rtl/sensors/mpr121_slider.v",
+      "Sha256Before": "576b8d65c8b398a78348261e8951bc2359318786178dc246aee61178c7deae5f",
+      "Sha256After": "576b8d65c8b398a78348261e8951bc2359318786178dc246aee61178c7deae5f",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\test_tone_source.v",
+      "StagedPath": "rtl/test_tone_source.v",
+      "Sha256Before": "b36a3949079c6f9abf066d1d4ebe92e816d2e34001bee50441ae038f1f69ae20",
+      "Sha256After": "b36a3949079c6f9abf066d1d4ebe92e816d2e34001bee50441ae038f1f69ae20",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\tone_demo_top.v",
+      "StagedPath": "rtl/tone_demo_top.v",
+      "Sha256Before": "701fd58fed96ad12579041a66a295eb07710bc85e89516fec2b4a41ff2151aa8",
+      "Sha256After": "701fd58fed96ad12579041a66a295eb07710bc85e89516fec2b4a41ff2151aa8",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\audio_monitor_cdc.v",
+      "StagedPath": "rtl/visual/audio_monitor_cdc.v",
+      "Sha256Before": "5dd36ede663ca346aae5abf9701c960754cfe8258631e63a90c11090d50bad7f",
+      "Sha256After": "5dd36ede663ca346aae5abf9701c960754cfe8258631e63a90c11090d50bad7f",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\audio_visualizer.v",
+      "StagedPath": "rtl/visual/audio_visualizer.v",
+      "Sha256Before": "4c50b63aba7d57a5559c67c82ca84460dbd352e8b176e53b210445e5f2e116e9",
+      "Sha256After": "4c50b63aba7d57a5559c67c82ca84460dbd352e8b176e53b210445e5f2e116e9",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\scope_renderer.v",
+      "StagedPath": "rtl/visual/scope_renderer.v",
+      "Sha256Before": "31c2033bd0e147aed019b2fb61e75c13ef4bc632434646c12551040ed1d27410",
+      "Sha256After": "31c2033bd0e147aed019b2fb61e75c13ef4bc632434646c12551040ed1d27410",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\video_clocking.v",
+      "StagedPath": "rtl/visual/video_clocking.v",
+      "Sha256Before": "ee8aabd62f8d7df09a391ea26e751e2f733551bb808083fd801fd2b87cc29baf",
+      "Sha256After": "ee8aabd62f8d7df09a391ea26e751e2f733551bb808083fd801fd2b87cc29baf",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\video_timing_640x480.v",
+      "StagedPath": "rtl/visual/video_timing_640x480.v",
+      "Sha256Before": "2b3ebc87bee4851bf02db2df6fcff78e98ca9eea581bb56f23b99b4438c1e3bb",
+      "Sha256After": "2b3ebc87bee4851bf02db2df6fcff78e98ca9eea581bb56f23b99b4438c1e3bb",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\video_tmds_encoder.v",
+      "StagedPath": "rtl/visual/video_tmds_encoder.v",
+      "Sha256Before": "a66cbc3b60bc3d9f720f13167a91295f7b1c498dd083adbd65c3e44e29362079",
+      "Sha256After": "a66cbc3b60bc3d9f720f13167a91295f7b1c498dd083adbd65c3e44e29362079",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\video_tmds_tx.v",
+      "StagedPath": "rtl/visual/video_tmds_tx.v",
+      "Sha256Before": "f34d47f35f335c793db1d625cca3cd016909556ab44e70339ebb594942f518ba",
+      "Sha256After": "f34d47f35f335c793db1d625cca3cd016909556ab44e70339ebb594942f518ba",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\voice_allocator_v2.v",
+      "StagedPath": "rtl/voice_allocator_v2.v",
+      "Sha256Before": "5b4a7ce1bf419a8bfcb1307632436fb5f26e98786082d782d9f5cda63a33174d",
+      "Sha256After": "5b4a7ce1bf419a8bfcb1307632436fb5f26e98786082d782d9f5cda63a33174d",
+      "Unchanged": true
+    },
+    {
+      "Kind": "RTL",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\voice_allocator.v",
+      "StagedPath": "rtl/voice_allocator.v",
+      "Sha256Before": "bbecaeedcfac74c9d252414715c57fdbd929e31b9540fd3f2ecf2b8c2e9c487a",
+      "Sha256After": "bbecaeedcfac74c9d252414715c57fdbd929e31b9540fd3f2ecf2b8c2e9c487a",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_sustain_gate.sv",
+      "StagedPath": "sim/tb_sustain_gate.sv",
+      "Sha256Before": "31afa8e24bcaf3f293d0a981bfe746ea0a1162c1857061ca3bf9ff3c32568930",
+      "Sha256After": "31afa8e24bcaf3f293d0a981bfe746ea0a1162c1857061ca3bf9ff3c32568930",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_sustain_allocator.sv",
+      "StagedPath": "sim/tb_sustain_allocator.sv",
+      "Sha256Before": "c15196e5b61c3800956f6b2039f5fdfb0e7fcccc9718ffed66b359388cd8134f",
+      "Sha256After": "c15196e5b61c3800956f6b2039f5fdfb0e7fcccc9718ffed66b359388cd8134f",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_sustain_system.sv",
+      "StagedPath": "sim/tb_sustain_system.sv",
+      "Sha256Before": "46a04a827b99faa20186f93135c9d4aea2091038a7f7abd2234801f8e8ddd78c",
+      "Sha256After": "46a04a827b99faa20186f93135c9d4aea2091038a7f7abd2234801f8e8ddd78c",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_audio_engine.sv",
+      "StagedPath": "sim/tb_audio_engine.sv",
+      "Sha256Before": "a49200477802bdbdfc6df059c8dee4e5c6f6fa2126dac5544621498949513de1",
+      "Sha256After": "a49200477802bdbdfc6df059c8dee4e5c6f6fa2126dac5544621498949513de1",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_mpr121_early.sv",
+      "StagedPath": "sim/tb_mpr121_early.sv",
+      "Sha256Before": "cedb0bc175d3094d0655944791f4d3793bed1c47dc5dab85c3c98ec8e9129869",
+      "Sha256After": "cedb0bc175d3094d0655944791f4d3793bed1c47dc5dab85c3c98ec8e9129869",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_mpr121_frontend.sv",
+      "StagedPath": "sim/tb_mpr121_frontend.sv",
+      "Sha256Before": "2be2fea7be48348bf54f253b7e720281805db178d4471474e164d8b66af328ef",
+      "Sha256After": "2be2fea7be48348bf54f253b7e720281805db178d4471474e164d8b66af328ef",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_touch_i2s_latency.sv",
+      "StagedPath": "sim/tb_touch_i2s_latency.sv",
+      "Sha256Before": "a387927fe4c40240d2d99b073f41337d8ca6bb443ef7925f6febfb848c3edb32",
+      "Sha256After": "a387927fe4c40240d2d99b073f41337d8ca6bb443ef7925f6febfb848c3edb32",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_stable_chord_mix.sv",
+      "StagedPath": "sim/tb_stable_chord_mix.sv",
+      "Sha256Before": "b10a679461da081f3ec22777e8e28f64453fe9c578605ab5980212853fddb896",
+      "Sha256After": "b10a679461da081f3ec22777e8e28f64453fe9c578605ab5980212853fddb896",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_stereo_peak_limiter.sv",
+      "StagedPath": "sim/tb_stereo_peak_limiter.sv",
+      "Sha256Before": "c007cbca84d7acc751dc1346f89479d5565452f360555ecd86916f05f8571a1d",
+      "Sha256After": "c007cbca84d7acc751dc1346f89479d5565452f360555ecd86916f05f8571a1d",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_oled_wave_board.sv",
+      "StagedPath": "sim/tb_oled_wave_board.sv",
+      "Sha256Before": "a8f0a8e9d70a3de4df329a0c95fe9901db12416de1e74ae9272b4deb010723fb",
+      "Sha256After": "a8f0a8e9d70a3de4df329a0c95fe9901db12416de1e74ae9272b4deb010723fb",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_oled_hierarchy.sv",
+      "StagedPath": "sim/tb_oled_hierarchy.sv",
+      "Sha256Before": "a2e22bec64140c10d059eaf3a4f7e3d0cff9ab425b2a5291ba34c680a4112df3",
+      "Sha256After": "a2e22bec64140c10d059eaf3a4f7e3d0cff9ab425b2a5291ba34c680a4112df3",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_slider_liveness.sv",
+      "StagedPath": "sim/tb_slider_liveness.sv",
+      "Sha256Before": "78ae94b89ce8fb68e4b7ce4638ce4355f389708441fa2cc1856f607b72109569",
+      "Sha256After": "78ae94b89ce8fb68e4b7ce4638ce4355f389708441fa2cc1856f607b72109569",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_menu_hierarchy.sv",
+      "StagedPath": "sim/tb_menu_hierarchy.sv",
+      "Sha256Before": "8dda46c0163f473c0f99dbee49a0843eab1048ceafb4bc7221e13860078fcc8d",
+      "Sha256After": "8dda46c0163f473c0f99dbee49a0843eab1048ceafb4bc7221e13860078fcc8d",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_slider_expression_control.sv",
+      "StagedPath": "sim/tb_slider_expression_control.sv",
+      "Sha256Before": "479ced3c898b5d9cfcef18edb9c4d9d731a27c9d5c8449188e058f875d45441e",
+      "Sha256After": "479ced3c898b5d9cfcef18edb9c4d9d731a27c9d5c8449188e058f875d45441e",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_oled_idle10.sv",
+      "StagedPath": "sim/tb_oled_idle10.sv",
+      "Sha256Before": "8fc39243dd5d937befa3c24bbc61ab727269e73b865282356c95139818f1ca8a",
+      "Sha256After": "8fc39243dd5d937befa3c24bbc61ab727269e73b865282356c95139818f1ca8a",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_performance_held_write.sv",
+      "StagedPath": "sim/tb_performance_held_write.sv",
+      "Sha256Before": "f1cc91a33bf00b7d8008c2a776626b593cf3c82f63df70d6ebb6ee2756a9a659",
+      "Sha256After": "f1cc91a33bf00b7d8008c2a776626b593cf3c82f63df70d6ebb6ee2756a9a659",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_oled_i2c_stream.sv",
+      "StagedPath": "sim/tb_oled_i2c_stream.sv",
+      "Sha256Before": "26a730449b532e37e0be117867adbd2303916eb05494d4f1640b36010da5bd0b",
+      "Sha256After": "26a730449b532e37e0be117867adbd2303916eb05494d4f1640b36010da5bd0b",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_oled_wave_units.sv",
+      "StagedPath": "sim/tb_oled_wave_units.sv",
+      "Sha256Before": "ed542b399f4c6f118be6569da00a4b38937a9568d97df2dc78b4aa8725381041",
+      "Sha256After": "ed542b399f4c6f118be6569da00a4b38937a9568d97df2dc78b4aa8725381041",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_oled_wave_display.sv",
+      "StagedPath": "sim/tb_oled_wave_display.sv",
+      "Sha256Before": "101de205615691c41ceea7545f5187f2116f066586ce97c321fa65577c163b63",
+      "Sha256After": "101de205615691c41ceea7545f5187f2116f066586ce97c321fa65577c163b63",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_audio_boot_status.sv",
+      "StagedPath": "sim/tb_audio_boot_status.sv",
+      "Sha256Before": "9d258796614ce5a105aaed5843964e0fad7aa0fa574106fe238eadbae213f2b7",
+      "Sha256After": "9d258796614ce5a105aaed5843964e0fad7aa0fa574106fe238eadbae213f2b7",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_headroom_smoother.sv",
+      "StagedPath": "sim/tb_headroom_smoother.sv",
+      "Sha256Before": "acdfb67c06be4826c12e44b1920c7846602dec123cd5aa103236322486703aee",
+      "Sha256After": "acdfb67c06be4826c12e44b1920c7846602dec123cd5aa103236322486703aee",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_headroom_smoothing.sv",
+      "StagedPath": "sim/tb_headroom_smoothing.sv",
+      "Sha256Before": "433d21de238be1768cc7f0a8bb86667f49ee585a85a25212f30f37136b21827d",
+      "Sha256After": "433d21de238be1768cc7f0a8bb86667f49ee585a85a25212f30f37136b21827d",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_voice_headroom.sv",
+      "StagedPath": "sim/tb_voice_headroom.sv",
+      "Sha256Before": "dee73bcef993c7f1abe25925abf4f5ee9bba5b6413179c8ff7e49268307b711e",
+      "Sha256After": "dee73bcef993c7f1abe25925abf4f5ee9bba5b6413179c8ff7e49268307b711e",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_oled_board_integration.sv",
+      "StagedPath": "sim/tb_oled_board_integration.sv",
+      "Sha256Before": "50742c75a8984c66313e97bec5899166b2730e49bdc27443e9c63020f7b327ff",
+      "Sha256After": "50742c75a8984c66313e97bec5899166b2730e49bdc27443e9c63020f7b327ff",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_oled_volume.sv",
+      "StagedPath": "sim/tb_oled_volume.sv",
+      "Sha256Before": "1d96f1088b68bf56cecd1dd898dccf03709ebefc30bc8d6966aec649e7b8654d",
+      "Sha256After": "1d96f1088b68bf56cecd1dd898dccf03709ebefc30bc8d6966aec649e7b8654d",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_slider_volume_system.sv",
+      "StagedPath": "sim/tb_slider_volume_system.sv",
+      "Sha256Before": "861a597572cc6a49cbe506cf198d31bf48b6fd8b33b056adeaa38924c373db8d",
+      "Sha256After": "861a597572cc6a49cbe506cf198d31bf48b6fd8b33b056adeaa38924c373db8d",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_slider_volume_control.sv",
+      "StagedPath": "sim/tb_slider_volume_control.sv",
+      "Sha256Before": "46069d8245f46966781771409d0cea4b51a0c95260754bc16bb83e1e3c5782b4",
+      "Sha256After": "46069d8245f46966781771409d0cea4b51a0c95260754bc16bb83e1e3c5782b4",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_slider_performance.sv",
+      "StagedPath": "sim/tb_slider_performance.sv",
+      "Sha256Before": "086a73db25003ff0d348cb14e6ab259aeee9a43ef9e49163b2d5bf0f1658bce9",
+      "Sha256After": "086a73db25003ff0d348cb14e6ab259aeee9a43ef9e49163b2d5bf0f1658bce9",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_event_fifo_pipeline.sv",
+      "StagedPath": "sim/tb_event_fifo_pipeline.sv",
+      "Sha256Before": "9ff2acfd2aaea7b956d94d0cd7deb85205570d5b12e51769167715c82960a49a",
+      "Sha256After": "9ff2acfd2aaea7b956d94d0cd7deb85205570d5b12e51769167715c82960a49a",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_transport_status_equivalence.sv",
+      "StagedPath": "sim/tb_transport_status_equivalence.sv",
+      "Sha256Before": "812c3bef44680a40d9e6f77632d0bdc0c9ae6fc7767b3ce1be899349c5cc26aa",
+      "Sha256After": "812c3bef44680a40d9e6f77632d0bdc0c9ae6fc7767b3ce1be899349c5cc26aa",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_polar_lane_margin_equivalence.sv",
+      "StagedPath": "sim/tb_polar_lane_margin_equivalence.sv",
+      "Sha256Before": "7b59c936ed628ee15ad55bb611d4692d7e531799761af1a229e86555595d747b",
+      "Sha256After": "7b59c936ed628ee15ad55bb611d4692d7e531799761af1a229e86555595d747b",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_oled_timing_regression.sv",
+      "StagedPath": "sim/tb_oled_timing_regression.sv",
+      "Sha256Before": "c5716a468dbe23c78eaf5231d60bc0de2b79924eae04d378cead2eda70b75b59",
+      "Sha256After": "c5716a468dbe23c78eaf5231d60bc0de2b79924eae04d378cead2eda70b75b59",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_learning_mode.sv",
+      "StagedPath": "sim/tb_learning_mode.sv",
+      "Sha256Before": "25d4624cc67d1e2ed095b7aba6364aac6bb9d12945a4e3c5618ba17bb31997d8",
+      "Sha256After": "25d4624cc67d1e2ed095b7aba6364aac6bb9d12945a4e3c5618ba17bb31997d8",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_learning_status.sv",
+      "StagedPath": "sim/tb_learning_status.sv",
+      "Sha256Before": "3f2bb41ddb3f84d2d4800ddaf2947af3b3f53f59b3e7fc7199cd97c06a84631b",
+      "Sha256After": "3f2bb41ddb3f84d2d4800ddaf2947af3b3f53f59b3e7fc7199cd97c06a84631b",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_learning_system.sv",
+      "StagedPath": "sim/tb_learning_system.sv",
+      "Sha256Before": "1c96b4bbd70831de5324d07b2a097f285617e52ce3a5ebf9cbcbd354403301ce",
+      "Sha256After": "1c96b4bbd70831de5324d07b2a097f285617e52ce3a5ebf9cbcbd354403301ce",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_direct_score.sv",
+      "StagedPath": "sim/tb_direct_score.sv",
+      "Sha256Before": "af459490c57790325c8454b2e867654235f3e783d154d796f09a8d295b24b610",
+      "Sha256After": "af459490c57790325c8454b2e867654235f3e783d154d796f09a8d295b24b610",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_performance_command_stage.sv",
+      "StagedPath": "sim/tb_performance_command_stage.sv",
+      "Sha256Before": "720c3f26d5625e34170acdd3fed18d6714d27dc99a12ba965c1c6037e1be15c5",
+      "Sha256After": "720c3f26d5625e34170acdd3fed18d6714d27dc99a12ba965c1c6037e1be15c5",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_direct_capability.sv",
+      "StagedPath": "sim/tb_direct_capability.sv",
+      "Sha256Before": "878c18e67bdb121e53185078b285d8d468810ee06cd3885f6ea5b8cd5fcc8c25",
+      "Sha256After": "878c18e67bdb121e53185078b285d8d468810ee06cd3885f6ea5b8cd5fcc8c25",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_direct_score_system.sv",
+      "StagedPath": "sim/tb_direct_score_system.sv",
+      "Sha256Before": "935002fe7bbd7ef7e148947494e3f418b6947d61e5401678c56c8b61b83d7a19",
+      "Sha256After": "935002fe7bbd7ef7e148947494e3f418b6947d61e5401678c56c8b61b83d7a19",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_score_capacity_1024.sv",
+      "StagedPath": "sim/tb_score_capacity_1024.sv",
+      "Sha256Before": "28d7bb6fcd510ae1c33b094e7a19e20d1b686f91e2cd12dd84757cb44dfce2ed",
+      "Sha256After": "28d7bb6fcd510ae1c33b094e7a19e20d1b686f91e2cd12dd84757cb44dfce2ed",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_headroom_audit.sv",
+      "StagedPath": "sim/tb_headroom_audit.sv",
+      "Sha256Before": "1731d97cabdbed60e3189b56fe9c6963b6e7f1d0c76deed758d437c96dbcd468",
+      "Sha256After": "1731d97cabdbed60e3189b56fe9c6963b6e7f1d0c76deed758d437c96dbcd468",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_menu_system.sv",
+      "StagedPath": "sim/tb_menu_system.sv",
+      "Sha256Before": "23d9ab8cc87a31b04dcbe9781884623f1191e7444520e8e8f4fd432233f8d2b8",
+      "Sha256After": "23d9ab8cc87a31b04dcbe9781884623f1191e7444520e8e8f4fd432233f8d2b8",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_mode_status.sv",
+      "StagedPath": "sim/tb_mode_status.sv",
+      "Sha256Before": "21b9d7f4742e807e2b3a8b18b865dc0e631c85770422a5b4acf404ac969da30f",
+      "Sha256After": "21b9d7f4742e807e2b3a8b18b865dc0e631c85770422a5b4acf404ac969da30f",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_oled_menu.sv",
+      "StagedPath": "sim/tb_oled_menu.sv",
+      "Sha256Before": "e070c49c85f9284450d1e57a851c69099e845e4672aba8f20135a19415387ece",
+      "Sha256After": "e070c49c85f9284450d1e57a851c69099e845e4672aba8f20135a19415387ece",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_ui_tone_overlay.sv",
+      "StagedPath": "sim/tb_ui_tone_overlay.sv",
+      "Sha256Before": "e0dfa753ce712c1eaef1a83c67e39442dbf021ff148d149edf4448c2d9c091ef",
+      "Sha256After": "e0dfa753ce712c1eaef1a83c67e39442dbf021ff148d149edf4448c2d9c091ef",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_slider_menu.sv",
+      "StagedPath": "sim/tb_slider_menu.sv",
+      "Sha256Before": "fe57ef2d99da75067d3861149381292c7c2120fc42ebf3db1dcda284a2651df7",
+      "Sha256After": "fe57ef2d99da75067d3861149381292c7c2120fc42ebf3db1dcda284a2651df7",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_menu_replay.sv",
+      "StagedPath": "sim/tb_menu_replay.sv",
+      "Sha256Before": "deea691af600e7c712c93dc00328f05f8a6c5f86c5c96f9b04b5dfd8dc0f5ac9",
+      "Sha256After": "deea691af600e7c712c93dc00328f05f8a6c5f86c5c96f9b04b5dfd8dc0f5ac9",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_instrument_full_system.sv",
+      "StagedPath": "sim/tb_instrument_full_system.sv",
+      "Sha256Before": "be6e666300051888868fec37c1188a07b941d20a595a08fbc7101931ba7c28f4",
+      "Sha256After": "be6e666300051888868fec37c1188a07b941d20a595a08fbc7101931ba7c28f4",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_global_panic.sv",
+      "StagedPath": "sim/tb_global_panic.sv",
+      "Sha256Before": "5c223e11879f1aa3e297cbb5d8bbb1135967595fbcd8ff36ee4aaf9d637d991f",
+      "Sha256After": "5c223e11879f1aa3e297cbb5d8bbb1135967595fbcd8ff36ee4aaf9d637d991f",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_full_control.sv",
+      "StagedPath": "sim/tb_full_control.sv",
+      "Sha256Before": "b2dbbe2d9841614e89063e103963dbf106fd30cacb884ef240f425df20466bfb",
+      "Sha256After": "b2dbbe2d9841614e89063e103963dbf106fd30cacb884ef240f425df20466bfb",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_runtime_audio_fx.sv",
+      "StagedPath": "sim/tb_runtime_audio_fx.sv",
+      "Sha256Before": "f39dd456a78d61626a60ec513eabd6066221f7a05a311c41721af4a10eb432de",
+      "Sha256After": "f39dd456a78d61626a60ec513eabd6066221f7a05a311c41721af4a10eb432de",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_runtime_audio_fx_storage.sv",
+      "StagedPath": "sim/tb_runtime_audio_fx_storage.sv",
+      "Sha256Before": "78cdeccc812932c8a207bbc285b6505bc2c9b575cf6f34ee5419053d604ffab8",
+      "Sha256After": "78cdeccc812932c8a207bbc285b6505bc2c9b575cf6f34ee5419053d604ffab8",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_remote_note_watchdog.sv",
+      "StagedPath": "sim/tb_remote_note_watchdog.sv",
+      "Sha256Before": "0041ea15d93b20e3cb3fcc8d8ee982f3f84eb1afb870b8d4717f81886efadfd5",
+      "Sha256After": "0041ea15d93b20e3cb3fcc8d8ee982f3f84eb1afb870b8d4717f81886efadfd5",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_audio_visualizer.sv",
+      "StagedPath": "sim/tb_audio_visualizer.sv",
+      "Sha256Before": "34c084a3436d3c0e9d282bb5007d948b0b8caefe8711bba7cad3b8b0dd53393b",
+      "Sha256After": "34c084a3436d3c0e9d282bb5007d948b0b8caefe8711bba7cad3b8b0dd53393b",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_audio_monitor_cdc.sv",
+      "StagedPath": "sim/tb_audio_monitor_cdc.sv",
+      "Sha256Before": "2934162d00103b94f622f1135a0dbce8d280803a982ce136a3ca028bae97b13d",
+      "Sha256After": "2934162d00103b94f622f1135a0dbce8d280803a982ce136a3ca028bae97b13d",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_watchdog_arbiter_integration.sv",
+      "StagedPath": "sim/tb_watchdog_arbiter_integration.sv",
+      "Sha256Before": "6fa185bd87d3fbdfe04a82241794331533153ef46edcd3c3fe7d1d860ff80210",
+      "Sha256After": "6fa185bd87d3fbdfe04a82241794331533153ef46edcd3c3fe7d1d860ff80210",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_mpr121_i2c.sv",
+      "StagedPath": "sim/tb_mpr121_i2c.sv",
+      "Sha256Before": "15a9bc725523792618368039cd9a99f0a712b1d799eb4773cbda9630958192f1",
+      "Sha256After": "15a9bc725523792618368039cd9a99f0a712b1d799eb4773cbda9630958192f1",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_mpr121_backpressure.sv",
+      "StagedPath": "sim/tb_mpr121_backpressure.sv",
+      "Sha256Before": "01489ce55f61316a0d184b385c6cbbaa97aafab6a97c6ceb51c77477588df2fe",
+      "Sha256After": "01489ce55f61316a0d184b385c6cbbaa97aafab6a97c6ceb51c77477588df2fe",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_mpr121_timing.sv",
+      "StagedPath": "sim/tb_mpr121_timing.sv",
+      "Sha256Before": "a4f0f228ef0686965ce465247e39422e135c4b2e67ce20b2e4fdc70d80e53c80",
+      "Sha256After": "a4f0f228ef0686965ce465247e39422e135c4b2e67ce20b2e4fdc70d80e53c80",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_mpr121_eventizer_capacity.sv",
+      "StagedPath": "sim/tb_mpr121_eventizer_capacity.sv",
+      "Sha256Before": "465a3d12becd30ff701825eab9ad8b203ce6823c0f427646da8f8faf62a9ccbb",
+      "Sha256After": "465a3d12becd30ff701825eab9ad8b203ce6823c0f427646da8f8faf62a9ccbb",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_performance_controller.sv",
+      "StagedPath": "sim/tb_performance_controller.sv",
+      "Sha256Before": "480c1759c148db7cac0a0a7392a5df02040a054925b8c7b11e10015200ff547c",
+      "Sha256After": "480c1759c148db7cac0a0a7392a5df02040a054925b8c7b11e10015200ff547c",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_performance_retrigger.sv",
+      "StagedPath": "sim/tb_performance_retrigger.sv",
+      "Sha256Before": "e25d64932bedeaab6f4f3ae64329eb94ad945b3312595111c84fe5c0b12a0f71",
+      "Sha256After": "e25d64932bedeaab6f4f3ae64329eb94ad945b3312595111c84fe5c0b12a0f71",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_performance_commit_pipeline.sv",
+      "StagedPath": "sim/tb_performance_commit_pipeline.sv",
+      "Sha256Before": "40dd5a467bc2a6986fd133bd78020d79cdd85038b15d2e850ddb33626363e277",
+      "Sha256After": "40dd5a467bc2a6986fd133bd78020d79cdd85038b15d2e850ddb33626363e277",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_board_local_actions.sv",
+      "StagedPath": "sim/tb_board_local_actions.sv",
+      "Sha256Before": "3e8601cc37e4f07de71f1cdb0d0ce85f5f7ff24f9fcdf2a0ab8b150decb97862",
+      "Sha256After": "3e8601cc37e4f07de71f1cdb0d0ce85f5f7ff24f9fcdf2a0ab8b150decb97862",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_performance_ws2812.sv",
+      "StagedPath": "sim/tb_performance_ws2812.sv",
+      "Sha256Before": "ff1c5ed27d4d1a05e79be20002a55dce4f6dc66ddb8af896108ce744617225e9",
+      "Sha256After": "ff1c5ed27d4d1a05e79be20002a55dce4f6dc66ddb8af896108ce744617225e9",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_ws2812_matrix.sv",
+      "StagedPath": "sim/tb_ws2812_matrix.sv",
+      "Sha256Before": "2eb924dbefe4e7ab43a6ed512180c73ac259ad3e0d00cf62e7348b12b5a8dae3",
+      "Sha256After": "2eb924dbefe4e7ab43a6ed512180c73ac259ad3e0d00cf62e7348b12b5a8dae3",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_remote_uart_transport.sv",
+      "StagedPath": "sim/tb_remote_uart_transport.sv",
+      "Sha256Before": "e42f6b9bd055672fa59f513562bb47a79d2a22e6d5b73303f99da8d5669886c4",
+      "Sha256After": "e42f6b9bd055672fa59f513562bb47a79d2a22e6d5b73303f99da8d5669886c4",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_video_encoder.sv",
+      "StagedPath": "sim/tb_video_encoder.sv",
+      "Sha256Before": "3f3fd97b8b6c3b5a2658df4a39493b65489cdbdb3eec223db7e8198036de1fa0",
+      "Sha256After": "3f3fd97b8b6c3b5a2658df4a39493b65489cdbdb3eec223db7e8198036de1fa0",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_video_timing.sv",
+      "StagedPath": "sim/tb_video_timing.sv",
+      "Sha256Before": "24a5c129a19bdb74b3ae21a21f39157d234062763aa6a9fc42503c3ae9ebbdeb",
+      "Sha256After": "24a5c129a19bdb74b3ae21a21f39157d234062763aa6a9fc42503c3ae9ebbdeb",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_video_vendor.sv",
+      "StagedPath": "sim/tb_video_vendor.sv",
+      "Sha256Before": "fd9b00a028ce953a2f00d7f4775b541eb9f30a2538185eadc124cb945754cf8e",
+      "Sha256After": "fd9b00a028ce953a2f00d7f4775b541eb9f30a2538185eadc124cb945754cf8e",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_audio_units.sv",
+      "StagedPath": "sim/tb_audio_units.sv",
+      "Sha256Before": "eb0010b568bb780a73bdb0e2251605b400c5aa4452db117c7fa8c379171806d9",
+      "Sha256After": "eb0010b568bb780a73bdb0e2251605b400c5aa4452db117c7fa8c379171806d9",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_audio_i2s.sv",
+      "StagedPath": "sim/tb_audio_i2s.sv",
+      "Sha256Before": "06fca2bcaae4b1f2cdcf84b1265969368e18ac60902cac53d4a909d3fab62010",
+      "Sha256After": "06fca2bcaae4b1f2cdcf84b1265969368e18ac60902cac53d4a909d3fab62010",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\tb_mpr121_model.sv",
+      "StagedPath": "sim/tb_mpr121_model.sv",
+      "Sha256Before": "036940e11be339a269149a323f3a75054f8ff0ff2929c8c8623ce312f82aa04c",
+      "Sha256After": "036940e11be339a269149a323f3a75054f8ff0ff2929c8c8623ce312f82aa04c",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\runtime_audio_fx_reference.sv",
+      "StagedPath": "sim/runtime_audio_fx_reference.sv",
+      "Sha256Before": "7f04e64e249288e5f227cfb068302b0da201129fce92b07e2857388e4bc47c4b",
+      "Sha256After": "7f04e64e249288e5f227cfb068302b0da201129fce92b07e2857388e4bc47c4b",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\polar_lane_timing_reference.v",
+      "StagedPath": "sim/polar_lane_timing_reference.v",
+      "Sha256Before": "d3e0e71796608802936f7ed60b58234f1c8717bd3e7febfbab82f3a5b15cf7be",
+      "Sha256After": "d3e0e71796608802936f7ed60b58234f1c8717bd3e7febfbab82f3a5b15cf7be",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\performance_controller_timing_reference.v",
+      "StagedPath": "sim/performance_controller_timing_reference.v",
+      "Sha256Before": "1f49b779560f20dead9a53ae66276d9f3c6df4648caa0318cc4f65656c3d7b5a",
+      "Sha256After": "1f49b779560f20dead9a53ae66276d9f3c6df4648caa0318cc4f65656c3d7b5a",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\event_fifo_v2_pipeline_reference.v",
+      "StagedPath": "sim/event_fifo_v2_pipeline_reference.v",
+      "Sha256Before": "d58f1043933ae2af02ab3ec5191412c3771b66d6dbd5844c7303b73661023644",
+      "Sha256After": "d58f1043933ae2af02ab3ec5191412c3771b66d6dbd5844c7303b73661023644",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\remote_command_router_reference.v",
+      "StagedPath": "sim/remote_command_router_reference.v",
+      "Sha256Before": "62a47cb34e95f401ab0c313924a48347a708f0cc6abd78c5ebe9581671383cf1",
+      "Sha256After": "62a47cb34e95f401ab0c313924a48347a708f0cc6abd78c5ebe9581671383cf1",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Testbench",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\performance_held_write_reference.v",
+      "StagedPath": "sim/performance_held_write_reference.v",
+      "Sha256Before": "e131b3a7843d3ed1b8b2d93d3399b15b72908377716d53ef8c78aea2703c3797",
+      "Sha256After": "e131b3a7843d3ed1b8b2d93d3399b15b72908377716d53ef8c78aea2703c3797",
+      "Unchanged": true
+    },
+    {
+      "Kind": "ROM",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\rom\\menu_font.hex",
+      "StagedPath": "rtl/audio/rom/menu_font.hex",
+      "Sha256Before": "d841a703c846e75bc3316f33cb61a03848f879c819d3b339e26827ecbc45235b",
+      "Sha256After": "d841a703c846e75bc3316f33cb61a03848f879c819d3b339e26827ecbc45235b",
+      "Unchanged": true
+    },
+    {
+      "Kind": "ROM",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\rom\\menu_hierarchy_font.hex",
+      "StagedPath": "rtl/audio/rom/menu_hierarchy_font.hex",
+      "Sha256Before": "3038bdd49ed6b309beb16c547ed16bb7c1c80310fcd8f3293f6317017694db73",
+      "Sha256After": "3038bdd49ed6b309beb16c547ed16bb7c1c80310fcd8f3293f6317017694db73",
+      "Unchanged": true
+    },
+    {
+      "Kind": "ROM",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\rom\\midi.hex",
+      "StagedPath": "rtl/audio/rom/midi.hex",
+      "Sha256Before": "025dc926a55e048d3c03da49e1f0ab7c2315f2e33c53ff7c8c865d0e1546de4c",
+      "Sha256After": "025dc926a55e048d3c03da49e1f0ab7c2315f2e33c53ff7c8c865d0e1546de4c",
+      "Unchanged": true
+    },
+    {
+      "Kind": "ROM",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\rom\\piano.hex",
+      "StagedPath": "rtl/audio/rom/piano.hex",
+      "Sha256Before": "00b5d0759ebfa5a44285f326297f70271447802d9efaaa7938df653f6f0214e3",
+      "Sha256After": "00b5d0759ebfa5a44285f326297f70271447802d9efaaa7938df653f6f0214e3",
+      "Unchanged": true
+    },
+    {
+      "Kind": "ROM",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\rom\\polar_lane0.hex",
+      "StagedPath": "rtl/audio/rom/polar_lane0.hex",
+      "Sha256Before": "d5163af00aa2f50c6968288ef931c2bc09cf173fbef42f3b5bff6ab9318b5f91",
+      "Sha256After": "d5163af00aa2f50c6968288ef931c2bc09cf173fbef42f3b5bff6ab9318b5f91",
+      "Unchanged": true
+    },
+    {
+      "Kind": "ROM",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\rom\\polar_lane1.hex",
+      "StagedPath": "rtl/audio/rom/polar_lane1.hex",
+      "Sha256Before": "51d162a4d6f4da7fdaa5a3ff5bd7e975dd7ec5da749cd735ce77249c9cde45ac",
+      "Sha256After": "51d162a4d6f4da7fdaa5a3ff5bd7e975dd7ec5da749cd735ce77249c9cde45ac",
+      "Unchanged": true
+    },
+    {
+      "Kind": "ROM",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\rom\\polar_ratios.hex",
+      "StagedPath": "rtl/audio/rom/polar_ratios.hex",
+      "Sha256Before": "02c874830bf48598df323af3b1dba1f9cff3c7e03f64394ab7e42326403e7c38",
+      "Sha256After": "02c874830bf48598df323af3b1dba1f9cff3c7e03f64394ab7e42326403e7c38",
+      "Unchanged": true
+    },
+    {
+      "Kind": "ROM",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\rom\\ratio.hex",
+      "StagedPath": "rtl/audio/rom/ratio.hex",
+      "Sha256Before": "d56e8aae3d44582e16aebe622d28c2bee4d41d9d8b80b73fdb0a3d9b37988c8d",
+      "Sha256After": "d56e8aae3d44582e16aebe622d28c2bee4d41d9d8b80b73fdb0a3d9b37988c8d",
+      "Unchanged": true
+    },
+    {
+      "Kind": "ROM",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\rom\\sine.hex",
+      "StagedPath": "rtl/audio/rom/sine.hex",
+      "Sha256Before": "39d6e76e2dcf7f8337257c5948d6f525a94ffe09f5cf481e9e75a1300082b3c5",
+      "Sha256After": "39d6e76e2dcf7f8337257c5948d6f525a94ffe09f5cf481e9e75a1300082b3c5",
+      "Unchanged": true
+    },
+    {
+      "Kind": "ROM",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\rom\\velocity.hex",
+      "StagedPath": "rtl/audio/rom/velocity.hex",
+      "Sha256Before": "962fa489ed5acae7209fcc6c447d9cc8a478ebc882d941ac4b6904fdd5b4371d",
+      "Sha256After": "962fa489ed5acae7209fcc6c447d9cc8a478ebc882d941ac4b6904fdd5b4371d",
+      "Unchanged": true
+    },
+    {
+      "Kind": "ROM",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\audio\\rom\\waves.hex",
+      "StagedPath": "rtl/audio/rom/waves.hex",
+      "Sha256Before": "2c78e04753b9912ca8a3daacb203250d91ea54b62d9c59e1ecde2ee1d4db88dd",
+      "Sha256After": "2c78e04753b9912ca8a3daacb203250d91ea54b62d9c59e1ecde2ee1d4db88dd",
+      "Unchanged": true
+    },
+    {
+      "Kind": "ROM",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\rtl\\visual\\goertzel_1024_64.hex",
+      "StagedPath": "rtl/visual/goertzel_1024_64.hex",
+      "Sha256Before": "27f293b17f757724735ca73ab6cfb4e7775353726a0fce55a23a9c6f92cd6078",
+      "Sha256After": "27f293b17f757724735ca73ab6cfb4e7775353726a0fce55a23a9c6f92cd6078",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Vendor",
+      "Source": "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\simlib\\gw5a\\prim_sim.v",
+      "StagedPath": "vendor/gw5a_prim_sim.v",
+      "Sha256Before": "2ec53fec48601d2d491299bc3a28b4b199d3a79708f1dd38f72555a5c688ebd5",
+      "Sha256After": "2ec53fec48601d2d491299bc3a28b4b199d3a79708f1dd38f72555a5c688ebd5",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Runner",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\scripts\\test-modelsim-full.ps1",
+      "StagedPath": "scripts/test-modelsim-full.ps1",
+      "Sha256Before": "3fa03d928f056416257748281b118389da7e8c2cab0c066a89bca14513eba759",
+      "Sha256After": "3fa03d928f056416257748281b118389da7e8c2cab0c066a89bca14513eba759",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Runner",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\scripts\\test-modelsim-full.cmd",
+      "StagedPath": "scripts/test-modelsim-full.cmd",
+      "Sha256Before": "0fb8793aa582fc2c12ef32a34b1217c5eba04a2dc826a05dbddb480c57530e32",
+      "Sha256After": "0fb8793aa582fc2c12ef32a34b1217c5eba04a2dc826a05dbddb480c57530e32",
+      "Unchanged": true
+    },
+    {
+      "Kind": "Viewer",
+      "Source": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\sim\\view_full_modelsim.do",
+      "StagedPath": "sim/view_full_modelsim.do",
+      "Sha256Before": "4bf1f06421f66c03c01e2ba988356e761d4425667897177055724ca22b2c4060",
+      "Sha256After": "4bf1f06421f66c03c01e2ba988356e761d4425667897177055724ca22b2c4060",
+      "Unchanged": true
+    }
+  ],
+  "Scope": "RTL and vendor primitive simulation; no physical hardware test",
+  "Status": "Failed"
+}

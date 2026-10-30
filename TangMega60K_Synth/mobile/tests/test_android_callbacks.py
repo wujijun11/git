@@ -60,11 +60,13 @@ public class WebView extends android.view.View {
 """,
     "android/bluetooth/BluetoothGattCharacteristic.java": r"""package android.bluetooth;
 public class BluetoothGattCharacteristic {
+    public static final int PROPERTY_WRITE_NO_RESPONSE=4,WRITE_TYPE_NO_RESPONSE=1,WRITE_TYPE_DEFAULT=2;
     private byte[] value;
     public BluetoothGattCharacteristic(byte[] value){this.value=value;}
     public byte[] getValue(){return value;}
     public boolean setValue(byte[] bytes){value=bytes;return true;}
     public void setWriteType(int type){}
+    public int getProperties(){return 8;}
     public BluetoothGattDescriptor getDescriptor(java.util.UUID uuid){return new BluetoothGattDescriptor(uuid);}
 }
 """,
@@ -74,6 +76,8 @@ public class BluetoothGattCharacteristic {
     "android/bluetooth/BluetoothGatt.java": r"""package android.bluetooth;
 public class BluetoothGatt {
     public static final int GATT_SUCCESS=0;
+    public static final int CONNECTION_PRIORITY_HIGH=1;
+    public boolean requestConnectionPriority(int priority){return true;}
     public int disconnects,closes;
     public boolean discoverServices(){return true;}
     public BluetoothGattService getService(java.util.UUID uuid){return new BluetoothGattService();}
@@ -261,6 +265,7 @@ with tempfile.TemporaryDirectory(prefix="run-", dir=scratch) as temporary:
     javac = java_home / "bin" / "javac.exe"
     java = java_home / "bin" / "java.exe"
     native = ROOT / "mobile/android/app/src/main/java/cn/tangsynth/remote"
-    subprocess.run([str(javac), "-encoding", "UTF-8", "-classpath", str(android_jar), "-d", str(production), str(native / "Protocol.java"), str(native / "MainActivity.java")], check=True)
+    # 宿主现在依赖曲库与链路策略，必须编译当前全部生产Java，不能只编译旧的两个文件。
+    subprocess.run([str(javac), "-encoding", "UTF-8", "-classpath", str(android_jar), "-d", str(production), *map(str, sorted(native.glob("*.java")))], check=True)
     subprocess.run([str(javac), "-encoding", "UTF-8", "-classpath", str(production) + ";" + str(android_jar), "-d", str(runtime), *paths], check=True)
     subprocess.run([str(java), "-classpath", str(runtime) + ";" + str(production) + ";" + str(android_jar), "CallbackHarness", str(production)], check=True)

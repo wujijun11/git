@@ -1,0 +1,15 @@
+{
+  "indexed_code_hashes_verified": 596,
+  "source_link_targets_checked": 822,
+  "local_document_links_checked": 260,
+  "main_hdl_identical_to_frozen_build": 90,
+  "sealed_delivery_hashes_verified": 1177,
+  "original_f571_bitstream_unchanged": true,
+  "publication_files_match_verified_local_delivery": 3,
+  "module_count": 97,
+  "port_count": 1465,
+  "instance_count": 122,
+  "hardwareTested": false,
+  "edaRerun": false,
+  "missingLinks": []
+}

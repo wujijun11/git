@@ -1,0 +1,60 @@
+Model Technology ModelSim SE-64 vlog 10.6e Compiler 2018.06 Jun 23 2018
+Start time: 11:39:18 on Oct 30,2026
+vlog -modelsimini modelsim.ini -sv -work work sim/tb_audio_engine.sv sim/tb_mpr121_frontend.sv sim/tb_touch_i2s_latency.sv sim/tb_stable_chord_mix.sv sim/tb_oled_wave_board.sv sim/tb_oled_hierarchy.sv sim/tb_slider_liveness.sv sim/tb_menu_hierarchy.sv sim/tb_slider_expression_control.sv sim/tb_oled_idle10.sv sim/tb_oled_i2c_stream.sv sim/tb_learning_status.sv sim/tb_learning_system.sv sim/tb_direct_capability.sv sim/tb_mode_status.sv sim/tb_instrument_full_system.sv sim/tb_global_panic.sv sim/tb_runtime_audio_fx.sv sim/tb_remote_uart_transport.sv sim/tb_audio_units.sv sim/tb_audio_i2s.sv sim/tb_mpr121_model.sv sim/runtime_audio_fx_reference.sv sim/polar_lane_timing_reference.v sim/performance_controller_timing_reference.v sim/event_fifo_v2_pipeline_reference.v sim/remote_command_router_reference.v 
+-- Compiling module tb_audio_engine
+-- Compiling module tb_mpr121_frontend
+-- Compiling module tb_touch_i2s_latency
+-- Compiling module tb_stable_chord_mix
+-- Compiling module tb_oled_wave_board
+-- Compiling module tb_oled_hierarchy
+-- Compiling module tb_slider_liveness
+-- Compiling module tb_menu_hierarchy
+-- Compiling module tb_slider_expression_control
+-- Compiling module tb_oled_idle10
+-- Compiling module tb_oled_i2c_stream
+-- Compiling module tb_learning_status
+-- Compiling module tb_learning_system
+-- Compiling module tb_direct_capability
+-- Compiling module tb_mode_status
+-- Compiling module tb_instrument_full_system
+-- Compiling module tb_global_panic
+-- Compiling module tb_runtime_audio_fx
+-- Compiling module tb_remote_uart_transport
+-- Compiling module tb_audio_units
+-- Compiling module tb_audio_i2s
+-- Compiling module mpr121_bus_model
+-- Compiling module runtime_audio_fx_reference
+-- Compiling module polar_lane_timing_reference
+-- Compiling module performance_controller_timing_reference
+-- Compiling module event_fifo_v2_pipeline_reference
+-- Compiling module remote_command_router_reference
+
+Top level modules:
+	tb_audio_engine
+	tb_mpr121_frontend
+	tb_touch_i2s_latency
+	tb_stable_chord_mix
+	tb_oled_wave_board
+	tb_oled_hierarchy
+	tb_slider_liveness
+	tb_menu_hierarchy
+	tb_slider_expression_control
+	tb_oled_idle10
+	tb_oled_i2c_stream
+	tb_learning_status
+	tb_learning_system
+	tb_direct_capability
+	tb_mode_status
+	tb_instrument_full_system
+	tb_global_panic
+	tb_runtime_audio_fx
+	tb_remote_uart_transport
+	tb_audio_units
+	tb_audio_i2s
+	runtime_audio_fx_reference
+	polar_lane_timing_reference
+	performance_controller_timing_reference
+	event_fifo_v2_pipeline_reference
+	remote_command_router_reference
+End time: 11:39:18 on Oct 30,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0

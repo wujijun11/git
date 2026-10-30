@@ -32,6 +32,8 @@
             onBoardMode = () => {},
             onTiming = () => {},
             modeSync = false,
+            sustainSync = false,
+            onSustainState = () => {},
             heartbeatMs = 1000,
             timeoutMs = 1500,
             writeTimeoutMs = 4000,
@@ -47,6 +49,8 @@
                 onBoardMode,
                 onTiming,
                 modeSync,
+                sustainSync,
+                onSustainState,
                 heartbeatMs,
                 timeoutMs,
                 writeTimeoutMs,
@@ -64,6 +68,7 @@
             this.vibrato = 0;
             this.telemetry = null;
             this.boardMode = null;
+            this.sustainState = { supported: false, enabled: false, deferredVoices: 0 };
             this.timings = [];
             this.recorded = [];
             this._ctx = null;
@@ -163,6 +168,12 @@
                 ctx.generation !== this._generation
             )
                 return;
+            if (packet.op === P.OP.SUSTAIN_STATUS) {
+                try {
+                    this.sustainState = P.sustainStatus(packet.payload);
+                    this._emit(this.onSustainState, this.sustainState);
+                } catch (error) { this._lose(ctx, error); return; }
+            }
             let mode = null;
             if (packet.op === P.OP.MODE_STATUS) {
                 try {
@@ -291,7 +302,8 @@
                       ? P.OP.MODE_STATUS
                       : selector === 3
                         ? P.OP.SCORE_CAPABILITIES
-                      : selector === 4 ? P.OP.LEARNING_STATUS : P.OP.EVENT,
+                      : selector === 4 ? P.OP.LEARNING_STATUS
+                      : selector === 5 ? P.OP.SUSTAIN_STATUS : P.OP.EVENT,
                 setup,
             );
         }
@@ -350,6 +362,7 @@
             this.ready = false;
             this.telemetry = null;
             this.boardMode = null;
+            this.sustainState = { supported: false, enabled: false, deferredVoices: 0 };
             this._emit(this.onBoardMode, null);
             ctx.session = new P.Session((bytes) => transport.write(bytes), {
                 startSeq: this._nextSeq,
@@ -395,6 +408,16 @@
                     } catch (error) {
                         if (!/NACK status=[13]/.test(error.message))
                             throw error;
+                    }
+                }
+                ctx.sustainSupport = false;
+                if (this.sustainSync) {
+                    try {
+                        await this._readback(ctx, 5, 0, true);
+                        ctx.sustainSupport = true;
+                    } catch (error) {
+                        if (!/NACK status=[13]/.test(error.message)) throw error;
+                        this._emit(this.onSustainState, this.sustainState);
                     }
                 }
                 for (let i = 0; i < 25; i++)
@@ -453,6 +476,11 @@
                                     !this._bulk
                                 )
                                     return this._readback(ctx, 2);
+                            })
+                            .then(() => {
+                                if (ctx.sustainSupport && !ctx.running && !ctx.queue.length &&
+                                    !this._held.size && !this._bulk)
+                                    return this._readback(ctx, 5);
                             })
                             .catch((e) => this._log(e.message))
                             .finally(() => {
@@ -629,6 +657,21 @@
             await this._request(ctx, P.OP.CONFIG, [target, value]);
             this._check(ctx);
             this[target === 0 ? "timbre" : "effect"] = value;
+        }
+        async readSustainState() {
+            const ctx = this._context();
+            if (!ctx.sustainSupport) throw Error("板上未提供延音功能，请使用配套延音测试版");
+            await this._readback(ctx, 5);
+            return this.sustainState;
+        }
+        async setSustain(enabled) {
+            if (typeof enabled !== "boolean") throw Error("延音开关必须为布尔值");
+            const ctx = this._context();
+            if (!ctx.sustainSupport) throw Error("板上未提供延音功能，请使用配套延音测试版");
+            await this._request(ctx, P.OP.CONFIG, [2, enabled ? 1 : 0]);
+            this._check(ctx);
+            await this._readback(ctx, 5);
+            return this.sustainState;
         }
         async setMapping(key, midi) {
             number(key, 0, 24, "琴键");
@@ -863,6 +906,7 @@
             guide = false,
             overflow = false,
             scorePosition = 0;
+        let sustain = false;
         let timbre = 2,
             effect = 0,
             userScore = [],
@@ -1007,10 +1051,11 @@
                         )
                             status = 1;
                     } else if (q.op === P.OP.CONFIG) {
-                        if (p[0] > 1 || p[1] > 3 || p.slice(2).some(Boolean))
+                        if (p[0] > 2 || (p[0] === 2 ? p[1] > 1 : p[1] > 3) || p.slice(2).some(Boolean))
                             status = 1;
                         else if (p[0] === 0) timbre = p[1];
-                        else effect = p[1];
+                        else if (p[0] === 1) effect = p[1];
+                        else sustain = !!p[1];
                     } else if (q.op === P.OP.MAP) {
                         if (p[0] > 24 || p[1] > 127 || p.slice(2).some(Boolean))
                             status = 1;
@@ -1019,6 +1064,7 @@
                         if (p[0] > 9 || p.slice(1).some(Boolean)) status = 1;
                         else if (p[0] === 0 || p[0] === 7) stopScore();
                         else if (p[0] === 5) {
+                            sustain = false;
                             stopScore();
                             notes.clear();
                             recording = false;
@@ -1105,7 +1151,8 @@
                             selected = "user";
                         }
                     } else if (q.op === P.OP.READBACK) {
-                        if ((p[0]>1 && p[0]!==3 && p[0]!==4) || p.slice(3).some(Boolean) || ((p[0]===3 || p[0]===4) && (p[1]||p[2]))) status = 1;
+                        if ((p[0]>1 && p[0]!==3 && p[0]!==4 && p[0]!==5) || p.slice(3).some(Boolean) || ((p[0]===3 || p[0]===4 || p[0]===5) && (p[1]||p[2]))) status = 1;
+                        else if(p[0]===5)data=P.encode(q.seq,P.OP.SUSTAIN_STATUS,[1,sustain?1:0,0,64]);
                         else if(p[0]===4)data=P.encode(q.seq,P.OP.LEARNING_STATUS,lesson.payload(P));
                         else if(p[0]===3)data=P.encode(q.seq,P.OP.SCORE_CAPABILITIES,[1,1,...P.le16(scoreCapacity),127,64,62]);
                         else if (p[0] === 0)

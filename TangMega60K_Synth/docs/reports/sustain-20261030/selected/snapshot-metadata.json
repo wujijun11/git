@@ -1,0 +1,22 @@
+{
+  "snapshot": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\verification\\sustain-build\\build_sustain_20261030_110824_b6773b27",
+  "project": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p",
+  "sourceRoot": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p",
+  "variant": "sustain",
+  "createdAt": "2026-10-30T11:08:24.983487+08:00",
+  "gowin": "C:\\Gowin\\Gowin_V1.9.12_x64\\IDE\\bin\\gw_sh.exe",
+  "baselineReport": "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-sustain-20261030\\TangMega60K_Synth\\docs\\reports\\chord-touch-20261028\\selected\\build-results.json",
+  "withoutGao": true,
+  "gprjDependencies": 92,
+  "inputFiles": 106,
+  "gaoExpected": false,
+  "implementationKind": "bare-main",
+  "gaoEvidence": {
+    "verified": false,
+    "enabledConfigurationCount": 0,
+    "files": []
+  },
+  "preparedOnly": false,
+  "driverSha256": "B5832AF11492AE983103495BA6426E05B2D084DF19D8B23047F1B2ACD234596E",
+  "buildStartedAt": "2026-10-30T11:08:25.022331+08:00"
+}

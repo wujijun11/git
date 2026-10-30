@@ -1,0 +1,225 @@
+{
+  "passed": false,
+  "commands": [
+    {
+      "command": [
+        "C:/Users/sll/Documents/ChatGPT/比赛 2/TangMega60K_Synth/tmp/desktop-python/Scripts/python.exe",
+        "mobile/tests/make_midi_fixtures.py"
+      ],
+      "exitCode": 0,
+      "log": "00_make_midi_fixtures.log",
+      "logSha256": "E957741138649441DD68238D0DAF1F40580D1214063244E131A6FB7D62856098"
+    },
+    {
+      "command": [
+        "C:/node.js/node.exe",
+        "desktop/tests/test_sustain.js"
+      ],
+      "exitCode": 0,
+      "log": "01_test_sustain.log",
+      "logSha256": "E62F8C1AF2D9B6356640450FDCCEE77BFAB983BF1BA74B5082F95DA864AACCDA"
+    },
+    {
+      "command": [
+        "C:/node.js/node.exe",
+        "desktop/tests/test_controller.js"
+      ],
+      "exitCode": 0,
+      "log": "02_test_controller.log",
+      "logSha256": "01FD27FB79934A4D86F56D693FCD9CB5B86CB10C448BBA8BECD5368A7610DA41"
+    },
+    {
+      "command": [
+        "C:/node.js/node.exe",
+        "desktop/tests/test_mode_sync.js"
+      ],
+      "exitCode": 0,
+      "log": "03_test_mode_sync.log",
+      "logSha256": "82B6E95528FC94C2483814D5CBA1F0D35C64F5749F5B523E5E63F95CF8F47DDC"
+    },
+    {
+      "command": [
+        "C:/node.js/node.exe",
+        "desktop/tests/test_queue.js"
+      ],
+      "exitCode": 0,
+      "log": "04_test_queue.log",
+      "logSha256": "2670D80CCD24A62D65DC84BE5EA281396E01C263EB6C5F709A1C2AAB1183FAC4"
+    },
+    {
+      "command": [
+        "C:/node.js/node.exe",
+        "desktop/tests/test_native_lease.cjs"
+      ],
+      "exitCode": 0,
+      "log": "05_test_native_lease.log",
+      "logSha256": "784659FE2A78E35F70AE677051DE65E3B504433402FF1F10BA0719C60D53BE6A"
+    },
+    {
+      "command": [
+        "C:/node.js/node.exe",
+        "desktop/tests/test_realtime_score.js"
+      ],
+      "exitCode": 0,
+      "log": "06_test_realtime_score.log",
+      "logSha256": "4ED23E0155869ED4AA2D615F80521C3C53424FFDB4C70F709F57C578EBDB66FE"
+    },
+    {
+      "command": [
+        "C:/node.js/node.exe",
+        "desktop/tests/test_learning.cjs"
+      ],
+      "exitCode": 0,
+      "log": "07_test_learning.log",
+      "logSha256": "5121CC9FE9009DCF605BF128963980A6CC00D3D8DB9CAD08CC1DB2CAE2D479F2"
+    },
+    {
+      "command": [
+        "C:/node.js/node.exe",
+        "desktop/tests/test_score_upload.js"
+      ],
+      "exitCode": 0,
+      "log": "08_test_score_upload.log",
+      "logSha256": "C0263556D2A5126A59E6FF1B24F1E7E6E85FBB5AE8BEFD2CA7AD34F4A1E3B8B1"
+    },
+    {
+      "command": [
+        "C:/node.js/node.exe",
+        "mobile/tests/test_protocol.js"
+      ],
+      "exitCode": 0,
+      "log": "09_test_protocol.log",
+      "logSha256": "61A41BBA9A5AE6FF90899A39EBC72324F00FFA67A6DE08559A421F9181C86BD9"
+    },
+    {
+      "command": [
+        "C:/node.js/node.exe",
+        "mobile/tests/test_app_simulation.js"
+      ],
+      "exitCode": 0,
+      "log": "10_test_app_simulation.log",
+      "logSha256": "1AB51786AA1E70B7F4BAE40B26244B5FB8BB2620E976AA65872375049CDC5581"
+    },
+    {
+      "command": [
+        "C:/node.js/node.exe",
+        "mobile/tests/test_app_async.js"
+      ],
+      "exitCode": 0,
+      "log": "11_test_app_async.log",
+      "logSha256": "B28741427F38FF2530AB1284E1E5035265BF7F023C3483A95C7CD95EB79D036B"
+    },
+    {
+      "command": [
+        "C:/node.js/node.exe",
+        "mobile/tests/test_midi.js"
+      ],
+      "exitCode": 0,
+      "log": "12_test_midi.log",
+      "logSha256": "C3C54F3752799671B923E5505A559EB62B5E50D615E940AAD4B7E2C4DD26CA3D"
+    },
+    {
+      "command": [
+        "C:/node.js/node.exe",
+        "desktop/tests/test_sustain_ui.cjs"
+      ],
+      "exitCode": 0,
+      "log": "13_test_sustain_ui.log",
+      "logSha256": "0663078936E634A1ABC1556A9369748AC5DD68D06298E92E4F6F30C8568CF8AC"
+    },
+    {
+      "command": [
+        "C:/Users/sll/Documents/ChatGPT/比赛 2/TangMega60K_Synth/tmp/desktop-python/Scripts/python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "desktop/tests",
+        "-p",
+        "test_*.py"
+      ],
+      "exitCode": 0,
+      "log": "14_test_all.log",
+      "logSha256": "E22153EEC8BFB1C65FF5A77E0FCCF7CCD804A307F6B6CE4158BBE1946853CB68"
+    },
+    {
+      "command": [
+        "C:/Users/sll/Documents/ChatGPT/比赛 2/TangMega60K_Synth/tmp/desktop-python/Scripts/python.exe",
+        "mobile/tests/test_protocol.py"
+      ],
+      "exitCode": 0,
+      "log": "15_test_protocol.log",
+      "logSha256": "1D85F8F3E28FB5990AB37BA38D55A3CD303D1391221BDA692C673221E7B2CC3E"
+    },
+    {
+      "command": [
+        "C:/Users/sll/Documents/ChatGPT/比赛 2/TangMega60K_Synth/tmp/desktop-python/Scripts/python.exe",
+        "mobile/tests/test_ble_policy.py",
+        "--java-home",
+        "C:/Program Files/Java/jdk-17"
+      ],
+      "exitCode": 0,
+      "log": "16_jdk-17.log",
+      "logSha256": "D4C370F73077AC4FD45DEF31362C81C69F3B0A49FD4E00D76F96305440064D2F"
+    },
+    {
+      "command": [
+        "C:/Users/sll/Documents/ChatGPT/比赛 2/TangMega60K_Synth/tmp/desktop-python/Scripts/python.exe",
+        "mobile/tests/test_android_callbacks.py",
+        "--java-home",
+        "C:/Program Files/Java/jdk-17",
+        "--android-jar",
+        "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\TangMega60K_Synth\\tmp\\android-build\\sdk\\platforms\\android-35\\android.jar"
+      ],
+      "exitCode": 1,
+      "log": "17_android.log",
+      "logSha256": "A8B0F25FCFE54278BE8BF985B1D796FBF63B0FA06CE1E6D7E9BB60AA1C83E532"
+    },
+    {
+      "command": [
+        "C:/Users/sll/Documents/ChatGPT/比赛 2/TangMega60K_Synth/tmp/desktop-python/Scripts/python.exe",
+        "mobile/tests/test_android_async.py",
+        "--java-home",
+        "C:/Program Files/Java/jdk-17",
+        "--android-jar",
+        "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\TangMega60K_Synth\\tmp\\android-build\\sdk\\platforms\\android-35\\android.jar",
+        "--case",
+        "downloads"
+      ],
+      "exitCode": 1,
+      "log": "18_downloads.log",
+      "logSha256": "01C17A5155B45EF954BBA678F7C234875D01C75D33E8B51D71EF03CC38AA180C"
+    },
+    {
+      "command": [
+        "C:/Users/sll/Documents/ChatGPT/比赛 2/TangMega60K_Synth/tmp/desktop-python/Scripts/python.exe",
+        "mobile/tests/test_android_async.py",
+        "--java-home",
+        "C:/Program Files/Java/jdk-17",
+        "--android-jar",
+        "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\TangMega60K_Synth\\tmp\\android-build\\sdk\\platforms\\android-35\\android.jar",
+        "--case",
+        "export"
+      ],
+      "exitCode": 1,
+      "log": "19_export.log",
+      "logSha256": "08041C92B72F3EB05CDF151411873454B3517493A19506052D59933E1A70C7A5"
+    },
+    {
+      "command": [
+        "C:/Users/sll/Documents/ChatGPT/比赛 2/TangMega60K_Synth/tmp/desktop-python/Scripts/python.exe",
+        "mobile/tests/test_android_async.py",
+        "--java-home",
+        "C:/Program Files/Java/jdk-17",
+        "--android-jar",
+        "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\TangMega60K_Synth\\tmp\\android-build\\sdk\\platforms\\android-35\\android.jar",
+        "--case",
+        "file"
+      ],
+      "exitCode": 1,
+      "log": "20_file.log",
+      "logSha256": "7F17A63EFBFBD7FCA4BFE7B2145C4F920B56FEA9DB1FBC54D90A8F1C0BE4793E"
+    }
+  ],
+  "hardwareTested": false
+}

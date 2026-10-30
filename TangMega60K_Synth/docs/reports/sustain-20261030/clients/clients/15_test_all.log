@@ -1,0 +1,89 @@
+usage: python.exe -m unittest [-h] --java-home JAVA_HOME --android-jar
+                              ANDROID_JAR [--activity-source ACTIVITY_SOURCE]
+                              --case {downloads,export,file}
+python.exe -m unittest: error: the following arguments are required: --java-home, --android-jar, --case
+usage: python.exe -m unittest [-h] --java-home JAVA_HOME --android-jar
+                              ANDROID_JAR
+python.exe -m unittest: error: the following arguments are required: --java-home, --android-jar
+EE
+======================================================================
+ERROR: test_android_async (unittest.loader._FailedTest.test_android_async)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_android_async
+Traceback (most recent call last):
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py", line 1943, in _parse_known_args2
+    namespace, args = self._parse_known_args(args, namespace, intermixed)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py", line 2230, in _parse_known_args
+    raise ArgumentError(None, _('the following arguments are required: %s') %
+argparse.ArgumentError: the following arguments are required: --java-home, --android-jar, --case
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\TangMega60K_Synth\mobile\tests\test_android_async.py", line 18, in <module>
+    args = parser.parse_args()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py", line 1904, in parse_args
+    args, argv = self.parse_known_args(args, namespace)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py", line 1914, in parse_known_args
+    return self._parse_known_args2(args, namespace, intermixed=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py", line 1945, in _parse_known_args2
+    self.error(str(err))
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py", line 2650, in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py", line 2637, in exit
+    _sys.exit(status)
+SystemExit: 2
+
+
+======================================================================
+ERROR: test_android_callbacks (unittest.loader._FailedTest.test_android_callbacks)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_android_callbacks
+Traceback (most recent call last):
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py", line 1943, in _parse_known_args2
+    namespace, args = self._parse_known_args(args, namespace, intermixed)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py", line 2230, in _parse_known_args
+    raise ArgumentError(None, _('the following arguments are required: %s') %
+argparse.ArgumentError: the following arguments are required: --java-home, --android-jar
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "C:\Users\sll\Documents\ChatGPT\比赛 2\test-sustain-20261030\TangMega60K_Synth\mobile\tests\test_android_callbacks.py", line 16, in <module>
+    args = parser.parse_args()
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py", line 1904, in parse_args
+    args, argv = self.parse_known_args(args, namespace)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py", line 1914, in parse_known_args
+    return self._parse_known_args2(args, namespace, intermixed=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py", line 1945, in _parse_known_args2
+    self.error(str(err))
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py", line 2650, in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+  File "C:\Users\sll\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\argparse.py", line 2637, in exit
+    _sys.exit(status)
+SystemExit: 2
+
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+FAILED (errors=2)
+ALL PYTHON/JS PACKET PARITY TESTS PASSED (2000 independent vectors)

@@ -1,0 +1,244 @@
+{
+  "verified": true,
+  "hardwareTested": false,
+  "adoptedAsFinal": false,
+  "pushed": false,
+  "baseCommit": "df6e8f6f8fcc60a31d0ff549eab37640f67aa4f7",
+  "branch": "codex/sustain-20261030",
+  "hdlCases": {
+    "core": 10,
+    "regression": 24,
+    "total": 34
+  },
+  "apps": {
+    "clientCommands": 21,
+    "fixtureCommands": 1,
+    "hardwareTested": false,
+    "windowsExe": "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-sustain-20261030\\TangMega60K_Synth\\delivery-sustain\\windows\\TangNeonStudio\\TangNeonStudio.exe",
+    "windowsExeSha256": "ECCEF8B9969F50482F96C7818F38EFE936448DD1C1DC5C974EAC19AA908AC99A",
+    "apk": "C:\\Users\\sll\\Documents\\ChatGPT\\比赛 2\\test-sustain-20261030\\TangMega60K_Synth\\mobile\\android\\output\\TangSynthRemote-debug.apk",
+    "apkSha256": "E58B4AA4A5EFA700C2D2CF9CEDFCFDDC3B429C8D889E2F544EF4CE2FDFD86008",
+    "androidVersion": "1.9-sustain-test",
+    "androidVersionCode": 11,
+    "androidLintErrors": 0,
+    "androidLintWarnings": 0
+  },
+  "protectedBaselineInputs": [
+    "full/contest_full.cst",
+    "full/contest_full.sdc",
+    "rtl/audio/adsr.v",
+    "rtl/audio/audio_fx.v",
+    "rtl/audio/audio_system_v2.v",
+    "rtl/audio/audio_system_v2_fm.v",
+    "rtl/audio/dds_lane.v",
+    "rtl/audio/fm_piano_lane.v",
+    "rtl/audio/gain_saturator.v",
+    "rtl/audio/headroom_smoother.v",
+    "rtl/audio/pitch_expression.v",
+    "rtl/audio/polar_lane.v",
+    "rtl/audio/rom/menu_font.hex",
+    "rtl/audio/rom/midi.hex",
+    "rtl/audio/rom/piano.hex",
+    "rtl/audio/rom/polar_lane0.hex",
+    "rtl/audio/rom/polar_lane1.hex",
+    "rtl/audio/rom/polar_ratios.hex",
+    "rtl/audio/rom/ratio.hex",
+    "rtl/audio/rom/sine.hex",
+    "rtl/audio/rom/velocity.hex",
+    "rtl/audio/rom/waves.hex",
+    "rtl/audio/runtime_audio_fx.v",
+    "rtl/audio/stereo_mixer.v",
+    "rtl/audio/stereo_peak_limiter.v",
+    "rtl/audio/ui_tone_overlay.v",
+    "rtl/audio/voice_engine.v",
+    "rtl/audio/voice_state_ram.v",
+    "rtl/audio/wavetable_rom.v",
+    "rtl/board/audio_boot_status.v",
+    "rtl/board/board_audio_16_48k_i2s_top.v",
+    "rtl/board/board_audio_48k_gao_top.v",
+    "rtl/board/board_audio_48k_i2s_top.v",
+    "rtl/board/board_audio_diagnostic_top.v",
+    "rtl/board/board_audio_gao_top.v",
+    "rtl/board/board_bringup_top.v",
+    "rtl/board/board_instrument_b_48k_gao_top.v",
+    "rtl/board/board_instrument_b_48k_i2s_top.v",
+    "rtl/board/board_key_event_adapter.v",
+    "rtl/board/board_sequence16_48k_i2s_top.v",
+    "rtl/captain_control_top.v",
+    "rtl/captain_control_top_v2.v",
+    "rtl/captain_system_top.v",
+    "rtl/captain_system_top_v2.v",
+    "rtl/clock/audio_clock_48k.v",
+    "rtl/clock/pll_init.v",
+    "rtl/control/expression_merge.v",
+    "rtl/control/gain_percent_meter.v",
+    "rtl/control/key_map_transpose.v",
+    "rtl/control/local_action_arbiter.v",
+    "rtl/control/menu_action_router.v",
+    "rtl/control/note_arbiter.v",
+    "rtl/control/performance_command_stage.v",
+    "rtl/control/remote_note_watchdog.v",
+    "rtl/control/slider_expression_control.v",
+    "rtl/control/slider_gesture_input.v",
+    "rtl/control/slider_menu_controller.v",
+    "rtl/control/slider_volume_control.v",
+    "rtl/diagnostics/live64_event_source.v",
+    "rtl/diagnostics/live64_system_top.v",
+    "rtl/diagnostics/poly16_event_source.v",
+    "rtl/diagnostics/sequence16_event_source.v",
+    "rtl/event_fifo.v",
+    "rtl/event_fifo_v2.v",
+    "rtl/expression_controls_v2.v",
+    "rtl/i2s_tx.v",
+    "rtl/instrument_system_v2.v",
+    "rtl/interaction_top.v",
+    "rtl/interaction_top_v2.v",
+    "rtl/performance/learning_stepper.v",
+    "rtl/performance/performance_controller.v",
+    "rtl/performance/ws2812_guide.v",
+    "rtl/remote/remote_uart_transport.sv",
+    "rtl/sensors/i2c_register_master.v",
+    "rtl/sensors/mpr121_input_frontend.v",
+    "rtl/sensors/mpr121_key_eventizer.v",
+    "rtl/sensors/mpr121_sampler.v",
+    "rtl/sensors/mpr121_slider.v",
+    "rtl/test_tone_source.v",
+    "rtl/tone_demo_top.v",
+    "rtl/visual/audio_monitor_cdc.v",
+    "rtl/visual/audio_visualizer.v",
+    "rtl/visual/bin16_to_bcd.v",
+    "rtl/visual/goertzel_1024_64.hex",
+    "rtl/visual/oled_i2c_stream.v",
+    "rtl/visual/oled_idle_view.v",
+    "rtl/visual/oled_menu_renderer.v",
+    "rtl/visual/oled_wave_capture.v",
+    "rtl/visual/oled_wave_renderer.v",
+    "rtl/visual/scope_renderer.v",
+    "rtl/visual/video_clocking.v",
+    "rtl/visual/video_timing_640x480.v",
+    "rtl/visual/video_tmds_encoder.v",
+    "rtl/visual/video_tmds_tx.v",
+    "rtl/voice_allocator.v",
+    "rtl/voice_allocator_v2.v",
+    "scripts/build-contest-full.tcl"
+  ],
+  "originalF571Unchanged": true,
+  "baselineComparisons": {
+    "chord_piano_compare.csv": {
+      "bitExact": true,
+      "sha256": "45F8588F671E42FC367049398AEF70A6D3C7BA25F378A19BE844693BE1C2DCD2"
+    },
+    "chord_sine_compare.csv": {
+      "bitExact": true,
+      "sha256": "F89B63A3B80DFCFDA95C27349D9A1281FA5A8280C05D35261506293B6656FF8E"
+    },
+    "touch_i2s_latency_e1_s1.csv": {
+      "rawCsvBitExact": false,
+      "caseRelativeI2sDelayEqual": true,
+      "cases": [
+        {
+          "case": 0,
+          "beforeNs": 1414607,
+          "afterNs": 1414607,
+          "firstCommandDeltaNs": 21
+        },
+        {
+          "case": 1,
+          "beforeNs": 939365,
+          "afterNs": 939365,
+          "firstCommandDeltaNs": 20
+        },
+        {
+          "case": 2,
+          "beforeNs": 365465,
+          "afterNs": 365465,
+          "firstCommandDeltaNs": 20
+        },
+        {
+          "case": 3,
+          "beforeNs": 1908689,
+          "afterNs": 1908689,
+          "firstCommandDeltaNs": 21
+        }
+      ],
+      "sha256": "A52FA0F482322C807469FD932C507C0263CDE824BD8A2B6467F73E7FD4F43AA4"
+    }
+  },
+  "independentAnalysis": {
+    "pixels": {
+      "frames": 3,
+      "bytesCompared": 3072,
+      "source": "actual RTL simulation pixels",
+      "passed": true
+    },
+    "neutral": {
+      "sustain_neutral_piano.csv": {
+        "frames": 8168,
+        "bitExact": true
+      },
+      "sustain_neutral_sine.csv": {
+        "frames": 8288,
+        "bitExact": true
+      }
+    },
+    "hardwareTested": false
+  },
+  "resources": {
+    "Logic": {
+      "baseline": 28558,
+      "current": 28722,
+      "delta": 164,
+      "capacity": 59904
+    },
+    "Register": {
+      "baseline": 19430,
+      "current": 19533,
+      "delta": 103,
+      "capacity": 60780
+    },
+    "CLS": {
+      "baseline": 23673,
+      "current": 23545,
+      "delta": -128,
+      "capacity": 29952
+    },
+    "BSRAM": {
+      "baseline": 107,
+      "current": 107,
+      "delta": 0,
+      "capacity": 118
+    },
+    "DSP": {
+      "baseline": 56,
+      "current": 56,
+      "delta": 0,
+      "capacity": 118
+    },
+    "PRIMARY": {
+      "baseline": 8,
+      "current": 8,
+      "delta": 0,
+      "capacity": 8
+    },
+    "LW": {
+      "baseline": 8,
+      "current": 8,
+      "delta": 0,
+      "capacity": 8
+    },
+    "PLLA": {
+      "baseline": 3,
+      "current": 3,
+      "delta": 0,
+      "capacity": 8
+    }
+  },
+  "minimumSlackNs": {
+    "setup": 1.165,
+    "hold": 0.126,
+    "recovery": 5.329,
+    "removal": 0.556
+  },
+  "sourceBuild": "C:\\Users\\sll\\AppData\\Local\\Temp\\TangDirectScore_x4i4714p\\verification\\sustain-build\\build_sustain_20261030_110824_b6773b27",
+  "bitstreamSha256": "16420C67386E78F16096F15331DD1F66D96AA03C95D8109EA655F503E0C29B6A"
+}

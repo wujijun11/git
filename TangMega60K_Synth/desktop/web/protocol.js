@@ -18,6 +18,7 @@
         TELEMETRY: 129,
         EVENT: 130,
         MODE_STATUS: 131,
+        SUSTAIN_STATUS: 134,
         SCORE_CAPABILITIES: 132,
         LEARNING_STATUS: 133,
     });
@@ -381,6 +382,14 @@
             this.queue = [];
         }
     }
+    // 只读扩展：READBACK selector5 -> 0x86；旧0x83与V2音源字段不变。
+    function sustainStatus(p) {
+        if (!p || p.length !== 10 || p[0] !== 1 || p[1] > 1 ||
+            p[2] > 64 || p[3] !== 64 || p.slice(4).some(Boolean))
+            throw new Error("延音状态格式或版本不支持");
+        return { supported: true, enabled: p[1] === 1,
+            deferredVoices: p[2], voiceCapacity: p[3] };
+    }
     const api = {
         UUID,
         OP,
@@ -400,6 +409,7 @@
         telemetry,
         event,
         modeStatus,
+        sustainStatus,
         StreamDecoder,
         Session,
     };

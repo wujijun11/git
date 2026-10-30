@@ -3,7 +3,8 @@
 // 普通设置成功后显示波形并回音量；表情选择直接进入对应连续控制。
 module menu_hierarchy #(
     parameter integer DEBOUNCE_CYCLES=983040,LONG_PRESS_CYCLES=49152000,
-    parameter integer IDLE_CYCLES=491520000
+    parameter integer IDLE_CYCLES=491520000,
+    parameter SUSTAIN_ENABLE=0
 )(
     input wire clk,rst_n,touch_active,touch_fault,input wire [11:0] position,
     output reg request_valid,input wire request_ready,
@@ -12,6 +13,7 @@ module menu_hierarchy #(
     output reg [7:0] display_error,
     output reg fx_write,output reg [1:0] fx_value,
     output reg expression_reset,
+    output reg sustain_write,output reg sustain_value,
     output reg [3:0] view,output reg [1:0] expression_mode,
     output reg waveform_view,output wire [1:0] preview_zone,
     output wire position_valid,output wire [11:0] control_position
@@ -42,10 +44,13 @@ module menu_hierarchy #(
             fx_write<=0;
             fx_value<=0;
             expression_reset<=0;
+            sustain_write<=0;
+            sustain_value<=0;
             display_error<=0;
         end else begin
             fx_write<=0;
             expression_reset<=0;
+            sustain_write<=0;
             if(touch_active || touch_fault || action_busy || display_error!=0 || request_valid || awaiting_action)begin
                 idle_count<=0;
                 waveform_view<=0;
@@ -88,7 +93,7 @@ module menu_hierarchy #(
                     2:case(zone)0:view<=3;
                     1:view<=4;
                     2:view<=5;
-                    default:view<=1;
+                    default:view<=SUSTAIN_ENABLE?4'd9:4'd1;
                     endcase
                     3,4,7,8:begin
                         request_valid<=1;
@@ -109,6 +114,16 @@ module menu_hierarchy #(
                         expression_mode<=0;
                         end
                         else expression_mode<=zone;
+                    end
+                    9:begin
+                        if(zone<2)begin
+                            sustain_write<=1;
+                            sustain_value<=zone[0];
+                            view<=0;
+                            expression_mode<=0;
+                            waveform_view<=1;
+                            idle_count<=LIMIT-1;
+                        end else view<=zone==2?4'd2:4'd1;
                     end
                     default:;
                 endcase

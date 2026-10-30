@@ -1,0 +1,1 @@
+ALL MOBILE UI SIMULATION TESTS PASSED (25 maps, duplicate pitch/pointer release, score snapshot/session isolation, expression coalescing/continuous/final value, disconnect/chooser/discovery cancellation, stale browser callbacks, fast reconnect Panic before key/slider/heartbeat, blur release, record readback/export, replay limits,64voice test/cancel/failure,guide, capability)

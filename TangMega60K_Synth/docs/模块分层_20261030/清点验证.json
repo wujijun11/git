@@ -1,0 +1,11 @@
+{
+  "all_main_hdl_paths_exist": true,
+  "all_main_hdl_files_classified": 90,
+  "all_code_files_have_purpose": 596,
+  "duplicate_main_hdl_paths": 0,
+  "static_top_reachable_files": 65,
+  "not_instantiated_from_current_top_files": 25,
+  "eda_rerun": false,
+  "hardware_accessed": false,
+  "git_push": false
+}

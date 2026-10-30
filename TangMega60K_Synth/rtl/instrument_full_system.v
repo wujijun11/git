@@ -13,6 +13,7 @@ module instrument_full_system #(
     parameter MENU_WAVE_IDLE_CYCLES=CLK_HZ*10,
     parameter STABLE_CHORD_MIX_ENABLE=0,
     parameter EARLY_KEY_ENABLE=0,
+    parameter SUSTAIN_ENABLE=0,
     parameter ROM_DIR="rtl/audio/rom/",
     parameter [7:0] GUIDE_BRIGHTNESS=8'd32, GUIDE_TOUCH_BRIGHTNESS=8'd16,
     parameter [124:0] GUIDE_PIXEL_KEY_MAP={5'd24,5'd23,5'd22,5'd21,5'd20,
@@ -52,7 +53,9 @@ module instrument_full_system #(
     output wire menu_waveform_view,
     output wire [11:0] menu_control_value,
     output wire menu_control_negative,
-    output wire [7:0] menu_control_percent
+    output wire [7:0] menu_control_percent,
+    output wire sustain_enabled,
+    output wire [6:0] sustain_deferred_count
 );
     wire cv,cr,router_cr,rv,rr;wire [7:0] cs,co,rs,ro;wire [79:0] cp,rp;
     wire [31:0] crc_errors,framing_errors,uart_overflows,uart_timeouts;
@@ -71,6 +74,12 @@ module instrument_full_system #(
     wire [7:0] perf_local_action_status;
     wire [174:0] mapping,base_mapping;wire [1:0] timbre,router_timbre,fx,router_fx;wire panic;
     wire router_timbre_written;
+    wire router_sustain_written,router_sustain_value;
+    wire local_sustain_write,local_sustain_value;
+    reg selected_sustain;
+    wire [79:0] sustain_status_payload={48'd0,8'd64,1'b0,sustain_deferred_count,
+        7'd0,sustain_enabled,8'd1};
+    assign sustain_enabled=SUSTAIN_ENABLE && selected_sustain;
     // 只读扩展0x83：版本、状态旗标、页面、区域、实际音色、有符号半音、效果、错误。
     // 与OLED共用实际状态；不读取router内部可能已被滑条覆盖的旧音色。
     wire [79:0] learning_status_payload;
@@ -86,7 +95,7 @@ module instrument_full_system #(
     // Stop new transactions during watchdog release without ever retracting
     // an already presented note event from a stalled arbiter grant.
     assign cr=router_cr && accept_commands;
-    remote_command_router #(.ENABLE_MODE_STATUS(1),.ENABLE_DIRECT_SCORE(1),.ENABLE_LEARNING(1)) router(.clk(clk),.rst_n(rst_n),.cmd_valid(cv && accept_commands),.cmd_ready(router_cr),
+    remote_command_router #(.ENABLE_MODE_STATUS(1),.ENABLE_DIRECT_SCORE(1),.ENABLE_LEARNING(1),.ENABLE_SUSTAIN(SUSTAIN_ENABLE)) router(.clk(clk),.rst_n(rst_n),.cmd_valid(cv && accept_commands),.cmd_ready(router_cr),
         .cmd_seq(cs),.cmd_opcode(co),.cmd_payload(cp),.rsp_valid(rv),.rsp_ready(rr),
         .rsp_seq(rs),.rsp_opcode(ro),.rsp_payload(rp),
         .event_valid(remote_ev),.event_ready(remote_er),.event_on(remote_on),.event_source(remote_source),
@@ -97,6 +106,8 @@ module instrument_full_system #(
         .performance_payload(perf_cp),.performance_status(perf_status),
         .key_map_flat(base_mapping),.current_timbre(router_timbre),.effect_mode(router_fx),.panic_pulse(panic),
         .timbre_write_pulse(router_timbre_written),
+        .sustain_write_pulse(router_sustain_written),.sustain_value(router_sustain_value),
+        .sustain_status_payload(sustain_status_payload),
         .active_count(active_count),.playing(playing),.recording(recording),.guide_active(guide_active),
         .overflow_sticky(overflow_sticky),.record_count(record_count),.score_position(score_position),
         .underrun_count(underrun_count),.mode_status_payload(mode_status_payload),.learning_status_payload(learning_status_payload),.record_read_index(read_index),
@@ -140,13 +151,14 @@ module instrument_full_system #(
     assign menu_error=HIERARCHICAL_MENU_ENABLE?hierarchy_error:dispatch_error;
     generate if(HIERARCHICAL_MENU_ENABLE)begin: hierarchical_menu
         menu_hierarchy #(.DEBOUNCE_CYCLES(MENU_DEBOUNCE_CYCLES),
-            .LONG_PRESS_CYCLES(MENU_LONG_PRESS_CYCLES),.IDLE_CYCLES(MENU_WAVE_IDLE_CYCLES)) navigation(
+            .LONG_PRESS_CYCLES(MENU_LONG_PRESS_CYCLES),.IDLE_CYCLES(MENU_WAVE_IDLE_CYCLES),.SUSTAIN_ENABLE(SUSTAIN_ENABLE)) navigation(
             .clk(clk),.rst_n(rst_n),.touch_active(MENU_ENABLE && slider_active),
             .touch_fault(sensor_fault[0] || !sensor_ready[0]),.position(slider_position),
             .request_valid(menu_request_valid),.request_ready(menu_request_ready),
             .request_kind(menu_request_kind),.request_page(menu_request_page),.request_zone(menu_request_zone),
             .action_busy(menu_busy),.action_done(menu_prompt_valid),.action_error(dispatch_error),.display_error(hierarchy_error),
             .fx_write(local_fx_write),.fx_value(local_fx_value),.expression_reset(local_expression_reset),
+            .sustain_write(local_sustain_write),.sustain_value(local_sustain_value),
             .view(menu_view),.expression_mode(menu_expression_mode),.waveform_view(menu_waveform_view),
             .preview_zone(menu_preview_zone),.position_valid(volume_position_valid),.control_position(volume_position));
         assign menu_main=menu_view==1;
@@ -158,6 +170,7 @@ module instrument_full_system #(
         assign menu_expression_mode=0;
         assign menu_waveform_view=0;
         assign local_fx_write=0;assign local_fx_value=0;assign local_expression_reset=0;
+        assign local_sustain_write=0;assign local_sustain_value=0;
         assign hierarchy_error=0;
     slider_menu_controller #(.CLK_HZ(CLK_HZ),.DEBOUNCE_CYCLES(MENU_DEBOUNCE_CYCLES),
         .LONG_PRESS_CYCLES(MENU_LONG_PRESS_CYCLES),
@@ -303,6 +316,15 @@ module instrument_full_system #(
         else audio_reset_released<=!panic_discard && !sensor_overflow;
     end
     wire audio_rst_n=rst_n && audio_reset_released;
+    // 全停和音频复位清除踏板状态；关闭延音本身不复位音源。
+    always @(posedge clk or negedge rst_n)begin
+        if(!rst_n)selected_sustain<=0;
+        else if(panic || local_panic || phone_releasing || !audio_rst_n)selected_sustain<=0;
+        else begin
+            if(local_sustain_write)selected_sustain<=local_sustain_value;
+            if(router_sustain_written)selected_sustain<=router_sustain_value;
+        end
+    end
     // Passive observation; none of these debug outputs controls the system.
     assign debug_audio_reset_status={panic_quiescing,panic_request,sensor_overflow,audio_rst_n};
     // Decode fixed source IDs in parallel instead of subtracting a variable
@@ -393,9 +415,31 @@ module instrument_full_system #(
         .cmd_valid(cmdv),.cmd_ready(cmdr),.cmd_on(cmdon),.cmd_voice(voice),.cmd_note(note),.cmd_velocity(velocity),.cmd_timbre(tone),
         .done_valid(dv),.done_ready(dr),.done_voice(done_voice),.active_count(active_count));
     wire pcm_valid,pcm_ready;wire signed [23:0] pcm_l,pcm_r;
+    wire engine_cmd_valid,engine_cmd_ready,engine_cmd_on;
+    wire [5:0] engine_cmd_voice;
+    wire [6:0] engine_cmd_note,engine_cmd_velocity;
+    wire [1:0] engine_cmd_timbre;
+    generate if(SUSTAIN_ENABLE)begin: sustain_control
+        sustain_command_gate pedal(.clk(clk),.rst_n(audio_rst_n),.sustain_enabled(sustain_enabled),
+            .in_valid(cmdv),.in_ready(cmdr),.in_on(cmdon),.in_voice(voice),
+            .in_note(note),.in_velocity(velocity),.in_timbre(tone),
+            .out_valid(engine_cmd_valid),.out_ready(engine_cmd_ready),.out_on(engine_cmd_on),
+            .out_voice(engine_cmd_voice),.out_note(engine_cmd_note),.out_velocity(engine_cmd_velocity),
+            .out_timbre(engine_cmd_timbre),.deferred_mask(),.deferred_count(sustain_deferred_count));
+    end else begin: no_sustain
+        assign engine_cmd_valid=cmdv;
+        assign cmdr=engine_cmd_ready;
+        assign engine_cmd_on=cmdon;
+        assign engine_cmd_voice=voice;
+        assign engine_cmd_note=note;
+        assign engine_cmd_velocity=velocity;
+        assign engine_cmd_timbre=tone;
+        assign sustain_deferred_count=0;
+    end endgenerate
     voice_engine #(.FM_ENABLE(1),.FX_ENABLE(0),.AUTO_HEADROOM(1),.HEADROOM_SMOOTH(1),
         .STABLE_CHORD_GAIN(STABLE_CHORD_MIX_ENABLE),.ROM_DIR(ROM_DIR)) synth(.clk(clk),.rst_n(audio_rst_n),
-        .cmd_valid(cmdv),.cmd_ready(cmdr),.cmd_on(cmdon),.cmd_voice(voice),.cmd_note(note),.cmd_velocity(velocity),.cmd_timbre(tone),
+        .cmd_valid(engine_cmd_valid),.cmd_ready(engine_cmd_ready),.cmd_on(engine_cmd_on),
+        .cmd_voice(engine_cmd_voice),.cmd_note(engine_cmd_note),.cmd_velocity(engine_cmd_velocity),.cmd_timbre(engine_cmd_timbre),
         .done_valid(dv),.done_ready(dr),.done_voice(done_voice),.sample_valid(pcm_valid),.sample_ready(pcm_ready),
         .sample_left(pcm_l),.sample_right(pcm_r),.engine_sample_begin(sample_begin),
         .active_gain(gain),.active_bend_cents(bend),.active_vibrato_cents(vibrato));

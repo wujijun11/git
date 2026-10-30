@@ -26,6 +26,8 @@ let scoreLoadGeneration = 0,
 let scoreCapacity = 1024,
     musicPanel = null;
 let realtimePlayback = null;
+let sustainState = { supported: false, enabled: false, deferredVoices: 0 };
+let sustainSupport = false;
 let boardMode = null,
     modeSupport = false;
 function beginScoreLoad() {
@@ -64,6 +66,7 @@ function idleCommand(op, payload) {
 }
 function setControlReady(ready) {
     controlReady = ready;
+    renderSustain();
     for (const id of [
         "timbre",
         "effect",
@@ -137,6 +140,8 @@ function lost(s) {
     realtimePlayback?.stop();
     boardMode = null;
     modeSupport = false;
+    sustainSupport = false;
+    sustainState = { supported: false, enabled: false, deferredVoices: 0 };
     if ($("boardMode"))
         $("boardMode").textContent = "板上模式：未连接，无法确认当前状态";
     setControlReady(false);
@@ -164,6 +169,10 @@ function lost(s) {
     status(s);
 }
 function receive(p) {
+    if (p.op === P.OP.SUSTAIN_STATUS) {
+        try { sustainState = P.sustainStatus(p.payload); renderSustain(); }
+        catch (error) { lost(error.message); return; }
+    }
     if (p.op === P.OP.MODE_STATUS) {
         try {
             boardMode = P.modeStatus(p.payload);
@@ -176,7 +185,7 @@ function receive(p) {
     if (
         p.op === P.OP.TELEMETRY ||
         p.op === P.OP.EVENT ||
-        p.op === P.OP.MODE_STATUS || p.op === P.OP.SCORE_CAPABILITIES
+        p.op === P.OP.MODE_STATUS || p.op === P.OP.SCORE_CAPABILITIES || p.op === P.OP.SUSTAIN_STATUS
     ) {
         const key = p.seq + ":" + p.op;
         dataPackets.set(key, p);
@@ -258,8 +267,24 @@ async function readback(selector, index = 0, owner = session, setup = false) {
               ? P.OP.MODE_STATUS
               : selector === 3
                 ? P.OP.SCORE_CAPABILITIES
-              : P.OP.EVENT,
+              : selector === 5 ? P.OP.SUSTAIN_STATUS : P.OP.EVENT,
     );
+}
+function renderSustain() {
+    const box = $("sustainEnabled"), label = $("sustainStatus");
+    if (!box || !label) return;
+    box.disabled = !controlReady || !sustainSupport;
+    box.checked = controlReady && sustainSupport && sustainState.enabled;
+    label.textContent = !controlReady ? "连接配套延音测试版后可用" : !sustainSupport ?
+        "板上版本尚不支持延音" : (sustainState.enabled ? "延音已开启" : "延音已关闭") +
+        " · 保留 " + sustainState.deferredVoices + " / 64 声部";
+}
+async function setSustain(enabled) {
+    const owner = session;
+    if (!sustainSupport) throw Error("板上未提供延音功能，请使用配套延音测试版");
+    await command(P.OP.CONFIG, [2, enabled ? 1 : 0], owner);
+    await readback(5, 0, owner);
+    checkSession(owner);
 }
 function renderBoardMode(state) {
     const node = $("boardMode");
@@ -308,6 +333,11 @@ async function handshake(owner = session) {
     } catch (error) {
         if (!/NACK status=[13]/.test(error.message)) throw error;
         renderBoardMode(null);
+    }
+    sustainSupport = false;
+    if ($("sustainEnabled")) {
+        try { await readback(5, 0, owner, true); sustainSupport = true; }
+        catch (error) { if (!/NACK status=[13]/.test(error.message)) throw error; }
     }
     // Reapply the visible settings after FPGA reset or reconnect so physical
     // keys and the controller do not silently disagree about mapping/timbre.
@@ -956,6 +986,13 @@ realtimePlayback = new MobileRealtimePlayback({
 });
 bind("realtimePlay", () => realtimePlayback.start());
 bind("realtimeStop", () => realtimePlayback.stop());
+if ($("sustainEnabled")) $("sustainEnabled").onchange = async () => {
+    const desired = $("sustainEnabled").checked;
+    $("sustainEnabled").disabled = true;
+    try { await setSustain(desired); }
+    catch (error) { status(error.message); }
+    finally { renderSustain(); }
+};
 let heartbeatPending = false;
 setInterval(() => {
     if (
@@ -973,6 +1010,10 @@ setInterval(() => {
             if (modeSupport && !held.size && !dataOperation && !testActive && !realtimePlayback.busy)
                 return readback(2);
         })
+        .then(() => {
+            if (sustainSupport && !held.size && !dataOperation && !testActive && !realtimePlayback.busy)
+                return readback(5);
+        })
         .catch((e) => log(e.message))
         .finally(() => (heartbeatPending = false));
 }, 1000);
@@ -985,6 +1026,7 @@ class Simulator {
         this.playing = false;
         this.guide = false;
         this.notes = new Set();
+        this.sustain = false;
         this.last = null;
         this.lastTime = performance.now();
     }
@@ -1027,6 +1069,7 @@ class Simulator {
             if (p[0] === 3) this.recording = false;
             if (p[0] === 4) this.events = [];
             if (p[0] === 5) {
+                this.sustain = false;
                 this.notes.clear();
                 this.playing = false;
                 this.guide = false;
@@ -1042,9 +1085,13 @@ class Simulator {
                     status = 1;
                 else this.playing = true;
             }
+        } else if (q.op === 3 && p[0] === 2) {
+            if (p[1] > 1 || p.slice(2).some(Boolean)) status = 1;
+            else this.sustain = !!p[1];
         } else if (q.op === 6) this.rows[P.u16(p, 0)] = p.slice();
         else if (q.op === 8) {
-            if (p[0] === 2) status = 1;
+            if (p[0] === 5) data = P.encode(q.seq, P.OP.SUSTAIN_STATUS, [1, this.sustain ? 1 : 0, 0, 64]);
+            else if (p[0] === 2) status = 1;
             else if(p[0]===3)data=P.encode(q.seq,P.OP.SCORE_CAPABILITIES,[1,1,...P.le16(1024),127,64,62]);
             else if (p[0] === 0)
                 data = P.encode(q.seq, 129, [

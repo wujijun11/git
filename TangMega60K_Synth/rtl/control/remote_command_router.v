@@ -5,6 +5,7 @@ module remote_command_router #(
     parameter ENABLE_MODE_STATUS = 0,
     parameter ENABLE_DIRECT_SCORE = 0,
     parameter ENABLE_LEARNING = 0,
+    parameter ENABLE_SUSTAIN = 0,
     parameter integer SCORE_CAPACITY = 1024
 ) (
     input wire clk, rst_n,
@@ -25,11 +26,13 @@ module remote_command_router #(
     output reg panic_pulse,
     // 内部配置提交观察，不改变UART或公共V2协议；同值新配置也有脉冲。
     output reg timbre_write_pulse,
+    output reg sustain_write_pulse,output reg sustain_value,
     input wire [6:0] active_count, input wire playing, recording, guide_active,
     input wire overflow_sticky, input wire [15:0] record_count, score_position,
     input wire [31:0] underrun_count,
     input wire [79:0] mode_status_payload,
     input wire [79:0] learning_status_payload,
+    input wire [79:0] sustain_status_payload,
     output wire [15:0] record_read_index,
     input wire record_read_valid, input wire [79:0] record_read_payload
 );
@@ -78,6 +81,7 @@ module remote_command_router #(
             state<=IDLE; seq_q<=0; op_q<=0; p<=0;
             rsp_valid<=0; rsp_seq<=0; rsp_opcode<=0; rsp_payload<=0;
             current_timbre<=2; effect_mode<=0; panic_pulse<=0; timbre_write_pulse<=0;
+            sustain_write_pulse<=0;sustain_value<=0;
             last_valid<=0; last_seq<=0; last_op<=0; last_payload<=0; last_status<=0;
             extra_pending<=0; last_extra<=0; extra_opcode<=0; extra_payload<=0;
             last_extra_opcode<=0; last_extra_payload<=0;
@@ -85,6 +89,7 @@ module remote_command_router #(
         end else begin
             panic_pulse<=0;
             timbre_write_pulse<=0;
+            sustain_write_pulse<=0;
             if(rsp_valid && rsp_ready) begin
                 if(extra_pending) begin
                     rsp_opcode<=extra_opcode; rsp_payload<=extra_payload;
@@ -115,10 +120,12 @@ module remote_command_router #(
                             acknowledge(1);
                             else state<=EXPR_WAIT;
                         8'h03: begin
-                            if(p[79:16]!=0 || p[7:0]>1 || p[15:8]>3) acknowledge(1);
+                            if(p[79:16]!=0 || p[7:0]>(ENABLE_SUSTAIN?2:1) ||
+                               (p[7:0]==2 ? p[15:8]>1 : p[15:8]>3)) acknowledge(1);
                             else begin
                                 if(p[7:0]==0) begin current_timbre<=p[9:8];timbre_write_pulse<=1;end
-                                else effect_mode<=p[9:8];
+                                else if(p[7:0]==1)effect_mode<=p[9:8];
+                                else begin sustain_value<=p[8];sustain_write_pulse<=1;end
                                 acknowledge(0);
                             end
                         end
@@ -128,10 +135,11 @@ module remote_command_router #(
                             else begin key_map_flat[p[7:0]*7+:7]<=p[14:8]; acknowledge(0); end
                         end
                         8'h08: begin
-                            if(p[79:24]!=0 || p[7:0]>4 ||
+                            if(p[79:24]!=0 || p[7:0]>(ENABLE_SUSTAIN?5:4) ||
                                (p[7:0]==2 && (!ENABLE_MODE_STATUS || p[23:8]!=0)) ||
                                (p[7:0]==3 && (!ENABLE_DIRECT_SCORE || p[23:8]!=0)) ||
-                               (p[7:0]==4 && (!ENABLE_LEARNING || p[23:8]!=0)))
+                               (p[7:0]==4 && (!ENABLE_LEARNING || p[23:8]!=0)) ||
+                               (p[7:0]==5 && (!ENABLE_SUSTAIN || p[23:8]!=0)))
                                 acknowledge(1);
                             else if(p[7:0]==1) state<=READ_WAIT;
                             else begin
@@ -143,6 +151,9 @@ module remote_command_router #(
                                         4'd0,overflow_sticky,guide_active,recording,playing,1'b0,active_count};
                                     last_extra_payload<={score_position,underrun_count,record_count,
                                         4'd0,overflow_sticky,guide_active,recording,playing,1'b0,active_count};
+                                end else if(p[7:0]==5) begin
+                                    extra_opcode<=8'h86;last_extra_opcode<=8'h86;
+                                    extra_payload<=sustain_status_payload;last_extra_payload<=sustain_status_payload;
                                 end else if(p[7:0]==4) begin
                                     extra_opcode<=8'h85;last_extra_opcode<=8'h85;
                                     extra_payload<=learning_status_payload;last_extra_payload<=learning_status_payload;

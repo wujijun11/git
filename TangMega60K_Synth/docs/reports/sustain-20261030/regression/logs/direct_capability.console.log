@@ -1,0 +1,52 @@
+Reading C:/modelsim/modeltech64_10.6e/tcl/vsim/pref.tcl
+
+# 10.6e
+
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/direct_capability.wlf -l logs/direct_capability.log -do "do cases/direct_capability.do" work.tb_direct_capability 
+# Start time: 11:45:06 on Oct 30,2026
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "remote_command_router(fast)".
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 52, found 31.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'record_read_index'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'sustain_status_payload'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'learning_status_payload'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'sustain_value'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'sustain_write_pulse'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'timbre_write_pulse'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'effect_mode'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'current_timbre'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'key_map_flat'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'performance_payload'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'performance_opcode'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'performance_pending'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'expr_vibrato'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'expr_bend'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'expr_gain'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'expr_mask'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'event_timbre'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'event_velocity'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'event_note'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'event_source'.
+# ** Warning: sim/tb_direct_capability.sv(8): (vopt-2718) [TFMPC] - Missing connection for port 'event_on'.
+# //  ModelSim SE-64 10.6e Jun 23 2018
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.tb_direct_capability(fast)
+# Loading work.remote_command_router(fast)
+# do cases/direct_capability.do
+# DIRECT CAPABILITY PASS snapshot, backpressure, duplicate, reset, strict selector, read-only
+# ** Note: $finish    : sim/tb_direct_capability.sv(44)
+#    Time: 910 ns  Iteration: 1  Instance: /tb_direct_capability
+# End time: 11:45:07 on Oct 30,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 22

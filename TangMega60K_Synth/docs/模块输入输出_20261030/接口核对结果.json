@@ -1,0 +1,12 @@
+{
+  "modules": 97,
+  "ports": 1465,
+  "instances": 122,
+  "unique_port_names": 539,
+  "all_ports_explained": true,
+  "all_parameter_widths_resolved_at_defaults": true,
+  "agrees_with_previous_module_and_instance_inventory": true,
+  "rtl_changed": false,
+  "eda_rerun": false,
+  "hardware_tested": false
+}

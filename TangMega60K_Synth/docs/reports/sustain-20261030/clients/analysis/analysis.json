@@ -1,0 +1,19 @@
+{
+  "pixels": {
+    "frames": 3,
+    "bytesCompared": 3072,
+    "source": "actual RTL simulation pixels",
+    "passed": true
+  },
+  "neutral": {
+    "sustain_neutral_piano.csv": {
+      "frames": 8168,
+      "bitExact": true
+    },
+    "sustain_neutral_sine.csv": {
+      "frames": 8288,
+      "bitExact": true
+    }
+  },
+  "hardwareTested": false
+}

@@ -1,0 +1,17 @@
+ע: C:\Users\sll\Documents\ChatGPT\���� 2\test-sustain-20261030\TangMega60K_Synth\mobile\android\app\src\main\java\cn\tangsynth\remote\MainActivity.javaʹ�û򸲸����ѹ�ʱ�� API��
+ע: �й���ϸ��Ϣ, ��ʹ�� -Xlint:deprecation ���±��롣
+C:\Users\sll\Documents\ChatGPT\���� 2\test-sustain-20261030\tmp\android-async-test\run-ng6icx08\sources\AsyncHarness.java:4: ����: Unsafe���ڲ�ר�� API, ���ܻ���δ�����а���ɾ��
+import java.util.concurrent.*;import java.util.concurrent.atomic.*;import sun.misc.Unsafe;
+                                                                                  ^
+C:\Users\sll\Documents\ChatGPT\���� 2\test-sustain-20261030\tmp\android-async-test\run-ng6icx08\sources\AsyncHarness.java:6: ����: Unsafe���ڲ�ר�� API, ���ܻ���δ�����а���ɾ��
+ static Unsafe unsafe;static MainActivity activity;static MainActivity.Bridge bridge;static ThreadPoolExecutor executor;
+        ^
+C:\Users\sll\Documents\ChatGPT\���� 2\test-sustain-20261030\tmp\android-async-test\run-ng6icx08\sources\AsyncHarness.java:98: ����: Unsafe���ڲ�ר�� API, ���ܻ���δ�����а���ɾ��
+  Field singleton=Unsafe.class.getDeclaredField("theUnsafe");singleton.setAccessible(true);unsafe=(Unsafe)singleton.get(null);
+                  ^
+C:\Users\sll\Documents\ChatGPT\���� 2\test-sustain-20261030\tmp\android-async-test\run-ng6icx08\sources\AsyncHarness.java:98: ����: Unsafe���ڲ�ר�� API, ���ܻ���δ�����а���ɾ��
+  Field singleton=Unsafe.class.getDeclaredField("theUnsafe");singleton.setAccessible(true);unsafe=(Unsafe)singleton.get(null);
+                                                                                                   ^
+4 ������
+PASS file chooser owner, duplicate rejection, URI result and null cancellation
+PASS file picker failure preserves healthy GATT and returns cancelled callback

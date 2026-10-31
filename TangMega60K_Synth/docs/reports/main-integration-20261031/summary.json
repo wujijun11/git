@@ -1,0 +1,338 @@
+{
+  "date": "2026-10-31",
+  "baseMain": "b238c4a3ec4a36bbabfb07738f76f07cf7cd7072",
+  "integratedTeammate": "9168f0cdd40e0b49cc801497d184b8d29d82affd",
+  "upstreamCommitsIntegrated": 12,
+  "mergeMethod": "fast-forward; original commit history retained",
+  "productionCodeComparedWithTeammate": "identical",
+  "allHardwareComparedWithOldMain": "identical",
+  "mainGprjReferences": 93,
+  "missingMainGprjReferences": [],
+  "freshHdlSelectedCases": [
+    {
+      "case": "sustain_menu",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 5.385,
+      "log": "hdl/initial-selected/sustain_menu.log"
+    },
+    {
+      "case": "sustain_router",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 4.389,
+      "log": "hdl/initial-selected/sustain_router.log"
+    },
+    {
+      "case": "sustain_full64",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 326.761,
+      "log": "hdl/initial-selected/sustain_full64.log"
+    },
+    {
+      "case": "sustain_neutral_n4",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 83.201,
+      "log": "hdl/initial-selected/sustain_neutral_n4.log"
+    },
+    {
+      "case": "sustain_gate_n4",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.769,
+      "log": "hdl/targeted/sustain_gate_n4.log"
+    },
+    {
+      "case": "sustain_gate_n64",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.77,
+      "log": "hdl/targeted/sustain_gate_n64.log"
+    },
+    {
+      "case": "sustain_allocator_n4",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.771,
+      "log": "hdl/targeted/sustain_allocator_n4.log"
+    },
+    {
+      "case": "sustain_allocator_n64",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.768,
+      "log": "hdl/targeted/sustain_allocator_n64.log"
+    },
+    {
+      "case": "stereo_peak_limiter",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.629,
+      "log": "hdl/targeted/stereo_peak_limiter.log"
+    },
+    {
+      "case": "menu_hierarchy",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.753,
+      "log": "hdl/targeted/menu_hierarchy.log"
+    },
+    {
+      "case": "slider_expression",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.768,
+      "log": "hdl/targeted/slider_expression.log"
+    },
+    {
+      "case": "oled_i2c_stream",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.806,
+      "log": "hdl/targeted/oled_i2c_stream.log"
+    },
+    {
+      "case": "learning_status",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.722,
+      "log": "hdl/targeted/learning_status.log"
+    },
+    {
+      "case": "learning_system",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 5.059,
+      "log": "hdl/targeted/learning_system.log"
+    },
+    {
+      "case": "direct_capability",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.808,
+      "log": "hdl/targeted/direct_capability.log"
+    },
+    {
+      "case": "mode_status",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.819,
+      "log": "hdl/targeted/mode_status.log"
+    },
+    {
+      "case": "full_system",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 20.248,
+      "log": "hdl/targeted/full_system.log"
+    },
+    {
+      "case": "global_panic",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 5.455,
+      "log": "hdl/targeted/global_panic.log"
+    },
+    {
+      "case": "remote_uart",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 5.302,
+      "log": "hdl/targeted/remote_uart.log"
+    }
+  ],
+  "freshHdlPassedCount": 19,
+  "freshFull34Rerun": false,
+  "longSimulationScopeNote": "The initial 34-case run was stopped after four successful cases because local ModelSim ASE 2020.1 runs much slower than the archived 10.6e environment. The in-progress sustain_neutral_n64 case was not counted. Fifteen additional targeted cases were run separately and all passed.",
+  "clientCommands": [
+    {
+      "case": "mobile/tests/make_midi_fixtures.py",
+      "exit_code": 0,
+      "log": "clients/00.log"
+    },
+    {
+      "case": "desktop/tests/test_sustain.js",
+      "exit_code": 0,
+      "log": "clients/01.log"
+    },
+    {
+      "case": "desktop/tests/test_controller.js",
+      "exit_code": 0,
+      "log": "clients/02.log"
+    },
+    {
+      "case": "desktop/tests/test_mode_sync.js",
+      "exit_code": 0,
+      "log": "clients/03.log"
+    },
+    {
+      "case": "desktop/tests/test_queue.js",
+      "exit_code": 0,
+      "log": "clients/04.log"
+    },
+    {
+      "case": "desktop/tests/test_native_lease.cjs",
+      "exit_code": 0,
+      "log": "clients/05.log"
+    },
+    {
+      "case": "desktop/tests/test_realtime_score.js",
+      "exit_code": 0,
+      "log": "clients/06.log"
+    },
+    {
+      "case": "desktop/tests/test_learning.cjs",
+      "exit_code": 0,
+      "log": "clients/07.log"
+    },
+    {
+      "case": "desktop/tests/test_score_upload.js",
+      "exit_code": 0,
+      "log": "clients/08.log"
+    },
+    {
+      "case": "mobile/tests/test_protocol.js",
+      "exit_code": 0,
+      "log": "clients/09.log",
+      "initial_environment_issue": "test snapshot lacked sibling source dependencies; copied unchanged sources and reran"
+    },
+    {
+      "case": "mobile/tests/test_app_simulation.js",
+      "exit_code": 0,
+      "log": "clients/10.log"
+    },
+    {
+      "case": "mobile/tests/test_app_async.js",
+      "exit_code": 0,
+      "log": "clients/11.log"
+    },
+    {
+      "case": "mobile/tests/test_midi.js",
+      "exit_code": 0,
+      "log": "clients/12.log"
+    },
+    {
+      "case": "-m unittest discover -s desktop/tests -p test_*.py",
+      "exit_code": 0,
+      "log": "clients/13.log",
+      "initial_environment_issue": "test snapshot lacked sibling source dependencies; copied unchanged sources and reran"
+    },
+    {
+      "case": "mobile/tests/test_protocol.py",
+      "exit_code": 0,
+      "log": "clients/14.log"
+    }
+  ],
+  "clientCommandsPassed": 15,
+  "desktopPythonUnitTestsPassed": 52,
+  "build": {
+    "part": "GW5AT-LV60PG484AC1/I0",
+    "pathsAnalyzed": 111407,
+    "endpointsAnalyzed": 63007,
+    "violations": {
+      "setup": 0,
+      "hold": 0
+    },
+    "minimumSlackNs": {
+      "setup": 1.165,
+      "hold": 0.126,
+      "recovery": 5.329,
+      "removal": 0.556
+    },
+    "resources": {
+      "Logic": {
+        "used": 28722.0,
+        "capacity": 59904.0,
+        "reportedPercent": 48,
+        "free": 31182.0
+      },
+      "Register": {
+        "used": 19533.0,
+        "capacity": 60780.0,
+        "reportedPercent": 33,
+        "free": 41247.0
+      },
+      "BSRAM": {
+        "used": 107.0,
+        "capacity": 118.0,
+        "reportedPercent": 91,
+        "free": 11.0
+      },
+      "DSP": {
+        "used": 56.0,
+        "capacity": 118.0,
+        "reportedPercent": 48,
+        "free": 62.0
+      }
+    },
+    "clocks": [
+      {
+        "name": "sys_clk",
+        "constraintMHz": 50.0,
+        "fmaxMHz": 116.33,
+        "logicLevel": 7
+      },
+      {
+        "name": "video_clock/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 125.0,
+        "fmaxMHz": 167.018,
+        "logicLevel": 1
+      },
+      {
+        "name": "video_clock/pll/CLKOUT1.default_gen_clk",
+        "constraintMHz": 25.0,
+        "fmaxMHz": 65.533,
+        "logicLevel": 14
+      },
+      {
+        "name": "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 49.152,
+        "fmaxMHz": 52.138,
+        "logicLevel": 15
+      }
+    ],
+    "timingPass": true,
+    "hardwareValidated": false,
+    "implementationKind": "bare-main",
+    "gaoInstrumented": false,
+    "artifacts": [
+      {
+        "bytes": 20490692,
+        "sha256": "E511D6F4D66EDD15B543898F22D0F38E3775B0CE11DA024841D8E8E053AA2880",
+        "includedInRepository": false,
+        "name": "ContestFull.fs"
+      },
+      {
+        "path": "build/ContestFull.tr",
+        "bytes": 405575,
+        "sha256": "A5315CD28A359546C8C25996926A9813DC54DF4619A1D2DBDCD04C6F9EA0B29B",
+        "includedInRepository": true
+      },
+      {
+        "path": "build/ContestFull.rpt.txt",
+        "bytes": 92872,
+        "sha256": "C0B5E851272B7D89D3B2EFF3A0642141992B29EF2092D1580A6606AA57E26BF0",
+        "includedInRepository": true
+      }
+    ],
+    "resourceDelta": {
+      "Logic": 0.0,
+      "Register": 0.0,
+      "BSRAM": 0.0,
+      "DSP": 0.0
+    },
+    "slackDeltaNs": {
+      "setup": 0.0,
+      "hold": 0.0,
+      "recovery": 0.0,
+      "removal": 0.0
+    },
+    "matches_published_7D2F_bitstream": false,
+    "bitstreamNote": "Fresh build bitstream is local only. The previously published 7D2F ZIP and its checksums remain unchanged; fresh compilation is not claimed to be byte-identical to that package."
+  },
+  "hardwareTested": false,
+  "boardDownloaded": false,
+  "flashWritten": false
+}

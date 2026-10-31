@@ -1,0 +1,16 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/menu_hierarchy.wlf -l logs/menu_hierarchy.log -do "do cases/menu_hierarchy.do" work.tb_menu_hierarchy 
+# Start time: 19:43:07 on Oct 31,2026
+# Loading sv_std.std
+# Loading work.tb_menu_hierarchy
+# Loading work.menu_hierarchy
+# Loading work.slider_gesture_input
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 25, found 23.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_menu_hierarchy/dut File: sim/tb_menu_hierarchy.sv Line: 13
+# ** Warning: (vsim-3722) sim/tb_menu_hierarchy.sv(13): [TFMPC] - Missing connection for port 'sustain_write'.
+# ** Warning: (vsim-3722) sim/tb_menu_hierarchy.sv(13): [TFMPC] - Missing connection for port 'sustain_value'.
+# do cases/menu_hierarchy.do
+# MENU HIERARCHY PASS four categories, nested sound, expressions, ten-second wave, success/error, wake, backpressure and reset
+# ** Note: $finish    : sim/tb_menu_hierarchy.sv(82)
+#    Time: 318410 ns  Iteration: 1  Instance: /tb_menu_hierarchy
+# End time: 19:43:08 on Oct 31,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 3

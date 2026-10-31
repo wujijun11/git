@@ -1,0 +1,16 @@
+PASS latest HTTPS result wins; prior browser request is aborted
+PASS obsolete HTTP failure cannot replace a newer score status
+PASS latest local file wins over an older pending file read
+PASS native download result IDs are scoped and local choice cancels it
+PASS parallel uploads reject without interleaving rows or commits
+PASS upload excludes recorder operations and builtin replacement
+PASS upload locks score replacement; new selection works after completion
+PASS stop cancels remaining score rows and commit
+PASS recorder read excludes export, start and clear, then releases lock
+PASS failed bulk command releases operation lock for retry
+PASS native file-error info keeps the healthy JS session and controls
+PASS mapped upload failure restores all previous physical key pitches
+PASS cancel during remapping sends no score rows and restores mapping
+PASS direct upload probes capability, preserves keys and commits format2
+PASS old mapping restoration never writes to a reconnected session
+{"Passed":15,"Failed":0,"HardwareTested":false}

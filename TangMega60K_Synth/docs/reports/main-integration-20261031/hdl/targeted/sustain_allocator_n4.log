@@ -1,0 +1,12 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/sustain_allocator_n4.wlf -l logs/sustain_allocator_n4.log -do "do cases/sustain_allocator_n4.do" work.tb_sustain_allocator -gN=4 
+# Start time: 19:42:55 on Oct 31,2026
+# Loading sv_std.std
+# Loading work.tb_sustain_allocator
+# Loading work.voice_allocator_v2
+# Loading work.sustain_command_gate
+# do cases/sustain_allocator_n4.do
+# SUSTAIN ALLOCATOR PASS N=4 ons=9 offs=8 full=1
+# ** Note: $finish    : sim/tb_sustain_allocator.sv(88)
+#    Time: 3290 ns  Iteration: 1  Instance: /tb_sustain_allocator
+# End time: 19:42:56 on Oct 31,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

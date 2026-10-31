@@ -1,0 +1,11 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/stereo_peak_limiter.wlf -l logs/stereo_peak_limiter.log -do "do cases/stereo_peak_limiter.do" work.tb_stereo_peak_limiter 
+# Start time: 19:43:03 on Oct 31,2026
+# Loading sv_std.std
+# Loading work.tb_stereo_peak_limiter
+# Loading work.stereo_peak_limiter
+# do cases/stereo_peak_limiter.do
+# STEREO PEAK LIMITER PASS frames=1107 stalls=21 arithmetic, stereo linkage, ceiling, unity, release and reset
+# ** Note: $finish    : sim/tb_stereo_peak_limiter.sv(86)
+#    Time: 89310 ns  Iteration: 1  Instance: /tb_stereo_peak_limiter
+# End time: 19:43:04 on Oct 31,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

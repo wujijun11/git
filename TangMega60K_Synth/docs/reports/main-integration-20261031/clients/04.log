@@ -1,0 +1,53 @@
+{
+  "controllerPath": "C:\\Users\\asus\\Desktop\\Git\\artifacts\\competition_code_20261031\\integration_clients\\desktop\\web\\controller.js",
+  "controllerSha256": "3d3774793708d8445a1d46fbadee344cdef635fe9b9db741384250aeabcdf6c6",
+  "cases": [
+    {
+      "name": "panicSkipsOldBacklog",
+      "pass": true
+    },
+    {
+      "name": "disconnectUsesAcceptedNotes",
+      "pass": true
+    },
+    {
+      "name": "queueHasRealBound",
+      "pass": true
+    },
+    {
+      "name": "stopKeepsAckDataBoundary",
+      "pass": true
+    },
+    {
+      "name": "cancelledReleaseDoesNotClose",
+      "pass": true
+    },
+    {
+      "name": "missingAckStillFailsClosed",
+      "pass": true
+    },
+    {
+      "name": "disconnectObserverIsReentrant",
+      "pass": true
+    },
+    {
+      "name": "rapidTapsAreNotSilentlyDropped",
+      "pass": true
+    },
+    {
+      "name": "retriggerAndSharedOwnersRemainCorrect",
+      "pass": true
+    },
+    {
+      "name": "releaseAllPreservesUnsentNotes",
+      "pass": true
+    },
+    {
+      "name": "busyTrafficDoesNotQueueHeartbeatReads",
+      "pass": true
+    }
+  ],
+  "unhandledRejections": [],
+  "accepted": true,
+  "hardwareAccessed": false
+}

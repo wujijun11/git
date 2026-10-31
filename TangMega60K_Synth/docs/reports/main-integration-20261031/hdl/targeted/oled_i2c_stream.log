@@ -1,0 +1,11 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/oled_i2c_stream.wlf -l logs/oled_i2c_stream.log -do "do cases/oled_i2c_stream.do" work.tb_oled_i2c_stream 
+# Start time: 19:43:15 on Oct 31,2026
+# Loading sv_std.std
+# Loading work.tb_oled_i2c_stream
+# Loading work.oled_i2c_stream
+# do cases/oled_i2c_stream.do
+# OLED I2C STREAM PASS 128 bytes, source stalls, stretch, NACK, stuck line and recovery
+# ** Note: $finish    : sim/tb_oled_i2c_stream.sv(107)
+#    Time: 451690 ns  Iteration: 1  Instance: /tb_oled_i2c_stream
+# End time: 19:43:16 on Oct 31,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

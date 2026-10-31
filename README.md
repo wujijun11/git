@@ -1,5 +1,7 @@
 # 弦光：Tang Mega 60K 实时多音色电子乐器
 
+2026-10-31 主工程整合：统一纳入队友的和弦稳定增益、触摸提前上报、分层滑条菜单及开关式延音更新。完整工程入口仍为 `TangMega60K_Synth/full/ContestFull.gprj`；配套 Windows 1.5.2-sustain-test 与 Android 1.9-sustain-test。延音默认关闭，新增延音的实物听感及长期稳定性仍待验收，C3固件与AHCT硬件设计不变。[整合范围、检查与重建说明](TangMega60K_Synth/docs/主工程合并记录_20261031.md)。下文“不合并main”等描述保留其原发布日期的历史含义。
+
 2026-10-28：本分支新增**和弦稳定音量＋触摸提前上报测试版**。[完整FPGA测试包](TangMega60K_Synth/releases/chord-touch-20261028/README.md) · [技术实现说明](TangMega60K_Synth/docs/和弦稳定混音与触摸提前上报实现说明_20261028.md) · [本次发布与验证范围](TangMega60K_Synth/docs/降低延迟与稳定音量发布记录_20261028.md)。普通两音叠加不再仅按声部数减半，实际过载仍进行峰值保护；四个数字仿真场景节省约0.94～0.96ms，54项相关仿真及完整时序通过。本版尚未上板，真实手指到喇叭总延迟、听感与长期稳定性待实测；旧版OLED基本显示已有用户反馈，5×5灯板仍待实测。历史段落按对应日期理解。
 
 2026-10-27：最近全部测试版本源码、问题处理与验证报告一并更新。[版本状态与问题汇总](TangMega60K_Synth/docs/版本问题与解决方案汇总_20261027.md) · [OLED波形版FPGA下载](TangMega60K_Synth/releases/oled-idle-wave-20261027/README.md) · [Windows 1.5.1下载](TangMega60K_Synth/releases/windows-minimized-20261027/README.md)。最新FPGA版已有用户发声反馈；**OLED屏幕、5×5灯板未进行实物测试**。Windows最小化专项使用真实窗口与内存设备，真实蓝牙/DAC待复测；历史故障FS仍暂停使用。下方为各自日期的历史记录。

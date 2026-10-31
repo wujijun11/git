@@ -1,0 +1,34 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/direct_capability.wlf -l logs/direct_capability.log -do "do cases/direct_capability.do" work.tb_direct_capability 
+# Start time: 19:43:28 on Oct 31,2026
+# Loading sv_std.std
+# Loading work.tb_direct_capability
+# Loading work.remote_command_router
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 52, found 31.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_direct_capability/dut File: sim/tb_direct_capability.sv Line: 8
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'event_on'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'event_source'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'event_note'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'event_velocity'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'event_timbre'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'expr_mask'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'expr_gain'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'expr_bend'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'expr_vibrato'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'performance_pending'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'performance_opcode'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'performance_payload'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'key_map_flat'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'current_timbre'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'effect_mode'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'timbre_write_pulse'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'sustain_write_pulse'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'sustain_value'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'learning_status_payload'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'sustain_status_payload'.
+# ** Warning: (vsim-3722) sim/tb_direct_capability.sv(8): [TFMPC] - Missing connection for port 'record_read_index'.
+# do cases/direct_capability.do
+# DIRECT CAPABILITY PASS snapshot, backpressure, duplicate, reset, strict selector, read-only
+# ** Note: $finish    : sim/tb_direct_capability.sv(44)
+#    Time: 910 ns  Iteration: 1  Instance: /tb_direct_capability
+# End time: 19:43:29 on Oct 31,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 22

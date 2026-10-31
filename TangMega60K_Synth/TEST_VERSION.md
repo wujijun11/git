@@ -1,3 +1,13 @@
+# 主工程集成版 延音功能测试说明
+
+2026-10-31按用户要求，将`codex/sustain-20261030`及其前序和弦、菜单更新统一纳入主工程。
+设计源码沿用队友提交`9168f0cdd40e0b49cc801497d184b8d29d82affd`；主入口为`full/ContestFull.gprj`。
+配套Windows1.5.2-sustain-test和Android1.9-sustain-test；延音默认关闭，C3固件不变。
+新增延音仍未完成实物验收。本次不自动下载或改写板卡Flash，不覆盖原F571发布包。
+本次重新检查范围与重建入口见`docs/主工程合并记录_20261031.md`。
+
+## 原独立测试分支发布记录
+
 # Chord F571延音独立测试版
 
 分支`codex/sustain-20261030`，基线`df6e8f6f8fcc60a31d0ff549eab37640f67aa4f7`。

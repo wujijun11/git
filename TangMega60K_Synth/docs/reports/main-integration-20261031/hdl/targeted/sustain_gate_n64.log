@@ -1,0 +1,11 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/sustain_gate_n64.wlf -l logs/sustain_gate_n64.log -do "do cases/sustain_gate_n64.do" work.tb_sustain_gate 
+# Start time: 19:42:51 on Oct 31,2026
+# Loading sv_std.std
+# Loading work.tb_sustain_gate
+# Loading work.sustain_command_gate
+# do cases/sustain_gate_n64.do
+# SUSTAIN GATE PASS N=64 ons=66 offs=66 accepted=134
+# ** Note: $finish    : sim/tb_sustain_gate.sv(75)
+#    Time: 6400 ns  Iteration: 1  Instance: /tb_sustain_gate
+# End time: 19:42:52 on Oct 31,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

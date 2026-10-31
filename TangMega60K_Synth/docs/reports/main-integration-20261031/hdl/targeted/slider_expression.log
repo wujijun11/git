@@ -1,0 +1,11 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/slider_expression.wlf -l logs/slider_expression.log -do "do cases/slider_expression.do" work.tb_slider_expression_control 
+# Start time: 19:43:11 on Oct 31,2026
+# Loading sv_std.std
+# Loading work.tb_slider_expression_control
+# Loading work.slider_expression_control
+# do cases/slider_expression.do
+# SLIDER EXPRESSION PASS masks, endpoints, bend release/fault, vibrato hold, preserved gain and stalled payload
+# ** Note: $finish    : sim/tb_slider_expression_control.sv(41)
+#    Time: 3320 ns  Iteration: 1  Instance: /tb_slider_expression_control
+# End time: 19:43:12 on Oct 31,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

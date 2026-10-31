@@ -1,0 +1,29 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/sustain_neutral_n4.wlf -l logs/sustain_neutral_n4.log -do "do cases/sustain_neutral_n4.do" work.tb_sustain_neutral -gN=4 -gTIMBRE=2 
+# Start time: 19:40:26 on Oct 31,2026
+# Loading sv_std.std
+# Loading work.tb_sustain_neutral
+# Loading work.voice_engine
+# Loading work.voice_state_ram
+# Loading work.adsr
+# Loading work.pitch_expression
+# Loading work.dds_lane
+# Loading work.polar_lane
+# Loading work.wavetable_rom
+# Loading work.stereo_mixer
+# Loading work.gain_saturator
+# Loading work.audio_fx
+# Loading work.sustain_command_gate
+# Loading work.fm_piano_lane
+# Loading work.stereo_peak_limiter
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'old_engine'.  Expected 20, found 19.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_sustain_neutral/old_engine File: sim/tb_sustain_neutral.sv Line: 22
+# ** Warning: (vsim-3722) sim/tb_sustain_neutral.sv(22): [TFMPC] - Missing connection for port 'engine_sample_begin'.
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'new_engine'.  Expected 20, found 19.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_sustain_neutral/new_engine File: sim/tb_sustain_neutral.sv Line: 36
+# ** Warning: (vsim-3722) sim/tb_sustain_neutral.sv(36): [TFMPC] - Missing connection for port 'engine_sample_begin'.
+# do cases/sustain_neutral_n4.do
+# SUSTAIN NEUTRAL PASS N=4 TIMBRE=2 frames=8168 full_voice_frames=1328 limited=0 done=4 stalls=7786864
+# ** Note: $finish    : sim/tb_sustain_neutral.sv(117)
+#    Time: 83640370 ns  Iteration: 1  Instance: /tb_sustain_neutral
+# End time: 19:41:46 on Oct 31,2026, Elapsed time: 0:01:20
+# Errors: 0, Warnings: 4

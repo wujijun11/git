@@ -1,0 +1,34 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/sustain_router.wlf -l logs/sustain_router.log -do "do cases/sustain_router.do" work.tb_sustain_router 
+# Start time: 19:34:55 on Oct 31,2026
+# Loading sv_std.std
+# Loading work.tb_sustain_router
+# Loading work.remote_command_router
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'dut'.  Expected 52, found 31.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_sustain_router/dut File: sim/tb_sustain_router.sv Line: 10
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'event_valid'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'event_on'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'event_source'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'event_note'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'event_velocity'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'event_timbre'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'expr_valid'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'expr_mask'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'expr_gain'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'expr_bend'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'expr_vibrato'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'performance_valid'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'performance_pending'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'performance_opcode'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'performance_payload'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'key_map_flat'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'current_timbre'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'effect_mode'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'panic_pulse'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'timbre_write_pulse'.
+# ** Warning: (vsim-3722) sim/tb_sustain_router.sv(10): [TFMPC] - Missing connection for port 'record_read_index'.
+# do cases/sustain_router.do
+# SUSTAIN ROUTER PASS writes=2
+# ** Note: $finish    : sim/tb_sustain_router.sv(57)
+#    Time: 1930 ns  Iteration: 1  Instance: /tb_sustain_router
+# End time: 19:34:56 on Oct 31,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 22

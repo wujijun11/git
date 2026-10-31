@@ -77,6 +77,9 @@ module instrument_full_system #(
     wire router_sustain_written,router_sustain_value;
     wire local_sustain_write,local_sustain_value;
     reg selected_sustain;
+    // Track the last pedal writer independently of remote held-key state.
+    // The existing watchdog owns the heartbeat timer; no duplicate timer/fanout.
+    reg sustain_remote_owned;
     wire [79:0] sustain_status_payload={48'd0,8'd64,1'b0,sustain_deferred_count,
         7'd0,sustain_enabled,8'd1};
     assign sustain_enabled=SUSTAIN_ENABLE && selected_sustain;
@@ -283,8 +286,9 @@ module instrument_full_system #(
     wire watchdog_ev,watchdog_er,watchdog_on;
     wire [5:0] watchdog_source;wire [6:0] watchdog_note,watchdog_velocity;wire [1:0] watchdog_timbre;
     remote_note_watchdog #(.CLK_HZ(CLK_HZ)) watchdog(.clk(clk),.rst_n(rst_n),
-        .heartbeat(cv && cr),.expire(uart_overflow || panic_discard),.accepted(remote_ev && remote_er),
-        .accepted_on(remote_on),.accepted_note(remote_note),.event_valid(watchdog_ev),.event_ready(watchdog_er),
+        .heartbeat(cv && cr),.expire(uart_overflow || panic_discard),
+        .keepalive_required(sustain_remote_owned),.accepted(remote_ev && remote_er),
+        .accepted_on(remote_on && (remote_velocity!=0)),.accepted_note(remote_note),.event_valid(watchdog_ev),.event_ready(watchdog_er),
         .event_on(watchdog_on),.event_source(watchdog_source),.event_note(watchdog_note),
         .event_velocity(watchdog_velocity),.event_timbre(watchdog_timbre),.releasing(phone_releasing));
     // Keep the audio path reset until every producer has finished its pending
@@ -318,11 +322,22 @@ module instrument_full_system #(
     wire audio_rst_n=rst_n && audio_reset_released;
     // 全停和音频复位清除踏板状态；关闭延音本身不复位音源。
     always @(posedge clk or negedge rst_n)begin
-        if(!rst_n)selected_sustain<=0;
-        else if(panic || local_panic || phone_releasing || !audio_rst_n)selected_sustain<=0;
-        else begin
-            if(local_sustain_write)selected_sustain<=local_sustain_value;
-            if(router_sustain_written)selected_sustain<=router_sustain_value;
+        if(!rst_n)begin
+            selected_sustain<=0;sustain_remote_owned<=0;
+        end else if(panic || local_panic || phone_releasing || !audio_rst_n)begin
+            selected_sustain<=0;sustain_remote_owned<=0;
+        end else begin
+            if(sustain_remote_owned && uart_overflow)begin
+                selected_sustain<=0;sustain_remote_owned<=0;
+            end
+            // Preserve existing last-writer priority; local-only sustain does
+            // not arm the heartbeat timer when there are no remote held keys.
+            if(local_sustain_write)begin
+                selected_sustain<=local_sustain_value;sustain_remote_owned<=0;
+            end
+            if(router_sustain_written)begin
+                selected_sustain<=router_sustain_value;sustain_remote_owned<=router_sustain_value;
+            end
         end
     end
     // Passive observation; none of these debug outputs controls the system.

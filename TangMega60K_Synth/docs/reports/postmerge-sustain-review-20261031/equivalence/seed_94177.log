@@ -1,0 +1,12 @@
+# do {C:\Users\asus\Desktop\Git\tmp\xg_sustain_review\equivalence\watchdog_equivalence_20261031_204106_d542338f\seed_94177.do}
+# vsim -onfinish exit -wlf C:/Users/asus/Desktop/Git/tmp/xg_sustain_review/equivalence/watchdog_equivalence_20261031_204106_d542338f/seed_94177.wlf work.tb_remote_watchdog_equivalence "+SEED=94177" "+RANDOM_CYCLES=20000" 
+# Start time: 20:41:22 on Oct 31,2026
+# Loading sv_std.std
+# Loading work.tb_remote_watchdog_equivalence
+# Loading work.remote_note_watchdog
+# Loading work.remote_note_watchdog_reference
+# WATCHDOG EQUIVALENCE PASS cycles=22785 random_cycles=20000 seed=94177 notes=128 same_note_ack=128 accepted=18097 release_acks=5139 stalls=2122 heartbeats=5671 expiry=1220 resets=31
+# ** Note: $finish    : C:/Users/asus/Desktop/Git/tmp/xg_sustain_review/equivalence/watchdog_equivalence_20261031_204106_d542338f/tb_remote_watchdog_equivalence.sv(212)
+#    Time: 227847 ns  Iteration: 0  Instance: /tb_remote_watchdog_equivalence
+# End time: 20:41:23 on Oct 31,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

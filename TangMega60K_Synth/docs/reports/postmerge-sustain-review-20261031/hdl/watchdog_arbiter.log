@@ -1,0 +1,22 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/watchdog_arbiter.wlf -l logs/watchdog_arbiter.log -do "do cases/watchdog_arbiter.do" work.tb_watchdog_arbiter_integration 
+# Start time: 20:39:59 on Oct 31,2026
+# Loading sv_std.std
+# Loading work.tb_watchdog_arbiter_integration
+# Loading work.remote_command_router
+# Loading work.remote_note_watchdog
+# Loading work.note_arbiter
+# Loading work.event_fifo_v2
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'router'.  Expected 52, found 46.
+#    Time: 0 ps  Iteration: 0  Instance: /tb_watchdog_arbiter_integration/router File: sim/tb_watchdog_arbiter_integration.sv Line: 15
+# ** Warning: (vsim-3722) sim/tb_watchdog_arbiter_integration.sv(15): [TFMPC] - Missing connection for port 'timbre_write_pulse'.
+# ** Warning: (vsim-3722) sim/tb_watchdog_arbiter_integration.sv(15): [TFMPC] - Missing connection for port 'sustain_write_pulse'.
+# ** Warning: (vsim-3722) sim/tb_watchdog_arbiter_integration.sv(15): [TFMPC] - Missing connection for port 'sustain_value'.
+# ** Warning: (vsim-3722) sim/tb_watchdog_arbiter_integration.sv(15): [TFMPC] - Missing connection for port 'mode_status_payload'.
+# ** Warning: (vsim-3722) sim/tb_watchdog_arbiter_integration.sv(15): [TFMPC] - Missing connection for port 'learning_status_payload'.
+# ** Warning: (vsim-3722) sim/tb_watchdog_arbiter_integration.sv(15): [TFMPC] - Missing connection for port 'sustain_status_payload'.
+# do cases/watchdog_arbiter.do
+# PASS watchdog/arbiter integration: locked grant + full FIFO + expiry; late note rescanned; healthy sources retained; heartbeat/duplicate/timer/stable/reset (10 events)
+# ** Note: $finish    : sim/tb_watchdog_arbiter_integration.sv(168)
+#    Time: 50590 ns  Iteration: 1  Instance: /tb_watchdog_arbiter_integration
+# End time: 20:40:00 on Oct 31,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 7

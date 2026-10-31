@@ -43,6 +43,7 @@ function New-TestCase([string]$Name,[string]$Top,[string]$Bench,[string]$Marker,
 $watchdogCase = New-TestCase 'remote_note_watchdog' 'tb_remote_note_watchdog' `
     'sim/tb_remote_note_watchdog.sv' 'REMOTE NOTE WATCHDOG PASS' @() '' $true
 $allCases = @(
+    (New-TestCase 'sustain_remote_timeout' 'tb_sustain_remote_timeout' 'sim/tb_sustain_remote_timeout.sv' 'SUSTAIN REMOTE TIMEOUT PASS'),
     (New-TestCase 'sustain_menu' 'tb_sustain_menu' 'sim/tb_sustain_menu.sv' 'SUSTAIN MENU PASS'),
     (New-TestCase 'sustain_router' 'tb_sustain_router' 'sim/tb_sustain_router.sv' 'SUSTAIN ROUTER PASS'),
     (New-TestCase 'sustain_full64' 'tb_sustain_system' 'sim/tb_sustain_system.sv' 'SUSTAIN SYSTEM FULL64 PASS' @('-gFULL_LOAD=1')),

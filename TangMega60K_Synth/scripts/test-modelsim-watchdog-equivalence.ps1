@@ -44,7 +44,8 @@ $compileDo=Join-Path $runDir 'compile.do'
 $rtl=(Join-Path $runDir 'remote_note_watchdog.v').Replace('\','/')
 $ref=(Join-Path $runDir 'remote_note_watchdog_reference.v').Replace('\','/')
 $bench=(Join-Path $runDir 'tb_remote_watchdog_equivalence.sv').Replace('\','/')
-@('onerror {quit -f -code 2}',"vlib {$work}","vlog -sv -work {$work} {$rtl} {$ref} {$bench}",'quit -f -code 0')|
+$compileDefines=if($Baseline){'+define+WATCHDOG_BASELINE'}else{''}
+@('onerror {quit -f -code 2}',"vlib {$work}","vlog -sv $compileDefines -work {$work} {$rtl} {$ref} {$bench}",'quit -f -code 0')|
     Set-Content -LiteralPath $compileDo -Encoding ASCII
 $vsim=Join-Path $ModelSimBin 'vsim.exe'
 function Invoke-ModelSim([string]$DoFile,[string]$LogName){

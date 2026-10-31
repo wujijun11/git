@@ -29,7 +29,7 @@ module tb_watchdog_arbiter_integration;
     wire [5:0] watchdog_source; wire [6:0] watchdog_note,watchdog_velocity; wire [1:0] watchdog_timbre;
     wire [31:0] timeout_count;
     remote_note_watchdog #(.CLK_HZ(1000),.TIMEOUT_SECONDS(1)) watchdog(
-        .clk(clk),.rst_n(rst_n),.heartbeat(cmd_valid && cmd_ready),.expire(expire),
+        .clk(clk),.keepalive_required(1'b0),.rst_n(rst_n),.heartbeat(cmd_valid && cmd_ready),.expire(expire),
         .accepted(remote_valid && remote_ready),.accepted_on(remote_on),.accepted_note(remote_note),
         .event_valid(watchdog_valid),.event_ready(watchdog_ready),.event_on(watchdog_on),
         .event_source(watchdog_source),.event_note(watchdog_note),.event_velocity(watchdog_velocity),

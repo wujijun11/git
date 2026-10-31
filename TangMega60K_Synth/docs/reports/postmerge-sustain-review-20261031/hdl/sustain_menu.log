@@ -1,0 +1,13 @@
+# vsim -c -modelsimini modelsim.ini -onfinish exit -voptargs="+acc" -wlf waves/sustain_menu.wlf -l logs/sustain_menu.log -do "do cases/sustain_menu.do" work.tb_sustain_menu 
+# Start time: 20:39:04 on Oct 31,2026
+# Loading sv_std.std
+# Loading work.tb_sustain_menu
+# Loading work.menu_hierarchy
+# Loading work.slider_gesture_input
+# Loading work.oled_hierarchy_renderer
+# do cases/sustain_menu.do
+# SUSTAIN MENU PASS frames=3
+# ** Note: $finish    : sim/tb_sustain_menu.sv(76)
+#    Time: 164770 ns  Iteration: 1  Instance: /tb_sustain_menu
+# End time: 20:39:05 on Oct 31,2026, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0

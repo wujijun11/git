@@ -1,0 +1,219 @@
+{
+  "date": "2026-10-31",
+  "reviewedBase": "63d461d96dfd27a96630fac181b90a3b87e96772",
+  "issuesFixed": [
+    "remote-owned sustain survives loss of heartbeat after all remote keys are released",
+    "velocity-zero note-on incorrectly arms held-key watchdog"
+  ],
+  "timeoutSeconds": 3,
+  "localOnlySustainExpires": false,
+  "publicProtocolChanged": false,
+  "publicPinsChanged": false,
+  "reproductions": [
+    {
+      "case": "before",
+      "expectedFailureConfirmed": true,
+      "failure": "remote sustain survived lost heartbeat",
+      "log": "reproductions/before.log"
+    },
+    {
+      "case": "zero_before",
+      "expectedFailureConfirmed": true,
+      "failure": "velocity-zero NOTE ON armed held-key watchdog",
+      "log": "reproductions/zero_before.log"
+    }
+  ],
+  "freshHdlCases": [
+    {
+      "case": "sustain_remote_timeout",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 5.511,
+      "log": "hdl/sustain_remote_timeout.log"
+    },
+    {
+      "case": "sustain_menu",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.705,
+      "log": "hdl/sustain_menu.log"
+    },
+    {
+      "case": "sustain_router",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.734,
+      "log": "hdl/sustain_router.log"
+    },
+    {
+      "case": "sustain_gate_n4",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.95,
+      "log": "hdl/sustain_gate_n4.log"
+    },
+    {
+      "case": "sustain_gate_n64",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.631,
+      "log": "hdl/sustain_gate_n64.log"
+    },
+    {
+      "case": "sustain_allocator_n4",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.852,
+      "log": "hdl/sustain_allocator_n4.log"
+    },
+    {
+      "case": "sustain_allocator_n64",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.656,
+      "log": "hdl/sustain_allocator_n64.log"
+    },
+    {
+      "case": "full_system",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 20.549,
+      "log": "hdl/full_system.log"
+    },
+    {
+      "case": "global_panic",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 5.713,
+      "log": "hdl/global_panic.log"
+    },
+    {
+      "case": "remote_note_watchdog",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.788,
+      "log": "hdl/remote_note_watchdog.log"
+    },
+    {
+      "case": "watchdog_arbiter",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 3.837,
+      "log": "hdl/watchdog_arbiter.log"
+    },
+    {
+      "case": "remote_uart",
+      "passed": true,
+      "exitCode": 0,
+      "elapsedSeconds": 5.559,
+      "log": "hdl/remote_uart.log"
+    }
+  ],
+  "freshHdlPassedCount": 12,
+  "watchdogEquivalence": [
+    {
+      "mode": "equivalence",
+      "passed": true,
+      "randomCyclesPerSeed": 20000,
+      "seedCount": 3,
+      "negativeOraclePassed": true,
+      "report": "equivalence/summary.json"
+    },
+    {
+      "mode": "equivalence_baseline",
+      "passed": true,
+      "randomCyclesPerSeed": 20000,
+      "seedCount": 3,
+      "negativeOraclePassed": true,
+      "report": "equivalence_baseline/summary.json"
+    }
+  ],
+  "build": {
+    "part": "GW5AT-LV60PG484AC1/I0",
+    "violations": {
+      "setup": 0,
+      "hold": 0
+    },
+    "minimumSlackNs": {
+      "setup": 0.866,
+      "hold": 0.062,
+      "recovery": 6.105,
+      "removal": 0.91
+    },
+    "resources": {
+      "Logic": {
+        "used": 28686.0,
+        "capacity": 59904.0,
+        "reportedPercent": 48,
+        "free": 31218.0
+      },
+      "Register": {
+        "used": 19540.0,
+        "capacity": 60780.0,
+        "reportedPercent": 33,
+        "free": 41240.0
+      },
+      "BSRAM": {
+        "used": 107.0,
+        "capacity": 118.0,
+        "reportedPercent": 91,
+        "free": 11.0
+      },
+      "DSP": {
+        "used": 56.0,
+        "capacity": 118.0,
+        "reportedPercent": 48,
+        "free": 62.0
+      }
+    },
+    "clocks": [
+      {
+        "name": "sys_clk",
+        "constraintMHz": 50.0,
+        "fmaxMHz": 143.254,
+        "logicLevel": 6
+      },
+      {
+        "name": "video_clock/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 125.0,
+        "fmaxMHz": 174.482,
+        "logicLevel": 1
+      },
+      {
+        "name": "video_clock/pll/CLKOUT1.default_gen_clk",
+        "constraintMHz": 25.0,
+        "fmaxMHz": 67.608,
+        "logicLevel": 15
+      },
+      {
+        "name": "audio_clock/pll_49m152/pll/CLKOUT0.default_gen_clk",
+        "constraintMHz": 49.152,
+        "fmaxMHz": 51.338,
+        "logicLevel": 16
+      }
+    ],
+    "timingPass": true,
+    "hardwareValidated": false,
+    "gaoInstrumented": false,
+    "resourceDelta": {
+      "Logic": -36.0,
+      "Register": 7.0,
+      "BSRAM": 0.0,
+      "DSP": 0.0
+    },
+    "slackDeltaNs": {
+      "setup": -0.299,
+      "hold": -0.064,
+      "recovery": 0.776,
+      "removal": 0.354
+    },
+    "bitstreamSha256": "3665e3e0dc7825a99edd6d53c637bc1d87936717a23229e0356425d49d65002c",
+    "bitstreamBytes": 20490380
+  },
+  "implementation": "reuse existing watchdog timer; one last-writer ownership bit and internal keepalive_required port",
+  "clientsFirmwareHardwareConstraintsUnchanged": true,
+  "clientEvidence": "../main-integration-20261031/summary.json",
+  "hardwareTested": false,
+  "boardDownloaded": false,
+  "flashWritten": false
+}

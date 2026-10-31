@@ -13,7 +13,11 @@ module tb_remote_watchdog_equivalence;
     wire [1:0] dt,rt;
     wire [31:0] dc,rc;
     remote_note_watchdog #(.CLK_HZ(37),.TIMEOUT_SECONDS(1)) dut (
-        .clk(clk),.rst_n(rst_n),.heartbeat(heartbeat),.expire(expire),
+        .clk(clk),
+`ifndef WATCHDOG_BASELINE
+        .keepalive_required(1'b0),
+`endif
+        .rst_n(rst_n),.heartbeat(heartbeat),.expire(expire),
         .accepted(accepted),.accepted_on(accepted_on),.accepted_note(accepted_note),
         .event_valid(dv),.event_ready(event_ready),.event_on(don),.event_source(ds),
         .event_note(dn),.event_velocity(dvel),.event_timbre(dt),.releasing(dr),.timeout_count(dc));

@@ -15,7 +15,7 @@ if(!$Stage){
     $Stage=(Get-Content -LiteralPath $metadata -Raw | ConvertFrom-Json).stage
 }
 $groups=[ordered]@{
-    Core=@('sustain_gate_n4','sustain_gate_n64','sustain_allocator_n4','sustain_allocator_n64',
+    Core=@('sustain_remote_timeout','sustain_gate_n4','sustain_gate_n64','sustain_allocator_n4','sustain_allocator_n64',
         'sustain_router','sustain_menu','sustain_system','sustain_full64',
         'sustain_neutral_n4','sustain_neutral_n64')
     Regression=@('stable_polar_n4','stable_polar_n64','stable_chord_n64','stable_chord_piano',

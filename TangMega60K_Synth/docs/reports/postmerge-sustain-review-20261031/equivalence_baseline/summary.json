@@ -1,0 +1,81 @@
+{
+  "Passed": true,
+  "Baseline": true,
+  "ReferenceSourceSHA256": "ae4c4a74e39d60b036c928b2813a6813cb2406f568fb4debe85b1cfb20ed4b13",
+  "EffectiveDutSHA256": "ae4c4a74e39d60b036c928b2813a6813cb2406f568fb4debe85b1cfb20ed4b13",
+  "InputsUnchanged": true,
+  "SnapshotsUnchanged": true,
+  "RunnerSHA256": "1ADCAD913762475C694475C5EB64CD66B6D1DFC7F19813C252A9FF133B192732",
+  "RunnerAfterSHA256": "1ADCAD913762475C694475C5EB64CD66B6D1DFC7F19813C252A9FF133B192732",
+  "RunnerSnapshotSHA256": "1ADCAD913762475C694475C5EB64CD66B6D1DFC7F19813C252A9FF133B192732",
+  "RunnerUnchanged": true,
+  "ElapsedSeconds": 20.9649938,
+  "RandomCyclesPerSeed": 20000,
+  "Cases": [
+    {
+      "Name": "oracle_negative",
+      "Seed": 734921,
+      "ExpectedFatal": true,
+      "Matched": true,
+      "ExitCode": 0,
+      "Marker": "",
+      "Log": "oracle_negative.log"
+    },
+    {
+      "Name": "seed_734921",
+      "Seed": 734921,
+      "ExpectedFatal": false,
+      "Matched": true,
+      "ExitCode": 0,
+      "Marker": "WATCHDOG EQUIVALENCE PASS cycles=22832 random_cycles=20000 seed=734921 notes=128 same_note_ack=128 accepted=18186 release_acks=5121 stalls=2173 heartbeats=5662 expiry=1256 resets=31",
+      "Log": "seed_734921.log"
+    },
+    {
+      "Name": "seed_94177",
+      "Seed": 94177,
+      "ExpectedFatal": false,
+      "Matched": true,
+      "ExitCode": 0,
+      "Marker": "WATCHDOG EQUIVALENCE PASS cycles=22785 random_cycles=20000 seed=94177 notes=128 same_note_ack=128 accepted=18097 release_acks=5139 stalls=2122 heartbeats=5671 expiry=1220 resets=31",
+      "Log": "seed_94177.log"
+    },
+    {
+      "Name": "seed_123456789",
+      "Seed": 123456789,
+      "ExpectedFatal": false,
+      "Matched": true,
+      "ExitCode": 0,
+      "Marker": "WATCHDOG EQUIVALENCE PASS cycles=22554 random_cycles=20000 seed=123456789 notes=128 same_note_ack=128 accepted=18063 release_acks=5132 stalls=2099 heartbeats=5728 expiry=1202 resets=31",
+      "Log": "seed_123456789.log"
+    }
+  ],
+  "Inputs": [
+    {
+      "Path": "rtl/control/remote_note_watchdog.v",
+      "CurrentBefore": "E0CD22EAB3CA87482A603F26E60A4C6F9C3B3B7B391CCCE0DC6C2FC47DCABB6C",
+      "Snapshot": "E0CD22EAB3CA87482A603F26E60A4C6F9C3B3B7B391CCCE0DC6C2FC47DCABB6C",
+      "CurrentAfter": "E0CD22EAB3CA87482A603F26E60A4C6F9C3B3B7B391CCCE0DC6C2FC47DCABB6C",
+      "SnapshotAfter": "AE4C4A74E39D60B036C928B2813A6813CB2406F568FB4DEBE85B1CFB20ED4B13",
+      "ExpectedSnapshot": "ae4c4a74e39d60b036c928b2813a6813cb2406f568fb4debe85b1cfb20ed4b13",
+      "SnapshotMatches": true
+    },
+    {
+      "Path": "sim/remote_note_watchdog_reference.v",
+      "CurrentBefore": "D00E763FAFAC418D5C6A0713C72C8255D8BEACA98B3F629AC219E438A31819C5",
+      "Snapshot": "D00E763FAFAC418D5C6A0713C72C8255D8BEACA98B3F629AC219E438A31819C5",
+      "CurrentAfter": "D00E763FAFAC418D5C6A0713C72C8255D8BEACA98B3F629AC219E438A31819C5",
+      "SnapshotAfter": "D00E763FAFAC418D5C6A0713C72C8255D8BEACA98B3F629AC219E438A31819C5",
+      "ExpectedSnapshot": "D00E763FAFAC418D5C6A0713C72C8255D8BEACA98B3F629AC219E438A31819C5",
+      "SnapshotMatches": true
+    },
+    {
+      "Path": "sim/tb_remote_watchdog_equivalence.sv",
+      "CurrentBefore": "1BAB80568954808BAD422B4D2C7EF4500E10442F5E63B346DF3B1E54C5B3BA6F",
+      "Snapshot": "1BAB80568954808BAD422B4D2C7EF4500E10442F5E63B346DF3B1E54C5B3BA6F",
+      "CurrentAfter": "1BAB80568954808BAD422B4D2C7EF4500E10442F5E63B346DF3B1E54C5B3BA6F",
+      "SnapshotAfter": "1BAB80568954808BAD422B4D2C7EF4500E10442F5E63B346DF3B1E54C5B3BA6F",
+      "ExpectedSnapshot": "1BAB80568954808BAD422B4D2C7EF4500E10442F5E63B346DF3B1E54C5B3BA6F",
+      "SnapshotMatches": true
+    }
+  ]
+}

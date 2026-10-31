@@ -1,0 +1,13 @@
+# do {C:\Users\asus\Desktop\Git\tmp\xg_sustain_review\equivalence\watchdog_equivalence_20261031_204106_d542338f\oracle_negative.do}
+# vsim -onfinish exit -wlf C:/Users/asus/Desktop/Git/tmp/xg_sustain_review/equivalence/watchdog_equivalence_20261031_204106_d542338f/oracle_negative.wlf work.tb_remote_watchdog_equivalence "+SEED=734921" "+RANDOM_CYCLES=20000" "+ORACLE_NEGATIVE" 
+# Start time: 20:41:13 on Oct 31,2026
+# Loading sv_std.std
+# Loading work.tb_remote_watchdog_equivalence
+# Loading work.remote_note_watchdog
+# Loading work.remote_note_watchdog_reference
+# ** Fatal: output mismatch cycle=10 dut=07e000100000001 reference=07e000100000001
+#    Time: 96 ns  Scope: tb_remote_watchdog_equivalence File: C:/Users/asus/Desktop/Git/tmp/xg_sustain_review/equivalence/watchdog_equivalence_20261031_204106_d542338f/tb_remote_watchdog_equivalence.sv Line: 90
+# ** Note: $finish    : C:/Users/asus/Desktop/Git/tmp/xg_sustain_review/equivalence/watchdog_equivalence_20261031_204106_d542338f/tb_remote_watchdog_equivalence.sv(90)
+#    Time: 96 ns  Iteration: 0  Instance: /tb_remote_watchdog_equivalence
+# End time: 20:41:14 on Oct 31,2026, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0

@@ -3,7 +3,7 @@ module tb_remote_note_watchdog;
     reg clk=0;always #5 clk=~clk;reg rn=0,hb=0,expire=0,acc=0,on=0,ready=0;reg [6:0] note=0;
     wire ev,eon,rel;wire [5:0] source;wire [6:0] en,vel;wire [1:0] timbre;wire [31:0] count;
     integer offs=0;reg [127:0] released=0;
-    remote_note_watchdog #(.CLK_HZ(100),.TIMEOUT_SECONDS(1))dut(.clk(clk),.rst_n(rn),
+    remote_note_watchdog #(.CLK_HZ(100),.TIMEOUT_SECONDS(1))dut(.clk(clk),.keepalive_required(1'b0),.rst_n(rn),
         .heartbeat(hb),.expire(expire),.accepted(acc),.accepted_on(on),.accepted_note(note),
         .event_valid(ev),.event_ready(ready),.event_on(eon),.event_source(source),
         .event_note(en),.event_velocity(vel),.event_timbre(timbre),.releasing(rel),.timeout_count(count));
